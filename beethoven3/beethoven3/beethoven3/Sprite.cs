@@ -4,8 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-//#region 정의
-//#endregion
+
 
 namespace beethoveneffect1
 {
@@ -17,7 +16,7 @@ namespace beethoveneffect1
 
         //스프라이트에 정의된 각 애니메이션 프레임의 rectangle 객체
         protected List<Rectangle> frames = new List<Rectangle>();
-        
+
         private int frameWidth = 0;
         private int frameHeight = 0;
         private int currentFrame;
@@ -34,9 +33,9 @@ namespace beethoveneffect1
         public int BoundingXPadding = 0;
         public int BoundingYPadding = 0;
 
-       //find sprite location
+        //find sprite location
         protected Vector2 location = Vector2.Zero;
-       
+
         //direction and speed
         protected Vector2 velocity = Vector2.Zero;
 

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace beethoveneffect1
+namespace beethoven3
 {
 #if WINDOWS || XBOX
     static class Program

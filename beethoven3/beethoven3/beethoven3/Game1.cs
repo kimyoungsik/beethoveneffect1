@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
-namespace beethoveneffect1
+namespace beethoven3
 {
     /// <summary>
     /// This is the main type for your game
@@ -24,12 +24,13 @@ namespace beethoveneffect1
 
         Texture2D spriteSheet;
         Texture2D titleScreen;
-
-
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+
+            
+        
         }
 
         /// <summary>
@@ -80,7 +81,6 @@ namespace beethoveneffect1
                 this.Exit();
 
             // TODO: Add your update logic here
-
             spriteBatch.Begin();
 
             if (gameState == GameStates.TitleScreen)
@@ -99,13 +99,8 @@ namespace beethoveneffect1
             }
 
             spriteBatch.End();
-
-
-
             base.Update(gameTime);
         }
-
-
 
         /// <summary>
         /// This is called when the game should draw itself.

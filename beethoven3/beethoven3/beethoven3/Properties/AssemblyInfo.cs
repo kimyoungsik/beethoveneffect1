@@ -5,8 +5,8 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("beethoveneffect1")]
-[assembly: AssemblyProduct("beethoveneffect1")]
+[assembly: AssemblyTitle("beethoven3")]
+[assembly: AssemblyProduct("beethoven3")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyCopyright("Copyright ©  2012")]
@@ -22,7 +22,7 @@ using System.Runtime.InteropServices;
 // On Windows, the following GUID is for the ID of the typelib if this
 // project is exposed to COM. On other platforms, it unique identifies the
 // title storage container when deploying this assembly to the device.
-[assembly: Guid("fd8636bc-cf73-40ea-9d86-cd33b5d24073")]
+[assembly: Guid("03eb2ee4-81ad-455a-980a-9abaed2552b5")]
 
 // Version information for an assembly consists of the following four values:
 //
