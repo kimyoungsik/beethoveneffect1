@@ -13,13 +13,18 @@ namespace beethoven3
         private Texture2D texture;
         private Rectangle initialFrame;
         private int frameCount;
-       
-       // private int frameCount;
-
-       // Mark[] Marks = new Mark[6];
-
         public List<Mark> Marks = new List<Mark>();
 
+        private Vector2 mark1Location;
+        private Vector2 mark2Location;
+        private Vector2 mark3Location;
+        private Vector2 mark4Location;
+        private Vector2 mark5Location;
+        private Vector2 mark6Location;
+
+        private StartNoteManager startNoteManager;
+
+        private int distance = 100;
         #endregion
 
 
@@ -28,19 +33,47 @@ namespace beethoven3
         public MarkManager(
             Texture2D texture,
             Rectangle initialFrame,
-            int frameCount
+            int frameCount,
+            Vector2 mark1Location,
+            Vector2 mark2Location,
+            Vector2 mark3Location,
+            Vector2 mark4Location,
+            Vector2 mark5Location,
+            Vector2 mark6Location,
+            StartNoteManager startNoteManager
             )
         {
             this.texture = texture;
             this.initialFrame = initialFrame;
             this.frameCount = frameCount;
 
-            addMark(new Vector2(100, 100));
-            addMark(new Vector2(150, 150));
-            addMark(new Vector2(200, 200));
-            addMark(new Vector2(250, 250));
-            addMark(new Vector2(300, 300));
-            addMark(new Vector2(350, 350));
+            this.startNoteManager = startNoteManager;
+            
+            this.mark1Location=mark1Location;
+            this.mark2Location=mark2Location;
+            this.mark3Location=mark3Location;
+            this.mark4Location=mark4Location;
+            this.mark5Location=mark5Location;
+            this.mark6Location=mark6Location;
+
+
+
+            addMark(mark1Location);
+            addMark(mark2Location);
+            addMark(mark3Location);
+            addMark(mark4Location);
+            addMark(mark5Location);
+            addMark(mark6Location);
+            
+            //startNoteManager = new StartNoteManager(texture, initialFrame, frameCount);
+
+            startNoteManager.addStartNote(new Vector2(mark1Location.X, mark1Location.Y - distance));
+            startNoteManager.addStartNote(new Vector2(mark2Location.X + distance, mark2Location.Y - distance));
+            startNoteManager.addStartNote(new Vector2(mark3Location.X + distance, mark3Location.Y + distance));
+            startNoteManager.addStartNote(new Vector2(mark4Location.X, mark4Location.Y + distance));
+            startNoteManager.addStartNote(new Vector2(mark5Location.X - distance, mark5Location.Y + distance));
+            startNoteManager.addStartNote(new Vector2(mark6Location.X - distance, mark6Location.Y - distance));
+
         }
 
         #endregion

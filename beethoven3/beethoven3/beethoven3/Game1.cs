@@ -26,6 +26,7 @@ namespace beethoven3
         Texture2D titleScreen;
 
         MarkManager markManager;
+        StartNoteManager startNoteManager;
 
         public Game1()
         {
@@ -61,11 +62,34 @@ namespace beethoven3
             spriteSheet = Content.Load<Texture2D>(@"Textures\SpriteSheet");
             titleScreen = Content.Load<Texture2D>(@"Textures\TitleScreen");
             // TODO: use this.Content to load your game content here
+             
+            Vector2 mark1Location = new Vector2(200, 100);
+            Vector2 mark2Location = new Vector2(300, 200);
+            Vector2 mark3Location = new Vector2(300, 300);
+            Vector2 mark4Location = new Vector2(200, 400);
+            Vector2 mark5Location = new Vector2(100, 300);
+            Vector2 mark6Location = new Vector2(100, 200);
+
+
+            startNoteManager = new StartNoteManager(
+                spriteSheet,
+                new Rectangle(0, 200, 50, 50),
+                1);
+
 
             markManager = new MarkManager(
                 spriteSheet,
                 new Rectangle(0, 200, 50, 50),
-                6);
+                6,
+                mark1Location,
+                mark2Location,
+                mark3Location,
+                mark4Location,
+                mark5Location,
+                mark6Location,
+                startNoteManager
+                
+                );
         }
 
         /// <summary>
@@ -100,6 +124,7 @@ namespace beethoven3
                 (gameState == GameStates.GameOver))
             {
                 markManager.Update(gameTime);
+                startNoteManager.Update(gameTime);
             }
 
             if (gameState == GameStates.GameOver)
@@ -120,6 +145,7 @@ namespace beethoven3
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();
             markManager.Draw(spriteBatch);
+            startNoteManager.Draw(spriteBatch);
             spriteBatch.End();
             // TODO: Add your drawing code here
 

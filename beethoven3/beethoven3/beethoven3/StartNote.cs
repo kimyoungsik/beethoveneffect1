@@ -7,29 +7,29 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace beethoven3
 {
-    class Mark
+    class StartNote
     {
+
         #region declarations
-        public Sprite MarkSprite;
+        public Sprite StartNoteSprite;
         private float speed = 120f;
-        
+
         //변환시 사라짐
         public bool Disappear = false;
 
-        //충돌 판정시에 
-        private int markRadius = 15;
+        private int startNoteRadius = 15;
 
         private Vector2 location;
         #endregion
 
         #region constructor
-        public Mark(
+        public StartNote(
             Texture2D texture,
             Vector2 location,
             Rectangle initialFrame,
             int frameCount)
         {
-            MarkSprite = new Sprite(
+            StartNoteSprite = new Sprite(
                 location,
                 texture,
                 initialFrame,
@@ -37,7 +37,7 @@ namespace beethoven3
 
             for (int x = 1; x < frameCount; x++)
             {
-                MarkSprite.AddFrame(
+                StartNoteSprite.AddFrame(
                     new Rectangle(
                         initialFrame.X = (initialFrame.Width * x),
                         initialFrame.Y,
@@ -45,26 +45,26 @@ namespace beethoven3
                         initialFrame.Height));
             }
             this.location = location;
-            MarkSprite.CollisionRadius = markRadius;
+            StartNoteSprite.CollisionRadius = startNoteRadius;
         }
         #endregion
-        
+
+
         #region update and draw
         public void Update(GameTime gameTime)
         {
-            MarkSprite.Update(gameTime);
-            
+            StartNoteSprite.Update(gameTime);
+
 
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
 
-            MarkSprite.Draw(spriteBatch);
-            
+            StartNoteSprite.Draw(spriteBatch);
+
         }
-                
+
         #endregion
-                
     }
 }

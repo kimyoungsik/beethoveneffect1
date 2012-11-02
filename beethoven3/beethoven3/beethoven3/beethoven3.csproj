@@ -114,6 +114,8 @@
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Sprite.cs" />
+    <Compile Include="StartNote.cs" />
+    <Compile Include="StartNoteManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />
