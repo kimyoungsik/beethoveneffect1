@@ -32,8 +32,7 @@ namespace beethoven3
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-
-            
+                       
         
         }
 
@@ -74,7 +73,7 @@ namespace beethoven3
             startNoteManager = new StartNoteManager(
                 spriteSheet,
                 new Rectangle(0, 200, 50, 50),
-                1);
+                1,markManager);
 
 
             markManager = new MarkManager(

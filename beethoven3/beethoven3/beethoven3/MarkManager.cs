@@ -97,7 +97,43 @@ namespace beethoven3
             get { return frameCount; }
             set { frameCount = value; }
         }
-        
+
+        public Vector2 Mark1Location
+        {
+            get { return mark1Location; }
+            set { mark1Location = value; }
+        }
+
+        public Vector2 Mark2Location
+        {
+            get { return mark2Location; }
+            set { mark2Location = value; }
+        }
+
+        public Vector2 Mark3Location
+        {
+            get { return mark3Location; }
+            set { mark3Location = value; }
+        }
+
+        public Vector2 Mark4Location
+        {
+            get { return mark4Location; }
+            set { mark4Location = value; }
+        }
+
+        public Vector2 Mark5Location
+        {
+            get { return mark5Location; }
+            set { mark5Location = value; }
+        }
+
+        public Vector2 Mark6Location
+        {
+            get { return mark6Location; }
+            set { mark6Location = value; }
+        }
+
         #endregion
         
         
