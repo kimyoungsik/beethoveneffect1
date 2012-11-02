@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 
-namespace beethoveneffect1
+namespace beethoven3
 {
     class Sprite
     {
@@ -158,8 +158,6 @@ namespace beethoveneffect1
 
         #endregion
 
-
-
         #region method
         public void AddFrame(Rectangle frameRectangle)
         {
@@ -168,8 +166,6 @@ namespace beethoveneffect1
 
 
         #endregion
-
-
 
         #region update and draw
         public virtual void Update(GameTime gameTime)

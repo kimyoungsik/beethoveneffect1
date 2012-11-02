@@ -20,10 +20,13 @@ namespace beethoven3
         SpriteBatch spriteBatch;
 
         enum GameStates { TitleScreen, Playing, PlayerDead, GameOver };
-        GameStates gameState = GameStates.TitleScreen;
+        GameStates gameState = GameStates.Playing;
 
         Texture2D spriteSheet;
         Texture2D titleScreen;
+
+        MarkManager markManager;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -58,6 +61,11 @@ namespace beethoven3
             spriteSheet = Content.Load<Texture2D>(@"Textures\SpriteSheet");
             titleScreen = Content.Load<Texture2D>(@"Textures\TitleScreen");
             // TODO: use this.Content to load your game content here
+
+            markManager = new MarkManager(
+                spriteSheet,
+                new Rectangle(0, 200, 50, 50),
+                6);
         }
 
         /// <summary>
@@ -91,6 +99,7 @@ namespace beethoven3
                 (gameState == GameStates.PlayerDead) ||
                 (gameState == GameStates.GameOver))
             {
+                markManager.Update(gameTime);
             }
 
             if (gameState == GameStates.GameOver)
@@ -109,7 +118,9 @@ namespace beethoven3
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
+            spriteBatch.Begin();
+            markManager.Draw(spriteBatch);
+            spriteBatch.End();
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);

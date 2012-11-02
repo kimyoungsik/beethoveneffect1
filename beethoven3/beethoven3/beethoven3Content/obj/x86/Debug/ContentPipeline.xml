@@ -7,7 +7,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>c:\users\김영식\documents\visual studio 2010\Projects\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\Textures\SpriteSheet.xnb</Output>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\Textures\SpriteSheet.xnb</Output>
       <Time>2010-03-29T06:39:12+09:00</Time>
     </Item>
     <Item>
@@ -16,7 +16,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>c:\users\김영식\documents\visual studio 2010\Projects\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\Textures\TitleScreen.xnb</Output>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\Textures\TitleScreen.xnb</Output>
       <Time>2010-03-29T06:39:12+09:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
@@ -25,10 +25,10 @@
       <TargetProfile>Reach</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>c:\users\김영식\documents\visual studio 2010\Projects\beethoven3\beethoven3\beethoven3Content\</RootDirectory>
-      <LoggerRootDirectory>c:\users\김영식\documents\visual studio 2010\Projects\beethoven3\beethoven3\beethoven3\</LoggerRootDirectory>
-      <IntermediateDirectory>c:\users\김영식\documents\visual studio 2010\Projects\beethoven3\beethoven3\beethoven3Content\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>c:\users\김영식\documents\visual studio 2010\Projects\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>D:\beethoven\beethoven3\beethoven3\beethoven3Content\</RootDirectory>
+      <LoggerRootDirectory>D:\beethoven\beethoven3\beethoven3\beethoven3\</LoggerRootDirectory>
+      <IntermediateDirectory>D:\beethoven\beethoven3\beethoven3\beethoven3Content\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>

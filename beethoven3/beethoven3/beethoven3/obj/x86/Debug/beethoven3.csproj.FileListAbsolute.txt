@@ -6,3 +6,11 @@ c:\users\김영식\documents\visual studio 2010\Projects\beethoven3\beethoven3\b
 c:\users\김영식\documents\visual studio 2010\Projects\beethoven3\beethoven3\beethoven3\obj\x86\Debug\beethoven3.pdb
 c:\users\김영식\documents\visual studio 2010\Projects\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\Textures\SpriteSheet.xnb
 c:\users\김영식\documents\visual studio 2010\Projects\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\Textures\TitleScreen.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\Textures\SpriteSheet.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\Textures\TitleScreen.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\beethoven3.exe
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\beethoven3.pdb
+D:\beethoven\beethoven3\beethoven3\beethoven3\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\beethoven\beethoven3\beethoven3\beethoven3\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+D:\beethoven\beethoven3\beethoven3\beethoven3\obj\x86\Debug\beethoven3.exe
+D:\beethoven\beethoven3\beethoven3\beethoven3\obj\x86\Debug\beethoven3.pdb
