@@ -80,7 +80,8 @@ namespace beethoven3
         }
         public void deleteAllMarks()
         {
-            for (int i = 0; i < 6; i++)
+           // for (int i = 0; i < 6; i++)
+            for (int i = 0; i < Marks.Count; i++)
             {
                 Marks.RemoveAt(i);
             }
@@ -90,10 +91,11 @@ namespace beethoven3
         #region update and draw
         public void Update(GameTime gameTime)
         {
-            for (int x = 0; x < 6; x++)
-          //  for (int x = Marks.Count - 1; x >= 0; x--)
+      
+            foreach (Mark mark in Marks)
             {
-                Marks[x].Update(gameTime);
+            
+                mark.Update(gameTime);
             }
 
         }
