@@ -23,7 +23,8 @@ namespace beethoven3
         public List<StartNote> StartNotes = new List<StartNote>();
 
      //   private MarkManager markManager;
-        public NoteManager rightNoteManager;
+        public static NoteManager rightNoteManager;
+        public static NoteManager leftNoteManager;
         #endregion
 
 
@@ -41,6 +42,15 @@ namespace beethoven3
             this.frameCount = frameCount;
        //     this.markManager = markManager;
 
+            leftNoteManager = new NoteManager(
+                //노크와 시작마커가 같은 sprite
+               texture,
+               new Rectangle(0, 200, 50, 50),
+               4,
+               2,
+               3f,
+                //notetype
+               0);
 
             rightNoteManager = new NoteManager(
                 //노크와 시작마커가 같은 sprite
@@ -50,7 +60,9 @@ namespace beethoven3
                 2,
                 1f,
                 //notetype
-                0);
+                1);
+
+           
 
         }
         #endregion
@@ -108,6 +120,11 @@ namespace beethoven3
             {
                 MakeRightNote(1);
             }
+
+            if (keyState.IsKeyDown(Keys.NumPad2))
+            {
+                MakeLeftNote(2);
+            }
         }
 
         //오른손 노트
@@ -120,15 +137,26 @@ namespace beethoven3
                             location;
 
             rightNoteManager.MakeNote(location, direction);
-
         }
 
+        //왼손노트
+        private void MakeLeftNote(int markNumber)
+        {
+            Vector2 location = StartNotes[markNumber].StartNoteSprite.Center;
+
+            Vector2 direction =
+                            MarkManager.Marks[markNumber].MarkSprite.Center -
+                            location;
+
+            leftNoteManager.MakeNote(location, direction);
+        }
         #endregion
 
         #region update and draw
         public void Update(GameTime gameTime)
         {
             rightNoteManager.Update(gameTime);
+            leftNoteManager.Update(gameTime);
             foreach (StartNote startNote in StartNotes)
             {
                 startNote.Update(gameTime);
@@ -147,6 +175,7 @@ namespace beethoven3
         public void Draw(SpriteBatch spriteBatch)
         {
             rightNoteManager.Draw(spriteBatch);
+            leftNoteManager.Draw(spriteBatch);
             foreach (StartNote startNote in StartNotes)
             {
                 startNote.Draw(spriteBatch);

@@ -15,7 +15,7 @@ namespace beethoven3
         public List<Sprite> LittleNotes = new List<Sprite>();
 
         private static Texture2D Texture;
-        private static Rectangle InitialFrame;
+        private Rectangle InitialFrame;
         private static int FrameCount;
         private float noteSpeed;
         private static int CollisionRadius;
