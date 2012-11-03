@@ -5,6 +5,10 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
+//for test
+using Microsoft.Xna.Framework.Input;
+//
+
 namespace beethoven3
 {
     class StartNoteManager
@@ -18,8 +22,8 @@ namespace beethoven3
 
         public List<StartNote> StartNotes = new List<StartNote>();
 
-        private MarkManager markManager;
-        public NoteManager noteManager;
+     //   private MarkManager markManager;
+        public NoteManager rightNoteManager;
         #endregion
 
 
@@ -28,23 +32,23 @@ namespace beethoven3
         public StartNoteManager(
             Texture2D texture,
             Rectangle initialFrame,
-            int frameCount,
-            MarkManager markManager
+            int frameCount
+          //  MarkManager markManager
             )
         {
             this.texture = texture;
             this.initialFrame = initialFrame;
             this.frameCount = frameCount;
-            this.markManager = markManager;
+       //     this.markManager = markManager;
 
 
-            noteManager = new NoteManager(
+            rightNoteManager = new NoteManager(
                 //노크와 시작마커가 같은 sprite
                 texture,
                 new Rectangle(0, 300, 5, 5),
                 4,
                 2,
-                50f,
+                1f,
                 //notetype
                 0);
 
@@ -91,25 +95,58 @@ namespace beethoven3
                 StartNotes.RemoveAt(i);
             }
         }
+
+        //테스트
+        private void HandleKeyboardInput(KeyboardState keyState)
+        {
+            if (keyState.IsKeyDown(Keys.NumPad0))
+            {
+                MakeRightNote(0);
+            }
+
+            if (keyState.IsKeyDown(Keys.NumPad1))
+            {
+                MakeRightNote(1);
+            }
+        }
+
+        //오른손 노트
+        private void MakeRightNote(int markNumber)
+        {
+            Vector2 location = StartNotes[markNumber].StartNoteSprite.Center;
+
+            Vector2 direction =
+                            MarkManager.Marks[markNumber].MarkSprite.Center -
+                            location;
+
+            rightNoteManager.MakeNote(location, direction);
+
+        }
+
         #endregion
 
         #region update and draw
         public void Update(GameTime gameTime)
         {
-            noteManager.Update(gameTime);
+            rightNoteManager.Update(gameTime);
             foreach (StartNote startNote in StartNotes)
             {
                 startNote.Update(gameTime);
             }
-
+            HandleKeyboardInput(Keyboard.GetState());
             //마커가 변환할 때는 노트가 나오지 않도록 bool active쓰는것도 괜찮을것 같음
             //각 startnote에서 마커로 노트를 발사
             //신호를 줄때마다, 노트 타입 별로
 
+
         }
+
+
+
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            rightNoteManager.Draw(spriteBatch);
             foreach (StartNote startNote in StartNotes)
             {
                 startNote.Draw(spriteBatch);

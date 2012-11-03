@@ -25,7 +25,7 @@ namespace beethoven3
         Texture2D spriteSheet;
         Texture2D titleScreen;
 
-        MarkManager markManager;
+    //    MarkManager markManager;
         StartNoteManager startNoteManager;
 
         public Game1()
@@ -73,10 +73,10 @@ namespace beethoven3
             startNoteManager = new StartNoteManager(
                 spriteSheet,
                 new Rectangle(0, 200, 50, 50),
-                1,markManager);
+                1);
 
-
-            markManager = new MarkManager(
+            MarkManager.initialize(
+           // markManager = new MarkManager(
                 spriteSheet,
                 new Rectangle(0, 200, 50, 50),
                 6,
@@ -122,8 +122,9 @@ namespace beethoven3
                 (gameState == GameStates.PlayerDead) ||
                 (gameState == GameStates.GameOver))
             {
-                markManager.Update(gameTime);
+                MarkManager.Update(gameTime);
                 startNoteManager.Update(gameTime);
+               // noteManager.
             }
 
             if (gameState == GameStates.GameOver)
@@ -143,7 +144,7 @@ namespace beethoven3
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();
-            markManager.Draw(spriteBatch);
+            MarkManager.Draw(spriteBatch);
             startNoteManager.Draw(spriteBatch);
             spriteBatch.End();
             // TODO: Add your drawing code here

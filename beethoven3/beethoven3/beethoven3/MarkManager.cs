@@ -7,72 +7,72 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace beethoven3
 {
-    class MarkManager
+    static class MarkManager
     {
         #region declarations
-        private Texture2D texture;
-        private Rectangle initialFrame;
-        private int frameCount;
-        public List<Mark> Marks = new List<Mark>();
+        private static Texture2D markTexture;
+        private static Rectangle markInitialFrame;
+        private static int markFrameCount;
+        public static List<Mark> Marks = new List<Mark>();
 
-        private Vector2 mark1Location;
-        private Vector2 mark2Location;
-        private Vector2 mark3Location;
-        private Vector2 mark4Location;
-        private Vector2 mark5Location;
-        private Vector2 mark6Location;
+        private static Vector2 mark1Location;
+        private static Vector2 mark2Location;
+        private static Vector2 mark3Location;
+        private static Vector2 mark4Location;
+        private static Vector2 mark5Location;
+        private static Vector2 mark6Location;
 
-        private StartNoteManager startNoteManager;
+        private static StartNoteManager startNoteManager;
 
-        private int distance = 100;
+        private static int distance = 100;
         #endregion
 
 
-        #region constructor
+        #region initialization
 
-        public MarkManager(
+        public static void initialize(
             Texture2D texture,
             Rectangle initialFrame,
             int frameCount,
-            Vector2 mark1Location,
-            Vector2 mark2Location,
-            Vector2 mark3Location,
-            Vector2 mark4Location,
-            Vector2 mark5Location,
-            Vector2 mark6Location,
-            StartNoteManager startNoteManager
+            Vector2 mark1Loc,
+            Vector2 mark2Loc,
+            Vector2 mark3Loc,
+            Vector2 mark4Loc,
+            Vector2 mark5Loc,
+            Vector2 mark6Loc,
+            StartNoteManager startNoteMana
             )
         {
-            this.texture = texture;
-            this.initialFrame = initialFrame;
-            this.frameCount = frameCount;
+            markTexture = texture;
+            markInitialFrame = initialFrame;
+            markFrameCount = frameCount;
 
-            this.startNoteManager = startNoteManager;
+            startNoteManager = startNoteMana;
             
-            this.mark1Location=mark1Location;
-            this.mark2Location=mark2Location;
-            this.mark3Location=mark3Location;
-            this.mark4Location=mark4Location;
-            this.mark5Location=mark5Location;
-            this.mark6Location=mark6Location;
+            mark1Location=mark1Loc;
+            mark2Location=mark2Loc;
+            mark3Location=mark3Loc;
+            mark4Location=mark4Loc;
+            mark5Location=mark5Loc;
+            mark6Location=mark6Loc;
 
 
 
-            addMark(mark1Location);
-            addMark(mark2Location);
-            addMark(mark3Location);
-            addMark(mark4Location);
-            addMark(mark5Location);
-            addMark(mark6Location);
+            addMark(mark1Loc);
+            addMark(mark2Loc);
+            addMark(mark3Loc);
+            addMark(mark4Loc);
+            addMark(mark5Loc);
+            addMark(mark6Loc);
             
             //startNoteManager = new StartNoteManager(texture, initialFrame, frameCount);
 
-            startNoteManager.addStartNote(new Vector2(mark1Location.X, mark1Location.Y - distance));
-            startNoteManager.addStartNote(new Vector2(mark2Location.X + distance, mark2Location.Y - distance));
-            startNoteManager.addStartNote(new Vector2(mark3Location.X + distance, mark3Location.Y + distance));
-            startNoteManager.addStartNote(new Vector2(mark4Location.X, mark4Location.Y + distance));
-            startNoteManager.addStartNote(new Vector2(mark5Location.X - distance, mark5Location.Y + distance));
-            startNoteManager.addStartNote(new Vector2(mark6Location.X - distance, mark6Location.Y - distance));
+            startNoteManager.addStartNote(new Vector2(mark1Loc.X, mark1Loc.Y - distance));
+            startNoteManager.addStartNote(new Vector2(mark2Loc.X + distance, mark2Loc.Y - distance));
+            startNoteManager.addStartNote(new Vector2(mark3Loc.X + distance, mark3Loc.Y + distance));
+            startNoteManager.addStartNote(new Vector2(mark4Loc.X, mark4Loc.Y + distance));
+            startNoteManager.addStartNote(new Vector2(mark5Loc.X - distance, mark5Loc.Y + distance));
+            startNoteManager.addStartNote(new Vector2(mark6Loc.X - distance, mark6Loc.Y - distance));
 
         }
 
@@ -80,74 +80,74 @@ namespace beethoven3
 
         #region properties
 
-        public Rectangle InitialFrame
-        {
-            get { return initialFrame; }
-            set { initialFrame = value; }
-        }
+        //public  Rectangle InitialFrame
+        //{
+        //    get { return initialFrame; }
+        //    set { initialFrame = value; }
+        //}
 
-        public Texture2D Texture
-        {
-            get { return texture; }
-            set { texture = value; }
-        }
+        //public Texture2D Texture
+        //{
+        //    get { return texture; }
+        //    set { texture = value; }
+        //}
 
-        public int FrameCount
-        {
-            get { return frameCount; }
-            set { frameCount = value; }
-        }
+        //public int FrameCount
+        //{
+        //    get { return frameCount; }
+        //    set { frameCount = value; }
+        //}
 
-        public Vector2 Mark1Location
-        {
-            get { return mark1Location; }
-            set { mark1Location = value; }
-        }
+        //public Vector2 Mark1Location
+        //{
+        //    get { return mark1Location; }
+        //    set { mark1Location = value; }
+        //}
 
-        public Vector2 Mark2Location
-        {
-            get { return mark2Location; }
-            set { mark2Location = value; }
-        }
+        //public Vector2 Mark2Location
+        //{
+        //    get { return mark2Location; }
+        //    set { mark2Location = value; }
+        //}
 
-        public Vector2 Mark3Location
-        {
-            get { return mark3Location; }
-            set { mark3Location = value; }
-        }
+        //public Vector2 Mark3Location
+        //{
+        //    get { return mark3Location; }
+        //    set { mark3Location = value; }
+        //}
 
-        public Vector2 Mark4Location
-        {
-            get { return mark4Location; }
-            set { mark4Location = value; }
-        }
+        //public Vector2 Mark4Location
+        //{
+        //    get { return mark4Location; }
+        //    set { mark4Location = value; }
+        //}
 
-        public Vector2 Mark5Location
-        {
-            get { return mark5Location; }
-            set { mark5Location = value; }
-        }
+        //public Vector2 Mark5Location
+        //{
+        //    get { return mark5Location; }
+        //    set { mark5Location = value; }
+        //}
 
-        public Vector2 Mark6Location
-        {
-            get { return mark6Location; }
-            set { mark6Location = value; }
-        }
+        //public Vector2 Mark6Location
+        //{
+        //    get { return mark6Location; }
+        //    set { mark6Location = value; }
+        //}
 
         #endregion
         
         
         #region method
-        public void addMark(Vector2 location)
+        public static void addMark(Vector2 location)
         {
             Mark thisMark = new Mark(
-                texture,
+                markTexture,
                 location,
-                initialFrame,
-                frameCount);
+                markInitialFrame,
+                markFrameCount);
             Marks.Add(thisMark);
         }
-        public void deleteAllMarks()
+        public static void deleteAllMarks()
         {
            // for (int i = 0; i < 6; i++)
             for (int i = 0; i < Marks.Count; i++)
@@ -158,7 +158,7 @@ namespace beethoven3
         #endregion
        
         #region update and draw
-        public void Update(GameTime gameTime)
+        public static void Update(GameTime gameTime)
         {
       
             foreach (Mark mark in Marks)
@@ -169,7 +169,7 @@ namespace beethoven3
 
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public static void Draw(SpriteBatch spriteBatch)
         {
 
             foreach (Mark mark in Marks)
