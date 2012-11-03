@@ -28,6 +28,7 @@ namespace beethoven3
 
         StartNoteManager startNoteManager;
         CollisionManager collisionManager;
+        File file;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -91,6 +92,7 @@ namespace beethoven3
                 );
             collisionManager = new CollisionManager();
 
+         //   file = new File("a.txt", startNoteManager);
         }
 
         /// <summary>
@@ -140,6 +142,7 @@ namespace beethoven3
                 startNoteManager.Update(gameTime);
                 HandleKeyboardInput(Keyboard.GetState());
                // collisionManager.CheckCollisions();
+                //file.Update(gameTime);
             }
 
             if (gameState == GameStates.GameOver)

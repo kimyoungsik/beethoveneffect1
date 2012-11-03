@@ -130,7 +130,7 @@ namespace beethoven3
         }
 
         //오른손 노트
-        private void MakeRightNote(int markNumber)
+        public void MakeRightNote(int markNumber)
         {
             Vector2 location = StartNotes[markNumber].StartNoteSprite.Center;
 
@@ -143,7 +143,7 @@ namespace beethoven3
         }
 
         //왼손노트
-        private void MakeLeftNote(int markNumber)
+        public void MakeLeftNote(int markNumber)
         {
             //노트시작점의 위치
             Vector2 location = StartNotes[markNumber].StartNoteSprite.Center;

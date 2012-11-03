@@ -108,6 +108,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CollisionManager.cs" />
+    <Compile Include="File.cs" />
     <Compile Include="Mark.cs" />
     <Compile Include="MarkManager.cs" />
     <Compile Include="NoteManager.cs" />
