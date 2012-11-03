@@ -25,14 +25,14 @@ namespace beethoven3
         Texture2D spriteSheet;
         Texture2D titleScreen;
 
-    //    MarkManager markManager;
-        StartNoteManager startNoteManager;
 
+        StartNoteManager startNoteManager;
+        CollisionManager collisionManager;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-                       
+   
         
         }
 
@@ -89,6 +89,8 @@ namespace beethoven3
                 startNoteManager
                 
                 );
+            collisionManager = new CollisionManager();
+
         }
 
         /// <summary>
@@ -99,7 +101,19 @@ namespace beethoven3
         {
             // TODO: Unload any non ContentManager content here
         }
+        private void HandleKeyboardInput(KeyboardState keyState)
+        {
+            if (keyState.IsKeyDown(Keys.NumPad8))
+            {
+                collisionManager.CheckCollisions(0);
+            }
+            if (keyState.IsKeyDown(Keys.NumPad9))
+            {
+                collisionManager.CheckCollisions(1);
+            }
 
+          
+        }
         /// <summary>
         /// Allows the game to run logic such as updating the world,
         /// checking for collisions, gathering input, and playing audio.
@@ -124,7 +138,8 @@ namespace beethoven3
             {
                 MarkManager.Update(gameTime);
                 startNoteManager.Update(gameTime);
-               // noteManager.
+                HandleKeyboardInput(Keyboard.GetState());
+               // collisionManager.CheckCollisions();
             }
 
             if (gameState == GameStates.GameOver)

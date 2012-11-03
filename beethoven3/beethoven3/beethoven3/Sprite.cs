@@ -147,13 +147,38 @@ namespace beethoven3
             return BoundingBoxRect.Intersects(OtherBox);
         }
 
+        //예시
         public bool IsCircleColliding(Vector2 otherCenter, float otherRadius)
         {
+            //중앙을 이은 선이 나의 충돌거리(반지름)과 다른것의 충돌거리의 합보다 작으면 
             if (Vector2.Distance(Center, otherCenter) <
                 (CollisionRadius + otherRadius))
                 return true;
             else
                 return false;
+        }
+
+
+        public int JudgedNote(Vector2 otherCenter, float otherRadius)
+        {
+            //bad
+            int ret = 0;
+
+            //반/2 보다 가까울때  , perfect
+            if (Vector2.Distance(Center, otherCenter) <
+                (CollisionRadius/2))
+            {
+                ret = 2;
+            }
+            //반들어왔을때 . good
+            else if (Vector2.Distance(Center, otherCenter) <
+                (CollisionRadius))
+            {
+                ret = 1;
+            }
+
+
+            return ret;
         }
 
         #endregion

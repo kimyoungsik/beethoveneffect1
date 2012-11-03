@@ -15,16 +15,17 @@ namespace beethoven3
     {
         
         #region declarations
+        
         private Texture2D texture;
         private Rectangle initialFrame;
+        
         private int frameCount;
-       // public List<Mark> Marks = new List<Mark>();
-
+        
         public List<StartNote> StartNotes = new List<StartNote>();
-
-     //   private MarkManager markManager;
+        
         public static NoteManager rightNoteManager;
         public static NoteManager leftNoteManager;
+        
         #endregion
 
 
@@ -34,20 +35,19 @@ namespace beethoven3
             Texture2D texture,
             Rectangle initialFrame,
             int frameCount
-          //  MarkManager markManager
+         
             )
         {
             this.texture = texture;
             this.initialFrame = initialFrame;
             this.frameCount = frameCount;
-       //     this.markManager = markManager;
-
+       
             leftNoteManager = new NoteManager(
                 //노크와 시작마커가 같은 sprite
                texture,
                new Rectangle(0, 200, 50, 50),
                4,
-               2,
+               15,
                3f,
                 //notetype
                0);
@@ -57,7 +57,7 @@ namespace beethoven3
                 texture,
                 new Rectangle(0, 300, 5, 5),
                 4,
-                2,
+                15,
                 1f,
                 //notetype
                 1);
