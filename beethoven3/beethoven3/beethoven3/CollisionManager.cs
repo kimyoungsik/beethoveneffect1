@@ -11,7 +11,7 @@ namespace beethoven3
         #region declarations
         //MarkManager
        // private StartNoteManager startNoteManager;
-        private Vector2 offScreen = new Vector2(-500, -500);
+     //   private Vector2 offScreen = new Vector2(-500, -500);
         private int judgment;
         #endregion
 
@@ -39,7 +39,7 @@ namespace beethoven3
                     //    mark.MarkSprite.CollisionRadius);
                     
                     //마커의 반지름으로
-                judgment = MarkManager.Marks[number].MarkSprite.JudgedNote(
+                    judgment = MarkManager.Marks[number].MarkSprite.JudgedNote(
                         littleNote.Center,
                         littleNote.CollisionRadius);
                     //perfect
@@ -58,8 +58,6 @@ namespace beethoven3
                     {
 
                     }
-                             
-
             //    }
             }
         }

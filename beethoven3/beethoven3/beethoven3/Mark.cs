@@ -11,7 +11,7 @@ namespace beethoven3
     {
         #region declarations
         public Sprite MarkSprite;
-        private float speed = 120f;
+       // private float speed = 120f;
         
         //변환시 사라짐
         public bool Disappear = false;

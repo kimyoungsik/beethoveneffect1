@@ -46,7 +46,7 @@ namespace beethoven3
                 //노크와 시작마커가 같은 sprite
                texture,
                new Rectangle(0, 200, 50, 50),
-               4,
+               1,
                15,
                3f,
                 //notetype
@@ -55,14 +55,14 @@ namespace beethoven3
             rightNoteManager = new NoteManager(
                 //노크와 시작마커가 같은 sprite
                 texture,
-                new Rectangle(0, 300, 5, 5),
-                4,
+                 new Rectangle(0, 300, 5, 5),
+                1,
                 15,
                 1f,
                 //notetype
                 1);
+            //longnote
 
-           
 
         }
         #endregion
@@ -72,9 +72,7 @@ namespace beethoven3
         {
             get { return initialFrame; }
             set { initialFrame = value; }
-            
         }
-
         public Texture2D Texture
         {
             get { return texture; }
@@ -111,8 +109,11 @@ namespace beethoven3
         //테스트
         private void HandleKeyboardInput(KeyboardState keyState)
         {
+        
+
             if (keyState.IsKeyDown(Keys.NumPad0))
             {
+                
                 MakeRightNote(0);
             }
 
@@ -135,7 +136,8 @@ namespace beethoven3
             Vector2 direction =
                             MarkManager.Marks[markNumber].MarkSprite.Center -
                             location;
-
+            //속도 1로 맞추기 
+            //direction.Normalize();
             rightNoteManager.MakeNote(location, direction);
         }
 
@@ -165,13 +167,9 @@ namespace beethoven3
             //마커가 변환할 때는 노트가 나오지 않도록 bool active쓰는것도 괜찮을것 같음
             //각 startnote에서 마커로 노트를 발사
             //신호를 줄때마다, 노트 타입 별로
-
-
+            
         }
-
-
-
-
+        
         public void Draw(SpriteBatch spriteBatch)
         {
             rightNoteManager.Draw(spriteBatch);
