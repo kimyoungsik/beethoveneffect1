@@ -62,12 +62,12 @@ namespace beethoven3
             titleScreen = Content.Load<Texture2D>(@"Textures\TitleScreen");
             // TODO: use this.Content to load your game content here
              
-            Vector2 mark1Location = new Vector2(200, 100);
-            Vector2 mark2Location = new Vector2(300, 200);
-            Vector2 mark3Location = new Vector2(300, 300);
-            Vector2 mark4Location = new Vector2(200, 400);
-            Vector2 mark5Location = new Vector2(100, 300);
-            Vector2 mark6Location = new Vector2(100, 200);
+            Vector2 mark1Location = new Vector2(400, 70);
+            Vector2 mark2Location = new Vector2(500, 170);
+            Vector2 mark3Location = new Vector2(500, 270);
+            Vector2 mark4Location = new Vector2(400, 370);
+            Vector2 mark5Location = new Vector2(300, 270);
+            Vector2 mark6Location = new Vector2(300, 170);
 
 
             startNoteManager = new StartNoteManager(

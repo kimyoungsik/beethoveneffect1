@@ -48,7 +48,8 @@ namespace beethoven3
                new Rectangle(0, 200, 50, 50),
                1,
                15,
-               3f,
+               //notespeed 영향주는것 1
+               70f,
                 //notetype
                0);
 
@@ -58,7 +59,7 @@ namespace beethoven3
                  new Rectangle(0, 300, 5, 5),
                 1,
                 15,
-                1f,
+                70f,
                 //notetype
                 1);
             //longnote
@@ -137,19 +138,21 @@ namespace beethoven3
                             MarkManager.Marks[markNumber].MarkSprite.Center -
                             location;
             //속도 1로 맞추기 
-            //direction.Normalize();
+            direction.Normalize();
             rightNoteManager.MakeNote(location, direction);
         }
 
         //왼손노트
         private void MakeLeftNote(int markNumber)
         {
+            //노트시작점의 위치
             Vector2 location = StartNotes[markNumber].StartNoteSprite.Center;
 
+            //노트시작점에서 마크의 방향
             Vector2 direction =
                             MarkManager.Marks[markNumber].MarkSprite.Center -
                             location;
-
+            direction.Normalize();
             leftNoteManager.MakeNote(location, direction);
         }
         #endregion

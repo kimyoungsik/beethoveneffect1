@@ -26,7 +26,7 @@ namespace beethoven3
 
         private static StartNoteManager startNoteManager;
 
-        private static float distance = 10.0f;
+        private static float distance = 70.0f;
         #endregion
 
 
@@ -108,142 +108,194 @@ namespace beethoven3
             }
         }
 
-
+        /// <summary>
+        /// 마커의 위치를 주면 노트가 시작되는 위치를 리턴  
+        /// 중복되는 부분 refactor 필요 
+        /// </summary>
         public static Vector2 GetStartNoteLocation(Vector2 center, float distance, int type)
         {
             Vector2 otherCenter = center;
-         
+            int x = 70;
             switch (type)
             {
                 case 0:
 
-                    int y0 = 0;
                     bool find0 = false;
                     while (!find0)
                     {
-                        otherCenter.Y -= y0;
-                        if(Vector2.Distance(center,otherCenter) == distance || otherCenter.Y < 0)
+                        otherCenter.Y -= x;
+                        if (Vector2.Distance(center, otherCenter) == distance || otherCenter.Y < 0)
                         {
-
                             find0 = true;
                         }
-
-                        y0++;   
                     }
-                    
-
                     break;
 
                 case 1:
-                    int x1 = 0;
-                    int y1 = 0;
+
                     bool find1 = false;
                     while (!find1)
                     {
-                        otherCenter.X += x1;
-                        otherCenter.Y -= y1;
-                        if(Vector2.Distance(center,otherCenter) == distance || otherCenter.Y < 0)
+                        otherCenter.X += x;
+                        if (Vector2.Distance(center, otherCenter) == distance || otherCenter.X > 2000)
                         {
-
                             find1 = true;
                         }
-                        x1++;
-                        y1++;   
-                    }
-                    
-                    break;
 
+                    }
+                    break;
                 case 2:
-                    int x2 = 0;
-                    int y2 = 0;
+
                     bool find2 = false;
                     while (!find2)
                     {
-                        otherCenter.X += x2;
-                        otherCenter.Y += y2;
-                        if(Vector2.Distance(center,otherCenter) == distance || otherCenter.Y < 1500)
+                        otherCenter.X += x;
+                        if (Vector2.Distance(center, otherCenter) == distance || otherCenter.X > 2000)
                         {
-
-                            find1 = true;
+                            find2 = true;
                         }
-                        x2++;
-                        y2++;   
                     }
-                    
-                   
                     break;
-
-
                 case 3:
-                      int x3 = 0;
-                    int y3 = 0;
+
                     bool find3 = false;
                     while (!find3)
                     {
-                        
-                        otherCenter.Y += y3;
-                        if(Vector2.Distance(center,otherCenter) == distance || otherCenter.Y < 1500)
+                        otherCenter.Y += x;
+                        if (Vector2.Distance(center, otherCenter) == distance || otherCenter.Y < 1500)
                         {
-
                             find3 = true;
                         }
-                        x3++;
-                        y3++;   
                     }
-                  
-
                     break;
-
-
                 case 4:
-                      int x4 = 0;
-                    int y4 = 0;
                     bool find4 = false;
                     while (!find4)
                     {
-                        otherCenter.X -= x4;
-                        otherCenter.Y += y4;
-                        if(Vector2.Distance(center,otherCenter) == distance || otherCenter.X < 0)
+                        otherCenter.X -= x;
+                        if (Vector2.Distance(center, otherCenter) == distance || otherCenter.X < 0)
                         {
-
                             find4 = true;
                         }
-                        x4++;
-                        y4++;   
+
                     }
-                    
-                    
                     break;
-
-
                 case 5:
-                        int x5 = 0;
-                    int y5 = 0;
+
                     bool find5 = false;
                     while (!find5)
                     {
-                        otherCenter.X -= x5;
-                        otherCenter.Y -= y5;
-                        if(Vector2.Distance(center,otherCenter) == distance || otherCenter.Y < 0)
-                        {
+                        otherCenter.X -= x;
 
-                            find4 = true;
+                        if (Vector2.Distance(center, otherCenter) == distance || otherCenter.X < 0)
+                        {
+                            find5 = true;
                         }
-                        x5++;
-                        y5++;   
+
                     }
                     break;
-
-
-                  
-
             }
-
             return otherCenter;
-            
-        }
 
+        }
         #endregion
+
+
+        //public static Vector2 GetStartNoteLocation(Vector2 center, float distance, int type)
+        //{
+        //    Vector2 otherCenter = center;
+        //    int x = 1;
+        //    switch (type)
+        //    {
+        //        case 0:
+
+                    
+        //            bool find0 = false;
+        //            while (!find0)
+        //            {
+        //                otherCenter.Y -= x;
+        //                if (Vector2.Distance(center, otherCenter) == distance || otherCenter.Y < 0)
+        //                {
+        //                    find0 = true;
+        //                }
+                      
+        //            }
+        //            break;
+
+        //        case 1:
+                   
+        //            bool find1 = false;
+        //            while (!find1)
+        //            {
+        //                otherCenter.X += x;
+        //                otherCenter.Y -= x;
+        //                if (Vector2.Distance(center, otherCenter) == distance || otherCenter.X > 2000)
+        //                {
+        //                    find1 = true;
+        //                }
+                        
+        //            }
+        //            break;
+        //        case 2:
+                   
+        //            bool find2 = false;
+        //            while (!find2)
+        //            {
+        //                otherCenter.X += x;
+        //                otherCenter.Y += x;
+        //                if (Vector2.Distance(center, otherCenter) == distance || otherCenter.X > 2000)
+        //                {
+        //                    find2 = true;
+        //                }
+                       
+        //            }
+        //            break;
+        //        case 3:
+                   
+        //            bool find3 = false;
+        //            while (!find3)
+        //            {
+        //                otherCenter.Y += x;
+        //                if (Vector2.Distance(center, otherCenter) == distance || otherCenter.Y > 1500)
+        //                {
+        //                    find3 = true;
+        //                }
+                     
+        //            }
+        //            break;
+        //        case 4:
+                  
+        //            bool find4 = false;
+        //            while (!find4)
+        //            {
+        //                otherCenter.X -= x;
+        //                otherCenter.Y += x;
+        //                if (Vector2.Distance(center, otherCenter) == distance || otherCenter.X < 0)
+        //                {
+        //                    find4 = true;
+        //                }
+                         
+        //            }
+        //            break;
+        //        case 5:
+
+        //            bool find5 = false;
+        //            while (!find5)
+        //            {
+        //                otherCenter.X -= x;
+        //                otherCenter.Y -= x;
+        //                if (Vector2.Distance(center, otherCenter) == distance || otherCenter.X < 0)
+        //                {
+        //                    find5 = true;
+        //                }
+                          
+        //            }
+        //            break;
+        //    }
+        //    return otherCenter;
+
+        //}
+        
        
         #region update and draw
         public static void Update(GameTime gameTime)
