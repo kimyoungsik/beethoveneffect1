@@ -92,7 +92,9 @@ namespace beethoven3
                 );
             collisionManager = new CollisionManager();
 
-         //   file = new File("a.txt", startNoteManager);
+            file = new File(startNoteManager);
+            //곡선택화면에서
+            file.Loading("a.txt");
         }
 
         /// <summary>
@@ -142,7 +144,11 @@ namespace beethoven3
                 startNoteManager.Update(gameTime);
                 HandleKeyboardInput(Keyboard.GetState());
                // collisionManager.CheckCollisions();
+          
                 //file.Update(gameTime);
+                file.Update(gameTime);
+
+
             }
 
             if (gameState == GameStates.GameOver)

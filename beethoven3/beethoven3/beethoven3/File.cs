@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,7 +12,7 @@ namespace beethoven3
     {
         #region declarations
         private StartNoteManager startNoteManager;
-        private StreamReader sr;
+        //private StreamReader sr;
         private String line;
         private String[] words;
      //   private int type;
@@ -19,14 +20,17 @@ namespace beethoven3
         private float noteTime;
      //   private int bps;
         private bool played;
+
+//        private String[] noteContents;
+        private Queue allNotes = new Queue();      
         #endregion
         
         #region constructor
         
-        public File(String fileName, StartNoteManager startNoteManager) 
+        public File( StartNoteManager startNoteManager) 
         
         {
-            this.sr = new StreamReader(fileName);
+          //  this.sr = new StreamReader(fileName);
             this.startNoteManager = startNoteManager;
             this.played = false;
         }
@@ -35,33 +39,54 @@ namespace beethoven3
 
         #region method
 
+        public void Loading(String fileName)
+        {
+            StreamReader sr = new StreamReader(fileName);
+           
+            while (sr.Peek() >= 0)
+            {
+               // int i=0;
+                String line = sr.ReadLine();
+                allNotes.Enqueue(line);
+                //noteContents[i] = line;
+              //  i++;
+            }
+            sr.Close();
+        }
+
+        public void FindNote(double gameTime)
+        {
+            String[] noteContents;
+            double noteTime;
+            
+            String note = (String)allNotes.Peek();
+
+            noteContents = note.Split(' ');
+
+
+            noteTime = Convert.ToDouble(noteContents[0]);
+
+
+
+            if(noteTime <= gameTime )
+             {
+
+               PlayNote(Int32.Parse(noteContents[1]), Int32.Parse(noteContents[2]));
+               allNotes.Dequeue();    
+             }
+            
+        }
+
+
+
         public void Update(GameTime gameTime)
         {
 
-            float time = (float)gameTime.ElapsedGameTime.TotalSeconds;
+           double time = gameTime.TotalGameTime.TotalSeconds;
+
+           FindNote(time);
 
 
-
-            if (sr.Peek() >= 0)
-            {
-                if (!played)
-                {
-                    line = this.sr.ReadLine();
-                    played = true;
-                }
-                words = line.Split(' ');
-                noteTime = (float)Convert.ToDouble(words[0]);
-                if (noteTime == time)
-                {
-                    
-                    PlayNote(Int32.Parse(words[1]), Int32.Parse(words[2]));
-                    played = false;
-                }
-            }
-            else
-            {
-                sr.Close();
-            }
 
         }
          public void PlayNote(int type, int markNumber)
