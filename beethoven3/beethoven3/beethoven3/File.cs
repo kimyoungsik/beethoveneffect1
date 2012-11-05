@@ -11,28 +11,17 @@ namespace beethoven3
     class File
     {
         #region declarations
-        private StartNoteManager startNoteManager;
-        //private StreamReader sr;
-        private String line;
-        private String[] words;
-     //   private int type;
-     //   private int markNumber;
-        private float noteTime;
-     //   private int bps;
-        private bool played;
 
-//        private String[] noteContents;
+        private StartNoteManager startNoteManager;
         private Queue allNotes = new Queue();      
+
         #endregion
         
         #region constructor
         
-        public File( StartNoteManager startNoteManager) 
-        
+        public File( StartNoteManager startNoteManager)       
         {
-          //  this.sr = new StreamReader(fileName);
-            this.startNoteManager = startNoteManager;
-            this.played = false;
+             this.startNoteManager = startNoteManager;
         }
         
         #endregion
@@ -44,12 +33,9 @@ namespace beethoven3
             StreamReader sr = new StreamReader(fileName);
            
             while (sr.Peek() >= 0)
-            {
-               // int i=0;
+            {            
                 String line = sr.ReadLine();
                 allNotes.Enqueue(line);
-                //noteContents[i] = line;
-              //  i++;
             }
             sr.Close();
         }
@@ -63,10 +49,9 @@ namespace beethoven3
 
             noteContents = note.Split(' ');
 
-
             noteTime = Convert.ToDouble(noteContents[0]);
 
-
+            noteTime = GetNoteStartTime(noteTime);
 
             if(noteTime <= gameTime )
              {
@@ -77,7 +62,28 @@ namespace beethoven3
             
         }
 
+        /// <summary>
+        /// 마커에 노트가 닿는 시간을 정확히 맞추기 위해서
+        /// </summary>
+        /// <param name="noteTime"></param>
+        /// <returns></returns>
 
+        public double GetNoteStartTime(double noteTime)
+        {
+
+            double startTime= 0.0f;
+
+            //거리/속력 
+
+            double time = (MarkManager.distance) / (StartNoteManager.noteSpeed);
+
+            startTime = noteTime - time;
+
+            return startTime;
+
+
+            
+        }
 
         public void Update(GameTime gameTime)
         {
@@ -86,9 +92,9 @@ namespace beethoven3
 
            FindNote(time);
 
-
-
         }
+
+
          public void PlayNote(int type, int markNumber)
         {
                 switch (type)
@@ -107,58 +113,9 @@ namespace beethoven3
                 }
  
        }
-        //public void PlayNote(String fileName)
-        //{
-        //    StreamReader sr = new StreamReader(fileName);
-        //    String line;
-        //    String[] words;
-        //    int type;
-        //    int markNumber;
-        //    int time;
-        //    int bps;
-        //    while (sr.Peek() >= 0)
-        //    {
-        //        line = sr.ReadLine();
-        //        words = line.Split(' ');
-
-        //        type = Int32.Parse(words[0]);
-        //        markNumber= Int32.Parse(words[1]);
-        //        time= Int32.Parse(words[2]);
-        //        bps = Int32.Parse(words[3]);
-
-        //        //string to int : null -> error
-        //        switch (type)
-        //        {
-        //            //right
-        //            case 0:
-        //                //시간에 맞춰서 뿌려줘야 함. 
-        //                startNoteManager.MakeRightNote(markNumber);
-
-        //                break;
-
-        //            //left
-        //            case 1:
-        //                startNoteManager.MakeLeftNote(markNumber);
-        //                break;
-        //        }
- 
-
-                
-
-
-        //    }
-        //    sr.Close();
-
-
-        //}
-
-        //타입 (r:0,l:1) // 마커번호 // 시간 // bps(속도) 
 
         #endregion
-        
-        
-
-        
+         
 
     }
 }

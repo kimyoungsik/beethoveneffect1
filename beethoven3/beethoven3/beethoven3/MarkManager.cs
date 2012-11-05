@@ -26,8 +26,12 @@ namespace beethoven3
 
         private static StartNoteManager startNoteManager;
 
-        private static float distance = 70.0f;
+        //마커와 노트시작 사이의 거리
+        public static float distance = 70.0f;
         #endregion
+        //70 이라면. 속도 곱하기 시간은 거리
+        // 시간은 = 거리/속도
+
 
 
         #region initialization

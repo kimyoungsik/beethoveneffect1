@@ -25,7 +25,9 @@ namespace beethoven3
         
         public static NoteManager rightNoteManager;
         public static NoteManager leftNoteManager;
-        
+
+        //BPS에 따라 달라진다.
+        public static float noteSpeed = 70.0f;
         #endregion
 
 
@@ -42,6 +44,7 @@ namespace beethoven3
             this.initialFrame = initialFrame;
             this.frameCount = frameCount;
        
+
             leftNoteManager = new NoteManager(
                 //노크와 시작마커가 같은 sprite
                texture,
@@ -49,7 +52,7 @@ namespace beethoven3
                1,
                15,
                //notespeed 영향주는것 1
-               70f,
+               noteSpeed,
                 //notetype
                0);
 
@@ -59,7 +62,7 @@ namespace beethoven3
                  new Rectangle(0, 300, 5, 5),
                 1,
                 15,
-                70f,
+                noteSpeed,
                 //notetype
                 1);
             //longnote
