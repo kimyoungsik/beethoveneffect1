@@ -132,7 +132,7 @@ namespace beethoven3
 
                     //드래그 노트
                     case 4:
-                        curve.SetLine(new Vector2(100, 100), new Vector2(150, 50), new Vector2(200, 150), new Vector2(200, 100),30);
+                        curve.SetLine(new Vector2(100, 100), new Vector2(150, 50), new Vector2(200, 150), new Vector2(200, 100),3.0);
                         break;
 
 

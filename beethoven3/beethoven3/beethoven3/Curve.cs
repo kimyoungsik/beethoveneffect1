@@ -17,7 +17,8 @@ namespace beethoven3
         // public static List<Vector2> points = new List<Vector2>();
         //public Queue Points = new Queue();
         private List<Vector2> Points = new List<Vector2>();
-        private int time = 0;
+        private double time = 0.0;
+        private double changedTime = 0.0;
         #endregion
 
 
@@ -52,7 +53,7 @@ namespace beethoven3
             return new Vector2(resX, resY);
         }
 
-        public void SetLine(Vector2 p0, Vector2 p1, Vector2 p2, Vector2 p3, int time)
+        public void SetLine(Vector2 p0, Vector2 p1, Vector2 p2, Vector2 p3, double time)
         {
             Vector2 PlotPoint;
             float t;
@@ -84,37 +85,31 @@ namespace beethoven3
 
         #region update and draw
 
-        //public void Update(GameTime gameTime)
-        //{
-
-
-        //}
-
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             int i, j; 
-       //     if (Points.Count > 0)
-       //     {
-                int changedTime = gameTime.ElapsedGameTime.Milliseconds;
+          
+            if (Points.Count > 0)
+            {
+                changedTime += gameTime.ElapsedGameTime.TotalSeconds;
 
-               // if (changedTime < time)
-               // {
-                    for (i = 0; i < Points.Count - 1; i++)
-                    {
-                        j = i + 1;
+                for (i = 0; i < Points.Count - 1; i++)
+                {
+                    j = i + 1;
 
-                        LineRenderer.DrawLine(spriteBatch.GraphicsDevice, spriteBatch, (Vector2)Points[i], (Vector2)Points[j], Color.Red);
-                    }
-               // }
+                    LineRenderer.DrawLine(spriteBatch.GraphicsDevice, spriteBatch, (Vector2)Points[i], (Vector2)Points[j], Color.Red);
+                }
+             
                 if (changedTime > time)
                 {
                     if (Points.Count > 0)
                     {
                         DeleteAllPoints();
+                    
                     }
 
                 }
-         //   }
+            }
         }
 
         #endregion
