@@ -14,7 +14,8 @@ namespace beethoven3
     {
 
        // public static List<Vector2> points = new List<Vector2>();
-        public Queue Points = new Queue();   
+        //public Queue Points = new Queue();
+        public List<Vector2> Points = new List<Vector2>();
         #region constructor
         public Curve()
         {
@@ -52,7 +53,7 @@ namespace beethoven3
             {
                 PlotPoint = GetPoint(t, p0, p1, p2, p3);
                // points.Add(PlotPoint);
-                Points.Enqueue(PlotPoint);
+                Points.Add(PlotPoint);
             }
         }
         #endregion

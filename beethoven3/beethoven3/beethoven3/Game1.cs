@@ -100,7 +100,7 @@ namespace beethoven3
             file.Loading("a.txt");
             curve = new Curve();
 
-            curve.GetLine(new Vector2(100, 100), new Vector2(150, 50), new Vector2(200, 50), new Vector2(200, 200));
+            curve.GetLine(new Vector2(100, 100), new Vector2(150, 50), new Vector2(200, 150), new Vector2(200, 100));
             
 
         }
@@ -193,10 +193,16 @@ namespace beethoven3
             spriteBatch.Begin();
             MarkManager.Draw(spriteBatch);
             startNoteManager.Draw(spriteBatch);
-
-            if (curve.Points.Count != 0)
+            int time = gameTime.ElapsedGameTime.Milliseconds;
+            if (time< 30)
             {
-                LineRenderer.DrawLine(GraphicsDevice, spriteBatch, (Vector2)curve.Points.Dequeue(), (Vector2)curve.Points.Peek(), Color.Black);
+                for(int i =0; i<curve.Points.Count-1; i++)
+                {
+                    int j = i+1;
+                                    
+                    LineRenderer.DrawLine(GraphicsDevice, spriteBatch, (Vector2)curve.Points[i], (Vector2)curve.Points[j], Color.Red);
+            
+                }
 
             }
 
