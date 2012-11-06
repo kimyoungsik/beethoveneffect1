@@ -22,8 +22,7 @@ namespace beethoven3
         private static Vector2 mark3Location;
         private static Vector2 mark4Location;
         private static Vector2 mark5Location;
-        //
-
+        
         private static StartNoteManager startNoteManager;
 
         //마커와 노트시작 사이의 거리
@@ -31,9 +30,7 @@ namespace beethoven3
         #endregion
         //70 이라면. 속도 곱하기 시간은 거리
         // 시간은 = 거리/속도
-
-
-
+        
         #region initialization
 
         public static void initialize(
@@ -62,25 +59,13 @@ namespace beethoven3
             mark4Location=mark4Loc;
             mark5Location=mark5Loc;
 
-
-
             addMark(mark0Loc);
             addMark(mark1Loc);
             addMark(mark2Loc);
             addMark(mark3Loc);
             addMark(mark4Loc);
-            addMark(mark5Loc);
-            
-            //startNoteManager = new StartNoteManager(texture, initialFrame, frameCount);
-            //Vector2.Distance(Center, otherCenter)
-
-            //startNoteManager.addStartNote(new Vector2(mark0Loc.X, mark0Loc.Y - distance));
-            //startNoteManager.addStartNote(new Vector2(mark1Loc.X + distance, mark1Loc.Y - distance));
-            //startNoteManager.addStartNote(new Vector2(mark2Loc.X + distance, mark2Loc.Y + distance));
-            //startNoteManager.addStartNote(new Vector2(mark3Loc.X, mark3Loc.Y + distance));
-            //startNoteManager.addStartNote(new Vector2(mark4Loc.X - distance, mark4Loc.Y + distance));
-            //startNoteManager.addStartNote(new Vector2(mark5Loc.X - distance, mark5Loc.Y - distance));
-
+            addMark(mark5Loc); 
+       
             startNoteManager.addStartNote(GetStartNoteLocation(mark0Loc, distance, 0));
             startNoteManager.addStartNote(GetStartNoteLocation(mark1Loc, distance, 1));
             startNoteManager.addStartNote(GetStartNoteLocation(mark2Loc, distance, 2));
@@ -324,3 +309,4 @@ namespace beethoven3
         #endregion
     }
 }
+

@@ -5,9 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-//for test
-using Microsoft.Xna.Framework.Input;
-//
+
 
 namespace beethoven3
 {
@@ -25,7 +23,7 @@ namespace beethoven3
         
         public static NoteManager rightNoteManager;
         public static NoteManager leftNoteManager;
-
+        public static NoteManager doubleNoteManager;
         //BPS에 따라 달라진다.
         public static float noteSpeed = 70.0f;
         #endregion
@@ -65,8 +63,16 @@ namespace beethoven3
                 noteSpeed,
                 //notetype
                 1);
-            //longnote
-
+            //doublenote
+            doubleNoteManager = new NoteManager(
+                //노크와 시작마커가 같은 sprite
+                texture,
+                 new Rectangle(0, 300, 5, 5),
+                1,
+                15,
+                noteSpeed,
+                //notetype
+                1);
 
         }
         #endregion
@@ -110,27 +116,7 @@ namespace beethoven3
             }
         }
 
-        //테스트
-        private void HandleKeyboardInput(KeyboardState keyState)
-        {
-        
 
-            if (keyState.IsKeyDown(Keys.NumPad0))
-            {
-                
-                MakeRightNote(0);
-            }
-
-            if (keyState.IsKeyDown(Keys.NumPad1))
-            {
-                MakeRightNote(1);
-            }
-
-            if (keyState.IsKeyDown(Keys.NumPad2))
-            {
-                MakeLeftNote(2);
-            }
-        }
 
         //오른손 노트
         public void MakeRightNote(int markNumber)
@@ -158,6 +144,24 @@ namespace beethoven3
             direction.Normalize();
             leftNoteManager.MakeNote(location, direction);
         }
+
+        public void MakeDoubleNote(int markNumber)
+        {
+            //노트시작점의 위치
+            Vector2 location = StartNotes[markNumber].StartNoteSprite.Center;
+
+            //노트시작점에서 마크의 방향
+            Vector2 direction =
+                            MarkManager.Marks[markNumber].MarkSprite.Center -
+                            location;
+            direction.Normalize();
+            doubleNoteManager.MakeNote(location, direction);
+        }
+
+
+
+
+
         #endregion
 
         #region update and draw
@@ -165,11 +169,11 @@ namespace beethoven3
         {
             rightNoteManager.Update(gameTime);
             leftNoteManager.Update(gameTime);
+            doubleNoteManager.Update(gameTime);
             foreach (StartNote startNote in StartNotes)
             {
                 startNote.Update(gameTime);
             }
-            HandleKeyboardInput(Keyboard.GetState());
             //마커가 변환할 때는 노트가 나오지 않도록 bool active쓰는것도 괜찮을것 같음
             //각 startnote에서 마커로 노트를 발사
             //신호를 줄때마다, 노트 타입 별로
@@ -180,6 +184,7 @@ namespace beethoven3
         {
             rightNoteManager.Draw(spriteBatch);
             leftNoteManager.Draw(spriteBatch);
+            doubleNoteManager.Draw(spriteBatch);
             foreach (StartNote startNote in StartNotes)
             {
                 startNote.Draw(spriteBatch);

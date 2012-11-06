@@ -29,6 +29,9 @@ namespace beethoven3
         StartNoteManager startNoteManager;
         CollisionManager collisionManager;
         File file;
+        Curve curve;
+
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -95,6 +98,11 @@ namespace beethoven3
             file = new File(startNoteManager);
             //곡선택화면에서
             file.Loading("a.txt");
+            curve = new Curve();
+
+            curve.GetLine(new Vector2(100, 100), new Vector2(150, 50), new Vector2(200, 50), new Vector2(200, 200));
+            
+
         }
 
         /// <summary>
@@ -115,7 +123,22 @@ namespace beethoven3
             {
                 collisionManager.CheckCollisions(1);
             }
-
+            if (keyState.IsKeyDown(Keys.NumPad6))
+            {
+                collisionManager.CheckCollisions(2);
+            }
+            if (keyState.IsKeyDown(Keys.NumPad5))
+            {
+                collisionManager.CheckCollisions(3);
+            }
+            if (keyState.IsKeyDown(Keys.NumPad4))
+            {
+                collisionManager.CheckCollisions(4);
+            }
+            if (keyState.IsKeyDown(Keys.NumPad7))
+            {
+                collisionManager.CheckCollisions(5);
+            }
           
         }
         /// <summary>
@@ -147,7 +170,7 @@ namespace beethoven3
           
                 //file.Update(gameTime);
                 file.Update(gameTime);
-
+            
 
             }
 
@@ -170,6 +193,13 @@ namespace beethoven3
             spriteBatch.Begin();
             MarkManager.Draw(spriteBatch);
             startNoteManager.Draw(spriteBatch);
+
+            if (curve.Points.Count != 0)
+            {
+                LineRenderer.DrawLine(GraphicsDevice, spriteBatch, (Vector2)curve.Points.Dequeue(), (Vector2)curve.Points.Peek(), Color.Black);
+
+            }
+
             spriteBatch.End();
             // TODO: Add your drawing code here
 
