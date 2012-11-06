@@ -13,9 +13,15 @@ namespace beethoven3
     class Curve
     {
 
-       // public static List<Vector2> points = new List<Vector2>();
+        #region declarations
+        // public static List<Vector2> points = new List<Vector2>();
         //public Queue Points = new Queue();
-        public List<Vector2> Points = new List<Vector2>();
+        private List<Vector2> Points = new List<Vector2>();
+        private int time = 0;
+        #endregion
+
+
+
         #region constructor
         public Curve()
         {
@@ -46,35 +52,69 @@ namespace beethoven3
             return new Vector2(resX, resY);
         }
 
-        public void GetLine(Vector2 p0, Vector2 p1, Vector2 p2, Vector2 p3)
+        public void SetLine(Vector2 p0, Vector2 p1, Vector2 p2, Vector2 p3, int time)
         {
             Vector2 PlotPoint;
-            for (float t = 0;  t <= 1.0f; t += 0.01f)
+            float t;
+
+            this.time = time;
+            for (t = 0;  t <= 1.0f; t += 0.01f)
             {
                 PlotPoint = GetPoint(t, p0, p1, p2, p3);
                // points.Add(PlotPoint);
                 Points.Add(PlotPoint);
             }
+
         }
+
+        public void DeleteAllPoints()
+        {
+            int i;
+            for(i=0; i<Points.Count(); i++)
+            {
+                Points.RemoveAt(i);
+            }
+           
+        }
+
+        
+
         #endregion
 
 
         #region update and draw
 
-        public void Update(GameTime gameTime)
+        //public void Update(GameTime gameTime)
+        //{
+
+
+        //}
+
+        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
+            int i, j; 
+       //     if (Points.Count > 0)
+       //     {
+                int changedTime = gameTime.ElapsedGameTime.Milliseconds;
 
-         
+               // if (changedTime < time)
+               // {
+                    for (i = 0; i < Points.Count - 1; i++)
+                    {
+                        j = i + 1;
 
-        }
+                        LineRenderer.DrawLine(spriteBatch.GraphicsDevice, spriteBatch, (Vector2)Points[i], (Vector2)Points[j], Color.Red);
+                    }
+               // }
+                if (changedTime > time)
+                {
+                    if (Points.Count > 0)
+                    {
+                        DeleteAllPoints();
+                    }
 
-        public void Draw(SpriteBatch spriteBatch)
-        {
-            //if (Points.Count != 0)
-            //{
-            //    LineRenderer.DrawLine(GraphicsDevice, spriteBatch, (Vector2)Points.Dequeue, (Vector2)Points.Peek(), Color.Black);
-
-            //}
+                }
+         //   }
         }
 
         #endregion

@@ -13,15 +13,17 @@ namespace beethoven3
         #region declarations
 
         private StartNoteManager startNoteManager;
+        private Curve curve;
         private Queue allNotes = new Queue();      
 
         #endregion
         
         #region constructor
         
-        public File( StartNoteManager startNoteManager)       
+        public File( StartNoteManager startNoteManager, Curve curve)       
         {
              this.startNoteManager = startNoteManager;
+             this.curve = curve;
         }
         
         #endregion
@@ -63,7 +65,8 @@ namespace beethoven3
                 //PlayNote(타입,날아가는 마커 위치)
                 //타입 0-오른손 1-왼손 2-양손 3-롱노트 4-드래그노트 
                PlayNote(Int32.Parse(noteContents[1]), Int32.Parse(noteContents[2]));
-               allNotes.Dequeue();    
+               
+                allNotes.Dequeue();    
              }
             
         }
@@ -129,7 +132,7 @@ namespace beethoven3
 
                     //드래그 노트
                     case 4:
-                        
+                        curve.SetLine(new Vector2(100, 100), new Vector2(150, 50), new Vector2(200, 150), new Vector2(200, 100),30);
                         break;
 
 
