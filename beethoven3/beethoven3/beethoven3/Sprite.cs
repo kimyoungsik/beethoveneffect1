@@ -105,6 +105,7 @@ namespace beethoven3
         public Rectangle Source
         {
             get { return frames[currentFrame]; }
+            set { Source = value; }
         }
 
         // sprite's frame location rectangle
@@ -127,7 +128,52 @@ namespace beethoven3
                 return location +
                     new Vector2(frameWidth / 2, frameHeight / 2);
             }
+            ////추가
+            //set
+            //{
+            //    Center = value;
+            //}
+            ////
         }
+
+        //public Vector2 Origin
+        //{
+
+        //    get
+        //    {
+        //        return new Vector2(frameWidth / 2, frameHeight / 2);
+        //    }
+        //    set
+        //    {
+        //        Origin = value;
+        //    }
+        //}
+        //public Vector2 Scale
+        //{
+
+        //    get
+        //    {
+        //        return new Vector2(1.0f, 0.0f);
+        //    }
+        //    set
+        //    {
+        //        Scale = value;
+        //    }
+        //}
+
+        //public float LayerDepth
+        //{
+
+        //    get
+        //    {
+        //        return 0.0f;
+        //    }
+        //    set
+        //    {
+        //        LayerDepth = value;
+        //    }
+        //}
+
 
         #endregion
 
@@ -225,6 +271,20 @@ namespace beethoven3
                 0.0f);
         }
 
+
+        //public virtual void Draw(SpriteBatch spriteBatch)
+        //{
+        //    spriteBatch.Draw(
+        //        Texture,
+        //        Center,
+        //        Source,
+        //        tintColor,
+        //        rotation,
+        //        Origin,
+        //        Scale,
+        //        SpriteEffects.None,
+        //        LayerDepth);
+        //}
         #endregion
     }
 }

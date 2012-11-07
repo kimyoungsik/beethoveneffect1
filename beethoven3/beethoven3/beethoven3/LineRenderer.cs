@@ -18,19 +18,45 @@ namespace beethoven3
         #region declarations
         static Color m_LIneColor = Color.White;
         static Texture2D m_LineTexture = null;
+       // static public Sprite lineTexture;
+
         #endregion 
 
-        #region methods
 
-      
+
+        #region methods
+        
+        //static private void setLineTexture(Texture2D texture,
+        //    Vector2 location,
+        //    Rectangle initialFrame,
+        //    int frameCount)
+        //{
+        //    lineTexture = new Sprite(
+        //        location,
+        //        texture,
+        //        initialFrame,
+        //        Vector2.Zero);
+
+        //    for (int x = 1; x < frameCount; x++)
+        //    {
+        //        lineTexture.AddFrame(
+        //            new Rectangle(
+        //                initialFrame.X = (initialFrame.Width * x),
+        //                initialFrame.Y,
+        //                initialFrame.Width,
+        //                initialFrame.Height));
+        //    }
+
+        //}
 
         // 라인을 그리기 위해 1x1 짜리 하얀색 pixel 텍스쳐를 만듬.
         static private void CreateLineTexture(GraphicsDevice device)
         {
             m_LineTexture = Game1.heart;
-            Color[] pixels = new Color[1];
-            pixels[0] = Color.White;
-        //    m_LineTexture.SetData<Color>(pixels);
+            //m_LineTexture = new Texture2D(device, 1, 1, true, SurfaceFormat.Color);
+            //Color[] pixels = new Color[1];
+            //pixels[0] = Color.White;
+            //m_LineTexture.SetData<Color>(pixels);
         }
 
         static public Color LineColor
@@ -58,8 +84,9 @@ namespace beethoven3
 
             float distance = Vector2.Distance(vStart, vEnd);
             float angle = (float)Math.Atan2((double)(vEnd.Y - vStart.Y), (double)(vEnd.X - vStart.X));
-
-            spriteBatch.Draw(m_LineTexture, vStart, null, m_LIneColor, angle, Vector2.Zero, new Vector2(distance, 1), SpriteEffects.None, 1.0f);
+     
+          //  spriteBatch.Draw(m_LineTexture, vStart, null, m_LIneColor, angle, Vector2.Zero, new Vector2(distance, 1), SpriteEffects.None, 1.0f);
+            spriteBatch.Draw(m_LineTexture, vStart, null, m_LIneColor);
         }
         #endregion
     }
