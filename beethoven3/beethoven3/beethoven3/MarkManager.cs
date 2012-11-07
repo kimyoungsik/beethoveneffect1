@@ -28,11 +28,10 @@ namespace beethoven3
         //마커와 노트시작 사이의 거리
         public static float distance = 70.0f;
         #endregion
-        //70 이라면. 속도 곱하기 시간은 거리
-        // 시간은 = 거리/속도
-        
+         
         #region initialization
-
+        //70 이라면. 속도 곱하기 시간은 거리
+        // 시간은 = 거리/속도 
         public static void initialize(
             Texture2D texture,
             Rectangle initialFrame,
@@ -73,11 +72,8 @@ namespace beethoven3
             startNoteManager.addStartNote(GetStartNoteLocation(mark4Loc, distance, 4));
             startNoteManager.addStartNote(GetStartNoteLocation(mark5Loc, distance, 5));
         }
-
         #endregion
 
-        
-        
         #region method
         public static void addMark(Vector2 location)
         {
@@ -96,7 +92,6 @@ namespace beethoven3
                 Marks.RemoveAt(i);
             }
         }
-
         /// <summary>
         /// 마커의 위치를 주면 노트가 시작되는 위치를 리턴  
         /// 중복되는 부분 refactor 필요 
@@ -166,7 +161,6 @@ namespace beethoven3
                         {
                             find4 = true;
                         }
-
                     }
                     break;
                 case 5:
@@ -185,11 +179,7 @@ namespace beethoven3
                     break;
             }
             return otherCenter;
-
         }
-        #endregion
-
-
         //public static Vector2 GetStartNoteLocation(Vector2 center, float distance, int type)
         //{
         //    Vector2 otherCenter = center;
@@ -198,7 +188,7 @@ namespace beethoven3
         //    {
         //        case 0:
 
-                    
+
         //            bool find0 = false;
         //            while (!find0)
         //            {
@@ -207,12 +197,12 @@ namespace beethoven3
         //                {
         //                    find0 = true;
         //                }
-                      
+
         //            }
         //            break;
 
         //        case 1:
-                   
+
         //            bool find1 = false;
         //            while (!find1)
         //            {
@@ -222,11 +212,11 @@ namespace beethoven3
         //                {
         //                    find1 = true;
         //                }
-                        
+
         //            }
         //            break;
         //        case 2:
-                   
+
         //            bool find2 = false;
         //            while (!find2)
         //            {
@@ -236,11 +226,11 @@ namespace beethoven3
         //                {
         //                    find2 = true;
         //                }
-                       
+
         //            }
         //            break;
         //        case 3:
-                   
+
         //            bool find3 = false;
         //            while (!find3)
         //            {
@@ -249,11 +239,11 @@ namespace beethoven3
         //                {
         //                    find3 = true;
         //                }
-                     
+
         //            }
         //            break;
         //        case 4:
-                  
+
         //            bool find4 = false;
         //            while (!find4)
         //            {
@@ -263,7 +253,7 @@ namespace beethoven3
         //                {
         //                    find4 = true;
         //                }
-                         
+
         //            }
         //            break;
         //        case 5:
@@ -277,30 +267,26 @@ namespace beethoven3
         //                {
         //                    find5 = true;
         //                }
-                          
+
         //            }
         //            break;
         //    }
         //    return otherCenter;
 
         //}
-        
+        #endregion
        
         #region update and draw
         public static void Update(GameTime gameTime)
         {
-      
             foreach (Mark mark in Marks)
             {
-            
                 mark.Update(gameTime);
             }
-
         }
 
         public static void Draw(SpriteBatch spriteBatch)
         {
-
             foreach (Mark mark in Marks)
             {
                 mark.Draw(spriteBatch);

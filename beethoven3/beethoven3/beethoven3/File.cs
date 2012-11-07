@@ -13,7 +13,6 @@ namespace beethoven3
         #region declarations
 
         private StartNoteManager startNoteManager;
-      //  private Curve curve;
         private Queue allNotes = new Queue();
         private String[] noteContents;
         private double noteTime;
@@ -25,7 +24,6 @@ namespace beethoven3
         public File( StartNoteManager startNoteManager)       
         {
              this.startNoteManager = startNoteManager;
-         //    this.curve = curve;
         }
         
         #endregion
@@ -96,20 +94,14 @@ namespace beethoven3
 
                     //드래그 노트
                     case 4:
+                        //시작점,제어점1,제어점2,끝점,지속시간
                         CurveManager.addCurve(new Vector2(Int32.Parse(noteContents[3]), Int32.Parse(noteContents[4])), new Vector2(Int32.Parse(noteContents[5]), Int32.Parse(noteContents[6])), new Vector2(Int32.Parse(noteContents[7]), Int32.Parse(noteContents[8])), new Vector2(Int32.Parse(noteContents[9]), Int32.Parse(noteContents[10])), Convert.ToDouble(noteContents[2]));
-                     //   Curve curve = new Curve();
-                     //   curve.SetLine(new Vector2(Int32.Parse(noteContents[3]), Int32.Parse(noteContents[4])), new Vector2(Int32.Parse(noteContents[5]), Int32.Parse(noteContents[6])), new Vector2(Int32.Parse(noteContents[7]), Int32.Parse(noteContents[8])), new Vector2(Int32.Parse(noteContents[9]), Int32.Parse(noteContents[10])), Convert.ToDouble(noteContents[2]));
                         break;
-
-
                 }
                 allNotes.Dequeue();
                 newNote = true;
-
-
             }
-            
-            
+          
         }
 
         /// <summary>

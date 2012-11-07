@@ -15,25 +15,42 @@ namespace beethoven3
 
         #region declarations
         // public static List<Vector2> points = new List<Vector2>();
-        //public Queue Points = new Queue();
+        public Queue PointsQueue = new Queue();
         private List<Vector2> Points = new List<Vector2>();
-        private double time = 0.0;
-        private double changedTime = 0.0;
+        //곡선의 기준시간
+        private double time = 0.0f;
+        //경과 시간
+        private double changedTime = 0.0f;
+
+        private double dotTime = 0.0f;
+        private double dotChangedTime = 0.0f;
         #endregion
 
-
-
         #region constructor
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="p0">시작점</param>
+        /// <param name="p1">제어점1</param>
+        /// <param name="p2">제어점1</param>
+        /// <param name="p3">끝나는점</param>
+        /// <param name="time">지속시간</param>
         public Curve(Vector2 p0, Vector2 p1, Vector2 p2, Vector2 p3, double time)
         {
             SetLine(p0, p1, p2, p3, time);
         }
         #endregion
 
-
-
         #region method
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="p0">시작점</param>
+        /// <param name="p1">제어점1</param>
+        /// <param name="p2">제어점1</param>
+        /// <param name="p3">끝나는점</param>
+        
         private Vector2 GetPoint(float t, Vector2 p0, Vector2 p1, Vector2 p2, Vector2 p3)
         {
             float cx = 3 * (p1.X - p0.X);
@@ -54,11 +71,20 @@ namespace beethoven3
             return new Vector2(resX, resY);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="p0">시작점</param>
+        /// <param name="p1">제어점1</param>
+        /// <param name="p2">제어점1</param>
+        /// <param name="p3">끝나는점</param>
+        /// <param name="time">지속시간</param>
         public void SetLine(Vector2 p0, Vector2 p1, Vector2 p2, Vector2 p3, double time)
         {
             Vector2 PlotPoint;
             
-            this. changedTime = 0.0;
+            this.changedTime = 0.0;
+            this.dotChangedTime = 0.0;
             this.time = time;
 
             float t;
@@ -66,8 +92,9 @@ namespace beethoven3
             {
                 PlotPoint = GetPoint(t, p0, p1, p2, p3);
                 Points.Add(PlotPoint);
+                PointsQueue.Enqueue(PlotPoint);
             }
-
+            dotTime = time / PointsQueue.Count;
         }
 
         public void DeleteAllPoints()
@@ -79,28 +106,30 @@ namespace beethoven3
             }
            
         }
-
-        
         #endregion
 
-
         #region update and draw
-
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             int i, j; 
           
             if (Points.Count > 0)
             {
-                changedTime += gameTime.ElapsedGameTime.TotalSeconds;
-
+                changedTime += gameTime.ElapsedGameTime.TotalMilliseconds;
+                dotChangedTime += gameTime.ElapsedGameTime.TotalMilliseconds;
                 for (i = 0; i < Points.Count - 1; i++)
                 {
                     j = i + 1;
 
                     LineRenderer.DrawLine(spriteBatch.GraphicsDevice, spriteBatch, (Vector2)Points[i], (Vector2)Points[j], Color.Red);
                 }
-             
+
+                if (dotChangedTime >= dotTime   && PointsQueue.Count > 1)
+                {
+
+                    LineRenderer.DrawLine(spriteBatch.GraphicsDevice, spriteBatch, (Vector2)PointsQueue.Dequeue(), (Vector2)PointsQueue.Peek(), Color.Blue);
+                    dotChangedTime = 0.0f;
+                }
                 if (changedTime > time)
                 {
                     if (Points.Count > 0)
@@ -112,8 +141,22 @@ namespace beethoven3
                 }
             }
         }
-
         #endregion
 
     }
 }
+
+
+/*
+
+20초의 기간
+ * 
+ * 20개가 있다.
+
+ * 1초에 한번씩
+ * 
+ * 40초
+ * 
+ * 2초에 한번씩
+ * 
+*/

@@ -29,8 +29,7 @@ namespace beethoven3
         StartNoteManager startNoteManager;
         CollisionManager collisionManager;
         File file;
-      //  Curve curve;
-        
+     
 
         public Game1()
         {
@@ -95,15 +94,11 @@ namespace beethoven3
                 );
             collisionManager = new CollisionManager();
 
-          //  curve = new Curve();
-            
+           
             file = new File(startNoteManager);
             //곡선택화면에서
             file.Loading("a.txt");
-         //   curve = new Curve();
-
-          //  curve.GetLine(new Vector2(100, 100), new Vector2(150, 50), new Vector2(200, 150), new Vector2(200, 100));
-            
+           
 
         }
 
@@ -168,9 +163,8 @@ namespace beethoven3
                 MarkManager.Update(gameTime);
                 startNoteManager.Update(gameTime);
                 HandleKeyboardInput(Keyboard.GetState());
-               // collisionManager.CheckCollisions();
-          
-                //file.Update(gameTime);
+         
+           
                 file.Update(gameTime);
             }
 
@@ -193,7 +187,6 @@ namespace beethoven3
             spriteBatch.Begin();
             MarkManager.Draw(spriteBatch);
             startNoteManager.Draw(spriteBatch);
-        //    curve.Draw(gameTime, spriteBatch);
             CurveManager.Draw(gameTime, spriteBatch);
          
             spriteBatch.End();

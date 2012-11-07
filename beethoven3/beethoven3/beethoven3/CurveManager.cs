@@ -14,10 +14,17 @@ namespace beethoven3
 
         #endregion
 
-
-        #region method
-        public static void addCurve(Vector2 p0, Vector2 p1, Vector2 p2, Vector2 p3, double time)
         
+        #region method
+        /// <summary>
+        /// 커브곡선 추가
+        /// </summary>
+        /// <param name="p0">시작점</param>
+        /// <param name="p1">제어점1</param>
+        /// <param name="p2">제어점1</param>
+        /// <param name="p3">끝나는점</param>
+        /// <param name="time">지속시간</param>
+        public static void addCurve(Vector2 p0, Vector2 p1, Vector2 p2, Vector2 p3, double time)
         {
             Curve curve = new Curve(p0, p1, p2, p3, time);
             Curves.Add(curve);    
