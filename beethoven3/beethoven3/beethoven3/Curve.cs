@@ -24,8 +24,9 @@ namespace beethoven3
 
 
         #region constructor
-        public Curve()
+        public Curve(Vector2 p0, Vector2 p1, Vector2 p2, Vector2 p3, double time)
         {
+            SetLine(p0, p1, p2, p3, time);
         }
         #endregion
 
@@ -56,13 +57,14 @@ namespace beethoven3
         public void SetLine(Vector2 p0, Vector2 p1, Vector2 p2, Vector2 p3, double time)
         {
             Vector2 PlotPoint;
-            float t;
-
+            
+            this. changedTime = 0.0;
             this.time = time;
+
+            float t;
             for (t = 0;  t <= 1.0f; t += 0.01f)
             {
                 PlotPoint = GetPoint(t, p0, p1, p2, p3);
-               // points.Add(PlotPoint);
                 Points.Add(PlotPoint);
             }
 
@@ -79,7 +81,6 @@ namespace beethoven3
         }
 
         
-
         #endregion
 
 

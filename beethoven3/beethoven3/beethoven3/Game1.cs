@@ -29,8 +29,8 @@ namespace beethoven3
         StartNoteManager startNoteManager;
         CollisionManager collisionManager;
         File file;
-        Curve curve;
-
+      //  Curve curve;
+        
 
         public Game1()
         {
@@ -95,9 +95,9 @@ namespace beethoven3
                 );
             collisionManager = new CollisionManager();
 
-            curve = new Curve();
+          //  curve = new Curve();
             
-            file = new File(startNoteManager,curve);
+            file = new File(startNoteManager);
             //곡선택화면에서
             file.Loading("a.txt");
          //   curve = new Curve();
@@ -193,8 +193,8 @@ namespace beethoven3
             spriteBatch.Begin();
             MarkManager.Draw(spriteBatch);
             startNoteManager.Draw(spriteBatch);
-            curve.Draw(gameTime, spriteBatch);
-            
+        //    curve.Draw(gameTime, spriteBatch);
+            CurveManager.Draw(gameTime, spriteBatch);
          
             spriteBatch.End();
             // TODO: Add your drawing code here

@@ -13,17 +13,19 @@ namespace beethoven3
         #region declarations
 
         private StartNoteManager startNoteManager;
-        private Curve curve;
-        private Queue allNotes = new Queue();      
-
+      //  private Curve curve;
+        private Queue allNotes = new Queue();
+        private String[] noteContents;
+        private double noteTime;
+        private bool newNote = true;
         #endregion
         
         #region constructor
         
-        public File( StartNoteManager startNoteManager, Curve curve)       
+        public File( StartNoteManager startNoteManager)       
         {
              this.startNoteManager = startNoteManager;
-             this.curve = curve;
+         //    this.curve = curve;
         }
         
         #endregion
@@ -49,25 +51,64 @@ namespace beethoven3
 
         public void FindNote(double gameTime)
         {
-            String[] noteContents;
-            double noteTime;
-            
-            String note = (String)allNotes.Peek();
+            //처음 실행하거나 de큐를 거치지 않은 새로운 ㄳ만
+            if (newNote)
+            {
+                noteContents = ((String)allNotes.Peek()).Split(' ');
 
-            noteContents = note.Split(' ');
+                noteTime = Convert.ToDouble(noteContents[0]);
+                
+                noteTime = GetNoteStartTime(noteTime);
 
-            noteTime = Convert.ToDouble(noteContents[0]);
-
-            noteTime = GetNoteStartTime(noteTime);
-
-            if(noteTime <= gameTime )
-             {
+                newNote = false;
+            }
+            if (noteTime <= gameTime)
+            {
                 //PlayNote(타입,날아가는 마커 위치)
                 //타입 0-오른손 1-왼손 2-양손 3-롱노트 4-드래그노트 
-               PlayNote(Int32.Parse(noteContents[1]), Int32.Parse(noteContents[2]));
-               
-                allNotes.Dequeue();    
-             }
+                int type = Int32.Parse(noteContents[1]);
+                
+                switch (type)
+                {
+                    //오른손 노트
+                    case 0:
+                        //시간에 맞춰서 뿌려줘야 함. 
+                        //notecontent[2] => 마커위치
+                        startNoteManager.MakeRightNote(Int32.Parse(noteContents[2]));
+
+                        break;
+
+                    //왼손노트 
+                    case 1:
+                        startNoteManager.MakeLeftNote(Int32.Parse(noteContents[2]));
+                        break;
+
+                    //양손노트
+                    case 2:
+                        
+                        startNoteManager.MakeDoubleNote(Int32.Parse(noteContents[2]));
+                        break;
+
+                    //롱노트
+                    case 3:
+
+                        break;
+
+                    //드래그 노트
+                    case 4:
+                        CurveManager.addCurve(new Vector2(Int32.Parse(noteContents[3]), Int32.Parse(noteContents[4])), new Vector2(Int32.Parse(noteContents[5]), Int32.Parse(noteContents[6])), new Vector2(Int32.Parse(noteContents[7]), Int32.Parse(noteContents[8])), new Vector2(Int32.Parse(noteContents[9]), Int32.Parse(noteContents[10])), Convert.ToDouble(noteContents[2]));
+                     //   Curve curve = new Curve();
+                     //   curve.SetLine(new Vector2(Int32.Parse(noteContents[3]), Int32.Parse(noteContents[4])), new Vector2(Int32.Parse(noteContents[5]), Int32.Parse(noteContents[6])), new Vector2(Int32.Parse(noteContents[7]), Int32.Parse(noteContents[8])), new Vector2(Int32.Parse(noteContents[9]), Int32.Parse(noteContents[10])), Convert.ToDouble(noteContents[2]));
+                        break;
+
+
+                }
+                allNotes.Dequeue();
+                newNote = true;
+
+
+            }
+            
             
         }
 
@@ -104,41 +145,41 @@ namespace beethoven3
         }
 
 
-         public void PlayNote(int type, int markNumber)
-        {
-                switch (type)
-                {
-                    //오른손 노트
-                    case 0:
-                        //시간에 맞춰서 뿌려줘야 함. 
-                        startNoteManager.MakeRightNote(markNumber);
+       //  public void PlayNote(int type, int markNumber)
+       // {
+       //         switch (type)
+       //         {
+       //             //오른손 노트
+       //             case 0:
+       //                 //시간에 맞춰서 뿌려줘야 함. 
+       //                 startNoteManager.MakeRightNote(markNumber);
 
-                        break;
+       //                 break;
 
-                    //왼손노트 
-                    case 1:
-                        startNoteManager.MakeLeftNote(markNumber);
-                        break;
+       //             //왼손노트 
+       //             case 1:
+       //                 startNoteManager.MakeLeftNote(markNumber);
+       //                 break;
 
-                    //양손노트
-                    case 2:
-                        startNoteManager.MakeDoubleNote(markNumber);
-                        break;
+       //             //양손노트
+       //             case 2:
+       //                 startNoteManager.MakeDoubleNote(markNumber);
+       //                 break;
 
-                    //롱노트
-                    case 3:
+       //             //롱노트
+       //             case 3:
                         
-                        break;
+       //                 break;
 
-                    //드래그 노트
-                    case 4:
-                        curve.SetLine(new Vector2(100, 100), new Vector2(150, 50), new Vector2(200, 150), new Vector2(200, 100),3.0);
-                        break;
+       //             //드래그 노트
+       //             case 4:
+       //                 curve.SetLine(new Vector2(100, 100), new Vector2(150, 50), new Vector2(200, 150), new Vector2(200, 100),3.0);
+       //                 break;
 
 
-                }
+       //         }
  
-       }
+       //}
 
         #endregion
          
