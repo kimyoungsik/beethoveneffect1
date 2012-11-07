@@ -19,6 +19,15 @@
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\Textures\TitleScreen.xnb</Output>
       <Time>2010-03-29T06:39:12+09:00</Time>
     </Item>
+    <Item>
+      <Source>Textures\heart.png</Source>
+      <Name>Textures\heart</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\Textures\heart.xnb</Output>
+      <Time>2012-08-22T23:40:37.0402856+09:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

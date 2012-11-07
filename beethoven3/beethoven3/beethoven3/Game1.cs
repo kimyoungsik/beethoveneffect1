@@ -24,6 +24,7 @@ namespace beethoven3
 
         Texture2D spriteSheet;
         Texture2D titleScreen;
+        public static Texture2D heart;
 
 
         StartNoteManager startNoteManager;
@@ -63,8 +64,11 @@ namespace beethoven3
 
             spriteSheet = Content.Load<Texture2D>(@"Textures\SpriteSheet");
             titleScreen = Content.Load<Texture2D>(@"Textures\TitleScreen");
+            heart = Content.Load<Texture2D>(@"Textures\heart");
             // TODO: use this.Content to load your game content here
-             
+
+          //  LineRenderer.LoadContent(content);
+
             Vector2 mark1Location = new Vector2(400, 70);
             Vector2 mark2Location = new Vector2(500, 170);
             Vector2 mark3Location = new Vector2(500, 270);
@@ -98,7 +102,11 @@ namespace beethoven3
             file = new File(startNoteManager);
             //곡선택화면에서
             file.Loading("a.txt");
-           
+
+            
+            
+
+         
 
         }
 

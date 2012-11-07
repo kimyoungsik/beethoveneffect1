@@ -2,8 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 
 namespace beethoven3
 {
@@ -15,13 +21,16 @@ namespace beethoven3
         #endregion 
 
         #region methods
+
+      
+
         // 라인을 그리기 위해 1x1 짜리 하얀색 pixel 텍스쳐를 만듬.
         static private void CreateLineTexture(GraphicsDevice device)
         {
-            m_LineTexture = new Texture2D(device, 1, 1, true, SurfaceFormat.Color);
+            m_LineTexture = Game1.heart;
             Color[] pixels = new Color[1];
             pixels[0] = Color.White;
-            m_LineTexture.SetData<Color>(pixels);
+        //    m_LineTexture.SetData<Color>(pixels);
         }
 
         static public Color LineColor
