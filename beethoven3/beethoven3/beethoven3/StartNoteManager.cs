@@ -50,9 +50,9 @@ namespace beethoven3
                1,
                15,
                //notespeed 영향주는것 1
-               noteSpeed,
+               noteSpeed
                 //notetype
-               0);
+               );
 
             rightNoteManager = new NoteManager(
                 //노크와 시작마커가 같은 sprite
@@ -60,9 +60,10 @@ namespace beethoven3
                  new Rectangle(0, 300, 5, 5),
                 1,
                 15,
-                noteSpeed,
+                noteSpeed
                 //notetype
-                1);
+                );
+
             //doublenote
             doubleNoteManager = new NoteManager(
                 //노크와 시작마커가 같은 sprite
@@ -70,9 +71,9 @@ namespace beethoven3
                  new Rectangle(0, 300, 5, 5),
                 1,
                 15,
-                noteSpeed,
+                noteSpeed
                 //notetype
-                1);
+                );
 
         }
         #endregion

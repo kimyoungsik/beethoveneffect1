@@ -5,46 +5,44 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-
 namespace beethoven3
 {
-    //이게 하나의 노트 
-    class NoteManager
+    static class DragNoteManager
     {
         #region declarations
-        public List<Sprite> LittleNotes = new List<Sprite>();
+        public static List<Sprite> DragNotes = new List<Sprite>();
 
         private static Texture2D Texture;
-        private Rectangle InitialFrame;
+        private static Rectangle InitialFrame;
         private static int FrameCount;
-        private float noteSpeed;
+        private static float NoteSpeed;
         private static int CollisionRadius;
-    //    private int noteType;
+     
         #endregion
 
 
-        #region constructor
-        public NoteManager(
+        #region initialize
+
+        public static void initialize(
+        
             Texture2D texture,
             Rectangle initialFrame,
             int frameCount,
             int collisionRadius,
             float noteSpeed
-         //   int noteType
+            
             )
-       {
+        {
             Texture = texture;
             InitialFrame = initialFrame;
             FrameCount = frameCount;
             CollisionRadius = collisionRadius;
-            this.noteSpeed = noteSpeed;
-          //  this.noteType = noteType;
-       }
-
+            NoteSpeed = noteSpeed;
+        }
         #endregion
 
         #region method
-        public void MakeNote(
+        public static void MakeDragNote(
             Vector2 location,
             Vector2 velocity
             )
@@ -55,7 +53,7 @@ namespace beethoven3
                 InitialFrame,
                 velocity);
 
-            thisNote.Velocity *= noteSpeed;
+            thisNote.Velocity *= NoteSpeed;
 
             for (int x = 1; x < FrameCount; x++)
             {
@@ -66,29 +64,46 @@ namespace beethoven3
                     InitialFrame.Height));
             }
             thisNote.CollisionRadius = CollisionRadius;
-            LittleNotes.Add(thisNote);
+            DragNotes.Add(thisNote);
         }
+
+        public static void DeleteDragNoteFromFront()
+        {
+            try
+            {
+
+                DragNotes.RemoveAt(0);
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                
+            }
+        }
+
+
         #endregion
+
 
         #region update and draw
 
-        public void Update(GameTime gameTime)
+        public static void Update(GameTime gameTime)
         {
-            for (int x = LittleNotes.Count - 1; x >= 0; x--)
+            for (int x = DragNotes.Count - 1; x >= 0; x--)
             {
-                LittleNotes[x].Update(gameTime);
-               //마커를 지난후에 지워야 한다.
+                DragNotes[x].Update(gameTime);
+                
             }
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public static void Draw(SpriteBatch spriteBatch)
         {
-            foreach (Sprite littleNote in LittleNotes)
+            foreach (Sprite dragNote in DragNotes)
             {
-                littleNote.Draw(spriteBatch);
+                dragNote.Draw(spriteBatch);
             }
         }
 
         #endregion
+      
     }
 }

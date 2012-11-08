@@ -18,37 +18,14 @@ namespace beethoven3
         #region declarations
         static Color m_LIneColor = Color.White;
         static Texture2D m_LineTexture = null;
-       // static public Sprite lineTexture;
-
+      
         #endregion 
 
 
 
         #region methods
         
-        //static private void setLineTexture(Texture2D texture,
-        //    Vector2 location,
-        //    Rectangle initialFrame,
-        //    int frameCount)
-        //{
-        //    lineTexture = new Sprite(
-        //        location,
-        //        texture,
-        //        initialFrame,
-        //        Vector2.Zero);
-
-        //    for (int x = 1; x < frameCount; x++)
-        //    {
-        //        lineTexture.AddFrame(
-        //            new Rectangle(
-        //                initialFrame.X = (initialFrame.Width * x),
-        //                initialFrame.Y,
-        //                initialFrame.Width,
-        //                initialFrame.Height));
-        //    }
-
-        //}
-
+  
         // 라인을 그리기 위해 1x1 짜리 하얀색 pixel 텍스쳐를 만듬.
         static private void CreateLineTexture(GraphicsDevice device)
         {

@@ -110,6 +110,7 @@
     <Compile Include="CollisionManager.cs" />
     <Compile Include="Curve.cs" />
     <Compile Include="CurveManager.cs" />
+    <Compile Include="DragNoteManager.cs" />
     <Compile Include="File.cs" />
     <Compile Include="LineRenderer.cs" />
     <Compile Include="Mark.cs" />

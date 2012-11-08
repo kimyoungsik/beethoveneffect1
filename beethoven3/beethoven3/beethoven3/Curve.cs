@@ -24,6 +24,10 @@ namespace beethoven3
 
         private double dotTime = 0.0f;
         private double dotChangedTime = 0.0f;
+
+        private Vector2 currentPosition;
+        private int count = 0;
+
         #endregion
 
         #region constructor
@@ -124,17 +128,31 @@ namespace beethoven3
                     LineRenderer.DrawLine(spriteBatch.GraphicsDevice, spriteBatch, (Vector2)Points[i], (Vector2)Points[j], Color.Red);
                 }
 
-                if (dotChangedTime >= dotTime   && PointsQueue.Count > 1)
+                if (dotChangedTime >= dotTime && PointsQueue.Count > 1)
                 {
-
+                    
+                    if (count == 0)
+                    {
+                        currentPosition = (Vector2)PointsQueue.Peek();
+                        DragNoteManager.MakeDragNote(currentPosition, new Vector2(0,0));
+                    }
+                    count++;
+                    if (count == 20)
+                    {
+                        count = 0;
+                        DragNoteManager.DeleteDragNoteFromFront();
+                    }
+                    
                     LineRenderer.DrawLine(spriteBatch.GraphicsDevice, spriteBatch, (Vector2)PointsQueue.Dequeue(), (Vector2)PointsQueue.Peek(), Color.Blue);
                     dotChangedTime = 0.0f;
+
                 }
                 if (changedTime > time)
                 {
                     if (Points.Count > 0)
                     {
                         DeleteAllPoints();
+                        
                     
                     }
 

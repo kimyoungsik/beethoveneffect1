@@ -30,8 +30,12 @@ namespace beethoven3
         StartNoteManager startNoteManager;
         CollisionManager collisionManager;
         File file;
-     
 
+        MouseState mouseStateCurrent, mouseStatePrevious;
+        Rectangle mouseRect;
+
+        static public int mousex = 100; //X좌표
+        static public int mousey = 100; //Y좌표
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -49,7 +53,7 @@ namespace beethoven3
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
+            this.IsMouseVisible = true;
             base.Initialize();
         }
 
@@ -103,10 +107,13 @@ namespace beethoven3
             //곡선택화면에서
             file.Loading("a.txt");
 
-            
-            
+            DragNoteManager.initialize(
+                 spriteSheet,
+                 new Rectangle(0, 200, 50, 50),
+                 6,
+                 15,
+                 0);
 
-         
 
         }
 
@@ -117,6 +124,14 @@ namespace beethoven3
         protected override void UnloadContent()
         {
             // TODO: Unload any non ContentManager content here
+        }
+        private void HandleMouseInput(MouseState mouseState)
+        {
+            if (mouseState.LeftButton == ButtonState.Pressed)
+            {
+                collisionManager.checkDragNote(new Vector2(mouseStateCurrent.X,mouseStateCurrent.Y));
+
+            }
         }
         private void HandleKeyboardInput(KeyboardState keyState)
         {
@@ -157,6 +172,15 @@ namespace beethoven3
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
+            mouseStateCurrent = Mouse.GetState();
+
+            mousex = mouseStateCurrent.X;
+            mousey = mouseStateCurrent.Y;
+                Window.Title = "|"+mousex + "|"+ mousey;
+
+            mouseRect = new Rectangle(mouseStateCurrent.X, mouseStateCurrent.Y, 5, 5);
+
+
             // TODO: Add your update logic here
             spriteBatch.Begin();
 
@@ -171,15 +195,17 @@ namespace beethoven3
                 MarkManager.Update(gameTime);
                 startNoteManager.Update(gameTime);
                 HandleKeyboardInput(Keyboard.GetState());
-         
+                HandleMouseInput(Mouse.GetState());
            
                 file.Update(gameTime);
+                DragNoteManager.Update(gameTime);
             }
 
             if (gameState == GameStates.GameOver)
             {
 
             }
+            
 
             spriteBatch.End();
             base.Update(gameTime);
@@ -196,7 +222,7 @@ namespace beethoven3
             MarkManager.Draw(spriteBatch);
             startNoteManager.Draw(spriteBatch);
             CurveManager.Draw(gameTime, spriteBatch);
-         
+            DragNoteManager.Draw(spriteBatch);
             spriteBatch.End();
             // TODO: Add your drawing code here
 

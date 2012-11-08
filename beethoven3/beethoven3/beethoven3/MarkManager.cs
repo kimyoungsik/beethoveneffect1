@@ -75,6 +75,7 @@ namespace beethoven3
         #endregion
 
         #region method
+
         public static void addMark(Vector2 location)
         {
             Mark thisMark = new Mark(
@@ -92,6 +93,7 @@ namespace beethoven3
                 Marks.RemoveAt(i);
             }
         }
+
         /// <summary>
         /// 마커의 위치를 주면 노트가 시작되는 위치를 리턴  
         /// 중복되는 부분 refactor 필요 

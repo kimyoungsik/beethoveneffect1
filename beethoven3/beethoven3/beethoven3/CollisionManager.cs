@@ -23,6 +23,35 @@ namespace beethoven3
         #endregion
 
         #region method
+
+        public void checkDragNote(Vector2 mousePoint)
+        {
+            for (int i = 0; i < DragNoteManager.DragNotes.Count(); i++ )
+            {
+                Sprite dragNote = DragNoteManager.DragNotes[i];
+                judgment = dragNote.JudgedNote(mousePoint, 15.0f);
+                if (judgment == 2)
+                {
+
+                    DragNoteManager.DragNotes.RemoveAt(i);
+                }
+
+                        //good
+                else if (judgment == 1)
+                {
+                    DragNoteManager.DragNotes.RemoveAt(i);
+                }
+                else
+                {
+
+                }
+
+
+
+            }
+
+        }
+
         private void checkRightNoteToMarker(int number)
         {
           

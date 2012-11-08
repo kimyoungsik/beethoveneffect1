@@ -17,6 +17,7 @@ namespace beethoven3
         private String[] noteContents;
         private double noteTime;
         private bool newNote = true;
+        
         #endregion
         
         #region constructor
@@ -96,6 +97,9 @@ namespace beethoven3
                     case 4:
                         //시작점,제어점1,제어점2,끝점,지속시간
                         CurveManager.addCurve(new Vector2(Int32.Parse(noteContents[3]), Int32.Parse(noteContents[4])), new Vector2(Int32.Parse(noteContents[5]), Int32.Parse(noteContents[6])), new Vector2(Int32.Parse(noteContents[7]), Int32.Parse(noteContents[8])), new Vector2(Int32.Parse(noteContents[9]), Int32.Parse(noteContents[10])), Convert.ToDouble(noteContents[2]));
+                        
+                        
+                       
                         break;
                 }
                 allNotes.Dequeue();
