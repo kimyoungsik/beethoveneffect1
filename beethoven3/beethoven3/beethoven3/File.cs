@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace beethoven3
 {
@@ -17,7 +18,9 @@ namespace beethoven3
         private String[] noteContents;
         private double noteTime;
         private bool newNote = true;
-        
+        private bool drawLine = false;
+        private double drawLineTime;
+        private int startNoteNumber;
         #endregion
         
         #region constructor
@@ -48,7 +51,7 @@ namespace beethoven3
         }
 
 
-        public void FindNote(double gameTime)
+        public void FindNote(double processTime)
         {
             //처음 실행하거나 de큐를 거치지 않은 새로운 ㄳ만
             if (newNote)
@@ -61,7 +64,7 @@ namespace beethoven3
 
                 newNote = false;
             }
-            if (noteTime <= gameTime)
+            if (noteTime <= processTime)
             {
                 //PlayNote(타입,날아가는 마커 위치)
                 //타입 0-오른손 1-왼손 2-양손 3-롱노트 4-드래그노트 
@@ -91,6 +94,11 @@ namespace beethoven3
                     //롱노트
                     case 3:
 
+
+                        startNoteManager.MakeLongNote(Int32.Parse(noteContents[2]));
+                        startNoteNumber = Int32.Parse(noteContents[2]);
+                        drawLineTime = Convert.ToDouble(noteContents[3]);
+                        drawLine = true;
                         break;
 
                     //드래그 노트
@@ -106,6 +114,29 @@ namespace beethoven3
                 newNote = true;
             }
           
+        }
+
+        public void DrawLineInDragNote(SpriteBatch spriteBatch, double processTime)
+        {
+            if (drawLine)
+            {
+
+                if (drawLineTime >= processTime)
+                {
+                    LineRenderer.DrawDirectLine(spriteBatch.GraphicsDevice, spriteBatch, StartNoteManager.longNoteManager.LittleNotes[0].Center, startNoteManager.StartNotes[this.startNoteNumber].StartNoteSprite.Center, Color.Blue);
+
+
+                }
+                else//시간 지난후에 다시 들어오지 않게 
+                {
+                    drawLine = false;
+
+                }
+                
+
+
+            }
+
         }
 
         /// <summary>
@@ -131,52 +162,28 @@ namespace beethoven3
             
         }
 
-        public void Update(GameTime gameTime)
+        public void Update(SpriteBatch spriteBatch, GameTime gameTime)
         {
 
            double time = gameTime.TotalGameTime.TotalSeconds;
 
            FindNote(time);
+       //    DrawLineInDragNote(spriteBatch, time);
 
         }
 
 
-       //  public void PlayNote(int type, int markNumber)
-       // {
-       //         switch (type)
-       //         {
-       //             //오른손 노트
-       //             case 0:
-       //                 //시간에 맞춰서 뿌려줘야 함. 
-       //                 startNoteManager.MakeRightNote(markNumber);
 
-       //                 break;
+        public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
+        {
 
-       //             //왼손노트 
-       //             case 1:
-       //                 startNoteManager.MakeLeftNote(markNumber);
-       //                 break;
+            double time = gameTime.TotalGameTime.TotalSeconds;
 
-       //             //양손노트
-       //             case 2:
-       //                 startNoteManager.MakeDoubleNote(markNumber);
-       //                 break;
+          //  FindNote(time);
+            DrawLineInDragNote(spriteBatch, time);
 
-       //             //롱노트
-       //             case 3:
-                        
-       //                 break;
-
-       //             //드래그 노트
-       //             case 4:
-       //                 curve.SetLine(new Vector2(100, 100), new Vector2(150, 50), new Vector2(200, 150), new Vector2(200, 100),3.0);
-       //                 break;
-
-
-       //         }
- 
-       //}
-
+        }
+     
         #endregion
          
 

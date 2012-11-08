@@ -24,6 +24,7 @@ namespace beethoven3
         public static NoteManager rightNoteManager;
         public static NoteManager leftNoteManager;
         public static NoteManager doubleNoteManager;
+        public static NoteManager longNoteManager;
         //BPS에 따라 달라진다.
         public static float noteSpeed = 70.0f;
         #endregion
@@ -74,6 +75,17 @@ namespace beethoven3
                 noteSpeed
                 //notetype
                 );
+
+            //doublenote
+            longNoteManager = new NoteManager(
+                //노크와 시작마커가 같은 sprite
+                 texture,
+                  new Rectangle(0, 300, 5, 5),
+                 1,
+                 15,
+                 noteSpeed
+                //notetype
+                 );
 
         }
         #endregion
@@ -159,6 +171,19 @@ namespace beethoven3
             doubleNoteManager.MakeNote(location, direction);
         }
 
+        public void MakeLongNote(int markNumber)
+        {
+            //노트시작점의 위치
+            Vector2 location = StartNotes[markNumber].StartNoteSprite.Center;
+
+            //노트시작점에서 마크의 방향
+            Vector2 direction =
+                            MarkManager.Marks[markNumber].MarkSprite.Center -
+                            location;
+            direction.Normalize();
+            longNoteManager.MakeNote(location, direction);
+        }
+
 
 
 
@@ -171,6 +196,7 @@ namespace beethoven3
             rightNoteManager.Update(gameTime);
             leftNoteManager.Update(gameTime);
             doubleNoteManager.Update(gameTime);
+            longNoteManager.Update(gameTime);
             foreach (StartNote startNote in StartNotes)
             {
                 startNote.Update(gameTime);
@@ -186,6 +212,7 @@ namespace beethoven3
             rightNoteManager.Draw(spriteBatch);
             leftNoteManager.Draw(spriteBatch);
             doubleNoteManager.Draw(spriteBatch);
+            longNoteManager.Draw(spriteBatch);
             foreach (StartNote startNote in StartNotes)
             {
                 startNote.Draw(spriteBatch);

@@ -29,11 +29,11 @@ namespace beethoven3
         // 라인을 그리기 위해 1x1 짜리 하얀색 pixel 텍스쳐를 만듬.
         static private void CreateLineTexture(GraphicsDevice device)
         {
-            m_LineTexture = Game1.heart;
-            //m_LineTexture = new Texture2D(device, 1, 1, true, SurfaceFormat.Color);
-            //Color[] pixels = new Color[1];
-            //pixels[0] = Color.White;
-            //m_LineTexture.SetData<Color>(pixels);
+        //    m_LineTexture = Game1.heart;
+            m_LineTexture = new Texture2D(device, 1, 1, true, SurfaceFormat.Color);
+            Color[] pixels = new Color[1];
+            pixels[0] = Color.White;
+            m_LineTexture.SetData<Color>(pixels);
         }
 
         static public Color LineColor
@@ -47,6 +47,12 @@ namespace beethoven3
         {
             m_LIneColor = color;
             Draw(device, spriteBatch, vStart, vEnd);
+        }
+
+        static public void DrawDirectLine(GraphicsDevice device, SpriteBatch spriteBatch, Vector2 vStart, Vector2 vEnd, Color color)
+        {
+            m_LIneColor = color;
+            DirectDraw(device, spriteBatch, vStart, vEnd);
         }
         #endregion
 
@@ -64,6 +70,18 @@ namespace beethoven3
      
           //  spriteBatch.Draw(m_LineTexture, vStart, null, m_LIneColor, angle, Vector2.Zero, new Vector2(distance, 1), SpriteEffects.None, 1.0f);
             spriteBatch.Draw(m_LineTexture, vStart, null, m_LIneColor);
+        }
+
+        static public void DirectDraw(GraphicsDevice device, SpriteBatch spriteBatch, Vector2 vStart, Vector2 vEnd)
+        {
+            if (m_LineTexture == null)
+                CreateLineTexture(device);
+
+            float distance = Vector2.Distance(vStart, vEnd);
+            float angle = (float)Math.Atan2((double)(vEnd.Y - vStart.Y), (double)(vEnd.X - vStart.X));
+        //    float angle = 0;
+              spriteBatch.Draw(m_LineTexture, vStart, null, m_LIneColor, angle, Vector2.Zero, new Vector2(distance, 1), SpriteEffects.None, 1.0f);
+            //spriteBatch.Draw(m_LineTexture, vStart, null, m_LIneColor);
         }
         #endregion
     }

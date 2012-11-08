@@ -272,19 +272,6 @@ namespace beethoven3
         }
 
 
-        //public virtual void Draw(SpriteBatch spriteBatch)
-        //{
-        //    spriteBatch.Draw(
-        //        Texture,
-        //        Center,
-        //        Source,
-        //        tintColor,
-        //        rotation,
-        //        Origin,
-        //        Scale,
-        //        SpriteEffects.None,
-        //        LayerDepth);
-        //}
         #endregion
     }
 }

@@ -31,8 +31,8 @@ namespace beethoven3
         CollisionManager collisionManager;
         File file;
 
-        MouseState mouseStateCurrent, mouseStatePrevious;
-        Rectangle mouseRect;
+        MouseState mouseStateCurrent;
+        //Rectangle mouseRect;
 
         static public int mousex = 100; //X좌표
         static public int mousey = 100; //Y좌표
@@ -174,11 +174,11 @@ namespace beethoven3
 
             mouseStateCurrent = Mouse.GetState();
 
-            mousex = mouseStateCurrent.X;
-            mousey = mouseStateCurrent.Y;
-                Window.Title = "|"+mousex + "|"+ mousey;
+      //      mousex = mouseStateCurrent.X;
+     //       mousey = mouseStateCurrent.Y;
+      //          Window.Title = "|"+mousex + "|"+ mousey;
 
-            mouseRect = new Rectangle(mouseStateCurrent.X, mouseStateCurrent.Y, 5, 5);
+     //       mouseRect = new Rectangle(mouseStateCurrent.X, mouseStateCurrent.Y, 5, 5);
 
 
             // TODO: Add your update logic here
@@ -196,9 +196,11 @@ namespace beethoven3
                 startNoteManager.Update(gameTime);
                 HandleKeyboardInput(Keyboard.GetState());
                 HandleMouseInput(Mouse.GetState());
-           
-                file.Update(gameTime);
+
+                file.Update(spriteBatch, gameTime);
                 DragNoteManager.Update(gameTime);
+
+                
             }
 
             if (gameState == GameStates.GameOver)
@@ -223,6 +225,7 @@ namespace beethoven3
             startNoteManager.Draw(spriteBatch);
             CurveManager.Draw(gameTime, spriteBatch);
             DragNoteManager.Draw(spriteBatch);
+            file.Draw(spriteBatch, gameTime);
             spriteBatch.End();
             // TODO: Add your drawing code here
 
