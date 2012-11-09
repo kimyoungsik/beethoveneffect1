@@ -35,24 +35,21 @@ namespace beethoven3
                 judgment = dragNote.JudgedNote(mousePoint, 15.0f);
                 if (judgment == 2)
                 {
-
+                    
                     DragNoteManager.DragNotes.RemoveAt(i);
                 }
 
                         //good
                 else if (judgment == 1)
                 {
+                    
                     DragNoteManager.DragNotes.RemoveAt(i);
                 }
                 else
                 {
 
                 }
-
-
-
             }
-
         }
 
         private void checkRightNoteToMarker(int number)
@@ -77,7 +74,7 @@ namespace beethoven3
                     if(judgment == 2)
                     {
 
-                        perfectManager.AddExplosion(MarkManager.Marks[number].MarkSprite.Center, Vector2.Zero);
+                      perfectManager.AddExplosion(littleNote.Center, Vector2.Zero);
                       StartNoteManager.rightNoteManager.LittleNotes.RemoveAt(x);
                       
                     }
@@ -85,7 +82,7 @@ namespace beethoven3
                     //good
                     else if (judgment == 1)
                     {
-                        goodManager.AddExplosion(MarkManager.Marks[number].MarkSprite.Center, Vector2.Zero);
+                        goodManager.AddExplosion(littleNote.Center, Vector2.Zero);
                        
                         StartNoteManager.rightNoteManager.LittleNotes.RemoveAt(x);
                     }
@@ -117,13 +114,14 @@ namespace beethoven3
                 //perfect
                 if (judgment == 2)
                 {
-
+                    perfectManager.AddExplosion(littleNote.Center, Vector2.Zero);
                     StartNoteManager.leftNoteManager.LittleNotes.RemoveAt(x);
                 }
 
                 //good
                 else if (judgment == 1)
                 {
+                    goodManager.AddExplosion(littleNote.Center, Vector2.Zero);
                      StartNoteManager.leftNoteManager.LittleNotes.RemoveAt(x);
                 }
                 else
@@ -156,13 +154,14 @@ namespace beethoven3
                 //perfect
                 if (judgment == 2)
                 {
-
+                    perfectManager.AddExplosion(littleNote.Center, Vector2.Zero);
                     StartNoteManager.doubleNoteManager.LittleNotes.RemoveAt(x);
                 }
 
                 //good
                 else if (judgment == 1)
                 {
+                    goodManager.AddExplosion(littleNote.Center, Vector2.Zero);
                     StartNoteManager.doubleNoteManager.LittleNotes.RemoveAt(x);
                 }
                 else
@@ -194,13 +193,14 @@ namespace beethoven3
                 //perfect
                 if (judgment == 2)
                 {
-
+                    
                     StartNoteManager.longNoteManager.LittleNotes.RemoveAt(x);
                 }
 
                 //good
                 else if (judgment == 1)
                 {
+
                     StartNoteManager.longNoteManager.LittleNotes.RemoveAt(x);
                 }
                 else
