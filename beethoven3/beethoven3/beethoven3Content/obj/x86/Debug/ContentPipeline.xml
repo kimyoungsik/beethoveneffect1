@@ -37,6 +37,15 @@
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\Textures\red.xnb</Output>
       <Time>2012-11-07T17:27:47.0659035+09:00</Time>
     </Item>
+    <Item>
+      <Source>Textures\SpriteSheet5.png</Source>
+      <Name>Textures\SpriteSheet5</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\Textures\SpriteSheet5.xnb</Output>
+      <Time>2012-11-09T16:35:30.6549095+09:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

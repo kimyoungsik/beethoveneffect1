@@ -78,7 +78,7 @@ namespace beethoven3
                 CreateLineTexture(device);
 
             float distance = Vector2.Distance(vStart, vEnd);
-        //    float angle = (float)Math.Atan2((double)(vEnd.Y - vStart.Y), (double)(vEnd.X - vStart.X));
+            float angle = (float)Math.Atan2((double)(vEnd.Y - vStart.Y), (double)(vEnd.X - vStart.X));
           //  float angle = -2f;
               spriteBatch.Draw(m_LineTexture, vStart, null, m_LIneColor, angle, Vector2.Zero, new Vector2(distance, 0), SpriteEffects.None, 1.0f);
               //spriteBatch.Draw(m_LineTexture, vStart, null, m_LIneColor);

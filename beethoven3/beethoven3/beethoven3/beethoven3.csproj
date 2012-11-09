@@ -111,11 +111,13 @@
     <Compile Include="Curve.cs" />
     <Compile Include="CurveManager.cs" />
     <Compile Include="DragNoteManager.cs" />
+    <Compile Include="ExplosionManager.cs" />
     <Compile Include="File.cs" />
     <Compile Include="LineRenderer.cs" />
     <Compile Include="Mark.cs" />
     <Compile Include="MarkManager.cs" />
     <Compile Include="NoteManager.cs" />
+    <Compile Include="Particle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />

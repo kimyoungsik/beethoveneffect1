@@ -30,17 +30,25 @@ namespace beethoven3
         StartNoteManager startNoteManager;
         CollisionManager collisionManager;
         File file;
-
+        ExplosionManager perfectManager;
+        ExplosionManager goodManager;
         MouseState mouseStateCurrent;
         //Rectangle mouseRect;
 
         static public int mousex = 100; //X좌표
         static public int mousey = 100; //Y좌표
+
+        const int SCR_W = 1024;
+        const int SCR_H = 768;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-   
+
+            graphics.PreferredBackBufferHeight = SCR_H;
+            graphics.PreferredBackBufferWidth = SCR_W;
+
         
         }
 
@@ -66,7 +74,7 @@ namespace beethoven3
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            spriteSheet = Content.Load<Texture2D>(@"Textures\SpriteSheet");
+            spriteSheet = Content.Load<Texture2D>(@"Textures\SpriteSheet5");
             titleScreen = Content.Load<Texture2D>(@"Textures\TitleScreen");
             heart = Content.Load<Texture2D>(@"Textures\heart");
             // TODO: use this.Content to load your game content here
@@ -83,14 +91,14 @@ namespace beethoven3
 
             startNoteManager = new StartNoteManager(
                 spriteSheet,
-                new Rectangle(0, 200, 50, 50),
+                new Rectangle(0, 200, 52, 55),
                 1);
 
             MarkManager.initialize(
            // markManager = new MarkManager(
                 spriteSheet,
-                new Rectangle(0, 200, 50, 50),
-                6,
+                new Rectangle(0, 200, 50, 55),
+                1,
                 mark1Location,
                 mark2Location,
                 mark3Location,
@@ -100,7 +108,23 @@ namespace beethoven3
                 startNoteManager
                 
                 );
-            collisionManager = new CollisionManager();
+            perfectManager = new ExplosionManager(
+                 spriteSheet,
+                 new Rectangle(0, 100, 50, 50),
+                 3,
+                 new Rectangle(0, 450, 2, 2),
+                 new Color(1.0f, 0.3f, 0f) * 0.5f,
+                 new Color(0f, 0f, 0f, 0f));
+
+            goodManager = new ExplosionManager(
+                 spriteSheet,
+                 new Rectangle(0, 100, 50, 50),
+                 3,
+                 new Rectangle(0, 450, 2, 2),
+                 new Color(0f, 0f, 1.0f) * 0.5f,
+                 new Color(0f, 0f, 0f, 0f));
+
+            collisionManager = new CollisionManager(perfectManager, goodManager);
 
 
             file = new File(startNoteManager);
@@ -109,7 +133,7 @@ namespace beethoven3
 
             DragNoteManager.initialize(
                  spriteSheet,
-                 new Rectangle(0, 200, 50, 50),
+                 new Rectangle(0, 100, 50, 50),
                  6,
                  15,
                  0);
@@ -174,9 +198,9 @@ namespace beethoven3
 
             mouseStateCurrent = Mouse.GetState();
 
-      //      mousex = mouseStateCurrent.X;
+     //       mousex = mouseStateCurrent.X;
      //       mousey = mouseStateCurrent.Y;
-      //          Window.Title = "|"+mousex + "|"+ mousey;
+     //          Window.Title = "|"+mousex + "|"+ mousey;
 
      //       mouseRect = new Rectangle(mouseStateCurrent.X, mouseStateCurrent.Y, 5, 5);
 
@@ -199,8 +223,8 @@ namespace beethoven3
 
                 file.Update(spriteBatch, gameTime);
                 DragNoteManager.Update(gameTime);
-
-                
+                perfectManager.Update(gameTime);
+                goodManager.Update(gameTime);
             }
 
             if (gameState == GameStates.GameOver)
@@ -219,13 +243,15 @@ namespace beethoven3
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.White);
             spriteBatch.Begin();
             MarkManager.Draw(spriteBatch);
             startNoteManager.Draw(spriteBatch);
             CurveManager.Draw(gameTime, spriteBatch);
             DragNoteManager.Draw(spriteBatch);
             file.Draw(spriteBatch, gameTime);
+            perfectManager.Draw(spriteBatch);
+            goodManager.Draw(spriteBatch);
             spriteBatch.End();
             // TODO: Add your drawing code here
 

@@ -13,12 +13,15 @@ namespace beethoven3
        // private StartNoteManager startNoteManager;
      //   private Vector2 offScreen = new Vector2(-500, -500);
         private int judgment;
+        private ExplosionManager perfectManager;
+        private ExplosionManager  goodManager;
         #endregion
 
         #region constructor
-        public CollisionManager()
+        public CollisionManager(ExplosionManager perfectManager, ExplosionManager goodManager)
         {
-         
+            this.perfectManager = perfectManager;
+            this.goodManager = goodManager;
         }
         #endregion
 
@@ -73,13 +76,17 @@ namespace beethoven3
                     //perfect
                     if(judgment == 2)
                     {
-                       
+
+                        perfectManager.AddExplosion(MarkManager.Marks[number].MarkSprite.Center, Vector2.Zero);
                       StartNoteManager.rightNoteManager.LittleNotes.RemoveAt(x);
+                      
                     }
 
                     //good
                     else if (judgment == 1)
                     {
+                        goodManager.AddExplosion(MarkManager.Marks[number].MarkSprite.Center, Vector2.Zero);
+                       
                         StartNoteManager.rightNoteManager.LittleNotes.RemoveAt(x);
                     }
                     else
