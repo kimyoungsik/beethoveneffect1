@@ -27,6 +27,7 @@ namespace beethoven3
         public static NoteManager longNoteManager;
         //BPS에 따라 달라진다.
         public static float noteSpeed = 70.0f;
+      //  public static float noteSpeed = 70.0f;
         #endregion
 
 

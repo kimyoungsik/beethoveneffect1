@@ -102,7 +102,7 @@ namespace beethoven3
                 );
             collisionManager = new CollisionManager();
 
-           
+
             file = new File(startNoteManager);
             //곡선택화면에서
             file.Loading("a.txt");

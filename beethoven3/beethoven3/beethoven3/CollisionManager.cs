@@ -165,6 +165,45 @@ namespace beethoven3
 
             }
         }
+
+        public void checkLongNoteToMarker(int number)
+        {
+
+            for (int x = 0; x < StartNoteManager.longNoteManager.LittleNotes.Count; x++)
+            {
+                Sprite littleNote = StartNoteManager.longNoteManager.LittleNotes[x];
+
+                //0:bad 1:good 2:perfect
+
+                ///노트의 반지름으로 
+                //judgment = littleNote.JudgedNote(
+                //    mark.MarkSprite.Center,
+                //    mark.MarkSprite.CollisionRadius);
+
+                //마커의 반지름으로
+                judgment = MarkManager.Marks[number].MarkSprite.JudgedNote(
+                    littleNote.Center,
+                    littleNote.CollisionRadius);
+                //perfect
+                if (judgment == 2)
+                {
+
+                    StartNoteManager.longNoteManager.LittleNotes.RemoveAt(x);
+                }
+
+                //good
+                else if (judgment == 1)
+                {
+                    StartNoteManager.longNoteManager.LittleNotes.RemoveAt(x);
+                }
+                else
+                {
+
+                }
+            }
+        }
+
+
         public void CheckCollisions(int number)
         {
             checkRightNoteToMarker(number);

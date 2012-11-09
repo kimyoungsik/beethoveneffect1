@@ -17,7 +17,7 @@ namespace beethoven3
         private static Texture2D Texture;
         private Rectangle InitialFrame;
         private static int FrameCount;
-        private float noteSpeed;
+        public float noteSpeed;
         private static int CollisionRadius;
     //    private int noteType;
         #endregion

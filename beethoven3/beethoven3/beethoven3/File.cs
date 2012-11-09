@@ -14,6 +14,8 @@ namespace beethoven3
         #region declarations
 
         private StartNoteManager startNoteManager;
+
+
         private Queue allNotes = new Queue();
         private String[] noteContents;
         private double noteTime;
@@ -21,6 +23,7 @@ namespace beethoven3
         private bool drawLine = false;
         private double drawLineTime;
         private int startNoteNumber;
+
         #endregion
         
         #region constructor
@@ -28,6 +31,7 @@ namespace beethoven3
         public File( StartNoteManager startNoteManager)       
         {
              this.startNoteManager = startNoteManager;
+  
         }
         
         #endregion
@@ -124,11 +128,16 @@ namespace beethoven3
                 if (drawLineTime >= processTime)
                 {
                     LineRenderer.DrawDirectLine(spriteBatch.GraphicsDevice, spriteBatch, StartNoteManager.longNoteManager.LittleNotes[0].Center, startNoteManager.StartNotes[this.startNoteNumber].StartNoteSprite.Center, Color.Blue);
+                    if( (checkLongNoteToMarker(startNoteNumber)) == 2)
+                    {
 
+                        StartNoteManager.longNoteManager.LittleNotes[0].Velocity = new Vector2(0,0);
+                    }
 
                 }
                 else//시간 지난후에 다시 들어오지 않게 
                 {
+                    StartNoteManager.longNoteManager.LittleNotes.RemoveAt(0);
                     drawLine = false;
 
                 }
@@ -138,6 +147,22 @@ namespace beethoven3
             }
 
         }
+
+
+        public int checkLongNoteToMarker(int number)
+        {
+
+                Sprite littleNote = StartNoteManager.longNoteManager.LittleNotes[0];
+
+              
+                //마커의 반지름으로
+                int judgment = MarkManager.Marks[number].MarkSprite.JudgedNote(
+                    littleNote.Center,
+                    littleNote.CollisionRadius);
+
+                return judgment;
+        }
+
 
         /// <summary>
         /// 마커에 노트가 닿는 시간을 정확히 맞추기 위해서
@@ -161,6 +186,7 @@ namespace beethoven3
 
             
         }
+
 
         public void Update(SpriteBatch spriteBatch, GameTime gameTime)
         {
