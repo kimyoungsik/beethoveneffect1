@@ -27,6 +27,7 @@ namespace beethoven3
 
         #region method
 
+       
         public void checkDragNote(Vector2 mousePoint)
         {
             for (int i = 0; i < DragNoteManager.DragNotes.Count(); i++ )

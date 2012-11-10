@@ -36,6 +36,15 @@ namespace beethoven3
             //m_LineTexture.SetData<Color>(pixels);
         }
 
+        static private void CreateNewLineTexture(Texture2D texture)
+        {
+            m_LineTexture = texture;
+            //m_LineTexture = new Texture2D(device, 1, 1, true, SurfaceFormat.Color);
+            //Color[] pixels = new Color[1];
+            //pixels[0] = Color.White;
+            //m_LineTexture.SetData<Color>(pixels);
+        }
+
         static public Color LineColor
         {
             set { m_LIneColor = value; }
@@ -43,16 +52,16 @@ namespace beethoven3
         
 
         
-        static public void DrawLine(GraphicsDevice device, SpriteBatch spriteBatch, Vector2 vStart, Vector2 vEnd, Color color)
+        static public void DrawLine(Texture2D texture,Rectangle frame,GraphicsDevice device, SpriteBatch spriteBatch, Vector2 vStart, Vector2 vEnd, Color color)
         {
             m_LIneColor = color;
-            Draw(device, spriteBatch, vStart, vEnd);
+            Draw(texture, frame,device, spriteBatch, vStart, vEnd);
         }
 
-        static public void DrawDirectLine(GraphicsDevice device, SpriteBatch spriteBatch, Vector2 vStart, Vector2 vEnd, Color color)
+        static public void DrawDirectLine(Texture2D texture,Rectangle frame,GraphicsDevice device, SpriteBatch spriteBatch, Vector2 vStart, Vector2 vEnd, Color color)
         {
             m_LIneColor = color;
-            DirectDraw(device, spriteBatch, vStart, vEnd);
+            DirectDraw(texture, frame,device, spriteBatch, vStart, vEnd);
         }
         #endregion
 
@@ -60,27 +69,27 @@ namespace beethoven3
         // 선을 그리기 위해, 두 점간의 거리와 각도를 구한다.
         // 그리고 SpriteBatch의 angle과 scale 특징을 이용해서 늘리고 회전한다.
         
-        static public void Draw(GraphicsDevice device, SpriteBatch spriteBatch, Vector2 vStart, Vector2 vEnd)
+        static public void Draw(Texture2D texture,Rectangle frame,GraphicsDevice device, SpriteBatch spriteBatch, Vector2 vStart, Vector2 vEnd)
         {
             if (m_LineTexture == null)
-                CreateLineTexture(device);
+                CreateNewLineTexture(texture);
 
             float distance = Vector2.Distance(vStart, vEnd);
             float angle = (float)Math.Atan2((double)(vEnd.Y - vStart.Y), (double)(vEnd.X - vStart.X));
      
           //  spriteBatch.Draw(m_LineTexture, vStart, null, m_LIneColor, angle, Vector2.Zero, new Vector2(distance, 1), SpriteEffects.None, 1.0f);
-            spriteBatch.Draw(m_LineTexture, vStart, null, m_LIneColor);
+            spriteBatch.Draw(m_LineTexture, vStart, frame, m_LIneColor);
         }
 
-        static public void DirectDraw(GraphicsDevice device, SpriteBatch spriteBatch, Vector2 vStart, Vector2 vEnd)
+        static public void DirectDraw(Texture2D texture,Rectangle frame,GraphicsDevice device, SpriteBatch spriteBatch, Vector2 vStart, Vector2 vEnd)
         {
             if (m_LineTexture == null)
-                CreateLineTexture(device);
+                CreateNewLineTexture(texture);
 
             float distance = Vector2.Distance(vStart, vEnd);
             float angle = (float)Math.Atan2((double)(vEnd.Y - vStart.Y), (double)(vEnd.X - vStart.X));
           //  float angle = -2f;
-              spriteBatch.Draw(m_LineTexture, vStart, null, m_LIneColor, angle, Vector2.Zero, new Vector2(distance, 0), SpriteEffects.None, 1.0f);
+            spriteBatch.Draw(m_LineTexture, vStart, frame, m_LIneColor, angle, Vector2.Zero, new Vector2(distance, 0), SpriteEffects.None, 1.0f);
               //spriteBatch.Draw(m_LineTexture, vStart, null, m_LIneColor);
         }
         #endregion

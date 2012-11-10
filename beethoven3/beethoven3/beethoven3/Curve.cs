@@ -28,6 +28,8 @@ namespace beethoven3
         private Vector2 currentPosition;
         private int count = 0;
 
+        private bool end = false;
+
         #endregion
 
         #region constructor
@@ -99,6 +101,7 @@ namespace beethoven3
                 PointsQueue.Enqueue(PlotPoint);
             }
             dotTime = time / PointsQueue.Count;
+            end = false;
         }
 
         public void DeleteAllPoints()
@@ -117,7 +120,7 @@ namespace beethoven3
         {
             int i, j; 
           
-            if (Points.Count > 0)
+            if (Points.Count > 0 && !end)
             {
                 changedTime += gameTime.ElapsedGameTime.TotalMilliseconds;
                 dotChangedTime += gameTime.ElapsedGameTime.TotalMilliseconds;
@@ -125,7 +128,8 @@ namespace beethoven3
                 {
                     j = i + 1;
 
-                    LineRenderer.DrawLine(spriteBatch.GraphicsDevice, spriteBatch, (Vector2)Points[i], (Vector2)Points[j], Color.Red);
+                    //라인 그리기
+                    LineRenderer.DrawLine(Game1.spriteSheet, new Rectangle(0, 0, 50, 50), spriteBatch.GraphicsDevice, spriteBatch, (Vector2)Points[i], (Vector2)Points[j], Color.White);
                 }
 
                 if (dotChangedTime >= dotTime && PointsQueue.Count > 1)
@@ -134,6 +138,7 @@ namespace beethoven3
                     if (count == 0)
                     {
                         currentPosition = (Vector2)PointsQueue.Peek();
+                        //판별하는 마크
                         DragNoteManager.MakeDragNote(currentPosition, new Vector2(0,0));
                     }
                     count++;
@@ -142,8 +147,9 @@ namespace beethoven3
                         count = 0;
                         DragNoteManager.DeleteDragNoteFromFront();
                     }
-                    
-                    LineRenderer.DrawLine(spriteBatch.GraphicsDevice, spriteBatch, (Vector2)PointsQueue.Dequeue(), (Vector2)PointsQueue.Peek(), Color.Blue);
+
+                    //따라다니면서 마크 찍는 것
+                    LineRenderer.DrawLine(Game1.spriteSheet, new Rectangle(0, 100, 50, 50), spriteBatch.GraphicsDevice, spriteBatch, (Vector2)PointsQueue.Dequeue(), (Vector2)PointsQueue.Peek(), Color.White);
                     dotChangedTime = 0.0f;
 
                 }
@@ -151,9 +157,12 @@ namespace beethoven3
                 {
                     if (Points.Count > 0)
                     {
+                        //지워지기 시작 
                         DeleteAllPoints();
+
+                        //지워지기 시작하면 true -> 화면에서 안보이게 함
+                        end = true;
                         
-                    
                     }
 
                 }

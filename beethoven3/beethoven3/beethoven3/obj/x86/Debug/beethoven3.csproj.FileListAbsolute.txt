@@ -16,4 +16,5 @@ D:\beethoven\beethoven3\beethoven3\beethoven3\obj\x86\Debug\beethoven3.exe
 D:\beethoven\beethoven3\beethoven3\beethoven3\obj\x86\Debug\beethoven3.pdb
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\Textures\heart.xnb
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\Textures\red.xnb
-D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\Textures\SpriteSheet5.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\Textures\SpriteSheet7.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\Textures\SpriteSheet8.xnb

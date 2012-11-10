@@ -38,13 +38,22 @@
       <Time>2012-11-07T17:27:47.0659035+09:00</Time>
     </Item>
     <Item>
-      <Source>Textures\SpriteSheet5.png</Source>
-      <Name>Textures\SpriteSheet5</Name>
+      <Source>Textures\SpriteSheet7.png</Source>
+      <Name>Textures\SpriteSheet7</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\Textures\SpriteSheet5.xnb</Output>
-      <Time>2012-11-09T16:35:30.6549095+09:00</Time>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\Textures\SpriteSheet7.xnb</Output>
+      <Time>2012-11-10T21:01:30.1268165+09:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\SpriteSheet8.png</Source>
+      <Name>Textures\SpriteSheet8</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\Textures\SpriteSheet8.xnb</Output>
+      <Time>2012-11-10T23:10:06.2273353+09:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

@@ -120,17 +120,17 @@ namespace beethoven3
           
         }
 
-        public void DrawLineInDragNote(SpriteBatch spriteBatch, double processTime)
+        public void DrawLineInLongNote(SpriteBatch spriteBatch, double processTime)
         {
             if (drawLine)
             {
 
                 if (drawLineTime >= processTime)
                 {
-                    LineRenderer.DrawDirectLine(spriteBatch.GraphicsDevice, spriteBatch, StartNoteManager.longNoteManager.LittleNotes[0].Center, startNoteManager.StartNotes[this.startNoteNumber].StartNoteSprite.Center, Color.Blue);
+                    LineRenderer.DrawDirectLine(Game1.spriteSheet,new Rectangle(0, 200, 50, 55), spriteBatch.GraphicsDevice, spriteBatch, StartNoteManager.longNoteManager.LittleNotes[0].Center, startNoteManager.StartNotes[this.startNoteNumber].StartNoteSprite.Center, Color.White);
                     if( (checkLongNoteToMarker(startNoteNumber)) == 2)
                     {
-
+                        //롱노트 시간 안움직임
                         StartNoteManager.longNoteManager.LittleNotes[0].Velocity = new Vector2(0,0);
                     }
 
@@ -206,7 +206,7 @@ namespace beethoven3
             double time = gameTime.TotalGameTime.TotalSeconds;
 
           //  FindNote(time);
-            DrawLineInDragNote(spriteBatch, time);
+            DrawLineInLongNote(spriteBatch, time);
 
         }
      

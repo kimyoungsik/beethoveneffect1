@@ -71,8 +71,15 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Textures\SpriteSheet5.png">
-      <Name>SpriteSheet5</Name>
+    <Compile Include="Textures\SpriteSheet7.png">
+      <Name>SpriteSheet7</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Textures\SpriteSheet8.png">
+      <Name>SpriteSheet8</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

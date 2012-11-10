@@ -213,10 +213,10 @@ namespace beethoven3
             doubleNoteManager.Draw(spriteBatch);
             longNoteManager.Draw(spriteBatch);
             //스타트 표시점 보이지 않게
-            //foreach (StartNote startNote in StartNotes)
-            //{
-            //    startNote.Draw(spriteBatch);
-            //}
+            foreach (StartNote startNote in StartNotes)
+            {
+                startNote.Draw(spriteBatch);
+            }
         }
         #endregion
 

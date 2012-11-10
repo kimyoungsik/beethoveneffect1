@@ -22,8 +22,8 @@ namespace beethoven3
         enum GameStates { TitleScreen, Playing, PlayerDead, GameOver };
         GameStates gameState = GameStates.Playing;
 
-        Texture2D spriteSheet;
-        Texture2D titleScreen;
+        public static Texture2D spriteSheet;
+        public static Texture2D titleScreen;
         public static Texture2D heart;
 
 
@@ -74,7 +74,7 @@ namespace beethoven3
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            spriteSheet = Content.Load<Texture2D>(@"Textures\SpriteSheet5");
+            spriteSheet = Content.Load<Texture2D>(@"Textures\SpriteSheet8");
             titleScreen = Content.Load<Texture2D>(@"Textures\TitleScreen");
             heart = Content.Load<Texture2D>(@"Textures\heart");
             // TODO: use this.Content to load your game content here
@@ -248,7 +248,11 @@ namespace beethoven3
             MarkManager.Draw(spriteBatch);
             startNoteManager.Draw(spriteBatch);
             CurveManager.Draw(gameTime, spriteBatch);
+            
+            //이걸 주석하면 드래그노트 체크하는거 안보임 하지만 체크는 됨
             DragNoteManager.Draw(spriteBatch);
+            
+            
             file.Draw(spriteBatch, gameTime);
             perfectManager.Draw(spriteBatch);
             goodManager.Draw(spriteBatch);
