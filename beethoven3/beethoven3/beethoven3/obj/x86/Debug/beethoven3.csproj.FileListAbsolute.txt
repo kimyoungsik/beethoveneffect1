@@ -18,3 +18,9 @@ D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\Textures\hea
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\Textures\red.xnb
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\Textures\SpriteSheet7.xnb
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\Textures\SpriteSheet8.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\snd\ka.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\snd\ka.wma
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\snd\jo.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\snd\maid.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\snd\jo.wma
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\snd\maid.wma

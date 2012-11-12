@@ -55,6 +55,36 @@
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\Textures\SpriteSheet8.xnb</Output>
       <Time>2012-11-10T23:10:06.2273353+09:00</Time>
     </Item>
+    <Item>
+      <Source>snd\ka.mp3</Source>
+      <Name>snd\ka</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\snd\ka.xnb</Output>
+      <Extra>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\snd\ka.wma</Extra>
+      <Time>2012-11-12T21:11:14.3933834+09:00</Time>
+    </Item>
+    <Item>
+      <Source>snd\jo.MP3</Source>
+      <Name>snd\jo</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\snd\jo.xnb</Output>
+      <Extra>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\snd\jo.wma</Extra>
+      <Time>2012-11-12T21:55:50.6374013+09:00</Time>
+    </Item>
+    <Item>
+      <Source>snd\maid.mp3</Source>
+      <Name>snd\maid</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\snd\maid.xnb</Output>
+      <Extra>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\snd\maid.wma</Extra>
+      <Time>2012-11-12T21:55:50.9464189+09:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

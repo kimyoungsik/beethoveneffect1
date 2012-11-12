@@ -81,7 +81,7 @@ namespace beethoven3
             longNoteManager = new NoteManager(
                 //노크와 시작마커가 같은 sprite
                  texture,
-                  new Rectangle(0, 200, 50, 50),
+                  new Rectangle(0, 0, 50, 50),
                  1,
                  15,
                  noteSpeed

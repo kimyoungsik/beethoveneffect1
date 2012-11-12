@@ -4,3 +4,9 @@ Content\Textures\heart.xnb
 Content\Textures\red.xnb
 Content\Textures\SpriteSheet7.xnb
 Content\Textures\SpriteSheet8.xnb
+Content\snd\ka.xnb
+Content\snd\ka.wma
+Content\snd\jo.xnb
+Content\snd\jo.wma
+Content\snd\maid.xnb
+Content\snd\maid.wma

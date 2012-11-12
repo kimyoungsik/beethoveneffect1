@@ -127,23 +127,35 @@ namespace beethoven3
 
                 if (drawLineTime >= processTime)
                 {
-                    LineRenderer.DrawDirectLine(Game1.spriteSheet,new Rectangle(0, 200, 50, 55), spriteBatch.GraphicsDevice, spriteBatch, StartNoteManager.longNoteManager.LittleNotes[0].Center, startNoteManager.StartNotes[this.startNoteNumber].StartNoteSprite.Center, Color.White);
+                    startNoteManager.MakeLongNote(startNoteNumber);
+                   // LineRenderer.DrawLine(Game1.spriteSheet, new Rectangle(200, 100, 50, 55), spriteBatch.GraphicsDevice, spriteBatch, StartNoteManager.longNoteManager.LittleNotes[0].Location, startNoteManager.StartNotes[this.startNoteNumber].StartNoteSprite.Location, Color.White);
                     if( (checkLongNoteToMarker(startNoteNumber)) == 2)
                     {
                         //롱노트 시간 안움직임
-                        StartNoteManager.longNoteManager.LittleNotes[0].Velocity = new Vector2(0,0);
+                       // StartNoteManager.longNoteManager.LittleNotes[0].Velocity = new Vector2(0,0);
+                        StartNoteManager.longNoteManager.LittleNotes.RemoveAt(0);
                     }
 
                 }
                 else//시간 지난후에 다시 들어오지 않게 
                 {
-                    StartNoteManager.longNoteManager.LittleNotes.RemoveAt(0);
-                    drawLine = false;
 
+                    try
+                    {
+                        StartNoteManager.longNoteManager.LittleNotes.RemoveAt(0);
+                    }
+                    catch (ArgumentOutOfRangeException)
+                    {
+
+                    }
+                        //drawLine = false;
+                    //if (StartNoteManager.longNoteManager.LittleNotes.Count >= 1)
+                    //{
+                    //    drawLine = false;
+                    //    StartNoteManager.longNoteManager.LittleNotes.RemoveAt(0);
+                    //}
                 }
                 
-
-
             }
 
         }

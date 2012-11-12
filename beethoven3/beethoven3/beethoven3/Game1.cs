@@ -21,7 +21,7 @@ namespace beethoven3
 
         enum GameStates { TitleScreen, Playing, PlayerDead, GameOver };
         GameStates gameState = GameStates.Playing;
-
+        
         public static Texture2D spriteSheet;
         public static Texture2D titleScreen;
         public static Texture2D heart;
@@ -34,6 +34,7 @@ namespace beethoven3
         ExplosionManager goodManager;
         MouseState mouseStateCurrent;
         //Rectangle mouseRect;
+       
 
         static public int mousex = 100; //X좌표
         static public int mousey = 100; //Y좌표
@@ -71,6 +72,9 @@ namespace beethoven3
         /// </summary>
         protected override void LoadContent()
         {
+
+            SoundManager.Init();
+            LoadSound();
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
@@ -81,6 +85,7 @@ namespace beethoven3
 
           //  LineRenderer.LoadContent(content);
 
+          
             Vector2 mark1Location = new Vector2(400, 70);
             Vector2 mark2Location = new Vector2(500, 170);
             Vector2 mark3Location = new Vector2(500, 270);
@@ -140,7 +145,15 @@ namespace beethoven3
 
 
         }
-
+        public void LoadSound()
+        {
+            int count = SoundManager.sndFiles.Count();
+            for (int i = 0; i < count; i++)
+            {
+                SoundManager.soundEngine[i] = Content.Load<Song>(SoundManager.sndFiles[i]);
+           //     SoundManager.soundEngineInstance[i] = SoundManager.soundEngine[i].CreateInstance();
+            }
+        }
         /// <summary>
         /// UnloadContent will be called once per game and is the place to unload
         /// all content.
@@ -161,18 +174,22 @@ namespace beethoven3
         {
             if (keyState.IsKeyDown(Keys.NumPad8))
             {
+                SoundManager.SndPlay("snd/ka");
                 collisionManager.CheckCollisions(0);
             }
             if (keyState.IsKeyDown(Keys.NumPad9))
             {
+                SoundManager.SndPlay("snd/maid");
                 collisionManager.CheckCollisions(1);
             }
             if (keyState.IsKeyDown(Keys.NumPad6))
             {
+                SoundManager.SndPlay("snd/jo");
                 collisionManager.CheckCollisions(2);
             }
             if (keyState.IsKeyDown(Keys.NumPad5))
             {
+                SoundManager.SndStop();
                 collisionManager.CheckCollisions(3);
             }
             if (keyState.IsKeyDown(Keys.NumPad4))

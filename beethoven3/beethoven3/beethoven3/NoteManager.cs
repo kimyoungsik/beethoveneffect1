@@ -19,7 +19,7 @@ namespace beethoven3
         private static int FrameCount;
         public float noteSpeed;
         private static int CollisionRadius;
-    //    private int noteType;
+   
         #endregion
 
 
@@ -30,7 +30,7 @@ namespace beethoven3
             int frameCount,
             int collisionRadius,
             float noteSpeed
-         //   int noteType
+        
             )
        {
             Texture = texture;
