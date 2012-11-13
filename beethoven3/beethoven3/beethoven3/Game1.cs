@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
-
+using Microsoft.Kinect;
 namespace beethoven3
 {
     /// <summary>
@@ -18,6 +18,11 @@ namespace beethoven3
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+
+        //KINECT
+        KinectSensor nui = null;
+        Texture2D KinectDepthTexture;
+        Rectangle DepthDisplayRectangle;
 
         enum GameStates { TitleScreen, Playing, PlayerDead, GameOver };
         GameStates gameState = GameStates.Playing;
@@ -63,6 +68,9 @@ namespace beethoven3
         {
             // TODO: Add your initialization logic here
             this.IsMouseVisible = true;
+            //KINECT
+            DepthDisplayRectangle = new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
+
             base.Initialize();
         }
 
@@ -77,7 +85,12 @@ namespace beethoven3
             LoadSound();
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            //KINECT
+            nui = KinectSensor.KinectSensors[0];
+            nui.DepthStream.Enable();
+            nui.DepthFrameReady += new EventHandler<DepthImageFrameReadyEventArgs>(nui_DepthFrameReady);
+            nui.Start();
+            //////
             spriteSheet = Content.Load<Texture2D>(@"Textures\SpriteSheet8");
             titleScreen = Content.Load<Texture2D>(@"Textures\TitleScreen");
             heart = Content.Load<Texture2D>(@"Textures\heart");
@@ -144,6 +157,49 @@ namespace beethoven3
                  0);
 
 
+        }
+
+        void nui_DepthFrameReady(object sender, DepthImageFrameReadyEventArgs e)
+        {
+
+            short[] depthData = null;
+
+            using (DepthImageFrame ImageParam = e.OpenDepthImageFrame())
+            {
+                if (ImageParam == null) return;
+
+                if (depthData == null)
+                    depthData = new short[ImageParam.Width * ImageParam.Height];
+
+                ImageParam.CopyPixelDataTo(depthData);
+
+
+
+
+                Color[] bitmap = new Color[ImageParam.Width * ImageParam.Height];
+
+                for (int i = 0; i < bitmap.Length; i++)
+                {
+
+                    int depth = depthData[i] >> 3;
+                    if (depth == nui.DepthStream.UnknownDepth)
+                        bitmap[i] = Color.Red;
+                    else
+                        if (depth == nui.DepthStream.TooFarDepth)
+                            bitmap[i] = Color.Blue;
+                        else
+                            if (depth == nui.DepthStream.TooNearDepth)
+                                bitmap[i] = Color.Green;
+                            else
+                            {
+                                byte depthByte = (byte)(255 - (depth >> 5));
+                                bitmap[i] = new Color(depthByte, depthByte, depthByte, 255);
+                            }
+                }
+                KinectDepthTexture = new Texture2D(GraphicsDevice, ImageParam.Width, ImageParam.Height);
+                KinectDepthTexture.SetData(bitmap);
+                
+            }
         }
         public void LoadSound()
         {
@@ -262,6 +318,10 @@ namespace beethoven3
         {
             GraphicsDevice.Clear(Color.White);
             spriteBatch.Begin();
+            if (KinectDepthTexture != null)
+            {
+                spriteBatch.Draw(KinectDepthTexture, DepthDisplayRectangle, Color.White);
+            }
             MarkManager.Draw(spriteBatch);
             startNoteManager.Draw(spriteBatch);
             CurveManager.Draw(gameTime, spriteBatch);
@@ -273,6 +333,8 @@ namespace beethoven3
             file.Draw(spriteBatch, gameTime);
             perfectManager.Draw(spriteBatch);
             goodManager.Draw(spriteBatch);
+
+
             spriteBatch.End();
             // TODO: Add your drawing code here
 
