@@ -20,17 +20,20 @@ namespace beethoven3
         SpriteBatch spriteBatch;
 
         //KINECT
-        KinectSensor nui = null;
-        Texture2D KinectDepthTexture;
-        Rectangle DepthDisplayRectangle;
+        //KinectSensor nui = null;
+        //Texture2D KinectDepthTexture;
+        //Rectangle DepthDisplayRectangle;
 
-        enum GameStates { TitleScreen, Playing, PlayerDead, GameOver };
-        GameStates gameState = GameStates.Playing;
+        enum GameStates { Menu, Playing, SongMenu, GameOver };
+        GameStates gameState = GameStates.Menu;
         
         public static Texture2D spriteSheet;
-        public static Texture2D titleScreen;
+        public static Texture2D menu;
         public static Texture2D heart;
 
+
+        SongMenu songMenu;
+        int result;
 
         StartNoteManager startNoteManager;
         CollisionManager collisionManager;
@@ -69,7 +72,7 @@ namespace beethoven3
             // TODO: Add your initialization logic here
             this.IsMouseVisible = true;
             //KINECT
-            DepthDisplayRectangle = new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
+    //DepthDisplayRectangle = new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
 
             base.Initialize();
         }
@@ -86,19 +89,18 @@ namespace beethoven3
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             //KINECT
-            nui = KinectSensor.KinectSensors[0];
-            nui.DepthStream.Enable();
-            nui.DepthFrameReady += new EventHandler<DepthImageFrameReadyEventArgs>(nui_DepthFrameReady);
-            nui.Start();
-            //////
+        //nui = KinectSensor.KinectSensors[0];
+        //nui.DepthStream.Enable();
+        //nui.DepthFrameReady += new EventHandler<DepthImageFrameReadyEventArgs>(nui_DepthFrameReady);
+        //nui.Start();
+        //////
             spriteSheet = Content.Load<Texture2D>(@"Textures\SpriteSheet8");
-            titleScreen = Content.Load<Texture2D>(@"Textures\TitleScreen");
+            menu = Content.Load<Texture2D>(@"Textures\menu");
             heart = Content.Load<Texture2D>(@"Textures\heart");
             // TODO: use this.Content to load your game content here
 
           //  LineRenderer.LoadContent(content);
-
-          
+            
             Vector2 mark1Location = new Vector2(400, 70);
             Vector2 mark2Location = new Vector2(500, 170);
             Vector2 mark3Location = new Vector2(500, 270);
@@ -156,51 +158,52 @@ namespace beethoven3
                  15,
                  0);
 
-
+            songMenu = new SongMenu();
+            songMenu.Load(Content);
         }
 
-        void nui_DepthFrameReady(object sender, DepthImageFrameReadyEventArgs e)
-        {
+        //void nui_DepthFrameReady(object sender, DepthImageFrameReadyEventArgs e)
+        //{
 
-            short[] depthData = null;
+        //    short[] depthData = null;
 
-            using (DepthImageFrame ImageParam = e.OpenDepthImageFrame())
-            {
-                if (ImageParam == null) return;
+        //    using (DepthImageFrame ImageParam = e.OpenDepthImageFrame())
+        //    {
+        //        if (ImageParam == null) return;
 
-                if (depthData == null)
-                    depthData = new short[ImageParam.Width * ImageParam.Height];
+        //        if (depthData == null)
+        //            depthData = new short[ImageParam.Width * ImageParam.Height];
 
-                ImageParam.CopyPixelDataTo(depthData);
-
-
+        //        ImageParam.CopyPixelDataTo(depthData);
 
 
-                Color[] bitmap = new Color[ImageParam.Width * ImageParam.Height];
 
-                for (int i = 0; i < bitmap.Length; i++)
-                {
 
-                    int depth = depthData[i] >> 3;
-                    if (depth == nui.DepthStream.UnknownDepth)
-                        bitmap[i] = Color.Red;
-                    else
-                        if (depth == nui.DepthStream.TooFarDepth)
-                            bitmap[i] = Color.Blue;
-                        else
-                            if (depth == nui.DepthStream.TooNearDepth)
-                                bitmap[i] = Color.Green;
-                            else
-                            {
-                                byte depthByte = (byte)(255 - (depth >> 5));
-                                bitmap[i] = new Color(depthByte, depthByte, depthByte, 255);
-                            }
-                }
-                KinectDepthTexture = new Texture2D(GraphicsDevice, ImageParam.Width, ImageParam.Height);
-                KinectDepthTexture.SetData(bitmap);
+        //        Color[] bitmap = new Color[ImageParam.Width * ImageParam.Height];
+
+        //        for (int i = 0; i < bitmap.Length; i++)
+        //        {
+
+        //            int depth = depthData[i] >> 3;
+        //            if (depth == nui.DepthStream.UnknownDepth)
+        //                bitmap[i] = Color.Red;
+        //            else
+        //                if (depth == nui.DepthStream.TooFarDepth)
+        //                    bitmap[i] = Color.Blue;
+        //                else
+        //                    if (depth == nui.DepthStream.TooNearDepth)
+        //                        bitmap[i] = Color.Green;
+        //                    else
+        //                    {
+        //                        byte depthByte = (byte)(255 - (depth >> 5));
+        //                        bitmap[i] = new Color(depthByte, depthByte, depthByte, 255);
+        //                    }
+        //        }
+        //        KinectDepthTexture = new Texture2D(GraphicsDevice, ImageParam.Width, ImageParam.Height);
+        //        KinectDepthTexture.SetData(bitmap);
                 
-            }
-        }
+        //    }
+        //}
         public void LoadSound()
         {
             int count = SoundManager.sndFiles.Count();
@@ -276,37 +279,68 @@ namespace beethoven3
      //          Window.Title = "|"+mousex + "|"+ mousey;
 
      //       mouseRect = new Rectangle(mouseStateCurrent.X, mouseStateCurrent.Y, 5, 5);
+            switch (gameState)
+            {
+                case GameStates.Menu:
 
 
+                    if ((Keyboard.GetState().IsKeyDown(Keys.Space))                    )
+                    {
+                        gameState = GameStates.SongMenu;
+                    }
+
+                    break;
+                case GameStates.Playing:
+                      MarkManager.Update(gameTime);
+                    startNoteManager.Update(gameTime);
+                    HandleKeyboardInput(Keyboard.GetState());
+                    HandleMouseInput(Mouse.GetState());
+
+                    file.Update(spriteBatch, gameTime);
+                    DragNoteManager.Update(gameTime);
+                    perfectManager.Update(gameTime);
+                    goodManager.Update(gameTime);
+                break;
+
+                case GameStates.SongMenu:
+                    result = songMenu.Update();
+                    if (result == 1)
+                    {
+                        gameState = GameStates.Menu;
+                     //   selectMenuManager.menuState = 0;
+                     //   selectMenuManager.ChoGiWha();
+                    }
+                    break;
+
+                
+            }
             // TODO: Add your update logic here
-            spriteBatch.Begin();
+           
+            //if (gameState == GameStates.SongMenu)
+            //{
 
-            if (gameState == GameStates.TitleScreen)
-            {
+            //}
+            //if (gameState == GameStates.Playing) 
 
-            }
-            if ((gameState == GameStates.Playing) ||
-                (gameState == GameStates.PlayerDead) ||
-                (gameState == GameStates.GameOver))
-            {
-                MarkManager.Update(gameTime);
-                startNoteManager.Update(gameTime);
-                HandleKeyboardInput(Keyboard.GetState());
-                HandleMouseInput(Mouse.GetState());
+            //{
+            //    MarkManager.Update(gameTime);
+            //    startNoteManager.Update(gameTime);
+            //    HandleKeyboardInput(Keyboard.GetState());
+            //    HandleMouseInput(Mouse.GetState());
 
-                file.Update(spriteBatch, gameTime);
-                DragNoteManager.Update(gameTime);
-                perfectManager.Update(gameTime);
-                goodManager.Update(gameTime);
-            }
+            //    file.Update(spriteBatch, gameTime);
+            //    DragNoteManager.Update(gameTime);
+            //    perfectManager.Update(gameTime);
+            //    goodManager.Update(gameTime);
+            //}
 
-            if (gameState == GameStates.GameOver)
-            {
+            //if (gameState == GameStates.GameOver)
+            //{
 
-            }
+            //}
             
 
-            spriteBatch.End();
+            //spriteBatch.End();
             base.Update(gameTime);
         }
 
@@ -318,23 +352,35 @@ namespace beethoven3
         {
             GraphicsDevice.Clear(Color.White);
             spriteBatch.Begin();
-            if (KinectDepthTexture != null)
+            if (gameState == GameStates.Menu)
             {
-                spriteBatch.Draw(KinectDepthTexture, DepthDisplayRectangle, Color.White);
+                spriteBatch.Draw(menu,
+                    new Rectangle(0, 0, this.Window.ClientBounds.Width,
+                        this.Window.ClientBounds.Height),
+                        Color.White);
             }
-            MarkManager.Draw(spriteBatch);
-            startNoteManager.Draw(spriteBatch);
-            CurveManager.Draw(gameTime, spriteBatch);
-            
-            //이걸 주석하면 드래그노트 체크하는거 안보임 하지만 체크는 됨
-            DragNoteManager.Draw(spriteBatch);
-            
-            
-            file.Draw(spriteBatch, gameTime);
-            perfectManager.Draw(spriteBatch);
-            goodManager.Draw(spriteBatch);
+
+            if ((gameState == GameStates.Playing))
+            {
+                MarkManager.Draw(spriteBatch);
+                startNoteManager.Draw(spriteBatch);
+                CurveManager.Draw(gameTime, spriteBatch);
+
+                //이걸 주석하면 드래그노트 체크하는거 안보임 하지만 체크는 됨
+                DragNoteManager.Draw(spriteBatch);
 
 
+                file.Draw(spriteBatch, gameTime);
+                perfectManager.Draw(spriteBatch);
+                goodManager.Draw(spriteBatch);
+
+            }
+
+            if (gameState == GameStates.SongMenu)
+            {
+                songMenu.Draw(spriteBatch);
+
+            }
             spriteBatch.End();
             // TODO: Add your drawing code here
 
