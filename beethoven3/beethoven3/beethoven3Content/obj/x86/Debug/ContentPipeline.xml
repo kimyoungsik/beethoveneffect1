@@ -391,6 +391,60 @@
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\Tutorial\background.xnb</Output>
       <Time>2012-11-14T13:30:09.725346+09:00</Time>
     </Item>
+    <Item>
+      <Source>SongMenu\background.jpg</Source>
+      <Name>SongMenu\background</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\SongMenu\background.xnb</Output>
+      <Time>2012-11-14T15:28:56.9540001+09:00</Time>
+    </Item>
+    <Item>
+      <Source>SongMenu\arrow1.png</Source>
+      <Name>SongMenu\arrow1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\SongMenu\arrow1.xnb</Output>
+      <Time>2012-11-14T13:59:41.156666+09:00</Time>
+    </Item>
+    <Item>
+      <Source>SongMenu\arrow2.png</Source>
+      <Name>SongMenu\arrow2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\SongMenu\arrow2.xnb</Output>
+      <Time>2012-11-14T13:59:49.3511347+09:00</Time>
+    </Item>
+    <Item>
+      <Source>SongMenu\song1.jpg</Source>
+      <Name>SongMenu\song1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\SongMenu\song1.xnb</Output>
+      <Time>2012-11-14T14:51:12.0964577+09:00</Time>
+    </Item>
+    <Item>
+      <Source>SongMenu\song2.jpg</Source>
+      <Name>SongMenu\song2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\SongMenu\song2.xnb</Output>
+      <Time>2012-11-14T14:37:10.3653134+09:00</Time>
+    </Item>
+    <Item>
+      <Source>SongMenu\song3.jpg</Source>
+      <Name>SongMenu\song3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\SongMenu\song3.xnb</Output>
+      <Time>2012-11-14T14:37:10.3533127+09:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

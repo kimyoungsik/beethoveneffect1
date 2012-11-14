@@ -98,7 +98,7 @@ namespace beethoven3
             menu = Content.Load<Texture2D>(@"Textures\menu");
             heart = Content.Load<Texture2D>(@"Textures\heart");
             // TODO: use this.Content to load your game content here
-
+           
           //  LineRenderer.LoadContent(content);
             
             Vector2 mark1Location = new Vector2(400, 70);
@@ -108,7 +108,7 @@ namespace beethoven3
             Vector2 mark5Location = new Vector2(300, 270);
             Vector2 mark6Location = new Vector2(300, 170);
 
-
+            
             startNoteManager = new StartNoteManager(
                 spriteSheet,
                 new Rectangle(0, 200, 52, 55),
@@ -160,6 +160,8 @@ namespace beethoven3
 
             songMenu = new SongMenu();
             songMenu.Load(Content);
+            String dir = "c:\beethoven\\";
+            file.FileLoading(dir, "*.txt");
         }
 
         //void nui_DepthFrameReady(object sender, DepthImageFrameReadyEventArgs e)

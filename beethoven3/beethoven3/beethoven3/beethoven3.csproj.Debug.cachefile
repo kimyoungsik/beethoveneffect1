@@ -41,6 +41,12 @@ Content\Title\box.xnb
 Content\Status\backtext.xnb
 Content\Fonts\damagefont.xnb
 Content\Tutorial\background.xnb
+Content\SongMenu\background.xnb
+Content\SongMenu\arrow1.xnb
+Content\SongMenu\arrow2.xnb
+Content\SongMenu\song1.xnb
+Content\SongMenu\song2.xnb
+Content\SongMenu\song3.xnb
 Content\snd\ka.wma
 Content\snd\jo.wma
 Content\snd\maid.wma

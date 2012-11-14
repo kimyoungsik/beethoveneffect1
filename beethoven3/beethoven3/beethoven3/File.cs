@@ -15,6 +15,8 @@ namespace beethoven3
 
         private StartNoteManager startNoteManager;
 
+        private NoteFileManager noteFileManager;
+
 
         private Queue allNotes = new Queue();
         private String[] noteContents;
@@ -37,6 +39,21 @@ namespace beethoven3
         #endregion
 
         #region method
+
+        public void FileLoading(String dir, String file)
+        {
+            //폴더를 검사해서 
+            //파일을 읽어서 
+            //NOTEFILEMANAGER 
+            String[] files = Directory.GetFiles(dir, file, SearchOption.AllDirectories);
+
+            int i = 1;
+
+
+
+
+        }
+
 
         /// <summary>
         /// 파일의 내용을 읽어 allNotes 큐에 넣는다.
