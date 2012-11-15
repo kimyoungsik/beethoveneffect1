@@ -85,9 +85,9 @@ namespace beethoven3
         {
             String name = noteFileManager.noteFiles[noteNumber].Name;
 
-            StreamReader sr = new StreamReader(fileName);
+            StreamReader sr = new StreamReader("C:\\beethoven\\"+name);
             //첫줄은 헤더
-            //sr.ReadLine();
+            sr.ReadLine();
             while (sr.Peek() >= 0)
             {
                 String line = sr.ReadLine();

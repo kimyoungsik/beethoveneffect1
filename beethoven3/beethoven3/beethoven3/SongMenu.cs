@@ -182,6 +182,11 @@ namespace beethoven3
             {
                 textbutton = true;
             }
+            else if (mouseRectangle.Intersects(startrect) && mouse.LeftButton == ButtonState.Pressed && pastmouse.LeftButton == ButtonState.Released)
+            {
+                return scene_number;
+            }
+          
             else
             {
                 textbutton = false;
@@ -192,7 +197,9 @@ namespace beethoven3
 
             pastmouse = mouse;
             pastkey = key;
-            return 0;
+         
+
+            return -2;
 
         }
 

@@ -313,13 +313,17 @@ namespace beethoven3
 
                     }
 
-                    else
+                    else if(result != -2)
                     {
                         gameState = GameStates.Playing;
                         file.Loading(result);
 
 
                     }
+                   
+
+
+
 
 
                     break;
