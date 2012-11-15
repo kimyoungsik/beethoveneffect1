@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
@@ -9,16 +10,20 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+
 namespace beethoven3
 {
     class SongMenu
     {
+        private NoteFileManager noteFileManager;
+
+
 
         MouseState pastmouse;
         KeyboardState pastkey;
 
         Texture2D background;
-        Texture2D[] tutorial;
+        Texture2D[] pictures;
         Texture2D[] leftright;
         Texture2D box;//
         Texture2D backtext;//back
@@ -41,9 +46,13 @@ namespace beethoven3
         bool textbutton;
         int textanitime;
         // tutorial
-        public SongMenu()
+        public SongMenu(NoteFileManager noteFileManager)
         {
-            tutorial = new Texture2D[3];
+
+            this.noteFileManager = noteFileManager;
+
+
+            pictures = new Texture2D[5];
             leftright = new Texture2D[2];
             arrawframe = new int[2];
             arrawframebutton = new bool[2];
@@ -57,8 +66,9 @@ namespace beethoven3
         
 
         //컨텐츠 로드
-        public void Load(ContentManager content)
+        public void Load(ContentManager content,GraphicsDevice graphicsdevice)
         {
+
             background = content.Load<Texture2D>("SongMenu/background");
             leftright[0] = content.Load<Texture2D>("SongMenu/arrow1");
             leftright[1] = content.Load<Texture2D>("SongMenu/arrow2");
@@ -67,14 +77,19 @@ namespace beethoven3
             
             backtext = content.Load<Texture2D>("Status/backtext");
             starttext = content.Load<Texture2D>("Status/backtext");
-            for (int i = 0; i < 3; i++)
+
+         //   for (int i = 0; i < noteFileManager.noteFiles.Count; i++)
+                for (int i = 0; i < 1; i++)
             {
-                tutorial[i] = content.Load<Texture2D>("SongMenu/song" + (i + 1));
+                FileStream fileStream = new FileStream(@"C:\\beethoven\\song1.jpg", FileMode.Open);
+                pictures[i] = Texture2D.FromStream(graphicsdevice, fileStream);
+
+                //pictures[i] = content.Load<Texture2D>("SongMenu/song" + (i + 1));
             }
-            for (int i = 0; i < 7; i++)
-            {
-                top[i] = content.Load<Texture2D>("Tutorial/top" + (i + 1));
-            }
+            //for (int i = 0; i < 7; i++)
+            //{
+            //    top[i] = content.Load<Texture2D>("Tutorial/top" + (i + 1));
+            //}
             font = content.Load<SpriteFont>("Fonts/damagefont");
         }
         
@@ -251,28 +266,28 @@ namespace beethoven3
             if (scene_number - 1 >= 0 && leftrightmove == 1)
             {
                 if (scene_number - 1 == 0)
-                    spriteBatch.Draw(tutorial[scene_number - 1], new Rectangle(margin - 1024, 100, 500, 500), new Color(fadeinout, fadeinout, fadeinout));
+                    spriteBatch.Draw(pictures[scene_number - 1], new Rectangle(margin - 1024, 100, 500, 500), new Color(fadeinout, fadeinout, fadeinout));
                 else if (scene_number - 1 == 8)
-                    spriteBatch.Draw(tutorial[scene_number - 1], new Rectangle(margin - 1024, 100, 500, 500), new Color(fadeinout, fadeinout, fadeinout));
+                    spriteBatch.Draw(pictures[scene_number - 1], new Rectangle(margin - 1024, 100, 500, 500), new Color(fadeinout, fadeinout, fadeinout));
                 else
-                    spriteBatch.Draw(tutorial[scene_number - 1], new Rectangle(margin - 1024, 100, 500, 500), new Color(fadeinout, fadeinout, fadeinout));
+                    spriteBatch.Draw(pictures[scene_number - 1], new Rectangle(margin - 1024, 100, 500, 500), new Color(fadeinout, fadeinout, fadeinout));
             }
             if (scene_number < 3){
                 if (scene_number == 0)
-                    spriteBatch.Draw(tutorial[scene_number], new Rectangle(margin + 250, 100, 500, 500), new Color(fadeinout, fadeinout, fadeinout));
+                    spriteBatch.Draw(pictures[scene_number], new Rectangle(margin + 250, 100, 500, 500), new Color(fadeinout, fadeinout, fadeinout));
                 else if (scene_number == 3)
-                    spriteBatch.Draw(tutorial[scene_number], new Rectangle(margin + 250, 100, 500, 500), new Color(fadeinout, fadeinout, fadeinout));
+                    spriteBatch.Draw(pictures[scene_number], new Rectangle(margin + 250, 100, 500, 500), new Color(fadeinout, fadeinout, fadeinout));
                 else
-                    spriteBatch.Draw(tutorial[scene_number], new Rectangle(margin + 250, 100, 500, 500), new Color(fadeinout, fadeinout, fadeinout));
+                    spriteBatch.Draw(pictures[scene_number], new Rectangle(margin + 250, 100, 500, 500), new Color(fadeinout, fadeinout, fadeinout));
             }
             if (scene_number + 1 < 3 && leftrightmove == -1)
             {
                 if (scene_number + 1 == 0)
-                    spriteBatch.Draw(tutorial[scene_number + 1], new Rectangle(margin + 1024, 0, 500, 500), new Color(fadeinout, fadeinout, fadeinout));
+                    spriteBatch.Draw(pictures[scene_number + 1], new Rectangle(margin + 1024, 0, 500, 500), new Color(fadeinout, fadeinout, fadeinout));
                 else if (scene_number + 1 == 8)
-                    spriteBatch.Draw(tutorial[scene_number + 1], new Rectangle(margin + 1024, 100, 500, 500), new Color(fadeinout, fadeinout, fadeinout));
+                    spriteBatch.Draw(pictures[scene_number + 1], new Rectangle(margin + 1024, 100, 500, 500), new Color(fadeinout, fadeinout, fadeinout));
                 else
-                    spriteBatch.Draw(tutorial[scene_number + 1], new Rectangle(margin + 1024, 100, 500, 500), new Color(fadeinout, fadeinout, fadeinout));
+                    spriteBatch.Draw(pictures[scene_number + 1], new Rectangle(margin + 1024, 100, 500, 500), new Color(fadeinout, fadeinout, fadeinout));
             }
         }
         public void drawNumber(SpriteBatch spriteBatch)

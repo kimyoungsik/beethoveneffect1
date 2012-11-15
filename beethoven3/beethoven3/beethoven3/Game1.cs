@@ -146,11 +146,13 @@ namespace beethoven3
 
             collisionManager = new CollisionManager(perfectManager, goodManager);
 
-
-            file = new File(startNoteManager);
+            NoteFileManager noteFileManager = new NoteFileManager();
+            file = new File(startNoteManager, noteFileManager);
             //곡선택화면에서
-            file.Loading("a.txt");
-
+            //file.Loading("a.txt");
+            String dir = "c:\\beethoven\\";
+            file.FileLoading(dir, "*.txt");
+            
             DragNoteManager.initialize(
                  spriteSheet,
                  new Rectangle(0, 100, 50, 50),
@@ -158,10 +160,9 @@ namespace beethoven3
                  15,
                  0);
 
-            songMenu = new SongMenu();
-            songMenu.Load(Content);
-            String dir = "c:\beethoven\\";
-            file.FileLoading(dir, "*.txt");
+            songMenu = new SongMenu(noteFileManager);
+            songMenu.Load(Content,graphics.GraphicsDevice);
+            
         }
 
         //void nui_DepthFrameReady(object sender, DepthImageFrameReadyEventArgs e)

@@ -29,11 +29,11 @@ namespace beethoven3
         #endregion
         
         #region constructor
-        
-        public File( StartNoteManager startNoteManager)       
+
+        public File(StartNoteManager startNoteManager, NoteFileManager noteFileManager)       
         {
              this.startNoteManager = startNoteManager;
-  
+             this.noteFileManager = noteFileManager;
         }
         
         #endregion
@@ -47,10 +47,20 @@ namespace beethoven3
             //NOTEFILEMANAGER 
             String[] files = Directory.GetFiles(dir, file, SearchOption.AllDirectories);
 
-            int i = 1;
+            int i;
+            for (i = 0; i < files.Length; i++)
+            {
 
+                StreamReader sr = new StreamReader(files[i]);
+                
+                String line = sr.ReadLine();
+                String[] info =line.Split(' ');
+                    
+                    //0: version , 1:name , 2: artist, 3: mp3, 4: picture
+                noteFileManager.Add(info[0], info[1], info[2], info[3], info[4]);
 
-
+                
+            }
 
         }
 
@@ -62,7 +72,8 @@ namespace beethoven3
         public void Loading(String fileName)
         {
             StreamReader sr = new StreamReader(fileName);
-           
+            //첫줄은 헤더
+            //sr.ReadLine();
             while (sr.Peek() >= 0)
             {            
                 String line = sr.ReadLine();
@@ -219,12 +230,8 @@ namespace beethoven3
 
         public void Update(SpriteBatch spriteBatch, GameTime gameTime)
         {
-
            double time = gameTime.TotalGameTime.TotalSeconds;
-
            FindNote(time);
-       //    DrawLineInDragNote(spriteBatch, time);
-
         }
 
 
@@ -233,8 +240,6 @@ namespace beethoven3
         {
 
             double time = gameTime.TotalGameTime.TotalSeconds;
-
-          //  FindNote(time);
             DrawLineInLongNote(spriteBatch, time);
 
         }
