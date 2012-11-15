@@ -61,6 +61,3 @@ D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\Fonts\damage
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\SongMenu\background.xnb
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\SongMenu\arrow1.xnb
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\SongMenu\arrow2.xnb
-D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\SongMenu\song1.xnb
-D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\SongMenu\song2.xnb
-D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\SongMenu\song3.xnb

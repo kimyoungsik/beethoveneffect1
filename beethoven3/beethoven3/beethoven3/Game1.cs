@@ -307,7 +307,7 @@ namespace beethoven3
 
                 case GameStates.SongMenu:
                     result = songMenu.Update();
-                    if (result == 1)
+                    if (result == -1)
                     {
                         gameState = GameStates.Menu;
                      //   selectMenuManager.menuState = 0;

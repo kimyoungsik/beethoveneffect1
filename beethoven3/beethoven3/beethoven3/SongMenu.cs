@@ -52,7 +52,7 @@ namespace beethoven3
             this.noteFileManager = noteFileManager;
 
 
-            pictures = new Texture2D[5];
+            pictures = new Texture2D[10];
             leftright = new Texture2D[2];
             arrawframe = new int[2];
             arrawframebutton = new bool[2];
@@ -78,13 +78,13 @@ namespace beethoven3
             backtext = content.Load<Texture2D>("Status/backtext");
             starttext = content.Load<Texture2D>("Status/backtext");
 
-         //   for (int i = 0; i < noteFileManager.noteFiles.Count; i++)
-                for (int i = 0; i < 1; i++)
+           for (int i = 0; i < noteFileManager.noteFiles.Count; i++)
             {
-                FileStream fileStream = new FileStream(@"C:\\beethoven\\song1.jpg", FileMode.Open);
+                String a = noteFileManager.noteFiles[i].Mp3;
+                FileStream fileStream = new FileStream(@"C:\\beethoven\\" + noteFileManager.noteFiles[i].Picture, FileMode.Open);
+            
                 pictures[i] = Texture2D.FromStream(graphicsdevice, fileStream);
 
-                //pictures[i] = content.Load<Texture2D>("SongMenu/song" + (i + 1));
             }
             //for (int i = 0; i < 7; i++)
             //{
@@ -151,7 +151,7 @@ namespace beethoven3
             if ((mouseRectangle.Intersects(new Rectangle(770, 310, 60, 60)) && mouse.LeftButton == ButtonState.Pressed && pastmouse.LeftButton == ButtonState.Released)
                 || (key.IsKeyDown(Keys.Right) && !pastkey.IsKeyDown(Keys.Right)))
             {
-                if (scene_number < 19)
+                if (scene_number < noteFileManager.noteFiles.Count-1)
                 {
                     leftrightmove = 1;
                     scene_number++;
@@ -176,7 +176,7 @@ namespace beethoven3
 
             if (mouseRectangle.Intersects(backrect) && mouse.LeftButton == ButtonState.Pressed && pastmouse.LeftButton == ButtonState.Released)
             {
-                return 1;
+                return -1;
             }
             else if (mouseRectangle.Intersects(backrect) && mouse.LeftButton == ButtonState.Released)
             {
@@ -234,12 +234,12 @@ namespace beethoven3
                     arrawframe[1] += 4;
                     arrawframe[1] = Math.Min(arrawframe[1], 45);
                     float arrawddiyong2 = 30 * (float)Math.Tan(MathHelper.ToRadians(arrawframe[1]));
-                    if (scene_number != 2)
+                    if (scene_number != noteFileManager.noteFiles.Count-1)
                         spriteBatch.Draw(leftright[1], new Rectangle(770, 310, 30 + (int)arrawddiyong2, 60), new Color(fadeinout, fadeinout, fadeinout));
                 }
                 else
                 {
-                    if (scene_number != 2)
+                    if (scene_number != noteFileManager.noteFiles.Count-1)
                         spriteBatch.Draw(leftright[1], new Rectangle(770, 310, 60, 60), new Color(fadeinout, fadeinout, fadeinout));
                 }
             }
@@ -272,15 +272,16 @@ namespace beethoven3
                 else
                     spriteBatch.Draw(pictures[scene_number - 1], new Rectangle(margin - 1024, 100, 500, 500), new Color(fadeinout, fadeinout, fadeinout));
             }
-            if (scene_number < 3){
+            if (scene_number < noteFileManager.noteFiles.Count)
+            {
                 if (scene_number == 0)
                     spriteBatch.Draw(pictures[scene_number], new Rectangle(margin + 250, 100, 500, 500), new Color(fadeinout, fadeinout, fadeinout));
-                else if (scene_number == 3)
+                else if (scene_number == noteFileManager.noteFiles.Count)
                     spriteBatch.Draw(pictures[scene_number], new Rectangle(margin + 250, 100, 500, 500), new Color(fadeinout, fadeinout, fadeinout));
                 else
                     spriteBatch.Draw(pictures[scene_number], new Rectangle(margin + 250, 100, 500, 500), new Color(fadeinout, fadeinout, fadeinout));
             }
-            if (scene_number + 1 < 3 && leftrightmove == -1)
+            if (scene_number + 1 < noteFileManager.noteFiles.Count && leftrightmove == -1)
             {
                 if (scene_number + 1 == 0)
                     spriteBatch.Draw(pictures[scene_number + 1], new Rectangle(margin + 1024, 0, 500, 500), new Color(fadeinout, fadeinout, fadeinout));

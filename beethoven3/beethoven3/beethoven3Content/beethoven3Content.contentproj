@@ -295,25 +295,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SongMenu\song2.jpg">
-      <Name>song2</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="SongMenu\song3.jpg">
-      <Name>song3</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="SongMenu\song1.jpg">
-      <Name>song1</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="SongMenu\background.jpg">
       <Name>background</Name>
       <Importer>TextureImporter</Importer>
