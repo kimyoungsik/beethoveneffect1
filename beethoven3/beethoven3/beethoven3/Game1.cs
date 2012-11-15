@@ -310,9 +310,18 @@ namespace beethoven3
                     if (result == -1)
                     {
                         gameState = GameStates.Menu;
-                     //   selectMenuManager.menuState = 0;
-                     //   selectMenuManager.ChoGiWha();
+
                     }
+
+                    else
+                    {
+                        gameState = GameStates.Playing;
+                        file.Loading(result);
+
+
+                    }
+
+
                     break;
 
                 
@@ -389,5 +398,7 @@ namespace beethoven3
 
             base.Draw(gameTime);
         }
+
+       
     }
 }

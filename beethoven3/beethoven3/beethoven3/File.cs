@@ -69,19 +69,32 @@ namespace beethoven3
         /// 파일의 내용을 읽어 allNotes 큐에 넣는다.
         /// </summary>
         /// <param name="fileName"></param>
-        public void Loading(String fileName)
+        //public void Loading(String fileName)
+        //{
+        //    StreamReader sr = new StreamReader(fileName);
+        //    //첫줄은 헤더
+        //    //sr.ReadLine();
+        //    while (sr.Peek() >= 0)
+        //    {            
+        //        String line = sr.ReadLine();
+        //        allNotes.Enqueue(line);
+        //    }
+        //    sr.Close();
+        //}
+        public void Loading(int noteNumber)
         {
+            String name = noteFileManager.noteFiles[noteNumber].Name;
+
             StreamReader sr = new StreamReader(fileName);
             //첫줄은 헤더
             //sr.ReadLine();
             while (sr.Peek() >= 0)
-            {            
+            {
                 String line = sr.ReadLine();
                 allNotes.Enqueue(line);
             }
             sr.Close();
         }
-
 
         public void FindNote(double processTime)
         {
