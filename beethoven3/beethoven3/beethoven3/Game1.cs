@@ -160,6 +160,13 @@ namespace beethoven3
                  15,
                  0);
 
+            //골드로 변경해야 함
+            GoldManager.initialize(
+                spriteSheet,
+                new Rectangle(0, 100, 50, 50),
+                4,
+                15,
+                0);
             songMenu = new SongMenu(noteFileManager);
             songMenu.Load(Content,graphics.GraphicsDevice);
             
@@ -301,6 +308,7 @@ namespace beethoven3
 
                     file.Update(spriteBatch, gameTime);
                     DragNoteManager.Update(gameTime);
+                    GoldManager.Update(gameTime);
                     perfectManager.Update(gameTime);
                     goodManager.Update(gameTime);
                 break;
@@ -384,7 +392,7 @@ namespace beethoven3
                 GuideLineManager.Draw(gameTime, spriteBatch);
                 //이걸 주석하면 드래그노트 체크하는거 안보임 하지만 체크는 됨
                 DragNoteManager.Draw(spriteBatch);
-
+                GoldManager.Draw(spriteBatch);
 
                 file.Draw(spriteBatch, gameTime);
                 perfectManager.Draw(spriteBatch);

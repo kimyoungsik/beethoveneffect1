@@ -117,6 +117,7 @@
     <Compile Include="DragNoteManager.cs" />
     <Compile Include="ExplosionManager.cs" />
     <Compile Include="File.cs" />
+    <Compile Include="GoldManager.cs" />
     <Compile Include="GuideLine.cs" />
     <Compile Include="GuideLineManager.cs" />
     <Compile Include="LineRenderer.cs" />

@@ -15,21 +15,21 @@ namespace beethoven3
 
         #region declarations
         // public static List<Vector2> points = new List<Vector2>();
-        public Queue PointsQueue = new Queue();
+     //   public Queue PointsQueue = new Queue();
         private List<Vector2> Points = new List<Vector2>();
         //곡선의 기준시간
         private double time = 0.0f;
         //경과 시간
         private double changedTime = 0.0f;
 
-        private double dotTime = 0.0f;
+    //    private double dotTime = 0.0f;
         private double dotChangedTime = 0.0f;
 
-        private Vector2 currentPosition;
-        private int count = 0;
+     //   private Vector2 currentPosition;
+     //   private int count = 0;
 
         private bool end = false;
-
+        private bool goldEnd = false;
         #endregion
 
         #region constructor
@@ -98,10 +98,26 @@ namespace beethoven3
             {
                 PlotPoint = GetPoint(t, p0, p1, p2, p3);
                 Points.Add(PlotPoint);
-                PointsQueue.Enqueue(PlotPoint);
+               // PointsQueue.Enqueue(PlotPoint);
             }
-            dotTime = time / PointsQueue.Count;
+         //   dotTime = time / PointsQueue.Count;
+            int i = 0;
+
+            while( i < Points.Count)
+            {
+                if (i == Points.Count / 3)
+                {
+                    GoldManager.MakeGold(Points[i], new Vector2(0, 0));
+                }
+
+                i++;
+
+
+
+            }
+
             end = false;
+            goldEnd = false;
         }
 
         public void DeleteAllPoints()
@@ -132,27 +148,29 @@ namespace beethoven3
                     LineRenderer.DrawLine(Game1.spriteSheet, new Rectangle(0, 0, 50, 50), spriteBatch.GraphicsDevice, spriteBatch, (Vector2)Points[i], (Vector2)Points[j], Color.White);
                 }
 
-                if (dotChangedTime >= dotTime && PointsQueue.Count > 1)
-                {
+              
+                //if (dotChangedTime >= dotTime && PointsQueue.Count > 1)
+                //{
 
-                    //if (count == 0)
-                    //{
-                    //    currentPosition = (Vector2)PointsQueue.Peek();
-                    //    //판별하는 마크
-                    //    DragNoteManager.MakeDragNote(currentPosition, new Vector2(0, 0));
-                    //}
-                    //count++;
-                    //if (count == 20)
-                    //{
-                    //    count = 0;
-                    //    DragNoteManager.DeleteDragNoteFromFront();
-                    //}
+                //    if (count == 0)
+                //    {
+                //        currentPosition = (Vector2)PointsQueue.Peek();
+                //        //판별하는 마크
+                //        DragNoteManager.MakeDragNote(currentPosition, new Vector2(0, 0));
+                //    }
+                //    count++;
+                //    if (count == 20)
+                //    {
+                //        count = 0;
+                //    //   DragNoteManager.DeleteDragNoteFromFront();
+                //    }
 
-                    //따라다니면서 마크 찍는 것
-               //     LineRenderer.DrawLine(Game1.spriteSheet, new Rectangle(0, 100, 50, 50), spriteBatch.GraphicsDevice, spriteBatch, (Vector2)PointsQueue.Dequeue(), (Vector2)PointsQueue.Peek(), Color.White);
-               //     dotChangedTime = 0.0f;
+                //    //따라다니면서 마크 찍는 것
+                //    //LineRenderer.DrawLine(Game1.spriteSheet, new Rectangle(0, 100, 50, 50), spriteBatch.GraphicsDevice, spriteBatch, (Vector2)PointsQueue.Dequeue(), (Vector2)PointsQueue.Peek(), Color.White);
+                //    PointsQueue.Dequeue();
+                //    dotChangedTime = 0.0f;
 
-                }
+                //}
                 if (changedTime > time)
                 {
                     if (Points.Count > 0)
