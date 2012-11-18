@@ -381,7 +381,7 @@ namespace beethoven3
                 MarkManager.Draw(spriteBatch);
                 startNoteManager.Draw(spriteBatch);
                 CurveManager.Draw(gameTime, spriteBatch);
-
+                GuideLineManager.Draw(gameTime, spriteBatch);
                 //이걸 주석하면 드래그노트 체크하는거 안보임 하지만 체크는 됨
                 DragNoteManager.Draw(spriteBatch);
 

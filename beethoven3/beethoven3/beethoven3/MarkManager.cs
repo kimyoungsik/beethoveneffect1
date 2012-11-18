@@ -16,12 +16,12 @@ namespace beethoven3
         public static List<Mark> Marks = new List<Mark>();
 
         //쓸모 없을 수 도 있음
-        private static Vector2 mark0Location;
-        private static Vector2 mark1Location;
-        private static Vector2 mark2Location;
-        private static Vector2 mark3Location;
-        private static Vector2 mark4Location;
-        private static Vector2 mark5Location;
+        public static Vector2 mark0Location;
+        public static Vector2 mark1Location;
+        public static Vector2 mark2Location;
+        public static Vector2 mark3Location;
+        public static Vector2 mark4Location;
+        public static Vector2 mark5Location;
         
         private static StartNoteManager startNoteManager;
 

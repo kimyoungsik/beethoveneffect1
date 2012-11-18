@@ -20,11 +20,17 @@ namespace beethoven3
 
         private Queue allNotes = new Queue();
         private String[] noteContents;
+        
+
         private double noteTime;
         private bool newNote = true;
         private bool drawLine = false;
         private double drawLineTime;
         private int startNoteNumber;
+
+        private String[] noteLine;
+        private NoteInfo[] rightNoteMarks;
+        private int currentRightNoteIndex;
 
         #endregion
         
@@ -34,6 +40,8 @@ namespace beethoven3
         {
              this.startNoteManager = startNoteManager;
              this.noteFileManager = noteFileManager;
+             rightNoteMarks = new NoteInfo[100];
+             currentRightNoteIndex = 0;
         }
         
         #endregion
@@ -62,6 +70,8 @@ namespace beethoven3
                 
             }
 
+
+
         }
 
 
@@ -86,19 +96,35 @@ namespace beethoven3
             String name = noteFileManager.noteFiles[noteNumber].Name;
 
             StreamReader sr = new StreamReader("C:\\beethoven\\"+name);
+
+            int index = 0;
             //첫줄은 헤더
             sr.ReadLine();
             while (sr.Peek() >= 0)
             {
                 String line = sr.ReadLine();
                 allNotes.Enqueue(line);
+                noteLine = ((String)line).Split(' ');
+                try
+                {
+                    if (Int32.Parse(noteLine[1]) == 0)
+                    {
+                        //가이드라인을 긋기위해 오른손 노트만 모아둠
+                        rightNoteMarks[index] = new NoteInfo(Convert.ToDouble(noteLine[0]), Int32.Parse(noteLine[2]));
+                        index++;
+                    }
+                }
+                catch (IndexOutOfRangeException)
+                {
+
+                }
             }
             sr.Close();
         }
 
         public void FindNote(double processTime)
         {
-            //처음 실행하거나 de큐를 거치지 않은 새로운 ㄳ만
+            //처음 실행하거나 de큐를 거치지 않은 새로운
             if (newNote)
             {
                 noteContents = ((String)allNotes.Peek()).Split(' ');
@@ -122,6 +148,33 @@ namespace beethoven3
                         //시간에 맞춰서 뿌려줘야 함. 
                         //notecontent[2] => 마커위치
                         startNoteManager.MakeRightNote(Int32.Parse(noteContents[2]));
+
+                        try
+                        {
+                            //현재오른손노트와 다음 노트와 연결, 그리고 그 다음 노트와 연결
+                    //        LineRenderer.DrawLine(Game1.spriteSheet, new Rectangle(0, 0, 50, 50), spriteBatch.GraphicsDevice, spriteBatch, (Vector2)Points[i], (Vector2)Points[j], Color.White);
+                            //시작점,제어점1,제어점2,끝점,지속시간
+
+                            Vector2 start = GetMarkerLocation(rightNoteMarks[currentRightNoteIndex].MarkLocation);
+                            Vector2 end = GetMarkerLocation(rightNoteMarks[currentRightNoteIndex + 1].MarkLocation);
+                            Vector2 min1 = new Vector2(start.X += 10, start.Y);
+                            Vector2 min2 = new Vector2(end.X -= 10, end.Y);
+                            GuideLineManager.AddGuideLine(start, min1, min2, end, (rightNoteMarks[currentRightNoteIndex+1].StartTime - rightNoteMarks[currentRightNoteIndex].StartTime)*1000);
+                       
+                            //(nvert.ToDouble(noteContents[2])
+                            Vector2 start2 = GetMarkerLocation(rightNoteMarks[currentRightNoteIndex + 1].MarkLocation);
+                            Vector2 end2 = GetMarkerLocation(rightNoteMarks[currentRightNoteIndex + 2].MarkLocation);
+                            Vector2 min12 = new Vector2(start.X += 10, start.Y);
+                            Vector2 min22 = new Vector2(end.X -= 10, end.Y);
+                            GuideLineManager.AddGuideLine(start2, min12, min22, end2, (rightNoteMarks[currentRightNoteIndex + 1].StartTime - rightNoteMarks[currentRightNoteIndex].StartTime)*1000);
+
+                        }
+                        catch (IndexOutOfRangeException)
+                        {
+
+                        }
+
+                        currentRightNoteIndex++;
 
                         break;
 
@@ -151,8 +204,7 @@ namespace beethoven3
                         //시작점,제어점1,제어점2,끝점,지속시간
                         CurveManager.addCurve(new Vector2(Int32.Parse(noteContents[3]), Int32.Parse(noteContents[4])), new Vector2(Int32.Parse(noteContents[5]), Int32.Parse(noteContents[6])), new Vector2(Int32.Parse(noteContents[7]), Int32.Parse(noteContents[8])), new Vector2(Int32.Parse(noteContents[9]), Int32.Parse(noteContents[10])), Convert.ToDouble(noteContents[2]));
                         
-                        
-                       
+                                  
                         break;
                 }
                 allNotes.Dequeue();
@@ -161,6 +213,38 @@ namespace beethoven3
           
         }
 
+
+        public Vector2 GetMarkerLocation(int markerNumber)
+        {
+            Vector2 location = new Vector2(0,0);
+            switch (markerNumber)
+            {
+                case 0:
+                    location = MarkManager.mark0Location;
+                    break;
+
+                case 1:
+                    location = MarkManager.mark1Location;
+                    break;
+                case 2:
+                    location = MarkManager.mark2Location;
+                    break;
+                case 3:
+                    location = MarkManager.mark3Location;
+                    break;
+                case 4:
+                    location = MarkManager.mark4Location;
+                    break;
+                case 5:
+                    location = MarkManager.mark5Location;
+                    break;
+         
+            }
+
+
+            return location;
+
+        }
         public void DrawLineInLongNote(SpriteBatch spriteBatch, double processTime)
         {
             if (drawLine)

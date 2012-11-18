@@ -7,15 +7,15 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace beethoven3
 {
-    static class CurveManager
+    static class GuideLineManager
     {
         #region declarations
-        public static List<Curve> Curves = new List<Curve>();
+        public static List<GuideLine> GuideLines = new List<GuideLine>();
 
-      //  public static List<Curve> GuideLines = new List<Curve>();
+        //  public static List<Curve> GuideLines = new List<Curve>();
         #endregion
 
-        
+
         #region method
         /// <summary>
         /// 커브곡선 추가
@@ -25,18 +25,18 @@ namespace beethoven3
         /// <param name="p2">제어점1</param>
         /// <param name="p3">끝나는점</param>
         /// <param name="time">지속시간</param>
-        public static void addCurve(Vector2 p0, Vector2 p1, Vector2 p2, Vector2 p3, double time)
+        public static void AddGuideLine(Vector2 p0, Vector2 p1, Vector2 p2, Vector2 p3, double time)
         {
-            Curve curve = new Curve(p0, p1, p2, p3, time);
-            Curves.Add(curve);    
+            GuideLine guideLine = new GuideLine(p0, p1, p2, p3, time);
+            GuideLines.Add(guideLine);
         }
 
 
-    //public static void addGuideLine(Vector2 p0, Vector2 p1, Vector2 p2, Vector2 p3, double time)
-    //{
-    //    Curve curve = new Curve(p0, p1, p2, p3, time);
-    //    GuideLines.Add(curve);
-    //}
+        //public static void addGuideLine(Vector2 p0, Vector2 p1, Vector2 p2, Vector2 p3, double time)
+        //{
+        //    Curve curve = new Curve(p0, p1, p2, p3, time);
+        //    GuideLines.Add(curve);
+        //}
         #endregion
 
 
@@ -45,9 +45,9 @@ namespace beethoven3
 
         public static void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            foreach (Curve curve in Curves)
+            foreach (GuideLine guideLine in GuideLines)
             {
-                curve.Draw(gameTime,  spriteBatch);
+                guideLine.Draw(gameTime, spriteBatch);
             }
             //foreach (Curve guideLine in GuideLines)
             //{

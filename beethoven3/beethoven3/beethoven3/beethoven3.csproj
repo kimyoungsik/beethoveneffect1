@@ -117,11 +117,14 @@
     <Compile Include="DragNoteManager.cs" />
     <Compile Include="ExplosionManager.cs" />
     <Compile Include="File.cs" />
+    <Compile Include="GuideLine.cs" />
+    <Compile Include="GuideLineManager.cs" />
     <Compile Include="LineRenderer.cs" />
     <Compile Include="Mark.cs" />
     <Compile Include="MarkManager.cs" />
     <Compile Include="NoteFile.cs" />
     <Compile Include="NoteFileManager.cs" />
+    <Compile Include="NoteInfo.cs" />
     <Compile Include="NoteManager.cs" />
     <Compile Include="Particle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
