@@ -67,17 +67,22 @@ namespace beethoven3
             Golds.Add(gold);
         }
 
-        public static void DeleteDragNoteFromFront()
+        public static void DeleteAll()
         {
-            try
-            {
+            //try
+            //{
+                int count = Golds.Count;
+                //int i=0;
+                while (Golds.Count > 0)
+                {
+                    Golds.RemoveAt(0);
+                    
+                }
+            //}
+            //catch (ArgumentOutOfRangeException)
+            //{
 
-                Golds.RemoveAt(0);
-            }
-            catch (ArgumentOutOfRangeException)
-            {
-
-            }
+            //}
         }
 
 

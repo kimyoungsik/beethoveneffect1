@@ -159,14 +159,14 @@ namespace beethoven3
                             Vector2 end = GetMarkerLocation(rightNoteMarks[currentRightNoteIndex + 1].MarkLocation);
                             Vector2 min1 = new Vector2(start.X += 10, start.Y);
                             Vector2 min2 = new Vector2(end.X -= 10, end.Y);
-                            GuideLineManager.AddGuideLine(start, min1, min2, end, (rightNoteMarks[currentRightNoteIndex+1].StartTime - rightNoteMarks[currentRightNoteIndex].StartTime)*1000);
+                            GuideLineManager.AddGuideLine(start, min1, min2, end, (rightNoteMarks[currentRightNoteIndex+1].StartTime - rightNoteMarks[currentRightNoteIndex].StartTime)*1000,true);
                        
                             //(nvert.ToDouble(noteContents[2])
                             Vector2 start2 = GetMarkerLocation(rightNoteMarks[currentRightNoteIndex + 1].MarkLocation);
                             Vector2 end2 = GetMarkerLocation(rightNoteMarks[currentRightNoteIndex + 2].MarkLocation);
                             Vector2 min12 = new Vector2(start.X += 10, start.Y);
                             Vector2 min22 = new Vector2(end.X -= 10, end.Y);
-                            GuideLineManager.AddGuideLine(start2, min12, min22, end2, (rightNoteMarks[currentRightNoteIndex + 1].StartTime - rightNoteMarks[currentRightNoteIndex].StartTime)*1000);
+                            GuideLineManager.AddGuideLine(start2, min12, min22, end2, (rightNoteMarks[currentRightNoteIndex + 1].StartTime - rightNoteMarks[currentRightNoteIndex].StartTime)*1000,false);
 
                         }
                         catch (IndexOutOfRangeException)

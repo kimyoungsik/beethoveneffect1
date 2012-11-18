@@ -25,9 +25,9 @@ namespace beethoven3
         /// <param name="p2">제어점1</param>
         /// <param name="p3">끝나는점</param>
         /// <param name="time">지속시간</param>
-        public static void AddGuideLine(Vector2 p0, Vector2 p1, Vector2 p2, Vector2 p3, double time)
+        public static void AddGuideLine(Vector2 p0, Vector2 p1, Vector2 p2, Vector2 p3, double time,bool showGold)
         {
-            GuideLine guideLine = new GuideLine(p0, p1, p2, p3, time);
+            GuideLine guideLine = new GuideLine(p0, p1, p2, p3, time, showGold);
             GuideLines.Add(guideLine);
         }
 

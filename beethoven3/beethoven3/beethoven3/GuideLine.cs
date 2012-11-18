@@ -30,6 +30,7 @@ namespace beethoven3
 
         private bool end = false;
         private bool goldEnd = false;
+        private bool showGold;
         #endregion
 
         #region constructor
@@ -41,9 +42,11 @@ namespace beethoven3
         /// <param name="p2">제어점1</param>
         /// <param name="p3">끝나는점</param>
         /// <param name="time">지속시간</param>
-        public GuideLine(Vector2 p0, Vector2 p1, Vector2 p2, Vector2 p3, double time)
+        public GuideLine(Vector2 p0, Vector2 p1, Vector2 p2, Vector2 p3, double time, bool showGold)
         {
+            this.showGold = showGold;
             SetLine(p0, p1, p2, p3, time);
+            
         }
         #endregion
 
@@ -101,23 +104,30 @@ namespace beethoven3
                // PointsQueue.Enqueue(PlotPoint);
             }
          //   dotTime = time / PointsQueue.Count;
-            int i = 0;
-
-            while( i < Points.Count)
+            if (this.showGold)
             {
-                if (i == Points.Count / 3)
+                int i = 0;
+                int j = 0;
+                while (i < Points.Count)
                 {
-                    GoldManager.MakeGold(Points[i], new Vector2(0, 0));
+
+                    if (j == Points.Count / 3)
+                    {
+                        GoldManager.MakeGold(Points[i], new Vector2(0, 0));
+                        j = 0;
+                    }
+
+                    i++;
+                    j++;
+
+
+
                 }
 
-                i++;
-
-
-
+               
+                goldEnd = false;
             }
-
             end = false;
-            goldEnd = false;
         }
 
         public void DeleteAllPoints()
@@ -140,18 +150,20 @@ namespace beethoven3
             {
                 changedTime += gameTime.ElapsedGameTime.TotalMilliseconds;
                 dotChangedTime += gameTime.ElapsedGameTime.TotalMilliseconds;
-                for (i = 0; i < Points.Count - 1; i++)
+
+                if (!showGold)
                 {
-                    j = i + 1;
+                    for (i = 0; i < Points.Count - 1; i++)
+                    {
+                        j = i + 1;
 
-                    //라인 그리기
-                    LineRenderer.DrawLine(Game1.spriteSheet, new Rectangle(0, 0, 50, 50), spriteBatch.GraphicsDevice, spriteBatch, (Vector2)Points[i], (Vector2)Points[j], Color.White);
+                        //라인 그리기
+                        LineRenderer.DrawLine(Game1.spriteSheet, new Rectangle(0, 0, 50, 50), spriteBatch.GraphicsDevice, spriteBatch, (Vector2)Points[i], (Vector2)Points[j], Color.White);
+                    }
                 }
-
               
                 //if (dotChangedTime >= dotTime && PointsQueue.Count > 1)
                 //{
-
                 //    if (count == 0)
                 //    {
                 //        currentPosition = (Vector2)PointsQueue.Peek();
@@ -169,20 +181,21 @@ namespace beethoven3
                 //    //LineRenderer.DrawLine(Game1.spriteSheet, new Rectangle(0, 100, 50, 50), spriteBatch.GraphicsDevice, spriteBatch, (Vector2)PointsQueue.Dequeue(), (Vector2)PointsQueue.Peek(), Color.White);
                 //    PointsQueue.Dequeue();
                 //    dotChangedTime = 0.0f;
-
                 //}
                 if (changedTime > time)
                 {
+                   
                     if (Points.Count > 0)
                     {
                         //지워지기 시작 
                         DeleteAllPoints();
-
-                        //지워지기 시작하면 true -> 화면에서 안보이게 함
+                        if (this.showGold)
+                        {
+                            GoldManager.DeleteAll();
+                        }
+                            //지워지기 시작하면 true -> 화면에서 안보이게 함
                         end = true;
-
                     }
-
                 }
             }
         }

@@ -164,7 +164,7 @@ namespace beethoven3
             GoldManager.initialize(
                 spriteSheet,
                 new Rectangle(0, 100, 50, 50),
-                4,
+                1,
                 15,
                 0);
             songMenu = new SongMenu(noteFileManager);
@@ -328,15 +328,8 @@ namespace beethoven3
 
 
                     }
-                   
 
-
-
-
-
-                    break;
-
-                
+                    break;  
             }
             // TODO: Add your update logic here
            
