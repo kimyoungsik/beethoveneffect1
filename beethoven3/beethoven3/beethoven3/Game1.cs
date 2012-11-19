@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
-using Microsoft.Kinect;
+//using Microsoft.Kinect;
 namespace beethoven3
 {
     /// <summary>
@@ -49,7 +49,7 @@ namespace beethoven3
 
         const int SCR_W = 1024;
         const int SCR_H = 768;
-
+        //test
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);

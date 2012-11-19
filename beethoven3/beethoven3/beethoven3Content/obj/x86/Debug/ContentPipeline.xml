@@ -2,6 +2,15 @@
 <XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline">
   <Asset Type="Pipeline:BuildItemCollection">
     <Item>
+      <Source>Tutorial\background.jpg</Source>
+      <Name>Tutorial\background</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\Tutorial\background.xnb</Output>
+      <Time>2012-11-14T13:30:09.725346+09:00</Time>
+    </Item>
+    <Item>
       <Source>Textures\SpriteSheet.png</Source>
       <Name>Textures\SpriteSheet</Name>
       <Importer>TextureImporter</Importer>
@@ -54,36 +63,6 @@
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\Textures\SpriteSheet8.xnb</Output>
       <Time>2012-11-10T23:10:06.2273353+09:00</Time>
-    </Item>
-    <Item>
-      <Source>snd\ka.mp3</Source>
-      <Name>snd\ka</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\snd\ka.xnb</Output>
-      <Extra>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\snd\ka.wma</Extra>
-      <Time>2012-11-12T21:11:14.3933834+09:00</Time>
-    </Item>
-    <Item>
-      <Source>snd\jo.MP3</Source>
-      <Name>snd\jo</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\snd\jo.xnb</Output>
-      <Extra>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\snd\jo.wma</Extra>
-      <Time>2012-11-12T21:55:50.6374013+09:00</Time>
-    </Item>
-    <Item>
-      <Source>snd\maid.mp3</Source>
-      <Name>snd\maid</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\snd\maid.xnb</Output>
-      <Extra>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\snd\maid.wma</Extra>
-      <Time>2012-11-12T21:55:50.9464189+09:00</Time>
     </Item>
     <Item>
       <Source>Textures\menu.jpg</Source>
@@ -374,33 +353,6 @@
       <Time>2012-08-31T03:49:56+09:00</Time>
     </Item>
     <Item>
-      <Source>Fonts\damagefont.spritefont</Source>
-      <Name>Fonts\damagefont</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\Fonts\damagefont.xnb</Output>
-      <Time>2012-08-31T03:50:00+09:00</Time>
-    </Item>
-    <Item>
-      <Source>Tutorial\background.jpg</Source>
-      <Name>Tutorial\background</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\Tutorial\background.xnb</Output>
-      <Time>2012-11-14T13:30:09.725346+09:00</Time>
-    </Item>
-    <Item>
-      <Source>SongMenu\background.jpg</Source>
-      <Name>SongMenu\background</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\SongMenu\background.xnb</Output>
-      <Time>2012-11-14T15:28:56.9540001+09:00</Time>
-    </Item>
-    <Item>
       <Source>SongMenu\arrow1.png</Source>
       <Name>SongMenu\arrow1</Name>
       <Importer>TextureImporter</Importer>
@@ -417,6 +369,54 @@
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\SongMenu\arrow2.xnb</Output>
       <Time>2012-11-14T13:59:49.3511347+09:00</Time>
+    </Item>
+    <Item>
+      <Source>SongMenu\background.jpg</Source>
+      <Name>SongMenu\background</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\SongMenu\background.xnb</Output>
+      <Time>2012-11-14T15:28:56.9540001+09:00</Time>
+    </Item>
+    <Item>
+      <Source>snd\ka.mp3</Source>
+      <Name>snd\ka</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\snd\ka.xnb</Output>
+      <Extra>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\snd\ka.wma</Extra>
+      <Time>2012-11-12T21:11:14.3933834+09:00</Time>
+    </Item>
+    <Item>
+      <Source>snd\jo.MP3</Source>
+      <Name>snd\jo</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\snd\jo.xnb</Output>
+      <Extra>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\snd\jo.wma</Extra>
+      <Time>2012-11-12T21:55:50.6374013+09:00</Time>
+    </Item>
+    <Item>
+      <Source>snd\maid.mp3</Source>
+      <Name>snd\maid</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\snd\maid.xnb</Output>
+      <Extra>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\snd\maid.wma</Extra>
+      <Time>2012-11-12T21:55:50.9464189+09:00</Time>
+    </Item>
+    <Item>
+      <Source>Fonts\damagefont.spritefont</Source>
+      <Name>Fonts\damagefont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\Fonts\damagefont.xnb</Output>
+      <Time>2012-08-31T03:50:00+09:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
