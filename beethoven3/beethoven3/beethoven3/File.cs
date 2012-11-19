@@ -31,6 +31,8 @@ namespace beethoven3
         private String[] noteLine;
         private NoteInfo[] rightNoteMarks;
         private int currentRightNoteIndex;
+        private double time;
+
 
         #endregion
         
@@ -42,6 +44,7 @@ namespace beethoven3
              this.noteFileManager = noteFileManager;
              rightNoteMarks = new NoteInfo[100];
              currentRightNoteIndex = 0;
+             time = 0;
         }
         
         #endregion
@@ -152,21 +155,55 @@ namespace beethoven3
                         try
                         {
                             //현재오른손노트와 다음 노트와 연결, 그리고 그 다음 노트와 연결
-                    //        LineRenderer.DrawLine(Game1.spriteSheet, new Rectangle(0, 0, 50, 50), spriteBatch.GraphicsDevice, spriteBatch, (Vector2)Points[i], (Vector2)Points[j], Color.White);
+                            //LineRenderer.DrawLine(Game1.spriteSheet, new Rectangle(0, 0, 50, 50), spriteBatch.GraphicsDevice, spriteBatch, (Vector2)Points[i], (Vector2)Points[j], Color.White);
                             //시작점,제어점1,제어점2,끝점,지속시간
+                            int startMarkLocation = rightNoteMarks[currentRightNoteIndex].MarkLocation;
+                            int endMarkLocation = rightNoteMarks[currentRightNoteIndex + 1].MarkLocation;
+                            Vector2 normal = MarkManager.Marks[startMarkLocation].MarkSprite.Location - MarkManager.Marks[endMarkLocation].MarkSprite.Location;
+                            normal.Normalize();
+                            
 
-                            Vector2 start = GetMarkerLocation(rightNoteMarks[currentRightNoteIndex].MarkLocation);
-                            Vector2 end = GetMarkerLocation(rightNoteMarks[currentRightNoteIndex + 1].MarkLocation);
-                            Vector2 min1 = new Vector2(start.X += 10, start.Y);
-                            Vector2 min2 = new Vector2(end.X -= 10, end.Y);
+                           
+                            Vector2 start = GetMarkerLocation(startMarkLocation);
+                            Vector2 end = GetMarkerLocation(endMarkLocation);
+
+                            double length = Math.Sqrt((end.X - start.X) * (end.X - start.X) + (end.Y - start.Y) * (end.Y - start.Y));
+                            Vector2 min1 = Vector2.Reflect(MarkManager.Marks[startMarkLocation].MarkSprite.Location, normal);
+                         //   min1.Normalize();
+                         //   min1.X *= (float)(length * 0.3);
+                          //  min1.Y *= (float)(length * 0.3);
+                            Vector2 min2 = Vector2.Reflect(MarkManager.Marks[startMarkLocation].MarkSprite.Location, normal);
+                          //  min2.Normalize();
+                          //  min2.X *= (float)(length * 0.3);
+                          //  min2.Y *= (float)(length * 0.3);
                             GuideLineManager.AddGuideLine(start, min1, min2, end, (rightNoteMarks[currentRightNoteIndex+1].StartTime - rightNoteMarks[currentRightNoteIndex].StartTime)*1000,true);
-                       
+
+                            //Vector2 a = MarkManager.Marks[1].MarkSprite.Location - MarkManager.Marks[0].MarkSprite.Location;
+                            //a.Normalize();
+                           // Vector2 normal = Vector2.Zero;
+                            //normal = Vector2.Reflect(MarkManager.Marks[0].MarkSprite.Location, a);
                             //(nvert.ToDouble(noteContents[2])
-                            Vector2 start2 = GetMarkerLocation(rightNoteMarks[currentRightNoteIndex + 1].MarkLocation);
-                            Vector2 end2 = GetMarkerLocation(rightNoteMarks[currentRightNoteIndex + 2].MarkLocation);
-                            Vector2 min12 = new Vector2(start.X += 10, start.Y);
-                            Vector2 min22 = new Vector2(end.X -= 10, end.Y);
-                            GuideLineManager.AddGuideLine(start2, min12, min22, end2, (rightNoteMarks[currentRightNoteIndex + 1].StartTime - rightNoteMarks[currentRightNoteIndex].StartTime)*1000,false);
+                                                      
+                            startMarkLocation = rightNoteMarks[currentRightNoteIndex + 1].MarkLocation;
+                            endMarkLocation = rightNoteMarks[currentRightNoteIndex + 2].MarkLocation;
+                            normal = MarkManager.Marks[endMarkLocation].MarkSprite.Location - MarkManager.Marks[startMarkLocation].MarkSprite.Location;
+                            normal.Normalize();
+
+                            Vector2 start2 = GetMarkerLocation(startMarkLocation);
+                            Vector2 end2 = GetMarkerLocation(endMarkLocation);
+
+                            length = Math.Sqrt((end2.X - start2.X) * (end2.X - start2.X) + (end2.Y - start2.Y) * (end2.Y - start2.Y));
+
+                            Vector2 mid1 = Vector2.Reflect(MarkManager.Marks[startMarkLocation].MarkSprite.Location, normal);
+                            //mid1.Normalize();
+
+                            //mid1.X *= (float)(length * 0.3);
+                            //mid1.Y *= (float)(length * 0.3);
+                            Vector2 mid2 = Vector2.Reflect(MarkManager.Marks[startMarkLocation].MarkSprite.Location, normal);
+                            //mid2.Normalize();
+                            //mid2.X *= (float)(length * 0.3);
+                            //mid2.Y *= (float)(length * 0.3);
+                            GuideLineManager.AddGuideLine(start2, mid1, mid2, end2, (rightNoteMarks[currentRightNoteIndex + 1].StartTime - rightNoteMarks[currentRightNoteIndex].StartTime) * 1000, false);
 
                         }
                         catch (IndexOutOfRangeException)
@@ -327,17 +364,18 @@ namespace beethoven3
 
         public void Update(SpriteBatch spriteBatch, GameTime gameTime)
         {
-           double time = gameTime.TotalGameTime.TotalSeconds;
-           FindNote(time);
+        //   double time = gameTime.TotalGameTime.TotalSeconds;
+            this.time += gameTime.ElapsedGameTime.TotalSeconds;
+            FindNote(this.time);
         }
 
-
+         
 
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
 
-            double time = gameTime.TotalGameTime.TotalSeconds;
-            DrawLineInLongNote(spriteBatch, time);
+            //double time = gameTime.TotalGameTime.TotalSeconds;
+            DrawLineInLongNote(spriteBatch, this.time);
 
         }
      
