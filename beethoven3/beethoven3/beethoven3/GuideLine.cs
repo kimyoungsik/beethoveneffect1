@@ -111,7 +111,7 @@ namespace beethoven3
                 while (i < Points.Count)
                 {
 
-                    if (j == Points.Count / 3)
+                    if (j == Points.Count / 10)
                     {
                         GoldManager.MakeGold(Points[i], new Vector2(0, 0));
                         j = 0;
@@ -158,7 +158,7 @@ namespace beethoven3
                         j = i + 1;
 
                         //라인 그리기
-                        LineRenderer.DrawLine(Game1.spriteSheet, new Rectangle(0, 0, 50, 50), spriteBatch.GraphicsDevice, spriteBatch, (Vector2)Points[i], (Vector2)Points[j], Color.White);
+                        LineRenderer.DrawLine(Game1.spriteSheet, new Rectangle(0, 0, 20, 20), spriteBatch.GraphicsDevice, spriteBatch, (Vector2)Points[i], (Vector2)Points[j], Color.White);
                     }
                 }
               

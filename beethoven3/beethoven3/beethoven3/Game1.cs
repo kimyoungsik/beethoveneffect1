@@ -163,7 +163,7 @@ namespace beethoven3
             //골드로 변경해야 함
             GoldManager.initialize(
                 spriteSheet,
-                new Rectangle(0, 100, 50, 50),
+                new Rectangle(0, 100, 20, 20),
                 1,
                 15,
                 0);

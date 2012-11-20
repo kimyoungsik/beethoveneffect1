@@ -161,8 +161,8 @@ namespace beethoven3
 
                             double length1 = 0.6;
                             double startlength = 0.2;
-                            float angle11 = 40;
-                            float angle12 = 70;
+                            float angle11 = 30;
+                            float angle12 = 90;
 
                             int startMarkLocation = rightNoteMarks[currentRightNoteIndex].MarkLocation;
                             int endMarkLocation = rightNoteMarks[currentRightNoteIndex + 1].MarkLocation;
@@ -170,8 +170,6 @@ namespace beethoven3
                             normal.Normalize();
                             
 
-                            
-                           
                             Vector2 start = GetMarkerLocation(startMarkLocation);
                             Vector2 end = GetMarkerLocation(endMarkLocation);
                         //    Vector2 ex = Vector2.Multiply(MarkManager.Marks[startMarkLocation].MarkSprite.Location, normal);
@@ -182,7 +180,7 @@ namespace beethoven3
                             min1.X = start.X + (float)x;
                             min1.Y = start.Y +(float)y;
 
-                            Vector2 angle = new Vector2((float)Math.Cos((float)Math.Atan2(min1.Y, min1.X) - MathHelper.ToRadians(angle11)), (float)Math.Sin((float)Math.Atan2(min1.Y, min1.X) - MathHelper.ToRadians(angle12)));
+                            Vector2 angle = new Vector2((float)Math.Cos((float)Math.Atan2(min1.Y, min1.X) - MathHelper.ToRadians(angle11)), (float)Math.Sin((float)Math.Atan2(min1.Y, min1.X) - MathHelper.ToRadians(angle11)));
                             Vector2 min4;
                             double anx = angle.X * (length * length1);
                             double any = angle.Y * (length * length1);
@@ -191,7 +189,7 @@ namespace beethoven3
 
 
 
-                            Vector2 angle2 = new Vector2((float)Math.Cos((float)Math.Atan2(min1.Y, min1.X) - MathHelper.ToRadians(60)), (float)Math.Sin((float)Math.Atan2(min1.Y, min1.X) - MathHelper.ToRadians(60)));
+                            Vector2 angle2 = new Vector2((float)Math.Cos((float)Math.Atan2(min1.Y, min1.X) - MathHelper.ToRadians(angle12)), (float)Math.Sin((float)Math.Atan2(min1.Y, min1.X) - MathHelper.ToRadians(angle12)));
                             Vector2 min5;
                             double anx2 = angle2.X * (length * length1);
                             double any2 = angle2.Y * (length * length1);
@@ -205,7 +203,7 @@ namespace beethoven3
                           //  min2.Normalize();
                           //  min2.X *= (float)(length * 0.3);
                           //  min2.Y *= (float)(length * 0.3);
-                            GuideLineManager.AddGuideLine(start, min4, min5, end, (rightNoteMarks[currentRightNoteIndex + 1].StartTime - rightNoteMarks[currentRightNoteIndex].StartTime) * 1000, false);
+                            GuideLineManager.AddGuideLine(start, min4, min5, end, (rightNoteMarks[currentRightNoteIndex + 1].StartTime - rightNoteMarks[currentRightNoteIndex].StartTime) * 1000, true);
 
                             //Vector2 a = MarkManager.Marks[1].MarkSprite.Location - MarkManager.Marks[0].MarkSprite.Location;
                             //a.Normalize();
@@ -229,7 +227,7 @@ namespace beethoven3
                              min1.X = start.X + (float)x;
                             min1.Y = start.Y + (float)y;
 
-                            angle = new Vector2((float)Math.Cos((float)Math.Atan2(min1.Y, min1.X) - MathHelper.ToRadians(angle11)), (float)Math.Sin((float)Math.Atan2(min1.Y, min1.X) - MathHelper.ToRadians(angle12)));
+                            angle = new Vector2((float)Math.Cos((float)Math.Atan2(min1.Y, min1.X) - MathHelper.ToRadians(angle11)), (float)Math.Sin((float)Math.Atan2(min1.Y, min1.X) - MathHelper.ToRadians(angle11)));
 
                              anx = angle.X * (length * length1);
                              any = angle.Y * (length * length1);
@@ -238,7 +236,7 @@ namespace beethoven3
 
 
 
-                             angle2 = new Vector2((float)Math.Cos((float)Math.Atan2(min1.Y, min1.X) - MathHelper.ToRadians(60)), (float)Math.Sin((float)Math.Atan2(min1.Y, min1.X) - MathHelper.ToRadians(60)));
+                             angle2 = new Vector2((float)Math.Cos((float)Math.Atan2(min1.Y, min1.X) - MathHelper.ToRadians(angle12)), (float)Math.Sin((float)Math.Atan2(min1.Y, min1.X) - MathHelper.ToRadians(angle12)));
 
                              anx2 = angle2.X * (length * length1);
                              any2 = angle2.Y * (length * length1);
