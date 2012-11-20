@@ -182,10 +182,7 @@ namespace beethoven3
             direction.Normalize();
             longNoteManager.MakeNote(location, direction);
         }
-
-
-
-
+        
 
         #endregion
 

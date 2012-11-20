@@ -9,6 +9,10 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 //using Microsoft.Kinect;
+/*
+ 타입 0-오른손 1-왼손 2-양손 3-롱노트 4-드래그노트 
+ 
+ */
 namespace beethoven3
 {
     /// <summary>
@@ -233,42 +237,58 @@ namespace beethoven3
         }
         private void HandleMouseInput(MouseState mouseState)
         {
-            if (mouseState.LeftButton == ButtonState.Pressed)
-            {
+            //눌렀을때만.
+           // if (mouseState.LeftButton == ButtonState.Pressed)
+          //  {
                 collisionManager.checkDragNote(new Vector2(mouseStateCurrent.X,mouseStateCurrent.Y));
+                collisionManager.CheckCollisions(0, new Vector2(mouseStateCurrent.X, mouseStateCurrent.Y));
 
-            }
+                collisionManager.CheckCollisions(1, new Vector2(mouseStateCurrent.X, mouseStateCurrent.Y));
+
+                collisionManager.CheckCollisions(2, new Vector2(mouseStateCurrent.X, mouseStateCurrent.Y));
+
+                collisionManager.CheckCollisions(3, new Vector2(mouseStateCurrent.X, mouseStateCurrent.Y));
+
+                collisionManager.CheckCollisions(4, new Vector2(mouseStateCurrent.X, mouseStateCurrent.Y));
+
+                collisionManager.CheckCollisions(5, new Vector2(mouseStateCurrent.X, mouseStateCurrent.Y));
+               
+          //  }
+
         }
+
+
         private void HandleKeyboardInput(KeyboardState keyState)
         {
-            if (keyState.IsKeyDown(Keys.NumPad8))
-            {
-                SoundManager.SndPlay("snd/ka");
-                collisionManager.CheckCollisions(0);
-            }
-            if (keyState.IsKeyDown(Keys.NumPad9))
-            {
-                SoundManager.SndPlay("snd/maid");
-                collisionManager.CheckCollisions(1);
-            }
-            if (keyState.IsKeyDown(Keys.NumPad6))
-            {
-                SoundManager.SndPlay("snd/jo");
-                collisionManager.CheckCollisions(2);
-            }
-            if (keyState.IsKeyDown(Keys.NumPad5))
-            {
-                SoundManager.SndStop();
-                collisionManager.CheckCollisions(3);
-            }
-            if (keyState.IsKeyDown(Keys.NumPad4))
-            {
-                collisionManager.CheckCollisions(4);
-            }
-            if (keyState.IsKeyDown(Keys.NumPad7))
-            {
-                collisionManager.CheckCollisions(5);
-            }
+        //{
+        //    if (keyState.IsKeyDown(Keys.NumPad8))
+        //    {
+        //     //   SoundManager.SndPlay("snd/ka");
+        //        collisionManager.CheckCollisions(0);
+        //    }
+        //    if (keyState.IsKeyDown(Keys.NumPad9))
+        //    {
+        //     //   SoundManager.SndPlay("snd/maid");
+        //        collisionManager.CheckCollisions(1);
+        //    }
+        //    if (keyState.IsKeyDown(Keys.NumPad6))
+        //    {
+        //      //  SoundManager.SndPlay("snd/jo");
+        //        collisionManager.CheckCollisions(2);
+        //    }
+        //    if (keyState.IsKeyDown(Keys.NumPad5))
+        //    {
+        //      //  SoundManager.SndStop();
+        //        collisionManager.CheckCollisions(3);
+        //    }
+        //    if (keyState.IsKeyDown(Keys.NumPad4))
+        //    {
+        //        collisionManager.CheckCollisions(4);
+        //    }
+        //    if (keyState.IsKeyDown(Keys.NumPad7))
+        //    {
+        //        collisionManager.CheckCollisions(5);
+        //    }
           
         }
         /// <summary>
@@ -303,7 +323,7 @@ namespace beethoven3
                 case GameStates.Playing:
                       MarkManager.Update(gameTime);
                     startNoteManager.Update(gameTime);
-                    HandleKeyboardInput(Keyboard.GetState());
+                    //HandleKeyboardInput(Keyboard.GetState());
                     HandleMouseInput(Mouse.GetState());
 
                     file.Update(spriteBatch, gameTime);

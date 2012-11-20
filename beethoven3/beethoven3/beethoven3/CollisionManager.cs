@@ -12,7 +12,7 @@ namespace beethoven3
         //MarkManager
        // private StartNoteManager startNoteManager;
      //   private Vector2 offScreen = new Vector2(-500, -500);
-        private int judgment;
+      //  private int judgment;
         private ExplosionManager perfectManager;
         private ExplosionManager  goodManager;
         #endregion
@@ -33,7 +33,7 @@ namespace beethoven3
             for (int i = 0; i < DragNoteManager.DragNotes.Count(); i++ )
             {
                 Sprite dragNote = DragNoteManager.DragNotes[i];
-                judgment = dragNote.JudgedNote(mousePoint, 15.0f);
+                int judgment = dragNote.JudgedNote(mousePoint, 15.0f);
                 if (judgment == 2)
                 {
                     
@@ -53,7 +53,7 @@ namespace beethoven3
             }
         }
 
-        private void checkRightNoteToMarker(int number)
+        private void checkRightNoteToMarker(int number,Vector2 mousePoint)
         {
           
             for (int x = 0; x < StartNoteManager.rightNoteManager.LittleNotes.Count;  x++)
@@ -68,24 +68,31 @@ namespace beethoven3
                     //    mark.MarkSprite.CollisionRadius);
                     
                     //마커의 반지름으로
-                    judgment = MarkManager.Marks[number].MarkSprite.JudgedNote(
+                    int judgment = MarkManager.Marks[number].MarkSprite.JudgedNote(
                         littleNote.Center,
                         littleNote.CollisionRadius);
                     //perfect
                     if(judgment == 2)
                     {
-
-                      perfectManager.AddExplosion(littleNote.Center, Vector2.Zero);
-                      StartNoteManager.rightNoteManager.LittleNotes.RemoveAt(x);
-                      
+                        int mouseJudgment = MarkManager.Marks[number].MarkSprite.JudgedNote(mousePoint, 15.0f);
+                        if (mouseJudgment != 0)
+                        {
+                            perfectManager.AddExplosion(littleNote.Center, Vector2.Zero);
+                            StartNoteManager.rightNoteManager.LittleNotes.RemoveAt(x);
+                        }
+                 
                     }
 
                     //good
                     else if (judgment == 1)
                     {
-                        goodManager.AddExplosion(littleNote.Center, Vector2.Zero);
-                       
-                        StartNoteManager.rightNoteManager.LittleNotes.RemoveAt(x);
+                        int mouseJudgment = MarkManager.Marks[number].MarkSprite.JudgedNote(mousePoint, 15.0f);
+                        if (mouseJudgment != 0)
+                        {
+                            goodManager.AddExplosion(littleNote.Center, Vector2.Zero);
+
+                            StartNoteManager.rightNoteManager.LittleNotes.RemoveAt(x);
+                        }
                     }
                     else
                     {
@@ -94,7 +101,7 @@ namespace beethoven3
             }
         }
 
-        private void checkLeftNoteToMarker(int number)
+        private void checkLeftNoteToMarker(int number, Vector2 mousePoint)
         {
 
             for (int x = 0; x < StartNoteManager.leftNoteManager.LittleNotes.Count; x++)
@@ -109,21 +116,29 @@ namespace beethoven3
                 //    mark.MarkSprite.CollisionRadius);
 
                 //마커의 반지름으로
-                judgment = MarkManager.Marks[number].MarkSprite.JudgedNote(
+                int judgment = MarkManager.Marks[number].MarkSprite.JudgedNote(
                     littleNote.Center,
                     littleNote.CollisionRadius);
                 //perfect
                 if (judgment == 2)
                 {
-                    perfectManager.AddExplosion(littleNote.Center, Vector2.Zero);
-                    StartNoteManager.leftNoteManager.LittleNotes.RemoveAt(x);
+                    int mouseJudgment = MarkManager.Marks[number].MarkSprite.JudgedNote(mousePoint, 15.0f);
+                    if (mouseJudgment != 0)
+                    {
+                        perfectManager.AddExplosion(littleNote.Center, Vector2.Zero);
+                        StartNoteManager.leftNoteManager.LittleNotes.RemoveAt(x);
+                    }
                 }
 
                 //good
                 else if (judgment == 1)
                 {
-                    goodManager.AddExplosion(littleNote.Center, Vector2.Zero);
-                     StartNoteManager.leftNoteManager.LittleNotes.RemoveAt(x);
+                    int mouseJudgment = MarkManager.Marks[number].MarkSprite.JudgedNote(mousePoint, 15.0f);
+                    if (mouseJudgment != 0)
+                    {
+                        goodManager.AddExplosion(littleNote.Center, Vector2.Zero);
+                        StartNoteManager.leftNoteManager.LittleNotes.RemoveAt(x);
+                    }
                 }
                 else
                 {
@@ -133,44 +148,44 @@ namespace beethoven3
         }
 
 
-        private void checkDoubleNoteToMarker(int number)
-        {
+        //private void checkDoubleNoteToMarker(int number)
+        //{
 
-            for (int x = 0; x < StartNoteManager.doubleNoteManager.LittleNotes.Count; x++)
-            {
-                Sprite littleNote = StartNoteManager.doubleNoteManager.LittleNotes[x];
+        //    for (int x = 0; x < StartNoteManager.doubleNoteManager.LittleNotes.Count; x++)
+        //    {
+        //        Sprite littleNote = StartNoteManager.doubleNoteManager.LittleNotes[x];
 
-                //0:bad 1:good 2:perfect
+        //        //0:bad 1:good 2:perfect
 
-                ///노트의 반지름으로 
-                //judgment = littleNote.JudgedNote(
-                //    mark.MarkSprite.Center,
-                //    mark.MarkSprite.CollisionRadius);
+        //        ///노트의 반지름으로 
+        //        //judgment = littleNote.JudgedNote(
+        //        //    mark.MarkSprite.Center,
+        //        //    mark.MarkSprite.CollisionRadius);
 
-                //마커의 반지름으로
-                judgment = MarkManager.Marks[number].MarkSprite.JudgedNote(
-                    littleNote.Center,
-                    littleNote.CollisionRadius);
-                //perfect
-                if (judgment == 2)
-                {
-                    perfectManager.AddExplosion(littleNote.Center, Vector2.Zero);
-                    StartNoteManager.doubleNoteManager.LittleNotes.RemoveAt(x);
-                }
+        //        //마커의 반지름으로
+        //        int judgment = MarkManager.Marks[number].MarkSprite.JudgedNote(
+        //            littleNote.Center,
+        //            littleNote.CollisionRadius);
+        //        //perfect
+        //        if (judgment == 2)
+        //        {
+        //            perfectManager.AddExplosion(littleNote.Center, Vector2.Zero);
+        //            StartNoteManager.doubleNoteManager.LittleNotes.RemoveAt(x);
+        //        }
 
-                //good
-                else if (judgment == 1)
-                {
-                    goodManager.AddExplosion(littleNote.Center, Vector2.Zero);
-                    StartNoteManager.doubleNoteManager.LittleNotes.RemoveAt(x);
-                }
-                else
-                {
+        //        //good
+        //        else if (judgment == 1)
+        //        {
+        //            goodManager.AddExplosion(littleNote.Center, Vector2.Zero);
+        //            StartNoteManager.doubleNoteManager.LittleNotes.RemoveAt(x);
+        //        }
+        //        else
+        //        {
 
-                }
+        //        }
 
-            }
-        }
+        //    }
+        //}
 
         public void checkLongNoteToMarker(int number)
         {
@@ -187,7 +202,7 @@ namespace beethoven3
                 //    mark.MarkSprite.CollisionRadius);
 
                 //마커의 반지름으로
-                judgment = MarkManager.Marks[number].MarkSprite.JudgedNote(
+                int judgment = MarkManager.Marks[number].MarkSprite.JudgedNote(
                     littleNote.Center,
                     littleNote.CollisionRadius);
                 //perfect
@@ -211,11 +226,11 @@ namespace beethoven3
         }
 
 
-        public void CheckCollisions(int number)
+        public void CheckCollisions(int number,Vector2 mousePoint)
         {
-            checkRightNoteToMarker(number);
-            checkLeftNoteToMarker(number);
-            checkDoubleNoteToMarker(number);
+            checkRightNoteToMarker(number, mousePoint);
+            checkLeftNoteToMarker(number, mousePoint);
+         //   checkDoubleNoteToMarker(number);
         }
 
         #endregion

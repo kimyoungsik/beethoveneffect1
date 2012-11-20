@@ -290,6 +290,9 @@ namespace beethoven3
                 {
                     startNoteManager.MakeLongNote(startNoteNumber);
                    // LineRenderer.DrawLine(Game1.spriteSheet, new Rectangle(200, 100, 50, 55), spriteBatch.GraphicsDevice, spriteBatch, StartNoteManager.longNoteManager.LittleNotes[0].Location, startNoteManager.StartNotes[this.startNoteNumber].StartNoteSprite.Location, Color.White);
+                    
+                    //여기에서 손이 이곳에 있으면 되는것으로 
+
                     if( (checkLongNoteToMarker(startNoteNumber)) == 2)
                     {
                         //롱노트 시간 안움직임
