@@ -110,8 +110,8 @@ namespace beethoven3
                 int j = 0;
                 while (i < Points.Count)
                 {
-
-                    if (j == Points.Count / 10)
+                    //골드의 갯수
+                    if (j == Points.Count / 7)
                     {
                         GoldManager.MakeGold(Points[i], new Vector2(0, 0));
                         j = 0;

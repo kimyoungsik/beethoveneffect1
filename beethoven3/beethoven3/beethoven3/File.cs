@@ -125,6 +125,47 @@ namespace beethoven3
             sr.Close();
         }
 
+        public void DrawGuidLine(int startMarkLocation, int endMarkLocation, bool gold)
+        {
+            double ratio = 0.6;
+            //double startRatio = 0.2;
+            float firstAngle = 30;
+            float secondAngle = 90;
+            Vector2 line;
+            Vector2 start;
+            Vector2 end;
+            Vector2 angle;
+            Vector2 angle2;
+            Vector2 firstMid;
+            Vector2 secondMid;
+            double length;
+           
+            line = MarkManager.Marks[startMarkLocation].MarkSprite.Location - MarkManager.Marks[endMarkLocation].MarkSprite.Location;
+            line.Normalize();
+
+            start = GetMarkerLocation(startMarkLocation);
+            end = GetMarkerLocation(endMarkLocation);
+            //사이의 거리
+            length = Vector2.Distance(start, end);
+         
+            //첫번째각
+            angle = new Vector2((float)Math.Cos((float)Math.Atan2(start.Y, start.X) - MathHelper.ToRadians(firstAngle)), (float)Math.Sin((float)Math.Atan2(start.Y, start.X) - MathHelper.ToRadians(firstAngle)));
+            //첫번째 제어점
+            firstMid.X = start.X + (float)((angle.X * (length * ratio)));
+            firstMid.Y = start.Y + (float)(angle.Y * (length * ratio));
+
+
+            //두번쨰 각
+            angle2 = new Vector2((float)Math.Cos((float)Math.Atan2(start.Y, start.X) - MathHelper.ToRadians(secondAngle)), (float)Math.Sin((float)Math.Atan2(start.Y, start.X) - MathHelper.ToRadians(secondAngle)));
+            //두번째 제어점
+            secondMid.X = start.X + (float)(angle2.X * (length * ratio));
+            secondMid.Y = start.Y + (float)(angle2.Y * (length * ratio));
+            
+            GuideLineManager.AddGuideLine(start, firstMid, secondMid, end, (rightNoteMarks[currentRightNoteIndex + 1].StartTime - rightNoteMarks[currentRightNoteIndex].StartTime) * 1000, gold);
+
+        }
+
+
         public void FindNote(double processTime)
         {
             //처음 실행하거나 de큐를 거치지 않은 새로운
@@ -156,118 +197,12 @@ namespace beethoven3
                         try
                         {
                             //현재오른손노트와 다음 노트와 연결, 그리고 그 다음 노트와 연결
-                            //LineRenderer.DrawLine(Game1.spriteSheet, new Rectangle(0, 0, 50, 50), spriteBatch.GraphicsDevice, spriteBatch, (Vector2)Points[i], (Vector2)Points[j], Color.White);
-                            //시작점,제어점1,제어점2,끝점,지속시간
+                             //시작점,제어점1,제어점2,끝점,지속시간
 
-                            double length1 = 0.6;
-                            double startlength = 0.2;
-                            float angle11 = 30;
-                            float angle12 = 90;
-
-                            int startMarkLocation = rightNoteMarks[currentRightNoteIndex].MarkLocation;
-                            int endMarkLocation = rightNoteMarks[currentRightNoteIndex + 1].MarkLocation;
-                            Vector2 normal = MarkManager.Marks[startMarkLocation].MarkSprite.Location - MarkManager.Marks[endMarkLocation].MarkSprite.Location;
-                            normal.Normalize();
-                            
-
-                            Vector2 start = GetMarkerLocation(startMarkLocation);
-                            Vector2 end = GetMarkerLocation(endMarkLocation);
-                        //    Vector2 ex = Vector2.Multiply(MarkManager.Marks[startMarkLocation].MarkSprite.Location, normal);
-                            double length = Vector2.Distance(start, end);
-                            double x = normal.X * (length * startlength);
-                            double y = normal.Y * (length * startlength);
-                            Vector2 min1;
-                            min1.X = start.X + (float)x;
-                            min1.Y = start.Y +(float)y;
-
-                            Vector2 angle = new Vector2((float)Math.Cos((float)Math.Atan2(min1.Y, min1.X) - MathHelper.ToRadians(angle11)), (float)Math.Sin((float)Math.Atan2(min1.Y, min1.X) - MathHelper.ToRadians(angle11)));
-                            Vector2 min4;
-                            double anx = angle.X * (length * length1);
-                            double any = angle.Y * (length * length1);
-                            min4.X = start.X + (float)anx;
-                            min4.Y = start.Y + (float)any;
-
-
-
-                            Vector2 angle2 = new Vector2((float)Math.Cos((float)Math.Atan2(min1.Y, min1.X) - MathHelper.ToRadians(angle12)), (float)Math.Sin((float)Math.Atan2(min1.Y, min1.X) - MathHelper.ToRadians(angle12)));
-                            Vector2 min5;
-                            double anx2 = angle2.X * (length * length1);
-                            double any2 = angle2.Y * (length * length1);
-                            min5.X = start.X + (float)anx2;
-                            min5.Y = start.Y + (float)any2;
-                           // double length = Math.Sqrt((end.X - start.X) * (end.X - start.X) + (end.Y - start.Y) * (end.Y - start.Y));
-                          //  Vector2 min1 = Vector2.Reflect(MarkManager.Marks[startMarkLocation].MarkSprite.Location, normal);
-                         //   min1.Normalize();
-                         //   min1.X *= (float)(length * 0.3);
-                          //  min1.Y *= (float)(length * 0.3);
-                          //  min2.Normalize();
-                          //  min2.X *= (float)(length * 0.3);
-                          //  min2.Y *= (float)(length * 0.3);
-                            GuideLineManager.AddGuideLine(start, min4, min5, end, (rightNoteMarks[currentRightNoteIndex + 1].StartTime - rightNoteMarks[currentRightNoteIndex].StartTime) * 1000, true);
-
-                            //Vector2 a = MarkManager.Marks[1].MarkSprite.Location - MarkManager.Marks[0].MarkSprite.Location;
-                            //a.Normalize();
-                           // Vector2 normal = Vector2.Zero;
-                            //normal = Vector2.Reflect(MarkManager.Marks[0].MarkSprite.Location, a);
-                            //(nvert.ToDouble(noteContents[2])
-                                                      
-                            startMarkLocation = rightNoteMarks[currentRightNoteIndex + 1].MarkLocation;
-                            endMarkLocation = rightNoteMarks[currentRightNoteIndex + 2].MarkLocation;
-                            normal = MarkManager.Marks[startMarkLocation].MarkSprite.Location - MarkManager.Marks[endMarkLocation].MarkSprite.Location;
-                            normal.Normalize();
-
-
-
-
-                             start = GetMarkerLocation(startMarkLocation);
-                             end = GetMarkerLocation(endMarkLocation);
-                             length = Vector2.Distance(start, end);
-                             x = normal.X * (length * length1);
-                             y = normal.Y * (length * length1);
-                             min1.X = start.X + (float)x;
-                            min1.Y = start.Y + (float)y;
-
-                            angle = new Vector2((float)Math.Cos((float)Math.Atan2(min1.Y, min1.X) - MathHelper.ToRadians(angle11)), (float)Math.Sin((float)Math.Atan2(min1.Y, min1.X) - MathHelper.ToRadians(angle11)));
-
-                             anx = angle.X * (length * length1);
-                             any = angle.Y * (length * length1);
-                            min4.X = start.X + (float)anx;
-                            min4.Y = start.Y + (float)any;
-
-
-
-                             angle2 = new Vector2((float)Math.Cos((float)Math.Atan2(min1.Y, min1.X) - MathHelper.ToRadians(angle12)), (float)Math.Sin((float)Math.Atan2(min1.Y, min1.X) - MathHelper.ToRadians(angle12)));
-
-                             anx2 = angle2.X * (length * length1);
-                             any2 = angle2.Y * (length * length1);
-                            min5.X = start.X + (float)anx2;
-                            min5.Y = start.Y + (float)any2;
-                            // double length = Math.Sqrt((end.X - start.X) * (end.X - start.X) + (end.Y - start.Y) * (end.Y - start.Y));
-                            //  Vector2 min1 = Vector2.Reflect(MarkManager.Marks[startMarkLocation].MarkSprite.Location, normal);
-                            //   min1.Normalize();
-                            //   min1.X *= (float)(length * 0.3);
-                            //  min1.Y *= (float)(length * 0.3);
-                            //  min2.Y *= (float)(length * 0.3);
-                            GuideLineManager.AddGuideLine(start, min4, min5, end, (rightNoteMarks[currentRightNoteIndex + 1].StartTime - rightNoteMarks[currentRightNoteIndex].StartTime) * 1000, false);
-
-                        //    normal = MarkManager.Marks[endMarkLocation].MarkSprite.Location - MarkManager.Marks[startMarkLocation].MarkSprite.Location;
-                        //    normal.Normalize();
-
-                        //    Vector2 start2 = GetMarkerLocation(startMarkLocation);
-                        //    Vector2 end2 = GetMarkerLocation(endMarkLocation);
-
-                        //    length = Math.Sqrt((end2.X - start2.X) * (end2.X - start2.X) + (end2.Y - start2.Y) * (end2.Y - start2.Y));
-
-                        //    Vector2 mid1 = Vector2.Reflect(MarkManager.Marks[startMarkLocation].MarkSprite.Location, normal);
-                        //    //mid1.Normalize();
-
-                        //    //mid1.X *= (float)(length * 0.3);
-                        //    //mid1.Y *= (float)(length * 0.3);
-                        //    Vector2 mid2 = Vector2.Reflect(MarkManager.Marks[startMarkLocation].MarkSprite.Location, normal);
-                        //    //mid2.Normalize();
-                        //    //mid2.X *= (float)(length * 0.3);
-                        //    //mid2.Y *= (float)(length * 0.3);
-                        ////    GuideLineManager.AddGuideLine(start2, mid1, mid2, end2, (rightNoteMarks[currentRightNoteIndex + 1].StartTime - rightNoteMarks[currentRightNoteIndex].StartTime) * 1000, false);
+                            //골드라인
+                            DrawGuidLine(rightNoteMarks[currentRightNoteIndex].MarkLocation, rightNoteMarks[currentRightNoteIndex + 1].MarkLocation, true);
+                            //일반 가이드라인
+                            DrawGuidLine(rightNoteMarks[currentRightNoteIndex+1].MarkLocation, rightNoteMarks[currentRightNoteIndex + 2].MarkLocation, false);
 
                         }
                         catch (IndexOutOfRangeException)
