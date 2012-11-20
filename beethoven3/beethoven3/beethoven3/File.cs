@@ -125,6 +125,12 @@ namespace beethoven3
             sr.Close();
         }
 
+        /// <summary>
+        /// 가이드라인을 추가하여 그릴 수 있도록 함
+        /// </summary>
+        /// <param name="startMarkLocation"></param>
+        /// <param name="endMarkLocation"></param>
+        /// <param name="gold"></param>
         public void DrawGuidLine(int startMarkLocation, int endMarkLocation, bool gold)
         {
             double ratio = 0.6;
@@ -175,6 +181,7 @@ namespace beethoven3
 
                 noteTime = Convert.ToDouble(noteContents[0]);
                 
+                //시간에 맞추어서 노트가 날아갈 수 있게 생성 시간을 정한다. 
                 noteTime = GetNoteStartTime(noteTime);
 
                 newNote = false;
@@ -222,7 +229,7 @@ namespace beethoven3
                     //양손노트
                     case 2:
                         
-                        startNoteManager.MakeDoubleNote(Int32.Parse(noteContents[2]));
+                  //      startNoteManager.MakeDoubleNote(Int32.Parse(noteContents[2]));
                         break;
 
                     //롱노트
@@ -239,8 +246,7 @@ namespace beethoven3
                     case 4:
                         //시작점,제어점1,제어점2,끝점,지속시간
                         CurveManager.addCurve(new Vector2(Int32.Parse(noteContents[3]), Int32.Parse(noteContents[4])), new Vector2(Int32.Parse(noteContents[5]), Int32.Parse(noteContents[6])), new Vector2(Int32.Parse(noteContents[7]), Int32.Parse(noteContents[8])), new Vector2(Int32.Parse(noteContents[9]), Int32.Parse(noteContents[10])), Convert.ToDouble(noteContents[2]));
-                        
-                                  
+                                                          
                         break;
                 }
                 allNotes.Dequeue();
@@ -293,12 +299,16 @@ namespace beethoven3
                     
                     //여기에서 손이 이곳에 있으면 되는것으로 
 
-                    if( (checkLongNoteToMarker(startNoteNumber)) == 2)
-                    {
-                        //롱노트 시간 안움직임
-                       // StartNoteManager.longNoteManager.LittleNotes[0].Velocity = new Vector2(0,0);
-                        StartNoteManager.longNoteManager.LittleNotes.RemoveAt(0);
-                    }
+
+                   // if (checkLongNotePassCenter(startNoteNumber))
+                    //{
+                        //중간을 거쳤기 때문에 다 지나가면 0 이나올 것이다.
+                    if (checkLongNoteInCenterArea(startNoteNumber))
+                        {
+                               
+                              StartNoteManager.longNoteManager.LittleNotes.RemoveAt(0);
+                        }
+                   // }
 
                 }
                 else//시간 지난후에 다시 들어오지 않게 
@@ -323,7 +333,30 @@ namespace beethoven3
             }
 
         }
+        //public bool checkCollinsion(int number)
+        //{
 
+        //    Sprite littleNote = StartNoteManager.longNoteManager.LittleNotes[0];
+
+          
+        //    //마커의 반지름으로
+        //    bool judgment = MarkManager.Marks[number].MarkSprite.JudgedEdge(
+        //        littleNote.Location, littleNote.CollisionRadius
+        //        );
+
+        //    return judgment;
+        //}
+
+        public bool checkLongNoteInCenterArea(int number)
+        {
+            Sprite littleNote = StartNoteManager.longNoteManager.LittleNotes[0];
+
+
+            bool judgment = MarkManager.Marks[number].MarkSprite.IsBoxColliding(MarkManager.centeraArea);
+
+            return judgment;
+
+        }
 
         public int checkLongNoteToMarker(int number)
         {
@@ -340,6 +373,20 @@ namespace beethoven3
         }
 
 
+        //public bool checkLongNotePassCenter(int number)
+        //{
+
+        //    Sprite littleNote = StartNoteManager.longNoteManager.LittleNotes[0];
+
+
+        //    //마커의 반지름으로
+        //    bool judgment = MarkManager.Marks[number].MarkSprite.JudgedCenter(
+        //        littleNote.Center,
+        //        littleNote.CollisionRadius);
+
+        //    return judgment;
+        //}
+
         /// <summary>
         /// 마커에 노트가 닿는 시간을 정확히 맞추기 위해서
         /// </summary>
@@ -348,7 +395,6 @@ namespace beethoven3
 
         public double GetNoteStartTime(double noteTime)
         {
-
             double startTime= 0.0f;
 
             //거리/속력 
@@ -358,11 +404,8 @@ namespace beethoven3
             startTime = noteTime - time;
 
             return startTime;
-
-
             
         }
-
 
         public void Update(SpriteBatch spriteBatch, GameTime gameTime)
         {
@@ -370,8 +413,6 @@ namespace beethoven3
             this.time += gameTime.ElapsedGameTime.TotalSeconds;
             FindNote(this.time);
         }
-
-         
 
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
@@ -382,7 +423,5 @@ namespace beethoven3
         }
      
         #endregion
-         
-
     }
 }

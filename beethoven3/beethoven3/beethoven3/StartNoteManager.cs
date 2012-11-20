@@ -23,13 +23,13 @@ namespace beethoven3
         
         public static NoteManager rightNoteManager;
         public static NoteManager leftNoteManager;
-        public static NoteManager doubleNoteManager;
+    //    public static NoteManager doubleNoteManager;
         public static NoteManager longNoteManager;
         //BPS에 따라 달라진다.
         public static float noteSpeed = 70.0f;
       //  public static float noteSpeed = 70.0f;
         #endregion
-
+         
 
         #region constructor
 
@@ -67,15 +67,15 @@ namespace beethoven3
                 );
 
             //doublenote
-            doubleNoteManager = new NoteManager(
-                //노크와 시작마커가 같은 sprite
-                texture,
-                 new Rectangle(0, 200, 50, 50),
-                1,
-                15,
-                noteSpeed
-                //notetype
-                );
+            //doubleNoteManager = new NoteManager(
+            //    //노크와 시작마커가 같은 sprite
+            //    texture,
+            //     new Rectangle(0, 200, 50, 50),
+            //    1,
+            //    15,
+            //    noteSpeed
+            //    //notetype
+            //    );
 
             //doublenote
             longNoteManager = new NoteManager(
@@ -157,18 +157,18 @@ namespace beethoven3
             leftNoteManager.MakeNote(location, direction);
         }
 
-        public void MakeDoubleNote(int markNumber)
-        {
-            //노트시작점의 위치
-            Vector2 location = StartNotes[markNumber].StartNoteSprite.Location;
+        //public void MakeDoubleNote(int markNumber)
+        //{
+        //    //노트시작점의 위치
+        //    Vector2 location = StartNotes[markNumber].StartNoteSprite.Location;
 
-            //노트시작점에서 마크의 방향
-            Vector2 direction =
-                            MarkManager.Marks[markNumber].MarkSprite.Location -
-                            location;
-            direction.Normalize();
-            doubleNoteManager.MakeNote(location, direction);
-        }
+        //    //노트시작점에서 마크의 방향
+        //    Vector2 direction =
+        //                    MarkManager.Marks[markNumber].MarkSprite.Location -
+        //                    location;
+        //    direction.Normalize();
+        //    doubleNoteManager.MakeNote(location, direction);
+        //}
 
         public void MakeLongNote(int markNumber)
         {
@@ -191,7 +191,7 @@ namespace beethoven3
         {
             rightNoteManager.Update(gameTime);
             leftNoteManager.Update(gameTime);
-            doubleNoteManager.Update(gameTime);
+         //   doubleNoteManager.Update(gameTime);
             longNoteManager.Update(gameTime);
             foreach (StartNote startNote in StartNotes)
             {
@@ -207,7 +207,7 @@ namespace beethoven3
         {
             rightNoteManager.Draw(spriteBatch);
             leftNoteManager.Draw(spriteBatch);
-            doubleNoteManager.Draw(spriteBatch);
+         //   doubleNoteManager.Draw(spriteBatch);
             longNoteManager.Draw(spriteBatch);
             //스타트 표시점 보이지 않게
             foreach (StartNote startNote in StartNotes)

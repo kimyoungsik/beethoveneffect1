@@ -195,7 +195,7 @@ namespace beethoven3
             return BoundingBoxRect.Intersects(OtherBox);
         }
 
-        //예시
+        
         public bool IsCircleColliding(Vector2 otherCenter, float otherRadius)
         {
             //중앙을 이은 선이 나의 충돌거리(반지름)과 다른것의 충돌거리의 합보다 작으면 
@@ -206,6 +206,17 @@ namespace beethoven3
                 return false;
         }
 
+        //public bool JudgedEdge(Vector2 otherBottom, float otherRadius)
+        //{
+        //    bool ret = false;
+
+        //    if (Vector2.Distance(Location, otherBottom) <= 0)
+        //    {
+        //        ret = true;
+        //    }
+        //    return ret;
+        //}
+  
 
         public int JudgedNote(Vector2 otherCenter, float otherRadius)
         {

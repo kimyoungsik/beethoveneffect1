@@ -11,7 +11,7 @@ namespace beethoven3
         #region declarations
         //MarkManager
        // private StartNoteManager startNoteManager;
-     //   private Vector2 offScreen = new Vector2(-500, -500);
+         //   private Vector2 offScreen = new Vector2(-500, -500);
       //  private int judgment;
         private ExplosionManager perfectManager;
         private ExplosionManager  goodManager;
@@ -55,7 +55,6 @@ namespace beethoven3
 
         private void checkRightNoteToMarker(int number,Vector2 mousePoint)
         {
-          
             for (int x = 0; x < StartNoteManager.rightNoteManager.LittleNotes.Count;  x++)
             {
                 Sprite littleNote = StartNoteManager.rightNoteManager.LittleNotes[x];
@@ -80,7 +79,7 @@ namespace beethoven3
                             perfectManager.AddExplosion(littleNote.Center, Vector2.Zero);
                             StartNoteManager.rightNoteManager.LittleNotes.RemoveAt(x);
                         }
-                 
+                
                     }
 
                     //good
@@ -187,7 +186,7 @@ namespace beethoven3
         //    }
         //}
 
-        public void checkLongNoteToMarker(int number)
+        public void checkLongNoteToMarker(int number, Vector2 mousePoint)
         {
 
             for (int x = 0; x < StartNoteManager.longNoteManager.LittleNotes.Count; x++)
@@ -208,15 +207,23 @@ namespace beethoven3
                 //perfect
                 if (judgment == 2)
                 {
-                    
-                    StartNoteManager.longNoteManager.LittleNotes.RemoveAt(x);
+                     int mouseJudgment = MarkManager.Marks[number].MarkSprite.JudgedNote(mousePoint, 15.0f);
+                     if (mouseJudgment != 0)
+                     {
+                         perfectManager.AddExplosion(littleNote.Center, Vector2.Zero);
+                         StartNoteManager.longNoteManager.LittleNotes.RemoveAt(x);
+                     }
                 }
 
                 //good
                 else if (judgment == 1)
                 {
-
-                    StartNoteManager.longNoteManager.LittleNotes.RemoveAt(x);
+                     int mouseJudgment = MarkManager.Marks[number].MarkSprite.JudgedNote(mousePoint, 15.0f);
+                     if (mouseJudgment != 0)
+                     {
+                         goodManager.AddExplosion(littleNote.Center, Vector2.Zero);
+                         StartNoteManager.longNoteManager.LittleNotes.RemoveAt(x);
+                     }
                 }
                 else
                 {
@@ -231,6 +238,7 @@ namespace beethoven3
             checkRightNoteToMarker(number, mousePoint);
             checkLeftNoteToMarker(number, mousePoint);
          //   checkDoubleNoteToMarker(number);
+            checkLongNoteToMarker(number, mousePoint);
         }
 
         #endregion

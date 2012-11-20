@@ -129,7 +129,8 @@ namespace beethoven3
                 mark4Location,
                 mark5Location,
                 mark6Location,
-                startNoteManager
+                startNoteManager,
+                new Rectangle(0,0,500,300)
                 
                 );
             perfectManager = new ExplosionManager(
