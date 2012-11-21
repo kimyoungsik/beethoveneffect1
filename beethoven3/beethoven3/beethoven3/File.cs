@@ -94,6 +94,7 @@ namespace beethoven3
         //    }
         //    sr.Close();
         //}
+
         public void Loading(int noteNumber)
         {
             String name = noteFileManager.noteFiles[noteNumber].Name;
@@ -287,6 +288,8 @@ namespace beethoven3
             return location;
 
         }
+
+
         public void DrawLineInLongNote(SpriteBatch spriteBatch, double processTime)
         {
             if (drawLine)
@@ -300,15 +303,14 @@ namespace beethoven3
                     //여기에서 손이 이곳에 있으면 되는것으로 
 
 
-                   // if (checkLongNotePassCenter(startNoteNumber))
-                    //{
+                 
                         //중간을 거쳤기 때문에 다 지나가면 0 이나올 것이다.
                     if (checkLongNoteInCenterArea(startNoteNumber))
-                        {
-                               
-                              StartNoteManager.longNoteManager.LittleNotes.RemoveAt(0);
-                        }
-                   // }
+                    {
+
+                        StartNoteManager.longNoteManager.LittleNotes.RemoveAt(0);
+                    }
+                  
 
                 }
                 else//시간 지난후에 다시 들어오지 않게 
@@ -352,7 +354,7 @@ namespace beethoven3
             Sprite littleNote = StartNoteManager.longNoteManager.LittleNotes[0];
 
 
-            bool judgment = MarkManager.Marks[number].MarkSprite.IsBoxColliding(MarkManager.centeraArea);
+            bool judgment = littleNote.IsBoxColliding(MarkManager.centeraArea);
 
             return judgment;
 

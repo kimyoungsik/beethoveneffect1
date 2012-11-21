@@ -418,6 +418,15 @@
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\Fonts\damagefont.xnb</Output>
       <Time>2012-08-31T03:50:00+09:00</Time>
     </Item>
+    <Item>
+      <Source>Textures\dot.bmp</Source>
+      <Name>Textures\dot</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\Textures\dot.xnb</Output>
+      <Time>2012-11-21T10:47:25.9729367+09:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

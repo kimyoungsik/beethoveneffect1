@@ -116,3 +116,4 @@ Z:\beethoveneffect1\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\snd\j
 Z:\beethoveneffect1\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\snd\maid.wma
 Z:\beethoveneffect1\beethoven3\beethoven3\beethoven3\bin\x86\Debug\beethoven3.exe
 Z:\beethoveneffect1\beethoven3\beethoven3\beethoven3\bin\x86\Debug\beethoven3.pdb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\Textures\dot.xnb

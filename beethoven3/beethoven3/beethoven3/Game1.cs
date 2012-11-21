@@ -34,8 +34,8 @@ namespace beethoven3
         public static Texture2D spriteSheet;
         public static Texture2D menu;
         public static Texture2D heart;
-
-
+        public static Texture2D dot;
+        private Rectangle removeAreaRec = new Rectangle(360, 130, 130, 230);
         SongMenu songMenu;
         int result;
 
@@ -44,9 +44,7 @@ namespace beethoven3
         File file;
         ExplosionManager perfectManager;
         ExplosionManager goodManager;
-        MouseState mouseStateCurrent;
-        //Rectangle mouseRect;
-       
+        MouseState mouseStateCurrent;   
 
         static public int mousex = 100; //X좌표
         static public int mousey = 100; //Y좌표
@@ -101,6 +99,7 @@ namespace beethoven3
             spriteSheet = Content.Load<Texture2D>(@"Textures\SpriteSheet8");
             menu = Content.Load<Texture2D>(@"Textures\menu");
             heart = Content.Load<Texture2D>(@"Textures\heart");
+            dot = Content.Load<Texture2D>(@"Textures\dot");
             // TODO: use this.Content to load your game content here
            
           //  LineRenderer.LoadContent(content);
@@ -130,7 +129,7 @@ namespace beethoven3
                 mark5Location,
                 mark6Location,
                 startNoteManager,
-                new Rectangle(0,0,500,300)
+                removeAreaRec
                 
                 );
             perfectManager = new ExplosionManager(
@@ -411,7 +410,7 @@ namespace beethoven3
                 file.Draw(spriteBatch, gameTime);
                 perfectManager.Draw(spriteBatch);
                 goodManager.Draw(spriteBatch);
-
+                spriteBatch.Draw(dot, removeAreaRec, Color.Red);
             }
 
             if (gameState == GameStates.SongMenu)
