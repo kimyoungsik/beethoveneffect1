@@ -23,6 +23,8 @@ namespace beethoven3
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        SpriteFont pericles36Font;
+
         //KINECT
         //KinectSensor nui = null;
         //Texture2D KinectDepthTexture;
@@ -31,6 +33,8 @@ namespace beethoven3
         enum GameStates { Menu, Playing, SongMenu, GameOver };
         GameStates gameState = GameStates.Menu;
         
+
+
         public static Texture2D spriteSheet;
         public static Texture2D menu;
         public static Texture2D heart;
@@ -53,7 +57,11 @@ namespace beethoven3
 
         const int SCR_W = 1024;
         const int SCR_H = 768;
-        //test
+
+        //점수위치
+        Vector2 scorePosition = new Vector2(605, 215);
+
+        
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -98,12 +106,16 @@ namespace beethoven3
         //nui.DepthFrameReady += new EventHandler<DepthImageFrameReadyEventArgs>(nui_DepthFrameReady);
         //nui.Start();
         //////
+
             spriteSheet = Content.Load<Texture2D>(@"Textures\SpriteSheet8");
             menu = Content.Load<Texture2D>(@"Textures\menu");
             heart = Content.Load<Texture2D>(@"Textures\heart");
             dot = Content.Load<Texture2D>(@"Textures\dot");
-            // TODO: use this.Content to load your game content here
            
+            pericles36Font = Content.Load<SpriteFont>(@"Fonts\Pericles36");
+
+            // TODO: use this.Content to load your game content here
+
           //  LineRenderer.LoadContent(content);
             
             Vector2 mark1Location = new Vector2(400, 70);
@@ -118,6 +130,8 @@ namespace beethoven3
                 spriteSheet,
                 new Rectangle(0, 200, 52, 55),
                 1);
+           // ScoreManager.initialize();
+
 
             MarkManager.initialize(
            // markManager = new MarkManager(
@@ -438,6 +452,8 @@ namespace beethoven3
                 goldGetManager.Draw(spriteBatch);
                 //가운데 빨간 사각형 주석하면 보이지않는다.
            //     spriteBatch.Draw(dot, removeAreaRec, Color.Red);
+
+                spriteBatch.DrawString(pericles36Font, "", scorePosition, Color.Black);
             }
 
             if (gameState == GameStates.SongMenu)

@@ -220,6 +220,15 @@
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\Fonts\damagefont.xnb</Output>
       <Time>2012-08-31T03:50:00+09:00</Time>
     </Item>
+    <Item>
+      <Source>Fonts\Pericles36.spritefont</Source>
+      <Name>Fonts\Pericles36</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\Fonts\Pericles36.xnb</Output>
+      <Time>2012-11-21T16:07:05.2798613+09:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

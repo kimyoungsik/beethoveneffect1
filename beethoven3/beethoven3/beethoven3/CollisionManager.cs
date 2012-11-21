@@ -43,15 +43,19 @@ namespace beethoven3
                 int judgment = dragNote.JudgedNote(mousePoint, 15.0f);
                 if (judgment == 2)
                 {
+                   
                     perfectManager.AddExplosion(dragNote.Center, Vector2.Zero);
                     DragNoteManager.DragNotes.RemoveAt(i);
+               //     ScoreManager.otherScore += 1;
                 }
 
                 //good
                 else if (judgment == 1)
                 {
+                   
                     perfectManager.AddExplosion(dragNote.Center, Vector2.Zero);
                     DragNoteManager.DragNotes.RemoveAt(i);
+                //    ScoreManager.otherScore += 1;
                 }
                 else
                 {
@@ -80,11 +84,14 @@ namespace beethoven3
                     //perfect
                     if(judgment == 2)
                     {
+
                         int mouseJudgment = MarkManager.Marks[number].MarkSprite.JudgedNote(mousePoint, 15.0f);
                         if (mouseJudgment != 0)
                         {
+                            
                             perfectManager.AddExplosion(littleNote.Center, Vector2.Zero);
                             StartNoteManager.rightNoteManager.LittleNotes.RemoveAt(x);
+                     //       ScoreManager.perfect += 1;
                         }
                 
                     }
@@ -95,9 +102,11 @@ namespace beethoven3
                         int mouseJudgment = MarkManager.Marks[number].MarkSprite.JudgedNote(mousePoint, 15.0f);
                         if (mouseJudgment != 0)
                         {
+                            
                             goodManager.AddExplosion(littleNote.Center, Vector2.Zero);
 
                             StartNoteManager.rightNoteManager.LittleNotes.RemoveAt(x);
+                     //       ScoreManager.gold += 1;
                         }
                     }
                     else
@@ -133,8 +142,10 @@ namespace beethoven3
                     int mouseJudgment = MarkManager.Marks[number].MarkSprite.JudgedNote(mousePoint, 15.0f);
                     if (mouseJudgment != 0)
                     {
+                        
                         perfectManager.AddExplosion(littleNote.Center, Vector2.Zero);
                         StartNoteManager.leftNoteManager.LittleNotes.RemoveAt(x);
+                 //       ScoreManager.perfect += 1;
                     }
                 }
 
@@ -146,6 +157,7 @@ namespace beethoven3
                     {
                         goodManager.AddExplosion(littleNote.Center, Vector2.Zero);
                         StartNoteManager.leftNoteManager.LittleNotes.RemoveAt(x);
+                     //   ScoreManager.good += 1;
                     }
                 }
                 else
@@ -221,6 +233,7 @@ namespace beethoven3
                      {
                          perfectManager.AddExplosion(littleNote.Center, Vector2.Zero);
                          StartNoteManager.longNoteManager.LittleNotes.RemoveAt(x);
+                  //       ScoreManager.perfect += 1;
                      }
                 }
 
@@ -233,6 +246,7 @@ namespace beethoven3
                          //롱노트 효과를 바꾸던지 아니면 하나의 효과만 나오게 하던지
                          perfectManager.AddExplosion(littleNote.Center, Vector2.Zero);
                          StartNoteManager.longNoteManager.LittleNotes.RemoveAt(x);
+                    //     ScoreManager.good += 1;
                      }
                 }
                 else
@@ -255,6 +269,7 @@ namespace beethoven3
                 {
                     goldGetManager.AddExplosion(gold.Center, Vector2.Zero);
                     GoldManager.Golds.RemoveAt(i);
+                 //   ScoreManager.gold += 1;
 
                 }
 

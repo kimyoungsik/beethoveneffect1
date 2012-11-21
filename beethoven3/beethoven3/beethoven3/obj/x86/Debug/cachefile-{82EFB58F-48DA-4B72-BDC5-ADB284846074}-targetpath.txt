@@ -25,3 +25,4 @@ Content\snd\jo.wma
 Content\snd\maid.xnb
 Content\snd\maid.wma
 Content\Fonts\damagefont.xnb
+Content\Fonts\Pericles36.xnb

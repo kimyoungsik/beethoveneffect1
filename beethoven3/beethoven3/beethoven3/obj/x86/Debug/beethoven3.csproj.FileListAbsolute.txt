@@ -94,3 +94,4 @@ D:\beethoven\beethoven3\beethoven3\beethoven3\obj\x86\Debug\ResolveAssemblyRefer
 D:\beethoven\beethoven3\beethoven3\beethoven3\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 D:\beethoven\beethoven3\beethoven3\beethoven3\obj\x86\Debug\beethoven3.exe
 D:\beethoven\beethoven3\beethoven3\beethoven3\obj\x86\Debug\beethoven3.pdb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\Fonts\Pericles36.xnb
