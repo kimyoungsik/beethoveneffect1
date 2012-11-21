@@ -50,8 +50,9 @@ namespace beethoven3
         ExplosionManager goodManager;
         ExplosionManager badManager;
         ExplosionManager goldGetManager;
-        MouseState mouseStateCurrent;   
+        MouseState mouseStateCurrent;
 
+        ScoreManager scoreManager;
         static public int mousex = 100; //X좌표
         static public int mousey = 100; //Y좌표
 
@@ -124,7 +125,7 @@ namespace beethoven3
             Vector2 mark4Location = new Vector2(400, 370);
             Vector2 mark5Location = new Vector2(300, 270);
             Vector2 mark6Location = new Vector2(300, 170);
-
+            scoreManager = new ScoreManager();
             
             startNoteManager = new StartNoteManager(
                 spriteSheet,
@@ -179,11 +180,11 @@ namespace beethoven3
               new Rectangle(0, 450, 2, 2),
               new Color(1f, 0.5f, 0.5f) * 0.5f,
               new Color(0f, 0f, 0f, 0f));
-            collisionManager = new CollisionManager(perfectManager, goodManager, badManager, goldGetManager);
+            collisionManager = new CollisionManager(perfectManager, goodManager, badManager, goldGetManager, scoreManager);
             
             
             NoteFileManager noteFileManager = new NoteFileManager();
-            file = new File(startNoteManager, noteFileManager, badManager);
+            file = new File(startNoteManager, noteFileManager, badManager, scoreManager);
             //곡선택화면에서
             //file.Loading("a.txt");
             String dir = "c:\\beethoven\\";
@@ -195,7 +196,8 @@ namespace beethoven3
                  6,
                  15,
                  0,
-                 badManager);
+                 badManager,
+                 scoreManager);
 
             //골드로 변경해야 함
             GoldManager.initialize(
@@ -367,6 +369,7 @@ namespace beethoven3
                     goodManager.Update(gameTime);
                     badManager.Update(gameTime);
                     goldGetManager.Update(gameTime);
+                    scoreManager.Update(gameTime);
                 break;
 
                 case GameStates.SongMenu:
@@ -381,39 +384,11 @@ namespace beethoven3
                     {
                         gameState = GameStates.Playing;
                         file.Loading(result);
-
-
                     }
 
                     break;  
             }
-            // TODO: Add your update logic here
-           
-            //if (gameState == GameStates.SongMenu)
-            //{
-
-            //}
-            //if (gameState == GameStates.Playing) 
-
-            //{
-            //    MarkManager.Update(gameTime);
-            //    startNoteManager.Update(gameTime);
-            //    HandleKeyboardInput(Keyboard.GetState());
-            //    HandleMouseInput(Mouse.GetState());
-
-            //    file.Update(spriteBatch, gameTime);
-            //    DragNoteManager.Update(gameTime);
-            //    perfectManager.Update(gameTime);
-            //    goodManager.Update(gameTime);
-            //}
-
-            //if (gameState == GameStates.GameOver)
-            //{
-
-            //}
-            
-
-            //spriteBatch.End();
+        
             base.Update(gameTime);
         }
 
@@ -452,8 +427,12 @@ namespace beethoven3
                 goldGetManager.Draw(spriteBatch);
                 //가운데 빨간 사각형 주석하면 보이지않는다.
            //     spriteBatch.Draw(dot, removeAreaRec, Color.Red);
-
-                spriteBatch.DrawString(pericles36Font, "", scorePosition, Color.Black);
+                int combo =  scoreManager.Combo;
+                int max = scoreManager.Max;
+                int total = scoreManager.TotalScore;
+                spriteBatch.DrawString(pericles36Font, combo.ToString(), scorePosition, Color.Black);
+                spriteBatch.DrawString(pericles36Font, max.ToString(), new Vector2(scorePosition.X + 80, scorePosition.Y), Color.Black);
+                spriteBatch.DrawString(pericles36Font, total.ToString(), new Vector2(scorePosition.X + 160, scorePosition.Y), Color.Black);
             }
 
             if (gameState == GameStates.SongMenu)

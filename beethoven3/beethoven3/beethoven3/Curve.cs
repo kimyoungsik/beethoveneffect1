@@ -157,7 +157,7 @@ namespace beethoven3
                         //드래그 노트 실패 띄우기 1
                         //맨 앞의 것만 지우게 되어있는데 문제 있으면 전부다 지우는것으로 .
 
-                        //DragNoteManager.DeleteDragNotes();
+                       
                     }
 
                     //따라다니면서 마크 찍는 것

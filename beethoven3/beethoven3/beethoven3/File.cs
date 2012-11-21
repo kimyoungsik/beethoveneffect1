@@ -34,11 +34,13 @@ namespace beethoven3
         private double time;
 
         private ExplosionManager badManager;
+
+        private ScoreManager scoreManager;
         #endregion
         
         #region constructor
 
-        public File(StartNoteManager startNoteManager, NoteFileManager noteFileManager, ExplosionManager badManager)       
+        public File(StartNoteManager startNoteManager, NoteFileManager noteFileManager, ExplosionManager badManager, ScoreManager scoreManager)       
         {
 
              this.startNoteManager = startNoteManager;
@@ -48,6 +50,8 @@ namespace beethoven3
              time = 0;
 
              this.badManager = badManager;
+
+             this.scoreManager = scoreManager;
         }
         
         #endregion
@@ -82,18 +86,6 @@ namespace beethoven3
         /// 파일의 내용을 읽어 allNotes 큐에 넣는다.
         /// </summary>
         /// <param name="fileName"></param>
-        //public void Loading(String fileName)
-        //{
-        //    StreamReader sr = new StreamReader(fileName);
-        //    //첫줄은 헤더
-        //    //sr.ReadLine();
-        //    while (sr.Peek() >= 0)
-        //    {            
-        //        String line = sr.ReadLine();
-        //        allNotes.Enqueue(line);
-        //    }
-        //    sr.Close();
-        //}
 
         public void Loading(int noteNumber)
         {
@@ -321,17 +313,21 @@ namespace beethoven3
                 if (drawLineTime >= processTime)
                 {
                     startNoteManager.MakeLongNote(startNoteNumber);
-                   // LineRenderer.DrawLine(Game1.spriteSheet, new Rectangle(200, 100, 50, 55), spriteBatch.GraphicsDevice, spriteBatch, StartNoteManager.longNoteManager.LittleNotes[0].Location, startNoteManager.StartNotes[this.startNoteNumber].StartNoteSprite.Location, Color.White);
-                    
+
                     //여기에서 손이 이곳에 있으면 되는것으로 
-
-
-                 
                       
                     if (checkLongNoteInCenterArea(startNoteNumber))
                     {
+                        
                         badManager.AddExplosion(StartNoteManager.longNoteManager.LittleNotes[0].Center, Vector2.Zero);
                         StartNoteManager.longNoteManager.LittleNotes.RemoveAt(0);
+                        scoreManager.Bad = scoreManager.Bad + 1;
+                        if (scoreManager.Combo > scoreManager.Max)
+                        {
+                            scoreManager.Max = scoreManager.Combo;
+                        }
+    
+                        scoreManager.Combo = 0;
                     }
                   
 
@@ -348,6 +344,9 @@ namespace beethoven3
 
                     }
                        // drawLine = false;
+                        //이게 어디엔가에 있어야 할 듯 . 
+
+                    
                     //if (StartNoteManager.longNoteManager.LittleNotes.Count >= 1)
                     //{
                     //    drawLine = false;
@@ -401,8 +400,18 @@ namespace beethoven3
                 
                 if (littleNote.IsBoxColliding(MarkManager.centerArea))
                 {
+
+
                     badManager.AddExplosion(littleNote.Center, Vector2.Zero);
                     StartNoteManager.rightNoteManager.LittleNotes.RemoveAt(i);
+                    scoreManager.Bad = scoreManager.Bad + 1;
+                    if (scoreManager.Combo > scoreManager.Max)
+                    {
+                        scoreManager.Max = scoreManager.Combo;
+                    }
+
+
+                    scoreManager.Combo = 0;
                 }
             
             }
@@ -422,6 +431,12 @@ namespace beethoven3
                 {
                     badManager.AddExplosion(littleNote.Center, Vector2.Zero);
                     StartNoteManager.leftNoteManager.LittleNotes.RemoveAt(i);
+                    scoreManager.Bad = scoreManager.Bad + 1;
+                    if (scoreManager.Combo > scoreManager.Max)
+                    {
+                        scoreManager.Max = scoreManager.Combo;
+                    }
+                    scoreManager.Combo = 0;
                 }
 
             }
@@ -445,20 +460,7 @@ namespace beethoven3
         }
 
 
-        //public bool checkLongNotePassCenter(int number)
-        //{
 
-        //    Sprite littleNote = StartNoteManager.longNoteManager.LittleNotes[0];
-
-
-        //   
-        //마커의 반지름으로
-        //    bool judgment = MarkManager.Marks[number].MarkSprite.JudgedCenter(
-        //        littleNote.Center,
-        //        littleNote.CollisionRadius);
-
-        //    return judgment;
-        //}
 
         /// <summary>
         /// 마커에 노트가 닿는 시간을 정확히 맞추기 위해서

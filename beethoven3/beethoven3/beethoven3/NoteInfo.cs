@@ -10,19 +10,23 @@ namespace beethoven3
     /// </summary>
     class NoteInfo
     {
+
+        #region declarations
         private bool isRight;
         private double startTime;
         private int markLocation;
+        #endregion
 
-
+        #region constructor
         public NoteInfo(bool isRight, double startTime, int markLocation)
         {
             this.isRight = isRight;
             this.startTime = startTime;
             this.markLocation = markLocation;
         }
+        #endregion
 
-
+        #region method
         public bool IsRight
         {
             get { return isRight; }
@@ -40,7 +44,7 @@ namespace beethoven3
             get { return markLocation; }
             set { markLocation = value; }
         }
-
+        #endregion
 
     }
 }

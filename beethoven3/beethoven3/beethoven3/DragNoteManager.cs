@@ -18,6 +18,8 @@ namespace beethoven3
         private static float NoteSpeed;
         private static int CollisionRadius;
         private static ExplosionManager BadManager;
+        private static ScoreManager ScoreManager;
+        
         #endregion
 
 
@@ -30,7 +32,8 @@ namespace beethoven3
             int frameCount,
             int collisionRadius,
             float noteSpeed,
-            ExplosionManager badManager
+            ExplosionManager badManager,
+            ScoreManager scoreManager
             )
         {
             Texture = texture;
@@ -39,6 +42,7 @@ namespace beethoven3
             CollisionRadius = collisionRadius;
             NoteSpeed = noteSpeed;
             BadManager = badManager;
+            ScoreManager = scoreManager;
         }
         #endregion
 
@@ -92,6 +96,17 @@ namespace beethoven3
                // {
                     BadManager.AddExplosion(DragNotes[i].Center, Vector2.Zero);
                     DragNotes.RemoveAt(i);
+                    ScoreManager.DragNoteScore = ScoreManager.DragNoteScore + 1;
+                    if (ScoreManager.Combo > ScoreManager.Max)
+                    {
+                        ScoreManager.Max = ScoreManager.Combo;
+                    }
+    
+
+                    ScoreManager.Combo = 0;
+                    
+
+
                // }
                // catch (ArgumentOutOfRangeException)
               //  {

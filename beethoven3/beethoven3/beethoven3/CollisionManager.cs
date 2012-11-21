@@ -9,23 +9,24 @@ namespace beethoven3
     class CollisionManager
     {
         #region declarations
-        //MarkManager
-       // private StartNoteManager startNoteManager;
-         //   private Vector2 offScreen = new Vector2(-500, -500);
-      //  private int judgment;
+
         private ExplosionManager perfectManager;
         private ExplosionManager  goodManager;
         private ExplosionManager badManager;
         private ExplosionManager goldGetManager;
+
+        private ScoreManager scoreManager;
         #endregion
 
         #region constructor
-        public CollisionManager(ExplosionManager perfectManager, ExplosionManager goodManager, ExplosionManager badManager,ExplosionManager goldGetManager)
+        public CollisionManager(ExplosionManager perfectManager, ExplosionManager goodManager, ExplosionManager badManager,ExplosionManager goldGetManager, ScoreManager scoreManager)
         {
             this.perfectManager = perfectManager;
             this.goodManager = goodManager;
             this.badManager = badManager;
             this.goldGetManager = goldGetManager;
+
+            this.scoreManager = scoreManager;
         }
         #endregion
 
@@ -46,9 +47,10 @@ namespace beethoven3
                    
                     perfectManager.AddExplosion(dragNote.Center, Vector2.Zero);
                     DragNoteManager.DragNotes.RemoveAt(i);
-               //     ScoreManager.otherScore += 1;
-                }
 
+                    scoreManager.DragNoteScore = scoreManager.DragNoteScore + 1;
+                    scoreManager.Combo = scoreManager.Combo + 1;
+                }
                 //good
                 else if (judgment == 1)
                 {
@@ -56,6 +58,8 @@ namespace beethoven3
                     perfectManager.AddExplosion(dragNote.Center, Vector2.Zero);
                     DragNoteManager.DragNotes.RemoveAt(i);
                 //    ScoreManager.otherScore += 1;
+                    scoreManager.DragNoteScore = scoreManager.DragNoteScore + 1;
+                    scoreManager.Combo = scoreManager.Combo + 1;
                 }
                 else
                 {
@@ -91,7 +95,9 @@ namespace beethoven3
                             
                             perfectManager.AddExplosion(littleNote.Center, Vector2.Zero);
                             StartNoteManager.rightNoteManager.LittleNotes.RemoveAt(x);
-                     //       ScoreManager.perfect += 1;
+                    
+                            scoreManager.Perfect = scoreManager.Perfect + 1;
+                            scoreManager.Combo = scoreManager.Combo + 1;
                         }
                 
                     }
@@ -106,7 +112,13 @@ namespace beethoven3
                             goodManager.AddExplosion(littleNote.Center, Vector2.Zero);
 
                             StartNoteManager.rightNoteManager.LittleNotes.RemoveAt(x);
-                     //       ScoreManager.gold += 1;
+                     
+                            scoreManager.Good = scoreManager.Good + 1;
+
+                            scoreManager.Combo = scoreManager.Combo + 1;
+
+                            
+
                         }
                     }
                     else
@@ -145,7 +157,9 @@ namespace beethoven3
                         
                         perfectManager.AddExplosion(littleNote.Center, Vector2.Zero);
                         StartNoteManager.leftNoteManager.LittleNotes.RemoveAt(x);
-                 //       ScoreManager.perfect += 1;
+                 
+                        scoreManager.Perfect = scoreManager.Perfect + 1;
+                        scoreManager.Combo = scoreManager.Combo + 1;
                     }
                 }
 
@@ -157,7 +171,9 @@ namespace beethoven3
                     {
                         goodManager.AddExplosion(littleNote.Center, Vector2.Zero);
                         StartNoteManager.leftNoteManager.LittleNotes.RemoveAt(x);
-                     //   ScoreManager.good += 1;
+                    
+                        scoreManager.Good = scoreManager.Good + 1;
+                        scoreManager.Combo = scoreManager.Combo + 1;
                     }
                 }
                 else
@@ -168,44 +184,7 @@ namespace beethoven3
         }
 
 
-        //private void checkDoubleNoteToMarker(int number)
-        //{
-
-        //    for (int x = 0; x < StartNoteManager.doubleNoteManager.LittleNotes.Count; x++)
-        //    {
-        //        Sprite littleNote = StartNoteManager.doubleNoteManager.LittleNotes[x];
-
-        //        //0:bad 1:good 2:perfect
-
-        //        ///노트의 반지름으로 
-        //        //judgment = littleNote.JudgedNote(
-        //        //    mark.MarkSprite.Center,
-        //        //    mark.MarkSprite.CollisionRadius);
-
-        //        //마커의 반지름으로
-        //        int judgment = MarkManager.Marks[number].MarkSprite.JudgedNote(
-        //            littleNote.Center,
-        //            littleNote.CollisionRadius);
-        //        //perfect
-        //        if (judgment == 2)
-        //        {
-        //            perfectManager.AddExplosion(littleNote.Center, Vector2.Zero);
-        //            StartNoteManager.doubleNoteManager.LittleNotes.RemoveAt(x);
-        //        }
-
-        //        //good
-        //        else if (judgment == 1)
-        //        {
-        //            goodManager.AddExplosion(littleNote.Center, Vector2.Zero);
-        //            StartNoteManager.doubleNoteManager.LittleNotes.RemoveAt(x);
-        //        }
-        //        else
-        //        {
-
-        //        }
-
-        //    }
-        //}
+     
 
         public void checkLongNoteToMarker(int number, Vector2 mousePoint)
         {
@@ -233,7 +212,9 @@ namespace beethoven3
                      {
                          perfectManager.AddExplosion(littleNote.Center, Vector2.Zero);
                          StartNoteManager.longNoteManager.LittleNotes.RemoveAt(x);
-                  //       ScoreManager.perfect += 1;
+
+                         scoreManager.LongNoteScore = scoreManager.LongNoteScore + 1;
+                         scoreManager.Combo = scoreManager.Combo + 1;
                      }
                 }
 
@@ -246,7 +227,9 @@ namespace beethoven3
                          //롱노트 효과를 바꾸던지 아니면 하나의 효과만 나오게 하던지
                          perfectManager.AddExplosion(littleNote.Center, Vector2.Zero);
                          StartNoteManager.longNoteManager.LittleNotes.RemoveAt(x);
-                    //     ScoreManager.good += 1;
+
+                         scoreManager.LongNoteScore = scoreManager.LongNoteScore + 1;
+                         scoreManager.Combo = scoreManager.Combo + 1;
                      }
                 }
                 else
@@ -269,21 +252,18 @@ namespace beethoven3
                 {
                     goldGetManager.AddExplosion(gold.Center, Vector2.Zero);
                     GoldManager.Golds.RemoveAt(i);
-                 //   ScoreManager.gold += 1;
+                 
+                    scoreManager.Gold = scoreManager.Gold + 1;
+
 
                 }
-
-
-
             }
-
-
         }
         public void CheckCollisions(int number,Vector2 mousePoint)
         {
             checkRightNoteToMarker(number, mousePoint);
             checkLeftNoteToMarker(number, mousePoint);
-         //   checkDoubleNoteToMarker(number);
+       
             checkLongNoteToMarker(number, mousePoint);
             checkGold(mousePoint);
         }

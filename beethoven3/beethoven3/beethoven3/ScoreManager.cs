@@ -2,23 +2,39 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using Microsoft.Xna.Framework;
 namespace beethoven3
 {
+    /// <summary>
+    /// 마지막에 max꼭 체크!!!!!!
+    /// 
+    /// </summary>
     class ScoreManager
     {
-
+        #region declarations
         private  int perfect;
         private  int good;
         private  int bad;
-        private  int max;
-        private  int otherScore;
-        private  int combo;
-        private  int perfomance;
-        private  int totalScore;
-        private  String rank;
-        private  int gold; 
 
+        private int gold;
+        
+
+        private  int longNoteScore;
+        private  int dragNoteScore;
+        
+        
+        private  int combo;
+
+        private int max;
+
+        private  int perfomance;
+        
+        private  int totalScore;
+        
+        private  String rank;
+        #endregion
+
+        #region constructor
         public  ScoreManager()
         {
             perfect = 0;
@@ -29,10 +45,14 @@ namespace beethoven3
             perfomance = 0;
             totalScore = 0;
             gold = 0;
-            otherScore = 0;
-            rank = "c";
+            longNoteScore = 0;
+            dragNoteScore = 0;
+        
+            rank = "";
         }
+        #endregion
 
+        #region method
         public int Perfect
         {
             get { return perfect; }
@@ -58,13 +78,18 @@ namespace beethoven3
             set { max = value; }
         }
 
-        //롱노트 드래그노트
-        public int OtherScore
+        //롱노트 
+        public int LongNoteScore
         {
-            get { return otherScore; }
-            set { otherScore = value; }
+            get { return longNoteScore; }
+            set { longNoteScore = value; }
         }
 
+        public int DragNoteScore
+        {
+            get { return dragNoteScore; }
+            set { dragNoteScore = value; }
+        }
         public int Combo
         {
             get { return combo; }
@@ -96,7 +121,22 @@ namespace beethoven3
             set { gold = value; }
         }
 
+       
+        #endregion
 
 
+        #region update
+        //totalScore구하기
+        public  void Update(GameTime gameTime)
+        {
+            TotalScore = 
+            (Perfect * 20)+
+            (Good * 10)+
+            (Perfomance * 100)+
+            (LongNoteScore)+
+            (DragNoteScore * 10);
+        }
+
+        #endregion
     }
 }
