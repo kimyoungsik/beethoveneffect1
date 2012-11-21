@@ -239,7 +239,7 @@ namespace beethoven3
 
                         startNoteManager.MakeLongNote(Int32.Parse(noteContents[2]));
                         startNoteNumber = Int32.Parse(noteContents[2]);
-                        drawLineTime = Convert.ToDouble(noteContents[3]);
+                        drawLineTime = Convert.ToDouble(noteContents[3]) + Convert.ToDouble(noteContents[0]);
                         drawLine = true;
                         break;
 
@@ -294,7 +294,8 @@ namespace beethoven3
         {
             if (drawLine)
             {
-
+                //drawLineTime => 그려지는 총 시간
+                //
                 if (drawLineTime >= processTime)
                 {
                     startNoteManager.MakeLongNote(startNoteNumber);
@@ -324,7 +325,7 @@ namespace beethoven3
                     {
 
                     }
-                        //drawLine = false;
+                       // drawLine = false;
                     //if (StartNoteManager.longNoteManager.LittleNotes.Count >= 1)
                     //{
                     //    drawLine = false;
