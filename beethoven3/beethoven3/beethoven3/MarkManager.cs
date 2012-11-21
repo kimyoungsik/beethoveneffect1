@@ -16,7 +16,7 @@ namespace beethoven3
         public static List<Mark> Marks = new List<Mark>();
         
         //가운데 빈공간 (노트들이 없어질 부분)
-        public static Rectangle centeraArea;
+        public static Rectangle centerArea;
 
 
         //쓸모 없을 수 도 있음
@@ -53,7 +53,7 @@ namespace beethoven3
             markTexture = texture;
             markInitialFrame = initialFrame;
             markFrameCount = frameCount;
-            centeraArea = area;
+            centerArea = area;
 
             startNoteManager = startNoteMana;
             

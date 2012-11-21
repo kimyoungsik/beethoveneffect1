@@ -2,15 +2,6 @@
 <XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline">
   <Asset Type="Pipeline:BuildItemCollection">
     <Item>
-      <Source>Tutorial\background.jpg</Source>
-      <Name>Tutorial\background</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\Tutorial\background.xnb</Output>
-      <Time>2012-11-14T13:30:09.725346+09:00</Time>
-    </Item>
-    <Item>
       <Source>Textures\SpriteSheet.png</Source>
       <Name>Textures\SpriteSheet</Name>
       <Importer>TextureImporter</Importer>
@@ -72,24 +63,6 @@
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\Textures\menu.xnb</Output>
       <Time>2012-11-14T11:06:41.7930972+09:00</Time>
-    </Item>
-    <Item>
-      <Source>Tutorial\arrow1.png</Source>
-      <Name>Tutorial\arrow1</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\Tutorial\arrow1.xnb</Output>
-      <Time>2012-11-14T12:27:52.0045606+09:00</Time>
-    </Item>
-    <Item>
-      <Source>Tutorial\arrow2.png</Source>
-      <Name>Tutorial\arrow2</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\Tutorial\arrow2.xnb</Output>
-      <Time>2012-11-14T12:27:52.0085608+09:00</Time>
     </Item>
     <Item>
       <Source>Tutorial\top1.png</Source>
@@ -155,186 +128,6 @@
       <Time>2012-11-14T12:27:52.0205615+09:00</Time>
     </Item>
     <Item>
-      <Source>Tutorial\tutorial1.png</Source>
-      <Name>Tutorial\tutorial1</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\Tutorial\tutorial1.xnb</Output>
-      <Time>2012-11-14T12:27:52.0225616+09:00</Time>
-    </Item>
-    <Item>
-      <Source>Tutorial\tutorial10.png</Source>
-      <Name>Tutorial\tutorial10</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\Tutorial\tutorial10.xnb</Output>
-      <Time>2012-11-14T12:27:52.0455629+09:00</Time>
-    </Item>
-    <Item>
-      <Source>Tutorial\tutorial11.png</Source>
-      <Name>Tutorial\tutorial11</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\Tutorial\tutorial11.xnb</Output>
-      <Time>2012-11-14T12:27:52.2155726+09:00</Time>
-    </Item>
-    <Item>
-      <Source>Tutorial\tutorial12.png</Source>
-      <Name>Tutorial\tutorial12</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\Tutorial\tutorial12.xnb</Output>
-      <Time>2012-11-14T12:27:52.222573+09:00</Time>
-    </Item>
-    <Item>
-      <Source>Tutorial\tutorial13.png</Source>
-      <Name>Tutorial\tutorial13</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\Tutorial\tutorial13.xnb</Output>
-      <Time>2012-11-14T12:27:52.2295734+09:00</Time>
-    </Item>
-    <Item>
-      <Source>Tutorial\tutorial14.png</Source>
-      <Name>Tutorial\tutorial14</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\Tutorial\tutorial14.xnb</Output>
-      <Time>2012-11-14T12:27:52.2365738+09:00</Time>
-    </Item>
-    <Item>
-      <Source>Tutorial\tutorial15.png</Source>
-      <Name>Tutorial\tutorial15</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\Tutorial\tutorial15.xnb</Output>
-      <Time>2012-11-14T12:27:52.2425742+09:00</Time>
-    </Item>
-    <Item>
-      <Source>Tutorial\tutorial16.png</Source>
-      <Name>Tutorial\tutorial16</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\Tutorial\tutorial16.xnb</Output>
-      <Time>2012-11-14T12:27:52.2505746+09:00</Time>
-    </Item>
-    <Item>
-      <Source>Tutorial\tutorial17.png</Source>
-      <Name>Tutorial\tutorial17</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\Tutorial\tutorial17.xnb</Output>
-      <Time>2012-11-14T12:27:52.2585751+09:00</Time>
-    </Item>
-    <Item>
-      <Source>Tutorial\tutorial18.png</Source>
-      <Name>Tutorial\tutorial18</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\Tutorial\tutorial18.xnb</Output>
-      <Time>2012-11-14T12:27:52.2655755+09:00</Time>
-    </Item>
-    <Item>
-      <Source>Tutorial\tutorial19.png</Source>
-      <Name>Tutorial\tutorial19</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\Tutorial\tutorial19.xnb</Output>
-      <Time>2012-11-14T12:27:52.273576+09:00</Time>
-    </Item>
-    <Item>
-      <Source>Tutorial\tutorial2.png</Source>
-      <Name>Tutorial\tutorial2</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\Tutorial\tutorial2.xnb</Output>
-      <Time>2012-11-14T12:27:52.0245617+09:00</Time>
-    </Item>
-    <Item>
-      <Source>Tutorial\tutorial20.png</Source>
-      <Name>Tutorial\tutorial20</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\Tutorial\tutorial20.xnb</Output>
-      <Time>2012-11-14T12:27:52.2815764+09:00</Time>
-    </Item>
-    <Item>
-      <Source>Tutorial\tutorial3.png</Source>
-      <Name>Tutorial\tutorial3</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\Tutorial\tutorial3.xnb</Output>
-      <Time>2012-11-14T12:27:52.0275619+09:00</Time>
-    </Item>
-    <Item>
-      <Source>Tutorial\tutorial4.png</Source>
-      <Name>Tutorial\tutorial4</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\Tutorial\tutorial4.xnb</Output>
-      <Time>2012-11-14T12:27:52.029562+09:00</Time>
-    </Item>
-    <Item>
-      <Source>Tutorial\tutorial5.png</Source>
-      <Name>Tutorial\tutorial5</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\Tutorial\tutorial5.xnb</Output>
-      <Time>2012-11-14T12:27:52.0315621+09:00</Time>
-    </Item>
-    <Item>
-      <Source>Tutorial\tutorial6.png</Source>
-      <Name>Tutorial\tutorial6</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\Tutorial\tutorial6.xnb</Output>
-      <Time>2012-11-14T12:27:52.0345623+09:00</Time>
-    </Item>
-    <Item>
-      <Source>Tutorial\tutorial7.png</Source>
-      <Name>Tutorial\tutorial7</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\Tutorial\tutorial7.xnb</Output>
-      <Time>2012-11-14T12:27:52.0375625+09:00</Time>
-    </Item>
-    <Item>
-      <Source>Tutorial\tutorial8.png</Source>
-      <Name>Tutorial\tutorial8</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\Tutorial\tutorial8.xnb</Output>
-      <Time>2012-11-14T12:27:52.0405626+09:00</Time>
-    </Item>
-    <Item>
-      <Source>Tutorial\tutorial9.png</Source>
-      <Name>Tutorial\tutorial9</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\Tutorial\tutorial9.xnb</Output>
-      <Time>2012-11-14T12:27:52.0435628+09:00</Time>
-    </Item>
-    <Item>
       <Source>Title\box.png</Source>
       <Name>Title\box</Name>
       <Importer>TextureImporter</Importer>
@@ -380,6 +173,15 @@
       <Time>2012-11-14T15:28:56.9540001+09:00</Time>
     </Item>
     <Item>
+      <Source>Textures\dot.bmp</Source>
+      <Name>Textures\dot</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\Textures\dot.xnb</Output>
+      <Time>2012-11-21T10:47:25.9729367+09:00</Time>
+    </Item>
+    <Item>
       <Source>snd\ka.mp3</Source>
       <Name>snd\ka</Name>
       <Importer>Mp3Importer</Importer>
@@ -417,15 +219,6 @@
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\Fonts\damagefont.xnb</Output>
       <Time>2012-08-31T03:50:00+09:00</Time>
-    </Item>
-    <Item>
-      <Source>Textures\dot.bmp</Source>
-      <Name>Textures\dot</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Debug\Content\Textures\dot.xnb</Output>
-      <Time>2012-11-21T10:47:25.9729367+09:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

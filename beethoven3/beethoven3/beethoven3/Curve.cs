@@ -24,11 +24,12 @@ namespace beethoven3
 
         private double dotTime = 0.0f;
         private double dotChangedTime = 0.0f;
-
+        
         private Vector2 currentPosition;
         private int count = 0;
 
         private bool end = false;
+
 
         #endregion
 
@@ -44,6 +45,7 @@ namespace beethoven3
         public Curve(Vector2 p0, Vector2 p1, Vector2 p2, Vector2 p3, double time)
         {
             SetLine(p0, p1, p2, p3, time);
+       
         }
         #endregion
 
@@ -130,6 +132,8 @@ namespace beethoven3
 
                     //라인 그리기
                     LineRenderer.DrawLine(Game1.spriteSheet, new Rectangle(0, 0, 50, 50), spriteBatch.GraphicsDevice, spriteBatch, (Vector2)Points[i], (Vector2)Points[j], Color.White);
+
+                    
                 }
 
                 if (dotChangedTime >= dotTime && PointsQueue.Count > 1)
@@ -142,13 +146,22 @@ namespace beethoven3
                         DragNoteManager.MakeDragNote(currentPosition, new Vector2(0,0));
                     }
                     count++;
+                    if (count == 10)
+                    {
+                        DragNoteManager.DeleteDragNotes();
+                    }
                     if (count == 20)
                     {
                         count = 0;
-                        DragNoteManager.DeleteDragNoteFromFront();
+                        
+                        //드래그 노트 실패 띄우기 1
+                        //맨 앞의 것만 지우게 되어있는데 문제 있으면 전부다 지우는것으로 .
+
+                        //DragNoteManager.DeleteDragNotes();
                     }
 
                     //따라다니면서 마크 찍는 것
+                    //공굴러가거나 움직이는 스프라이트로 너무 깜빡인다 싶으면 20을 좀 줄이면 됨
                     LineRenderer.DrawLine(Game1.spriteSheet, new Rectangle(0, 100, 50, 50), spriteBatch.GraphicsDevice, spriteBatch, (Vector2)PointsQueue.Dequeue(), (Vector2)PointsQueue.Peek(), Color.White);
                     dotChangedTime = 0.0f;
 
@@ -159,9 +172,14 @@ namespace beethoven3
                     {
                         //지워지기 시작 
                         DeleteAllPoints();
-
+                        
                         //지워지기 시작하면 true -> 화면에서 안보이게 함
                         end = true;
+                        
+                        //마지막남은 것 지우기
+
+                        //드래그 노트 실패 띄우기 2
+                        DragNoteManager.DeleteDragNotes();
                         
                     }
 

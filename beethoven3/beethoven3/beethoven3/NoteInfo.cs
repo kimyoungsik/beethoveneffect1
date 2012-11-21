@@ -10,18 +10,24 @@ namespace beethoven3
     /// </summary>
     class NoteInfo
     {
-
+        private bool isRight;
         private double startTime;
         private int markLocation;
 
 
-        public NoteInfo(double startTime, int markLocation)
+        public NoteInfo(bool isRight, double startTime, int markLocation)
         {
+            this.isRight = isRight;
             this.startTime = startTime;
             this.markLocation = markLocation;
         }
 
 
+        public bool IsRight
+        {
+            get { return isRight; }
+            set { isRight = value; }
+        }
 
         public double StartTime
         {

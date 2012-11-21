@@ -15,19 +15,24 @@ namespace beethoven3
       //  private int judgment;
         private ExplosionManager perfectManager;
         private ExplosionManager  goodManager;
+        private ExplosionManager badManager;
         #endregion
 
         #region constructor
-        public CollisionManager(ExplosionManager perfectManager, ExplosionManager goodManager)
+        public CollisionManager(ExplosionManager perfectManager, ExplosionManager goodManager, ExplosionManager badManager)
         {
             this.perfectManager = perfectManager;
             this.goodManager = goodManager;
+            this.badManager = badManager;
         }
         #endregion
 
         #region method
 
-       
+       /// <summary>
+       /// 드래그노트 와 마우스 만. (이건 마크가 없다)
+       /// </summary>
+       /// <param name="mousePoint"></param>
         public void checkDragNote(Vector2 mousePoint)
         {
             for (int i = 0; i < DragNoteManager.DragNotes.Count(); i++ )
@@ -36,23 +41,23 @@ namespace beethoven3
                 int judgment = dragNote.JudgedNote(mousePoint, 15.0f);
                 if (judgment == 2)
                 {
-                    
+                    perfectManager.AddExplosion(dragNote.Center, Vector2.Zero);
                     DragNoteManager.DragNotes.RemoveAt(i);
                 }
 
-                        //good
+                //good
                 else if (judgment == 1)
                 {
-                    
+                    perfectManager.AddExplosion(dragNote.Center, Vector2.Zero);
                     DragNoteManager.DragNotes.RemoveAt(i);
                 }
                 else
                 {
-
+                  
                 }
             }
         }
-
+        
         private void checkRightNoteToMarker(int number,Vector2 mousePoint)
         {
             for (int x = 0; x < StartNoteManager.rightNoteManager.LittleNotes.Count;  x++)
@@ -221,7 +226,8 @@ namespace beethoven3
                      int mouseJudgment = MarkManager.Marks[number].MarkSprite.JudgedNote(mousePoint, 15.0f);
                      if (mouseJudgment != 0)
                      {
-                         goodManager.AddExplosion(littleNote.Center, Vector2.Zero);
+                         //롱노트 효과를 바꾸던지 아니면 하나의 효과만 나오게 하던지
+                         perfectManager.AddExplosion(littleNote.Center, Vector2.Zero);
                          StartNoteManager.longNoteManager.LittleNotes.RemoveAt(x);
                      }
                 }

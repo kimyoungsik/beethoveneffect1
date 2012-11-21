@@ -33,18 +33,21 @@ namespace beethoven3
         private int currentRightNoteIndex;
         private double time;
 
-
+        private ExplosionManager badManager;
         #endregion
         
         #region constructor
 
-        public File(StartNoteManager startNoteManager, NoteFileManager noteFileManager)       
+        public File(StartNoteManager startNoteManager, NoteFileManager noteFileManager, ExplosionManager badManager)       
         {
+
              this.startNoteManager = startNoteManager;
              this.noteFileManager = noteFileManager;
              rightNoteMarks = new NoteInfo[100];
              currentRightNoteIndex = 0;
              time = 0;
+
+             this.badManager = badManager;
         }
         
         #endregion
@@ -63,18 +66,15 @@ namespace beethoven3
             {
 
                 StreamReader sr = new StreamReader(files[i]);
-                
+
                 String line = sr.ReadLine();
-                String[] info =line.Split(' ');
-                    
-                    //0: version , 1:name , 2: artist, 3: mp3, 4: picture
+                String[] info = line.Split(' ');
+
+                //0: version , 1:name , 2: artist, 3: mp3, 4: picture
                 noteFileManager.Add(info[0], info[1], info[2], info[3], info[4]);
 
-                
+
             }
-
-
-
         }
 
 
@@ -114,8 +114,14 @@ namespace beethoven3
                     if (Int32.Parse(noteLine[1]) == 0)
                     {
                         //가이드라인을 긋기위해 오른손 노트만 모아둠
-                        rightNoteMarks[index] = new NoteInfo(Convert.ToDouble(noteLine[0]), Int32.Parse(noteLine[2]));
+                        rightNoteMarks[index] = new NoteInfo(true, Convert.ToDouble(noteLine[0]), Int32.Parse(noteLine[2]));
                         index++;
+                    }
+                    else
+                    {
+                        rightNoteMarks[index] = new NoteInfo(false, Convert.ToDouble(noteLine[0]), Int32.Parse(noteLine[2]));
+                        index++;
+
                     }
                 }
                 catch (IndexOutOfRangeException)
@@ -207,18 +213,24 @@ namespace beethoven3
                             //현재오른손노트와 다음 노트와 연결, 그리고 그 다음 노트와 연결
                              //시작점,제어점1,제어점2,끝점,지속시간
 
-                            //골드라인
-                            DrawGuidLine(rightNoteMarks[currentRightNoteIndex].MarkLocation, rightNoteMarks[currentRightNoteIndex + 1].MarkLocation, true);
-                            //일반 가이드라인
-                            DrawGuidLine(rightNoteMarks[currentRightNoteIndex+1].MarkLocation, rightNoteMarks[currentRightNoteIndex + 2].MarkLocation, false);
-
+                            //outof range로 문제 될 수 있음
+                            if (rightNoteMarks[currentRightNoteIndex].IsRight && rightNoteMarks[currentRightNoteIndex + 1].IsRight)
+                            {
+                                //골드라인
+                                DrawGuidLine(rightNoteMarks[currentRightNoteIndex].MarkLocation, rightNoteMarks[currentRightNoteIndex + 1].MarkLocation, true);
+                            }
+                            if (rightNoteMarks[currentRightNoteIndex+1].IsRight && rightNoteMarks[currentRightNoteIndex + 2].IsRight)
+                            {
+                                //일반 가이드라인
+                                DrawGuidLine(rightNoteMarks[currentRightNoteIndex + 1].MarkLocation, rightNoteMarks[currentRightNoteIndex + 2].MarkLocation, false);
+                            }
                         }
                         catch (IndexOutOfRangeException)
                         {
 
                         }
 
-                        currentRightNoteIndex++;
+                        
 
                         break;
 
@@ -235,8 +247,13 @@ namespace beethoven3
 
                     //롱노트
                     case 3:
-
-
+                       /* 다른것도 마찬가지이지만 롱노트가 여러개가 동시에 만들어질 경우
+                        하나 밖에 나오지 않는다.
+                        이것을 해결하려면. 바로 이곳에서 noteManager class의 객체를 만들어야 한다. 
+                        하지만 이곳은 그냥 만들어진 객체에 add 하는것일 뿐이다. 
+                        물론 객체를 계속 만들고 지우는것도 가능하다.
+                        필요하다면 만들 수 도 있다.
+                        */
                         startNoteManager.MakeLongNote(Int32.Parse(noteContents[2]));
                         startNoteNumber = Int32.Parse(noteContents[2]);
                         drawLineTime = Convert.ToDouble(noteContents[3]) + Convert.ToDouble(noteContents[0]);
@@ -252,6 +269,9 @@ namespace beethoven3
                 }
                 allNotes.Dequeue();
                 newNote = true;
+
+                //오른손노트를 true로 되어있는 array의 index를 하나씩 증가시시키는 값.
+                currentRightNoteIndex++;
             }
           
         }
@@ -292,6 +312,8 @@ namespace beethoven3
 
         public void DrawLineInLongNote(SpriteBatch spriteBatch, double processTime)
         {
+           //drawLine필요성 여부 검토
+            //필요하긴 하다. startNoteNumber이 null이 안되도록 한다.
             if (drawLine)
             {
                 //drawLineTime => 그려지는 총 시간
@@ -305,10 +327,10 @@ namespace beethoven3
 
 
                  
-                        //중간을 거쳤기 때문에 다 지나가면 0 이나올 것이다.
+                      
                     if (checkLongNoteInCenterArea(startNoteNumber))
                     {
-
+                        badManager.AddExplosion(StartNoteManager.longNoteManager.LittleNotes[0].Center, Vector2.Zero);
                         StartNoteManager.longNoteManager.LittleNotes.RemoveAt(0);
                     }
                   
@@ -349,17 +371,64 @@ namespace beethoven3
 
         //    return judgment;
         //}
-
+        /// <summary>
+        /// 롱노트 사각형 만나면 사라지게끔
+        /// </summary>
+        /// <param name="number"></param>
+        /// <returns></returns>
         public bool checkLongNoteInCenterArea(int number)
         {
             Sprite littleNote = StartNoteManager.longNoteManager.LittleNotes[0];
 
 
-            bool judgment = littleNote.IsBoxColliding(MarkManager.centeraArea);
+            bool judgment = littleNote.IsBoxColliding(MarkManager.centerArea);
 
             return judgment;
 
         }
+
+
+        /// <summary>
+        /// 오른 손 노트 사각형 범위 들어가면 삭제 , 반복문 돌 필요가 없는지 다시 검토
+        /// </summary>
+        public void CheckRightNoteInCenterArea()
+        {
+            int i;
+            for (i=0; i<StartNoteManager.rightNoteManager.LittleNotes.Count; i++ )
+            {
+                 Sprite littleNote = StartNoteManager.rightNoteManager.LittleNotes[i];
+
+                
+                if (littleNote.IsBoxColliding(MarkManager.centerArea))
+                {
+                    badManager.AddExplosion(littleNote.Center, Vector2.Zero);
+                    StartNoteManager.rightNoteManager.LittleNotes.RemoveAt(i);
+                }
+            
+            }
+            
+
+        }
+
+        public void CheckLeftNoteInCenterArea()
+        {
+            int i;
+            for (i = 0; i < StartNoteManager.leftNoteManager.LittleNotes.Count; i++)
+            {
+                Sprite littleNote = StartNoteManager.leftNoteManager.LittleNotes[i];
+
+
+                if (littleNote.IsBoxColliding(MarkManager.centerArea))
+                {
+                    badManager.AddExplosion(littleNote.Center, Vector2.Zero);
+                    StartNoteManager.leftNoteManager.LittleNotes.RemoveAt(i);
+                }
+
+            }
+
+
+        }
+
 
         public int checkLongNoteToMarker(int number)
         {
@@ -382,7 +451,8 @@ namespace beethoven3
         //    Sprite littleNote = StartNoteManager.longNoteManager.LittleNotes[0];
 
 
-        //    //마커의 반지름으로
+        //   
+        //마커의 반지름으로
         //    bool judgment = MarkManager.Marks[number].MarkSprite.JudgedCenter(
         //        littleNote.Center,
         //        littleNote.CollisionRadius);
@@ -412,7 +482,9 @@ namespace beethoven3
 
         public void Update(SpriteBatch spriteBatch, GameTime gameTime)
         {
-        //   double time = gameTime.TotalGameTime.TotalSeconds;
+            //오른노트가 사각형 범위로 가면 지워지도록
+            CheckRightNoteInCenterArea();
+            CheckLeftNoteInCenterArea();
             this.time += gameTime.ElapsedGameTime.TotalSeconds;
             FindNote(this.time);
         }

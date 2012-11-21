@@ -17,7 +17,7 @@ namespace beethoven3
         private static int FrameCount;
         private static float NoteSpeed;
         private static int CollisionRadius;
-     
+        private static ExplosionManager BadManager;
         #endregion
 
 
@@ -29,8 +29,8 @@ namespace beethoven3
             Rectangle initialFrame,
             int frameCount,
             int collisionRadius,
-            float noteSpeed
-            
+            float noteSpeed,
+            ExplosionManager badManager
             )
         {
             Texture = texture;
@@ -38,6 +38,7 @@ namespace beethoven3
             FrameCount = frameCount;
             CollisionRadius = collisionRadius;
             NoteSpeed = noteSpeed;
+            BadManager = badManager;
         }
         #endregion
 
@@ -69,17 +70,35 @@ namespace beethoven3
 
         public static void DeleteDragNoteFromFront()
         {
-            try
+            if (DragNotes.Count > 0)
             {
+                try
+                {
 
-                DragNotes.RemoveAt(0);
-            }
-            catch (ArgumentOutOfRangeException)
-            {
-                
+                    DragNotes.RemoveAt(0);
+                }
+                catch (ArgumentOutOfRangeException)
+                {
+
+                }
             }
         }
+        public static void DeleteDragNotes()
+        {
+            int i;
+            for (i = 0; i < DragNotes.Count; i++ )
+            {
+               // try
+               // {
+                    BadManager.AddExplosion(DragNotes[i].Center, Vector2.Zero);
+                    DragNotes.RemoveAt(i);
+               // }
+               // catch (ArgumentOutOfRangeException)
+              //  {
 
+               // }
+            }
+        }
 
         #endregion
 

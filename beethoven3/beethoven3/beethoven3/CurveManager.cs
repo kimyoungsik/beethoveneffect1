@@ -14,8 +14,7 @@ namespace beethoven3
 
       //  public static List<Curve> GuideLines = new List<Curve>();
         #endregion
-
-        
+          
         #region method
         /// <summary>
         /// 커브곡선 추가

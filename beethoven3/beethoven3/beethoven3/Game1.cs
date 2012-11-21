@@ -44,6 +44,7 @@ namespace beethoven3
         File file;
         ExplosionManager perfectManager;
         ExplosionManager goodManager;
+        ExplosionManager badManager;
         MouseState mouseStateCurrent;   
 
         static public int mousex = 100; //X좌표
@@ -148,10 +149,18 @@ namespace beethoven3
                  new Color(0f, 0f, 1.0f) * 0.5f,
                  new Color(0f, 0f, 0f, 0f));
 
-            collisionManager = new CollisionManager(perfectManager, goodManager);
-
+            badManager = new ExplosionManager(
+                 spriteSheet,
+                 new Rectangle(0, 100, 50, 50),
+                 3,
+                 new Rectangle(0, 450, 2, 2),
+                 new Color(0f, 1.0f, 0f) * 0.5f,
+                 new Color(0f, 0f, 0f, 0f));
+            collisionManager = new CollisionManager(perfectManager, goodManager, badManager);
+            
+            
             NoteFileManager noteFileManager = new NoteFileManager();
-            file = new File(startNoteManager, noteFileManager);
+            file = new File(startNoteManager, noteFileManager, badManager);
             //곡선택화면에서
             //file.Loading("a.txt");
             String dir = "c:\\beethoven\\";
@@ -162,7 +171,8 @@ namespace beethoven3
                  new Rectangle(0, 100, 50, 50),
                  6,
                  15,
-                 0);
+                 0,
+                 badManager);
 
             //골드로 변경해야 함
             GoldManager.initialize(
@@ -241,6 +251,7 @@ namespace beethoven3
            // if (mouseState.LeftButton == ButtonState.Pressed)
           //  {
                 collisionManager.checkDragNote(new Vector2(mouseStateCurrent.X,mouseStateCurrent.Y));
+
                 collisionManager.CheckCollisions(0, new Vector2(mouseStateCurrent.X, mouseStateCurrent.Y));
 
                 collisionManager.CheckCollisions(1, new Vector2(mouseStateCurrent.X, mouseStateCurrent.Y));
@@ -331,6 +342,7 @@ namespace beethoven3
                     GoldManager.Update(gameTime);
                     perfectManager.Update(gameTime);
                     goodManager.Update(gameTime);
+                    badManager.Update(gameTime);
                 break;
 
                 case GameStates.SongMenu:
@@ -404,13 +416,17 @@ namespace beethoven3
                 CurveManager.Draw(gameTime, spriteBatch);
                 GuideLineManager.Draw(gameTime, spriteBatch);
                 //이걸 주석하면 드래그노트 체크하는거 안보임 하지만 체크는 됨
-                DragNoteManager.Draw(spriteBatch);
+                //DragNoteManager.Draw(spriteBatch);
+               
+                
                 GoldManager.Draw(spriteBatch);
 
                 file.Draw(spriteBatch, gameTime);
                 perfectManager.Draw(spriteBatch);
                 goodManager.Draw(spriteBatch);
-                spriteBatch.Draw(dot, removeAreaRec, Color.Red);
+                badManager.Draw(spriteBatch);
+                //가운데 빨간 사각형 주석하면 보이지않는다.
+           //     spriteBatch.Draw(dot, removeAreaRec, Color.Red);
             }
 
             if (gameState == GameStates.SongMenu)
