@@ -25,6 +25,14 @@ namespace beethoven3
 
         SpriteFont pericles36Font;
 
+        //////////////////FPS, 성능
+        //private float fps;
+        //private float updateInterval = 1.0f;
+        //private float timeSinceLastUpdate = 0.0f;
+        //private float framecourt = 0;
+
+
+
         //KINECT
         //KinectSensor nui = null;
         //Texture2D KinectDepthTexture;
@@ -71,8 +79,16 @@ namespace beethoven3
             graphics.PreferredBackBufferHeight = SCR_H;
             graphics.PreferredBackBufferWidth = SCR_W;
 
-        
-        }
+
+            ////////////////FPS, 성능
+        //    //Draw 메서드를 모니터의 수직회귀(vertical retrace) 속도에 동기화 하지 말것
+        //    //fps를 60으로 제한 하지 않기
+        //    graphics.SynchronizeWithVerticalRetrace = false;
+
+        //    //update 메서드는 여전히 기본값인 1/60초의 속도로 호출할 것
+        //    //현재 targetElapsedTime 이 1/60으로 되어 있고, 이것을 바꾸고 싶으면 바꿔도 됨.
+        //    IsFixedTimeStep = true;
+        //}
 
         /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
@@ -211,48 +227,7 @@ namespace beethoven3
             
         }
 
-        //void nui_DepthFrameReady(object sender, DepthImageFrameReadyEventArgs e)
-        //{
-
-        //    short[] depthData = null;
-
-        //    using (DepthImageFrame ImageParam = e.OpenDepthImageFrame())
-        //    {
-        //        if (ImageParam == null) return;
-
-        //        if (depthData == null)
-        //            depthData = new short[ImageParam.Width * ImageParam.Height];
-
-        //        ImageParam.CopyPixelDataTo(depthData);
-
-
-
-
-        //        Color[] bitmap = new Color[ImageParam.Width * ImageParam.Height];
-
-        //        for (int i = 0; i < bitmap.Length; i++)
-        //        {
-
-        //            int depth = depthData[i] >> 3;
-        //            if (depth == nui.DepthStream.UnknownDepth)
-        //                bitmap[i] = Color.Red;
-        //            else
-        //                if (depth == nui.DepthStream.TooFarDepth)
-        //                    bitmap[i] = Color.Blue;
-        //                else
-        //                    if (depth == nui.DepthStream.TooNearDepth)
-        //                        bitmap[i] = Color.Green;
-        //                    else
-        //                    {
-        //                        byte depthByte = (byte)(255 - (depth >> 5));
-        //                        bitmap[i] = new Color(depthByte, depthByte, depthByte, 255);
-        //                    }
-        //        }
-        //        KinectDepthTexture = new Texture2D(GraphicsDevice, ImageParam.Width, ImageParam.Height);
-        //        KinectDepthTexture.SetData(bitmap);
-                
-        //    }
-        //}
+     
         public void LoadSound()
         {
             int count = SoundManager.sndFiles.Count();
@@ -272,10 +247,7 @@ namespace beethoven3
         }
         private void HandleMouseInput(MouseState mouseState)
         {
-            //눌렀을때만.
-           // if (mouseState.LeftButton == ButtonState.Pressed)
-          //  {
-                collisionManager.checkDragNote(new Vector2(mouseStateCurrent.X,mouseStateCurrent.Y));
+             collisionManager.checkDragNote(new Vector2(mouseStateCurrent.X,mouseStateCurrent.Y));
 
                 collisionManager.CheckCollisions(0, new Vector2(mouseStateCurrent.X, mouseStateCurrent.Y));
 
@@ -288,9 +260,7 @@ namespace beethoven3
                 collisionManager.CheckCollisions(4, new Vector2(mouseStateCurrent.X, mouseStateCurrent.Y));
 
                 collisionManager.CheckCollisions(5, new Vector2(mouseStateCurrent.X, mouseStateCurrent.Y));
-               
-          //  }
-
+         
         }
 
 
@@ -340,12 +310,7 @@ namespace beethoven3
 
             mouseStateCurrent = Mouse.GetState();
 
-     //       mousex = mouseStateCurrent.X;
-     //       mousey = mouseStateCurrent.Y;
-     //          Window.Title = "|"+mousex + "|"+ mousey;
-
-     //       mouseRect = new Rectangle(mouseStateCurrent.X, mouseStateCurrent.Y, 5, 5);
-            switch (gameState)
+           switch (gameState)
             {
                 case GameStates.Menu:
 
@@ -398,6 +363,23 @@ namespace beethoven3
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
+            ////////////////FPS, 성능
+            //float elapsed = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            //framecourt++;
+
+            ////새로운 프레임 속도를 표시할 만큼 충분한 시간이 경과했는지 검사(지금은 updateInterval 1초로 설정됨)
+            
+            //timeSinceLastUpdate += elapsed;
+            //if (timeSinceLastUpdate > updateInterval)
+            //{
+            //    fps = framecourt / timeSinceLastUpdate; //실질적으로 fps/updateInterval (프레임카운트를 지난번 계산으로부터 경과한 시간으로 나눔)
+            //    Window.Title = "FPS: " + fps.ToString() +
+            //        " - 게임시간: " + gameTime.ElapsedGameTime.TotalSeconds.ToString();
+            //    framecourt = 0;
+            //    timeSinceLastUpdate -= updateInterval;
+            //}
+
+
             GraphicsDevice.Clear(Color.White);
             spriteBatch.Begin();
             if (gameState == GameStates.Menu)
@@ -441,8 +423,7 @@ namespace beethoven3
 
             }
             spriteBatch.End();
-            // TODO: Add your drawing code here
-
+            
             base.Draw(gameTime);
         }
 
