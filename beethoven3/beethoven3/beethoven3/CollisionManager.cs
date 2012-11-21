@@ -16,14 +16,16 @@ namespace beethoven3
         private ExplosionManager perfectManager;
         private ExplosionManager  goodManager;
         private ExplosionManager badManager;
+        private ExplosionManager goldGetManager;
         #endregion
 
         #region constructor
-        public CollisionManager(ExplosionManager perfectManager, ExplosionManager goodManager, ExplosionManager badManager)
+        public CollisionManager(ExplosionManager perfectManager, ExplosionManager goodManager, ExplosionManager badManager,ExplosionManager goldGetManager)
         {
             this.perfectManager = perfectManager;
             this.goodManager = goodManager;
             this.badManager = badManager;
+            this.goldGetManager = goldGetManager;
         }
         #endregion
 
@@ -104,11 +106,13 @@ namespace beethoven3
                     }
             }
         }
+       
+
 
         private void checkLeftNoteToMarker(int number, Vector2 mousePoint)
         {
-
-            for (int x = 0; x < StartNoteManager.leftNoteManager.LittleNotes.Count; x++)
+            int x;
+            for (x = 0; x < StartNoteManager.leftNoteManager.LittleNotes.Count; x++)
             {
                 Sprite littleNote = StartNoteManager.leftNoteManager.LittleNotes[x];
 
@@ -238,13 +242,35 @@ namespace beethoven3
             }
         }
 
+        private void checkGold(Vector2 mousePoint)
+        {
+            int i;
+            for (i = 0; i < GoldManager.Golds.Count; i++)
+            {
+                Sprite gold = GoldManager.Golds[i];
 
+                int judgment = gold.JudgedNote(mousePoint, 15.0f);
+
+                if (judgment != 0)
+                {
+                    goldGetManager.AddExplosion(gold.Center, Vector2.Zero);
+                    GoldManager.Golds.RemoveAt(i);
+
+                }
+
+
+
+            }
+
+
+        }
         public void CheckCollisions(int number,Vector2 mousePoint)
         {
             checkRightNoteToMarker(number, mousePoint);
             checkLeftNoteToMarker(number, mousePoint);
          //   checkDoubleNoteToMarker(number);
             checkLongNoteToMarker(number, mousePoint);
+            checkGold(mousePoint);
         }
 
         #endregion

@@ -45,6 +45,7 @@ namespace beethoven3
         ExplosionManager perfectManager;
         ExplosionManager goodManager;
         ExplosionManager badManager;
+        ExplosionManager goldGetManager;
         MouseState mouseStateCurrent;   
 
         static public int mousex = 100; //X좌표
@@ -156,7 +157,15 @@ namespace beethoven3
                  new Rectangle(0, 450, 2, 2),
                  new Color(0f, 1.0f, 0f) * 0.5f,
                  new Color(0f, 0f, 0f, 0f));
-            collisionManager = new CollisionManager(perfectManager, goodManager, badManager);
+
+            goldGetManager = new ExplosionManager(
+              spriteSheet,
+              new Rectangle(0, 100, 50, 50),
+              3,
+              new Rectangle(0, 450, 2, 2),
+              new Color(1f, 0.5f, 0.5f) * 0.5f,
+              new Color(0f, 0f, 0f, 0f));
+            collisionManager = new CollisionManager(perfectManager, goodManager, badManager, goldGetManager);
             
             
             NoteFileManager noteFileManager = new NoteFileManager();
@@ -343,6 +352,7 @@ namespace beethoven3
                     perfectManager.Update(gameTime);
                     goodManager.Update(gameTime);
                     badManager.Update(gameTime);
+                    goldGetManager.Update(gameTime);
                 break;
 
                 case GameStates.SongMenu:
@@ -425,6 +435,7 @@ namespace beethoven3
                 perfectManager.Draw(spriteBatch);
                 goodManager.Draw(spriteBatch);
                 badManager.Draw(spriteBatch);
+                goldGetManager.Draw(spriteBatch);
                 //가운데 빨간 사각형 주석하면 보이지않는다.
            //     spriteBatch.Draw(dot, removeAreaRec, Color.Red);
             }
