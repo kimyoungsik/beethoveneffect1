@@ -71,7 +71,10 @@ namespace beethoven3
 
 
 
-        private Rectangle removeAreaRec = new Rectangle(360, 130, 130, 230);
+    //    private Rectangle removeAreaRec = new Rectangle(360, 130, 130, 230);
+
+        private Rectangle removeAreaRec = new Rectangle(0, 0, 0, 0);
+      
         SongMenu songMenu;
         int result;
 
@@ -172,13 +175,21 @@ namespace beethoven3
             // TODO: use this.Content to load your game content here
 
           //  LineRenderer.LoadContent(content);
-            
-            Vector2 mark1Location = new Vector2(400, 70);
-            Vector2 mark2Location = new Vector2(500, 170);
-            Vector2 mark3Location = new Vector2(500, 270);
-            Vector2 mark4Location = new Vector2(400, 370);
-            Vector2 mark5Location = new Vector2(300, 270);
-            Vector2 mark6Location = new Vector2(300, 170);
+
+            //Vector2 mark1Location = new Vector2(400, 70);
+            //Vector2 mark2Location = new Vector2(500, 170);
+            //Vector2 mark3Location = new Vector2(500, 270);
+            //Vector2 mark4Location = new Vector2(400, 370);
+            //Vector2 mark5Location = new Vector2(300, 270);
+            //Vector2 mark6Location = new Vector2(300, 170);
+
+
+            Vector2 mark1Location = new Vector2(200, 140);
+            Vector2 mark2Location = new Vector2(400, 270);
+            Vector2 mark3Location = new Vector2(300, 370);
+            Vector2 mark4Location = new Vector2(200, 570);
+            Vector2 mark5Location = new Vector2(100, 370);
+            Vector2 mark6Location = new Vector2(100, 270);
             scoreManager = new ScoreManager();
             
             startNoteManager = new StartNoteManager(
@@ -339,18 +350,22 @@ namespace beethoven3
             {
                 //  collisionManager.CheckCollisions(4);
           //      blendMode = BlendState.AlphaBlend;
+                MarkManager.changeMarkPattern(0);
             }
 
             if (keyState.IsKeyDown(Keys.NumPad7))
             {
                 //  collisionManager.CheckCollisions(4);
           //      blendMode = BlendState.Additive;
+                MarkManager.changeMarkPattern(1);
             }
 
             if (keyState.IsKeyDown(Keys.NumPad8))
             {
            //     //  collisionManager.CheckCollisions(4);
 //blendMode = BlendState.NonPremultiplied;
+
+                MarkManager.changeMarkPattern(2);
             }
 
             if (keyState.IsKeyDown(Keys.NumPad9))
