@@ -104,6 +104,8 @@ namespace beethoven3
     
 
                     ScoreManager.Combo = 0;
+
+                    ScoreManager.Gage = ScoreManager.Gage - 1;
                     
 
 

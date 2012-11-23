@@ -26,3 +26,5 @@ Content\snd\maid.xnb
 Content\snd\maid.wma
 Content\Fonts\damagefont.xnb
 Content\Fonts\Pericles36.xnb
+Content\ui\background.xnb
+Content\ui\heart.xnb

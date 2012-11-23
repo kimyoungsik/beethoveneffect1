@@ -24,29 +24,53 @@ namespace beethoven3
         SpriteBatch spriteBatch;
 
         SpriteFont pericles36Font;
+         private ContentManager content;
 
+        //스프라이즈 정렬 모드 테스트
+      //  private SpriteSortMode sortMode = SpriteSortMode.Deferred;
+      //  private BlendState blendMode = BlendState.AlphaBlend;
+        
         //////////////////FPS, 성능
         //private float fps;
         //private float updateInterval = 1.0f;
         //private float timeSinceLastUpdate = 0.0f;
         //private float framecourt = 0;
 
+        //상태바데모
+       //  private ContentManager content;
+
+        //private readonly Vector2 initializationVector = new Vector2(-99, -99);
+        //private Vector2 currentPosition;
+        //private Vector2 originalPosition;
+        //private Vector2 position = new Vector2(300,300);
+        ////텍스쳐의 배경 영역 (256-63 = 193)
+        //private Rectangle progressBarBackground = new Rectangle(63, 0, 193, 32);
+        ////텍스쳐 전경 영역
+        //private Rectangle progressBarForeground = new Rectangle(0, 0, 63, 20);
+        ////배경위에 전경을 그릴 위치
+        //private Vector2 progressBarOffset = new Vector2(12, 6);
+        //public float MoveRate = 90.0f;
+        //private Texture2D progressBar;
 
 
-        //KINECT
-        //KinectSensor nui = null;
-        //Texture2D KinectDepthTexture;
-        //Rectangle DepthDisplayRectangle;
+
+
 
         enum GameStates { Menu, Playing, SongMenu, GameOver };
         GameStates gameState = GameStates.Menu;
         
 
-
         public static Texture2D spriteSheet;
         public static Texture2D menu;
         public static Texture2D heart;
         public static Texture2D dot;
+
+    //    private Texture2D tileSprite;
+        private Texture2D uiBackground;
+        private Texture2D uiHeart;
+
+
+
         private Rectangle removeAreaRec = new Rectangle(360, 130, 130, 230);
         SongMenu songMenu;
         int result;
@@ -68,9 +92,9 @@ namespace beethoven3
         const int SCR_H = 768;
 
         //점수위치
-        Vector2 scorePosition = new Vector2(605, 215);
+        Vector2 scorePosition = new Vector2(705, 5);
 
-        
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -78,6 +102,11 @@ namespace beethoven3
 
             graphics.PreferredBackBufferHeight = SCR_H;
             graphics.PreferredBackBufferWidth = SCR_W;
+            ///test
+            ///
+            content = new ContentManager(Services);
+            
+        }
 
 
             ////////////////FPS, 성능
@@ -113,6 +142,7 @@ namespace beethoven3
         protected override void LoadContent()
         {
 
+            
             SoundManager.Init();
             LoadSound();
             // Create a new SpriteBatch, which can be used to draw textures.
@@ -123,12 +153,20 @@ namespace beethoven3
         //nui.DepthFrameReady += new EventHandler<DepthImageFrameReadyEventArgs>(nui_DepthFrameReady);
         //nui.Start();
         //////
-
+            ////test
+            //progressBar = Content.Load<Texture2D>(@"Textures\progressbar");
+           
+            
             spriteSheet = Content.Load<Texture2D>(@"Textures\SpriteSheet8");
             menu = Content.Load<Texture2D>(@"Textures\menu");
             heart = Content.Load<Texture2D>(@"Textures\heart");
             dot = Content.Load<Texture2D>(@"Textures\dot");
            
+            //test 텍스쳐 순서
+            uiBackground = Content.Load<Texture2D>(@"ui\background");
+            uiHeart = Content.Load<Texture2D>(@"ui\heart");
+        //    tileSprite = Content.Load<Texture2D>(@"Textures\shapes");
+            
             pericles36Font = Content.Load<SpriteFont>(@"Fonts\Pericles36");
 
             // TODO: use this.Content to load your game content here
@@ -265,36 +303,64 @@ namespace beethoven3
 
 
         private void HandleKeyboardInput(KeyboardState keyState)
+        
         {
-        //{
-        //    if (keyState.IsKeyDown(Keys.NumPad8))
-        //    {
-        //     //   SoundManager.SndPlay("snd/ka");
-        //        collisionManager.CheckCollisions(0);
-        //    }
-        //    if (keyState.IsKeyDown(Keys.NumPad9))
-        //    {
-        //     //   SoundManager.SndPlay("snd/maid");
-        //        collisionManager.CheckCollisions(1);
-        //    }
-        //    if (keyState.IsKeyDown(Keys.NumPad6))
-        //    {
-        //      //  SoundManager.SndPlay("snd/jo");
-        //        collisionManager.CheckCollisions(2);
-        //    }
-        //    if (keyState.IsKeyDown(Keys.NumPad5))
-        //    {
-        //      //  SoundManager.SndStop();
-        //        collisionManager.CheckCollisions(3);
-        //    }
-        //    if (keyState.IsKeyDown(Keys.NumPad4))
-        //    {
-        //        collisionManager.CheckCollisions(4);
-        //    }
-        //    if (keyState.IsKeyDown(Keys.NumPad7))
-        //    {
-        //        collisionManager.CheckCollisions(5);
-        //    }
+            if (keyState.IsKeyDown(Keys.NumPad1))
+            {
+             //   SoundManager.SndPlay("snd/ka");
+             //   collisionManager.CheckCollisions(0);
+
+         //       sortMode = SpriteSortMode.BackToFront;
+            }
+            if (keyState.IsKeyDown(Keys.NumPad2))
+            {
+             //   SoundManager.SndPlay("snd/maid");
+              //  collisionManager.CheckCollisions(1);
+         //       sortMode = SpriteSortMode.FrontToBack;
+            }
+            if (keyState.IsKeyDown(Keys.NumPad3))
+            {
+              //  SoundManager.SndPlay("snd/jo");
+               // collisionManager.CheckCollisions(2);
+          //      sortMode = SpriteSortMode.Deferred;
+            }
+            if (keyState.IsKeyDown(Keys.NumPad4))
+            {
+              //  SoundManager.SndStop();
+              //  collisionManager.CheckCollisions(3);
+         //       sortMode = SpriteSortMode.Immediate;
+            }
+            if (keyState.IsKeyDown(Keys.NumPad5))
+            {
+              //  collisionManager.CheckCollisions(4);
+          //      sortMode = SpriteSortMode.Texture;
+            }
+            if (keyState.IsKeyDown(Keys.NumPad6))
+            {
+                //  collisionManager.CheckCollisions(4);
+          //      blendMode = BlendState.AlphaBlend;
+            }
+
+            if (keyState.IsKeyDown(Keys.NumPad7))
+            {
+                //  collisionManager.CheckCollisions(4);
+          //      blendMode = BlendState.Additive;
+            }
+
+            if (keyState.IsKeyDown(Keys.NumPad8))
+            {
+           //     //  collisionManager.CheckCollisions(4);
+//blendMode = BlendState.NonPremultiplied;
+            }
+
+            if (keyState.IsKeyDown(Keys.NumPad9))
+            {
+                //  collisionManager.CheckCollisions(4);
+           //     blendMode = BlendState.Opaque;
+                scoreManager.Gage = scoreManager.Gage + 10;
+            }
+      
+      
           
         }
         /// <summary>
@@ -324,7 +390,7 @@ namespace beethoven3
                 case GameStates.Playing:
                       MarkManager.Update(gameTime);
                     startNoteManager.Update(gameTime);
-                    //HandleKeyboardInput(Keyboard.GetState());
+                    HandleKeyboardInput(Keyboard.GetState());
                     HandleMouseInput(Mouse.GetState());
 
                     file.Update(spriteBatch, gameTime);
@@ -335,6 +401,26 @@ namespace beethoven3
                     badManager.Update(gameTime);
                     goldGetManager.Update(gameTime);
                     scoreManager.Update(gameTime);
+
+
+                   //TEST
+
+                    //if (currentPosition == initializationVector)//처음 호출
+                    //{
+                    //    currentPosition = originalPosition = position;
+                    //}
+                    //else
+                    //{
+                    //    currentPosition += new Vector2(MoveRate *(float)gameTime.ElapsedGameTime.TotalSeconds,0);
+
+                    //    //영역의 마지막(또는 시작)에 도달했는지 검사
+                    //    // 만약 그렇다면 방향을 뒤집는다.
+
+                    //    if(currentPosition.X> originalPosition.X + (progressBarBackground.Width - progressBarForeground.Width - 15) || currentPosition.X < position.X)
+                    //    {
+                    //        MoveRate = -MoveRate;
+                    //    }
+                    //}
                 break;
 
                 case GameStates.SongMenu:
@@ -381,7 +467,11 @@ namespace beethoven3
 
 
             GraphicsDevice.Clear(Color.White);
+           // spriteBatch.Begin(sortMode,blendMode);
+           
+            // graphics.GraphicsDevice.
             spriteBatch.Begin();
+
             if (gameState == GameStates.Menu)
             {
                 spriteBatch.Draw(menu,
@@ -413,8 +503,41 @@ namespace beethoven3
                 int max = scoreManager.Max;
                 int total = scoreManager.TotalScore;
                 spriteBatch.DrawString(pericles36Font, combo.ToString(), scorePosition, Color.Black);
-                spriteBatch.DrawString(pericles36Font, max.ToString(), new Vector2(scorePosition.X + 80, scorePosition.Y), Color.Black);
-                spriteBatch.DrawString(pericles36Font, total.ToString(), new Vector2(scorePosition.X + 160, scorePosition.Y), Color.Black);
+                spriteBatch.DrawString(pericles36Font, max.ToString(), new Vector2(scorePosition.X + 120, scorePosition.Y), Color.Black);
+                spriteBatch.DrawString(pericles36Font, total.ToString(), new Vector2(scorePosition.X + 240, scorePosition.Y), Color.Black);
+
+                
+               // int heartgage = heart.Width * gage ;
+
+                ////test
+
+                spriteBatch.Draw(uiBackground, new Vector2(0, 0), Color.White);
+                int gage = scoreManager.Gage; 
+                //0이하이거나 넘어가지 않게 
+                
+                spriteBatch.Draw(uiHeart, new Vector2(0, 6), new Rectangle(0, 0, gage, 50), Color.White);
+                //spriteBatch.Draw(progressBar, originalPosition, progressBarBackground, Color.White);
+                //spriteBatch.Draw(progressBar, currentPosition + progressBarOffset, progressBarForeground, Color.Blue);
+
+                ////test
+                ////하트
+                //spriteBatch.Draw(tileSprite, new Rectangle(64, 64, 256, 256), new Rectangle(256, 256, 256, 256), Color.White, 0, Vector2.Zero, SpriteEffects.None,.10f);
+
+
+                ////원
+                //spriteBatch.Draw(tileSprite, new Rectangle(0, 0, 256, 256), new Rectangle(256, 0, 256, 256), Color.White, 0, Vector2.Zero, SpriteEffects.None, .15f);
+
+
+                ////모양
+                //spriteBatch.Draw(tileSprite, new Rectangle(128, 128, 256, 256), new Rectangle(0, 0, 256, 256), Color.White, 0, Vector2.Zero, SpriteEffects.None, .05f);
+
+
+                ////별
+                //spriteBatch.Draw(tileSprite, new Rectangle(192, 192, 256, 256), new Rectangle(0, 256, 256, 256), Color.White, 0, Vector2.Zero, SpriteEffects.None, .01f);
+
+                //Window.Title = "정렬데모순서 - " +blendMode.ToString()+" : "+ sortMode.ToString();
+            
+            
             }
 
             if (gameState == GameStates.SongMenu)

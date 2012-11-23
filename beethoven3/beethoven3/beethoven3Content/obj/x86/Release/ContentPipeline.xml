@@ -229,6 +229,24 @@
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Fonts\Pericles36.xnb</Output>
       <Time>2012-11-21T16:07:05.2798613+09:00</Time>
     </Item>
+    <Item>
+      <Source>ui\background.png</Source>
+      <Name>ui\background</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\ui\background.xnb</Output>
+      <Time>2012-11-23T14:13:56.5823128+09:00</Time>
+    </Item>
+    <Item>
+      <Source>ui\heart.png</Source>
+      <Name>ui\heart</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\ui\heart.xnb</Output>
+      <Time>2012-11-23T14:20:46.103198+09:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

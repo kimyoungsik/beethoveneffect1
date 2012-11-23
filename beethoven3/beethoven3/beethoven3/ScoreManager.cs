@@ -30,7 +30,10 @@ namespace beethoven3
         private  int perfomance;
         
         private  int totalScore;
-        
+
+        private int gage;
+
+
         private  String rank;
         #endregion
 
@@ -47,12 +50,21 @@ namespace beethoven3
             gold = 0;
             longNoteScore = 0;
             dragNoteScore = 0;
-        
+            gage = 0;
+
             rank = "";
         }
         #endregion
 
         #region method
+
+        public int Gage
+        {
+            get { return gage; }
+            set { gage = value; }
+        }
+
+
         public int Perfect
         {
             get { return perfect; }

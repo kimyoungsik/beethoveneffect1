@@ -412,6 +412,7 @@ namespace beethoven3
 
 
                     scoreManager.Combo = 0;
+                    scoreManager.Gage = scoreManager.Gage - 1;
                 }
             
             }
@@ -437,6 +438,7 @@ namespace beethoven3
                         scoreManager.Max = scoreManager.Combo;
                     }
                     scoreManager.Combo = 0;
+
                 }
 
             }

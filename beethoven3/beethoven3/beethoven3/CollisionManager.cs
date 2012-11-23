@@ -98,6 +98,7 @@ namespace beethoven3
                     
                             scoreManager.Perfect = scoreManager.Perfect + 1;
                             scoreManager.Combo = scoreManager.Combo + 1;
+                            scoreManager.Gage = scoreManager.Gage + 10;
                         }
                 
                     }
@@ -116,7 +117,7 @@ namespace beethoven3
                             scoreManager.Good = scoreManager.Good + 1;
 
                             scoreManager.Combo = scoreManager.Combo + 1;
-
+                            scoreManager.Gage = scoreManager.Gage + 10;
                             
 
                         }
@@ -160,6 +161,7 @@ namespace beethoven3
                  
                         scoreManager.Perfect = scoreManager.Perfect + 1;
                         scoreManager.Combo = scoreManager.Combo + 1;
+                        scoreManager.Gage = scoreManager.Gage + 10;
                     }
                 }
 
@@ -174,6 +176,7 @@ namespace beethoven3
                     
                         scoreManager.Good = scoreManager.Good + 1;
                         scoreManager.Combo = scoreManager.Combo + 1;
+                        scoreManager.Gage = scoreManager.Gage + 10;
                     }
                 }
                 else
