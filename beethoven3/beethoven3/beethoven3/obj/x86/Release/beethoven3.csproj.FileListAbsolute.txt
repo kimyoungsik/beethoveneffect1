@@ -34,3 +34,9 @@ D:\beethoven\beethoven3\beethoven3\beethoven3\obj\x86\Release\beethoven3.exe
 D:\beethoven\beethoven3\beethoven3\beethoven3\obj\x86\Release\beethoven3.pdb
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\ui\background.xnb
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\ui\heart.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Bitmap1.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Bitmap2.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\MessageFont.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Coding4Fun.Kinect.Wpf.dll
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Microsoft.Expression.Drawing.dll
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Coding4Fun.Kinect.Wpf.pdb

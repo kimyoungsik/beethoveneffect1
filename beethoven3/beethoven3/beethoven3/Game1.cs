@@ -8,6 +8,13 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using Microsoft.Kinect;
+using Coding4Fun.Kinect.Wpf;
+using System.IO;
+using System.Threading;
+using Microsoft.Speech.Recognition;
+using Microsoft.Speech.AudioFormat;
+
 //using Microsoft.Kinect;
 /*
  타입 0-오른손 1-왼손 2-양손 3-롱노트 4-드래그노트 
@@ -51,6 +58,34 @@ namespace beethoven3
         //private Vector2 progressBarOffset = new Vector2(12, 6);
         //public float MoveRate = 90.0f;
         //private Texture2D progressBar;
+
+
+         //키넥트
+         KinectSensor nui = null;
+         Skeleton[] Skeletons = null;
+
+         //음성인식
+         SpeechRecognitionEngine sre;
+         RecognizerInfo ri;
+         KinectAudioSource source;
+         Stream audioStream;
+
+         //폰트
+         SpriteFont messageFont;
+         string message = "start";
+
+         //쓰레드
+         ThreadStart ts;
+         Thread th;
+
+
+         Texture2D KinectVideoTexture;
+         Rectangle VideoDisplayRectangle;
+         Texture2D idot1;
+         Texture2D idot2;
+
+         Rectangle drawrec1;
+         Rectangle drawrec2;
 
 
 
@@ -107,8 +142,10 @@ namespace beethoven3
             graphics.PreferredBackBufferWidth = SCR_W;
             ///test
             ///
-            content = new ContentManager(Services);
-            
+          //  content = new ContentManager(Services);
+
+
+        
         }
 
 
@@ -134,10 +171,14 @@ namespace beethoven3
             this.IsMouseVisible = true;
             //KINECT
     //DepthDisplayRectangle = new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
+            VideoDisplayRectangle = new Rectangle(0, 0, 1200, 900);
 
+            drawrec1 = new Rectangle(0, 0, GraphicsDevice.Viewport.Width / 20, GraphicsDevice.Viewport.Height / 20);
+            drawrec2 = new Rectangle(0, 0, GraphicsDevice.Viewport.Width / 20, GraphicsDevice.Viewport.Height / 20);
+         
             base.Initialize();
         }
-
+          
         /// <summary>
         /// LoadContent will be called once per game and is the place to load
         /// all of your content.
@@ -273,7 +314,14 @@ namespace beethoven3
                 0);
             songMenu = new SongMenu(noteFileManager);
             songMenu.Load(Content,graphics.GraphicsDevice);
-            
+
+
+            idot1 = Content.Load<Texture2D>("Bitmap1");
+            idot2 = Content.Load<Texture2D>("Bitmap2");
+            messageFont = Content.Load<SpriteFont>("MessageFont");
+
+            //키넥트 셋업
+            setupKinect();
         }
 
      
@@ -286,6 +334,279 @@ namespace beethoven3
            //     SoundManager.soundEngineInstance[i] = SoundManager.soundEngine[i].CreateInstance();
             }
         }
+
+
+        //키넥트 셋업
+        #region Kinect Setup
+        protected bool setupKinect()
+        {
+            if (KinectSensor.KinectSensors.Count == 0)
+            {
+                return false;
+            }
+
+            //파라미터
+            var parameters = new TransformSmoothParameters
+            {
+                Smoothing = 0.3f,
+                Correction = 0.0f,
+                Prediction = 0.0f,
+                JitterRadius = 1.0f,
+                MaxDeviationRadius = 0.5f
+
+
+                //Smoothing = 0.5f,
+                //Correction = 0.5f,
+                //Prediction = 0.5f,
+                //JitterRadius = 0.05f,
+                //MaxDeviationRadius = 0.04f
+
+                //Smoothing = 0.5f,
+                //Correction = 0.1f,
+                //Prediction = 0.5f,
+                //JitterRadius = 0.1f,
+                //MaxDeviationRadius = 0.1f
+
+                //Smoothing = 0.7f,
+                //Correction = 0.3f,
+                //Prediction = 1.0f,
+                //JitterRadius = 1.0f,
+                //MaxDeviationRadius = 1.0f
+
+                //Smoothing = 0.05f,
+                //Correction = 0.5f,
+                //Prediction = 0.5f,
+                //JitterRadius = 0.8f,
+                //MaxDeviationRadius = 0.2f
+            };
+
+            //키넥트 센서
+            nui = KinectSensor.KinectSensors[0];
+
+            try
+            {
+                //컬러스트림 
+                //nui.ColorStream.Enable();
+                //nui.ColorFrameReady += new EventHandler<ColorImageFrameReadyEventArgs>(nui_ColorFrameReady);
+
+                //스켈레톤 스트림
+                nui.SkeletonStream.Enable(parameters);
+                //nui.SkeletonStream.Enable();
+                nui.SkeletonFrameReady += new EventHandler<SkeletonFrameReadyEventArgs>(nui_SkeletonFrameReady);
+
+                //뎁스스트림
+                //nui.DepthStream.Enable();
+                //nui.DepthFrameReady += new EventHandler<DepthImageFrameReadyEventArgs>(nui_DepthFrameReady);
+
+                //키넥트 시작
+                nui.Start();
+
+                //음성인식
+                setupAudio();
+            }
+            catch
+            {
+                return false;
+            }
+
+            return true;
+        }
+        #endregion
+
+        //음성인식
+        #region Speech Recognition
+
+        private void setupAudio()
+        {
+
+            foreach (RecognizerInfo reinfo in SpeechRecognitionEngine.InstalledRecognizers())//인스톨된 모든 스피치 엔진 불러온다.
+            {
+                if (reinfo.Id == "SR_MS_en-US_Kinect_11.0")
+                {
+                    ri = reinfo;
+                    break;
+                }
+            }
+
+            if (ri == null)
+            {
+                return;
+            }
+
+
+            try
+            {
+                sre = new SpeechRecognitionEngine(ri.Id);
+            }
+            catch
+            {
+                return;
+            }
+
+            //원하는 단어 입력
+            var choices = new Choices();
+            //choices.Add("Yes");
+            choices.Add("green");
+            choices.Add("kinect");
+            choices.Add("go");
+            choices.Add("next");
+            choices.Add("stop");
+            choices.Add("wiro");
+            choices.Add("wero");
+
+
+            var gb = new GrammarBuilder { Culture = ri.Culture };
+            gb.Append(choices);
+            var g = new Grammar(gb);
+
+            sre.LoadGrammar(g);
+            sre.SpeechHypothesized += new EventHandler<SpeechHypothesizedEventArgs>(sre_SpeechHypothesized);
+            sre.SpeechRecognized += new EventHandler<SpeechRecognizedEventArgs>(sre_SpeechRecognized);
+
+            //쓰레드 시작
+            ts = new ThreadStart(UserFunc);
+            th = new Thread(ts);
+            th.Start();
+        }
+
+
+        private void UserFunc()
+        {
+
+            //오디오 스트림
+            try
+            {
+                source = nui.AudioSource;
+                source.BeamAngleMode = BeamAngleMode.Adaptive;
+                audioStream = source.Start();
+
+                sre.SetInputToAudioStream(audioStream, new SpeechAudioFormatInfo(EncodingFormat.Pcm, 16000, 16, 1, 32000, 2, null));
+                sre.RecognizeAsync(RecognizeMode.Multiple);
+            }
+            catch
+            {
+                return;
+            }
+        }
+
+        void sre_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
+        {
+            if (e.Result.Confidence < 0.5) return;//신뢰도 0.5미만일땐 리턴
+            message = e.Result.Text + " " + e.Result.Confidence.ToString();
+            switch (e.Result.Text)
+            {
+                case "stop":
+                    nui.ElevationAngle += 3;//앵글 올리기
+                    break;
+
+
+                case "next":
+                case "nest":
+                case "naxt":
+                    nui.ElevationAngle -= 3;
+                    break;
+            }
+        }
+
+        void sre_SpeechHypothesized(object sender, SpeechHypothesizedEventArgs e)
+        {
+            //if (e.Result.Confidence < 0.5) return;
+            //message = e.Result.Text + " " + e.Result.Confidence.ToString();
+
+            //switch (e.Result.Text)
+            //{
+            //    case "Red":
+            //        nui.ElevationAngle -= 3;
+            //        break;
+            //    case "green":
+            //        nui.ElevationAngle += 3;
+            //        break;
+
+            //}
+
+        }
+
+
+        #endregion
+        //디스플레이
+        #region Color display
+
+        //뎁스 프레임
+        //void nui_DepthFrameReady(object sender, DepthImageFrameReadyEventArgs e)
+        //{
+        //    short[] depthData = null;
+        //    using (DepthImageFrame ImageParam = e.OpenDepthImageFrame())
+        //    {
+        //        if (ImageParam == null) return;
+        //        if (depthData == null)
+        //            depthData = new short[ImageParam.Width * ImageParam.Height];
+        //        ImageParam.CopyPixelDataTo(depthData);
+
+        //        Color[] bitmap = new Color[ImageParam.Width * ImageParam.Height];
+        //        for(int i=0;i<bitmap.Length;i++)
+        //        {
+        //            int depth=depthData[i]>>3;
+        //            if(depth==nui.DepthStream.UnknownDepth)
+        //                bitmap[i]=Color.Red;
+        //            else
+        //                if (depth==nui.DepthStream.TooFarDepth)
+        //                    bitmap[i]=Color.Blue;
+        //                else
+        //                    if(depth==nui.DepthStream.TooNearDepth)
+        //                        bitmap[i]=Color.Green;
+        //                    else
+        //                    {
+        //                        byte depthByte = (byte)(255-(depth>>5));
+        //                        bitmap[i]=new Color(depthByte, depthByte, depthByte, 255);
+        //                    }
+        //        }
+        //        KinectVideoTexture = new Texture2D(GraphicsDevice, ImageParam.Width, ImageParam.Height);
+        //        KinectVideoTexture.SetData(bitmap);
+        //    }
+        //}
+
+        //컬러 프레임
+        void nui_ColorFrameReady(object sender, ColorImageFrameReadyEventArgs e)
+        {
+            byte[] ColorData = null;
+
+            using (ColorImageFrame ImageParam = e.OpenColorImageFrame())
+            {
+                if (ImageParam == null) return;
+                if (ColorData == null)
+                    ColorData = new byte[ImageParam.Width * ImageParam.Height * 4];
+                ImageParam.CopyPixelDataTo(ColorData);
+                KinectVideoTexture = new Texture2D(GraphicsDevice, ImageParam.Width, ImageParam.Height);
+                Color[] bitmap = new Color[ImageParam.Width * ImageParam.Height];
+                bitmap[0] = new Color(ColorData[2], ColorData[1], ColorData[0], 255);
+
+                int sourceOffset = 0;
+                for (int i = 0; i < bitmap.Length; i++)
+                {
+                    bitmap[i] = new Color(ColorData[sourceOffset + 2], ColorData[sourceOffset + 1], ColorData[sourceOffset], 255);
+                    sourceOffset += 4;
+                }
+                KinectVideoTexture.SetData(bitmap);
+
+
+            }
+        }
+        #endregion
+        //스켈레톤 프레임
+        #region Skeleton
+        void nui_SkeletonFrameReady(object sender, SkeletonFrameReadyEventArgs e)
+        {
+            using (SkeletonFrame frame = e.OpenSkeletonFrame())
+            {
+                if (frame != null)
+                {
+                    Skeletons = new Skeleton[frame.SkeletonArrayLength];
+                    frame.CopySkeletonDataTo(Skeletons);
+                }
+            }
+        }
+        #endregion
+
         /// <summary>
         /// UnloadContent will be called once per game and is the place to unload
         /// all content.
@@ -551,8 +872,29 @@ namespace beethoven3
                 //spriteBatch.Draw(tileSprite, new Rectangle(192, 192, 256, 256), new Rectangle(0, 256, 256, 256), Color.White, 0, Vector2.Zero, SpriteEffects.None, .01f);
 
                 //Window.Title = "정렬데모순서 - " +blendMode.ToString()+" : "+ sortMode.ToString();
-            
-            
+
+                //컬러 디스플레이
+                if (KinectVideoTexture != null)
+                {
+                    spriteBatch.Draw(KinectVideoTexture, VideoDisplayRectangle, Color.White);
+
+                }
+
+                //손에 따라 사각형 그리기
+                if (Skeletons != null)
+                {
+                    foreach (Skeleton s in Skeletons)
+                        if (s.TrackingState == SkeletonTrackingState.Tracked)
+                        {
+                            drawpoint(s.Joints[JointType.HandRight], s.Joints[JointType.HandLeft]);
+                        }
+                }
+
+                //음성인식 메시지
+                if (message.Length > 0)
+                {
+                    spriteBatch.DrawString(messageFont, message, Vector2.Zero, Color.White);
+                }
             }
 
             if (gameState == GameStates.SongMenu)
@@ -564,6 +906,38 @@ namespace beethoven3
             
             base.Draw(gameTime);
         }
+
+        //손동작 스케일 변환
+        #region Hand scale
+        void drawpoint(Joint j1, Joint j2)
+        {
+            ////실질적인 스케일 변환
+            Joint j1r = j1.ScaleTo(1024, 768, .3f, .3f);
+
+            //그리기
+            drawrec1.X = (int)j1r.Position.X - drawrec1.Width / 2;
+            drawrec1.Y = (int)j1r.Position.Y - drawrec1.Height / 2;
+
+            //손 그대로에 그릴때(대신 화면 사이즈를 640*480으로 맞춰야함)
+            //ColorImagePoint jp1 = nui.MapSkeletonPointToColor(j1.Position, ColorImageFormat.RgbResolution640x480Fps30);
+            //drawrec1.X = jp1.X - drawrec1.Width / 2;
+            //drawrec1.Y = jp1.Y - drawrec1.Height / 2;
+
+            spriteBatch.Draw(idot1, drawrec1, Color.Red);
+
+
+            Joint j2r = j2.ScaleTo(1024, 768, .3f, .3f);
+
+            drawrec2.X = (int)j2r.Position.X - drawrec2.Width / 2;
+            drawrec2.Y = (int)j2r.Position.Y - drawrec2.Height / 2;
+
+            //ColorImagePoint jp2 = nui.MapSkeletonPointToColor(j2.Position, ColorImageFormat.RgbResolution640x480Fps30);
+            //drawrec2.X = jp2.X - drawrec2.Width / 2;
+            //drawrec2.Y = jp2.Y - drawrec2.Height / 2;
+
+            spriteBatch.Draw(idot2, drawrec2, Color.Blue);
+        }
+        #endregion
 
        
     }

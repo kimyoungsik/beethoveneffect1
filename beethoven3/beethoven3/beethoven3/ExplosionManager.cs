@@ -32,6 +32,7 @@ namespace beethoven3
         private int pointSpeedMin = 15;
         private int pointSpeedMax = 30;
 
+
         private Color initialColor = new Color(1.0f, 0.3f, 0f) * 0.5f;
         private Color finalColor = new Color(0f, 0f, 0f, 0f);
 

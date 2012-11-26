@@ -28,3 +28,6 @@ Content\Fonts\damagefont.xnb
 Content\Fonts\Pericles36.xnb
 Content\ui\background.xnb
 Content\ui\heart.xnb
+Content\Bitmap1.xnb
+Content\Bitmap2.xnb
+Content\MessageFont.xnb
