@@ -15,8 +15,10 @@ namespace beethoven3
         private ExplosionManager badManager;
         private ExplosionManager goldGetManager;
 
-        private ScoreManager scoreManager;
-        #endregion
+        private ScoreManager scoreManager; 
+
+        private float roundPoint = 15.0f;
+        #endregion 
 
         #region constructor
         public CollisionManager(ExplosionManager perfectManager, ExplosionManager goodManager, ExplosionManager badManager,ExplosionManager goldGetManager, ScoreManager scoreManager)
@@ -89,7 +91,7 @@ namespace beethoven3
                     if(judgment == 2)
                     {
 
-                        int mouseJudgment = MarkManager.Marks[number].MarkSprite.JudgedNote(mousePoint, 15.0f);
+                        int mouseJudgment = MarkManager.Marks[number].MarkSprite.JudgedNote(mousePoint, roundPoint);
                         if (mouseJudgment != 0)
                         {
                             
@@ -106,7 +108,7 @@ namespace beethoven3
                     //good
                     else if (judgment == 1)
                     {
-                        int mouseJudgment = MarkManager.Marks[number].MarkSprite.JudgedNote(mousePoint, 15.0f);
+                        int mouseJudgment = MarkManager.Marks[number].MarkSprite.JudgedNote(mousePoint, roundPoint);
                         if (mouseJudgment != 0)
                         {
                             
@@ -152,7 +154,7 @@ namespace beethoven3
                 //perfect
                 if (judgment == 2)
                 {
-                    int mouseJudgment = MarkManager.Marks[number].MarkSprite.JudgedNote(mousePoint, 15.0f);
+                    int mouseJudgment = MarkManager.Marks[number].MarkSprite.JudgedNote(mousePoint, roundPoint);
                     if (mouseJudgment != 0)
                     {
                         
@@ -168,7 +170,7 @@ namespace beethoven3
                 //good
                 else if (judgment == 1)
                 {
-                    int mouseJudgment = MarkManager.Marks[number].MarkSprite.JudgedNote(mousePoint, 15.0f);
+                    int mouseJudgment = MarkManager.Marks[number].MarkSprite.JudgedNote(mousePoint, roundPoint);
                     if (mouseJudgment != 0)
                     {
                         goodManager.AddExplosion(littleNote.Center, Vector2.Zero);
@@ -210,7 +212,7 @@ namespace beethoven3
                 //perfect
                 if (judgment == 2)
                 {
-                     int mouseJudgment = MarkManager.Marks[number].MarkSprite.JudgedNote(mousePoint, 15.0f);
+                    int mouseJudgment = MarkManager.Marks[number].MarkSprite.JudgedNote(mousePoint, roundPoint);
                      if (mouseJudgment != 0)
                      {
                          perfectManager.AddExplosion(littleNote.Center, Vector2.Zero);
@@ -224,7 +226,7 @@ namespace beethoven3
                 //good
                 else if (judgment == 1)
                 {
-                     int mouseJudgment = MarkManager.Marks[number].MarkSprite.JudgedNote(mousePoint, 15.0f);
+                    int mouseJudgment = MarkManager.Marks[number].MarkSprite.JudgedNote(mousePoint, roundPoint);
                      if (mouseJudgment != 0)
                      {
                          //롱노트 효과를 바꾸던지 아니면 하나의 효과만 나오게 하던지
@@ -246,10 +248,10 @@ namespace beethoven3
         {
             int i;
             for (i = 0; i < GoldManager.Golds.Count; i++)
-            {
+            { 
                 Sprite gold = GoldManager.Golds[i];
 
-                int judgment = gold.JudgedNote(mousePoint, 15.0f);
+                int judgment = gold.JudgedNote(mousePoint, roundPoint);
 
                 if (judgment != 0)
                 {

@@ -1,4 +1,6 @@
-﻿using System;
+﻿#define Kinect
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
@@ -14,8 +16,7 @@ using System.IO;
 using System.Threading;
 using Microsoft.Speech.Recognition;
 using Microsoft.Speech.AudioFormat;
-
-//using Microsoft.Kinect;
+ 
 /*
  타입 0-오른손 1-왼손 2-양손 3-롱노트 4-드래그노트 
  
@@ -33,33 +34,7 @@ namespace beethoven3
         SpriteFont pericles36Font;
          private ContentManager content;
 
-        //스프라이즈 정렬 모드 테스트
-      //  private SpriteSortMode sortMode = SpriteSortMode.Deferred;
-      //  private BlendState blendMode = BlendState.AlphaBlend;
-        
-        //////////////////FPS, 성능
-        //private float fps;
-        //private float updateInterval = 1.0f;
-        //private float timeSinceLastUpdate = 0.0f;
-        //private float framecourt = 0;
-
-        //상태바데모
-       //  private ContentManager content;
-
-        //private readonly Vector2 initializationVector = new Vector2(-99, -99);
-        //private Vector2 currentPosition;
-        //private Vector2 originalPosition;
-        //private Vector2 position = new Vector2(300,300);
-        ////텍스쳐의 배경 영역 (256-63 = 193)
-        //private Rectangle progressBarBackground = new Rectangle(63, 0, 193, 32);
-        ////텍스쳐 전경 영역
-        //private Rectangle progressBarForeground = new Rectangle(0, 0, 63, 20);
-        ////배경위에 전경을 그릴 위치
-        //private Vector2 progressBarOffset = new Vector2(12, 6);
-        //public float MoveRate = 90.0f;
-        //private Texture2D progressBar;
-
-
+#if Kinect
          //키넥트
          KinectSensor nui = null;
          Skeleton[] Skeletons = null;
@@ -70,13 +45,15 @@ namespace beethoven3
          KinectAudioSource source;
          Stream audioStream;
 
+         //쓰레드
+         ThreadStart ts;
+         Thread th;
+
          //폰트
          SpriteFont messageFont;
          string message = "start";
 
-         //쓰레드
-         ThreadStart ts;
-         Thread th;
+
 
 
          Texture2D KinectVideoTexture;
@@ -87,11 +64,11 @@ namespace beethoven3
          Rectangle drawrec1;
          Rectangle drawrec2;
 
+#endif
 
 
 
-
-        enum GameStates { Menu, Playing, SongMenu, GameOver };
+         enum GameStates { Menu, Playing, SongMenu, GameOver };
         GameStates gameState = GameStates.Menu;
         
 
@@ -105,8 +82,6 @@ namespace beethoven3
         private Texture2D uiHeart;
 
 
-
-    //    private Rectangle removeAreaRec = new Rectangle(360, 130, 130, 230);
 
         private Rectangle removeAreaRec = new Rectangle(0, 0, 0, 0);
       
@@ -123,6 +98,8 @@ namespace beethoven3
         MouseState mouseStateCurrent;
 
         ScoreManager scoreManager;
+
+
         static public int mousex = 100; //X좌표
         static public int mousey = 100; //Y좌표
 
@@ -149,15 +126,6 @@ namespace beethoven3
         }
 
 
-            ////////////////FPS, 성능
-        //    //Draw 메서드를 모니터의 수직회귀(vertical retrace) 속도에 동기화 하지 말것
-        //    //fps를 60으로 제한 하지 않기
-        //    graphics.SynchronizeWithVerticalRetrace = false;
-
-        //    //update 메서드는 여전히 기본값인 1/60초의 속도로 호출할 것
-        //    //현재 targetElapsedTime 이 1/60으로 되어 있고, 이것을 바꾸고 싶으면 바꿔도 됨.
-        //    IsFixedTimeStep = true;
-        //}
 
         /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
@@ -169,14 +137,16 @@ namespace beethoven3
         {
             // TODO: Add your initialization logic here
             this.IsMouseVisible = true;
+#if Kinect
+            
             //KINECT
-    //DepthDisplayRectangle = new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
-            VideoDisplayRectangle = new Rectangle(0, 0, 1200, 900);
+             VideoDisplayRectangle = new Rectangle(0, 0, 1200, 900);
 
             drawrec1 = new Rectangle(0, 0, GraphicsDevice.Viewport.Width / 20, GraphicsDevice.Viewport.Height / 20);
             drawrec2 = new Rectangle(0, 0, GraphicsDevice.Viewport.Width / 20, GraphicsDevice.Viewport.Height / 20);
-         
+#endif
             base.Initialize();
+
         }
           
         /// <summary>
@@ -186,19 +156,11 @@ namespace beethoven3
         protected override void LoadContent()
         {
 
-            
+            Item.LoadContent(Content);
             SoundManager.Init();
             LoadSound();
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            //KINECT
-        //nui = KinectSensor.KinectSensors[0];
-        //nui.DepthStream.Enable();
-        //nui.DepthFrameReady += new EventHandler<DepthImageFrameReadyEventArgs>(nui_DepthFrameReady);
-        //nui.Start();
-        //////
-            ////test
-            //progressBar = Content.Load<Texture2D>(@"Textures\progressbar");
            
             
             spriteSheet = Content.Load<Texture2D>(@"Textures\SpriteSheet8");
@@ -315,13 +277,14 @@ namespace beethoven3
             songMenu = new SongMenu(noteFileManager);
             songMenu.Load(Content,graphics.GraphicsDevice);
 
-
+#if Kinect
             idot1 = Content.Load<Texture2D>("Bitmap1");
             idot2 = Content.Load<Texture2D>("Bitmap2");
             messageFont = Content.Load<SpriteFont>("MessageFont");
 
-            //키넥트 셋업
+            ////키넥트 셋업
             setupKinect();
+#endif
         }
 
      
@@ -335,7 +298,7 @@ namespace beethoven3
             }
         }
 
-
+#if Kinect
         //키넥트 셋업
         #region Kinect Setup
         protected bool setupKinect()
@@ -380,7 +343,7 @@ namespace beethoven3
                 //MaxDeviationRadius = 0.2f
             };
 
-            //키넥트 센서
+            ////키넥트 센서
             nui = KinectSensor.KinectSensors[0];
 
             try
@@ -531,39 +494,7 @@ namespace beethoven3
         //디스플레이
         #region Color display
 
-        //뎁스 프레임
-        //void nui_DepthFrameReady(object sender, DepthImageFrameReadyEventArgs e)
-        //{
-        //    short[] depthData = null;
-        //    using (DepthImageFrame ImageParam = e.OpenDepthImageFrame())
-        //    {
-        //        if (ImageParam == null) return;
-        //        if (depthData == null)
-        //            depthData = new short[ImageParam.Width * ImageParam.Height];
-        //        ImageParam.CopyPixelDataTo(depthData);
-
-        //        Color[] bitmap = new Color[ImageParam.Width * ImageParam.Height];
-        //        for(int i=0;i<bitmap.Length;i++)
-        //        {
-        //            int depth=depthData[i]>>3;
-        //            if(depth==nui.DepthStream.UnknownDepth)
-        //                bitmap[i]=Color.Red;
-        //            else
-        //                if (depth==nui.DepthStream.TooFarDepth)
-        //                    bitmap[i]=Color.Blue;
-        //                else
-        //                    if(depth==nui.DepthStream.TooNearDepth)
-        //                        bitmap[i]=Color.Green;
-        //                    else
-        //                    {
-        //                        byte depthByte = (byte)(255-(depth>>5));
-        //                        bitmap[i]=new Color(depthByte, depthByte, depthByte, 255);
-        //                    }
-        //        }
-        //        KinectVideoTexture = new Texture2D(GraphicsDevice, ImageParam.Width, ImageParam.Height);
-        //        KinectVideoTexture.SetData(bitmap);
-        //    }
-        //}
+     
 
         //컬러 프레임
         void nui_ColorFrameReady(object sender, ColorImageFrameReadyEventArgs e)
@@ -607,6 +538,7 @@ namespace beethoven3
         }
         #endregion
 
+#endif
         /// <summary>
         /// UnloadContent will be called once per game and is the place to unload
         /// all content.
@@ -617,23 +549,40 @@ namespace beethoven3
         }
         private void HandleMouseInput(MouseState mouseState)
         {
-             collisionManager.checkDragNote(new Vector2(mouseStateCurrent.X,mouseStateCurrent.Y));
+            collisionManager.checkDragNote(new Vector2(mouseStateCurrent.X, mouseStateCurrent.Y));
 
-                collisionManager.CheckCollisions(0, new Vector2(mouseStateCurrent.X, mouseStateCurrent.Y));
+            collisionManager.CheckCollisions(0, new Vector2(mouseStateCurrent.X, mouseStateCurrent.Y));
 
-                collisionManager.CheckCollisions(1, new Vector2(mouseStateCurrent.X, mouseStateCurrent.Y));
+            collisionManager.CheckCollisions(1, new Vector2(mouseStateCurrent.X, mouseStateCurrent.Y));
 
-                collisionManager.CheckCollisions(2, new Vector2(mouseStateCurrent.X, mouseStateCurrent.Y));
+            collisionManager.CheckCollisions(2, new Vector2(mouseStateCurrent.X, mouseStateCurrent.Y));
 
-                collisionManager.CheckCollisions(3, new Vector2(mouseStateCurrent.X, mouseStateCurrent.Y));
+            collisionManager.CheckCollisions(3, new Vector2(mouseStateCurrent.X, mouseStateCurrent.Y));
 
-                collisionManager.CheckCollisions(4, new Vector2(mouseStateCurrent.X, mouseStateCurrent.Y));
+            collisionManager.CheckCollisions(4, new Vector2(mouseStateCurrent.X, mouseStateCurrent.Y));
 
-                collisionManager.CheckCollisions(5, new Vector2(mouseStateCurrent.X, mouseStateCurrent.Y));
-         
+            collisionManager.CheckCollisions(5, new Vector2(mouseStateCurrent.X, mouseStateCurrent.Y));
+
         }
+#if Kinect
+        private void HandleInput()
+        {
+            collisionManager.checkDragNote(new Vector2(drawrec1.X, drawrec1.Y));
 
+            collisionManager.CheckCollisions(0, new Vector2(drawrec1.X, drawrec1.Y));
 
+            collisionManager.CheckCollisions(1, new Vector2(drawrec1.X, drawrec1.Y));
+
+            collisionManager.CheckCollisions(2, new Vector2(drawrec1.X, drawrec1.Y));
+
+            collisionManager.CheckCollisions(3, new Vector2(drawrec1.X, drawrec1.Y));
+
+            collisionManager.CheckCollisions(4, new Vector2(drawrec1.X, drawrec1.Y));
+
+            collisionManager.CheckCollisions(5, new Vector2(drawrec1.X, drawrec1.Y));
+
+        }
+#endif
         private void HandleKeyboardInput(KeyboardState keyState)
         
         {
@@ -728,7 +677,9 @@ namespace beethoven3
                     startNoteManager.Update(gameTime);
                     HandleKeyboardInput(Keyboard.GetState());
                     HandleMouseInput(Mouse.GetState());
-
+#if Kinect
+                    HandleInput();  
+#endif
                     file.Update(spriteBatch, gameTime);
                     DragNoteManager.Update(gameTime);
                     GoldManager.Update(gameTime);
@@ -739,24 +690,7 @@ namespace beethoven3
                     scoreManager.Update(gameTime);
 
 
-                   //TEST
 
-                    //if (currentPosition == initializationVector)//처음 호출
-                    //{
-                    //    currentPosition = originalPosition = position;
-                    //}
-                    //else
-                    //{
-                    //    currentPosition += new Vector2(MoveRate *(float)gameTime.ElapsedGameTime.TotalSeconds,0);
-
-                    //    //영역의 마지막(또는 시작)에 도달했는지 검사
-                    //    // 만약 그렇다면 방향을 뒤집는다.
-
-                    //    if(currentPosition.X> originalPosition.X + (progressBarBackground.Width - progressBarForeground.Width - 15) || currentPosition.X < position.X)
-                    //    {
-                    //        MoveRate = -MoveRate;
-                    //    }
-                    //}
                 break;
 
                 case GameStates.SongMenu:
@@ -785,22 +719,11 @@ namespace beethoven3
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            ////////////////FPS, 성능
-            //float elapsed = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            //framecourt++;
-
-            ////새로운 프레임 속도를 표시할 만큼 충분한 시간이 경과했는지 검사(지금은 updateInterval 1초로 설정됨)
-            
-            //timeSinceLastUpdate += elapsed;
-            //if (timeSinceLastUpdate > updateInterval)
-            //{
-            //    fps = framecourt / timeSinceLastUpdate; //실질적으로 fps/updateInterval (프레임카운트를 지난번 계산으로부터 경과한 시간으로 나눔)
-            //    Window.Title = "FPS: " + fps.ToString() +
-            //        " - 게임시간: " + gameTime.ElapsedGameTime.TotalSeconds.ToString();
-            //    framecourt = 0;
-            //    timeSinceLastUpdate -= updateInterval;
-            //}
-
+           
+#if Kineck
+            Window.Title = drawrec1.X.ToString() + " - " + drawrec1.Y.ToString() + "마우스" + mouseStateCurrent.X.ToString() + "-" + mouseStateCurrent.Y.ToString();
+#endif
+            //Window.Title = ;
 
             GraphicsDevice.Clear(Color.White);
            // spriteBatch.Begin(sortMode,blendMode);
@@ -824,8 +747,8 @@ namespace beethoven3
                 GuideLineManager.Draw(gameTime, spriteBatch);
                 //이걸 주석하면 드래그노트 체크하는거 안보임 하지만 체크는 됨
                 //DragNoteManager.Draw(spriteBatch);
-               
-                
+
+
                 GoldManager.Draw(spriteBatch);
 
                 file.Draw(spriteBatch, gameTime);
@@ -834,23 +757,23 @@ namespace beethoven3
                 badManager.Draw(spriteBatch);
                 goldGetManager.Draw(spriteBatch);
                 //가운데 빨간 사각형 주석하면 보이지않는다.
-           //     spriteBatch.Draw(dot, removeAreaRec, Color.Red);
-                int combo =  scoreManager.Combo;
+                //     spriteBatch.Draw(dot, removeAreaRec, Color.Red);
+                int combo = scoreManager.Combo;
                 int max = scoreManager.Max;
                 int total = scoreManager.TotalScore;
                 spriteBatch.DrawString(pericles36Font, combo.ToString(), scorePosition, Color.Black);
                 spriteBatch.DrawString(pericles36Font, max.ToString(), new Vector2(scorePosition.X + 120, scorePosition.Y), Color.Black);
                 spriteBatch.DrawString(pericles36Font, total.ToString(), new Vector2(scorePosition.X + 240, scorePosition.Y), Color.Black);
 
-                
-               // int heartgage = heart.Width * gage ;
+
+                // int heartgage = heart.Width * gage ;
 
                 ////test
 
                 spriteBatch.Draw(uiBackground, new Vector2(0, 0), Color.White);
-                int gage = scoreManager.Gage; 
+                int gage = scoreManager.Gage;
                 //0이하이거나 넘어가지 않게 
-                
+
                 spriteBatch.Draw(uiHeart, new Vector2(0, 6), new Rectangle(0, 0, gage, 50), Color.White);
                 //spriteBatch.Draw(progressBar, originalPosition, progressBarBackground, Color.White);
                 //spriteBatch.Draw(progressBar, currentPosition + progressBarOffset, progressBarForeground, Color.Blue);
@@ -872,7 +795,7 @@ namespace beethoven3
                 //spriteBatch.Draw(tileSprite, new Rectangle(192, 192, 256, 256), new Rectangle(0, 256, 256, 256), Color.White, 0, Vector2.Zero, SpriteEffects.None, .01f);
 
                 //Window.Title = "정렬데모순서 - " +blendMode.ToString()+" : "+ sortMode.ToString();
-
+#if Kinect
                 //컬러 디스플레이
                 if (KinectVideoTexture != null)
                 {
@@ -895,8 +818,9 @@ namespace beethoven3
                 {
                     spriteBatch.DrawString(messageFont, message, Vector2.Zero, Color.White);
                 }
+            
+#endif
             }
-
             if (gameState == GameStates.SongMenu)
             {
                 songMenu.Draw(spriteBatch);
@@ -907,6 +831,7 @@ namespace beethoven3
             base.Draw(gameTime);
         }
 
+#if Kinect
         //손동작 스케일 변환
         #region Hand scale
         void drawpoint(Joint j1, Joint j2)
@@ -923,8 +848,10 @@ namespace beethoven3
             //drawrec1.X = jp1.X - drawrec1.Width / 2;
             //drawrec1.Y = jp1.Y - drawrec1.Height / 2;
 
-            spriteBatch.Draw(idot1, drawrec1, Color.Red);
 
+
+            spriteBatch.Draw(heart, drawrec1, Color.Red);
+            
 
             Joint j2r = j2.ScaleTo(1024, 768, .3f, .3f);
 
@@ -938,7 +865,7 @@ namespace beethoven3
             spriteBatch.Draw(idot2, drawrec2, Color.Blue);
         }
         #endregion
-
+#endif
        
     }
 }
