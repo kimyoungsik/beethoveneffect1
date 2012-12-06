@@ -26,17 +26,21 @@ namespace beethoven3
         private int leftHandIndex = 1;
 
         //내가 가지고 있는 아이템
-        private List<Item> myRightHandItem = new List<Item>();
+        public List<Item> myRightHandItem = new List<Item>();
         private List<Item> myLeftHandItem = new List<Item>();
 
         public ItemManager()
         {
+          
+        }
+        public void Init()
+        {
             int i;
-            for (i = 0; i < 1; i++)
+            for (i = 0; i < 2; i++)
             {
                 addItem(rightHandItem, new Vector2(100, 100), rightHandTexture[i], new Rectangle(0, 0, rightHandTexture[i].Width, rightHandTexture[i].Height), 1);
             }
-            for (i = 0; i < 1; i++)
+            for (i = 0; i < 2; i++)
             {
                 addItem(leftHandItem, new Vector2(100, 100), leftHandTexture[i], new Rectangle(0, 0, leftHandTexture[i].Width, leftHandTexture[i].Height), 1);
             }
@@ -86,10 +90,48 @@ namespace beethoven3
             this.rightHandIndex = index;
         }
 
+        public int getRightHandIndex()
+        {
+            return this.rightHandIndex;
+        }
+
         public void setLeftHandIndex(int index)
         {
             this.leftHandIndex = index;
         }
+
+        public int getLeftHandIndex()
+        {
+            return this.leftHandIndex;
+        }
+
+
+
+        public List<Item> getMyRightHandItem()
+        {
+            return this.myRightHandItem;
+        }
+
+        public List<Item> getMyLeftHandItem()
+        {
+            return this.myLeftHandItem;
+        }
+
+
+
+        public List<Item> getShopRightHandItem()
+        {
+            return this.rightHandItem;
+        }
+
+        public List<Item> getShopLeftHandItem()
+        {
+            return this.leftHandItem;
+        }
+
+
+
+
 
     }
 }

@@ -32,7 +32,7 @@ namespace beethoven3
         SpriteBatch spriteBatch;
 
         SpriteFont pericles36Font;
-         private ContentManager content;
+     //    private ContentManager content;
 
          
 
@@ -68,12 +68,15 @@ namespace beethoven3
 
 
 
-         enum GameStates { Menu, Playing, SongMenu, GameOver };
+        enum GameStates { Menu, Playing, SongMenu, ShopDoor, GameOver };
         GameStates gameState = GameStates.Menu;
-        
+
+        MenuScene menuScene;
+        ShopDoor shopDoor;
+
 
         public static Texture2D spriteSheet;
-        public static Texture2D menu;
+     //   public static Texture2D menu;
         public static Texture2D heart;
         public static Texture2D dot;
 
@@ -95,11 +98,15 @@ namespace beethoven3
         ExplosionManager goodManager;
         ExplosionManager badManager;
         ExplosionManager goldGetManager;
-        MouseState mouseStateCurrent;
+        MouseState mouseStateCurrent, mouseStatePrevious;
 
         ScoreManager scoreManager;
+        ItemManager itemManager;
+        
 
 
+
+        
         static public int mousex = 100; //X좌표
         static public int mousey = 100; //Y좌표
 
@@ -155,10 +162,19 @@ namespace beethoven3
         /// </summary>
         protected override void LoadContent()
         {
-            
+            menuScene = new MenuScene();
+            menuScene.LoadContent(Content);
+
+            shopDoor = new ShopDoor();
+            shopDoor.LoadContent(Content);
 
 
-            Item.LoadContent(Content);
+
+            itemManager = new ItemManager();
+            itemManager.LoadContent(Content);
+            itemManager.Init();
+
+
             SoundManager.Init();
             LoadSound();
             // Create a new SpriteBatch, which can be used to draw textures.
@@ -166,7 +182,7 @@ namespace beethoven3
            
             
             spriteSheet = Content.Load<Texture2D>(@"Textures\SpriteSheet8");
-            menu = Content.Load<Texture2D>(@"Textures\menu");
+      //      menu = Content.Load<Texture2D>(@"Textures\menu");
             heart = Content.Load<Texture2D>(@"Textures\heart");
             dot = Content.Load<Texture2D>(@"Textures\dot");
            
@@ -667,11 +683,30 @@ namespace beethoven3
             {
                 case GameStates.Menu:
 
-
+                  //  menuScene.Update(gameTime);
                     if ((Keyboard.GetState().IsKeyDown(Keys.Space))                    )
                     {
                         gameState = GameStates.SongMenu;
                     }
+                    if ((Keyboard.GetState().IsKeyDown(Keys.A)))
+                    {
+                        menuScene.setButton1();
+                    }
+
+                    if ((Keyboard.GetState().IsKeyDown(Keys.S)))
+                    {
+                        gameState = GameStates.ShopDoor;
+                    }
+                    break;
+
+
+               case GameStates.ShopDoor:
+
+                   Rectangle rect = new Rectangle(mouseStateCurrent.X, mouseStateCurrent.Y, 5, 5);
+                   //if (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released && rect.Intersects(shopDoor.getRectRightHand()))
+                   {
+                       shopDoor.setClickRightHand();
+                   }
 
                     break;
                 case GameStates.Playing:
@@ -711,7 +746,7 @@ namespace beethoven3
 
                     break;  
             }
-        
+           mouseStatePrevious = mouseStateCurrent;
             base.Update(gameTime);
         }
 
@@ -735,11 +770,18 @@ namespace beethoven3
 
             if (gameState == GameStates.Menu)
             {
-                spriteBatch.Draw(menu,
-                    new Rectangle(0, 0, this.Window.ClientBounds.Width,
-                        this.Window.ClientBounds.Height),
-                        Color.White);
+                //spriteBatch.Draw(menu,
+                //    new Rectangle(0, 0, this.Window.ClientBounds.Width,
+                //        this.Window.ClientBounds.Height),
+                //        Color.White);
+                menuScene.Draw(spriteBatch, this.Window.ClientBounds.Width, this.Window.ClientBounds.Height);
+
             }
+            if (gameState == GameStates.ShopDoor)
+            {
+                shopDoor.Draw(spriteBatch, this.Window.ClientBounds.Width, this.Window.ClientBounds.Height);
+            }
+
 
             if ((gameState == GameStates.Playing))
             {
@@ -850,9 +892,10 @@ namespace beethoven3
             //drawrec1.X = jp1.X - drawrec1.Width / 2;
             //drawrec1.Y = jp1.Y - drawrec1.Height / 2;
 
+            //이게 조금 느리다면 static으로 해서 개선 
 
-
-            spriteBatch.Draw(Item.rightHand[Item.rightHandIndex], drawrec1, Color.Red);
+            List<Item> myRightHand = itemManager.getShopRightHandItem();
+            spriteBatch.Draw(myRightHand[itemManager.getRightHandIndex()].ItemSprite.Texture, drawrec1, Color.Red);
             
 
             Joint j2r = j2.ScaleTo(1024, 768, .3f, .3f);
@@ -864,7 +907,8 @@ namespace beethoven3
             //drawrec2.X = jp2.X - drawrec2.Width / 2;
             //drawrec2.Y = jp2.Y - drawrec2.Height / 2;
 
-            spriteBatch.Draw(idot2, drawrec2, Color.Blue);
+            List<Item> myLeftHand = itemManager.getShopLeftHandItem();
+            spriteBatch.Draw(myLeftHand[itemManager.getLeftHandIndex()].ItemSprite.Texture, drawrec2, Color.Blue);
         }
         #endregion
 #endif

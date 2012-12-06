@@ -128,9 +128,11 @@
     <Compile Include="GuideLine.cs" />
     <Compile Include="GuideLineManager.cs" />
     <Compile Include="Item.cs" />
+    <Compile Include="ItemManager.cs" />
     <Compile Include="LineRenderer.cs" />
     <Compile Include="Mark.cs" />
     <Compile Include="MarkManager.cs" />
+    <Compile Include="MenuScene.cs" />
     <Compile Include="NoteFile.cs" />
     <Compile Include="NoteFileManager.cs" />
     <Compile Include="NoteInfo.cs" />
@@ -140,6 +142,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="ScoreManager.cs" />
+    <Compile Include="ShopDoor.cs" />
     <Compile Include="SongMenu.cs" />
     <Compile Include="SoundManager.cs" />
     <Compile Include="Sprite.cs" />
