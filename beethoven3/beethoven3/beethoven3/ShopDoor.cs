@@ -154,29 +154,29 @@ namespace beethoven3
         //    this.button1 = true;
         //}
 
-        public void setClickLeftHand()
+        public void setClickLeftHand(bool value)
         {
-            this.clickLeftHand = true;
+            this.clickLeftHand = value;
         }
 
-        public void setClickNote()
+        public void setClickNote(bool value)
         {
-            this.clickNote = true;
+            this.clickNote = value;
         }
 
-        public void setClickEffect()
+        public void setClickEffect(bool value)
         {
-            this.clickEffect = true;
+            this.clickEffect = value;
         }
 
-        public void setClickBackground()
+        public void setClickBackground(bool value)
         {
-            this.clickBackground= true;
+            this.clickBackground = value;
         }
 
-        public void setClickRightHand()
+        public void setClickRightHand(bool value)
         {
-            this.clickRightHand = true;
+            this.clickRightHand = value;
         }
 
 
@@ -185,7 +185,7 @@ namespace beethoven3
             return this.recRightHand;
         }
 
-        public Rectangle getRectLeftRightHand()
+        public Rectangle getRectLeftHand()
         {
             return this.recLeftHand;
         }

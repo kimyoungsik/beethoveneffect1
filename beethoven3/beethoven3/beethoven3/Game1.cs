@@ -704,10 +704,84 @@ namespace beethoven3
 
                    Rectangle rect = new Rectangle(mouseStateCurrent.X, mouseStateCurrent.Y, 5, 5);
                    //if (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released && rect.Intersects(shopDoor.getRectRightHand()))
+                   if (rect.Intersects(shopDoor.getRectRightHand()))
                    {
-                       shopDoor.setClickRightHand();
+
+                       shopDoor.setClickRightHand(true);
+                       if (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released )
+                       {
+
+                       }
+
+                   }
+                   else
+                   {
+                       shopDoor.setClickRightHand(false);
                    }
 
+
+                   if (rect.Intersects(shopDoor.getRectLeftHand()))
+                   {
+
+                       shopDoor.setClickLeftHand(true);
+                       if (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released)
+                       {
+
+                       }
+
+                   }
+                   else
+                   {
+                       shopDoor.setClickLeftHand(false);
+                   }
+
+
+                   if (rect.Intersects(shopDoor.getRectNote()))
+                   {
+
+                       shopDoor.setClickNote(true);
+                       if (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released)
+                       {
+
+                       }
+
+                   }
+                   else
+                   {
+                       shopDoor.setClickNote(false);
+                   }
+
+
+                   if (rect.Intersects(shopDoor.getRectEffect()))
+                   {
+
+                       shopDoor.setClickEffect(true);
+                       if (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released)
+                       {
+
+                       }
+
+                   }
+                   else
+                   {
+                       shopDoor.setClickEffect(false);
+                   }
+
+
+                   if (rect.Intersects(shopDoor.getRectBackground()))
+                   {
+
+                       shopDoor.setClickBackground(true);
+                       if (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released)
+                       {
+
+                       }
+
+                   }
+                   else
+                   {
+                       shopDoor.setClickBackground(false);
+                   }
                     break;
                 case GameStates.Playing:
                       MarkManager.Update(gameTime);
