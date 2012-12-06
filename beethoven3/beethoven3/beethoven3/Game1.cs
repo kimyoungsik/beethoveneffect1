@@ -16,7 +16,7 @@ using System.IO;
 using System.Threading;
 using Microsoft.Speech.Recognition;
 using Microsoft.Speech.AudioFormat;
- 
+
 /*
  타입 0-오른손 1-왼손 2-양손 3-롱노트 4-드래그노트 
  
@@ -33,6 +33,8 @@ namespace beethoven3
 
         SpriteFont pericles36Font;
          private ContentManager content;
+
+         
 
 #if Kinect
          //키넥트
@@ -52,8 +54,6 @@ namespace beethoven3
          //폰트
          SpriteFont messageFont;
          string message = "start";
-
-
 
 
          Texture2D KinectVideoTexture;
@@ -155,6 +155,8 @@ namespace beethoven3
         /// </summary>
         protected override void LoadContent()
         {
+            
+
 
             Item.LoadContent(Content);
             SoundManager.Init();
@@ -658,7 +660,7 @@ namespace beethoven3
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
-
+         //   _guiManager.Update(gameTime);
             mouseStateCurrent = Mouse.GetState();
 
            switch (gameState)
@@ -727,7 +729,7 @@ namespace beethoven3
 
             GraphicsDevice.Clear(Color.White);
            // spriteBatch.Begin(sortMode,blendMode);
-           
+          //  _guiManager.Draw(gameTime);
             // graphics.GraphicsDevice.
             spriteBatch.Begin();
 
@@ -850,7 +852,7 @@ namespace beethoven3
 
 
 
-            spriteBatch.Draw(heart, drawrec1, Color.Red);
+            spriteBatch.Draw(Item.rightHand[Item.rightHandIndex], drawrec1, Color.Red);
             
 
             Joint j2r = j2.ScaleTo(1024, 768, .3f, .3f);
