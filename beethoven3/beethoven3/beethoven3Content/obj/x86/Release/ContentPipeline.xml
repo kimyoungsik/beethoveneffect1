@@ -182,54 +182,6 @@
       <Time>2012-11-21T10:47:25.9729367+09:00</Time>
     </Item>
     <Item>
-      <Source>snd\ka.mp3</Source>
-      <Name>snd\ka</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\snd\ka.xnb</Output>
-      <Extra>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\snd\ka.wma</Extra>
-      <Time>2012-11-12T21:11:14.3933834+09:00</Time>
-    </Item>
-    <Item>
-      <Source>snd\jo.MP3</Source>
-      <Name>snd\jo</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\snd\jo.xnb</Output>
-      <Extra>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\snd\jo.wma</Extra>
-      <Time>2012-11-12T21:55:50.6374013+09:00</Time>
-    </Item>
-    <Item>
-      <Source>snd\maid.mp3</Source>
-      <Name>snd\maid</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\snd\maid.xnb</Output>
-      <Extra>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\snd\maid.wma</Extra>
-      <Time>2012-11-12T21:55:50.9464189+09:00</Time>
-    </Item>
-    <Item>
-      <Source>Fonts\damagefont.spritefont</Source>
-      <Name>Fonts\damagefont</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Fonts\damagefont.xnb</Output>
-      <Time>2012-08-31T03:50:00+09:00</Time>
-    </Item>
-    <Item>
-      <Source>Fonts\Pericles36.spritefont</Source>
-      <Name>Fonts\Pericles36</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Fonts\Pericles36.xnb</Output>
-      <Time>2012-11-21T16:07:05.2798613+09:00</Time>
-    </Item>
-    <Item>
       <Source>ui\background.png</Source>
       <Name>ui\background</Name>
       <Importer>TextureImporter</Importer>
@@ -264,15 +216,6 @@
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Bitmap2.xnb</Output>
       <Time>2012-11-14T05:57:40+09:00</Time>
-    </Item>
-    <Item>
-      <Source>MessageFont.spritefont</Source>
-      <Name>MessageFont</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\MessageFont.xnb</Output>
-      <Time>2012-11-24T01:56:44+09:00</Time>
     </Item>
     <Item>
       <Source>shopdoor\changed1.png</Source>
@@ -426,6 +369,63 @@
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopdoor\hoverYesButton.xnb</Output>
       <Time>2012-12-07T16:53:01.7260128+09:00</Time>
+    </Item>
+    <Item>
+      <Source>snd\ka.mp3</Source>
+      <Name>snd\ka</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\snd\ka.xnb</Output>
+      <Extra>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\snd\ka.wma</Extra>
+      <Time>2012-11-12T21:11:14.3933834+09:00</Time>
+    </Item>
+    <Item>
+      <Source>snd\jo.MP3</Source>
+      <Name>snd\jo</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\snd\jo.xnb</Output>
+      <Extra>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\snd\jo.wma</Extra>
+      <Time>2012-11-12T21:55:50.6374013+09:00</Time>
+    </Item>
+    <Item>
+      <Source>snd\maid.mp3</Source>
+      <Name>snd\maid</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\snd\maid.xnb</Output>
+      <Extra>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\snd\maid.wma</Extra>
+      <Time>2012-11-12T21:55:50.9464189+09:00</Time>
+    </Item>
+    <Item>
+      <Source>Fonts\damagefont.spritefont</Source>
+      <Name>Fonts\damagefont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Fonts\damagefont.xnb</Output>
+      <Time>2012-08-31T03:50:00+09:00</Time>
+    </Item>
+    <Item>
+      <Source>Fonts\Pericles36.spritefont</Source>
+      <Name>Fonts\Pericles36</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Fonts\Pericles36.xnb</Output>
+      <Time>2012-11-21T16:07:05.2798613+09:00</Time>
+    </Item>
+    <Item>
+      <Source>MessageFont.spritefont</Source>
+      <Name>MessageFont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\MessageFont.xnb</Output>
+      <Time>2012-11-24T01:56:44+09:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

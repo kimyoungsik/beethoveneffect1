@@ -102,7 +102,7 @@ namespace beethoven3
 
         public static void changeMarkPattern(int number)
         {
-            int i;
+         //   int i;
             Vector2 mark0Loc = Vector2.Zero;
             Vector2 mark1Loc = Vector2.Zero;
             Vector2 mark2Loc = Vector2.Zero;

@@ -8,61 +8,29 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 namespace beethoven3
 {
-    class RightItemShop
+    class RightItemShop : ItemShop
     {
 
-        private ItemManager itemManager;
         private List<Item> rightItems;
         private List<Item> myRightItems;
         private List<Rectangle> rectRightItems = new List<Rectangle>();
-        
-
-        bool darkBackground;
-        
-        //버튼띄울때 장착or구입 여부 확인하기위해서.
-        bool buyOne;
-        bool wearOne;
-
-        private Texture2D darkBackgroundImage;
-        private Texture2D yesButton;
-        private Texture2D noButton;
-        private Texture2D putPanel;
-        private Texture2D buyPanel;
-        private Texture2D hoverYesButton;
-        private Texture2D hoverNoButton;
-        
 
 
-        private Rectangle recYesButton;
-        private Rectangle recNoButton;
 
-        private bool isHoverYesButton;
-        private bool isHoverNoButton;
-
-   
         public RightItemShop(ItemManager itemManager)
+            : base(itemManager)
         {
-            this.itemManager = itemManager;
-            darkBackground = false;
-            wearOne = false;
-            buyOne = false;
+          
         }
 
-        public void LoadContent(ContentManager cm)
+        public override void LoadContent(ContentManager cm)
         {
-            darkBackgroundImage = cm.Load<Texture2D>(@"Textures\darkBackground");
-
-            yesButton = cm.Load<Texture2D>(@"shopdoor\yesButton");
-            noButton = cm.Load<Texture2D>(@"shopdoor\noButton");
-            putPanel = cm.Load<Texture2D>(@"shopdoor\putPanel");
-            buyPanel = cm.Load<Texture2D>(@"shopdoor\buyPanel");
-            hoverYesButton = cm.Load<Texture2D>(@"shopdoor\hoverYesButton");
-            hoverNoButton = cm.Load<Texture2D>(@"shopdoor\hoverNoButton");
-
+            base.LoadContent(cm);
             rightItems = itemManager.getShopRightHandItem();
             myRightItems = itemManager.getMyRightHandItem();
             setLocationItems();
         }
+
 
         public void addItemtoMyItem(Item item)
         {
@@ -72,36 +40,7 @@ namespace beethoven3
         }
         
 
-
-
-
-        public void setDarkBackground(bool value)
-        {
-            this.darkBackground = value;
-        }
-
-        public void setBuyOne(bool value)
-        {
-            this.buyOne = value;
-        }
-
-        public bool getBuyOne()
-        {
-            return this.buyOne;
-        }
-
-        public void setWearOne(bool value)
-        {
-            this.wearOne = value;
-        }
-
-        public bool getWearOne()
-        {
-            return this.wearOne;
-        }
-
-
-       
+               
 
         public List<Rectangle> getRectRightItem()
         {
@@ -142,39 +81,7 @@ namespace beethoven3
 
         }
 
-
-        public Rectangle getRectYesButton()
-        {
-            return this.recYesButton;
-        }
-
-        public Rectangle getRectNoButton()
-        {
-            return this.recNoButton;
-        }
-
-
-        public void setHoverYesButton(bool value)
-        {
-
-            this.isHoverYesButton = value;
-        }
-
-
-        public void setHoverNoButton(bool value)
-        {
-
-            this.isHoverNoButton = value;
-        }
-
-
-        public void Update(GameTime gameTime)
-        {
-
-
-        }
-
-        public void Draw(SpriteBatch spriteBatch, int width, int height)
+        public override void Draw(SpriteBatch spriteBatch, int width, int height)
         {
             int i;
            

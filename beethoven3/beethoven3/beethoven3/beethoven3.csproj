@@ -118,10 +118,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BackgroundItemShop.cs" />
     <Compile Include="CollisionManager.cs" />
     <Compile Include="Curve.cs" />
     <Compile Include="CurveManager.cs" />
     <Compile Include="DragNoteManager.cs" />
+    <Compile Include="EffectItemShop.cs" />
     <Compile Include="ExplosionManager.cs" />
     <Compile Include="File.cs" />
     <Compile Include="GoldManager.cs" />
@@ -129,6 +131,7 @@
     <Compile Include="GuideLineManager.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="ItemManager.cs" />
+    <Compile Include="ItemShop.cs" />
     <Compile Include="LeftItemShop.cs" />
     <Compile Include="LineRenderer.cs" />
     <Compile Include="Mark.cs" />
@@ -137,6 +140,7 @@
     <Compile Include="NoteFile.cs" />
     <Compile Include="NoteFileManager.cs" />
     <Compile Include="NoteInfo.cs" />
+    <Compile Include="NoteItemShop.cs" />
     <Compile Include="NoteManager.cs" />
     <Compile Include="Particle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

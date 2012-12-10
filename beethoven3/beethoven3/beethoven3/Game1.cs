@@ -63,7 +63,7 @@ namespace beethoven3
          Item selectedItem;
 #endif
 
-        enum GameStates { Menu, Playing, SongMenu, ShopDoor, RightItemShop, GameOver };
+        enum GameStates { Menu, Playing, SongMenu, ShopDoor, RightItemShop, LeftItemShop, EffectItemShop, NoteItemShop, BackgroundItemShop, GameOver };
         GameStates gameState = GameStates.Menu;
 
         MenuScene menuScene;
@@ -93,7 +93,10 @@ namespace beethoven3
         ScoreManager scoreManager;
         ItemManager itemManager;
         RightItemShop rightItemShop;
-
+        LeftItemShop leftItemShop;
+        EffectItemShop effectItemShop;
+        NoteItemShop noteItemShop;
+        BackgroundItemShop backgroundItemShop;
         
         static public int mousex = 100; //X좌표
         static public int mousey = 100; //Y좌표
@@ -157,6 +160,20 @@ namespace beethoven3
 
             rightItemShop = new RightItemShop(itemManager);
             rightItemShop.LoadContent(Content);
+
+            leftItemShop = new LeftItemShop(itemManager);
+            leftItemShop.LoadContent(Content);
+
+            effectItemShop = new EffectItemShop(itemManager);
+            effectItemShop.LoadContent(Content);
+
+            noteItemShop = new NoteItemShop(itemManager);
+            noteItemShop.LoadContent(Content);
+
+            backgroundItemShop = new BackgroundItemShop(itemManager);
+            backgroundItemShop.LoadContent(Content);
+           
+
 
             SoundManager.Init();
             LoadSound();
@@ -493,8 +510,7 @@ namespace beethoven3
         //디스플레이
         #region Color display
 
-     
-
+  
         //컬러 프레임
         void nui_ColorFrameReady(object sender, ColorImageFrameReadyEventArgs e)
         {
@@ -518,10 +534,11 @@ namespace beethoven3
                 }
                 KinectVideoTexture.SetData(bitmap);
 
-
             }
         }
         #endregion
+        
+        
         //스켈레톤 프레임
         #region Skeleton
         void nui_SkeletonFrameReady(object sender, SkeletonFrameReadyEventArgs e)
@@ -684,47 +701,46 @@ namespace beethoven3
                case GameStates.ShopDoor:
 
                    Rectangle rect = new Rectangle(mouseStateCurrent.X, mouseStateCurrent.Y, 5, 5);
-                   //if (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released && rect.Intersects(shopDoor.getRectRightHand()))
+
+                   //mousecursor on right hand item section
                    if (rect.Intersects(shopDoor.getRectRightHand()))
                    {
-
                        shopDoor.setClickRightHand(true);
+                       //click the right hand item section
                        if (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released )
                        {
                            gameState = GameStates.RightItemShop;
-                           
                        }
-
                    }
+
                    else
                    {
                        shopDoor.setClickRightHand(false);
                    }
 
-
+                   //mouse cursor on left hadn item section
                    if (rect.Intersects(shopDoor.getRectLeftHand()))
                    {
-
                        shopDoor.setClickLeftHand(true);
+
                        if (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released)
                        {
-
+                           gameState = GameStates.LeftItemShop;
                        }
-
                    }
                    else
                    {
                        shopDoor.setClickLeftHand(false);
                    }
 
-
+                   //note
                    if (rect.Intersects(shopDoor.getRectNote()))
                    {
 
                        shopDoor.setClickNote(true);
                        if (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released)
                        {
-
+                           gameState = GameStates.NoteItemShop;
                        }
 
                    }
@@ -740,7 +756,7 @@ namespace beethoven3
                        shopDoor.setClickEffect(true);
                        if (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released)
                        {
-
+                           gameState = GameStates.EffectItemShop;
                        }
 
                    }
@@ -756,7 +772,7 @@ namespace beethoven3
                        shopDoor.setClickBackground(true);
                        if (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released)
                        {
-
+                           gameState = GameStates.BackgroundItemShop;
                        }
 
                    }
@@ -767,39 +783,162 @@ namespace beethoven3
                     break;
 
 
-               case  GameStates.RightItemShop:
+               case  GameStates.LeftItemShop:
                    
+                   Rectangle mouseRectinleft = new Rectangle(mouseStateCurrent.X, mouseStateCurrent.Y, 5, 5);
+                   int j;
+                   //클릭했을때 어두워지는것.
+                   List<Rectangle> rectLeftItems =  leftItemShop.getRectLeftItem();
+                   List<Item> shopLeftItems = leftItemShop.getShopLeftItem();
+                   for (j = 0; j < rectLeftItems.Count; j++)
+                   {
+                       if (mouseRectinleft.Intersects(rectLeftItems[j]) && mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released)
+                       {
+                           leftItemShop.setDarkBackground(true);   
+                           //메시지 박스 띄우기  
+                            selectedItem = shopLeftItems[j];
+                           //이미 산거이면 true
+                            if (leftItemShop.haveOne(shopLeftItems[j]))
+                            {
+                                leftItemShop.setWearOne(true);
+                            }
+                            else
+                            {
+                                leftItemShop.setBuyOne(true);
+                            }
+                       }
+                   }
+                   //message box about wearing item 
+                   if (leftItemShop.getWearOne())
+                   {
+                       //mouse cursor on yes button
+                       if (mouseRectinleft.Intersects(leftItemShop.getRectYesButton()))
+                       {
+                           leftItemShop.setHoverYesButton(true);
+                           if (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released)
+                           {
+                               if (selectedItem != null)
+                               {
+                                   //find the index of item in myleftitem list
+                                   int index = itemManager.getIndexOfMyLeftItem(selectedItem);
+                                   if (index != -1)
+                                   {
+                                       //change index
+                                       itemManager.setLeftHandIndex(index);
+
+                                       //return to normal , remove message box
+                                       leftItemShop.setWearOne(false);
+                                       leftItemShop.setDarkBackground(false);
+                                   }
+                                   else
+                                   {
+                                       //get wrong index( no item in list)
+                                   }
+                               }
+                               else
+                               {
+                                   //nothing is selected
+                               }
+                          }
+                       }
+                       else
+                       {
+                           leftItemShop.setHoverYesButton(false);
+                       }
+                       //mouse cursor on no button
+                       if (mouseRectinleft.Intersects(leftItemShop.getRectNoButton()))
+                       {
+                           leftItemShop.setHoverNoButton(true);
+                           if (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released)
+                           {
+                               //return to normal , remove message box
+                               leftItemShop.setWearOne(false);
+                               leftItemShop.setDarkBackground(false);   
+                           }
+                       }
+                       else
+                       {
+                           leftItemShop.setHoverNoButton(false);
+                       }
+                   }
+                   //message box about buying item
+                   if (leftItemShop.getBuyOne())
+                   {
+                       //mouse cursor on right button
+
+                       if (mouseRectinleft.Intersects(leftItemShop.getRectYesButton()))
+                       {
+                           leftItemShop.setHoverYesButton(true);
+                           if (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released)
+                           {
+                               //add item to my item
+                               if (selectedItem != null)
+                               {
+                                   leftItemShop.addItemtoMyItem(selectedItem);
+                                   //return to normal , remove message box
+                                   leftItemShop.setBuyOne(false);
+                                   leftItemShop.setDarkBackground(false);
+                               }
+                               else
+                               {
+                                   //nothing is selected
+                               }
+                           }
+                       }
+                       else
+                       {
+                           leftItemShop.setHoverYesButton(false);
+                       }
+                       if (mouseRectinleft.Intersects(leftItemShop.getRectNoButton()))
+                       {
+                           leftItemShop.setHoverNoButton(true);
+                           if (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released)
+                           {
+                               //return to normal , remove message box
+                               leftItemShop.setBuyOne(false);
+                               leftItemShop.setDarkBackground(false);
+                           }
+                       }
+                       else
+                       {
+                           leftItemShop.setHoverNoButton(false);
+                       }
+                   }
+                   break;
+
+               case GameStates.RightItemShop:
+
                    Rectangle mouseRect = new Rectangle(mouseStateCurrent.X, mouseStateCurrent.Y, 5, 5);
                    int i;
 
 
                    //클릭했을때 어두워지는것.
-                   List<Rectangle> rectRightItems =  rightItemShop.getRectRightItem();
+                   List<Rectangle> rectRightItems = rightItemShop.getRectRightItem();
                    List<Item> shopRightItems = rightItemShop.getShopRightItem();
-                   
 
 
-                   for(i=0; i<rectRightItems.Count; i++)
+
+                   for (i = 0; i < rectRightItems.Count; i++)
                    {
                        if (mouseRect.Intersects(rectRightItems[i]) && mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released)
                        {
-                           rightItemShop.setDarkBackground(true);   
+                           rightItemShop.setDarkBackground(true);
                            //메시지 박스 띄우기  
-                            selectedItem = shopRightItems[i];
+                           selectedItem = shopRightItems[i];
                            //이미 산거이면 true
-                            if(rightItemShop.haveOne(shopRightItems[i]))
-                            {
-                                rightItemShop.setWearOne(true);
-                                
-                            }
-                            else
-                            {
+                           if (rightItemShop.haveOne(shopRightItems[i]))
+                           {
+                               rightItemShop.setWearOne(true);
 
-                                 rightItemShop.setBuyOne(true);
-                            }
-                       
+                           }
+                           else
+                           {
+
+                               rightItemShop.setBuyOne(true);
+                           }
+
                        }
-                      
+
                    }
 
                    //message box about wearing item 
@@ -855,7 +994,7 @@ namespace beethoven3
                            {
                                //return to normal , remove message box
                                rightItemShop.setWearOne(false);
-                               rightItemShop.setDarkBackground(false);   
+                               rightItemShop.setDarkBackground(false);
                            }
 
 
@@ -886,7 +1025,7 @@ namespace beethoven3
 
                                    rightItemShop.addItemtoMyItem(selectedItem);
 
-                                   
+
                                    //return to normal , remove message box
                                    rightItemShop.setBuyOne(false);
                                    rightItemShop.setDarkBackground(false);
@@ -896,7 +1035,7 @@ namespace beethoven3
                                    //nothing is selected
                                }
 
-                          
+
                            }
                        }
                        else
@@ -924,6 +1063,377 @@ namespace beethoven3
                    break;
 
 
+
+               case GameStates.NoteItemShop:
+
+                   Rectangle mouseRectinNote = new Rectangle(mouseStateCurrent.X, mouseStateCurrent.Y, 5, 5);
+                   int s;
+                   //클릭했을때 어두워지는것.
+                   List<Rectangle> rectNoteItems = noteItemShop.getRectNoteItem();
+                   List<Item> shopNoteItems = noteItemShop.getShopNoteItem();
+                   for (s = 0; s < rectNoteItems.Count; s++)
+                   {
+                       if (mouseRectinNote.Intersects(rectNoteItems[s]) && mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released)
+                       {
+                           noteItemShop.setDarkBackground(true);
+                           //메시지 박스 띄우기  
+                           selectedItem = shopNoteItems[s];
+                           //이미 산거이면 true
+                           if (noteItemShop.haveOne(shopNoteItems[s]))
+                           {
+                               noteItemShop.setWearOne(true);
+                           }
+                           else
+                           {
+                               noteItemShop.setBuyOne(true);
+                           }
+                       }
+                   }
+                   //message box about wearing item 
+                   if (noteItemShop.getWearOne())
+                   {
+                       //mouse cursor on yes button
+                       if (mouseRectinNote.Intersects(noteItemShop.getRectYesButton()))
+                       {
+                           noteItemShop.setHoverYesButton(true);
+                           if (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released)
+                           {
+                               if (selectedItem != null)
+                               {
+                                   //find the index of item in myleftitem list
+                                   int index = itemManager.getIndexOfMyNoteItem(selectedItem);
+                                   if (index != -1)
+                                   {
+                                       //change index
+                                       itemManager.setNoteIndex(index);
+
+                                       //return to normal , remove message box
+                                       noteItemShop.setWearOne(false);
+                                       noteItemShop.setDarkBackground(false);
+                                   }
+                                   else
+                                   {
+                                       //get wrong index( no item in list)
+                                   }
+                               }
+                               else
+                               {
+                                   //nothing is selected
+                               }
+                           }
+                       }
+                       else
+                       {
+                           noteItemShop.setHoverYesButton(false);
+                       }
+                       //mouse cursor on no button
+                       if (mouseRectinNote.Intersects(noteItemShop.getRectNoButton()))
+                       {
+                           noteItemShop.setHoverNoButton(true);
+                           if (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released)
+                           {
+                               //return to normal , remove message box
+                               noteItemShop.setWearOne(false);
+                               noteItemShop.setDarkBackground(false);
+                           }
+                       }
+                       else
+                       {
+                           noteItemShop.setHoverNoButton(false);
+                       }
+                   }
+                   //message box about buying item
+                   if (noteItemShop.getBuyOne())
+                   {
+                       //mouse cursor on right button
+
+                       if (mouseRectinNote.Intersects(noteItemShop.getRectYesButton()))
+                       {
+                           noteItemShop.setHoverYesButton(true);
+                           if (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released)
+                           {
+                               //add item to my item
+                               if (selectedItem != null)
+                               {
+                                   noteItemShop.addItemtoMyItem(selectedItem);
+                                   //return to normal , remove message box
+                                   noteItemShop.setBuyOne(false);
+                                   noteItemShop.setDarkBackground(false);
+                               }
+                               else
+                               {
+                                   //nothing is selected
+                               }
+                           }
+                       }
+                       else
+                       {
+                           noteItemShop.setHoverYesButton(false);
+                       }
+                       if (mouseRectinNote.Intersects(noteItemShop.getRectNoButton()))
+                       {
+                           noteItemShop.setHoverNoButton(true);
+                           if (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released)
+                           {
+                               //return to normal , remove message box
+                               noteItemShop.setBuyOne(false);
+                               noteItemShop.setDarkBackground(false);
+                           }
+                       }
+                       else
+                       {
+                           noteItemShop.setHoverNoButton(false);
+                       }
+                   }
+                   break;
+
+
+               case GameStates.EffectItemShop:
+
+                   Rectangle mouseRectinEffect = new Rectangle(mouseStateCurrent.X, mouseStateCurrent.Y, 5, 5);
+                   int k;
+                   //클릭했을때 어두워지는것.
+                   List<Rectangle> rectEffectItems = effectItemShop.getRectEffectItem();
+                   List<Item> shopEffectItems = effectItemShop.getShopEffectItem();
+                   for (k = 0; k < rectEffectItems.Count; k++)
+                   {
+                       if (mouseRectinEffect.Intersects(rectEffectItems[k]) && mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released)
+                       {
+                           effectItemShop.setDarkBackground(true);
+                           //메시지 박스 띄우기  
+                           selectedItem = shopEffectItems[k];
+                           //이미 산거이면 true
+                           if (effectItemShop.haveOne(shopEffectItems[k]))
+                           {
+                               effectItemShop.setWearOne(true);
+                           }
+                           else
+                           {
+                               effectItemShop.setBuyOne(true);
+                           }
+                       }
+                   }
+                   //message box about wearing item 
+                   if (effectItemShop.getWearOne())
+                   {
+                       //mouse cursor on yes button
+                       if (mouseRectinEffect.Intersects(effectItemShop.getRectYesButton()))
+                       {
+                           effectItemShop.setHoverYesButton(true);
+                           if (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released)
+                           {
+                               if (selectedItem != null)
+                               {
+                                   //find the index of item in myleftitem list
+                                   int index = itemManager.getIndexOfMyEffectItem(selectedItem);
+                                   if (index != -1)
+                                   {
+                                       //change index
+                                       itemManager.setEffectIndex(index);
+
+                                       //return to normal , remove message box
+                                       effectItemShop.setWearOne(false);
+                                       effectItemShop.setDarkBackground(false);
+                                   }
+                                   else
+                                   {
+                                       //get wrong index( no item in list)
+                                   }
+                               }
+                               else
+                               {
+                                   //nothing is selected
+                               }
+                           }
+                       }
+                       else
+                       {
+                           effectItemShop.setHoverYesButton(false);
+                       }
+                       //mouse cursor on no button
+                       if (mouseRectinEffect.Intersects(effectItemShop.getRectNoButton()))
+                       {
+                           effectItemShop.setHoverNoButton(true);
+                           if (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released)
+                           {
+                               //return to normal , remove message box
+                               effectItemShop.setWearOne(false);
+                               effectItemShop.setDarkBackground(false);
+                           }
+                       }
+                       else
+                       {
+                           effectItemShop.setHoverNoButton(false);
+                       }
+                   }
+                   //message box about buying item
+                   if (effectItemShop.getBuyOne())
+                   {
+                       //mouse cursor on right button
+
+                       if (mouseRectinEffect.Intersects(effectItemShop.getRectYesButton()))
+                       {
+                           effectItemShop.setHoverYesButton(true);
+                           if (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released)
+                           {
+                               //add item to my item
+                               if (selectedItem != null)
+                               {
+                                   effectItemShop.addItemtoMyItem(selectedItem);
+                                   //return to normal , remove message box
+                                   effectItemShop.setBuyOne(false);
+                                   effectItemShop.setDarkBackground(false);
+                               }
+                               else
+                               {
+                                   //nothing is selected
+                               }
+                           }
+                       }
+                       else
+                       {
+                           effectItemShop.setHoverYesButton(false);
+                       }
+                       if (mouseRectinEffect.Intersects(effectItemShop.getRectNoButton()))
+                       {
+                           effectItemShop.setHoverNoButton(true);
+                           if (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released)
+                           {
+                               //return to normal , remove message box
+                               effectItemShop.setBuyOne(false);
+                               effectItemShop.setDarkBackground(false);
+                           }
+                       }
+                       else
+                       {
+                           effectItemShop.setHoverNoButton(false);
+                       }
+                   }
+                   break;
+
+
+               case GameStates.BackgroundItemShop:
+
+                   Rectangle mouseRectinBackground = new Rectangle(mouseStateCurrent.X, mouseStateCurrent.Y, 5, 5);
+                   int r;
+                   //클릭했을때 어두워지는것.
+                   List<Rectangle> rectBackgroundItems = backgroundItemShop.getRectBackgroundItem();
+                   List<Item> shopBackgroundItems = backgroundItemShop.getShopBackgroundItem();
+                   for (r = 0; r < rectBackgroundItems.Count; r++)
+                   {
+                       if (mouseRectinBackground.Intersects(rectBackgroundItems[r]) && mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released)
+                       {
+                           backgroundItemShop.setDarkBackground(true);
+                           //메시지 박스 띄우기  
+                           selectedItem = shopBackgroundItems[r];
+                           //이미 산거이면 true
+                           if (backgroundItemShop.haveOne(shopBackgroundItems[r]))
+                           {
+                               backgroundItemShop.setWearOne(true);
+                           }
+                           else
+                           {
+                               backgroundItemShop.setBuyOne(true);
+                           }
+                       }
+                   }
+                   //message box about wearing item 
+                   if (backgroundItemShop.getWearOne())
+                   {
+                       //mouse cursor on yes button
+                       if (mouseRectinBackground.Intersects(backgroundItemShop.getRectYesButton()))
+                       {
+                           backgroundItemShop.setHoverYesButton(true);
+                           if (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released)
+                           {
+                               if (selectedItem != null)
+                               {
+                                   //find the index of item in myleftitem list
+                                   int index = itemManager.getIndexOfMyBackgroundItem(selectedItem);
+                                   if (index != -1)
+                                   {
+                                       //change index
+                                       itemManager.setBackgroundIndex(index);
+
+                                       //return to normal , remove message box
+                                       backgroundItemShop.setWearOne(false);
+                                       backgroundItemShop.setDarkBackground(false);
+                                   }
+                                   else
+                                   {
+                                       //get wrong index( no item in list)
+                                   }
+                               }
+                               else
+                               {
+                                   //nothing is selected
+                               }
+                           }
+                       }
+                       else
+                       {
+                           backgroundItemShop.setHoverYesButton(false);
+                       }
+                       //mouse cursor on no button
+                       if (mouseRectinBackground.Intersects(backgroundItemShop.getRectNoButton()))
+                       {
+                           backgroundItemShop.setHoverNoButton(true);
+                           if (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released)
+                           {
+                               //return to normal , remove message box
+                               backgroundItemShop.setWearOne(false);
+                               backgroundItemShop.setDarkBackground(false);
+                           }
+                       }
+                       else
+                       {
+                           backgroundItemShop.setHoverNoButton(false);
+                       }
+                   }
+                   //message box about buying item
+                   if (backgroundItemShop.getBuyOne())
+                   {
+                       //mouse cursor on right button
+
+                       if (mouseRectinBackground.Intersects(backgroundItemShop.getRectYesButton()))
+                       {
+                           backgroundItemShop.setHoverYesButton(true);
+                           if (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released)
+                           {
+                               //add item to my item
+                               if (selectedItem != null)
+                               {
+                                   backgroundItemShop.addItemtoMyItem(selectedItem);
+                                   //return to normal , remove message box
+                                   backgroundItemShop.setBuyOne(false);
+                                   backgroundItemShop.setDarkBackground(false);
+                               }
+                               else
+                               {
+                                   //nothing is selected
+                               }
+                           }
+                       }
+                       else
+                       {
+                           backgroundItemShop.setHoverYesButton(false);
+                       }
+                       if (mouseRectinBackground.Intersects(backgroundItemShop.getRectNoButton()))
+                       {
+                           backgroundItemShop.setHoverNoButton(true);
+                           if (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released)
+                           {
+                               //return to normal , remove message box
+                               backgroundItemShop.setBuyOne(false);
+                               backgroundItemShop.setDarkBackground(false);
+                           }
+                       }
+                       else
+                       {
+                           backgroundItemShop.setHoverNoButton(false);
+                       }
+                   }
+                   break;
 
 
                 case GameStates.Playing:
@@ -998,9 +1508,31 @@ namespace beethoven3
             {
                 shopDoor.Draw(spriteBatch, this.Window.ClientBounds.Width, this.Window.ClientBounds.Height);
             }
-                if (gameState == GameStates.RightItemShop)
+            if (gameState == GameStates.RightItemShop)
             {
                 rightItemShop.Draw(spriteBatch, this.Window.ClientBounds.Width, this.Window.ClientBounds.Height);
+            }
+
+            if (gameState == GameStates.LeftItemShop)
+            {
+                leftItemShop.Draw(spriteBatch, this.Window.ClientBounds.Width, this.Window.ClientBounds.Height);
+            }
+
+
+            if (gameState == GameStates.EffectItemShop)
+            {
+                effectItemShop.Draw(spriteBatch, this.Window.ClientBounds.Width, this.Window.ClientBounds.Height);
+            }
+
+            if (gameState == GameStates.NoteItemShop)
+            {
+                noteItemShop.Draw(spriteBatch, this.Window.ClientBounds.Width, this.Window.ClientBounds.Height);
+            }
+
+
+            if (gameState == GameStates.BackgroundItemShop)
+            {
+                backgroundItemShop.Draw(spriteBatch, this.Window.ClientBounds.Width, this.Window.ClientBounds.Height);
             }
 
             
