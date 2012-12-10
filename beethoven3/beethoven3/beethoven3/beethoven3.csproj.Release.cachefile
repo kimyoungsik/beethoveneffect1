@@ -38,6 +38,13 @@ Content\shopdoor\shopdoor2.xnb
 Content\shopdoor\shopdoor3.xnb
 Content\shopdoor\shopdoor4.xnb
 Content\shopdoor\shopdoor5.xnb
+Content\Textures\darkBackground.xnb
+Content\shopdoor\buyPanel.xnb
+Content\shopdoor\noButton.xnb
+Content\shopdoor\putPanel.xnb
+Content\shopdoor\yesButton.xnb
+Content\shopdoor\hoverNoButton.xnb
+Content\shopdoor\hoverYesButton.xnb
 Content\snd\ka.wma
 Content\snd\jo.wma
 Content\snd\maid.wma

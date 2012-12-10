@@ -3,12 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
 namespace beethoven3
 {
     class ItemManager
@@ -22,8 +19,8 @@ namespace beethoven3
         private Texture2D[] leftHandTexture = new Texture2D[5];
 
         //내가 착용한 아이템-착용함수 제작
-        private int rightHandIndex = 1;
-        private int leftHandIndex = 1;
+        private int rightHandIndex = 0;
+        private int leftHandIndex = 0;
 
         //내가 가지고 있는 아이템
         public List<Item> myRightHandItem = new List<Item>();
@@ -32,7 +29,10 @@ namespace beethoven3
         public ItemManager()
         {
           
+
         }
+
+
         public void Init()
         {
             int i;
@@ -44,6 +44,10 @@ namespace beethoven3
             {
                 addItem(leftHandItem, new Vector2(100, 100), leftHandTexture[i], new Rectangle(0, 0, leftHandTexture[i].Width, leftHandTexture[i].Height), 1);
             }
+
+            //test
+            buyItem(myRightHandItem, rightHandItem[0]);
+          //  buyItem(myRightHandItem, rightHandItem[1]);
         }
 
         public void LoadContent(ContentManager cm)
@@ -85,6 +89,9 @@ namespace beethoven3
             itemArray.Remove(item);
         }
 
+
+
+
         public void setRightHandIndex(int index)
         {
             this.rightHandIndex = index;
@@ -104,8 +111,7 @@ namespace beethoven3
         {
             return this.leftHandIndex;
         }
-
-
+    
 
         public List<Item> getMyRightHandItem()
         {
@@ -130,6 +136,24 @@ namespace beethoven3
         }
 
 
+
+        public int getIndexOfMyRightItem(Item item)
+        {
+            int i;
+            int index = -1;
+            for (i = 0; i < myRightHandItem.Count; i++)
+            {
+                if (item == myRightHandItem[i])
+                {
+                    index = i;
+                }
+                
+            }
+
+            return index;
+
+
+        }
 
 
 

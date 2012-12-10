@@ -51,3 +51,10 @@ D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopdoor\s
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopdoor\shopdoor3.xnb
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopdoor\shopdoor4.xnb
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopdoor\shopdoor5.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Textures\darkBackground.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopdoor\buyPanel.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopdoor\noButton.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopdoor\putPanel.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopdoor\yesButton.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopdoor\hoverNoButton.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopdoor\hoverYesButton.xnb

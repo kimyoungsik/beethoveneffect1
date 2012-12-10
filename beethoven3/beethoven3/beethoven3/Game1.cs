@@ -19,8 +19,8 @@ using Microsoft.Speech.AudioFormat;
 
 /*
  타입 0-오른손 1-왼손 2-양손 3-롱노트 4-드래그노트 
- 
- */
+*/
+
 namespace beethoven3
 {
     /// <summary>
@@ -32,9 +32,6 @@ namespace beethoven3
         SpriteBatch spriteBatch;
 
         SpriteFont pericles36Font;
-     //    private ContentManager content;
-
-         
 
 #if Kinect
          //키넥트
@@ -63,28 +60,21 @@ namespace beethoven3
 
          Rectangle drawrec1;
          Rectangle drawrec2;
-
+         Item selectedItem;
 #endif
 
-
-
-        enum GameStates { Menu, Playing, SongMenu, ShopDoor, GameOver };
+        enum GameStates { Menu, Playing, SongMenu, ShopDoor, RightItemShop, GameOver };
         GameStates gameState = GameStates.Menu;
 
         MenuScene menuScene;
         ShopDoor shopDoor;
 
-
         public static Texture2D spriteSheet;
-     //   public static Texture2D menu;
         public static Texture2D heart;
         public static Texture2D dot;
 
-    //    private Texture2D tileSprite;
         private Texture2D uiBackground;
         private Texture2D uiHeart;
-
-
 
         private Rectangle removeAreaRec = new Rectangle(0, 0, 0, 0);
       
@@ -102,9 +92,7 @@ namespace beethoven3
 
         ScoreManager scoreManager;
         ItemManager itemManager;
-        
-
-
+        RightItemShop rightItemShop;
 
         
         static public int mousex = 100; //X좌표
@@ -127,13 +115,8 @@ namespace beethoven3
             ///test
             ///
           //  content = new ContentManager(Services);
-
-
-        
         }
-
-
-
+        
         /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
         /// This is where it can query for any required services and load any non-graphic
@@ -168,12 +151,12 @@ namespace beethoven3
             shopDoor = new ShopDoor();
             shopDoor.LoadContent(Content);
 
-
-
             itemManager = new ItemManager();
             itemManager.LoadContent(Content);
             itemManager.Init();
 
+            rightItemShop = new RightItemShop(itemManager);
+            rightItemShop.LoadContent(Content);
 
             SoundManager.Init();
             LoadSound();
@@ -182,14 +165,12 @@ namespace beethoven3
            
             
             spriteSheet = Content.Load<Texture2D>(@"Textures\SpriteSheet8");
-      //      menu = Content.Load<Texture2D>(@"Textures\menu");
             heart = Content.Load<Texture2D>(@"Textures\heart");
             dot = Content.Load<Texture2D>(@"Textures\dot");
            
             //test 텍스쳐 순서
             uiBackground = Content.Load<Texture2D>(@"ui\background");
             uiHeart = Content.Load<Texture2D>(@"ui\heart");
-        //    tileSprite = Content.Load<Texture2D>(@"Textures\shapes");
             
             pericles36Font = Content.Load<SpriteFont>(@"Fonts\Pericles36");
 
@@ -710,7 +691,8 @@ namespace beethoven3
                        shopDoor.setClickRightHand(true);
                        if (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released )
                        {
-
+                           gameState = GameStates.RightItemShop;
+                           
                        }
 
                    }
@@ -783,6 +765,167 @@ namespace beethoven3
                        shopDoor.setClickBackground(false);
                    }
                     break;
+
+
+               case  GameStates.RightItemShop:
+                   
+                   Rectangle mouseRect = new Rectangle(mouseStateCurrent.X, mouseStateCurrent.Y, 5, 5);
+                   int i;
+
+
+                   //클릭했을때 어두워지는것.
+                   List<Rectangle> rectRightItems =  rightItemShop.getRectRightItem();
+                   List<Item> shopRightItems = rightItemShop.getShopRightItem();
+                   
+
+
+                   for(i=0; i<rectRightItems.Count; i++)
+                   {
+                       if (mouseRect.Intersects(rectRightItems[i]) && mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released)
+                       {
+                           rightItemShop.setDarkBackground(true);   
+                           //메시지 박스 띄우기  
+                            selectedItem = shopRightItems[i];
+                           //이미 산거이면 true
+                            if(rightItemShop.haveOne(shopRightItems[i]))
+                            {
+                                rightItemShop.setWearOne(true);
+                                
+                            }
+                            else
+                            {
+
+                                 rightItemShop.setBuyOne(true);
+                            }
+                       
+                       }
+                      
+                   }
+
+                   //message box about wearing item 
+                   if (rightItemShop.getWearOne())
+                   {
+                       //mouse cursor on yes button
+                       if (mouseRect.Intersects(rightItemShop.getRectYesButton()))
+                       {
+                           rightItemShop.setHoverYesButton(true);
+
+                           if (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released)
+                           {
+
+                               if (selectedItem != null)
+                               {
+                                   //find the index of item in myrightitem list
+                                   int index = itemManager.getIndexOfMyRightItem(selectedItem);
+                                   if (index != -1)
+                                   {
+                                       //change index
+                                       itemManager.setRightHandIndex(index);
+
+                                       //return to normal , remove message box
+                                       rightItemShop.setWearOne(false);
+                                       rightItemShop.setDarkBackground(false);
+                                   }
+                                   else
+                                   {
+                                       //get wrong index( no item in list)
+                                   }
+
+                               }
+                               else
+                               {
+                                   //nothing is selected
+                               }
+
+
+
+                           }
+
+
+                       }
+                       else
+                       {
+                           rightItemShop.setHoverYesButton(false);
+                       }
+                       //mouse cursor on no button
+                       if (mouseRect.Intersects(rightItemShop.getRectNoButton()))
+                       {
+                           rightItemShop.setHoverNoButton(true);
+                           if (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released)
+                           {
+                               //return to normal , remove message box
+                               rightItemShop.setWearOne(false);
+                               rightItemShop.setDarkBackground(false);   
+                           }
+
+
+                       }
+                       else
+                       {
+                           rightItemShop.setHoverNoButton(false);
+                       }
+
+                   }
+
+
+
+                   //message box about buying item
+                   if (rightItemShop.getBuyOne())
+                   {
+                       //mouse cursor on right button
+
+                       if (mouseRect.Intersects(rightItemShop.getRectYesButton()))
+                       {
+                           rightItemShop.setHoverYesButton(true);
+                           if (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released)
+                           {
+                               //add item to my item
+                               if (selectedItem != null)
+                               {
+
+
+                                   rightItemShop.addItemtoMyItem(selectedItem);
+
+                                   
+                                   //return to normal , remove message box
+                                   rightItemShop.setBuyOne(false);
+                                   rightItemShop.setDarkBackground(false);
+                               }
+                               else
+                               {
+                                   //nothing is selected
+                               }
+
+                          
+                           }
+                       }
+                       else
+                       {
+                           rightItemShop.setHoverYesButton(false);
+                       }
+
+                       if (mouseRect.Intersects(rightItemShop.getRectNoButton()))
+                       {
+                           rightItemShop.setHoverNoButton(true);
+                           if (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released)
+                           {
+                               //return to normal , remove message box
+                               rightItemShop.setBuyOne(false);
+                               rightItemShop.setDarkBackground(false);
+                           }
+                       }
+                       else
+                       {
+                           rightItemShop.setHoverNoButton(false);
+                       }
+
+                   }
+
+                   break;
+
+
+
+
                 case GameStates.Playing:
                       MarkManager.Update(gameTime);
                     startNoteManager.Update(gameTime);
@@ -855,8 +998,13 @@ namespace beethoven3
             {
                 shopDoor.Draw(spriteBatch, this.Window.ClientBounds.Width, this.Window.ClientBounds.Height);
             }
+                if (gameState == GameStates.RightItemShop)
+            {
+                rightItemShop.Draw(spriteBatch, this.Window.ClientBounds.Width, this.Window.ClientBounds.Height);
+            }
 
-
+            
+           
             if ((gameState == GameStates.Playing))
             {
                 MarkManager.Draw(spriteBatch);
@@ -967,6 +1115,7 @@ namespace beethoven3
             //drawrec1.Y = jp1.Y - drawrec1.Height / 2;
 
             //이게 조금 느리다면 static으로 해서 개선 
+            //임시로 상점에 있는거 썼다.
 
             List<Item> myRightHand = itemManager.getShopRightHandItem();
             spriteBatch.Draw(myRightHand[itemManager.getRightHandIndex()].ItemSprite.Texture, drawrec1, Color.Red);

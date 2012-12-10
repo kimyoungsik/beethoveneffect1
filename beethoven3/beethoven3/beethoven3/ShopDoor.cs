@@ -39,7 +39,6 @@ namespace beethoven3
 
         public ShopDoor()
         {
-          //  button1 = false;
              clickRightHand=false;
              clickLeftHand = false;
              clickNote = false;
@@ -50,43 +49,39 @@ namespace beethoven3
 
         public void LoadContent(ContentManager cm)
         {
-         rightHand= cm.Load<Texture2D>(@"shopdoor\shopDoor1");
-         leftHand= cm.Load<Texture2D>(@"shopdoor\shopDoor2");
-         note = cm.Load<Texture2D>(@"shopdoor\shopDoor3");
-         effect= cm.Load<Texture2D>(@"shopdoor\shopDoor4");
-         background = cm.Load<Texture2D>(@"shopdoor\shopDoor5");
+             rightHand= cm.Load<Texture2D>(@"shopdoor\shopDoor1");
+             leftHand= cm.Load<Texture2D>(@"shopdoor\shopDoor2");
+             note = cm.Load<Texture2D>(@"shopdoor\shopDoor3");
+             effect= cm.Load<Texture2D>(@"shopdoor\shopDoor4");
+             background = cm.Load<Texture2D>(@"shopdoor\shopDoor5");
 
-         hoverRightHand = cm.Load<Texture2D>(@"shopdoor\changed1");
-         hoverLeftHand = cm.Load<Texture2D>(@"shopdoor\changed2");
-         hoverNote = cm.Load<Texture2D>(@"shopdoor\changed3");
-         hoverEffect = cm.Load<Texture2D>(@"shopdoor\changed4");
-         hoverBackground = cm.Load<Texture2D>(@"shopdoor\changed5");
+             hoverRightHand = cm.Load<Texture2D>(@"shopdoor\changed1");
+             hoverLeftHand = cm.Load<Texture2D>(@"shopdoor\changed2");
+             hoverNote = cm.Load<Texture2D>(@"shopdoor\changed3");
+             hoverEffect = cm.Load<Texture2D>(@"shopdoor\changed4");
+             hoverBackground = cm.Load<Texture2D>(@"shopdoor\changed5");
         }
 
         public void Update(GameTime gameTime)
         {
 
+
         }
 
         public void Draw(SpriteBatch spriteBatch,int width,int height)
         {
+
             recRightHand = new Rectangle(width / 2 - (rightHand.Width / 2) - 100, height / 2 - (rightHand.Height / 2) - 100, 208, 233);
-            spriteBatch.Draw(rightHand,
-                 recRightHand,
-                     Color.White);
+            spriteBatch.Draw(rightHand, recRightHand, Color.White);
             
-           recLeftHand =  new Rectangle(width / 2 - (leftHand.Width / 2) + 100, height / 2 - (leftHand.Height / 2) - 150, 273,
+            recLeftHand =  new Rectangle(width / 2 - (leftHand.Width / 2) + 100, height / 2 - (leftHand.Height / 2) - 150, 273,
                      172);         
-            spriteBatch.Draw(leftHand,
-                 recLeftHand,
-                     Color.White);
+            spriteBatch.Draw(leftHand, recLeftHand, Color.White);
 
 
             recNote = new Rectangle(width / 2 - (note.Width / 2) + 220, height / 2 - (note.Height / 2)+25, 172,
                      344);
-            spriteBatch.Draw(note,
-                 recNote,
-                     Color.White);
+            spriteBatch.Draw(note, recNote, Color.White);
 
             recEffect = new Rectangle(width / 2 - (effect.Width / 2) + 90, height / 2 - (effect.Height / 2) + 185, 237,
                      161);
