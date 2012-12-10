@@ -129,6 +129,7 @@
     <Compile Include="GuideLineManager.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="ItemManager.cs" />
+    <Compile Include="LeftItemShop.cs" />
     <Compile Include="LineRenderer.cs" />
     <Compile Include="Mark.cs" />
     <Compile Include="MarkManager.cs" />

@@ -28,10 +28,9 @@ namespace beethoven3
 
         public ItemManager()
         {
-          
+                      
 
         }
-
 
         public void Init()
         {
@@ -88,10 +87,7 @@ namespace beethoven3
         {
             itemArray.Remove(item);
         }
-
-
-
-
+        
         public void setRightHandIndex(int index)
         {
             this.rightHandIndex = index;
@@ -122,7 +118,18 @@ namespace beethoven3
         {
             return this.myLeftHandItem;
         }
+        public void addMyRightHandItem(Item item)
+        {
 
+            this.myRightHandItem.Add(item);
+
+        }
+        public void addMyLeftHandItem(Item item)
+        {
+            this.myLeftHandItem.Add(item);
+
+
+        }
 
 
         public List<Item> getShopRightHandItem()
@@ -151,11 +158,7 @@ namespace beethoven3
             }
 
             return index;
-
-
+            
         }
-
-
-
     }
 }

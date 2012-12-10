@@ -39,11 +39,6 @@ namespace beethoven3
         private bool isHoverYesButton;
         private bool isHoverNoButton;
 
-
-        //private bool clickYesButton;
-        //private bool clickNoButton;
-        //private bool clickPutPanelButton;
-        //private bool clickBuyPanelButton;
    
         public RightItemShop(ItemManager itemManager)
         {
@@ -71,7 +66,9 @@ namespace beethoven3
 
         public void addItemtoMyItem(Item item)
         {
-            myRightItems.Add(item);
+            itemManager.addMyRightHandItem(item);
+
+            myRightItems = itemManager.getMyRightHandItem();
         }
         
 
@@ -117,6 +114,7 @@ namespace beethoven3
 
             return rightItems;
         }
+
         public bool haveOne(Item shopItem)
         {
             bool ret = false;
@@ -130,7 +128,6 @@ namespace beethoven3
                 }
             }
             return ret;
-
         }
 
         public void setLocationItems()
@@ -217,6 +214,7 @@ namespace beethoven3
                 color.A = 50;
                 spriteBatch.Draw(darkBackgroundImage, new Rectangle(0, 0, width, height), color);
 
+
                 //Rectangle rectBuyPanel = new Rectangle(width / 2 - (buyPanel.Width / 2) - 100, height / 2 - (buyPanel.Height / 2) - 100, 200, 101);
                 //spriteBatch.Draw(buyPanel,new Vector2(100,100), rectBuyPanel, Color.White,0f,new Vector2(0,0),1f,SpriteEffects.None,1f);
 
@@ -242,8 +240,10 @@ namespace beethoven3
                         
                     }
 
+
                     Vector2 noButtonLocation = new Vector2(width / 2 + 180, height / 2 + 50);
                  
+
                     // mouse cursor on NO bUTTON
                     if (!isHoverNoButton)
                     {
@@ -260,10 +260,6 @@ namespace beethoven3
                     recYesButton = new Rectangle((int)yesButtonLocation.X - 100, (int)yesButtonLocation.Y - 60, 200, 120);
 
                     recNoButton = new Rectangle((int)noButtonLocation.X - 100, (int)noButtonLocation.Y - 60, 200, 120);
-
-                    
-                    
-
                 
                 }
                 

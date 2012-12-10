@@ -12,34 +12,6 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 namespace beethoven3
 {
-    //static class Item
-    //{
-
-    //    public static Texture2D[] rightHand = new Texture2D[5];
-    //    public static Texture2D[] leftHand = new Texture2D[5];
-
-    //    public static int rightHandIndex = 1;
-    //    public static int leftHandIndex = 1;
-
-
-
-    //    public static void LoadContent(ContentManager cm)
-    //    {
-
-    //        rightHand[0] = cm.Load<Texture2D>(@"Textures\red");
-    //        rightHand[1] = cm.Load<Texture2D>(@"Textures\heart");
-
-    //        leftHand[0] = cm.Load<Texture2D>(@"Bitmap1");
-    //        leftHand[1] = cm.Load<Texture2D>(@"Bitmap2");
-
-    //        //노트는 좌표값
-
-    //    }
-
-
-        
-    //}
-
     class Item
     {
         #region declarations
