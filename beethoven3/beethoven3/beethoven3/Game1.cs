@@ -97,7 +97,9 @@ namespace beethoven3
         EffectItemShop effectItemShop;
         NoteItemShop noteItemShop;
         BackgroundItemShop backgroundItemShop;
-        
+
+        MemberManager memberManager;
+
         static public int mousex = 100; //X좌표
         static public int mousey = 100; //Y좌표
 
@@ -172,7 +174,11 @@ namespace beethoven3
 
             backgroundItemShop = new BackgroundItemShop(itemManager);
             backgroundItemShop.LoadContent(Content);
-           
+
+
+            memberManager = new MemberManager();
+            memberManager.LoadContent(Content);
+            memberManager.init();
 
 
             SoundManager.Init();
@@ -264,7 +270,7 @@ namespace beethoven3
               new Rectangle(0, 450, 2, 2),
               new Color(1f, 0.5f, 0.5f) * 0.5f,
               new Color(0f, 0f, 0f, 0f));
-            collisionManager = new CollisionManager(perfectManager, goodManager, badManager, goldGetManager, scoreManager);
+            collisionManager = new CollisionManager(perfectManager, goodManager, badManager, goldGetManager, scoreManager, memberManager);
             
             
             NoteFileManager noteFileManager = new NoteFileManager();
@@ -1452,7 +1458,7 @@ namespace beethoven3
                     badManager.Update(gameTime);
                     goldGetManager.Update(gameTime);
                     scoreManager.Update(gameTime);
-
+                    memberManager.Update(gameTime);
 
 
                 break;
@@ -1545,7 +1551,7 @@ namespace beethoven3
                 GuideLineManager.Draw(gameTime, spriteBatch);
                 //이걸 주석하면 드래그노트 체크하는거 안보임 하지만 체크는 됨
                 //DragNoteManager.Draw(spriteBatch);
-
+                memberManager.Draw(spriteBatch);
 
                 GoldManager.Draw(spriteBatch);
 

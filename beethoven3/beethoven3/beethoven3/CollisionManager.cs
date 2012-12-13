@@ -15,13 +15,16 @@ namespace beethoven3
         private ExplosionManager badManager;
         private ExplosionManager goldGetManager;
 
-        private ScoreManager scoreManager; 
+        private ScoreManager scoreManager;
+
+        private MemberManager memberManager;
+
 
         private float roundPoint = 15.0f;
         #endregion 
 
         #region constructor
-        public CollisionManager(ExplosionManager perfectManager, ExplosionManager goodManager, ExplosionManager badManager,ExplosionManager goldGetManager, ScoreManager scoreManager)
+        public CollisionManager(ExplosionManager perfectManager, ExplosionManager goodManager, ExplosionManager badManager,ExplosionManager goldGetManager, ScoreManager scoreManager, MemberManager memberManager)
         {
             this.perfectManager = perfectManager;
             this.goodManager = goodManager;
@@ -29,6 +32,9 @@ namespace beethoven3
             this.goldGetManager = goldGetManager;
 
             this.scoreManager = scoreManager;
+
+
+            this.memberManager = memberManager;
         }
         #endregion
 
@@ -120,8 +126,8 @@ namespace beethoven3
 
                             scoreManager.Combo = scoreManager.Combo + 1;
                             scoreManager.Gage = scoreManager.Gage + 10;
-                            
 
+                            memberManager.SetMemberState(1, 1);
                         }
                     }
                     else

@@ -72,6 +72,8 @@ namespace beethoven3
 
         #region update and draw
 
+
+
         public void Update(GameTime gameTime)
         {
             for (int x = LittleNotes.Count - 1; x >= 0; x--)
@@ -81,6 +83,8 @@ namespace beethoven3
             }
         }
 
+
+
         public void Draw(SpriteBatch spriteBatch)
         {
             foreach (Sprite littleNote in LittleNotes)
@@ -88,6 +92,8 @@ namespace beethoven3
                 littleNote.Draw(spriteBatch);
             }
         }
+
+
 
         #endregion
     }

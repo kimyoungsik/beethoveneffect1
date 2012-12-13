@@ -136,6 +136,7 @@
     <Compile Include="LineRenderer.cs" />
     <Compile Include="Mark.cs" />
     <Compile Include="MarkManager.cs" />
+    <Compile Include="MemberManager.cs" />
     <Compile Include="MenuScene.cs" />
     <Compile Include="NoteFile.cs" />
     <Compile Include="NoteFileManager.cs" />
