@@ -17,6 +17,8 @@ using System.Threading;
 using Microsoft.Speech.Recognition;
 using Microsoft.Speech.AudioFormat;
 
+using FMOD;
+
 /*
  타입 0-오른손 1-왼손 2-양손 3-롱노트 4-드래그노트 
 */
@@ -108,8 +110,15 @@ namespace beethoven3
 
         //점수위치
         Vector2 scorePosition = new Vector2(705, 5);
+                
+        private FMOD.System sndSystem;
+        private FMOD.Channel sndChannel = new FMOD.Channel();
+        private FMOD.Sound sndSound = new FMOD.Sound();
+        private FMOD.RESULT resultFmod;
 
-
+       // private FMOD.DSPConnection dspconnectiontemp = null;
+        private bool isChangedTempo= false;
+        private float basicFrequency = 0;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -150,6 +159,16 @@ namespace beethoven3
         /// </summary>
         protected override void LoadContent()
         {
+
+
+            resultFmod = FMOD.Factory.System_Create(ref sndSystem);
+            
+            sndSystem.init(1, FMOD.INITFLAG.NORMAL, (IntPtr)null);
+            sndSystem.createSound("C:\\Kalimba.mp3", FMOD.MODE.HARDWARE, ref sndSound);
+            /* 음원을 로드시킬 때 createStream 과 createSound 두가지가 있는 것을 확인할 수 있는데
+ createStream은 배경음악을, createSound는 효과음을 넣는것이 좋습니다.*/
+
+
             menuScene = new MenuScene();
             menuScene.LoadContent(Content);
 
@@ -605,9 +624,83 @@ namespace beethoven3
 
         }
 #endif
+
+
+        private void tempoChange(bool slow)
+        {
+            isChangedTempo = true;
+            float frequency = 0;
+            if (slow)//tempo slow
+            {
+                resultFmod = sndChannel.getFrequency(ref frequency);
+                sndChannel.setFrequency(frequency-10000.0f);
+            }
+            else
+            {
+                resultFmod = sndChannel.getFrequency(ref frequency);
+                sndChannel.setFrequency(frequency + 10000.0f);
+            }
+
+        }
+
+
+        private void SetBasicTempo()
+        {
+            if (!isChangedTempo)
+            {
+
+               sndChannel.getFrequency(ref basicFrequency);
+            }
+
+
+        }
+
+        private void ReturnBasicTempo()
+        {
+            if (basicFrequency != 0)
+            {
+                sndChannel.setFrequency(basicFrequency);
+                isChangedTempo = false;
+            }
+        }
+
+
         private void HandleKeyboardInput(KeyboardState keyState)
         
         {
+            if (keyState.IsKeyDown(Keys.B))
+            {
+
+                sndSystem.playSound(CHANNELINDEX.FREE, sndSound, false, ref sndChannel);
+            }
+            if (keyState.IsKeyDown(Keys.P))
+            {
+               // resultFmod = sndChannel.getFrequency(ref basicFrequency);
+               // sndChannel.setFrequency(60000.0f);
+                //임시
+
+                if (!isChangedTempo)
+                {
+                    tempoChange(false);
+                }
+            }
+            if (keyState.IsKeyDown(Keys.O))
+            {
+                // resultFmod = sndChannel.getFrequency(ref basicFrequency);
+                // sndChannel.setFrequency(60000.0f);
+                if (!isChangedTempo)
+                {
+                    tempoChange(true);
+                }
+            }
+
+            if (keyState.IsKeyDown(Keys.L))
+            {
+               // sndChannel.setFrequency(44100.0f);
+                ReturnBasicTempo();
+            }
+
+
             if (keyState.IsKeyDown(Keys.NumPad1))
             {
              //   SoundManager.SndPlay("snd/ka");
@@ -1569,7 +1662,7 @@ namespace beethoven3
                 spriteBatch.DrawString(pericles36Font, max.ToString(), new Vector2(scorePosition.X + 120, scorePosition.Y), Color.Black);
                 spriteBatch.DrawString(pericles36Font, total.ToString(), new Vector2(scorePosition.X + 240, scorePosition.Y), Color.Black);
 
-
+                SetBasicTempo();
                 // int heartgage = heart.Width * gage ;
 
                 ////test

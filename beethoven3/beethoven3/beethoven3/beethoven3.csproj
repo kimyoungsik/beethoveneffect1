@@ -126,6 +126,9 @@
     <Compile Include="EffectItemShop.cs" />
     <Compile Include="ExplosionManager.cs" />
     <Compile Include="File.cs" />
+    <Compile Include="fmod.cs" />
+    <Compile Include="fmod_dsp.cs" />
+    <Compile Include="fmod_errors.cs" />
     <Compile Include="GoldManager.cs" />
     <Compile Include="GuideLine.cs" />
     <Compile Include="GuideLineManager.cs" />

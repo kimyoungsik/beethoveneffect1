@@ -11,7 +11,7 @@ namespace beethoven3
     static class SoundManager
     {
         public static Song[] soundEngine = new Song[100];
-     //   public static SoundEffectInstance[] soundEngineInstance = new SoundEffectInstance[100];
+       // public static SoundEffectInstance[] soundEngineInstance = new SoundEffectInstance[100];
         public static List<String> sndFiles = new List<String>();
 
         static public void Init()
@@ -19,7 +19,7 @@ namespace beethoven3
           AddSndFile("snd/ka");
           AddSndFile("snd/jo");
           AddSndFile("snd/maid");
-
+            
         }
 
        
