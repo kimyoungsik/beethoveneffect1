@@ -1560,6 +1560,7 @@ namespace beethoven3
                    //go to result scene right after finishing a piece
                    if (file.GetEndFile())
                    {
+                       //노래 총 시간으로 끝을 바꾸자
                        gameState = GameStates.ResultManager;
                    }
                     MarkManager.Update(gameTime);
@@ -1605,12 +1606,44 @@ namespace beethoven3
                             //file.FileLoading(dir, "*.txt");
                             //file.SetNewNote(true);
                             //file.SetCurrentRightNoteIndex(0);
+                            scoreManager = new ScoreManager();
+                            //badManager = new BadManager();
+                            Vector2 mark1Location = new Vector2(200, 140);
+                            Vector2 mark2Location = new Vector2(400, 270);
+                            Vector2 mark3Location = new Vector2(300, 370);
+                            Vector2 mark4Location = new Vector2(200, 570);
+                            Vector2 mark5Location = new Vector2(100, 370);
+                            Vector2 mark6Location = new Vector2(100, 270);
+                            startNoteManager = new StartNoteManager(
+                                spriteSheet,
+                                new Rectangle(0, 200, 52, 55),
+                                1);
+                                MarkManager.initialize(
+                                    // markManager = new MarkManager(
+                                   spriteSheet,
+                                   new Rectangle(0, 200, 50, 55),
+                                   1,
+                                   mark1Location,
+                                   mark2Location,
+                                   mark3Location,
+                                   mark4Location,
+                                   mark5Location,
+                                   mark6Location,
+                                   startNoteManager,
+                                   removeAreaRec
+
+                                   );
+                            noteFileManager = new NoteFileManager();
                             
                             file = new File(startNoteManager, noteFileManager, badManager, scoreManager);
-            
-                            
+
+                            String dir = "c:\\beethoven\\";
+
+                            file.FileLoading(dir, "*.txt");
                             scoreManager.init();
 
+
+                            //게임이 끝났을 떄 다시 정비하기 위한 공간. 
                         }
                     }
                     else

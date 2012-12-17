@@ -212,12 +212,18 @@ namespace beethoven3
 
 
                     noteContents = ((String)allNotes.Peek()).Split(' ');
-
+                    //try
+                    //{
                     noteTime = Convert.ToDouble(noteContents[0]);
-
                     //시간에 맞추어서 노트가 날아갈 수 있게 생성 시간을 정한다. 
                     noteTime = GetNoteStartTime(noteTime);
 
+                    //}
+                    //catch (FormatException)
+                    //{
+                    //이 문제가 생기는 것이면 저장된 파일을 본다.
+                    //}
+                    
                     newNote = false;
                 }
                 if (noteTime <= processTime)
@@ -311,6 +317,7 @@ namespace beethoven3
                 if (allNotes.Count == 0)
                 {
                     endFile = true;
+                    
                 }
             }
           
