@@ -1606,8 +1606,10 @@ namespace beethoven3
                             //file.FileLoading(dir, "*.txt");
                             //file.SetNewNote(true);
                             //file.SetCurrentRightNoteIndex(0);
-                            scoreManager = new ScoreManager();
+                         //   scoreManager = new ScoreManager();
                             //badManager = new BadManager();
+
+                            /////////////////////////////////////
                             Vector2 mark1Location = new Vector2(200, 140);
                             Vector2 mark2Location = new Vector2(400, 270);
                             Vector2 mark3Location = new Vector2(300, 370);
@@ -1633,6 +1635,8 @@ namespace beethoven3
                                    removeAreaRec
 
                                    );
+                            //두번째꺼 재실행시 이상한거 생기는것 방지
+                            /////////////////////////////
                             noteFileManager = new NoteFileManager();
                             
                             file = new File(startNoteManager, noteFileManager, badManager, scoreManager);
@@ -1642,7 +1646,7 @@ namespace beethoven3
                             file.FileLoading(dir, "*.txt");
                             scoreManager.init();
 
-
+                          //  collisionManager = new CollisionManager(perfectManager,
                             //게임이 끝났을 떄 다시 정비하기 위한 공간. 
                         }
                     }
@@ -1782,8 +1786,9 @@ namespace beethoven3
                 int combo = scoreManager.Combo;
                 int max = scoreManager.Max;
                 int total = scoreManager.TotalScore;
+                int gold = scoreManager.Gold;
                 spriteBatch.DrawString(pericles36Font, combo.ToString(), scorePosition, Color.Black);
-                spriteBatch.DrawString(pericles36Font, max.ToString(), new Vector2(scorePosition.X + 120, scorePosition.Y), Color.Black);
+                spriteBatch.DrawString(pericles36Font, gold.ToString(), new Vector2(scorePosition.X + 120, scorePosition.Y), Color.Black);
                 spriteBatch.DrawString(pericles36Font, total.ToString(), new Vector2(scorePosition.X + 240, scorePosition.Y), Color.Black);
 
                 SetBasicTempo();
@@ -1847,18 +1852,45 @@ namespace beethoven3
             {
                 resultManager.Draw(spriteBatch, this.Window.ClientBounds.Width, this.Window.ClientBounds.Height);
 
-                int combo = scoreManager.Combo;
-                int max = scoreManager.Max;
-                int total = scoreManager.TotalScore;
-                spriteBatch.DrawString(pericles36Font, combo.ToString(), scorePosition, Color.White);
-                spriteBatch.DrawString(pericles36Font, max.ToString(), new Vector2(scorePosition.X + 120, scorePosition.Y), Color.White);
-                spriteBatch.DrawString(pericles36Font, total.ToString(), new Vector2(scorePosition.X + 240, scorePosition.Y), Color.White);
+                //int combo = scoreManager.Combo;
+                //int max = scoreManager.Max;
+                //int total = scoreManager.TotalScore;
+                //int perfect = scoreManager.Perfect;
+                //int good = scoreManager.Good;
+                //int bad = scoreManager.Bad;
+                //int gold = scoreManager.Gold;
+                //int perfomance = scoreManager.Perfomance;
+                
+                String songFile = scoreManager.SongName;
 
+                NoteFile noteFile = noteFileManager.FindNoteFile(songFile);
+                
+                
+                spriteBatch.DrawString(pericles36Font, noteFile.Name, new Vector2(200,80), Color.White);
+                spriteBatch.DrawString(pericles36Font, noteFile.Artist, new Vector2(200,130), Color.White);
+                //난이도//spriteBatch.DrawString(pericles36Font, , new Vector2(200,80), Color.White);
+
+
+
+                spriteBatch.DrawString(pericles36Font, scoreManager.Perfect.ToString(), new Vector2(300, 300), Color.White);
+                spriteBatch.DrawString(pericles36Font, scoreManager.Good.ToString(), new Vector2(300, 350), Color.White);
+                spriteBatch.DrawString(pericles36Font, scoreManager.Bad.ToString(), new Vector2(300, 400), Color.White);
+                spriteBatch.DrawString(pericles36Font, scoreManager.Perfomance.ToString(), new Vector2(700, 300), Color.White);
+                spriteBatch.DrawString(pericles36Font, scoreManager.Max.ToString(), new Vector2(700, 350), Color.White);
+
+                spriteBatch.DrawString(pericles36Font, scoreManager.Combo.ToString(), new Vector2(700, 400), Color.White);
+
+                spriteBatch.DrawString(pericles36Font, scoreManager.Gold.ToString(), new Vector2(700, 450), Color.White);
+
+
+                spriteBatch.DrawString(pericles36Font, scoreManager.TotalScore.ToString(), new Vector2(700, 500), Color.White);
+                
+                //rank
             }
 
             if (gameState == GameStates.RecordBoard)
             {
-                recordBoard.Draw(spriteBatch, this.Window.ClientBounds.Width, this.Window.ClientBounds.Height);
+                recordBoard.Draw(spriteBatch, this. Window.ClientBounds.Width, this.Window.ClientBounds.Height);
 
            
             }

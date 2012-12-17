@@ -12,6 +12,11 @@ namespace beethoven3
     class ScoreManager
     {
         #region declarations
+        
+        //곡제목
+        private String songName;
+
+
         private  int perfect;
         private  int good;
         private  int bad;
@@ -40,6 +45,7 @@ namespace beethoven3
         #region constructor
         public  ScoreManager()
         {
+            songName = "";
             perfect = 0;
             good = 0;
             bad = 0;
@@ -61,6 +67,7 @@ namespace beethoven3
 
         public void init()
         {
+            songName = "";
             perfect = 0;
             good = 0;
             bad = 0;
@@ -82,7 +89,12 @@ namespace beethoven3
             set { gage = value; }
         }
 
-
+        public String SongName
+        {
+            get { return songName; }
+            set { songName = value; }
+        }
+        
         public int Perfect
         {
             get { return perfect; }

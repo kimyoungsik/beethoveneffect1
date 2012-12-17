@@ -27,6 +27,26 @@ namespace beethoven3
             noteFiles.Add(noteFile);  
         }
 
+        //노트파일 곡제목이 있으면 노트파일을 찾을 수 있다.
+
+        public NoteFile FindNoteFile(String name)
+        {
+            NoteFile noteFile= null;
+            int i;
+            for (i = 0; i < noteFiles.Count(); i++)
+            {
+                if (name == noteFiles[i].Name)
+                {
+
+                    noteFile = noteFiles[i];
+                    i = noteFiles.Count();
+                }
+
+
+            }
+            return noteFile;
+
+        }
 
 
 

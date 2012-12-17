@@ -121,7 +121,7 @@ namespace beethoven3
             String name = noteFileManager.noteFiles[noteNumber].Name;
 
             StreamReader sr = new StreamReader("C:\\beethoven\\"+name);
-
+            scoreManager.SongName = name;
             int index = 0;
             //첫줄은 헤더
             sr.ReadLine();
