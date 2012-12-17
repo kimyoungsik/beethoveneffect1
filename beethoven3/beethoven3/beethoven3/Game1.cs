@@ -65,7 +65,7 @@ namespace beethoven3
          Item selectedItem;
 #endif
 
-        enum GameStates { Menu, Playing, SongMenu, ShopDoor, RightItemShop, LeftItemShop, EffectItemShop, NoteItemShop, BackgroundItemShop, GameOver };
+        enum GameStates { Menu, Playing, SongMenu, ShopDoor, RightItemShop, LeftItemShop, EffectItemShop, NoteItemShop, BackgroundItemShop, ResultManager, GameOver };
         GameStates gameState = GameStates.Menu;
 
         MenuScene menuScene;
@@ -101,6 +101,8 @@ namespace beethoven3
         BackgroundItemShop backgroundItemShop;
 
         MemberManager memberManager;
+
+        ResultManager resultManager;
 
         static public int mousex = 100; //X좌표
         static public int mousey = 100; //Y좌표
@@ -317,6 +319,11 @@ namespace beethoven3
                 0);
             songMenu = new SongMenu(noteFileManager);
             songMenu.Load(Content,graphics.GraphicsDevice);
+
+
+            resultManager = new ResultManager();
+            resultManager.LoadContent(Content);
+
 
 #if Kinect
             idot1 = Content.Load<Texture2D>("Bitmap1");
@@ -1536,7 +1543,14 @@ namespace beethoven3
 
 
                 case GameStates.Playing:
-                      MarkManager.Update(gameTime);
+
+                   //곡이 끝내게 되면 결과 화면으로
+                   //go to result scene right after finishing a piece
+                   if (file.getEndFile())
+                   {
+                       gameState = GameStates.ResultManager;
+                   }
+                    MarkManager.Update(gameTime);
                     startNoteManager.Update(gameTime);
                     HandleKeyboardInput(Keyboard.GetState());
                     HandleMouseInput(Mouse.GetState());
@@ -1554,6 +1568,28 @@ namespace beethoven3
                     memberManager.Update(gameTime);
 
 
+                break;
+
+
+                case GameStates.ResultManager:
+
+                Rectangle rectMouse = new Rectangle(mouseStateCurrent.X, mouseStateCurrent.Y, 5, 5);
+
+                //nextButton 위에 마우스를 올려놨을 때
+                //mousecursor on nextButton item section
+                if (rectMouse.Intersects(resultManager.getRectNextButton()))
+                {
+                    resultManager.setClickNextButton(true);
+                    //click the right hand item section
+                    if (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released)
+                    {
+                        gameState = GameStates.SongMenu;
+                    }
+                }
+                else
+                {
+                    resultManager.setClickNextButton(false);
+                }
                 break;
 
                 case GameStates.SongMenu:
@@ -1607,6 +1643,7 @@ namespace beethoven3
             {
                 shopDoor.Draw(spriteBatch, this.Window.ClientBounds.Width, this.Window.ClientBounds.Height);
             }
+        
             if (gameState == GameStates.RightItemShop)
             {
                 rightItemShop.Draw(spriteBatch, this.Window.ClientBounds.Width, this.Window.ClientBounds.Height);
@@ -1634,7 +1671,11 @@ namespace beethoven3
                 backgroundItemShop.Draw(spriteBatch, this.Window.ClientBounds.Width, this.Window.ClientBounds.Height);
             }
 
-            
+            if (gameState == GameStates.SongMenu)
+            {
+                songMenu.Draw(spriteBatch);
+
+            }
            
             if ((gameState == GameStates.Playing))
             {
@@ -1718,11 +1759,22 @@ namespace beethoven3
             
 #endif
             }
-            if (gameState == GameStates.SongMenu)
+
+            if (gameState == GameStates.ResultManager)
             {
-                songMenu.Draw(spriteBatch);
+                resultManager.Draw(spriteBatch, this.Window.ClientBounds.Width, this.Window.ClientBounds.Height);
+
+                int combo = scoreManager.Combo;
+                int max = scoreManager.Max;
+                int total = scoreManager.TotalScore;
+                spriteBatch.DrawString(pericles36Font, combo.ToString(), scorePosition, Color.White);
+                spriteBatch.DrawString(pericles36Font, max.ToString(), new Vector2(scorePosition.X + 120, scorePosition.Y), Color.White);
+                spriteBatch.DrawString(pericles36Font, total.ToString(), new Vector2(scorePosition.X + 240, scorePosition.Y), Color.White);
 
             }
+
+
+         
             spriteBatch.End();
             
             base.Draw(gameTime);

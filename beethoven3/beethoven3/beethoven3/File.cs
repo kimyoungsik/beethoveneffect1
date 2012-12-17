@@ -36,6 +36,8 @@ namespace beethoven3
         private ExplosionManager badManager;
 
         private ScoreManager scoreManager;
+
+        private bool endFile;
         #endregion
         
         #region constructor
@@ -45,19 +47,23 @@ namespace beethoven3
 
              this.startNoteManager = startNoteManager;
              this.noteFileManager = noteFileManager;
-             rightNoteMarks = new NoteInfo[100];
+             rightNoteMarks = new NoteInfo[500];
              currentRightNoteIndex = 0;
              time = 0;
 
              this.badManager = badManager;
 
              this.scoreManager = scoreManager;
+             this.endFile = false;
         }
         
         #endregion
 
         #region method
-
+        public bool getEndFile()
+        {
+            return this.endFile;
+        }
         public void FileLoading(String dir, String file)
         {
             //폴더를 검사해서 
@@ -130,6 +136,7 @@ namespace beethoven3
         /// <param name="startMarkLocation"></param>
         /// <param name="endMarkLocation"></param>
         /// <param name="gold"></param>
+        
         public void DrawGuidLine(int startMarkLocation, int endMarkLocation, bool gold)
         {
             double ratio = 0.6;
@@ -173,97 +180,115 @@ namespace beethoven3
 
         public void FindNote(double processTime)
         {
-            //처음 실행하거나 de큐를 거치지 않은 새로운
-            if (newNote)
-            {
-                noteContents = ((String)allNotes.Peek()).Split(' ');
 
-                noteTime = Convert.ToDouble(noteContents[0]);
-                
-                //시간에 맞추어서 노트가 날아갈 수 있게 생성 시간을 정한다. 
-                noteTime = GetNoteStartTime(noteTime);
-
-                newNote = false;
-            }
-            if (noteTime <= processTime)
+            if (!endFile)
             {
-                //PlayNote(타입,날아가는 마커 위치)
-                //타입 0-오른손 1-왼손 2-양손 3-롱노트 4-드래그노트 
-                int type = Int32.Parse(noteContents[1]);
-                
-                switch (type)
+                //처음 실행하거나 de큐를 거치지 않은 새로운
+                if (newNote)
                 {
-                    //오른손 노트
-                    case 0:
-                        //시간에 맞춰서 뿌려줘야 함. 
-                        //notecontent[2] => 마커위치
-                        startNoteManager.MakeRightNote(Int32.Parse(noteContents[2]));
-                        
 
-                        try
-                        {
-                            //현재오른손노트와 다음 노트와 연결, 그리고 그 다음 노트와 연결
-                             //시작점,제어점1,제어점2,끝점,지속시간
 
-                            //outof range로 문제 될 수 있음
-                            if (rightNoteMarks[currentRightNoteIndex].IsRight && rightNoteMarks[currentRightNoteIndex + 1].IsRight)
-                            {
-                                //골드라인
-                                DrawGuidLine(rightNoteMarks[currentRightNoteIndex].MarkLocation, rightNoteMarks[currentRightNoteIndex + 1].MarkLocation, true);
-                            }
-                            if (rightNoteMarks[currentRightNoteIndex+1].IsRight && rightNoteMarks[currentRightNoteIndex + 2].IsRight)
-                            {
-                                //일반 가이드라인
-                                DrawGuidLine(rightNoteMarks[currentRightNoteIndex + 1].MarkLocation, rightNoteMarks[currentRightNoteIndex + 2].MarkLocation, false);
-                            }
-                        }
-                        catch (IndexOutOfRangeException)
-                        {
+                    noteContents = ((String)allNotes.Peek()).Split(' ');
 
-                        }
+                    noteTime = Convert.ToDouble(noteContents[0]);
 
-                        
+                    //시간에 맞추어서 노트가 날아갈 수 있게 생성 시간을 정한다. 
+                    noteTime = GetNoteStartTime(noteTime);
 
-                        break;
-
-                    //왼손노트 
-                    case 1:
-                        startNoteManager.MakeLeftNote(Int32.Parse(noteContents[2]));
-                        break;
-
-                    //양손노트
-                    case 2:
-                        
-                  //      startNoteManager.MakeDoubleNote(Int32.Parse(noteContents[2]));
-                        break;
-
-                    //롱노트
-                    case 3:
-                       /* 다른것도 마찬가지이지만 롱노트가 여러개가 동시에 만들어질 경우
-                        하나 밖에 나오지 않는다.
-                        이것을 해결하려면. 바로 이곳에서 noteManager class의 객체를 만들어야 한다. 
-                        하지만 이곳은 그냥 만들어진 객체에 add 하는것일 뿐이다. 
-                        물론 객체를 계속 만들고 지우는것도 가능하다.
-                        필요하다면 만들 수 도 있다.
-                        */
-                        startNoteManager.MakeLongNote(Int32.Parse(noteContents[2]));
-                        startNoteNumber = Int32.Parse(noteContents[2]);
-                        drawLineTime = Convert.ToDouble(noteContents[3]) + Convert.ToDouble(noteContents[0]);
-                        drawLine = true;
-                        break;
-
-                    //드래그 노트
-                    case 4:
-                        //시작점,제어점1,제어점2,끝점,지속시간
-                        CurveManager.addCurve(new Vector2(Int32.Parse(noteContents[3]), Int32.Parse(noteContents[4])), new Vector2(Int32.Parse(noteContents[5]), Int32.Parse(noteContents[6])), new Vector2(Int32.Parse(noteContents[7]), Int32.Parse(noteContents[8])), new Vector2(Int32.Parse(noteContents[9]), Int32.Parse(noteContents[10])), Convert.ToDouble(noteContents[2]));
-                                                          
-                        break;
+                    newNote = false;
                 }
-                allNotes.Dequeue();
-                newNote = true;
+                if (noteTime <= processTime)
+                {
+                    //PlayNote(타입,날아가는 마커 위치)
+                    //타입 0-오른손 1-왼손 2-양손 3-롱노트 4-드래그노트 
+                    int type = Int32.Parse(noteContents[1]);
 
-                //오른손노트를 true로 되어있는 array의 index를 하나씩 증가시시키는 값.
-                currentRightNoteIndex++;
+                    switch (type)
+                    {
+                        //오른손 노트
+                        case 0:
+                            //시간에 맞춰서 뿌려줘야 함. 
+                            //notecontent[2] => 마커위치
+                            startNoteManager.MakeRightNote(Int32.Parse(noteContents[2]));
+
+
+                            try
+                            {
+                                //현재오른손노트와 다음 노트와 연결, 그리고 그 다음 노트와 연결
+                                //시작점,제어점1,제어점2,끝점,지속시간
+
+                                //outof range로 문제 될 수 있음
+                                if (rightNoteMarks[currentRightNoteIndex].IsRight && rightNoteMarks[currentRightNoteIndex + 1].IsRight)
+                                {
+                                    //골드라인
+                                    DrawGuidLine(rightNoteMarks[currentRightNoteIndex].MarkLocation, rightNoteMarks[currentRightNoteIndex + 1].MarkLocation, true);
+                                }
+                                if (rightNoteMarks[currentRightNoteIndex + 1].IsRight && rightNoteMarks[currentRightNoteIndex + 2].IsRight)
+                                {
+                                    //일반 가이드라인
+                                    DrawGuidLine(rightNoteMarks[currentRightNoteIndex + 1].MarkLocation, rightNoteMarks[currentRightNoteIndex + 2].MarkLocation, false);
+                                }
+                            }
+                            catch (IndexOutOfRangeException)
+                            {
+
+                            }
+                            catch (NullReferenceException)
+                            {
+
+
+                            }
+
+
+
+                            break;
+
+                        //왼손노트 
+                        case 1:
+                            startNoteManager.MakeLeftNote(Int32.Parse(noteContents[2]));
+                            break;
+
+                        //양손노트
+                        case 2:
+
+                            //      startNoteManager.MakeDoubleNote(Int32.Parse(noteContents[2]));
+                            break;
+
+                        //롱노트
+                        case 3:
+                            /* 다른것도 마찬가지이지만 롱노트가 여러개가 동시에 만들어질 경우
+                             하나 밖에 나오지 않는다.
+                             이것을 해결하려면. 바로 이곳에서 noteManager class의 객체를 만들어야 한다. 
+                             하지만 이곳은 그냥 만들어진 객체에 add 하는것일 뿐이다. 
+                             물론 객체를 계속 만들고 지우는것도 가능하다.
+                             필요하다면 만들 수 도 있다.
+                             */
+                            startNoteManager.MakeLongNote(Int32.Parse(noteContents[2]));
+                            startNoteNumber = Int32.Parse(noteContents[2]);
+                            drawLineTime = Convert.ToDouble(noteContents[3]) + Convert.ToDouble(noteContents[0]);
+                            drawLine = true;
+                            break;
+
+                        //드래그 노트
+                        case 4:
+                            //시작점,제어점1,제어점2,끝점,지속시간
+                            CurveManager.addCurve(new Vector2(Int32.Parse(noteContents[3]), Int32.Parse(noteContents[4])), new Vector2(Int32.Parse(noteContents[5]), Int32.Parse(noteContents[6])), new Vector2(Int32.Parse(noteContents[7]), Int32.Parse(noteContents[8])), new Vector2(Int32.Parse(noteContents[9]), Int32.Parse(noteContents[10])), Convert.ToDouble(noteContents[2]));
+
+                            break;
+                    }
+                    allNotes.Dequeue();
+                    newNote = true;
+
+                    //오른손노트를 true로 되어있는 array의 index를 하나씩 증가시시키는 값.
+                    currentRightNoteIndex++;
+                }
+
+                //파일의 끝
+                //End of note file
+                if (allNotes.Count == 0)
+                {
+                    endFile = true;
+                }
             }
           
         }
