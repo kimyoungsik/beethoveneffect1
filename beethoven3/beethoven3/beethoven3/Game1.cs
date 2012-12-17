@@ -1864,8 +1864,11 @@ namespace beethoven3
                 String songFile = scoreManager.SongName;
 
                 NoteFile noteFile = noteFileManager.FindNoteFile(songFile);
-                
-                
+
+
+                spriteBatch.Draw(songMenu.FindPicture(noteFile), new Rectangle(70, 70, 100, 100), Color.White);
+
+
                 spriteBatch.DrawString(pericles36Font, noteFile.Name, new Vector2(200,80), Color.White);
                 spriteBatch.DrawString(pericles36Font, noteFile.Artist, new Vector2(200,130), Color.White);
                 //난이도//spriteBatch.DrawString(pericles36Font, , new Vector2(200,80), Color.White);

@@ -91,8 +91,29 @@ namespace beethoven3
             //    top[i] = content.Load<Texture2D>("Tutorial/top" + (i + 1));
             //}
             font = content.Load<SpriteFont>("Fonts/damagefont");
+        } 
+
+
+        //결과 화면에서 쓰일 그림
+        public Texture2D FindPicture(NoteFile noteFile)
+        {
+            Texture2D picture = null;
+            int i ;
+            for (i = 0; i < noteFileManager.noteFiles.Count; i++)
+            {
+                if (noteFileManager.noteFiles[i] == noteFile)
+                {
+                    picture = pictures[i];
+                    i = noteFileManager.noteFiles.Count;
+                }
+
+
+            }
+            return picture;
+
+
+
         }
-        
 
         //업데이트
         public int Update()
