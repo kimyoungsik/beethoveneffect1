@@ -65,7 +65,9 @@ namespace beethoven3
          Item selectedItem;
 #endif
 
-        enum GameStates { Menu, Playing, SongMenu, ShopDoor, RightItemShop, LeftItemShop, EffectItemShop, NoteItemShop, BackgroundItemShop, ResultManager, GameOver };
+        enum GameStates { Menu, Playing, SongMenu, ShopDoor,
+                          RightItemShop, LeftItemShop, EffectItemShop, NoteItemShop, BackgroundItemShop,
+                          ResultManager, RecordBoard, GameOver };
         GameStates gameState = GameStates.Menu;
 
         MenuScene menuScene;
@@ -103,6 +105,11 @@ namespace beethoven3
         MemberManager memberManager;
 
         ResultManager resultManager;
+        
+        RecordBoard recordBoard;
+
+
+        NoteFileManager noteFileManager;
 
         static public int mousex = 100; //X좌표
         static public int mousey = 100; //Y좌표
@@ -294,11 +301,14 @@ namespace beethoven3
             collisionManager = new CollisionManager(perfectManager, goodManager, badManager, goldGetManager, scoreManager, memberManager);
             
             
-            NoteFileManager noteFileManager = new NoteFileManager();
+            noteFileManager = new NoteFileManager();
+            
             file = new File(startNoteManager, noteFileManager, badManager, scoreManager);
+            
             //곡선택화면에서
             //file.Loading("a.txt");
             String dir = "c:\\beethoven\\";
+            
             file.FileLoading(dir, "*.txt");
             
             DragNoteManager.initialize(
@@ -324,6 +334,8 @@ namespace beethoven3
             resultManager = new ResultManager();
             resultManager.LoadContent(Content);
 
+            recordBoard = new RecordBoard();
+            recordBoard.LoadContent(Content);
 
 #if Kinect
             idot1 = Content.Load<Texture2D>("Bitmap1");
@@ -1546,7 +1558,7 @@ namespace beethoven3
 
                    //곡이 끝내게 되면 결과 화면으로
                    //go to result scene right after finishing a piece
-                   if (file.getEndFile())
+                   if (file.GetEndFile())
                    {
                        gameState = GameStates.ResultManager;
                    }
@@ -1573,24 +1585,62 @@ namespace beethoven3
 
                 case GameStates.ResultManager:
 
-                Rectangle rectMouse = new Rectangle(mouseStateCurrent.X, mouseStateCurrent.Y, 5, 5);
+                    Rectangle rectMouse = new Rectangle(mouseStateCurrent.X, mouseStateCurrent.Y, 5, 5);
 
-                //nextButton 위에 마우스를 올려놨을 때
-                //mousecursor on nextButton item section
-                if (rectMouse.Intersects(resultManager.getRectNextButton()))
-                {
-                    resultManager.setClickNextButton(true);
-                    //click the right hand item section
-                    if (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released)
+                    //nextButton 위에 마우스를 올려놨을 때
+                    //mousecursor on nextButton item section
+                    if (rectMouse.Intersects(resultManager.getRectNextButton()))
                     {
-                        gameState = GameStates.SongMenu;
+                        resultManager.setClickNextButton(true);
+                        //click the right hand item section
+                        if (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released)
+                        {
+                            gameState = GameStates.RecordBoard;
+
+                            //record db에 올리기
+
+                            //file.SetEndFile(false);
+                            //file.SetTime(0.0);
+                            //String dir = "c:\\beethoven\\";
+                            //file.FileLoading(dir, "*.txt");
+                            //file.SetNewNote(true);
+                            //file.SetCurrentRightNoteIndex(0);
+                            
+                            file = new File(startNoteManager, noteFileManager, badManager, scoreManager);
+            
+                            
+                            scoreManager.init();
+
+                        }
                     }
-                }
-                else
-                {
-                    resultManager.setClickNextButton(false);
-                }
+                    else
+                    {
+                        resultManager.setClickNextButton(false);
+                    }
                 break;
+
+                case GameStates.RecordBoard:
+
+                    Rectangle rectMouseRecordBoard = new Rectangle(mouseStateCurrent.X, mouseStateCurrent.Y, 5, 5);
+                   //nextButton 위에 마우스를 올려놨을 때
+                    //mousecursor on nextButton item section
+                    
+
+                    if (rectMouseRecordBoard.Intersects(recordBoard.getRectNextButton()))
+                    {
+                        recordBoard.setClickNextButton(true);
+                        //click the right hand item section
+                        if (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released)
+                        {
+                            gameState = GameStates.SongMenu;
+                        }
+                    }
+                    else
+                    {
+                        recordBoard.setClickNextButton(false);
+                    }
+                break;
+
 
                 case GameStates.SongMenu:
                     result = songMenu.Update();
@@ -1773,8 +1823,13 @@ namespace beethoven3
 
             }
 
+            if (gameState == GameStates.RecordBoard)
+            {
+                recordBoard.Draw(spriteBatch, this.Window.ClientBounds.Width, this.Window.ClientBounds.Height);
 
-         
+           
+            }
+                   
             spriteBatch.End();
             
             base.Draw(gameTime);

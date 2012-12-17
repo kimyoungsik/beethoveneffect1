@@ -50,19 +50,42 @@ namespace beethoven3
              rightNoteMarks = new NoteInfo[500];
              currentRightNoteIndex = 0;
              time = 0;
-
+            
              this.badManager = badManager;
 
              this.scoreManager = scoreManager;
              this.endFile = false;
+
+
+             newNote = true;
         }
         
         #endregion
 
         #region method
-        public bool getEndFile()
+
+        public void SetCurrentRightNoteIndex(int value)
+        {
+            this.currentRightNoteIndex = value;
+
+        }
+        public void SetNewNote(bool value)
+        {
+            this.newNote = value;
+        }
+        
+        public bool GetEndFile()
         {
             return this.endFile;
+        }
+        
+        public void SetEndFile(bool value)
+        {
+            this.endFile = value;
+        }
+        public void SetTime(double value)
+        {
+            this.time = value;
         }
         public void FileLoading(String dir, String file)
         {

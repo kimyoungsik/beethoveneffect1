@@ -58,6 +58,24 @@ namespace beethoven3
 
         #region method
 
+
+        public void init()
+        {
+            perfect = 0;
+            good = 0;
+            bad = 0;
+            max = 0;
+            combo = 0;
+            perfomance = 0;
+            totalScore = 0;
+            gold = 0;
+            longNoteScore = 0;
+            dragNoteScore = 0;
+            gage = 0;
+
+            rank = "";
+
+        }
         public int Gage
         {
             get { return gage; }

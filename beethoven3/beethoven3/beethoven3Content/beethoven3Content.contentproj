@@ -424,15 +424,15 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="result\nextButton.png">
-      <Name>nextButton</Name>
+    <Compile Include="result\background.png">
+      <Name>background</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="result\background.png">
-      <Name>background</Name>
+    <Compile Include="result\nextButton.png">
+      <Name>nextButton</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
