@@ -37,12 +37,9 @@ namespace beethoven3
             {
                 if (name == noteFiles[i].Name)
                 {
-
                     noteFile = noteFiles[i];
                     i = noteFiles.Count();
                 }
-
-
             }
             return noteFile;
 

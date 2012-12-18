@@ -1569,6 +1569,11 @@ namespace beethoven3
                    {
                        //노래 총 시간으로 끝을 바꾸자
                        gameState = GameStates.ResultManager;
+                       //점수기록판에 기재
+                       reportManager.AddSongInfoManager(scoreManager.SongName, scoreManager.TotalScore, "");
+                       currentSongName = scoreManager.SongName;
+
+
                    }
                     MarkManager.Update(gameTime);
                     startNoteManager.Update(gameTime);
@@ -1652,10 +1657,7 @@ namespace beethoven3
 
                             file.FileLoading(dir, "*.txt");
                             
-                            //점수기록판에 기재
-                            reportManager.AddSongInfoManager(scoreManager.SongName, scoreManager.TotalScore, "");
-                            currentSongName = scoreManager.SongName;
-
+                        
 
                             scoreManager.init();
 
@@ -1866,7 +1868,7 @@ namespace beethoven3
 
             if (gameState == GameStates.ResultManager)
             {
-                resultManager.Draw(spriteBatch, this.Window.ClientBounds.Width, this.Window.ClientBounds.Height);
+                resultManager.Draw(spriteBatch, this.Window.ClientBounds.Width, this.Window.ClientBounds.Height,reportManager.IsHighScore(currentSongName,scoreManager.TotalScore));
 
                 //int combo = scoreManager.Combo;
                 //int max = scoreManager.Max;

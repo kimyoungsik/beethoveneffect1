@@ -27,33 +27,36 @@ namespace beethoven3
         }
 
         //5개 안에 점수 가 있을 때
-        public bool HighScore(ScoreInfo scoreInfo)
+        public bool IsHighScore(int score)
         {
             bool ret = false;
-            int i;
-            int max;
+            
+            int last= 4;
 
             //높은 순으로 정렬 해야 한다. 
-            //max = scoreInfos.Count > 5 ? 5 : scoreInfos.Count;
-  
-            if (scoreInfos.Count > 5)
+            Order();
+
+            if (scoreInfos.Count < 5)
             {
-                max = 5;
+                ret = true;
             }
             else
             {
-                max = scoreInfos.Count;
-            }
-            for (i = 0; i < max; i++)
-            {
-                if (scoreInfos[i] == scoreInfo)
+                if (score >= scoreInfos[last].Score)
                 {
                     ret = true;
-                    i = max;
+
                 }
             }
+          
             return ret;
         }
+
+
+
+        
+
+
 
         public void Order()
         {
@@ -63,12 +66,12 @@ namespace beethoven3
         //5개 점수 가져오기
         public List<int> GetFiveScore()
         {
-            
+            Order();
             int i;
             int max;
             List<int> retListInt = new List<int>();
             //max = scoreInfos.Count > 5 ? 5 : scoreInfos.Count;
-
+            
             if (scoreInfos.Count > 5)
             {
                 max = 5;

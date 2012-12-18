@@ -42,7 +42,7 @@ namespace beethoven3
         }
 
 
-        public void Draw(SpriteBatch spriteBatch,int width,int height)
+        public void Draw(SpriteBatch spriteBatch,int width,int height,bool isNewRecord)
         {
             recBackground = new Rectangle(0,0,width,height);
             spriteBatch.Draw(background, recBackground, Color.White);
@@ -53,9 +53,12 @@ namespace beethoven3
             recRankA = new Rectangle(100, height - 320, 169, 185);
             spriteBatch.Draw(rankA, recRankA, Color.White);
 
-            recNewRecord = new Rectangle(50, height - 150, 445, 162);
-            spriteBatch.Draw(newRecord, recNewRecord, Color.White);
 
+            if (isNewRecord)
+            {
+                recNewRecord = new Rectangle(50, height - 150, 445, 162);
+                spriteBatch.Draw(newRecord, recNewRecord, Color.White);
+            }
 
 
             if (clickNextButton)

@@ -105,8 +105,6 @@ namespace beethoven3
 
                 //0: version , 1:name , 2: artist, 3: mp3, 4: picture
                 noteFileManager.Add(info[0], info[1], info[2], info[3], info[4]);
-
-
             }
         }
 
@@ -317,10 +315,8 @@ namespace beethoven3
                 if (allNotes.Count == 0)
                 {
                     endFile = true;
-                    
                 }
             }
-          
         }
 
 
