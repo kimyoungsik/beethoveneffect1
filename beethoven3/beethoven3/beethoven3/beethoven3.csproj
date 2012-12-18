@@ -151,10 +151,13 @@
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="RecordBoard.cs" />
+    <Compile Include="ReportManager.cs" />
     <Compile Include="ResultManager.cs" />
     <Compile Include="RightItemShop.cs" />
+    <Compile Include="ScoreInfo.cs" />
     <Compile Include="ScoreManager.cs" />
     <Compile Include="ShopDoor.cs" />
+    <Compile Include="ScoreInfoManager.cs" />
     <Compile Include="SongMenu.cs" />
     <Compile Include="SoundManager.cs" />
     <Compile Include="Sprite.cs" />

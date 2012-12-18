@@ -108,8 +108,11 @@ namespace beethoven3
         
         RecordBoard recordBoard;
 
+        ReportManager reportManager;
 
         NoteFileManager noteFileManager;
+
+        String currentSongName;
 
         static public int mousex = 100; //X좌표
         static public int mousey = 100; //Y좌표
@@ -337,6 +340,10 @@ namespace beethoven3
             recordBoard = new RecordBoard();
             recordBoard.LoadContent(Content);
 
+            reportManager = new ReportManager();
+
+
+            currentSongName = "";
 #if Kinect
             idot1 = Content.Load<Texture2D>("Bitmap1");
             idot2 = Content.Load<Texture2D>("Bitmap2");
@@ -1637,17 +1644,26 @@ namespace beethoven3
                                    );
                             //두번째꺼 재실행시 이상한거 생기는것 방지
                             /////////////////////////////
-                            noteFileManager = new NoteFileManager();
+                        //    noteFileManager = new NoteFileManager();
                             
                             file = new File(startNoteManager, noteFileManager, badManager, scoreManager);
 
                             String dir = "c:\\beethoven\\";
 
                             file.FileLoading(dir, "*.txt");
+                            
+                            //점수기록판에 기재
+                            reportManager.AddSongInfoManager(scoreManager.SongName, scoreManager.TotalScore, "");
+                            currentSongName = scoreManager.SongName;
+
+
                             scoreManager.init();
 
                           //  collisionManager = new CollisionManager(perfectManager,
                             //게임이 끝났을 떄 다시 정비하기 위한 공간. 
+
+                           
+
                         }
                     }
                     else
@@ -1895,7 +1911,17 @@ namespace beethoven3
             {
                 recordBoard.Draw(spriteBatch, this. Window.ClientBounds.Width, this.Window.ClientBounds.Height);
 
-           
+
+                List<int> highScores = reportManager.GetHighScore(currentSongName);
+
+                int i;
+                for (i = 0; i < highScores.Count; i++)
+                {
+                    spriteBatch.DrawString(pericles36Font, highScores[i].ToString(), new Vector2(300, (i+1)*100), Color.Black);
+
+
+                }
+
             }
                    
             spriteBatch.End();
