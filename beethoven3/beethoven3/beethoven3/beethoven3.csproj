@@ -137,6 +137,7 @@
     <Compile Include="ItemShop.cs" />
     <Compile Include="LeftItemShop.cs" />
     <Compile Include="LineRenderer.cs" />
+    <Compile Include="LoadRecord.cs" />
     <Compile Include="Mark.cs" />
     <Compile Include="MarkManager.cs" />
     <Compile Include="MemberManager.cs" />
@@ -154,6 +155,7 @@
     <Compile Include="ReportManager.cs" />
     <Compile Include="ResultManager.cs" />
     <Compile Include="RightItemShop.cs" />
+    <Compile Include="SaveRecord.cs" />
     <Compile Include="ScoreInfo.cs" />
     <Compile Include="ScoreManager.cs" />
     <Compile Include="ShopDoor.cs" />

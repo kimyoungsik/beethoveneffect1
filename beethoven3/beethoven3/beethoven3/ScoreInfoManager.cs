@@ -26,6 +26,13 @@ namespace beethoven3
             scoreInfos.Add(scoreInfo);
         }
 
+        public List<ScoreInfo> GetScoreInfos()
+        {
+            Order();
+            return scoreInfos;
+
+        }
+
         //5개 안에 점수 가 있을 때
         public bool IsHighScore(int score)
         {
@@ -51,11 +58,6 @@ namespace beethoven3
           
             return ret;
         }
-
-
-
-        
-
 
 
         public void Order()

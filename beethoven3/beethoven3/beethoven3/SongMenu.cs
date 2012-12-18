@@ -78,7 +78,7 @@ namespace beethoven3
             backtext = content.Load<Texture2D>("Status/backtext");
             starttext = content.Load<Texture2D>("Status/backtext");
 
-           for (int i = 0; i < noteFileManager.noteFiles.Count; i++)
+            for (int i = 0; i < noteFileManager.noteFiles.Count; i++)
             {
                 String a = noteFileManager.noteFiles[i].Mp3;
                 FileStream fileStream = new FileStream(@"C:\\beethoven\\" + noteFileManager.noteFiles[i].Picture, FileMode.Open);

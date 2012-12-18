@@ -1572,7 +1572,7 @@ namespace beethoven3
                        //점수기록판에 기재
                        reportManager.AddSongInfoManager(scoreManager.SongName, scoreManager.TotalScore, "");
                        currentSongName = scoreManager.SongName;
-
+                       reportManager.SaveReport();
 
                    }
                     MarkManager.Update(gameTime);
