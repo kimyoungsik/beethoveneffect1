@@ -155,7 +155,6 @@
     <Compile Include="ReportManager.cs" />
     <Compile Include="ResultManager.cs" />
     <Compile Include="RightItemShop.cs" />
-    <Compile Include="SaveRecord.cs" />
     <Compile Include="ScoreInfo.cs" />
     <Compile Include="ScoreManager.cs" />
     <Compile Include="ShopDoor.cs" />

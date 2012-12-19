@@ -22,47 +22,43 @@ namespace beethoven3
             int i, j;
             for (i = 0; i < scoreInfoManagers.Count; i++)
             {
-                tw.WriteLine("**");
+                tw.WriteLine("%%");
                 tw.WriteLine(scoreInfoManagers[i].SongName);
                 List<ScoreInfo> scoreInfos = scoreInfoManagers[i].GetScoreInfos();
                 for (j = 0; j < scoreInfos.Count; j++)
                 {
-                    tw.WriteLine(scoreInfos[j].UserPicture + "$$" + scoreInfos[j].Score);
-                }           
+                    tw.WriteLine(scoreInfos[j].UserPicture + '$' + scoreInfos[j].Score);
+                }   
             }
+            tw.WriteLine("**");
             tw.Close();
         }
 
 
-        public void Loading()
+        public void LoadReport()
         {
 
             StreamReader sr = new StreamReader("c:\\beethovenRecord\\record.txt");
-           String line;
-
-           while (sr.Peek() >= 0)
-           {
-               line = sr.ReadLine();
-               if (line == "**")//처음
+            String line;
+            String songTitle=null;
+            String[] contents;
+            line = sr.ReadLine();
+            while (line != "**")//처음
                {
-                   sr.ReadLine();
-                   
-
-               
-               
-               }
-
-
-           }
-
-            noteLine = ((String)line).Split(' ');
-                        
+                   if (line == "%%")
+                   {
+                       //노래 제목
+                       songTitle = sr.ReadLine();
+                   }
+                   else
+                   {
+                       contents = ((String)line).Split('$');
+                       this.AddSongInfoManager(songTitle, Int32.Parse(contents[1]), contents[0]); // contents[0] 그림 , contents[1]  점수
+                   }
+                   line = sr.ReadLine();          
+            }     
             sr.Close();
         }
-
-
-
-
 
 
         //곡 이름에 따라서 점수 가져오기

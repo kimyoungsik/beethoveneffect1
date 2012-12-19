@@ -161,6 +161,8 @@ namespace beethoven3
             drawrec1 = new Rectangle(0, 0, GraphicsDevice.Viewport.Width / 20, GraphicsDevice.Viewport.Height / 20);
             drawrec2 = new Rectangle(0, 0, GraphicsDevice.Viewport.Width / 20, GraphicsDevice.Viewport.Height / 20);
 #endif
+
+            
             base.Initialize();
 
         }
@@ -341,7 +343,7 @@ namespace beethoven3
             recordBoard.LoadContent(Content);
 
             reportManager = new ReportManager();
-
+            reportManager.LoadReport();
 
             currentSongName = "";
 #if Kinect
