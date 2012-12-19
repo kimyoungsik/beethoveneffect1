@@ -66,12 +66,12 @@ namespace beethoven3
         }
 
         //5개 점수 가져오기
-        public List<int> GetFiveScore()
+        public List<ScoreInfo> GetFiveScore()
         {
             Order();
             int i;
             int max;
-            List<int> retListInt = new List<int>();
+            List<ScoreInfo> retList = new List<ScoreInfo>();
             //max = scoreInfos.Count > 5 ? 5 : scoreInfos.Count;
             
             if (scoreInfos.Count > 5)
@@ -85,12 +85,12 @@ namespace beethoven3
 
             for (i = 0; i < max; i++)
             {
-                retListInt.Add(scoreInfos[i].Score);
+                retList.Add(scoreInfos[i]);
 
             }
 
 
-            return retListInt;
+            return retList;
         }
 
 

@@ -343,6 +343,10 @@ namespace beethoven3
             recordBoard.LoadContent(Content);
 
             reportManager = new ReportManager();
+            
+            //LOAD REPORT SCORE FILE
+            //점수기록판을 로드해서 게임에 올린다. 
+
             reportManager.LoadReport();
 
             currentSongName = "";
@@ -1572,9 +1576,18 @@ namespace beethoven3
                        //노래 총 시간으로 끝을 바꾸자
                        gameState = GameStates.ResultManager;
                        //점수기록판에 기재
-                       reportManager.AddSongInfoManager(scoreManager.SongName, scoreManager.TotalScore, "");
+
+                       reportManager.AddSongInfoManager(scoreManager.SongName, scoreManager.TotalScore, "myPicture.jpg");//여기에 현재 자신의 사진 이름이 들어가야 함.(날짜시간 포함해서 독립적으로)
                        currentSongName = scoreManager.SongName;
+                       
+                       //점수 기록 파일로 저장
+                       //save recored scores in the file
                        reportManager.SaveReport();
+
+                       //기록판에 보여줄 유저 사진 찾기
+                       //Fine user pictures which will be seen in score board
+                       reportManager.MakePictures(currentSongName, GraphicsDevice);
+
 
                    }
                     MarkManager.Update(gameTime);
@@ -1658,15 +1671,12 @@ namespace beethoven3
                             String dir = "c:\\beethoven\\";
 
                             file.FileLoading(dir, "*.txt");
-                            
-                        
-
+                           
                             scoreManager.init();
 
+                           
                           //  collisionManager = new CollisionManager(perfectManager,
                             //게임이 끝났을 떄 다시 정비하기 위한 공간. 
-
-                           
 
                         }
                     }
@@ -1916,12 +1926,14 @@ namespace beethoven3
                 recordBoard.Draw(spriteBatch, this. Window.ClientBounds.Width, this.Window.ClientBounds.Height);
 
 
-                List<int> highScores = reportManager.GetHighScore(currentSongName);
+                List<ScoreInfo> highScores = reportManager.GetHighScore(currentSongName);
 
                 int i;
                 for (i = 0; i < highScores.Count; i++)
                 {
-                    spriteBatch.DrawString(pericles36Font, highScores[i].ToString(), new Vector2(300, (i+1)*100), Color.Black);
+                    spriteBatch.Draw(reportManager.FindPicture(highScores[i].UserPicture), new Rectangle(200, (i + 1) * 100, 100, 100), Color.White);
+
+                    spriteBatch.DrawString(pericles36Font, highScores[i].Score.ToString(), new Vector2(300, (i+1)*100), Color.Black);
 
 
                 }

@@ -137,7 +137,6 @@
     <Compile Include="ItemShop.cs" />
     <Compile Include="LeftItemShop.cs" />
     <Compile Include="LineRenderer.cs" />
-    <Compile Include="LoadRecord.cs" />
     <Compile Include="Mark.cs" />
     <Compile Include="MarkManager.cs" />
     <Compile Include="MemberManager.cs" />

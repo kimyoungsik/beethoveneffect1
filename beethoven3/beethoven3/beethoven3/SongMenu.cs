@@ -82,9 +82,10 @@ namespace beethoven3
             {
                 String a = noteFileManager.noteFiles[i].Mp3;
                 FileStream fileStream = new FileStream(@"C:\\beethoven\\" + noteFileManager.noteFiles[i].Picture, FileMode.Open);
-            
-                pictures[i] = Texture2D.FromStream(graphicsdevice, fileStream);
-
+                
+                    pictures[i] = Texture2D.FromStream(graphicsdevice, fileStream);
+                
+               
             }
             //for (int i = 0; i < 7; i++)
             //{
@@ -106,13 +107,8 @@ namespace beethoven3
                     picture = pictures[i];
                     i = noteFileManager.noteFiles.Count;
                 }
-
-
             }
             return picture;
-
-
-
         }
 
         //업데이트
