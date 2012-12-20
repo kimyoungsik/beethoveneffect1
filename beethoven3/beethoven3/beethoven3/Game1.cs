@@ -676,10 +676,9 @@ namespace beethoven3
             float frequency = 0;
         //    if (slow)//tempo slow
             //{
+            
             resultFmod = sndChannel.getFrequency(ref frequency);
             sndChannel.setFrequency(frequency * (float)chagedT);
-            
-            
             
             //}
             //else
@@ -711,30 +710,68 @@ namespace beethoven3
                 changedTempo = 0;
             }
         }
-        //TEST
-        private void AutoRetrunChangeTempo(GameTime gameTime)
+
+        //일단 안쓰임
+        //private void AutoRetrunChangeTempo(GameTime gameTime)
+        //{
+        //    if (isChangedTempo)
+        //    {              
+        //        //처음시작 
+        //        chagneLimitedTime += gameTime.ElapsedGameTime.TotalMilliseconds;
+        //        //Trace.WriteLine(chagneLimitedTime.ToString());
+                
+                
+        //        if (chagneLimitedTime >= 3000 && oneTime)
+        //        {
+        //            optionalTime =( 3 - (3 / this.changedTempo) ) *-1;
+        //                //템포가 4배가 된상태에서 1초동안 지속이 된다면 모두 1-  1/4   0.75초씩 줄여야 한다ㅣ
+        //            oneTime = false;
+        //            ReturnBasicTempo();
+        //        }   
+        //    }
+        //}
+
+        private void StartChangedTime(GameTime gameTime)
         {
 
+            //템포가 변하고나서 얼마나 변했는지 시간을 재는데 사용
             if (isChangedTempo)
             {
-                               
                 //처음시작 
                 chagneLimitedTime += gameTime.ElapsedGameTime.TotalMilliseconds;
-                //Trace.WriteLine(chagneLimitedTime.ToString());
-                if (chagneLimitedTime >= 3000 && oneTime)
-                {
-                    
-
-                    optionalTime =( 3 - (3 / this.changedTempo) ) *-1;
-                        //템포가 4배가 된상태에서 1초동안 지속이 된다면 모두 1-  1/4   0.75초씩 줄여야 한다ㅣ
-                    oneTime = false;
-                    ReturnBasicTempo();
-                }
-                
+               
             }
+         
 
         }
 
+
+        //다시 원점으로 돌아갈 때 쓰임 
+        //늘어나거나 줄어드는 양을 계산해주고 
+        
+        private void SetOptionalTime()
+        {
+            //임시로 넣은 것일 뿐
+            if (oneTime)
+            {
+                
+
+                double time = 0;
+
+              
+                 time = ((this.chagneLimitedTime / 1000) - ((this.chagneLimitedTime / 1000) / this.changedTempo)) * -1;
+                
+              
+                optionalTime += time;
+                //템포가 0.9배가 된상태에서 1초동안 지속이 된다면 모두 4-  4/4   3초씩 줄여야 한다ㅣ
+                oneTime = false;
+                chagneLimitedTime = 0;
+                //원래 템포로 돌아감
+                ReturnBasicTempo();
+            }   
+
+
+        }
 
 
         private void HandleKeyboardInput(KeyboardState keyState)
@@ -751,6 +788,7 @@ namespace beethoven3
                // sndChannel.setFrequency(60000.0f);
                 //임시
                 //BOOL 은 일단 임시로 
+                oneTime = true;
                 if (!isChangedTempo)
                 {
                     tempoChange(1.2f);
@@ -758,20 +796,39 @@ namespace beethoven3
                     //2의 템포가 2초동안 빨라지는 ㅔ
                 }
             }
+
             if (keyState.IsKeyDown(Keys.O))
             {
                 // resultFmod = sndChannel.getFrequency(ref basicFrequency);
                 // sndChannel.setFrequency(60000.0f);
+                //임시
+                //BOOL 은 일단 임시로 
+                oneTime = true;
                 if (!isChangedTempo)
                 {
-                    tempoChange(-1.2f);
+
+                    //그 양만큼 템포 조절됨
+                    tempoChange(0.8f);
+
+                    //2의 템포가 2초동안 빨라지는 ㅔ
                 }
             }
+            //if (keyState.IsKeyDown(Keys.O))
+            //{
+            //    // resultFmod = sndChannel.getFrequency(ref basicFrequency);
+            //    // sndChannel.setFrequency(60000.0f);
+            //    if (!isChangedTempo)
+            //    {
+            //        tempoChange(-1.2f);
+            //    }
+            //}
 
             if (keyState.IsKeyDown(Keys.L))
             {
                // sndChannel.setFrequency(44100.0f);
-                ReturnBasicTempo();
+               // ReturnBasicTempo();
+
+                SetOptionalTime();
             }
 
 
@@ -1651,8 +1708,11 @@ namespace beethoven3
                     goldGetManager.Update(gameTime);
                     scoreManager.Update(gameTime);
                     memberManager.Update(gameTime);
-                    AutoRetrunChangeTempo(gameTime);
 
+                   //3초만에 원상복귀
+             //       AutoRetrunChangeTempo(gameTime);
+
+                    StartChangedTime(gameTime);
                 break;
 
 

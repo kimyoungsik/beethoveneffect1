@@ -253,8 +253,8 @@ namespace beethoven3
 
                     newNote = false;
               //  }
-
-                    Trace.WriteLine(noteTime.ToString());
+                    Trace.WriteLine(optionalTime.ToString());
+                    //Trace.WriteLine(noteTime.ToString());
 
                 if (noteTime <= processTime)
                 {
