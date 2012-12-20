@@ -6,7 +6,7 @@ using System.Text;
 using System.IO;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-
+using System.Diagnostics;
 namespace beethoven3
 {
     class File
@@ -187,7 +187,6 @@ namespace beethoven3
             firstMid.X = start.X + (float)((angle.X * (length * ratio)));
             firstMid.Y = start.Y + (float)(angle.Y * (length * ratio));
 
-
             //두번쨰 각
             angle2 = new Vector2((float)Math.Cos((float)Math.Atan2(start.Y, start.X) - MathHelper.ToRadians(secondAngle)), (float)Math.Sin((float)Math.Atan2(start.Y, start.X) - MathHelper.ToRadians(secondAngle)));
             //두번째 제어점
@@ -197,22 +196,49 @@ namespace beethoven3
             GuideLineManager.AddGuideLine(start, firstMid, secondMid, end, (rightNoteMarks[currentRightNoteIndex + 1].StartTime - rightNoteMarks[currentRightNoteIndex].StartTime) * 1000, gold);
 
         }
-
-
-        public void FindNote(double processTime)
+        public double ChangeTimeOfNote( double inputTime, double changedTempo)
         {
+            double outputTime = 0.0f;
+
+            outputTime = inputTime / changedTempo;
+            
+            return outputTime;
+            
+            //템포가 2배가 된상태에서 4초동안 지속이 된다면 모두 4-4/2 2초씩 줄여야 한다ㅣ
+            //템포가 2배가 된상태에서 y초동안 지속이 된다면 모두 y-y/2초씩 줄여야 한다.
+            //템포가 2배가 된상태에서 1초동안 지속이 된다면 모두 1-1/2  0.5초씩 줄여야 한다ㅣ
+            //템포가 4배가 된상태에서 1초동안 지속이 된다면 모두 1-  1/4   0.75초씩 줄여야 한다ㅣ
+            
+            //템파고 x배가 된상태에서 y초 동안 지속이 된다면 모두 y-y/x초씩 줄여야 한다.
+            //템포가 1.2배가 된상태에서 2초동안 지속이 된다면 모두 2-2/1.2 0.3333초
+            //템포가 1.5배가 된상태에서 2초동안 지속이 된다면 모두 2-2/1.5 0.6666초
+            
+        }
+        public void FindNote(double processTime, double changedTempo, double optionalTime)
+        {
+
 
             if (!endFile)
             {
                 //처음 실행하거나 de큐를 거치지 않은 새로운
-                if (newNote)
-                {
-
-
+               // if (newNote)
+               // {
                     noteContents = ((String)allNotes.Peek()).Split(' ');
                     //try
                     //{
+                    //빨라지면 같이 빨라진다.
+
                     noteTime = Convert.ToDouble(noteContents[0]);
+
+
+                    if (changedTempo != 0)
+                    {
+                        noteTime = ChangeTimeOfNote( noteTime, changedTempo);
+                        
+                    }
+
+                    noteTime += optionalTime;
+                   // noteTime = Convert.ToDouble(noteContents[0]);
                     //시간에 맞추어서 노트가 날아갈 수 있게 생성 시간을 정한다. 
                     noteTime = GetNoteStartTime(noteTime);
 
@@ -222,8 +248,14 @@ namespace beethoven3
                     //이 문제가 생기는 것이면 저장된 파일을 본다.
                     //}
                     
+                    
+
+
                     newNote = false;
-                }
+              //  }
+
+                    Trace.WriteLine(noteTime.ToString());
+
                 if (noteTime <= processTime)
                 {
                     //PlayNote(타입,날아가는 마커 위치)
@@ -265,8 +297,6 @@ namespace beethoven3
 
 
                             }
-
-
 
                             break;
 
@@ -346,12 +376,8 @@ namespace beethoven3
                     break;
          
             }
-
-
             return location;
-
         }
-
 
         public void DrawLineInLongNote(SpriteBatch spriteBatch, double processTime)
         {
@@ -534,14 +560,16 @@ namespace beethoven3
             return startTime;
             
         }
+       
 
-        public void Update(SpriteBatch spriteBatch, GameTime gameTime)
+
+        public void Update(SpriteBatch spriteBatch, GameTime gameTime, double changedTempo, double optionalTime)
         {
             //오른노트가 사각형 범위로 가면 지워지도록
             CheckRightNoteInCenterArea();
             CheckLeftNoteInCenterArea();
             this.time += gameTime.ElapsedGameTime.TotalSeconds;
-            FindNote(this.time);
+            FindNote(this.time, changedTempo, optionalTime);
         }
 
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime)

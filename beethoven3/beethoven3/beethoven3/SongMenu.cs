@@ -345,6 +345,7 @@ namespace beethoven3
             if (scene_number > 5)
                 spriteBatch.Draw(top[6], new Rectangle(0, 0, 600, 40), Color.White);
         }
+
         public void TextAnimation1(SpriteBatch spriteBatch)
         {
             if (textbutton)

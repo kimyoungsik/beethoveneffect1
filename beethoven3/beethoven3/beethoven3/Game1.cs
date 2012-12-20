@@ -16,7 +16,7 @@ using System.IO;
 using System.Threading;
 using Microsoft.Speech.Recognition;
 using Microsoft.Speech.AudioFormat;
-
+using System.Diagnostics;
 using FMOD;
 
 /*
@@ -130,7 +130,16 @@ namespace beethoven3
 
        // private FMOD.DSPConnection dspconnectiontemp = null;
         private bool isChangedTempo= false;
+        private double changedTempo = 0;
         private float basicFrequency = 0;
+
+        /// <summary>
+        /// 테스트
+        /// </summary>
+        private double chagneLimitedTime = 0;
+        private double optionalTime = 0;
+        private bool oneTime = true;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -178,7 +187,7 @@ namespace beethoven3
             resultFmod = FMOD.Factory.System_Create(ref sndSystem);
             
             sndSystem.init(1, FMOD.INITFLAG.NORMAL, (IntPtr)null);
-            sndSystem.createSound("C:\\Kalimba.mp3", FMOD.MODE.HARDWARE, ref sndSound);
+            sndSystem.createSound("C:\\psy.mp3", FMOD.MODE.HARDWARE, ref sndSound);
             /* 음원을 로드시킬 때 createStream 과 createSound 두가지가 있는 것을 확인할 수 있는데
  createStream은 배경음악을, createSound는 효과음을 넣는것이 좋습니다.*/
 
@@ -658,20 +667,26 @@ namespace beethoven3
 #endif
 
 
-        private void tempoChange(bool slow)
+        private void tempoChange(double chagedT)
         {
             isChangedTempo = true;
+
+            this.changedTempo = chagedT;
+
             float frequency = 0;
-            if (slow)//tempo slow
-            {
-                resultFmod = sndChannel.getFrequency(ref frequency);
-                sndChannel.setFrequency(frequency-10000.0f);
-            }
-            else
-            {
-                resultFmod = sndChannel.getFrequency(ref frequency);
-                sndChannel.setFrequency(frequency + 10000.0f);
-            }
+        //    if (slow)//tempo slow
+            //{
+            resultFmod = sndChannel.getFrequency(ref frequency);
+            sndChannel.setFrequency(frequency * (float)chagedT);
+            
+            
+            
+            //}
+            //else
+            //{
+            //    resultFmod = sndChannel.getFrequency(ref frequency);
+            //    sndChannel.setFrequency(frequency*2f);
+            //}
 
         }
 
@@ -693,8 +708,33 @@ namespace beethoven3
             {
                 sndChannel.setFrequency(basicFrequency);
                 isChangedTempo = false;
+                changedTempo = 0;
             }
         }
+        //TEST
+        private void AutoRetrunChangeTempo(GameTime gameTime)
+        {
+
+            if (isChangedTempo)
+            {
+                               
+                //처음시작 
+                chagneLimitedTime += gameTime.ElapsedGameTime.TotalMilliseconds;
+                //Trace.WriteLine(chagneLimitedTime.ToString());
+                if (chagneLimitedTime >= 3000 && oneTime)
+                {
+                    
+
+                    optionalTime =( 3 - (3 / this.changedTempo) ) *-1;
+                        //템포가 4배가 된상태에서 1초동안 지속이 된다면 모두 1-  1/4   0.75초씩 줄여야 한다ㅣ
+                    oneTime = false;
+                    ReturnBasicTempo();
+                }
+                
+            }
+
+        }
+
 
 
         private void HandleKeyboardInput(KeyboardState keyState)
@@ -710,10 +750,12 @@ namespace beethoven3
                // resultFmod = sndChannel.getFrequency(ref basicFrequency);
                // sndChannel.setFrequency(60000.0f);
                 //임시
-
+                //BOOL 은 일단 임시로 
                 if (!isChangedTempo)
                 {
-                    tempoChange(false);
+                    tempoChange(1.2f);
+
+                    //2의 템포가 2초동안 빨라지는 ㅔ
                 }
             }
             if (keyState.IsKeyDown(Keys.O))
@@ -722,7 +764,7 @@ namespace beethoven3
                 // sndChannel.setFrequency(60000.0f);
                 if (!isChangedTempo)
                 {
-                    tempoChange(true);
+                    tempoChange(-1.2f);
                 }
             }
 
@@ -752,6 +794,7 @@ namespace beethoven3
                // collisionManager.CheckCollisions(2);
           //      sortMode = SpriteSortMode.Deferred;
             }
+
             if (keyState.IsKeyDown(Keys.NumPad4))
             {
               //  SoundManager.SndStop();
@@ -1587,7 +1630,9 @@ namespace beethoven3
                        //기록판에 보여줄 유저 사진 찾기
                        //Fine user pictures which will be seen in score board
                        reportManager.MakePictures(currentSongName, GraphicsDevice);
-
+                       //Texture2D texture = null; 
+                       //Stream str = System.IO.File.OpenWrite("gesture.jpg");
+                       //texture.SaveAsJpeg(str, 1200, 900);
 
                    }
                     MarkManager.Update(gameTime);
@@ -1597,7 +1642,7 @@ namespace beethoven3
 #if Kinect
                     HandleInput();  
 #endif
-                    file.Update(spriteBatch, gameTime);
+                    file.Update(spriteBatch, gameTime, this.changedTempo, this.optionalTime);
                     DragNoteManager.Update(gameTime);
                     GoldManager.Update(gameTime);
                     perfectManager.Update(gameTime);
@@ -1606,7 +1651,7 @@ namespace beethoven3
                     goldGetManager.Update(gameTime);
                     scoreManager.Update(gameTime);
                     memberManager.Update(gameTime);
-
+                    AutoRetrunChangeTempo(gameTime);
 
                 break;
 
