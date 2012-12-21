@@ -74,3 +74,4 @@ D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\result\hov
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\result\rankA.xnb
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\result\background.xnb
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\result\nextButton.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\obj\x86\Release\beethoven3.csprojResolveAssemblyReference.cache

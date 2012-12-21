@@ -6,7 +6,7 @@ using System.Text;
 namespace beethoven3
 {
     /// <summary>
-    /// 
+    /// 오른손노트의 골드라인  
     /// </summary>
     class NoteInfo
     {
