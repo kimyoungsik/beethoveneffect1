@@ -681,7 +681,7 @@ namespace beethoven3
             sndChannel.setFrequency(frequency * (float)changedT);
             file.ChangeArrayNoteTempo(changedT);
 
-
+            GuideLineManager.DeleteAllSecondGuideLine();
             //}
             //else
             //{

@@ -376,8 +376,10 @@ namespace beethoven3
                                     {
                                         //일반 가이드라인
                                         // DrawGuidLine(rightNoteMarks[currentRightNoteIndex + 1].MarkLocation, rightNoteMarks[currentRightNoteIndex + 2].MarkLocation, false);
-                                        DrawGuidLine(arrayNotes[1].MarkLocation, arrayNotes[2].MarkLocation, false, arrayNotes[0].StartTime, arrayNotes[1].StartTime);
-                                    }
+                                        
+                                            DrawGuidLine(arrayNotes[1].MarkLocation, arrayNotes[2].MarkLocation, false, arrayNotes[0].StartTime, arrayNotes[1].StartTime);
+                                        
+                                   }
                                 }
                             }
                             catch (IndexOutOfRangeException)

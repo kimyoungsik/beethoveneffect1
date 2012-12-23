@@ -51,7 +51,12 @@ namespace beethoven3
         #endregion
 
         #region method
+        public bool ShowGold
+        {
+            get { return showGold; }
+            set { showGold = value; }
 
+        }
         /// <summary>
         /// 
         /// </summary>

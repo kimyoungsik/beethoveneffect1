@@ -31,8 +31,19 @@ namespace beethoven3
             GuideLines.Add(guideLine);
         }
 
+        //갑자기 템포가 변했을떄 현재 그려진것드을 지워준다. (지속기간이 다르기 때무에 오래 남게된다)
+        public static void DeleteAllSecondGuideLine()
+        { 
+            int i;
+            for(i=0; i<GuideLines.Count; i++)
+            {
+                if (!GuideLines[i].ShowGold)
+                {
+                    GuideLines.RemoveAt(i);
 
-
+                }
+            }
+        }
         //public static void addGuideLine(Vector2 p0, Vector2 p1, Vector2 p2, Vector2 p3, double time)
         //{
         //    Curve curve = new Curve(p0, p1, p2, p3, time);
