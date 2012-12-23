@@ -667,19 +667,21 @@ namespace beethoven3
 #endif
 
 
-        private void tempoChange(double chagedT)
+        private void tempoChange(double changedT)
         {
             isChangedTempo = true;
 
-            this.changedTempo = chagedT;
+            this.changedTempo = changedT;
 
             float frequency = 0;
         //    if (slow)//tempo slow
             //{
             
             resultFmod = sndChannel.getFrequency(ref frequency);
-            sndChannel.setFrequency(frequency * (float)chagedT);
-            
+            sndChannel.setFrequency(frequency * (float)changedT);
+            file.ChangeArrayNoteTempo(changedT);
+
+
             //}
             //else
             //{
@@ -754,8 +756,9 @@ namespace beethoven3
             //임시로 넣은 것일 뿐
             if (oneTime)
             {
-                
 
+                file.ChangeArrayNoteTempoBack(this.changedTempo);
+           
                 double time = 0;
 
               
@@ -763,6 +766,8 @@ namespace beethoven3
                 
               
                 optionalTime += time;
+
+                file.OptionalArrayNote(optionalTime);
                 //템포가 0.9배가 된상태에서 1초동안 지속이 된다면 모두 4-  4/4   3초씩 줄여야 한다ㅣ
                 oneTime = false;
                 chagneLimitedTime = 0;
@@ -772,6 +777,11 @@ namespace beethoven3
 
 
         }
+
+
+
+
+
 
 
         private void HandleKeyboardInput(KeyboardState keyState)

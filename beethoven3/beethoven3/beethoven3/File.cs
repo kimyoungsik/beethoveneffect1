@@ -19,8 +19,8 @@ namespace beethoven3
 
 
      //   private Queue allNotes = new Queue();
-        private String[] noteContents;
-        private ArrayList arrayNotes = new ArrayList();
+      //  private String[] noteContents;
+        private List<NoteInfo> arrayNotes = new List<NoteInfo>();
 
 
         private double noteTime;
@@ -64,6 +64,10 @@ namespace beethoven3
         #endregion
 
         #region method
+        public List<NoteInfo> GetArrayNotes()
+        {
+            return arrayNotes;
+        }
 
         public void SetCurrentRightNoteIndex(int value)
         {
@@ -128,7 +132,37 @@ namespace beethoven3
             {
                 String line = sr.ReadLine();
                 //allNotes.Enqueue(line);
-                arrayNotes.Add(line);
+               String[] lines = ((String)line).Split(' ');
+                bool isright= false;
+
+                if (lines[1] == "0" || lines[1] == "1")
+                {
+
+                    if (lines[1] == "0")
+                    {
+                        isright = true;
+                    }
+
+                    //lines =>2:오른손이면 0 , 1: 마크위치 0: 시작시간 
+                    arrayNotes.Add(new NoteInfo(isright, Convert.ToDouble(lines[0]), Int32.Parse(lines[2]), Int32.Parse(lines[1]), 0, Vector2.Zero, Vector2.Zero, Vector2.Zero, Vector2.Zero));
+
+                }
+                //롱노트
+                else if(lines[1] =="3")
+                {
+
+                    arrayNotes.Add(new NoteInfo(isright, Convert.ToDouble(lines[0]), Int32.Parse(lines[2]), Int32.Parse(lines[1]),Convert.ToDouble(lines[3]), Vector2.Zero, Vector2.Zero, Vector2.Zero, Vector2.Zero));
+
+
+                }
+                    //드래그노트
+                else
+                {
+
+                    arrayNotes.Add(new NoteInfo(isright, Convert.ToDouble(lines[0]), -1, Int32.Parse(lines[1]), Convert.ToDouble(lines[2]), new Vector2(Int32.Parse(lines[3]), Int32.Parse(lines[4])), new Vector2(Int32.Parse(lines[5]), Int32.Parse(lines[6])), new Vector2(Int32.Parse(lines[7]), Int32.Parse(lines[8])), new Vector2(Int32.Parse(lines[9]), Int32.Parse(lines[10]))));
+
+
+                }
 
                 //noteLine = ((String)line).Split(' ');
                 //try
@@ -198,7 +232,41 @@ namespace beethoven3
             GuideLineManager.AddGuideLine(start, firstMid, secondMid, end, (secondStartTime - firstStartTime) * 1000, gold);
 
         }
-        public double ChangeTimeOfNote( double inputTime, double changedTempo)
+        public void ChangeArrayNoteTempo(double changedTempo)
+        {
+            int i;
+            for (i = 0; i < this.arrayNotes.Count; i++)
+            {
+
+                arrayNotes[i].StartTime = arrayNotes[i].StartTime / changedTempo;
+
+            }
+
+        }
+
+        public void ChangeArrayNoteTempoBack(double changedTempo)
+        {
+            int i;
+            for (i = 0; i < this.arrayNotes.Count; i++)
+            {
+
+                arrayNotes[i].StartTime = arrayNotes[i].StartTime * changedTempo;
+
+            }
+
+        }
+
+        public void OptionalArrayNote(double optionalTime)
+        {
+            int i;
+            for (i = 0; i < this.arrayNotes.Count; i++)
+            {
+
+                arrayNotes[i].StartTime +=  optionalTime;
+            }
+
+        }
+        public double ChangeTimeOfNote(double inputTime, double changedTempo)
         {
             double outputTime = 0.0f;
 
@@ -223,21 +291,30 @@ namespace beethoven3
             if (!endFile)
             {
                     //noteContents = ((String)allNotes.Peek()).Split(' ');
-                    noteContents = ((String)arrayNotes[0]).Split(' ');
-                    noteTime = Convert.ToDouble(noteContents[0]);
+                   // noteContents = ((String)arrayNotes[0]).Split(' ');
+
+                //arraynote를 구조체 배열로 만들어서 싹 바꿔야 한다. 
 
 
-                    if (changedTempo != 0)
-                    {
-                        noteTime = ChangeTimeOfNote( noteTime, changedTempo);
-                        
-                    }
+                  //  noteTime = Convert.ToDouble(noteContents[0]);
 
-                    noteTime += optionalTime;
-                   // noteTime = Convert.ToDouble(noteContents[0]);
+                    //템포가 바뀌었을 경우 
+    //                if (changedTempo != 0)
+    //                {
+                       // noteTime = ChangeTimeOfNote( noteTime, changedTempo);
+    //                    ChangeArrayNoteTempo(changedTempo);
+    //                }
+                    
+                    //템포가 바뀐것에 따라서 다른것에 영향을 줄경우 
+                    // noteTime += optionalTime;
+      //              OptionalArrayNote(optionalTime);
+                    
+                    // noteTime = Convert.ToDouble(noteContents[0]);
+    
                     //시간에 맞추어서 노트가 날아갈 수 있게 생성 시간을 정한다. 
-                    noteTime = GetNoteStartTime(noteTime);
-                    newNote = false;
+                    noteTime = GetNoteStartTime(arrayNotes[0].StartTime);
+
+//                    newNote = false;
              
                     Trace.WriteLine(optionalTime.ToString());
                     //Trace.WriteLine(noteTime.ToString());
@@ -246,15 +323,15 @@ namespace beethoven3
                 {
                     //PlayNote(타입,날아가는 마커 위치)
                     //타입 0-오른손 1-왼손 2-양손 3-롱노트 4-드래그노트 
-                    int type = Int32.Parse(noteContents[1]);
+                  //  int type = Int32.Parse(noteContents[1]);
 
-                    switch (type)
+                    switch (arrayNotes[0].Type)
                     {
                         //오른손 노트
                         case 0:
                             //시간에 맞춰서 뿌려줘야 함. 
                             //notecontent[2] => 마커위치
-                            startNoteManager.MakeRightNote(Int32.Parse(noteContents[2]));
+                            startNoteManager.MakeRightNote(arrayNotes[0].MarkLocation);
                                                       
                             try
                             {
@@ -268,38 +345,38 @@ namespace beethoven3
                               //  if (rightNoteMarks[currentRightNoteIndex].IsRight && rightNoteMarks[currentRightNoteIndex + 1].IsRight)
 
 
-                                //오른손 노트여부 : [0]-> 0 ,, 마커 위치 [1]
-                                double[] firstRightNote = GetNote(0);
-                                double[] secondRightNote = null;
-                                double[] thirdRightNote = null;
-                                if (arrayNotes.Count > 1)
-                                {
-                                    secondRightNote = GetNote(1);
-                                }
+                                ////오른손 노트여부 : [0]-> 0 ,, 마커 위치 [1]
+                                //double[] firstRightNote = GetNote(0);
+                                //double[] secondRightNote = null;
+                                //double[] thirdRightNote = null;
+                                //if (arrayNotes.Count > 1)
+                                //{
+                                //    secondRightNote = GetNote(1);
+                                //}
                                 
-                                if (arrayNotes.Count > 2)
-                                {
-                                    thirdRightNote = GetNote(2);
-                                }
+                                //if (arrayNotes.Count > 2)
+                                //{
+                                //    thirdRightNote = GetNote(2);
+                                //}
 
                                 if (arrayNotes.Count > 1)
                                 {
-                                    if ((int)firstRightNote[0] == 0 && (int)secondRightNote[0] == 0)
+                                    if (arrayNotes[0].IsRight && arrayNotes[1].IsRight)
                                     {
                                         //골드라인
                                         //  DrawGuidLine(rightNoteMarks[currentRightNoteIndex].MarkLocation, rightNoteMarks[currentRightNoteIndex + 1].MarkLocation, true);
-                                        DrawGuidLine((int)firstRightNote[1], (int)secondRightNote[1], true,firstRightNote[2],secondRightNote[2]);
+                                        DrawGuidLine(arrayNotes[0].MarkLocation, arrayNotes[1].MarkLocation, true, arrayNotes[0].StartTime, arrayNotes[1].StartTime);
 
                                     }
                                 }
                                 if (arrayNotes.Count > 2)
                                 {
-                                    if ((int)secondRightNote[0] == 0 && (int)thirdRightNote[0] == 0)
+                                    if (arrayNotes[1].IsRight && arrayNotes[2].IsRight)
                                     // if (rightNoteMarks[currentRightNoteIndex + 1].IsRight && rightNoteMarks[currentRightNoteIndex + 2].IsRight)
                                     {
                                         //일반 가이드라인
                                         // DrawGuidLine(rightNoteMarks[currentRightNoteIndex + 1].MarkLocation, rightNoteMarks[currentRightNoteIndex + 2].MarkLocation, false);
-                                        DrawGuidLine((int)secondRightNote[1], (int)thirdRightNote[1], false, firstRightNote[2], secondRightNote[2]);
+                                        DrawGuidLine(arrayNotes[1].MarkLocation, arrayNotes[2].MarkLocation, false, arrayNotes[0].StartTime, arrayNotes[1].StartTime);
                                     }
                                 }
                             }
@@ -318,7 +395,7 @@ namespace beethoven3
 
                         //왼손노트 
                         case 1:
-                            startNoteManager.MakeLeftNote(Int32.Parse(noteContents[2]));
+                            startNoteManager.MakeLeftNote(arrayNotes[0].MarkLocation);
                             break;
 
                         //양손노트
@@ -336,16 +413,20 @@ namespace beethoven3
                              물론 객체를 계속 만들고 지우는것도 가능하다.
                              필요하다면 만들 수 도 있다.
                              */
-                            startNoteManager.MakeLongNote(Int32.Parse(noteContents[2]));
-                            startNoteNumber = Int32.Parse(noteContents[2]);
-                            drawLineTime = Convert.ToDouble(noteContents[3]) + Convert.ToDouble(noteContents[0]);
+                            startNoteManager.MakeLongNote(arrayNotes[0].MarkLocation);
+                            startNoteNumber = arrayNotes[0].MarkLocation;
+
+                            //롱노트 //드래그노트는 끝나는 시간 까지, 포함 이건 noteInfo에포함해야 됨 
+                            //끝나는시간
+                            drawLineTime = arrayNotes[0].LastTime + arrayNotes[0].StartTime;
+                            
                             drawLine = true;
                             break;
 
                         //드래그 노트
                         case 4:
                             //시작점,제어점1,제어점2,끝점,지속시간
-                            CurveManager.addCurve(new Vector2(Int32.Parse(noteContents[3]), Int32.Parse(noteContents[4])), new Vector2(Int32.Parse(noteContents[5]), Int32.Parse(noteContents[6])), new Vector2(Int32.Parse(noteContents[7]), Int32.Parse(noteContents[8])), new Vector2(Int32.Parse(noteContents[9]), Int32.Parse(noteContents[10])), Convert.ToDouble(noteContents[2]));
+                            CurveManager.addCurve(arrayNotes[0].StartPoint, arrayNotes[0].FirstOperatorPoint, arrayNotes[0].SecondOperatorPoint, arrayNotes[0].EndPoint, arrayNotes[0].LastTime);
 
                             break;
                     }
@@ -355,7 +436,7 @@ namespace beethoven3
                     newNote = true;
 
                     //오른손노트를 true로 되어있는 array의 index를 하나씩 증가시시키는 값.
-                    currentRightNoteIndex++;
+              //      currentRightNoteIndex++;
                 }
 
                 //파일의 끝
@@ -370,19 +451,19 @@ namespace beethoven3
         }
 
         //0:오른손여부(0이면 오른손), 1:마크위치 2: 노트시작 시간 
-        public  double[] GetNote(int index)
-        {
+        //public  double[] GetNote(int index)
+        //{
             
             
-            String line = (String)arrayNotes[index];
-            String[] lines = ((String)line).Split(' ');
-            double[] values = new double[3];
-            values[0] = (double)Int32.Parse(lines[1]);
-            values[1] = (double)Int32.Parse(lines[2]);
-            values[2] = Convert.ToDouble(lines[0]);
-            return values;
+            //String line = (String)arrayNotes[index];
+            //String[] lines = ((String)line).Split(' ');
+            //double[] values = new double[3];
+            //values[0] = (double)Int32.Parse(lines[1]);
+            //values[1] = (double)Int32.Parse(lines[2]);
+            //values[2] = Convert.ToDouble(lines[0]);
+            //return values;
 
-        }
+        //}
 
         public Vector2 GetMarkerLocation(int markerNumber)
         {
