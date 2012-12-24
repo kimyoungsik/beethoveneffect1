@@ -53,50 +53,52 @@ namespace beethoven3
         }
         public void LoadContent(ContentManager cm)
         {
-            firstMemberPlay = cm.Load<Texture2D>(@"members\member1Run");
-            secondMemberPlay = cm.Load<Texture2D>(@"members\member2Run");
-            thirdMemberPlay = cm.Load<Texture2D>(@"members\member3Run");
-            forthMemberPlay = cm.Load<Texture2D>(@"members\member4Run");
-            fifthMemberPlay = cm.Load<Texture2D>(@"members\member5Run");
-            sixthMemberPlay = cm.Load<Texture2D>(@"members\member6Run");
+            firstMemberPlay = cm.Load<Texture2D>(@"character\violin");
+            secondMemberPlay = cm.Load<Texture2D>(@"character\flute");
+            thirdMemberPlay = cm.Load<Texture2D>(@"character\timpani");
+            forthMemberPlay = cm.Load<Texture2D>(@"character\horn");
+            fifthMemberPlay = cm.Load<Texture2D>(@"character\contrabase");
+            sixthMemberPlay = cm.Load<Texture2D>(@"character\cello");
 
-            firstMemberMiss = cm.Load<Texture2D>(@"members\member1Die");
-            secondMemberMiss = cm.Load<Texture2D>(@"members\member2Die");
-            thirdMemberMiss = cm.Load<Texture2D>(@"members\member3Die");
-            forthMemberMiss = cm.Load<Texture2D>(@"members\member4Die");
-            fifthMemberMiss = cm.Load<Texture2D>(@"members\member5Die");
-            sixthMemberMiss = cm.Load<Texture2D>(@"members\member6Die");
+            firstMemberMiss = cm.Load<Texture2D>(@"character\violin");
+            secondMemberMiss = cm.Load<Texture2D>(@"character\flute");
+            thirdMemberMiss = cm.Load<Texture2D>(@"character\timpani");
+            forthMemberMiss = cm.Load<Texture2D>(@"character\horn");
+            fifthMemberMiss = cm.Load<Texture2D>(@"character\contrabase");
+            sixthMemberMiss = cm.Load<Texture2D>(@"character\cello");
           
         }
 
         
-        public void init()
+        public void init() 
         {
+
+            ///프레임카운트 일단 1
             //first Run
-            MakeMember(firstMemberPlay, new Rectangle(0,0,47,47),new Vector2(100,100),Vector2.Zero,0f,15,8,0);
+            MakeMember(firstMemberPlay, new Rectangle(0,0,490,800),new Vector2(20,-150),Vector2.Zero,0f,15,1,0,0.3f);
             //second Run
-            MakeMember(secondMemberPlay, new Rectangle(0, 0, 47, 47), new Vector2(200, 100), Vector2.Zero, 0f, 15, 8, 1);
+            MakeMember(secondMemberPlay, new Rectangle(0, 0, 258, 595), new Vector2(170, -110), Vector2.Zero, 0f, 15,1, 1, 0.4f);
             //third Run
-            MakeMember(thirdMemberPlay, new Rectangle(0, 0, 47, 47), new Vector2(300, 100), Vector2.Zero, 0f, 15, 8, 2);
+            MakeMember(thirdMemberPlay, new Rectangle(0, 0, 471, 595), new Vector2(170, -170), Vector2.Zero, 0f, 15, 1, 2, 0.4f);
             //forth Run
-            MakeMember(forthMemberPlay, new Rectangle(0, 0, 47, 47), new Vector2(400, 100), Vector2.Zero, 0f, 15, 8, 3);
+            MakeMember(forthMemberPlay, new Rectangle(0, 0, 312, 800), new Vector2(370, -290), Vector2.Zero, 0f, 15, 1, 3, 0.28f);
             //fifth Run
-            MakeMember(fifthMemberPlay, new Rectangle(0, 0, 47, 47), new Vector2(500, 100), Vector2.Zero, 0f, 15, 8, 4);
+            MakeMember(fifthMemberPlay, new Rectangle(0, 0, 372, 800), new Vector2(420, -220), Vector2.Zero, 0f, 15, 1, 4, 0.3f);
             //sixth Run
-            MakeMember(sixthMemberPlay, new Rectangle(0, 0, 47, 47), new Vector2(600, 100), Vector2.Zero, 0f, 15, 8, 5);
+            MakeMember(sixthMemberPlay, new Rectangle(0, 0, 320, 595), new Vector2(510, -40), Vector2.Zero, 0f, 15, 1, 5, 0.42f);
 
             //first Miss
-            MakeMember(firstMemberMiss, new Rectangle(0, 0, 47, 47), new Vector2(100, 100), Vector2.Zero, 0f, 15, 8, 0);
+            MakeMember(firstMemberMiss, new Rectangle(0, 0, 47, 47), new Vector2(100, 100), Vector2.Zero, 0f, 15, 1, 0, 0.3f);
             //second Miss
-            MakeMember(secondMemberMiss, new Rectangle(0, 0, 47, 47), new Vector2(200, 100), Vector2.Zero, 0f, 15, 8, 1);
+            MakeMember(secondMemberMiss, new Rectangle(0, 0, 47, 47), new Vector2(200, 100), Vector2.Zero, 0f, 15, 1, 1, 0.3f);
             //third Miss
-            MakeMember(thirdMemberMiss, new Rectangle(0, 0, 47, 47), new Vector2(300, 100), Vector2.Zero, 0f, 15, 8, 2);
+            MakeMember(thirdMemberMiss, new Rectangle(0, 0, 47, 47), new Vector2(300, 100), Vector2.Zero, 0f, 15, 1, 2, 0.3f);
             //forth Miss
-            MakeMember(forthMemberMiss, new Rectangle(0, 0, 47, 47), new Vector2(400, 100), Vector2.Zero, 0f, 15, 8, 3);
+            MakeMember(forthMemberMiss, new Rectangle(0, 0, 47, 47), new Vector2(400, 100), Vector2.Zero, 0f, 15, 1, 3, 0.3f);
             //fifth Miss
-            MakeMember(fifthMemberMiss, new Rectangle(0, 0, 47, 47), new Vector2(500, 100), Vector2.Zero, 0f, 15, 8, 4);
+            MakeMember(fifthMemberMiss, new Rectangle(0, 0, 47, 47), new Vector2(500, 100), Vector2.Zero, 0f, 15, 1, 4, 0.3f);
             //sixth Miss
-            MakeMember(sixthMemberMiss, new Rectangle(0, 0, 47, 47), new Vector2(600, 100), Vector2.Zero, 0f, 15, 8, 5);
+            MakeMember(sixthMemberMiss, new Rectangle(0, 0, 47, 47), new Vector2(600, 100), Vector2.Zero, 0f, 15, 1, 5, 0.3f);
         }
 
         public void MakeMember(
@@ -107,14 +109,15 @@ namespace beethoven3
           float speed,
           int collisionRadius,
           int frameCount,
-          int memberNumber
+          int memberNumber,
+            float scale
           )
         {
             Sprite thisMember = new Sprite(
                 location,
                 texture,
                 InitialFrame,
-                velocity);
+                velocity, scale);
 
             thisMember.Velocity *= speed;
 
@@ -126,6 +129,7 @@ namespace beethoven3
                     InitialFrame.Width,
                     InitialFrame.Height));
             }
+
             thisMember.CollisionRadius = collisionRadius;
 
             switch (memberNumber)
@@ -172,9 +176,11 @@ namespace beethoven3
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            firstMembers[firstMemberState].Draw(spriteBatch);
-            secondMembers[secondMemberState].Draw(spriteBatch);
+            
+            
             thirdMembers[thirdMemberState].Draw(spriteBatch);
+            secondMembers[secondMemberState].Draw(spriteBatch);
+            firstMembers[firstMemberState].Draw(spriteBatch);
             forthMembers[forthMemberState].Draw(spriteBatch);
             fifthMembers[fifthMemberState].Draw(spriteBatch);
             sixthMembers[sixthMemberState].Draw(spriteBatch);

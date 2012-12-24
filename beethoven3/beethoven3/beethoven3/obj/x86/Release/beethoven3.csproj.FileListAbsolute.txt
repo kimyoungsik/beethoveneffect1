@@ -75,3 +75,11 @@ D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\result\ran
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\result\background.xnb
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\result\nextButton.xnb
 D:\beethoven\beethoven3\beethoven3\beethoven3\obj\x86\Release\beethoven3.csprojResolveAssemblyReference.cache
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\character\cello.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\character\contrabase.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\character\flute.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\character\horn.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\character\timpani.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\character\violin.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\background\tutorialbear.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\background\crosswalk3.xnb

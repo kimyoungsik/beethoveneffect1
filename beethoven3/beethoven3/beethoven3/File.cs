@@ -16,12 +16,9 @@ namespace beethoven3
         private StartNoteManager startNoteManager;
 
         private NoteFileManager noteFileManager;
-
-
-     //   private Queue allNotes = new Queue();
-      //  private String[] noteContents;
+       //   private Queue allNotes = new Queue();
+       //  private String[] noteContents;
         private List<NoteInfo> arrayNotes = new List<NoteInfo>();
-
 
         private double noteTime;
         private bool newNote = true;
@@ -29,7 +26,7 @@ namespace beethoven3
         private double drawLineTime;
         private int startNoteNumber;
 
-        private String[] noteLine;
+     //   private String[] noteLine;
     //    private NoteInfo[] rightNoteMarks;
         private int currentRightNoteIndex;
         private double time;
@@ -365,8 +362,11 @@ namespace beethoven3
                                     {
                                         //골드라인
                                         //  DrawGuidLine(rightNoteMarks[currentRightNoteIndex].MarkLocation, rightNoteMarks[currentRightNoteIndex + 1].MarkLocation, true);
+                                        
+                                        // if 마커에 맞추었을 때 
+                                        // 스타트로 날아간 후에 어느정도 시간이 지났을 때
+                                        // 
                                         DrawGuidLine(arrayNotes[0].MarkLocation, arrayNotes[1].MarkLocation, true, arrayNotes[0].StartTime, arrayNotes[1].StartTime);
-
                                     }
                                 }
                                 if (arrayNotes.Count > 2)
@@ -375,10 +375,8 @@ namespace beethoven3
                                     // if (rightNoteMarks[currentRightNoteIndex + 1].IsRight && rightNoteMarks[currentRightNoteIndex + 2].IsRight)
                                     {
                                         //일반 가이드라인
-                                        // DrawGuidLine(rightNoteMarks[currentRightNoteIndex + 1].MarkLocation, rightNoteMarks[currentRightNoteIndex + 2].MarkLocation, false);
-                                        
-                                            DrawGuidLine(arrayNotes[1].MarkLocation, arrayNotes[2].MarkLocation, false, arrayNotes[0].StartTime, arrayNotes[1].StartTime);
-                                        
+                                        // DrawGuidLine(rightNoteMarks[currentRightNoteIndex + 1].MarkLocation, rightNoteMarks[currentRightNoteIndex + 2].MarkLocation, false);               
+                                            DrawGuidLine(arrayNotes[1].MarkLocation, arrayNotes[2].MarkLocation, false, arrayNotes[0].StartTime, arrayNotes[1].StartTime); 
                                    }
                                 }
                             }
@@ -392,7 +390,6 @@ namespace beethoven3
                             }
 
                             break;
-
 
 
                         //왼손노트 
@@ -455,8 +452,6 @@ namespace beethoven3
         //0:오른손여부(0이면 오른손), 1:마크위치 2: 노트시작 시간 
         //public  double[] GetNote(int index)
         //{
-            
-            
             //String line = (String)arrayNotes[index];
             //String[] lines = ((String)line).Split(' ');
             //double[] values = new double[3];
@@ -473,28 +468,30 @@ namespace beethoven3
             switch (markerNumber)
             {
                 case 0:
-                    location = MarkManager.mark0Location;
+                    
+                    location = MarkManager.Marks[0].MarkSprite.Location;
                     break;
 
                 case 1:
-                    location = MarkManager.mark1Location;
+                    location = MarkManager.Marks[1].MarkSprite.Location;
                     break;
                 case 2:
-                    location = MarkManager.mark2Location;
+                    location = MarkManager.Marks[2].MarkSprite.Location;
                     break;
                 case 3:
-                    location = MarkManager.mark3Location;
+                    location = MarkManager.Marks[3].MarkSprite.Location;
                     break;
                 case 4:
-                    location = MarkManager.mark4Location;
+                    location = MarkManager.Marks[4].MarkSprite.Location;
                     break;
                 case 5:
-                    location = MarkManager.mark5Location;
+                    location = MarkManager.Marks[5].MarkSprite.Location;
                     break;
          
             }
             return location;
         }
+
 
         public void DrawLineInLongNote(SpriteBatch spriteBatch, double processTime)
         {
@@ -508,7 +505,7 @@ namespace beethoven3
                 {
                     startNoteManager.MakeLongNote(startNoteNumber);
 
-                    //여기에서 손이 이곳에 있으면 되는것으로 
+                    //여기에서 손이 이곳에  있으면 되는것으로 
                       
                     if (checkLongNoteInCenterArea(startNoteNumber))
                     {
@@ -523,12 +520,9 @@ namespace beethoven3
     
                         scoreManager.Combo = 0;
                     }
-                  
-
                 }
                 else//시간 지난후에 다시 들어오지 않게 
                 {
-
                     try
                     {
                         StartNoteManager.longNoteManager.LittleNotes.RemoveAt(0);
@@ -537,10 +531,9 @@ namespace beethoven3
                     {
 
                     }
-                       // drawLine = false;
-                        //이게 어디엔가에 있어야 할 듯 . 
-
-                    
+                    // drawLine = false;
+                    //이게 어디엔가에 있어야 할 듯 . 
+   
                     //if (StartNoteManager.longNoteManager.LittleNotes.Count >= 1)
                     //{
                     //    drawLine = false;

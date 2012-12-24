@@ -11,14 +11,13 @@ namespace beethoven3
     {
         #region declarations
         public Sprite MarkSprite;
-       // private float speed = 120f;
+        // private float speed = 120f;
         
         //변환시 사라짐
         public bool Disappear = false;
 
         //충돌 판정시에 
         private int markRadius = 15;
-
         private Vector2 location;
         #endregion
 
@@ -27,13 +26,15 @@ namespace beethoven3
             Texture2D texture,
             Vector2 location,
             Rectangle initialFrame,
-            int frameCount)
+            int frameCount,
+            float scale)
         {
             MarkSprite = new Sprite(
                 location,
                 texture,
                 initialFrame,
-                Vector2.Zero);
+                Vector2.Zero,
+                scale);
 
             for (int x = 1; x < frameCount; x++)
             {
@@ -53,18 +54,12 @@ namespace beethoven3
         public void Update(GameTime gameTime)
         {
             MarkSprite.Update(gameTime);
-            
-
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-
             MarkSprite.Draw(spriteBatch);
-            
         }
-                
-        #endregion
-                
+        #endregion 
     }
 }

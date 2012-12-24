@@ -80,6 +80,10 @@ namespace beethoven3
         private Texture2D uiBackground;
         private Texture2D uiHeart;
 
+        private Texture2D playBackgroud1;
+        private Texture2D playBackgroud2;
+
+
         private Rectangle removeAreaRec = new Rectangle(0, 0, 0, 0);
       
         SongMenu songMenu;
@@ -227,8 +231,10 @@ namespace beethoven3
             LoadSound();
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-           
-            
+
+            playBackgroud1 = Content.Load<Texture2D>(@"background\tutorialbear");
+            playBackgroud2 = Content.Load<Texture2D>(@"background\crosswalk3");
+
             spriteSheet = Content.Load<Texture2D>(@"Textures\SpriteSheet8");
             heart = Content.Load<Texture2D>(@"Textures\heart");
             dot = Content.Load<Texture2D>(@"Textures\dot");
@@ -239,6 +245,7 @@ namespace beethoven3
             
             pericles36Font = Content.Load<SpriteFont>(@"Fonts\Pericles36");
 
+            
             // TODO: use this.Content to load your game content here
 
           //  LineRenderer.LoadContent(content);
@@ -251,12 +258,22 @@ namespace beethoven3
             //Vector2 mark6Location = new Vector2(300, 170);
 
 
-            Vector2 mark1Location = new Vector2(200, 140);
-            Vector2 mark2Location = new Vector2(400, 270);
-            Vector2 mark3Location = new Vector2(300, 370);
-            Vector2 mark4Location = new Vector2(200, 570);
-            Vector2 mark5Location = new Vector2(100, 370);
-            Vector2 mark6Location = new Vector2(100, 270);
+            //Vector2 mark1Location = new Vector2(200, 140);
+            //Vector2 mark2Location = new Vector2(400, 270);
+            //Vector2 mark3Location = new Vector2(300, 370);
+            //Vector2 mark4Location = new Vector2(200, 570);
+            //Vector2 mark5Location = new Vector2(100, 370);
+            //Vector2 mark6Location = new Vector2(100, 270);
+
+
+            Vector2 mark1Location = new Vector2(450, 270);
+            Vector2 mark2Location = new Vector2(550, 370);
+            Vector2 mark3Location = new Vector2(550, 470);
+            Vector2 mark4Location = new Vector2(450, 570);
+            Vector2 mark5Location = new Vector2(350, 470);
+            Vector2 mark6Location = new Vector2(350, 370);
+
+
             scoreManager = new ScoreManager();
             
             startNoteManager = new StartNoteManager(
@@ -873,14 +890,14 @@ namespace beethoven3
               //  collisionManager.CheckCollisions(4);
           //      sortMode = SpriteSortMode.Texture;
             }
-            if (keyState.IsKeyDown(Keys.NumPad6))
+            if (keyState.IsKeyDown(Keys.N))
             {
                 //  collisionManager.CheckCollisions(4);
           //      blendMode = BlendState.AlphaBlend;
                 MarkManager.changeMarkPattern(0);
             }
 
-            if (keyState.IsKeyDown(Keys.NumPad7))
+            if (keyState.IsKeyDown(Keys.M))
             {
                 //  collisionManager.CheckCollisions(4);
           //      blendMode = BlendState.Additive;
@@ -1752,14 +1769,21 @@ namespace beethoven3
                             //badManager = new BadManager();
 
                             /////////////////////////////////////
-                            Vector2 mark1Location = new Vector2(200, 140);
-                            Vector2 mark2Location = new Vector2(400, 270);
-                            Vector2 mark3Location = new Vector2(300, 370);
-                            Vector2 mark4Location = new Vector2(200, 570);
-                            Vector2 mark5Location = new Vector2(100, 370);
-                            Vector2 mark6Location = new Vector2(100, 270);
+                            //Vector2 mark1Location = new Vector2(200, 140);
+                            //Vector2 mark2Location = new Vector2(400, 270);
+                            //Vector2 mark3Location = new Vector2(300, 370);
+                            //Vector2 mark4Location = new Vector2(200, 570);
+                            //Vector2 mark5Location = new Vector2(100, 370);
+                            //Vector2 mark6Location = new Vector2(100, 270);
+
+                            Vector2 mark1Location = MarkManager.Marks[0].MarkSprite.Location;
+                            Vector2 mark2Location = MarkManager.Marks[1].MarkSprite.Location;
+                            Vector2 mark3Location = MarkManager.Marks[2].MarkSprite.Location;
+                            Vector2 mark4Location = MarkManager.Marks[3].MarkSprite.Location;
+                            Vector2 mark5Location = MarkManager.Marks[4].MarkSprite.Location;
+                            Vector2 mark6Location = MarkManager.Marks[5].MarkSprite.Location;
                             startNoteManager = new StartNoteManager(
-                                spriteSheet,
+                                spriteSheet, 
                                 new Rectangle(0, 200, 52, 55),
                                 1);
                                 MarkManager.initialize(
@@ -1911,6 +1935,12 @@ namespace beethoven3
            
             if ((gameState == GameStates.Playing))
             {
+          //      spriteBatch.Draw(tileSprite, new Rectangle(64, 64, 256, 256), new Rectangle(256, 256, 256, 256), Color.White, 0, Vector2.Zero, SpriteEffects.None, .10f);
+                spriteBatch.Draw(playBackgroud1,
+                new Rectangle(0, 0, this.Window.ClientBounds.Width,
+                    this.Window.ClientBounds.Height),
+                    Color.White);
+
                 MarkManager.Draw(spriteBatch);
                 startNoteManager.Draw(spriteBatch);
                 CurveManager.Draw(gameTime, spriteBatch);
@@ -2017,7 +2047,6 @@ namespace beethoven3
                 spriteBatch.DrawString(pericles36Font, noteFile.Name, new Vector2(200,80), Color.White);
                 spriteBatch.DrawString(pericles36Font, noteFile.Artist, new Vector2(200,130), Color.White);
                 //난이도//spriteBatch.DrawString(pericles36Font, , new Vector2(200,80), Color.White);
-
 
 
                 spriteBatch.DrawString(pericles36Font, scoreManager.Perfect.ToString(), new Vector2(300, 300), Color.White);

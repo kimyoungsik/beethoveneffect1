@@ -26,11 +26,11 @@ namespace beethoven3
         private float timeForCurrentFrame = 0.0f;
 
         private Color tintColor = Color.White;
-        private float rotation = 0.0f;
+        private float rotation ;
 
         //make collinsion
         public int CollisionRadius = 0;
-        public int BoundingXPadding = 0;
+        public int BoundingXPadding = 0;  
         public int BoundingYPadding = 0;
 
         //find sprite location
@@ -39,6 +39,9 @@ namespace beethoven3
         //direction and speed
         protected Vector2 velocity = Vector2.Zero;
 
+        protected float scale = 1.0f;
+
+
         #endregion
 
         #region constructor
@@ -46,12 +49,14 @@ namespace beethoven3
             Vector2 location,
             Texture2D texture,
             Rectangle initialFrame,
-            Vector2 velocity)
+            Vector2 velocity,
+            float scale = 1.0f
+             )
         {
             this.location = location;
             Texture = texture;
             this.velocity = velocity;
-
+            this.scale = scale;
             frames.Add(initialFrame);
             frameWidth = initialFrame.Width;
             frameHeight = initialFrame.Height;
@@ -61,6 +66,12 @@ namespace beethoven3
 
 
         #region properties
+        public float Scale
+        {
+            get { return scale; }
+            set { scale = value; }
+        }
+
         public Vector2 Location
         {
             get { return location; }
@@ -225,7 +236,7 @@ namespace beethoven3
                 tintColor,
                 rotation,
                 new Vector2(frameWidth / 2, frameHeight / 2),
-                1.0f,
+                scale,
                 SpriteEffects.None,
                 0.0f);
         }
