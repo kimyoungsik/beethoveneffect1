@@ -38,6 +38,7 @@ namespace beethoven3
 
         private int gage;
 
+        private int totalGold;
 
         private  String rank;
         #endregion
@@ -79,10 +80,17 @@ namespace beethoven3
             longNoteScore = 0;
             dragNoteScore = 0;
             gage = 0;
+            
 
             rank = "";
 
         }
+        public int TotalGold
+        {
+            get { return totalGold; }
+            set { totalGold = value; }
+        }
+
         public int Gage
         {
             get { return gage; }

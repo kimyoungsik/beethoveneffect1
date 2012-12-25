@@ -34,12 +34,17 @@ namespace beethoven3
     }
     class ReportManager
     {
+        //최고 5개만 가지고 있는 reportManager을 위한 class
         private List<ScoreInfoManager> scoreInfoManagers = new List<ScoreInfoManager>();
 
         private List<PictureInfo> userPictures = new List<PictureInfo>();
-        public ReportManager()
+
+        private ScoreManager scoreManager;
+
+
+        public ReportManager(ScoreManager scoreManager )
         {
-            
+            this.scoreManager = scoreManager;
         }
         
         public void SaveReport()
@@ -57,6 +62,8 @@ namespace beethoven3
                 }   
             }
             tw.WriteLine("**");
+            tw.WriteLine(scoreManager.TotalGold);
+                       
             tw.Close();
         }
 
@@ -82,7 +89,11 @@ namespace beethoven3
                        this.AddSongInfoManager(songTitle, Int32.Parse(contents[1]), contents[0]); // contents[0] 그림 , contents[1]  점수
                    }
                    line = sr.ReadLine();          
-            }     
+            }
+            line = sr.ReadLine();
+
+            scoreManager.TotalGold = Int32.Parse(line);
+            
             sr.Close();
         }
 

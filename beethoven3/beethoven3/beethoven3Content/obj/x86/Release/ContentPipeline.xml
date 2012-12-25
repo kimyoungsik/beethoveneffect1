@@ -416,7 +416,7 @@
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Fonts\Pericles36.xnb</Output>
-      <Time>2012-11-21T16:07:05.2798613+09:00</Time>
+      <Time>2012-12-25T18:20:34.6217015+09:00</Time>
     </Item>
     <Item>
       <Source>MessageFont.spritefont</Source>
@@ -651,6 +651,15 @@
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\background\crosswalk3.xnb</Output>
       <Time>2012-12-24T23:19:19.5012986+09:00</Time>
+    </Item>
+    <Item>
+      <Source>Fonts\PerpetuaFont.spritefont</Source>
+      <Name>Fonts\PerpetuaFont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Fonts\PerpetuaFont.xnb</Output>
+      <Time>2012-12-25T17:37:05.7514826+09:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

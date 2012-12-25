@@ -34,6 +34,7 @@ namespace beethoven3
         SpriteBatch spriteBatch;
 
         SpriteFont pericles36Font;
+        SpriteFont oldfont;
 
 #if Kinect
          //키넥트
@@ -244,12 +245,13 @@ namespace beethoven3
             uiHeart = Content.Load<Texture2D>(@"ui\heart");
             
             pericles36Font = Content.Load<SpriteFont>(@"Fonts\Pericles36");
+            oldfont = Content.Load<SpriteFont>(@"Fonts\PerpetuaFont");
 
             
             // TODO: use this.Content to load your game content here
 
           //  LineRenderer.LoadContent(content);
-
+            
             //Vector2 mark1Location = new Vector2(400, 70);
             //Vector2 mark2Location = new Vector2(500, 170);
             //Vector2 mark3Location = new Vector2(500, 270);
@@ -361,19 +363,20 @@ namespace beethoven3
             songMenu = new SongMenu(noteFileManager);
             songMenu.Load(Content,graphics.GraphicsDevice);
 
-
             resultManager = new ResultManager();
             resultManager.LoadContent(Content);
 
             recordBoard = new RecordBoard();
             recordBoard.LoadContent(Content);
 
-            reportManager = new ReportManager();
+            reportManager = new ReportManager(scoreManager);
             
             //LOAD REPORT SCORE FILE
             //점수기록판을 로드해서 게임에 올린다. 
 
             reportManager.LoadReport();
+            
+
 
             currentSongName = "";
 #if Kinect
@@ -1709,8 +1712,9 @@ namespace beethoven3
                        
                        //점수 기록 파일로 저장
                        //save recored scores in the file
+                       scoreManager.TotalGold += scoreManager.Gold;
                        reportManager.SaveReport();
-
+                       
                        //기록판에 보여줄 유저 사진 찾기
                        //Fine user pictures which will be seen in score board
                        reportManager.MakePictures(currentSongName, GraphicsDevice);

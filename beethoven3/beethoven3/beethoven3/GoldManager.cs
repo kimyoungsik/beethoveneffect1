@@ -71,13 +71,13 @@ namespace beethoven3
         {
             //try
             //{
-                int count = Golds.Count;
-                //int i=0;
-                while (Golds.Count > 0)
-                {
-                    Golds.RemoveAt(0);
+            int count = Golds.Count;
+            //int i=0;
+            while (Golds.Count > 0)
+            {
+                Golds.RemoveAt(0);
                     
-                }
+            }
             //}
             //catch (ArgumentOutOfRangeException)
             //{

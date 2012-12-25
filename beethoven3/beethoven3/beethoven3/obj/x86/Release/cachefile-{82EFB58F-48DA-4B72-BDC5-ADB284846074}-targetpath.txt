@@ -73,3 +73,4 @@ Content\character\timpani.xnb
 Content\character\violin.xnb
 Content\background\tutorialbear.xnb
 Content\background\crosswalk3.xnb
+Content\Fonts\PerpetuaFont.xnb
