@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
+using System.Diagnostics;
 namespace beethoven3
 {
     class ItemShop
@@ -27,13 +28,14 @@ namespace beethoven3
         protected Texture2D hoverYesButton;
         protected Texture2D hoverNoButton;
 
-
-
         protected Rectangle recYesButton;
         protected Rectangle recNoButton;
 
         protected bool isHoverYesButton;
         protected bool isHoverNoButton;
+
+        protected Texture2D usedItemBackground;
+        protected Texture2D ItemBackground;
 
    
         public ItemShop(ItemManager itemManager)
@@ -54,8 +56,11 @@ namespace beethoven3
             buyPanel = cm.Load<Texture2D>(@"shopdoor\buyPanel");
             hoverYesButton = cm.Load<Texture2D>(@"shopdoor\hoverYesButton");
             hoverNoButton = cm.Load<Texture2D>(@"shopdoor\hoverNoButton");
-                 
-            
+
+
+            usedItemBackground = cm.Load<Texture2D>(@"background\itemBackground");
+            ItemBackground = cm.Load<Texture2D>(@"background\itemBackground2");
+
         }
 
         //public void addItemtoMyItem(Item item)
@@ -64,11 +69,7 @@ namespace beethoven3
 
         //    myRightItems = itemManager.getMyRightHandItem();
         //}
-        
-
-
-
-
+       
         public void setDarkBackground(bool value)
         {
             this.darkBackground = value;
@@ -77,6 +78,7 @@ namespace beethoven3
         public void setBuyOne(bool value)
         {
             this.buyOne = value;
+            Trace.WriteLine(value);
         }
 
         public bool getBuyOne()
@@ -87,6 +89,7 @@ namespace beethoven3
         public void setWearOne(bool value)
         {
             this.wearOne = value;
+            
         }
 
         public bool getWearOne()
@@ -160,9 +163,6 @@ namespace beethoven3
 
             this.isHoverNoButton = value;
         }
-
-
-    
 
         public virtual void Draw(SpriteBatch spriteBatch, int width, int height)
         {

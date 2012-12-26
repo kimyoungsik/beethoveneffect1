@@ -83,6 +83,8 @@ namespace beethoven3
 
         public override void Draw(SpriteBatch spriteBatch, int width, int height)
         {
+            
+            
             int i;
            
 
@@ -92,7 +94,7 @@ namespace beethoven3
                 //Rectangle rectRightHand = new Rectangle(300, i * 150, 100, 100);
                 
                // bool isHave = false;
-               
+                spriteBatch.Draw(ItemBackground, rectRightItems[i], Color.White);
                 //Item I already have
                 if (haveOne(rightItems[i]))
                 {
@@ -104,45 +106,49 @@ namespace beethoven3
                     spriteBatch.Draw(rightItems[i].ItemSprite.Texture, rectRightItems[i], Color.Black);
                 }
 
-              
+                
+           
                 //rectRightItem.Add(rectRightHand);
             }
 
             //장착아이템
             Rectangle usedItemRect = new Rectangle(50,50,100,100);
+
+
           // Color myColor = Color.White;
           //  myColor.A = 50;
+            spriteBatch.Draw(usedItemBackground, usedItemRect, Color.White);
 
             spriteBatch.Draw(myRightItems[itemManager.getRightHandIndex()].ItemSprite.Texture, usedItemRect, Color.White);
 
+            
             if (darkBackground)
             {
                 Color color = Color.White;
                 color.A = 50;
                 spriteBatch.Draw(darkBackgroundImage, new Rectangle(0, 0, width, height), color);
 
-
                 //Rectangle rectBuyPanel = new Rectangle(width / 2 - (buyPanel.Width / 2) - 100, height / 2 - (buyPanel.Height / 2) - 100, 200, 101);
                 //spriteBatch.Draw(buyPanel,new Vector2(100,100), rectBuyPanel, Color.White,0f,new Vector2(0,0),1f,SpriteEffects.None,1f);
-
 
                 //to BUY item
                 if (buyOne)
                 {
-
                     Vector2 middle = new Vector2(width / 2, height / 2);
                     spriteBatch.Draw(buyPanel, middle, null, Color.White, 0f, new Vector2(310, 150), 1.5f, SpriteEffects.None, 1f);
-
 
                     Vector2 yesButtonLocation = new Vector2(width / 2 - 180, height / 2 + 50);
                     
                     // mouse cursor on YES button
                     if (!isHoverYesButton)
                     {                                                
-                       spriteBatch.Draw(yesButton, yesButtonLocation, null, Color.White, 0f, new Vector2(100, 60), 1.5f, SpriteEffects.None, 1f);
+                    
+                        spriteBatch.Draw(yesButton, yesButtonLocation, null, Color.White, 0f, new Vector2(100, 60), 1.5f, SpriteEffects.None, 1f);
+                    
                     }
                     else
                     {
+
                         spriteBatch.Draw(hoverYesButton, yesButtonLocation, null, Color.White, 0f, new Vector2(100, 60), 1.5f, SpriteEffects.None, 1f);
                         
                     }

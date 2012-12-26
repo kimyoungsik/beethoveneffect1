@@ -53,7 +53,7 @@ namespace beethoven3
 
          //폰트
          SpriteFont messageFont;
-         string message = "start";
+         string message = "" ;
 
 
          Texture2D KinectVideoTexture;
@@ -83,7 +83,6 @@ namespace beethoven3
 
         private Texture2D playBackgroud1;
         private Texture2D playBackgroud2;
-
 
         private Rectangle removeAreaRec = new Rectangle(0, 0, 0, 0);
       
@@ -192,7 +191,11 @@ namespace beethoven3
             resultFmod = FMOD.Factory.System_Create(ref sndSystem);
             
             sndSystem.init(1, FMOD.INITFLAG.NORMAL, (IntPtr)null);
-            sndSystem.createSound("C:\\psy.mp3", FMOD.MODE.HARDWARE, ref sndSound);
+           
+
+
+
+
             /* 음원을 로드시킬 때 createStream 과 createSound 두가지가 있는 것을 확인할 수 있는데
  createStream은 배경음악을, createSound는 효과음을 넣는것이 좋습니다.*/
 
@@ -805,11 +808,10 @@ namespace beethoven3
 
 
         private void HandleKeyboardInput(KeyboardState keyState)
-        
         {
             if (keyState.IsKeyDown(Keys.B))
             {
-
+                sndSystem.createSound("C:\\beethoven\\"+noteFileManager, FMOD.MODE.HARDWARE, ref sndSound);
                 sndSystem.playSound(CHANNELINDEX.FREE, sndSound, false, ref sndChannel);
             }
             if (keyState.IsKeyDown(Keys.P))
@@ -1142,6 +1144,7 @@ namespace beethoven3
                                }
                                else
                                {
+                                   
                                    //nothing is selected
                                }
                            }
@@ -1177,29 +1180,34 @@ namespace beethoven3
                    List<Rectangle> rectRightItems = rightItemShop.getRectRightItem();
                    List<Item> shopRightItems = rightItemShop.getShopRightItem();
 
-
-
-                   for (i = 0; i < rectRightItems.Count; i++)
+                   //다이얼로그를 띄웠을 때 이것이 중복실행되지 않도록 
+                   if (!rightItemShop.getWearOne() && !rightItemShop.getBuyOne())
                    {
-                       if (mouseRect.Intersects(rectRightItems[i]) && mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released)
+                       for (i = 0; i < rectRightItems.Count; i++)
                        {
-                           rightItemShop.setDarkBackground(true);
-                           //메시지 박스 띄우기  
-                           selectedItem = shopRightItems[i];
-                           //이미 산거이면 true
-                           if (rightItemShop.haveOne(shopRightItems[i]))
+                           if (mouseRect.Intersects(rectRightItems[i]) && mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released)
                            {
-                               rightItemShop.setWearOne(true);
+                               rightItemShop.setDarkBackground(true);
+                               //메시지 박스 띄우기  
+                               selectedItem = shopRightItems[i];
+                               //이미 산거이면 true
+                               if (rightItemShop.haveOne(shopRightItems[i]))
+                               {
+                                   rightItemShop.setWearOne(true);
+                                   i = rectRightItems.Count;
+                                  
 
+
+                               }
+                               else
+                               {
+                                   rightItemShop.setBuyOne(true);
+                                   i = rectRightItems.Count;
+                                  
+                               }
                            }
-                           else
-                           {
-
-                               rightItemShop.setBuyOne(true);
-                           }
-
+                           
                        }
-
                    }
 
                    //message box about wearing item 
@@ -1236,12 +1244,7 @@ namespace beethoven3
                                {
                                    //nothing is selected
                                }
-
-
-
                            }
-
-
                        }
                        else
                        {
@@ -1257,8 +1260,6 @@ namespace beethoven3
                                rightItemShop.setWearOne(false);
                                rightItemShop.setDarkBackground(false);
                            }
-
-
                        }
                        else
                        {
@@ -1267,26 +1268,20 @@ namespace beethoven3
 
                    }
 
-
-
                    //message box about buying item
                    if (rightItemShop.getBuyOne())
                    {
                        //mouse cursor on right button
-
-                       if (mouseRect.Intersects(rightItemShop.getRectYesButton()))
+                       if (mouseRect.Intersects(rightItemShop.getRectYesButton()) )
                        {
                            rightItemShop.setHoverYesButton(true);
                            if (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released)
-                           {
+                         //  {
                                //add item to my item
                                if (selectedItem != null)
                                {
-
-
                                    rightItemShop.addItemtoMyItem(selectedItem);
-
-
+   
                                    //return to normal , remove message box
                                    rightItemShop.setBuyOne(false);
                                    rightItemShop.setDarkBackground(false);
@@ -1295,9 +1290,8 @@ namespace beethoven3
                                {
                                    //nothing is selected
                                }
-
-
-                           }
+                          // }
+                           
                        }
                        else
                        {
@@ -1712,7 +1706,7 @@ namespace beethoven3
                        
                        //점수 기록 파일로 저장
                        //save recored scores in the file
-                       scoreManager.TotalGold += scoreManager.Gold;
+                       scoreManager.TotalGold = scoreManager.Gold;
                        reportManager.SaveReport();
                        
                        //기록판에 보여줄 유저 사진 찾기
@@ -1864,6 +1858,9 @@ namespace beethoven3
                     {
                         gameState = GameStates.Playing;
                         file.Loading(result);
+
+                        sndSystem.createSound("C:\\beethoven\\"+noteFileManager.noteFiles[result].Mp3, FMOD.MODE.HARDWARE, ref sndSound);
+                        sndSystem.playSound(CHANNELINDEX.FREE, sndSound, false, ref sndChannel);
                     }
 
                     break;  

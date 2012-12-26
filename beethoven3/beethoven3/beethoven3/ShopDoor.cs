@@ -37,6 +37,8 @@ namespace beethoven3
         private bool clickEffect;
         private bool clickBackground;
 
+        private SpriteFont pericles36Font;
+
         public ShopDoor()
         {
              clickRightHand=false;
@@ -60,6 +62,9 @@ namespace beethoven3
              hoverNote = cm.Load<Texture2D>(@"shopdoor\changed3");
              hoverEffect = cm.Load<Texture2D>(@"shopdoor\changed4");
              hoverBackground = cm.Load<Texture2D>(@"shopdoor\changed5");
+
+             pericles36Font = cm.Load<SpriteFont>(@"Fonts\Pericles36");
+           
         }
 
         public void Update(GameTime gameTime)
@@ -73,7 +78,9 @@ namespace beethoven3
 
             recRightHand = new Rectangle(width / 2 - (rightHand.Width / 2) - 100, height / 2 - (rightHand.Height / 2) - 100, 208, 233);
             spriteBatch.Draw(rightHand, recRightHand, Color.White);
-            
+               
+
+
             recLeftHand =  new Rectangle(width / 2 - (leftHand.Width / 2) + 100, height / 2 - (leftHand.Height / 2) - 150, 273,
                      172);         
             spriteBatch.Draw(leftHand, recLeftHand, Color.White);
@@ -96,6 +103,16 @@ namespace beethoven3
                      Color.White);
 
 
+            spriteBatch.DrawString(pericles36Font, "RightHand", new Vector2(width / 2 - (rightHand.Width / 2) - 200, height / 2 - (rightHand.Height / 2) - 100), Color.Black);
+            
+            spriteBatch.DrawString(pericles36Font, "LeftHand", new Vector2(width / 2 - (leftHand.Width / 2) + 150, height / 2 - (leftHand.Height / 2) - 150), Color.Black);
+
+            spriteBatch.DrawString(pericles36Font, "Note", new Vector2(width / 2 - (note.Width / 2) + 270, height / 2 - (note.Height / 2) + 125), Color.Black);
+
+            spriteBatch.DrawString(pericles36Font, "Effect", new Vector2(width / 2 - (effect.Width / 2) + 90, height / 2 - (effect.Height / 2) + 225), Color.Black);
+
+            spriteBatch.DrawString(pericles36Font, "Background", new Vector2(width / 2 - (background.Width / 2) - 200, height / 2 - (background.Height / 2) + 170), Color.Black);
+            
             if (clickRightHand)
             {
                 spriteBatch.Draw(hoverRightHand,

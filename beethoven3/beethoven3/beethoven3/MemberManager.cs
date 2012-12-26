@@ -87,18 +87,21 @@ namespace beethoven3
             //sixth Run
             MakeMember(sixthMemberPlay, new Rectangle(0, 0, 320, 595), new Vector2(510, -40), Vector2.Zero, 0f, 15, 1, 5, 0.42f);
 
-            //first Miss
-            MakeMember(firstMemberMiss, new Rectangle(0, 0, 47, 47), new Vector2(100, 100), Vector2.Zero, 0f, 15, 1, 0, 0.3f);
-            //second Miss
-            MakeMember(secondMemberMiss, new Rectangle(0, 0, 47, 47), new Vector2(200, 100), Vector2.Zero, 0f, 15, 1, 1, 0.3f);
-            //third Miss
-            MakeMember(thirdMemberMiss, new Rectangle(0, 0, 47, 47), new Vector2(300, 100), Vector2.Zero, 0f, 15, 1, 2, 0.3f);
-            //forth Miss
-            MakeMember(forthMemberMiss, new Rectangle(0, 0, 47, 47), new Vector2(400, 100), Vector2.Zero, 0f, 15, 1, 3, 0.3f);
-            //fifth Miss
-            MakeMember(fifthMemberMiss, new Rectangle(0, 0, 47, 47), new Vector2(500, 100), Vector2.Zero, 0f, 15, 1, 4, 0.3f);
-            //sixth Miss
-            MakeMember(sixthMemberMiss, new Rectangle(0, 0, 47, 47), new Vector2(600, 100), Vector2.Zero, 0f, 15, 1, 5, 0.3f);
+
+            //first Run
+            MakeMember(firstMemberMiss, new Rectangle(0, 0, 490, 800), new Vector2(20, -150), Vector2.Zero, 0f, 15, 1, 0, 0.3f);
+            //second Run
+            MakeMember(secondMemberMiss, new Rectangle(0, 0, 258, 595), new Vector2(170, -110), Vector2.Zero, 0f, 15, 1, 1, 0.4f);
+            //third Run
+            MakeMember(thirdMemberMiss, new Rectangle(0, 0, 471, 595), new Vector2(170, -170), Vector2.Zero, 0f, 15, 1, 2, 0.4f);
+            //forth Run
+            MakeMember(forthMemberMiss, new Rectangle(0, 0, 312, 800), new Vector2(370, -290), Vector2.Zero, 0f, 15, 1, 3, 0.28f);
+            //fifth Run
+            MakeMember(fifthMemberMiss, new Rectangle(0, 0, 372, 800), new Vector2(420, -220), Vector2.Zero, 0f, 15, 1, 4, 0.3f);
+            //sixth Run
+            MakeMember(sixthMemberMiss, new Rectangle(0, 0, 320, 595), new Vector2(510, -40), Vector2.Zero, 0f, 15, 1, 5, 0.42f);
+
+       
         }
 
         public void MakeMember(

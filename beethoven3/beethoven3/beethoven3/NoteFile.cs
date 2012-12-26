@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+ 
 namespace beethoven3
 {
     class NoteFile
@@ -44,8 +44,8 @@ namespace beethoven3
         }
         public String Mp3
         {
-            get { return version; }
-            set { version = value; }
+            get { return mp3; }
+            set { mp3 = value; }
         }
         public String Picture
         {

@@ -25,6 +25,7 @@ namespace beethoven3
         private Texture2D[] noteTexture = new Texture2D[5];
         private Texture2D[] backgroundTexture = new Texture2D[5];
 
+   
         //내가 착용한 아이템-착용함수 제작
         private int rightHandIndex = 0;
         private int leftHandIndex = 0;
@@ -48,10 +49,12 @@ namespace beethoven3
         public void Init()
         {
             int i;
-            for (i = 0; i < 2; i++)
+            for (i = 0; i < 4; i++)
             {
                 addItem(rightHandItem, new Vector2(100, 100), rightHandTexture[i], new Rectangle(0, 0, rightHandTexture[i].Width, rightHandTexture[i].Height), 1);
-            
+            }
+                for (i = 0; i < 2; i++)
+            {
                 addItem(leftHandItem, new Vector2(100, 100), leftHandTexture[i], new Rectangle(0, 0, leftHandTexture[i].Width, leftHandTexture[i].Height), 1);
                 
                 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -64,7 +67,7 @@ namespace beethoven3
             
             }
 
-            
+         
 
             //test
             buyItem(myRightHandItem, rightHandItem[0]);
@@ -79,8 +82,11 @@ namespace beethoven3
         public void LoadContent(ContentManager cm)
         {
 
-            rightHandTexture[0] = cm.Load<Texture2D>(@"Textures\red");
-            rightHandTexture[1] = cm.Load<Texture2D>(@"Textures\heart");
+            rightHandTexture[0] = cm.Load<Texture2D>(@"rightItem\s1");
+            rightHandTexture[1] = cm.Load<Texture2D>(@"rightItem\s2");
+            rightHandTexture[2] = cm.Load<Texture2D>(@"rightItem\s3");
+            rightHandTexture[3] = cm.Load<Texture2D>(@"rightItem\s4");
+            rightHandTexture[4] = cm.Load<Texture2D>(@"rightItem\s5");
 
             leftHandTexture[0] = cm.Load<Texture2D>(@"Bitmap1");
             leftHandTexture[1] = cm.Load<Texture2D>(@"Bitmap2");
@@ -97,6 +103,7 @@ namespace beethoven3
 
             backgroundTexture[0] = cm.Load<Texture2D>(@"Textures\red");
             backgroundTexture[1] = cm.Load<Texture2D>(@"Textures\heart");
+
 
 
         }

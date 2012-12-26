@@ -328,7 +328,7 @@ namespace beethoven3
         public void drawStart(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(box, startrect, new Color(fadeinout, fadeinout, fadeinout));
-            spriteBatch.Draw(starttext, starttextrect, new Color(fadeinout, fadeinout, fadeinout));
+          //  spriteBatch.Draw(starttext, starttextrect, new Color(fadeinout, fadeinout, fadeinout));
         }
         public void drawTop(SpriteBatch spriteBatch)
         {

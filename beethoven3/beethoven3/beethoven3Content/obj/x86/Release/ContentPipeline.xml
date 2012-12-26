@@ -661,6 +661,69 @@
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Fonts\PerpetuaFont.xnb</Output>
       <Time>2012-12-25T17:37:05.7514826+09:00</Time>
     </Item>
+    <Item>
+      <Source>rightItem\s1.png</Source>
+      <Name>rightItem\s1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\rightItem\s1.xnb</Output>
+      <Time>2012-12-25T23:03:17.2899106+09:00</Time>
+    </Item>
+    <Item>
+      <Source>rightItem\s2.png</Source>
+      <Name>rightItem\s2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\rightItem\s2.xnb</Output>
+      <Time>2012-12-25T23:03:17.2959109+09:00</Time>
+    </Item>
+    <Item>
+      <Source>rightItem\s3.png</Source>
+      <Name>rightItem\s3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\rightItem\s3.xnb</Output>
+      <Time>2012-12-25T23:03:17.2999111+09:00</Time>
+    </Item>
+    <Item>
+      <Source>rightItem\s4.png</Source>
+      <Name>rightItem\s4</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\rightItem\s4.xnb</Output>
+      <Time>2012-12-25T23:03:17.2529085+09:00</Time>
+    </Item>
+    <Item>
+      <Source>rightItem\s5.png</Source>
+      <Name>rightItem\s5</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\rightItem\s5.xnb</Output>
+      <Time>2012-12-25T23:03:17.2719095+09:00</Time>
+    </Item>
+    <Item>
+      <Source>background\itemBackground.png</Source>
+      <Name>background\itemBackground</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\background\itemBackground.xnb</Output>
+      <Time>2012-12-26T21:05:03.9505387+09:00</Time>
+    </Item>
+    <Item>
+      <Source>background\itemBackground2.png</Source>
+      <Name>background\itemBackground2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\background\itemBackground2.xnb</Output>
+      <Time>2012-12-26T21:05:04.0465442+09:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>
