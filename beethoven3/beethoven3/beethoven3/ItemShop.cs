@@ -78,7 +78,7 @@ namespace beethoven3
         public void setBuyOne(bool value)
         {
             this.buyOne = value;
-            Trace.WriteLine(value);
+           // Trace.WriteLine(value);
         }
 
         public bool getBuyOne()

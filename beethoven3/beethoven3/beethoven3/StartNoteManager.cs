@@ -133,10 +133,10 @@ namespace beethoven3
         //오른손 노트
         public void MakeRightNote(int markNumber)
         {
-            Vector2 location = StartNotes[markNumber].StartNoteSprite.Location;
+            Vector2 location = StartNotes[markNumber-1].StartNoteSprite.Location;
 
             Vector2 direction =
-                            MarkManager.Marks[markNumber].MarkSprite.Location -
+                            MarkManager.Marks[markNumber-1].MarkSprite.Location -
                             location;
             //속도 1로 맞추기 
             direction.Normalize();
@@ -147,11 +147,11 @@ namespace beethoven3
         public void MakeLeftNote(int markNumber)
         {
             //노트시작점의 위치
-            Vector2 location = StartNotes[markNumber].StartNoteSprite.Location;
+            Vector2 location = StartNotes[markNumber-1].StartNoteSprite.Location;
 
             //노트시작점에서 마크의 방향
             Vector2 direction =
-                            MarkManager.Marks[markNumber].MarkSprite.Location -
+                            MarkManager.Marks[markNumber-1].MarkSprite.Location -
                             location;
             direction.Normalize();
             leftNoteManager.MakeNote(location, direction);
@@ -173,11 +173,11 @@ namespace beethoven3
         public void MakeLongNote(int markNumber)
         {
             //노트시작점의 위치
-            Vector2 location = StartNotes[markNumber].StartNoteSprite.Location;
+            Vector2 location = StartNotes[markNumber-1].StartNoteSprite.Location;
 
             //노트시작점에서 마크의 방향
             Vector2 direction =
-                            MarkManager.Marks[markNumber].MarkSprite.Location -
+                            MarkManager.Marks[markNumber-1].MarkSprite.Location -
                             location;
             direction.Normalize();
             longNoteManager.MakeNote(location, direction);

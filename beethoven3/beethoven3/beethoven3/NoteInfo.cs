@@ -15,7 +15,7 @@ namespace beethoven3
         private bool isRight;
         private double startTime;
         private int markLocation;
-        private int type;
+        private String type;
         private double lastTime;
         private Vector2 startPoint;
         private Vector2 firstOperatorPoint;
@@ -26,7 +26,7 @@ namespace beethoven3
         #endregion
 
         #region constructor
-        public NoteInfo(bool isRight, double startTime, int markLocation, int type, double lastTime,Vector2 startPoint, Vector2 firstOperatorPoint, Vector2 secondOperatorPoint, Vector2 endPoint)
+        public NoteInfo(bool isRight, double startTime, int markLocation, String type, double lastTime,Vector2 startPoint, Vector2 firstOperatorPoint, Vector2 secondOperatorPoint, Vector2 endPoint)
         {
             this.isRight = isRight;
             this.startTime = startTime;
@@ -75,7 +75,7 @@ namespace beethoven3
             set { lastTime = value; }
 
         }
-        public int Type
+        public String Type
         {
             get { return type; }
             set { type = value; }

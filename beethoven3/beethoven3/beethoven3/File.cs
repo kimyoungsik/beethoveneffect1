@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Runtime.Serialization;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Diagnostics;
@@ -36,6 +38,12 @@ namespace beethoven3
         private ScoreManager scoreManager;
 
         private bool endFile;
+
+        private Double startTime;
+
+        private Double endTime;
+
+        private int bpm;
         #endregion
         
         #region constructor
@@ -94,20 +102,103 @@ namespace beethoven3
             //폴더를 검사해서 
             //파일을 읽어서 
             //NOTEFILEMANAGER 
+            //String[] files = Directory.GetFiles(dir, file, SearchOption.AllDirectories);
+            //byte[] buffer;
+            //int i;
+            //for (i = 0; i < files.Length; i++)
+            //{
+            //    IFormatter formatter = new BinaryFormatter();
+            //    //streamReader sr = new StreamReader(files[i]);
+            //    FileStream fileStream = new FileStream(files[i], FileMode.Open, FileAccess.Read);
+            //    ()formatter.Deserialize(); 
+            // //  FileInfo fileStream = new FileInfo(files[i]);
+
+            //    BinaryReader br = new BinaryReader(fileStream);
+
+            //    char[]  buf0;
+            //    buf0 = br.ReadChars(128);
+            //    int a;
+            //    Console.WriteLine(buf0);
+
+            //    //int length = (int)fileStream.Length;
+            //    //buffer = new byte[length];
+            //    a = br.ReadInt32();
+                
+
+            //    //while ((count = fileStream.Read(buffer, sum, length - sum)) > 0)
+            //    //{
+            //    //    sum += count;
+            //    //}
+
+
+            //   // String line = sr.ReadLine();
+            //  //  String[] info = line.Split(' ');
+
+            //    //0: version , 1:name , 2: artist, 3: mp3, 4: picture
+            //   // noteFileManager.Add(info[0], info[1], info[2], info[3], info[4]);
+
             String[] files = Directory.GetFiles(dir, file, SearchOption.AllDirectories);
 
             int i;
             for (i = 0; i < files.Length; i++)
             {
 
-                StreamReader sr = new StreamReader(files[i]);
+                StreamReader sr = new StreamReader(files[i],Encoding.Unicode);
 
                 String line = sr.ReadLine();
-                String[] info = line.Split(' ');
+                //첫줄은 MNF FILE임을 확인
+                //Check Wheater first line is MNF FILE or not
+                if (line == "MNF FILE")
+                {
+                    
+                    line = sr.ReadLine();
+                    
+                    //두번째줄은 공백
+                    //Second line is empty
 
-                //0: version , 1:name , 2: artist, 3: mp3, 4: picture
-                noteFileManager.Add(info[0], info[1], info[2], info[3], info[4]);
+                    if (line == "")
+                    {
+                        //헤더임을 표시하는 라인
+                        
+                        line = sr.ReadLine();
+                        
+                        if (line == "#################### [HEADER] ####################")
+                        {
+
+                            String name = sr.ReadLine();
+
+                            String artist = sr.ReadLine();
+
+                            String mp3 = sr.ReadLine();
+
+                            String picture = sr.ReadLine();
+
+                            //0: version , 1:name , 2: artist, 3: mp3, 4: picture
+                            noteFileManager.Add("1", name, artist, mp3, picture);
+
+                            startTime = Convert.ToDouble(sr.ReadLine());
+
+                            endTime = Convert.ToDouble(sr.ReadLine());
+
+                            bpm = Int32.Parse(sr.ReadLine());
+                        }
+                        else
+                        {
+
+                            Trace.WriteLine("can not read file");
+                        }
+                    }
+                    else
+                    {
+                        Trace.WriteLine("can not read file");
+                    }
+                }
+                else
+                {
+                    Trace.WriteLine("can not read file");
+                }
             }
+            
         }
 
 
@@ -120,66 +211,81 @@ namespace beethoven3
         {
             String name = noteFileManager.noteFiles[noteNumber].Name;
 
-            StreamReader sr = new StreamReader("C:\\beethoven\\"+name);
+            StreamReader sr = new StreamReader("C:\\beethoven\\" + name, Encoding.Unicode);
             scoreManager.SongName = name;
-          //  int index = 0;
+          
             //첫줄은 헤더
-            sr.ReadLine();
-            while (sr.Peek() >= 0)
+            String stringLine = sr.ReadLine();
+            while (stringLine != "##################### [BODY] #####################")
             {
-                String line = sr.ReadLine();
-                //allNotes.Enqueue(line);
-               String[] lines = ((String)line).Split(' ');
-                bool isright= false;
+                stringLine = sr.ReadLine();
 
-                if (lines[1] == "0" || lines[1] == "1")
+            }
+            //END가 나올 때 까지
+            //Routine until meeting End
+            while(stringLine != "END")
+            {
+                stringLine = sr.ReadLine();
+                
+                //END가 아니어야 들어갈 수 있다.
+                //END is not allowed
+                if (stringLine != "END")
                 {
+                    String[] lines = ((String)stringLine).Split('/', ',');
+                    bool isright = false;
 
-                    if (lines[1] == "0")
+                    try
                     {
-                        isright = true;
+                        //오른손노트 왼손노트
+                        //rightNote and LeftNote
+                        if (lines[1] == "1" || lines[1] == "2")
+                        {
+
+                            if (lines[1] == "1")
+                            {
+                                isright = true;
+                            }
+
+                            //lines =>2:오른손이면 0 , 1: 마크위치 0: 시작시간 
+                            arrayNotes.Add(new NoteInfo(isright, Convert.ToDouble(lines[0]), Int32.Parse(lines[2]),  /*type*/lines[1], 0, Vector2.Zero, Vector2.Zero, Vector2.Zero, Vector2.Zero));
+
+                        }
+                        //롱노트
+                        else if (lines[1] == "4")
+                        {
+
+                            arrayNotes.Add(new NoteInfo(isright,/*startTime*/Convert.ToDouble(lines[0]), /*markLocation*/Int32.Parse(lines[2]), /*type*/lines[1], /*lastTime*/Convert.ToDouble(lines[3]), Vector2.Zero, Vector2.Zero, Vector2.Zero, Vector2.Zero));
+
+
+                        }
+                        //드래그노트
+                        else if (lines[1] == "D")
+                        {
+
+                            arrayNotes.Add(new NoteInfo(isright, /*startTime*/Convert.ToDouble(lines[0]), /*markLocation*/ -1, /*type*/lines[1], /*lastTime*/ Convert.ToDouble(lines[2]), new Vector2(Int32.Parse(lines[3]), Int32.Parse(lines[4])), new Vector2(Int32.Parse(lines[5]), Int32.Parse(lines[6])), new Vector2(Int32.Parse(lines[7]), Int32.Parse(lines[8])), new Vector2(Int32.Parse(lines[9]), Int32.Parse(lines[10]))));
+
+
+                        }
+
+                        //PATTERN CHANGE
+                        else if (lines[1] == "P")
+                        {
+
+                        }
+
+
+                        //BPM CHANGE
+                        else if (lines[1] == "B")
+                        {
+
+                        }
                     }
-
-                    //lines =>2:오른손이면 0 , 1: 마크위치 0: 시작시간 
-                    arrayNotes.Add(new NoteInfo(isright, Convert.ToDouble(lines[0]), Int32.Parse(lines[2]), Int32.Parse(lines[1]), 0, Vector2.Zero, Vector2.Zero, Vector2.Zero, Vector2.Zero));
-
+                    catch (IndexOutOfRangeException ex)
+                    {
+                        Trace.WriteLine(ex);
+                    }
                 }
-                //롱노트
-                else if(lines[1] =="3")
-                {
-
-                    arrayNotes.Add(new NoteInfo(isright, Convert.ToDouble(lines[0]), Int32.Parse(lines[2]), Int32.Parse(lines[1]),Convert.ToDouble(lines[3]), Vector2.Zero, Vector2.Zero, Vector2.Zero, Vector2.Zero));
-
-
-                }
-                    //드래그노트
-                else
-                {
-
-                    arrayNotes.Add(new NoteInfo(isright, Convert.ToDouble(lines[0]), -1, Int32.Parse(lines[1]), Convert.ToDouble(lines[2]), new Vector2(Int32.Parse(lines[3]), Int32.Parse(lines[4])), new Vector2(Int32.Parse(lines[5]), Int32.Parse(lines[6])), new Vector2(Int32.Parse(lines[7]), Int32.Parse(lines[8])), new Vector2(Int32.Parse(lines[9]), Int32.Parse(lines[10]))));
-
-
-                }
-
-                //noteLine = ((String)line).Split(' ');
-                //try
-                //{
-                //    if (Int32.Parse(noteLine[1]) == 0)
-                //    {
-                //        //가이드라인을 긋기위해 오른손 노트만 모아둠
-                //        rightNoteMarks[index] = new NoteInfo(true, Convert.ToDouble(noteLine[0]), Int32.Parse(noteLine[2]));
-                //        index++;
-                //    }
-                //    else
-                //    {
-                //        rightNoteMarks[index] = new NoteInfo(false, Convert.ToDouble(noteLine[0]), Int32.Parse(noteLine[2]));
-                //        index++;
-                //    }
-                //}
-                //catch (IndexOutOfRangeException)
-                //{
-
-                //}
+            
             }
             sr.Close();
         }
@@ -285,51 +391,33 @@ namespace beethoven3
         {
 
 
-            if (!endFile)
+            if (processTime < endTime)
             {
-                    //noteContents = ((String)allNotes.Peek()).Split(' ');
-                   // noteContents = ((String)arrayNotes[0]).Split(' ');
+               Trace.WriteLine(processTime);
+                //노트가 아무것도 없으면 실행되지 않는다.
+                //it doesn't work if there is no note.
 
-                //arraynote를 구조체 배열로 만들어서 싹 바꿔야 한다. 
+                if (arrayNotes.Count != 0)
+                {
 
-
-                  //  noteTime = Convert.ToDouble(noteContents[0]);
-
-                    //템포가 바뀌었을 경우 
-    //                if (changedTempo != 0)
-    //                {
-                       // noteTime = ChangeTimeOfNote( noteTime, changedTempo);
-    //                    ChangeArrayNoteTempo(changedTempo);
-    //                }
-                    
-                    //템포가 바뀐것에 따라서 다른것에 영향을 줄경우 
-                    // noteTime += optionalTime;
-      //              OptionalArrayNote(optionalTime);
-                    
-                    // noteTime = Convert.ToDouble(noteContents[0]);
-    
                     //시간에 맞추어서 노트가 날아갈 수 있게 생성 시간을 정한다. 
                     noteTime = GetNoteStartTime(arrayNotes[0].StartTime);
-
-//                    newNote = false;
-             
-                    Trace.WriteLine(optionalTime.ToString());
+                    //Trace.WriteLine(optionalTime.ToString());
                     //Trace.WriteLine(noteTime.ToString());
 
-                if (noteTime <= processTime)
-                {
-                    //PlayNote(타입,날아가는 마커 위치)
-                    //타입 0-오른손 1-왼손 2-양손 3-롱노트 4-드래그노트 
-                  //  int type = Int32.Parse(noteContents[1]);
-
-                    switch (arrayNotes[0].Type)
+                    if (noteTime <= processTime)
                     {
+                        //PlayNote(타입,날아가는 마커 위치)
+                        //타입 0-오른손 1-왼손 2-양손 3-롱노트 4-드래그노트 
+
                         //오른손 노트
-                        case 0:
+
+                        if (arrayNotes[0].Type == "1")
+                        {
                             //시간에 맞춰서 뿌려줘야 함. 
                             //notecontent[2] => 마커위치
                             startNoteManager.MakeRightNote(arrayNotes[0].MarkLocation);
-                                                      
+
                             try
                             {
 
@@ -337,9 +425,9 @@ namespace beethoven3
                                 //시작점,제어점1,제어점2,끝점,지속시간
 
                                 //outof range로 문제 될 수 있음
-                                
+
                                 //현재노트가  오른손 노트이고, 그 다음 노트가 오른손노트일 때
-                              //  if (rightNoteMarks[currentRightNoteIndex].IsRight && rightNoteMarks[currentRightNoteIndex + 1].IsRight)
+                                //  if (rightNoteMarks[currentRightNoteIndex].IsRight && rightNoteMarks[currentRightNoteIndex + 1].IsRight)
 
 
                                 ////오른손 노트여부 : [0]-> 0 ,, 마커 위치 [1]
@@ -350,7 +438,7 @@ namespace beethoven3
                                 //{
                                 //    secondRightNote = GetNote(1);
                                 //}
-                                
+
                                 //if (arrayNotes.Count > 2)
                                 //{
                                 //    thirdRightNote = GetNote(2);
@@ -362,7 +450,7 @@ namespace beethoven3
                                     {
                                         //골드라인
                                         //  DrawGuidLine(rightNoteMarks[currentRightNoteIndex].MarkLocation, rightNoteMarks[currentRightNoteIndex + 1].MarkLocation, true);
-                                        
+
                                         // if 마커에 맞추었을 때 
                                         // 스타트로 날아간 후에 어느정도 시간이 지났을 때
                                         // 
@@ -376,8 +464,8 @@ namespace beethoven3
                                     {
                                         //일반 가이드라인
                                         // DrawGuidLine(rightNoteMarks[currentRightNoteIndex + 1].MarkLocation, rightNoteMarks[currentRightNoteIndex + 2].MarkLocation, false);               
-                                            DrawGuidLine(arrayNotes[1].MarkLocation, arrayNotes[2].MarkLocation, false, arrayNotes[0].StartTime, arrayNotes[1].StartTime); 
-                                   }
+                                        DrawGuidLine(arrayNotes[1].MarkLocation, arrayNotes[2].MarkLocation, false, arrayNotes[0].StartTime, arrayNotes[1].StartTime);
+                                    }
                                 }
                             }
                             catch (IndexOutOfRangeException)
@@ -388,23 +476,21 @@ namespace beethoven3
                             {
 
                             }
+                        }
 
-                            break;
-
-
-                        //왼손노트 
-                        case 1:
+                     //왼손노트 
+                        else if (arrayNotes[0].Type == "2")
+                        {
                             startNoteManager.MakeLeftNote(arrayNotes[0].MarkLocation);
-                            break;
+                        }
 
                         //양손노트
-                        case 2:
-
-                            //      startNoteManager.MakeDoubleNote(Int32.Parse(noteContents[2]));
-                            break;
 
                         //롱노트
-                        case 3:
+                        else if (arrayNotes[0].Type == "4")
+                        {
+
+
                             /* 다른것도 마찬가지이지만 롱노트가 여러개가 동시에 만들어질 경우
                              하나 밖에 나오지 않는다.
                              이것을 해결하려면. 바로 이곳에서 noteManager class의 객체를 만들어야 한다. 
@@ -417,51 +503,46 @@ namespace beethoven3
 
                             //롱노트 //드래그노트는 끝나는 시간 까지, 포함 이건 noteInfo에포함해야 됨 
                             //끝나는시간
-                            drawLineTime = arrayNotes[0].LastTime + arrayNotes[0].StartTime;
-                            
+                            //  drawLineTime = arrayNotes[0].LastTime + arrayNotes[0].StartTime;
+                            drawLineTime = arrayNotes[0].LastTime;
                             drawLine = true;
-                            break;
-
+                            //   break;
+                        }
                         //드래그 노트
-                        case 4:
+                        else if (arrayNotes[0].Type == "D")
+                        {
+                            //case 4:
                             //시작점,제어점1,제어점2,끝점,지속시간
-                            CurveManager.addCurve(arrayNotes[0].StartPoint, arrayNotes[0].FirstOperatorPoint, arrayNotes[0].SecondOperatorPoint, arrayNotes[0].EndPoint, arrayNotes[0].LastTime);
+                            CurveManager.addCurve(arrayNotes[0].StartPoint, arrayNotes[0].FirstOperatorPoint, arrayNotes[0].SecondOperatorPoint, arrayNotes[0].EndPoint, (arrayNotes[0].LastTime - arrayNotes[0].StartTime) * 1000);
+                        }
 
-                            break;
+                        arrayNotes.RemoveAt(0);
+
+                        newNote = true;
+
+                        //오른손노트를 true로 되어있는 array의 index를 하나씩 증가시시키는 값.
+                        //      currentRightNoteIndex++;
                     }
-                    //allNotes.Dequeue();
-                    arrayNotes.RemoveAt(0);
 
-                    newNote = true;
+                    //파일의 끝
+                    //End of note file
+                    //if (allNotes.Count == 0)
+                    //if (arrayNotes.Count == 0)
 
-                    //오른손노트를 true로 되어있는 array의 index를 하나씩 증가시시키는 값.
-              //      currentRightNoteIndex++;
-                }
-
-                //파일의 끝
-                //End of note file
-                //if (allNotes.Count == 0)
-                if (arrayNotes.Count == 0)
-                
-                {
-                    endFile = true;
+                    //{
+                    //    endFile = true;
+                    //}
                 }
             }
+            else
+            {
+                endFile = true;
+            }
+                
+
         }
 
-        //0:오른손여부(0이면 오른손), 1:마크위치 2: 노트시작 시간 
-        //public  double[] GetNote(int index)
-        //{
-            //String line = (String)arrayNotes[index];
-            //String[] lines = ((String)line).Split(' ');
-            //double[] values = new double[3];
-            //values[0] = (double)Int32.Parse(lines[1]);
-            //values[1] = (double)Int32.Parse(lines[2]);
-            //values[2] = Convert.ToDouble(lines[0]);
-            //return values;
-
-        //}
-
+   
         public Vector2 GetMarkerLocation(int markerNumber)
         {
             Vector2 location = new Vector2(0,0);
@@ -529,7 +610,7 @@ namespace beethoven3
                     }
                     catch (ArgumentOutOfRangeException)
                     {
-
+                        //Trace.WriteLine("outofrange in longnote");
                     }
                     // drawLine = false;
                     //이게 어디엔가에 있어야 할 듯 . 
@@ -548,8 +629,6 @@ namespace beethoven3
         //{
 
         //    Sprite littleNote = StartNoteManager.longNoteManager.LittleNotes[0];
-
-          
         //    //마커의 반지름으로
         //    bool judgment = MarkManager.Marks[number].MarkSprite.JudgedEdge(
         //        littleNote.Location, littleNote.CollisionRadius
@@ -627,10 +706,7 @@ namespace beethoven3
                     scoreManager.Combo = 0;
 
                 }
-
             }
-
-
         }
 
 

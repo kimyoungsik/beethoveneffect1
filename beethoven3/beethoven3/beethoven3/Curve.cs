@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-
+using System.Diagnostics;
 
 
 namespace beethoven3
@@ -124,7 +124,11 @@ namespace beethoven3
           
             if (Points.Count > 0 && !end)
             {
+
+
                 changedTime += gameTime.ElapsedGameTime.TotalMilliseconds;
+                
+                
                 dotChangedTime += gameTime.ElapsedGameTime.TotalMilliseconds;
                 for (i = 0; i < Points.Count - 1; i++)
                 {
@@ -153,11 +157,8 @@ namespace beethoven3
                     if (count == 20)
                     {
                         count = 0;
-                        
                         //드래그 노트 실패 띄우기 1
                         //맨 앞의 것만 지우게 되어있는데 문제 있으면 전부다 지우는것으로 .
-
-                       
                     }
 
                     //따라다니면서 마크 찍는 것
@@ -168,6 +169,8 @@ namespace beethoven3
                 }
                 if (changedTime > time)
                 {
+                    Trace.WriteLine("time:" + time + "changedTime:" + changedTime);
+
                     if (Points.Count > 0)
                     {
                         //지워지기 시작 
@@ -180,9 +183,7 @@ namespace beethoven3
 
                         //드래그 노트 실패 띄우기 2
                         DragNoteManager.DeleteDragNotes();
-                        
                     }
-
                 }
             }
         }

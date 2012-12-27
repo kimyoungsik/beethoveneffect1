@@ -345,7 +345,7 @@ namespace beethoven3
             //file.Loading("a.txt");
             String dir = "c:\\beethoven\\";
             
-            file.FileLoading(dir, "*.txt");
+            file.FileLoading(dir, "*.mnf");
             
             DragNoteManager.initialize(
                  spriteSheet,
@@ -1807,7 +1807,7 @@ namespace beethoven3
 
                             String dir = "c:\\beethoven\\";
 
-                            file.FileLoading(dir, "*.txt");
+                            file.FileLoading(dir, "*.mnf");
                            
                             scoreManager.init();
 
