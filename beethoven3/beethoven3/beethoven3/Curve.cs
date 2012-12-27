@@ -102,7 +102,10 @@ namespace beethoven3
                 Points.Add(PlotPoint);
                 PointsQueue.Enqueue(PlotPoint);
             }
-            dotTime = time / PointsQueue.Count;
+            
+            
+            //나누어주는 count에 더하는 수를 크게하면 드래그노트 안을 지나가는 공이 빨라진다. 
+            dotTime = time / (PointsQueue.Count+20);
             end = false;
         }
 
