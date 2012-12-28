@@ -247,7 +247,7 @@ namespace beethoven3
                             }
 
                             //lines =>2:오른손이면 0 , 1: 마크위치 0: 시작시간 
-                            arrayNotes.Add(new NoteInfo(isright, Convert.ToDouble(lines[0]), Int32.Parse(lines[2]),  /*type*/lines[1], 0, Vector2.Zero, Vector2.Zero, Vector2.Zero, Vector2.Zero));
+                            arrayNotes.Add(new NoteInfo(isright, Convert.ToDouble(lines[0]), Int32.Parse(lines[2]),  /*type*/lines[1],/*lastTime*/ 0, Vector2.Zero, Vector2.Zero, Vector2.Zero, Vector2.Zero));
 
                         }
                         //롱노트
@@ -268,8 +268,10 @@ namespace beethoven3
                         }
 
                         //PATTERN CHANGE
-                        else if (lines[1] == "P")
+                        //패턴 체인지
+                        else if (lines[1] == "C")
                         {
+                            arrayNotes.Add(new NoteInfo(isright,/*startTime*/Convert.ToDouble(lines[0]), /*not markLocation but change type */Int32.Parse(lines[2]), /*type*/lines[1], /*not lastTime but Lasting time(지속시간)*/Convert.ToDouble(lines[3]), Vector2.Zero, Vector2.Zero, Vector2.Zero, Vector2.Zero));
 
                         }
 
@@ -515,6 +517,20 @@ namespace beethoven3
                             //시작점,제어점1,제어점2,끝점,지속시간
                             CurveManager.addCurve(arrayNotes[0].StartPoint, arrayNotes[0].FirstOperatorPoint, arrayNotes[0].SecondOperatorPoint, arrayNotes[0].EndPoint, (arrayNotes[0].LastTime - arrayNotes[0].StartTime) * 1000);
                         }
+                        //패턴 변환
+                        //pattern change
+                        else if (arrayNotes[0].Type == "C")
+                        {
+                            //marklocation이란 attribute에는 몇번 패턴으로 변할 것인가.
+                            //marklocation means which pattern the note will be changed
+                            MarkManager.changeMarkPattern(arrayNotes[0].MarkLocation);
+
+
+                        }
+
+
+
+
 
                         arrayNotes.RemoveAt(0);
 

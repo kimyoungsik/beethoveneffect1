@@ -29,8 +29,6 @@ namespace beethoven3
         private int count = 0;
 
         private bool end = false;
-
-
         #endregion
 
         #region constructor
