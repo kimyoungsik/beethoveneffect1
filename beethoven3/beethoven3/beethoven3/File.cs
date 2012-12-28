@@ -44,6 +44,39 @@ namespace beethoven3
         private Double endTime;
 
         private int bpm;
+        //패턴이 바뀌는 중인지 체크
+        private bool patternChanging = false;
+
+
+        //////////////////////////////////FOR PATTERN CHAGNE//////////////////////////////
+        //패턴 바뀌기전의 마커위치들
+        private Vector2[] initMarkersLocation = null;
+
+        //패턴 바뀌기 전의 마커위치 뽑아낼 수 있도록 하는 bool
+        //  bool isFirstGettingMarker = false;
+
+        //실시간으로 바뀐 마커위치
+        private Vector2[] changedMarks = new Vector2[6];
+
+        //최종적으로 이동될 마커 위치
+        private Vector2[] Endlocations = new Vector2[6];
+
+
+        //패턴 끝나는 시간.
+        private double endPatternChangeTime = 0;
+        //패턴 시작 시간.
+        private double startPatternChangeTime = 0;
+        //지속시간
+        private double lastingTime = 0;
+
+
+        /// <summary>
+        /// ///////////////////////////////////////////////////////////////
+        /// </summary>
+        /// <param name="startNoteManager"></param>
+        /// <param name="noteFileManager"></param>
+        /// <param name="badManager"></param>
+        /// <param name="scoreManager"></param>
         #endregion
         
         #region constructor
@@ -371,6 +404,8 @@ namespace beethoven3
             }
 
         }
+
+
         public double ChangeTimeOfNote(double inputTime, double changedTempo)
         {
             double outputTime = 0.0f;
@@ -391,11 +426,49 @@ namespace beethoven3
         }
         public void FindNote(double processTime, double changedTempo, double optionalTime)
         {
+            int i;
+
+            if (patternChanging)
+            {
+                //진행시간이 끝나는 시간보다 적을 때
+                if (processTime < endPatternChangeTime && processTime > startPatternChangeTime)
+                {
+                    patternChanging = true;
 
 
+                    //현재 진행 상황, 진행이 많이 될수록 값이 적게 나온다.
+                    double diffrence = endPatternChangeTime - processTime;
+
+
+                    for (i = 0; i < 6; i++)
+                    {
+                        changedMarks[i].X = GetLocation(initMarkersLocation[i].X, Endlocations[i].X, lastingTime - diffrence, lastingTime);
+                        changedMarks[i].Y = GetLocation(initMarkersLocation[i].Y, Endlocations[i].Y,  lastingTime - diffrence, lastingTime);
+                    }
+
+
+                    MarkManager.changeMarkPattern(changedMarks[0], changedMarks[1], changedMarks[2], changedMarks[3], changedMarks[4], changedMarks[5]);
+
+                }
+                else if (processTime <= startPatternChangeTime)
+                {
+                    patternChanging = true;
+                }
+                else
+                {
+                    patternChanging = false;
+                    //isFirstGettingMarker = false;
+                }
+
+
+
+
+            }
+
+
+            //////////////////////////////////////////////////////////////////
             if (processTime < endTime)
             {
-               Trace.WriteLine(processTime);
                 //노트가 아무것도 없으면 실행되지 않는다.
                 //it doesn't work if there is no note.
 
@@ -407,7 +480,9 @@ namespace beethoven3
                     //Trace.WriteLine(optionalTime.ToString());
                     //Trace.WriteLine(noteTime.ToString());
 
-                    if (noteTime <= processTime)
+
+
+                    if (noteTime <= processTime )
                     {
                         //PlayNote(타입,날아가는 마커 위치)
                         //타입 0-오른손 1-왼손 2-양손 3-롱노트 4-드래그노트 
@@ -519,16 +594,66 @@ namespace beethoven3
                         }
                         //패턴 변환
                         //pattern change
-                        else if (arrayNotes[0].Type == "C")
+                        else if (arrayNotes[0].Type == "C" )
                         {
                             //marklocation이란 attribute에는 몇번 패턴으로 변할 것인가.
                             //marklocation means which pattern the note will be changed
-                            MarkManager.changeMarkPattern(arrayNotes[0].MarkLocation);
+
+                            //이미 저장되어 있는 인덱스에 따른 패튼 가져오기
+                            //Get some patterns which is alread stored according to the index
+                            Endlocations = MarkManager.GetPattern(arrayNotes[0].MarkLocation);
+
+                           
+                            //패턴이 변하는 중이 아니라면 처음 마커위치를 가져온다. 
+                           // if(!isFirstGettingMarker)
+                           // {
+                                initMarkersLocation =  MarkManager.GetCurrentMarkerLocation();
+                            //    isFirstGettingMarker = true;
+                           // }
+                            
+                            
+                            //끝나는 시간이라고 가정
+                            //if Lasttime were endingTime
+                            endPatternChangeTime = arrayNotes[0].LastTime;
+                            startPatternChangeTime = arrayNotes[0].StartTime;
+                            //지속시간
+                            //lastingtime
+                             lastingTime = endPatternChangeTime - arrayNotes[0].StartTime;
+                             patternChanging = true;
+//                            //진행시간이 끝나는 시간보다 적을 때
+//                            if (processTime < endPatternChangeTime && processTime > arrayNotes[0].StartTime)
+//                            {
+//                                patternChanging = true;
+                                
+
+//                                //현재 진행 상황, 진행이 많이 될수록 값이 적게 나온다.
+//                                double diffrence = endPatternChangeTime - processTime;
 
 
+//                                for (i = 0; i < 6; i++)
+//                                {
+//                                    changedMarks[i].X = GetLocation(Endlocations[i].X, initMarkersLocation[i].X, lastingTime - diffrence, lastingTime);
+//                                    changedMarks[i].Y = GetLocation(Endlocations[i].Y, initMarkersLocation[i].Y, lastingTime - diffrence, lastingTime);
+//                                }
+
+
+//                                MarkManager.changeMarkPattern(changedMarks[0], changedMarks[1], changedMarks[2], changedMarks[3], changedMarks[4], changedMarks[5]);
+
+//                            }
+//                            else if (processTime <= arrayNotes[0].StartTime)
+//                            {
+//                                patternChanging = true;
+//                            }
+//                            else
+//                            {
+//                                patternChanging = false;
+////isFirstGettingMarker = false;
+//                            }
+
+                            //명령하는 위치로 패턴 변환
+                            //locatinos make the pattern location change
+                           // MarkManager.changeMarkPattern(locations[0], locations[1], locations[2], locations[3], locations[4], locations[5]);
                         }
-
-
 
 
 
@@ -558,7 +683,17 @@ namespace beethoven3
 
         }
 
+        //전체 진행에 따른 현재 마커 위치
+        //Get current marker locaiton in accordance to the process
+        public float GetLocation(float startPoint, float endPoint, double currentTime, double lastingTime)
+        {
+            return  startPoint + ((endPoint - startPoint) * ((float)currentTime / (float)lastingTime));  
+ //         시작점 + (      (끝점 - 시작점)* (lasttime - currentTime/lasttime))
+        }
    
+
+
+        
         public Vector2 GetMarkerLocation(int markerNumber)
         {
             Vector2 location = new Vector2(0,0);
@@ -772,6 +907,7 @@ namespace beethoven3
             CheckLeftNoteInCenterArea();
             this.time += gameTime.ElapsedGameTime.TotalSeconds;
             FindNote(this.time, changedTempo, optionalTime);
+        
         }
 
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime)

@@ -10,8 +10,6 @@ namespace beethoven3
     class Particle : Sprite
     {
 
-
-
         //가속(속도에 반영)
         private Vector2 acceleration;
         //속도 값 범위 정함

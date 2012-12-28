@@ -277,7 +277,7 @@ namespace beethoven3
             Vector2 mark4Location = new Vector2(450, 570);
             Vector2 mark5Location = new Vector2(350, 470);
             Vector2 mark6Location = new Vector2(350, 370);
-
+          
 
             scoreManager = new ScoreManager();
             
@@ -899,14 +899,14 @@ namespace beethoven3
             {
                 //  collisionManager.CheckCollisions(4);
           //      blendMode = BlendState.AlphaBlend;
-                MarkManager.changeMarkPattern(0);
+              //  MarkManager.changeMarkPattern(0);
             }
 
             if (keyState.IsKeyDown(Keys.M))
             {
                 //  collisionManager.CheckCollisions(4);
           //      blendMode = BlendState.Additive;
-                MarkManager.changeMarkPattern(1);
+               // MarkManager.changeMarkPattern(1);
             }
 
             if (keyState.IsKeyDown(Keys.NumPad8))
@@ -914,7 +914,7 @@ namespace beethoven3
            //     //  collisionManager.CheckCollisions(4);
 //blendMode = BlendState.NonPremultiplied;
 
-                MarkManager.changeMarkPattern(2);
+              //  MarkManager.changeMarkPattern(2);
             }
 
             if (keyState.IsKeyDown(Keys.NumPad9))

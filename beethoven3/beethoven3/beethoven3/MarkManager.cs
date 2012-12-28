@@ -18,7 +18,6 @@ namespace beethoven3
         //가운데 빈공간 (노트들이 없어질 부분)
         public static Rectangle centerArea;
 
-
         //쓸모 없을 수 도 있음
         //public static Vector2 mark0Location;
         //public static Vector2 mark1Location;
@@ -57,13 +56,6 @@ namespace beethoven3
 
             startNoteManager = startNoteMana;
             
-            //mark0Location=mark0Loc;
-            //mark1Location=mark1Loc;
-            //mark2Location=mark2Loc;
-            //mark3Location=mark3Loc;
-            //mark4Location=mark4Loc;
-            //mark5Location=mark5Loc;
-
             addMark(mark0Loc);
             addMark(mark1Loc);
             addMark(mark2Loc);
@@ -114,89 +106,140 @@ namespace beethoven3
             }
         }
 
-        public static void changeMarkPattern(int number)
+
+        //public static void changeMarkPattern(int number)
+        //{
+        //    Vector2 mark0Loc = Vector2.Zero;
+        //    Vector2 mark1Loc = Vector2.Zero;
+        //    Vector2 mark2Loc = Vector2.Zero;
+        //    Vector2 mark3Loc = Vector2.Zero;
+        //    Vector2 mark4Loc = Vector2.Zero;
+        //    Vector2 mark5Loc = Vector2.Zero;
+        
+        //    //배열로 리펙토링
+
+        //    if (number == 0)
+        //    {
+              
+        //            Marks[0].MarkSprite.Location = new Vector2(500, 170);
+        //            Marks[1].MarkSprite.Location = new Vector2(600, 270);
+        //            Marks[2].MarkSprite.Location = new Vector2(600, 370);
+        //            Marks[3].MarkSprite.Location = new Vector2(500, 470);
+        //            Marks[4].MarkSprite.Location = new Vector2(400, 370);
+        //            Marks[5].MarkSprite.Location = new Vector2(400, 270);
+
+        //            startNoteManager.StartNotes[0].StartNoteSprite.Location = GetStartNoteLocation(new Vector2(500, 170), distance, 0);
+        //            startNoteManager.StartNotes[1].StartNoteSprite.Location = GetStartNoteLocation(new Vector2(600, 270), distance, 1);
+        //            startNoteManager.StartNotes[2].StartNoteSprite.Location = GetStartNoteLocation(new Vector2(600, 370), distance, 2);
+        //            startNoteManager.StartNotes[3].StartNoteSprite.Location = GetStartNoteLocation(new Vector2(500, 470), distance, 3);
+        //            startNoteManager.StartNotes[4].StartNoteSprite.Location = GetStartNoteLocation(new Vector2(400, 370), distance, 4);
+        //            startNoteManager.StartNotes[5].StartNoteSprite.Location = GetStartNoteLocation(new Vector2(400, 270), distance, 5);
+
+        //    }
+
+        //    else if (number == 1)
+        //    {
+
+
+        //        Marks[0].MarkSprite.Location = new Vector2(300, 270);
+        //        Marks[1].MarkSprite.Location = new Vector2(400, 370);
+        //        Marks[2].MarkSprite.Location = new Vector2(400, 470);
+        //        Marks[3].MarkSprite.Location = new Vector2(300, 570);
+        //        Marks[4].MarkSprite.Location = new Vector2(200, 470);
+        //        Marks[5].MarkSprite.Location = new Vector2(100, 370);
+
+        //        startNoteManager.StartNotes[0].StartNoteSprite.Location = GetStartNoteLocation(new Vector2(300, 270), distance, 0);
+        //        startNoteManager.StartNotes[1].StartNoteSprite.Location = GetStartNoteLocation(new Vector2(400, 370), distance, 1);
+        //        startNoteManager.StartNotes[2].StartNoteSprite.Location = GetStartNoteLocation(new Vector2(400, 470), distance, 2);
+        //        startNoteManager.StartNotes[3].StartNoteSprite.Location = GetStartNoteLocation(new Vector2(300, 570), distance, 3);
+        //        startNoteManager.StartNotes[4].StartNoteSprite.Location = GetStartNoteLocation(new Vector2(200, 470), distance, 4);
+        //        startNoteManager.StartNotes[5].StartNoteSprite.Location = GetStartNoteLocation(new Vector2(100, 370), distance, 5);
+
+        //    }
+        //    else if (number == 2)
+        //    {
+
+        
+
+        //    }
+          
+        //}
+
+
+        //현재 저장되어 있는 마커의 위치를 가져온다. 
+        public static Vector2[] GetCurrentMarkerLocation()
         {
-         //   int i;
+
+            Vector2[] vectorarray = new Vector2[6];
+
+            int i;
+            for (i = 0; i < 6; i++)
+            {
+                vectorarray[i] = Marks[i].MarkSprite.Location;
+            }
+             return vectorarray;
+
+        }
+
+        public static Vector2[] GetPattern(int index)
+        {
+            Vector2[] vectorarray = new Vector2[6];
+
             Vector2 mark0Loc = Vector2.Zero;
             Vector2 mark1Loc = Vector2.Zero;
             Vector2 mark2Loc = Vector2.Zero;
             Vector2 mark3Loc = Vector2.Zero;
             Vector2 mark4Loc = Vector2.Zero;
             Vector2 mark5Loc = Vector2.Zero;
-          
-            //for (i = 0; i < startNoteManager.StartNotes.Count; i++)
-            //{
-            //    startNoteManager.StartNotes.RemoveAt(i);
-            //}
 
-
-                //배열로 리펙토링
-
-            if (number == 0)
+            
+            if (index == 0)
             {
-              
-
-                    Marks[0].MarkSprite.Location = new Vector2(500, 170);
-                    Marks[1].MarkSprite.Location = new Vector2(600, 270);
-                    Marks[2].MarkSprite.Location = new Vector2(600, 370);
-                    Marks[3].MarkSprite.Location = new Vector2(500, 470);
-                    Marks[4].MarkSprite.Location = new Vector2(400, 370);
-                    Marks[5].MarkSprite.Location = new Vector2(400, 270);
-
-                    startNoteManager.StartNotes[0].StartNoteSprite.Location = GetStartNoteLocation(new Vector2(500, 170), distance, 0);
-                    startNoteManager.StartNotes[1].StartNoteSprite.Location = GetStartNoteLocation(new Vector2(600, 270), distance, 1);
-                    startNoteManager.StartNotes[2].StartNoteSprite.Location = GetStartNoteLocation(new Vector2(600, 370), distance, 2);
-                    startNoteManager.StartNotes[3].StartNoteSprite.Location = GetStartNoteLocation(new Vector2(500, 470), distance, 3);
-                    startNoteManager.StartNotes[4].StartNoteSprite.Location = GetStartNoteLocation(new Vector2(400, 370), distance, 4);
-                    startNoteManager.StartNotes[5].StartNoteSprite.Location = GetStartNoteLocation(new Vector2(400, 270), distance, 5);
+                mark0Loc = new Vector2(450, 170);
+                mark1Loc = new Vector2(650, 370);
+                mark2Loc = new Vector2(650, 470);
+                mark3Loc = new Vector2(450, 670);
+                mark4Loc = new Vector2(250, 470);
+                mark5Loc = new Vector2(250, 370);
 
             }
-
-            else if (number == 1)
+            else if (index == 1)
             {
 
-
-                Marks[0].MarkSprite.Location = new Vector2(300, 270);
-                Marks[1].MarkSprite.Location = new Vector2(400, 370);
-                Marks[2].MarkSprite.Location = new Vector2(400, 470);
-                Marks[3].MarkSprite.Location = new Vector2(300, 570);
-                Marks[4].MarkSprite.Location = new Vector2(200, 470);
-                Marks[5].MarkSprite.Location = new Vector2(100, 370);
-
-                startNoteManager.StartNotes[0].StartNoteSprite.Location = GetStartNoteLocation(new Vector2(300, 270), distance, 0);
-                startNoteManager.StartNotes[1].StartNoteSprite.Location = GetStartNoteLocation(new Vector2(400, 370), distance, 1);
-                startNoteManager.StartNotes[2].StartNoteSprite.Location = GetStartNoteLocation(new Vector2(400, 470), distance, 2);
-                startNoteManager.StartNotes[3].StartNoteSprite.Location = GetStartNoteLocation(new Vector2(300, 570), distance, 3);
-                startNoteManager.StartNotes[4].StartNoteSprite.Location = GetStartNoteLocation(new Vector2(200, 470), distance, 4);
-                startNoteManager.StartNotes[5].StartNoteSprite.Location = GetStartNoteLocation(new Vector2(100, 370), distance, 5);
-
+                mark0Loc = new Vector2(450, 270);
+                mark1Loc = new Vector2(550, 370);
+                mark2Loc = new Vector2(550, 470);
+                mark3Loc = new Vector2(450, 570);
+                mark4Loc = new Vector2(350, 470);
+                mark5Loc = new Vector2(350, 370);
             }
-            else if (number == 2)
-            {
+            vectorarray[0] = mark0Loc;
+            vectorarray[1] = mark1Loc;
+            vectorarray[2] = mark2Loc;
+            vectorarray[3] = mark3Loc;
+            vectorarray[4] = mark4Loc;
+            vectorarray[5] = mark5Loc;
 
-        
+            return vectorarray;
+        }
 
-            }
-            //mark0Location = mark0Loc;
-            //mark1Location = mark1Loc;
-            //mark2Location = mark2Loc;
-            //mark3Location = mark3Loc;
-            //mark4Location = mark4Loc;
-            //mark5Location = mark5Loc;
 
-            //addMark(mark0Loc);
-            //addMark(mark1Loc);
-            //addMark(mark2Loc);
-            //addMark(mark3Loc);
-            //addMark(mark4Loc);
-            //addMark(mark5Loc);
+        //각 마터의 위치를 주면 바로 패턴이 변함
+        public static void changeMarkPattern(Vector2 mark0, Vector2 mark1, Vector2 mark2, Vector2 mark3, Vector2 mark4, Vector2 mark5)
+        {
+            Marks[0].MarkSprite.Location = mark0;
+            Marks[1].MarkSprite.Location = mark1;
+            Marks[2].MarkSprite.Location = mark2;
+            Marks[3].MarkSprite.Location = mark3;
+            Marks[4].MarkSprite.Location = mark4;
+            Marks[5].MarkSprite.Location = mark5;
 
-            //startNoteManager.addStartNote(GetStartNoteLocation(Marks[0].MarkSprite.Location, distance, 0));
-            //startNoteManager.addStartNote(GetStartNoteLocation(Marks[1].MarkSprite.Location, distance, 1));
-            //startNoteManager.addStartNote(GetStartNoteLocation(Marks[2].MarkSprite.Location, distance, 2));
-            //startNoteManager.addStartNote(GetStartNoteLocation(Marks[3].MarkSprite.Location, distance, 3));
-            //startNoteManager.addStartNote(GetStartNoteLocation(Marks[4].MarkSprite.Location, distance, 4));
-            //startNoteManager.addStartNote(GetStartNoteLocation(Marks[5].MarkSprite.Location, distance, 5));
+            startNoteManager.StartNotes[0].StartNoteSprite.Location = GetStartNoteLocation(mark0, distance, 0);
+            startNoteManager.StartNotes[1].StartNoteSprite.Location = GetStartNoteLocation(mark1, distance, 1);
+            startNoteManager.StartNotes[2].StartNoteSprite.Location = GetStartNoteLocation(mark2, distance, 2);
+            startNoteManager.StartNotes[3].StartNoteSprite.Location = GetStartNoteLocation(mark3, distance, 3);
+            startNoteManager.StartNotes[4].StartNoteSprite.Location = GetStartNoteLocation(mark4, distance, 4);
+            startNoteManager.StartNotes[5].StartNoteSprite.Location = GetStartNoteLocation(mark5, distance, 5);
         }
  
         /// <summary>
