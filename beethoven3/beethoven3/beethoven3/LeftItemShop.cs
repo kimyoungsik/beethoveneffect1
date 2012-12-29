@@ -18,7 +18,8 @@ namespace beethoven3
 
 
 
-        public LeftItemShop(ItemManager itemManager):base(itemManager)
+        public LeftItemShop(ItemManager itemManager, ScoreManager scoreManager) :
+            base(itemManager, scoreManager)
         {
             
         }

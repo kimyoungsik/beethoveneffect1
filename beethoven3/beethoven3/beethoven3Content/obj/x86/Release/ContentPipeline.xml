@@ -587,7 +587,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\character\cello.xnb</Output>
-      <Time>2012-12-24T15:54:18.8551039+09:00</Time>
+      <Time>2012-12-28T20:53:17.1755376+09:00</Time>
     </Item>
     <Item>
       <Source>character\contrabase.png</Source>
@@ -596,7 +596,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\character\contrabase.xnb</Output>
-      <Time>2012-12-24T15:54:18.804101+09:00</Time>
+      <Time>2012-12-29T01:32:48.3871167+09:00</Time>
     </Item>
     <Item>
       <Source>character\flute.png</Source>
@@ -605,7 +605,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\character\flute.xnb</Output>
-      <Time>2012-12-24T15:54:18.8281024+09:00</Time>
+      <Time>2012-12-28T20:53:47.6982834+09:00</Time>
     </Item>
     <Item>
       <Source>character\horn.png</Source>
@@ -614,7 +614,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\character\horn.xnb</Output>
-      <Time>2012-12-24T15:54:18.8191019+09:00</Time>
+      <Time>2012-12-28T22:02:03.0545244+09:00</Time>
     </Item>
     <Item>
       <Source>character\timpani.png</Source>
@@ -623,7 +623,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\character\timpani.xnb</Output>
-      <Time>2012-12-24T15:54:18.8411031+09:00</Time>
+      <Time>2012-12-28T21:29:11.9507837+09:00</Time>
     </Item>
     <Item>
       <Source>character\violin.png</Source>
@@ -632,7 +632,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\character\violin.xnb</Output>
-      <Time>2012-12-24T15:54:18.7500979+09:00</Time>
+      <Time>2012-12-28T21:03:07.8873244+09:00</Time>
     </Item>
     <Item>
       <Source>background\tutorialbear.png</Source>
@@ -723,6 +723,24 @@
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\background\itemBackground2.xnb</Output>
       <Time>2012-12-26T21:05:04.0465442+09:00</Time>
+    </Item>
+    <Item>
+      <Source>shopdoor\nogold.png</Source>
+      <Name>shopdoor\nogold</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopdoor\nogold.xnb</Output>
+      <Time>2012-12-29T11:09:34.71043+09:00</Time>
+    </Item>
+    <Item>
+      <Source>shopdoor\nogoldhover.png</Source>
+      <Name>shopdoor\nogoldhover</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopdoor\nogoldhover.xnb</Output>
+      <Time>2012-12-29T11:09:34.7544325+09:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

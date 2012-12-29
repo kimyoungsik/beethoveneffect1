@@ -209,9 +209,7 @@ namespace beethoven3
                    userPictures.Add(new PictureInfo(texture, scoreInfos[i].UserPicture));
 
                }
-               
            }
-
         }
 
 

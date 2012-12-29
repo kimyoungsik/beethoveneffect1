@@ -26,6 +26,7 @@ namespace beethoven3
         private Vector2 location;
         private bool sold;
 
+        private int cost;
         
         #endregion
 
@@ -34,7 +35,9 @@ namespace beethoven3
             Texture2D texture,
             Vector2 location,
             Rectangle initialFrame,
-            int frameCount)
+            int frameCount,
+            int cost
+            )
         {
             ItemSprite = new Sprite(
                 location,
@@ -54,14 +57,23 @@ namespace beethoven3
             this.location = location;
             this.sold = false;
             ItemSprite.CollisionRadius = itemRadius;
+            this.cost = cost;
         }
         #endregion
+
+        #region method
+
+        public int GetCost()
+        {
+            return this.cost;
+        }
+
 
         public void buyItem()
         {
             this.sold = true;
         }
-
+        #endregion
 
         #region update and draw
         public void Update(GameTime gameTime)

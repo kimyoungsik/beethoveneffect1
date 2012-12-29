@@ -51,19 +51,19 @@ namespace beethoven3
             int i;
             for (i = 0; i < 4; i++)
             {
-                addItem(rightHandItem, new Vector2(100, 100), rightHandTexture[i], new Rectangle(0, 0, rightHandTexture[i].Width, rightHandTexture[i].Height), 1);
+                addItem(rightHandItem, new Vector2(100, 100), rightHandTexture[i], new Rectangle(0, 0, rightHandTexture[i].Width, rightHandTexture[i].Height), 1,/*cost*/ 5);
             }
                 for (i = 0; i < 2; i++)
             {
-                addItem(leftHandItem, new Vector2(100, 100), leftHandTexture[i], new Rectangle(0, 0, leftHandTexture[i].Width, leftHandTexture[i].Height), 1);
+                addItem(leftHandItem, new Vector2(100, 100), leftHandTexture[i], new Rectangle(0, 0, leftHandTexture[i].Width, leftHandTexture[i].Height), 1,/*cost*/ 5);
                 
                 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 //have to additem, effect, node , background
-                addItem(effectItem, new Vector2(100, 100), effectTexture[i], new Rectangle(0, 0, effectTexture[i].Width, effectTexture[i].Height), 1);
+                addItem(effectItem, new Vector2(100, 100), effectTexture[i], new Rectangle(0, 0, effectTexture[i].Width, effectTexture[i].Height), 1,/*cost*/ 5);
 
-                addItem(noteItem, new Vector2(100, 100), noteTexture[i], new Rectangle(0, 0, noteTexture[i].Width, noteTexture[i].Height), 1);
+                addItem(noteItem, new Vector2(100, 100), noteTexture[i], new Rectangle(0, 0, noteTexture[i].Width, noteTexture[i].Height), 1,/*cost*/ 5);
 
-                addItem(backgroundItem, new Vector2(100, 100), backgroundTexture[i], new Rectangle(0, 0, backgroundTexture[i].Width, backgroundTexture[i].Height), 1);
+                addItem(backgroundItem, new Vector2(100, 100), backgroundTexture[i], new Rectangle(0, 0, backgroundTexture[i].Width, backgroundTexture[i].Height), 1,/*cost*/ 5);
             
             }
 
@@ -114,14 +114,16 @@ namespace beethoven3
           Vector2 location,
           Texture2D texture,
           Rectangle initalFrame,
-          int frameCount
+          int frameCount,
+          int cost
             )
         {
             Item thisItem = new Item(
                 texture,
                 location,
                 initalFrame,
-                frameCount);
+                frameCount,
+                cost);
             itemList.Add(thisItem);
         }
 
@@ -278,12 +280,9 @@ namespace beethoven3
                 if (item == myRightHandItem[i])
                 {
                     index = i;
-                }
-                
+                }   
             }
-
             return index;
-            
         }
 
 
@@ -297,11 +296,8 @@ namespace beethoven3
                 {
                     index = i;
                 }
-
             }
-
             return index;
-
         }
 
         public int getIndexOfMyEffectItem(Item item)
@@ -314,11 +310,8 @@ namespace beethoven3
                 {
                     index = i;
                 }
-
             }
-
             return index;
-
         }
 
         public int getIndexOfMyNoteItem(Item item)

@@ -5,7 +5,6 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-
 namespace beethoven3
 {
     class Sprite
@@ -40,8 +39,6 @@ namespace beethoven3
         protected Vector2 velocity = Vector2.Zero;
 
         protected float scale = 1.0f;
-
-
         #endregion
 
         #region constructor
@@ -62,7 +59,6 @@ namespace beethoven3
             frameHeight = initialFrame.Height;
         }
         #endregion
-
 
 
         #region properties
@@ -194,8 +190,6 @@ namespace beethoven3
             {
                 ret = 1;
             }
-
-
             return ret;
         }
 

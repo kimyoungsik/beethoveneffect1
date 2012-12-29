@@ -192,10 +192,7 @@ namespace beethoven3
             
             sndSystem.init(1, FMOD.INITFLAG.NORMAL, (IntPtr)null);
            
-
-
-
-
+            
             /* 음원을 로드시킬 때 createStream 과 createSound 두가지가 있는 것을 확인할 수 있는데
  createStream은 배경음악을, createSound는 효과음을 넣는것이 좋습니다.*/
 
@@ -210,19 +207,19 @@ namespace beethoven3
             itemManager.LoadContent(Content);
             itemManager.Init();
 
-            rightItemShop = new RightItemShop(itemManager);
+            rightItemShop = new RightItemShop(itemManager,  scoreManager);
             rightItemShop.LoadContent(Content);
 
-            leftItemShop = new LeftItemShop(itemManager);
+            leftItemShop = new LeftItemShop(itemManager, scoreManager);
             leftItemShop.LoadContent(Content);
 
-            effectItemShop = new EffectItemShop(itemManager);
+            effectItemShop = new EffectItemShop(itemManager, scoreManager);
             effectItemShop.LoadContent(Content);
 
-            noteItemShop = new NoteItemShop(itemManager);
+            noteItemShop = new NoteItemShop(itemManager, scoreManager);
             noteItemShop.LoadContent(Content);
 
-            backgroundItemShop = new BackgroundItemShop(itemManager);
+            backgroundItemShop = new BackgroundItemShop(itemManager, scoreManager);
             backgroundItemShop.LoadContent(Content);
 
 
@@ -1095,6 +1092,7 @@ namespace beethoven3
                                    }
                                    else
                                    {
+                                       
                                        //get wrong index( no item in list)
                                    }
                                }
@@ -1196,8 +1194,6 @@ namespace beethoven3
                                    rightItemShop.setWearOne(true);
                                    i = rectRightItems.Count;
                                   
-
-
                                }
                                else
                                {
@@ -1236,6 +1232,8 @@ namespace beethoven3
                                    }
                                    else
                                    {
+                                       
+
                                        //get wrong index( no item in list)
                                    }
 
@@ -1267,6 +1265,31 @@ namespace beethoven3
                        }
 
                    }
+                   //돈 부족 메시지 
+                   if (rightItemShop.getNoGold())
+                   {
+                       if (mouseRect.Intersects(rightItemShop.getRectNoGoldButton()))
+                       {
+
+                           rightItemShop.setHoverNoGoldButton(true);
+                           if (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released)
+                           {
+
+                               rightItemShop.setDarkBackground(false);
+
+                               rightItemShop.setNoGold(false);
+                           }
+
+                       }
+                       else
+                       {
+                           rightItemShop.setHoverNoGoldButton(false);
+                       }
+
+
+                   }
+
+
 
                    //message box about buying item
                    if (rightItemShop.getBuyOne())
@@ -1276,21 +1299,45 @@ namespace beethoven3
                        {
                            rightItemShop.setHoverYesButton(true);
                            if (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released)
-                         //  {
+                           {
                                //add item to my item
                                if (selectedItem != null)
                                {
-                                   rightItemShop.addItemtoMyItem(selectedItem);
-   
+                                 
+                                    
+                                   //돈으로 물건사기 
+                                   //buy item with money
+
+
+                                   //돈이 충분히 있다.
+                                   if (scoreManager.TotalGold >= selectedItem.GetCost())
+                                   {
+
+                                       //전체 돈에서 구입비용 차감
+                                       scoreManager.TotalGold -= selectedItem.GetCost();
+                                       rightItemShop.addItemtoMyItem(selectedItem);
+                                       rightItemShop.setBuyOne(false);
+                                       rightItemShop.setDarkBackground(false);
+                                   }
+                                   //돈이 없다.
+                                   else
+                                   {
+
+                                       rightItemShop.setBuyOne(false);
+                                       //"돈 부족" 메시지 띄운다.
+                                       rightItemShop.setNoGold(true);
+
+                                       
+                                   }
+
                                    //return to normal , remove message box
-                                   rightItemShop.setBuyOne(false);
-                                   rightItemShop.setDarkBackground(false);
+                                  
                                }
                                else
                                {
                                    //nothing is selected
                                }
-                          // }
+                           }
                            
                        }
                        else
@@ -1706,7 +1753,7 @@ namespace beethoven3
                        
                        //점수 기록 파일로 저장
                        //save recored scores in the file
-                       scoreManager.TotalGold = scoreManager.Gold;
+                       scoreManager.TotalGold += scoreManager.Gold;
                        reportManager.SaveReport();
                        
                        //기록판에 보여줄 유저 사진 찾기

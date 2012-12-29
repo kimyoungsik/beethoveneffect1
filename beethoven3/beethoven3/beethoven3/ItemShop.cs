@@ -7,12 +7,13 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using System.Diagnostics;
+using System.IO;
 namespace beethoven3
 {
     class ItemShop
     {
-       protected ItemManager itemManager;
-    
+        protected ItemManager itemManager;
+        protected ScoreManager scoreManager;
 
         protected bool darkBackground;
         
@@ -37,13 +38,24 @@ namespace beethoven3
         protected Texture2D usedItemBackground;
         protected Texture2D ItemBackground;
 
+        protected Texture2D hoverNoGoldButton;
+        protected Texture2D noGoldButton;
+
+        protected bool noGold;
+        protected bool isHoverNoGoldButton;
+
+
+        protected Rectangle recNoGoldButton;
+
    
-        public ItemShop(ItemManager itemManager)
+        public ItemShop(ItemManager itemManager, ScoreManager scoreManager)
         {
             this.itemManager = itemManager;
+            this.scoreManager = scoreManager;
             darkBackground = false;
             wearOne = false;
             buyOne = false;
+            noGold = false;
         }
 
         public virtual void LoadContent(ContentManager cm)
@@ -61,15 +73,11 @@ namespace beethoven3
             usedItemBackground = cm.Load<Texture2D>(@"background\itemBackground");
             ItemBackground = cm.Load<Texture2D>(@"background\itemBackground2");
 
+            noGoldButton = cm.Load<Texture2D>(@"shopdoor\nogold");
+            hoverNoGoldButton = cm.Load<Texture2D>(@"shopdoor\nogoldhover");
+
         }
 
-        //public void addItemtoMyItem(Item item)
-        //{
-        //    itemManager.addMyRightHandItem(item);
-
-        //    myRightItems = itemManager.getMyRightHandItem();
-        //}
-       
         public void setDarkBackground(bool value)
         {
             this.darkBackground = value;
@@ -86,6 +94,7 @@ namespace beethoven3
             return this.buyOne;
         }
 
+
         public void setWearOne(bool value)
         {
             this.wearOne = value;
@@ -98,7 +107,17 @@ namespace beethoven3
         }
 
 
+        public void setNoGold(bool value)
+        {
+            this.noGold = value;
        
+        }
+
+        public bool getNoGold()
+        {
+            return this.noGold;
+        }
+
 
         //public List<Rectangle> getRectRightItem()
         //{
@@ -139,6 +158,27 @@ namespace beethoven3
 
         //}
 
+        //public void SaveReport()
+        //{
+        //    TextWriter tw = new StreamWriter("c:\\beethovenRecord\\record.txt");
+        //    int i, j;
+        //    for (i = 0; i < scoreInfoManagers.Count; i++)
+        //    {
+        //        tw.WriteLine("%%");
+        //        tw.WriteLine(scoreInfoManagers[i].SongName);
+        //        List<ScoreInfo> scoreInfos = scoreInfoManagers[i].GetScoreInfos();
+        //        for (j = 0; j < scoreInfos.Count; j++)
+        //        {
+        //            tw.WriteLine(scoreInfos[j].UserPicture + '$' + scoreInfos[j].Score);
+        //        }
+        //    }
+
+            
+        //    tw.WriteLine("**");
+        //    tw.WriteLine(scoreManager.TotalGold);
+
+        //    tw.Close();
+        //}
 
         public Rectangle getRectYesButton()
         {
@@ -149,14 +189,22 @@ namespace beethoven3
         {
             return this.recNoButton;
         }
-
+        public Rectangle getRectNoGoldButton()
+        {
+            return this.recNoGoldButton;
+        }
 
         public void setHoverYesButton(bool value)
         {
 
             this.isHoverYesButton = value;
         }
+        
+        public void setHoverNoGoldButton(bool value)
+        {
 
+            this.isHoverNoGoldButton = value;
+        }
 
         public void setHoverNoButton(bool value)
         {

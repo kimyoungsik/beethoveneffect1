@@ -17,8 +17,8 @@ namespace beethoven3
 
 
 
-        public RightItemShop(ItemManager itemManager)
-            : base(itemManager)
+        public RightItemShop(ItemManager itemManager,ScoreManager scoreManager)
+            : base(itemManager, scoreManager)
         {
           
         }
@@ -74,7 +74,6 @@ namespace beethoven3
             int i;
             for (i = 0; i < rightItems.Count; i++)
             {
-
                 Rectangle rectRightHand = new Rectangle(300, i * 150, 100, 100);
                 rectRightItems.Add(rectRightHand);
             }
@@ -127,14 +126,34 @@ namespace beethoven3
                 Color color = Color.White;
                 color.A = 50;
                 spriteBatch.Draw(darkBackgroundImage, new Rectangle(0, 0, width, height), color);
-
+                Vector2 middle = new Vector2(width / 2, height / 2);
                 //Rectangle rectBuyPanel = new Rectangle(width / 2 - (buyPanel.Width / 2) - 100, height / 2 - (buyPanel.Height / 2) - 100, 200, 101);
                 //spriteBatch.Draw(buyPanel,new Vector2(100,100), rectBuyPanel, Color.White,0f,new Vector2(0,0),1f,SpriteEffects.None,1f);
+
+                //돈이 부족 하면 팝업 띄운다.
+                //show up message if there is not enough money
+                if (noGold)
+                {
+                    
+                    spriteBatch.Draw(noGoldButton, middle, null, Color.White, 0f, new Vector2(350, 200), 1f, SpriteEffects.None, 1f);
+
+                    //마우스 커서가 버튼위에 올라가면
+                    //mouse cursor on noGoldButton
+                    if(isHoverNoGoldButton)
+                    {
+                        spriteBatch.Draw(hoverNoGoldButton, middle, null, Color.White, 0f, new Vector2(350, 200), 1f, SpriteEffects.None, 1f);
+
+                    }
+
+
+                    recNoGoldButton = new Rectangle((int)middle.X-350, (int)middle.Y-200, 700, 300);
+                }
+
 
                 //to BUY item
                 if (buyOne)
                 {
-                    Vector2 middle = new Vector2(width / 2, height / 2);
+                 //   Vector2 middle = new Vector2(width / 2, height / 2);
                     spriteBatch.Draw(buyPanel, middle, null, Color.White, 0f, new Vector2(310, 150), 1.5f, SpriteEffects.None, 1f);
 
                     Vector2 yesButtonLocation = new Vector2(width / 2 - 180, height / 2 + 50);
@@ -180,7 +199,7 @@ namespace beethoven3
                 // to WEAR item
                 if(wearOne)
                 {
-                    Vector2 middle = new Vector2(width / 2, height / 2);
+                  //  Vector2 middle = new Vector2(width / 2, height / 2);
                     spriteBatch.Draw(putPanel, middle, null, Color.White, 0f, new Vector2(310, 150), 1.5f, SpriteEffects.None, 1f);
 
                     Vector2 yesButtonLocation = new Vector2(width / 2 - 180, height / 2 + 50);

@@ -18,8 +18,8 @@ namespace beethoven3
 
 
 
-        public NoteItemShop(ItemManager itemManager)
-            : base(itemManager)
+        public NoteItemShop(ItemManager itemManager,  ScoreManager  scoreManager)
+            : base(itemManager, scoreManager)
         {
 
         }

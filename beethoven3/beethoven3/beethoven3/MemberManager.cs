@@ -74,18 +74,18 @@ namespace beethoven3
         {
 
             ///프레임카운트 일단 1
-            //first Run
-            MakeMember(firstMemberPlay, new Rectangle(0,0,490,800),new Vector2(20,-150),Vector2.Zero,0f,15,1,0,0.3f);
-            //second Run
-            MakeMember(secondMemberPlay, new Rectangle(0, 0, 258, 595), new Vector2(170, -110), Vector2.Zero, 0f, 15,1, 1, 0.4f);
-            //third Run
-            MakeMember(thirdMemberPlay, new Rectangle(0, 0, 471, 595), new Vector2(170, -170), Vector2.Zero, 0f, 15, 1, 2, 0.4f);
-            //forth Run
-            MakeMember(forthMemberPlay, new Rectangle(0, 0, 312, 800), new Vector2(370, -290), Vector2.Zero, 0f, 15, 1, 3, 0.28f);
-            //fifth Run
-            MakeMember(fifthMemberPlay, new Rectangle(0, 0, 372, 800), new Vector2(420, -220), Vector2.Zero, 0f, 15, 1, 4, 0.3f);
-            //sixth Run
-            MakeMember(sixthMemberPlay, new Rectangle(0, 0, 320, 595), new Vector2(510, -40), Vector2.Zero, 0f, 15, 1, 5, 0.42f);
+            //first Run //바이올린
+            MakeMember(firstMemberPlay, new Rectangle(0,0,114,160),new Vector2(110,160),Vector2.Zero,0f,15,15,0,1f);
+            //second Run //플룻
+            MakeMember(secondMemberPlay, new Rectangle(0, 0, 253, 595), new Vector2(170, -110), Vector2.Zero, 0f, 15,5, 1, 0.4f);
+            //third Run //팀파니
+            MakeMember(thirdMemberPlay, new Rectangle(0, 0, 196, 238), new Vector2(170, 170), Vector2.Zero, 0f, 15, 5, 2, 1f);
+            //forth Run // 호른
+            MakeMember(forthMemberPlay, new Rectangle(0, 0, 280, 595), new Vector2(370, 290), Vector2.Zero, 0f, 15, 5 , 3, 0.28f);
+            //fifth Run //콘타라 베이스
+            MakeMember(fifthMemberPlay, new Rectangle(0, 0, 172, 254), new Vector2(420, 220), Vector2.Zero, 0f, 15, 8, 4, 1f);
+            //sixth Run //첼로 
+            MakeMember(sixthMemberPlay, new Rectangle(0, 0, 325, 595), new Vector2(510, -40), Vector2.Zero, 0f , 15, 5, 5, 0.42f);
 
 
             //first Run
@@ -125,6 +125,15 @@ namespace beethoven3
             thisMember.Velocity *= speed;
 
             for (int x = 1; x < frameCount; x++)
+            {
+                thisMember.AddFrame(new Rectangle(
+                    InitialFrame.X + (InitialFrame.Width * x),
+                    InitialFrame.Y,
+                    InitialFrame.Width,
+                    InitialFrame.Height));
+            }
+
+            for (int x = frameCount-1; x > 0; x--)
             {
                 thisMember.AddFrame(new Rectangle(
                     InitialFrame.X + (InitialFrame.Width * x),
