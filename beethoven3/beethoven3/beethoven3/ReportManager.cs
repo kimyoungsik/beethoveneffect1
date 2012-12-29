@@ -62,8 +62,16 @@ namespace beethoven3
                 }   
             }
             tw.WriteLine("**");
-            tw.WriteLine(scoreManager.TotalGold);
+            //tw.WriteLine(scoreManager.TotalGold);
                        
+            tw.Close();
+        }
+
+        public void SaveGoldToFile()
+        {
+            TextWriter tw = new StreamWriter("c:\\beethovenRecord\\gold.txt");
+            tw.WriteLine("**");
+            tw.WriteLine(scoreManager.TotalGold);
             tw.Close();
         }
 
@@ -90,10 +98,25 @@ namespace beethoven3
                    }
                    line = sr.ReadLine();          
             }
-            line = sr.ReadLine();
+  //          line = sr.ReadLine();
 
-            scoreManager.TotalGold = Int32.Parse(line);
+//            scoreManager.TotalGold = Int32.Parse(line);
             
+            sr.Close();
+        }
+
+        public void LoadGoldFromFile()
+        {
+            StreamReader sr = new StreamReader("c:\\beethovenRecord\\gold.txt");
+            String line;
+            line = sr.ReadLine();
+            if (line == "**")//처음
+            {
+                line = sr.ReadLine();
+                scoreManager.TotalGold = Int32.Parse(line);
+            }
+
+
             sr.Close();
         }
 

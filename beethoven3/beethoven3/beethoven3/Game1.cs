@@ -375,8 +375,9 @@ namespace beethoven3
             //점수기록판을 로드해서 게임에 올린다. 
 
             reportManager.LoadReport();
-            
 
+            //골드를 로드해서 게임에 올린다. 
+            reportManager.LoadGoldFromFile();
 
             currentSongName = "";
 #if Kinect
@@ -1068,6 +1069,34 @@ namespace beethoven3
                             }
                        }
                    }
+
+
+
+                   //돈 부족 메시지 
+                   if (leftItemShop.getNoGold())
+                   {
+                       if (mouseRectinleft.Intersects(leftItemShop.getRectNoGoldButton()))
+                       {
+
+                           leftItemShop.setHoverNoGoldButton(true);
+                           if (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released)
+                           {
+
+                               leftItemShop.setDarkBackground(false);
+
+                               leftItemShop.setNoGold(false);
+                           }
+
+                       }
+                       else
+                       {
+                           leftItemShop.setHoverNoGoldButton(false);
+                       }
+
+
+                   }
+
+
                    //message box about wearing item 
                    if (leftItemShop.getWearOne())
                    {
@@ -1122,6 +1151,10 @@ namespace beethoven3
                            leftItemShop.setHoverNoButton(false);
                        }
                    }
+
+
+
+
                    //message box about buying item
                    if (leftItemShop.getBuyOne())
                    {
@@ -1135,10 +1168,34 @@ namespace beethoven3
                                //add item to my item
                                if (selectedItem != null)
                                {
-                                   leftItemShop.addItemtoMyItem(selectedItem);
-                                   //return to normal , remove message box
-                                   leftItemShop.setBuyOne(false);
-                                   leftItemShop.setDarkBackground(false);
+
+
+                                   //돈으로 물건사기 
+                                   //buy item with money
+
+
+                                   //돈이 충분히 있다.
+                                   if (scoreManager.TotalGold >= selectedItem.GetCost())
+                                   {
+
+                                       //전체 돈에서 구입비용 차감
+                                       scoreManager.TotalGold -= selectedItem.GetCost();
+                                       leftItemShop.addItemtoMyItem(selectedItem);
+                                       //return to normal , remove message box
+                                       leftItemShop.setBuyOne(false);
+                                       leftItemShop.setDarkBackground(false);
+                                   }
+                                   //돈이 없다.
+                                   else
+                                   {
+
+                                       leftItemShop.setBuyOne(false);
+                                       //"돈 부족" 메시지 띄운다.
+                                       leftItemShop.setNoGold(true);
+
+
+                                   }
+                                   
                                }
                                else
                                {
@@ -1206,6 +1263,31 @@ namespace beethoven3
                        }
                    }
 
+                   //돈 부족 메시지 
+                   if (rightItemShop.getNoGold())
+                   {
+                       if (mouseRect.Intersects(rightItemShop.getRectNoGoldButton()))
+                       {
+
+                           rightItemShop.setHoverNoGoldButton(true);
+                           if (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released)
+                           {
+
+                               rightItemShop.setDarkBackground(false);
+
+                               rightItemShop.setNoGold(false);
+                           }
+
+                       }
+                       else
+                       {
+                           rightItemShop.setHoverNoGoldButton(false);
+                       }
+
+
+                   }
+
+
                    //message box about wearing item 
                    if (rightItemShop.getWearOne())
                    {
@@ -1265,29 +1347,7 @@ namespace beethoven3
                        }
 
                    }
-                   //돈 부족 메시지 
-                   if (rightItemShop.getNoGold())
-                   {
-                       if (mouseRect.Intersects(rightItemShop.getRectNoGoldButton()))
-                       {
-
-                           rightItemShop.setHoverNoGoldButton(true);
-                           if (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released)
-                           {
-
-                               rightItemShop.setDarkBackground(false);
-
-                               rightItemShop.setNoGold(false);
-                           }
-
-                       }
-                       else
-                       {
-                           rightItemShop.setHoverNoGoldButton(false);
-                       }
-
-
-                   }
+                  
 
 
 
@@ -1391,6 +1451,31 @@ namespace beethoven3
                            }
                        }
                    }
+
+                   //돈 부족 메시지 
+                   if (noteItemShop.getNoGold())
+                   {
+                       if (mouseRectinNote.Intersects(noteItemShop.getRectNoGoldButton()))
+                       {
+
+                           noteItemShop.setHoverNoGoldButton(true);
+                           if (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released)
+                           {
+
+                               noteItemShop.setDarkBackground(false);
+
+                               noteItemShop.setNoGold(false);
+                           }
+
+                       }
+                       else
+                       {
+                           noteItemShop.setHoverNoGoldButton(false);
+                       }
+
+
+                   }
+
                    //message box about wearing item 
                    if (noteItemShop.getWearOne())
                    {
@@ -1457,10 +1542,34 @@ namespace beethoven3
                                //add item to my item
                                if (selectedItem != null)
                                {
-                                   noteItemShop.addItemtoMyItem(selectedItem);
-                                   //return to normal , remove message box
-                                   noteItemShop.setBuyOne(false);
-                                   noteItemShop.setDarkBackground(false);
+
+                                   //돈으로 물건사기 
+                                   //buy item with money
+
+
+                                   //돈이 충분히 있다.
+                                   if (scoreManager.TotalGold >= selectedItem.GetCost())
+                                   {
+
+                                       //전체 돈에서 구입비용 차감
+                                       scoreManager.TotalGold -= selectedItem.GetCost();
+                                       noteItemShop.addItemtoMyItem(selectedItem);
+                                       //return to normal , remove message box
+                                       noteItemShop.setBuyOne(false);
+                                       noteItemShop.setDarkBackground(false);
+                                   }
+                                   //돈이 없다.
+                                   else
+                                   {
+
+                                       noteItemShop.setBuyOne(false);
+                                       //"돈 부족" 메시지 띄운다.
+                                       noteItemShop.setNoGold(true);
+
+
+                                   }
+
+                                 
                                }
                                else
                                {
@@ -1515,6 +1624,34 @@ namespace beethoven3
                            }
                        }
                    }
+
+
+                   //돈 부족 메시지 
+                   if (effectItemShop.getNoGold())
+                   {
+                       if (mouseRectinEffect.Intersects(effectItemShop.getRectNoGoldButton()))
+                       {
+
+                           effectItemShop.setHoverNoGoldButton(true);
+                           if (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released)
+                           {
+
+                               effectItemShop.setDarkBackground(false);
+
+                               effectItemShop.setNoGold(false);
+                           }
+
+                       }
+                       else
+                       {
+                           effectItemShop.setHoverNoGoldButton(false);
+                       }
+
+
+                   }
+
+
+
                    //message box about wearing item 
                    if (effectItemShop.getWearOne())
                    {
@@ -1581,10 +1718,36 @@ namespace beethoven3
                                //add item to my item
                                if (selectedItem != null)
                                {
-                                   effectItemShop.addItemtoMyItem(selectedItem);
-                                   //return to normal , remove message box
-                                   effectItemShop.setBuyOne(false);
-                                   effectItemShop.setDarkBackground(false);
+
+                                   //돈으로 물건사기 
+                                   //buy item with money
+
+
+                                   //돈이 충분히 있다.
+                                   if (scoreManager.TotalGold >= selectedItem.GetCost())
+                                   {
+
+                                       //전체 돈에서 구입비용 차감
+                                       scoreManager.TotalGold -= selectedItem.GetCost();
+                                       effectItemShop.addItemtoMyItem(selectedItem);
+                                       //return to normal , remove message box
+                                       effectItemShop.setBuyOne(false);
+                                       effectItemShop.setDarkBackground(false);
+                                   }
+                                   //돈이 없다.
+                                   else
+                                   {
+
+                                       effectItemShop.setBuyOne(false);
+                                       //"돈 부족" 메시지 띄운다.
+                                       effectItemShop.setNoGold(true);
+
+
+                                   }
+
+
+
+                                  
                                }
                                else
                                {
@@ -1639,6 +1802,34 @@ namespace beethoven3
                            }
                        }
                    }
+
+
+                   //돈 부족 메시지 
+                   if (backgroundItemShop.getNoGold())
+                   {
+                       if (mouseRectinBackground.Intersects(backgroundItemShop.getRectNoGoldButton()))
+                       {
+
+                           backgroundItemShop.setHoverNoGoldButton(true);
+                           if (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released)
+                           {
+
+                               backgroundItemShop.setDarkBackground(false);
+
+                               backgroundItemShop.setNoGold(false);
+                           }
+
+                       }
+                       else
+                       {
+                           backgroundItemShop.setHoverNoGoldButton(false);
+                       }
+
+
+                   }
+
+
+
                    //message box about wearing item 
                    if (backgroundItemShop.getWearOne())
                    {
@@ -1705,10 +1896,34 @@ namespace beethoven3
                                //add item to my item
                                if (selectedItem != null)
                                {
-                                   backgroundItemShop.addItemtoMyItem(selectedItem);
-                                   //return to normal , remove message box
-                                   backgroundItemShop.setBuyOne(false);
-                                   backgroundItemShop.setDarkBackground(false);
+
+                                   //돈으로 물건사기 
+                                   //buy item with money
+
+
+                                   //돈이 충분히 있다.
+                                   if (scoreManager.TotalGold >= selectedItem.GetCost())
+                                   {
+
+                                       //전체 돈에서 구입비용 차감
+                                       scoreManager.TotalGold -= selectedItem.GetCost();
+
+                                       backgroundItemShop.addItemtoMyItem(selectedItem);
+                                       //return to normal , remove message box
+                                       backgroundItemShop.setBuyOne(false);
+                                       backgroundItemShop.setDarkBackground(false);
+                                   }
+                                   //돈이 없다.
+                                   else
+                                   {
+
+                                       backgroundItemShop.setBuyOne(false);
+                                       //"돈 부족" 메시지 띄운다.
+                                       backgroundItemShop.setNoGold(true);
+
+
+                                   }
+
                                }
                                else
                                {
@@ -1753,8 +1968,14 @@ namespace beethoven3
                        
                        //점수 기록 파일로 저장
                        //save recored scores in the file
-                       scoreManager.TotalGold += scoreManager.Gold;
                        reportManager.SaveReport();
+
+
+                       
+                       
+                       //gold 파일에  저장
+                       scoreManager.TotalGold += scoreManager.Gold;
+                       reportManager.SaveGoldToFile();
                        
                        //기록판에 보여줄 유저 사진 찾기
                        //Fine user pictures which will be seen in score board
