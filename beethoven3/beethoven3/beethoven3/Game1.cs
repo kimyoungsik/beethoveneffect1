@@ -1184,6 +1184,8 @@ namespace beethoven3
                                        //return to normal , remove message box
                                        leftItemShop.setBuyOne(false);
                                        leftItemShop.setDarkBackground(false);
+                                       //돈을 파일에 저장
+                                       reportManager.SaveGoldToFile();
                                    }
                                    //돈이 없다.
                                    else
@@ -1378,6 +1380,8 @@ namespace beethoven3
                                        rightItemShop.addItemtoMyItem(selectedItem);
                                        rightItemShop.setBuyOne(false);
                                        rightItemShop.setDarkBackground(false);
+                                       //돈을 파일에 저장
+                                       reportManager.SaveGoldToFile();
                                    }
                                    //돈이 없다.
                                    else
@@ -1557,6 +1561,8 @@ namespace beethoven3
                                        //return to normal , remove message box
                                        noteItemShop.setBuyOne(false);
                                        noteItemShop.setDarkBackground(false);
+                                       //돈을 파일에 저장
+                                       reportManager.SaveGoldToFile();
                                    }
                                    //돈이 없다.
                                    else
@@ -1733,6 +1739,9 @@ namespace beethoven3
                                        //return to normal , remove message box
                                        effectItemShop.setBuyOne(false);
                                        effectItemShop.setDarkBackground(false);
+
+                                       //돈을 파일에 저장
+                                       reportManager.SaveGoldToFile();
                                    }
                                    //돈이 없다.
                                    else
@@ -1912,6 +1921,8 @@ namespace beethoven3
                                        //return to normal , remove message box
                                        backgroundItemShop.setBuyOne(false);
                                        backgroundItemShop.setDarkBackground(false);
+                                       //돈을 파일에 저장
+                                       reportManager.SaveGoldToFile();
                                    }
                                    //돈이 없다.
                                    else
