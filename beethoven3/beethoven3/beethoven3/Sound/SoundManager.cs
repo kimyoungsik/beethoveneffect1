@@ -21,8 +21,7 @@ namespace beethoven3
           AddSndFile("snd/maid");
             
         }
-
-       
+              
 
         static public int AddSndFile(String name)
         {

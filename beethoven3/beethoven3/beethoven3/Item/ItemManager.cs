@@ -51,19 +51,19 @@ namespace beethoven3
             int i;
             for (i = 0; i < 4; i++)
             {
-                addItem(rightHandItem, new Vector2(100, 100), rightHandTexture[i], new Rectangle(0, 0, rightHandTexture[i].Width, rightHandTexture[i].Height), 1,/*cost*/ 5);
+                addItem(rightHandItem, new Vector2(100, 100), rightHandTexture[i], new Rectangle(0, 0, rightHandTexture[i].Width, rightHandTexture[i].Height), 1,/*cost*/ (i+1)*5);
             }
                 for (i = 0; i < 2; i++)
             {
-                addItem(leftHandItem, new Vector2(100, 100), leftHandTexture[i], new Rectangle(0, 0, leftHandTexture[i].Width, leftHandTexture[i].Height), 1,/*cost*/ 5);
+                addItem(leftHandItem, new Vector2(100, 100), leftHandTexture[i], new Rectangle(0, 0, leftHandTexture[i].Width, leftHandTexture[i].Height), 1,/*cost*/ 7);
                 
                 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 //have to additem, effect, node , background
-                addItem(effectItem, new Vector2(100, 100), effectTexture[i], new Rectangle(0, 0, effectTexture[i].Width, effectTexture[i].Height), 1,/*cost*/ 5);
+                addItem(effectItem, new Vector2(100, 100), effectTexture[i], new Rectangle(0, 0, effectTexture[i].Width, effectTexture[i].Height), 1,/*cost*/ 16);
 
-                addItem(noteItem, new Vector2(100, 100), noteTexture[i], new Rectangle(0, 0, noteTexture[i].Width, noteTexture[i].Height), 1,/*cost*/ 5);
+                addItem(noteItem, new Vector2(100, 100), noteTexture[i], new Rectangle(0, 0, noteTexture[i].Width, noteTexture[i].Height), 1,/*cost*/ 25);
 
-                addItem(backgroundItem, new Vector2(100, 100), backgroundTexture[i], new Rectangle(0, 0, backgroundTexture[i].Width, backgroundTexture[i].Height), 1,/*cost*/ 5);
+                addItem(backgroundItem, new Vector2(100, 100), backgroundTexture[i], new Rectangle(0, 0, backgroundTexture[i].Width, backgroundTexture[i].Height), 1,/*cost*/ 45);
             
             }
 

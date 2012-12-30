@@ -82,8 +82,12 @@ namespace beethoven3
 
         public override void Draw(SpriteBatch spriteBatch, int width, int height)
         {
-            
-            
+            spriteBatch.DrawString(pericles36Font, "Gold : ", new Vector2(10, 200), Color.Black);
+
+
+            //전체 돈 표시
+            spriteBatch.DrawString(pericles36Font, scoreManager.TotalGold.ToString(),new Vector2(190,200), Color.Black);
+
             int i;
            
 
@@ -105,7 +109,8 @@ namespace beethoven3
                     spriteBatch.Draw(rightItems[i].ItemSprite.Texture, rectRightItems[i], Color.Black);
                 }
 
-                
+                //아이템 가격 표시 
+                spriteBatch.DrawString(pericles36Font, rightItems[i].GetCost().ToString(), new Vector2(rectRightItems[i].X+(rectRightItems[i].Width/2), rectRightItems[i].Y + rectRightItems[i].Height), Color.Black);
            
                 //rectRightItem.Add(rectRightHand);
             }

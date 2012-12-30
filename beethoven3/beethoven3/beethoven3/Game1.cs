@@ -19,9 +19,6 @@ using Microsoft.Speech.AudioFormat;
 using System.Diagnostics;
 using FMOD;
 
-/*
- 타입 0-오른손 1-왼손 2-양손 3-롱노트 4-드래그노트 
-*/
 
 namespace beethoven3
 {
@@ -33,9 +30,12 @@ namespace beethoven3
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        //기본 글꼴
+        //basic font
         SpriteFont pericles36Font;
-        SpriteFont oldfont;
-
+       
+//키넥트 관련 선언
+//for kinect
 #if Kinect
          //키넥트
          KinectSensor nui = null;
@@ -68,15 +68,31 @@ namespace beethoven3
 
         enum GameStates { Menu, Playing, SongMenu, ShopDoor,
                           RightItemShop, LeftItemShop, EffectItemShop, NoteItemShop, BackgroundItemShop,
-                          ResultManager, RecordBoard, GameOver };
+                          ResultManager, RecordBoard };
+
+        //게임 씬, 처음시작은 메뉴
         GameStates gameState = GameStates.Menu;
 
+        //타이틀 화면
         MenuScene menuScene;
+
+        //상점 화면
         ShopDoor shopDoor;
 
+
+
+        ////////텍스쳐
+ 
+        //현재는 노트와 마커 텍스쳐 이펙트까지
+        //NOTES, MARKERS TEXTERUE
         public static Texture2D spriteSheet;
+     
+        //드래그 노트 텍스쳐
+        //DragNote Textere
         public static Texture2D heart;
-        public static Texture2D dot;
+        
+        
+       // public static Texture2D dot;
 
         private Texture2D uiBackground;
         private Texture2D uiHeart;
@@ -207,6 +223,8 @@ namespace beethoven3
             itemManager.LoadContent(Content);
             itemManager.Init();
 
+            scoreManager = new ScoreManager(); 
+
             rightItemShop = new RightItemShop(itemManager,  scoreManager);
             rightItemShop.LoadContent(Content);
 
@@ -238,16 +256,14 @@ namespace beethoven3
 
             spriteSheet = Content.Load<Texture2D>(@"Textures\SpriteSheet8");
             heart = Content.Load<Texture2D>(@"Textures\heart");
-            dot = Content.Load<Texture2D>(@"Textures\dot");
+       //     dot = Content.Load<Texture2D>(@"Textures\dot");
            
             //test 텍스쳐 순서
             uiBackground = Content.Load<Texture2D>(@"ui\background");
             uiHeart = Content.Load<Texture2D>(@"ui\heart");
             
             pericles36Font = Content.Load<SpriteFont>(@"Fonts\Pericles36");
-            oldfont = Content.Load<SpriteFont>(@"Fonts\PerpetuaFont");
-
-            
+           
             // TODO: use this.Content to load your game content here
 
           //  LineRenderer.LoadContent(content);
@@ -276,7 +292,7 @@ namespace beethoven3
             Vector2 mark6Location = new Vector2(350, 370);
           
 
-            scoreManager = new ScoreManager();
+            
             
             startNoteManager = new StartNoteManager(
                 spriteSheet,
@@ -1350,8 +1366,6 @@ namespace beethoven3
 
                    }
                   
-
-
 
                    //message box about buying item
                    if (rightItemShop.getBuyOne())

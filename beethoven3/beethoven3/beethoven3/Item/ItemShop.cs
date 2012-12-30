@@ -21,6 +21,8 @@ namespace beethoven3
         protected bool buyOne;
         protected bool wearOne;
 
+        protected SpriteFont pericles36Font;
+
         protected Texture2D darkBackgroundImage;
         protected Texture2D yesButton;
         protected Texture2D noButton;
@@ -69,12 +71,13 @@ namespace beethoven3
             hoverYesButton = cm.Load<Texture2D>(@"shopdoor\hoverYesButton");
             hoverNoButton = cm.Load<Texture2D>(@"shopdoor\hoverNoButton");
 
-
             usedItemBackground = cm.Load<Texture2D>(@"background\itemBackground");
             ItemBackground = cm.Load<Texture2D>(@"background\itemBackground2");
 
             noGoldButton = cm.Load<Texture2D>(@"shopdoor\nogold");
             hoverNoGoldButton = cm.Load<Texture2D>(@"shopdoor\nogoldhover");
+
+            pericles36Font = cm.Load<SpriteFont>(@"Fonts\Pericles36");
 
         }
 
