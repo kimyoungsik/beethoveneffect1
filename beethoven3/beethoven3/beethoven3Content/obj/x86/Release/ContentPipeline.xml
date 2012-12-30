@@ -416,7 +416,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\character\contrabase.xnb</Output>
-      <Time>2012-12-29T01:32:48.3871167+09:00</Time>
+      <Time>2012-12-31T00:35:13.1463676+09:00</Time>
     </Item>
     <Item>
       <Source>character\flute.png</Source>
@@ -561,6 +561,15 @@
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopdoor\nogoldhover.xnb</Output>
       <Time>2012-12-29T11:09:34.7544325+09:00</Time>
+    </Item>
+    <Item>
+      <Source>character\contrabase2.png</Source>
+      <Name>character\contrabase2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\character\contrabase2.xnb</Output>
+      <Time>2012-12-30T21:20:29.9471875+09:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
