@@ -12,11 +12,11 @@ namespace beethoven3
 {
     class RecordBoard
     {
+
         private Texture2D background;
         private Texture2D nextButton;
         private Texture2D hoverNextButton;
         private bool clickNextButton;
-
         private Rectangle recBackground;
         private Rectangle recNextButton;
   
@@ -42,7 +42,6 @@ namespace beethoven3
             spriteBatch.Draw(nextButton, recNextButton, Color.White);
 
         
-
             if (clickNextButton)
             {
                 spriteBatch.Draw(hoverNextButton, recNextButton, Color.White);
@@ -50,14 +49,10 @@ namespace beethoven3
 
         }
 
-
         public void setClickNextButton(bool value)
         {
             this.clickNextButton = value;
         }
-
-
-
 
         public Rectangle getRectNextButton()
         {

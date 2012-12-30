@@ -2378,7 +2378,7 @@ namespace beethoven3
                 {
                     //노래 사진
                     spriteBatch.Draw(reportManager.FindPicture(highScores[i].UserPicture), new Rectangle(200, (i + 1) * 100, 100, 100), Color.White);
-                    //노래 점수 
+                    
                     spriteBatch.DrawString(pericles36Font, highScores[i].Score.ToString(), new Vector2(300, (i+1)*100), Color.Black);
                 }
 

@@ -16,7 +16,6 @@ namespace beethoven3
         {
             this.picture = picture;
             this.name = name;
-
         }
 
         public Texture2D Picture
@@ -73,7 +72,9 @@ namespace beethoven3
                 tw.WriteLine("%%");
                 tw.WriteLine(scoreInfoManagers[i].SongName);
                 List<ScoreInfo> scoreInfos = scoreInfoManagers[i].GetScoreInfos();
-                for (j = 0; j < scoreInfos.Count; j++)
+                //전체개수가 5보다 클때는 5로 저장
+                int count = (scoreInfos.Count > 5 ? 5 : scoreInfos.Count);
+                for (j = 0; j < count; j++)
                 {
                     tw.WriteLine(scoreInfos[j].UserPicture + '$' + scoreInfos[j].Score);
                 }   
@@ -106,21 +107,25 @@ namespace beethoven3
             String songTitle=null;
             String[] contents;
             line = sr.ReadLine();
-            while (line != "**")//처음
-               {
-                   if (line == "%%")
-                   {
-                       //노래 제목
-                       songTitle = sr.ReadLine();
-                   }
-                   else
-                   {
-                       contents = ((String)line).Split('$');
-                       this.AddSongInfoManager(songTitle, Int32.Parse(contents[1]), contents[0]); // contents[0] 그림 , contents[1]  점수
-                   }
-                   line = sr.ReadLine();          
+
+            //세이브도 하나도 안되어있는 상태에서 처음 열었을때
+            if (line != null)
+            {
+                while (line != "**")//처음
+                {
+                    if (line == "%%")
+                    {
+                        //노래 제목
+                        songTitle = sr.ReadLine();
+                    }
+                    else
+                    {
+                        contents = ((String)line).Split('$');
+                        this.AddSongInfoManager(songTitle, Int32.Parse(contents[1]), contents[0]); // contents[0] 그림 , contents[1]  점수
+                    }
+                    line = sr.ReadLine();
+                }
             }
-            
             sr.Close();
         }
 
