@@ -10,7 +10,6 @@ D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Status\bac
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\SongMenu\arrow1.xnb
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\SongMenu\arrow2.xnb
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\SongMenu\background.xnb
-D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Textures\dot.xnb
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\snd\ka.xnb
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\snd\jo.xnb
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\snd\maid.xnb

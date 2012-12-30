@@ -370,6 +370,8 @@ namespace beethoven3
             GuideLineManager.AddGuideLine(start, firstMid, secondMid, end, (secondStartTime - firstStartTime) * 1000, gold);
 
         }
+
+        //템포로 나누어 시간 변경
         public void ChangeArrayNoteTempo(double changedTempo)
         {
             int i;
@@ -382,6 +384,8 @@ namespace beethoven3
 
         }
 
+
+        //템포 다시 원상복귀
         public void ChangeArrayNoteTempoBack(double changedTempo)
         {
             int i;
@@ -393,6 +397,7 @@ namespace beethoven3
             }
 
         }
+
 
         public void OptionalArrayNote(double optionalTime)
         {

@@ -163,13 +163,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Textures\dot.bmp">
-      <Name>dot</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Fonts\Pericles36.spritefont">
       <Name>Pericles36</Name>
       <Importer>FontDescriptionImporter</Importer>

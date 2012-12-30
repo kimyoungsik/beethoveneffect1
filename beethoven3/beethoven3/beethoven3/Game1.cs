@@ -27,149 +27,210 @@ namespace beethoven3
     /// </summary>
     public class Game1 : Microsoft.Xna.Framework.Game
     {
+        #region 선언
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
         //기본 글꼴
         //basic font
-        SpriteFont pericles36Font;
-       
-//키넥트 관련 선언
-//for kinect
-#if Kinect
-         //키넥트
-         KinectSensor nui = null;
-         Skeleton[] Skeletons = null;
+        private SpriteFont pericles36Font;
 
-         //음성인식
-         SpeechRecognitionEngine sre;
-         RecognizerInfo ri;
-         KinectAudioSource source;
-         Stream audioStream;
-
-         //쓰레드
-         ThreadStart ts;
-         Thread th;
-
-         //폰트
-         SpriteFont messageFont;
-         string message = "" ;
-
-
-         Texture2D KinectVideoTexture;
-         Rectangle VideoDisplayRectangle;
-         Texture2D idot1;
-         Texture2D idot2;
-
-         Rectangle drawrec1;
-         Rectangle drawrec2;
-         Item selectedItem;
-#endif
 
         enum GameStates { Menu, Playing, SongMenu, ShopDoor,
                           RightItemShop, LeftItemShop, EffectItemShop, NoteItemShop, BackgroundItemShop,
                           ResultManager, RecordBoard };
 
         //게임 씬, 처음시작은 메뉴
-        GameStates gameState = GameStates.Menu;
+        private GameStates gameState = GameStates.Menu;
 
-        //타이틀 화면
-        MenuScene menuScene;
+        //타이틀 화면 
+        private MenuScene menuScene;
 
         //상점 화면
-        ShopDoor shopDoor;
-
-
-
-        ////////텍스쳐
- 
-        //현재는 노트와 마커 텍스쳐 이펙트까지
-        //NOTES, MARKERS TEXTERUE
-        public static Texture2D spriteSheet;
-     
-        //드래그 노트 텍스쳐
-        //DragNote Textere
-        public static Texture2D heart;
+        private ShopDoor shopDoor;
         
+        //곡 선택 화면
+        private SongMenu songMenu;
+
+        //선택된 곡
+        private int resultSongMenu;
+
+        //마지막 순위 리스트 보여주는 화면 
+        private RecordBoard recordBoard;
+
+
+
+        //노트 생성 부분 관리
+        private StartNoteManager startNoteManager;
         
-       // public static Texture2D dot;
-
-        private Texture2D uiBackground;
-        private Texture2D uiHeart;
-
-        private Texture2D playBackgroud1;
-        private Texture2D playBackgroud2;
-
-        private Rectangle removeAreaRec = new Rectangle(0, 0, 0, 0);
-      
-        SongMenu songMenu;
-        int result;
-
-        StartNoteManager startNoteManager;
-        CollisionManager collisionManager;
-        File file;
-        ExplosionManager perfectManager;
-        ExplosionManager goodManager;
-        ExplosionManager badManager;
-        ExplosionManager goldGetManager;
-        MouseState mouseStateCurrent, mouseStatePrevious;
-
-        ScoreManager scoreManager;
-        ItemManager itemManager;
-        RightItemShop rightItemShop;
-        LeftItemShop leftItemShop;
-        EffectItemShop effectItemShop;
-        NoteItemShop noteItemShop;
-        BackgroundItemShop backgroundItemShop;
-
-        MemberManager memberManager;
-
-        ResultManager resultManager;
+        //충돌 관리
+        private CollisionManager collisionManager;
         
-        RecordBoard recordBoard;
+        //악보파일 관리(불러오기 등)
+        private File file;
 
-        ReportManager reportManager;
+        /////이펙트 관리 - start
+        private ExplosionManager perfectManager;
+        private ExplosionManager goodManager;
+        private ExplosionManager badManager;
+        private ExplosionManager goldGetManager;
+        /////이펙트 관리 - end
+        
+       
+        //아이템 관리
+        private ItemManager itemManager;
 
-        NoteFileManager noteFileManager;
+        /////아이템 상점 - start
+        private RightItemShop rightItemShop;
+        private LeftItemShop leftItemShop;
+        private EffectItemShop effectItemShop;
+        private NoteItemShop noteItemShop;
+        private BackgroundItemShop backgroundItemShop;
+        /////아이템 상점 - end
 
-        String currentSongName;
 
-        static public int mousex = 100; //X좌표
-        static public int mousey = 100; //Y좌표
+        //곡 중간에 점수,골드 관리
+        private ScoreManager scoreManager;
 
+
+        //악기연주자 관리
+        private MemberManager memberManager;
+
+
+        //곡 끝나고 점수, 골드 관리
+        private ResultManager resultManager;
+
+        //곡당 높은 점수 기록 관리
+        private ReportManager reportManager;
+
+        //각 노트에대한 정보를 관리, 곡선택이나 결과화면에 나타내는 노트 정보를 가지고 있음
+        private NoteFileManager noteFileManager;
+
+        //현재 연주되는 노래 제목
+        private String currentSongName;
+        
+        //화면 크기
         const int SCR_W = 1024;
         const int SCR_H = 768;
 
         //점수위치
         Vector2 scorePosition = new Vector2(705, 5);
-                
+
+        /////FMOD 선언 - START
         private FMOD.System sndSystem;
         private FMOD.Channel sndChannel = new FMOD.Channel();
         private FMOD.Sound sndSound = new FMOD.Sound();
         private FMOD.RESULT resultFmod;
+        // private FMOD.DSPConnection dspconnectiontemp = null;
+        /////FMOD 선언 - END
 
-       // private FMOD.DSPConnection dspconnectiontemp = null;
+
+
+
+        /////템포 관련 -START
+        //템포 변경 여부 -TRUE면 템포 변경된 상태
         private bool isChangedTempo= false;
+        
+        //변경된 템포
         private double changedTempo = 0;
+        
+        //기존 변경되기전 템포
         private float basicFrequency = 0;
 
-        /// <summary>
-        /// 테스트
-        /// </summary>
+        //템포 변하고 나서 변하는 시간
         private double chagneLimitedTime = 0;
+
+        //템포 변경되면 다른 뒤의 모든 노트들에게 영향이 가는 시간의 량, 더하거나 빼준다.
         private double optionalTime = 0;
+
+        //템포관련해서 한번만 실행 -- 임시로 넣은것
         private bool oneTime = true;
+        /////템포 관련 -END
+
+      
+        //마우스 상태 
+        MouseState mouseStateCurrent, mouseStatePrevious;
+
+        //노래들이 있는 경로
+        String songsDir = "c:\\beethoven\\";
+        
+        /////Texture start
+
+        //현재는 노트와 마커 텍스쳐 이펙트까지
+        //NOTES, MARKERS TEXTERUE
+        public static Texture2D spriteSheet;
+
+        //드래그 노트 텍스쳐
+        //DragNote Textere
+        public static Texture2D heart;
+
+        //UI 배경
+        private Texture2D uiBackground;
+
+        //UI 컨텐츠
+        private Texture2D uiHeart;
+
+        //배경
+        //whole background
+        private Texture2D playBackgroud1;
+        private Texture2D playBackgroud2;
+
+        //놓친 노트가 없어지는 곳
+        //the place where miss note disapper
+        //마커 패턴에 따라 달라져야 함. 
+        private Rectangle removeAreaRec = new Rectangle(0, 0, 0, 0);
+
+
+        /////Texture end 
+
+
+
+
+
+        /////키넥트 관련 선언 - START
+        //for kinect
+#if Kinect
+        //키넥트
+        KinectSensor nui = null;
+        Skeleton[] Skeletons = null;
+
+        //음성인식
+        SpeechRecognitionEngine sre;
+        RecognizerInfo ri;
+        KinectAudioSource source;
+        Stream audioStream;
+
+        //쓰레드
+        ThreadStart ts;
+        Thread th;
+
+        //폰트
+        SpriteFont messageFont;
+        string message = "";
+
+
+        Texture2D KinectVideoTexture;
+        Rectangle VideoDisplayRectangle;
+        Texture2D idot1;
+        Texture2D idot2;
+
+        Rectangle drawrec1;
+        Rectangle drawrec2;
+        Item selectedItem;
+#endif
+        /////키넥트 관련 선언 - END
+
+        #endregion
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
+            //화면 크기 고정
             graphics.PreferredBackBufferHeight = SCR_H;
             graphics.PreferredBackBufferWidth = SCR_W;
-            ///test
-            ///
-          //  content = new ContentManager(Services);
+           
         }
         
         /// <summary>
@@ -181,7 +242,9 @@ namespace beethoven3
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            //마우스 보이기
             this.IsMouseVisible = true;
+
 #if Kinect
             
             //KINECT
@@ -190,8 +253,6 @@ namespace beethoven3
             drawrec1 = new Rectangle(0, 0, GraphicsDevice.Viewport.Width / 20, GraphicsDevice.Viewport.Height / 20);
             drawrec2 = new Rectangle(0, 0, GraphicsDevice.Viewport.Width / 20, GraphicsDevice.Viewport.Height / 20);
 #endif
-
-            
             base.Initialize();
 
         }
@@ -202,29 +263,34 @@ namespace beethoven3
         /// </summary>
         protected override void LoadContent()
         {
+            // Create a new SpriteBatch, which can be used to draw textures.
+            spriteBatch = new SpriteBatch(GraphicsDevice);
 
-
-            resultFmod = FMOD.Factory.System_Create(ref sndSystem);
-            
-            sndSystem.init(1, FMOD.INITFLAG.NORMAL, (IntPtr)null);
-           
-            
             /* 음원을 로드시킬 때 createStream 과 createSound 두가지가 있는 것을 확인할 수 있는데
  createStream은 배경음악을, createSound는 효과음을 넣는것이 좋습니다.*/
 
-
+            //FMOD 세팅 -START
+            resultFmod = FMOD.Factory.System_Create(ref sndSystem);
+            sndSystem.init(1, FMOD.INITFLAG.NORMAL, (IntPtr)null);
+            //FMOD 세팅 -END
+           
+           //타이틀화면
             menuScene = new MenuScene();
             menuScene.LoadContent(Content);
 
+            //상점 대문
             shopDoor = new ShopDoor();
             shopDoor.LoadContent(Content);
 
+            //아이템관리
             itemManager = new ItemManager();
             itemManager.LoadContent(Content);
             itemManager.Init();
 
+            //게임중 점수관리
             scoreManager = new ScoreManager(); 
 
+            /////아이템 상점 -START
             rightItemShop = new RightItemShop(itemManager,  scoreManager);
             rightItemShop.LoadContent(Content);
 
@@ -239,70 +305,57 @@ namespace beethoven3
 
             backgroundItemShop = new BackgroundItemShop(itemManager, scoreManager);
             backgroundItemShop.LoadContent(Content);
+            /////아이템 상점 -START
 
-
+            //연주자
             memberManager = new MemberManager();
             memberManager.LoadContent(Content);
             memberManager.init();
 
-
+            /////기존 XNA MP3플레이 - 삭제 가능성 있음 //***
             SoundManager.Init();
             LoadSound();
-            // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
+            /////
+            
 
+            /////텍스쳐 로드 -START
+            //배경
             playBackgroud1 = Content.Load<Texture2D>(@"background\tutorialbear");
             playBackgroud2 = Content.Load<Texture2D>(@"background\crosswalk3");
-
+            
+            //노트,마커
             spriteSheet = Content.Load<Texture2D>(@"Textures\SpriteSheet8");
+            
+            //드래그 노트
             heart = Content.Load<Texture2D>(@"Textures\heart");
-       //     dot = Content.Load<Texture2D>(@"Textures\dot");
            
-            //test 텍스쳐 순서
+            //진행상황
             uiBackground = Content.Load<Texture2D>(@"ui\background");
             uiHeart = Content.Load<Texture2D>(@"ui\heart");
             
+            //폰트
             pericles36Font = Content.Load<SpriteFont>(@"Fonts\Pericles36");
-           
-            // TODO: use this.Content to load your game content here
+            /////텍스쳐 로드 -END
 
-          //  LineRenderer.LoadContent(content);
             
-            //Vector2 mark1Location = new Vector2(400, 70);
-            //Vector2 mark2Location = new Vector2(500, 170);
-            //Vector2 mark3Location = new Vector2(500, 270);
-            //Vector2 mark4Location = new Vector2(400, 370);
-            //Vector2 mark5Location = new Vector2(300, 270);
-            //Vector2 mark6Location = new Vector2(300, 170);
+            //시작 노트 관리 생성            
+            startNoteManager = new StartNoteManager(
+                spriteSheet,
+                new Rectangle(0, 200, 52, 55),
+                1);
 
-
-            //Vector2 mark1Location = new Vector2(200, 140);
-            //Vector2 mark2Location = new Vector2(400, 270);
-            //Vector2 mark3Location = new Vector2(300, 370);
-            //Vector2 mark4Location = new Vector2(200, 570);
-            //Vector2 mark5Location = new Vector2(100, 370);
-            //Vector2 mark6Location = new Vector2(100, 270);
-
-
+            //첫 마커 위치   
             Vector2 mark1Location = new Vector2(450, 270);
             Vector2 mark2Location = new Vector2(550, 370);
             Vector2 mark3Location = new Vector2(550, 470);
             Vector2 mark4Location = new Vector2(450, 570);
             Vector2 mark5Location = new Vector2(350, 470);
             Vector2 mark6Location = new Vector2(350, 370);
-          
-
-            
-            
-            startNoteManager = new StartNoteManager(
-                spriteSheet,
-                new Rectangle(0, 200, 52, 55),
-                1);
-           // ScoreManager.initialize();
 
 
+            //마크 관리 초기화 (STATIC)
+            //***시작시 마커 위치에 관한 사항 결정 못함.  
             MarkManager.initialize(
-           // markManager = new MarkManager(
                 spriteSheet,
                 new Rectangle(0, 200, 50, 55),
                 1,
@@ -314,13 +367,16 @@ namespace beethoven3
                 mark6Location,
                 startNoteManager,
                 removeAreaRec
-                
                 );
+
+            /////이펙트 생성 -START
+
             perfectManager = new ExplosionManager(
                  spriteSheet,
                  new Rectangle(0, 100, 50, 50),
                  3,
                  new Rectangle(0, 450, 2, 2),
+                 /*RGB시작 컬러 -> 끝나는 컬러*/
                  new Color(1.0f, 0.3f, 0f) * 0.5f,
                  new Color(0f, 0f, 0f, 0f));
 
@@ -347,19 +403,32 @@ namespace beethoven3
               new Rectangle(0, 450, 2, 2),
               new Color(1f, 0.5f, 0.5f) * 0.5f,
               new Color(0f, 0f, 0f, 0f));
+
+            /////이펙트 생성 -END
+
+            //충돌관리 생성
             collisionManager = new CollisionManager(perfectManager, goodManager, badManager, goldGetManager, scoreManager, memberManager);
             
-            
+            //노트정보 관리 생성
             noteFileManager = new NoteFileManager();
             
+            //노트파일 읽기 관리 생성
             file = new File(startNoteManager, noteFileManager, badManager, scoreManager);
             
-            //곡선택화면에서
-            //file.Loading("a.txt");
-            String dir = "c:\\beethoven\\";
-            
+
+            //곡선택화면 곡 불러오는 폴더 
+            String dir = "C:\\beethoven";
+           
+            //폴더가 없으면 새로 만들기 
+            if (!System.IO.File.Exists(dir))
+            {
+                System.IO.Directory.CreateDirectory(dir);
+            }
+
+            //곡을 불러오기
             file.FileLoading(dir, "*.mnf");
             
+            //드래그노트 초기화
             DragNoteManager.initialize(
                  spriteSheet,
                  new Rectangle(0, 100, 50, 50),
@@ -369,24 +438,30 @@ namespace beethoven3
                  badManager,
                  scoreManager);
 
-            //골드로 변경해야 함
+            //골드 초기화
             GoldManager.initialize(
                 spriteSheet,
                 new Rectangle(0, 100, 20, 20),
                 1,
                 15,
                 0);
+
+            //***
             songMenu = new SongMenu(noteFileManager);
             songMenu.Load(Content,graphics.GraphicsDevice);
 
+            
             resultManager = new ResultManager();
             resultManager.LoadContent(Content);
 
+            //점수기록판 화면
             recordBoard = new RecordBoard();
             recordBoard.LoadContent(Content);
 
+            //점수 기록 (TO FILE)
             reportManager = new ReportManager(scoreManager);
             
+
             //LOAD REPORT SCORE FILE
             //점수기록판을 로드해서 게임에 올린다. 
 
@@ -407,6 +482,7 @@ namespace beethoven3
         }
 
      
+        //*** xna지원 mp3재생
         public void LoadSound()
         {
             int count = SoundManager.sndFiles.Count();
@@ -666,8 +742,12 @@ namespace beethoven3
         {
             // TODO: Unload any non ContentManager content here
         }
+
+
+        //마우스 충돌 처리
         private void HandleMouseInput(MouseState mouseState)
         {
+
             collisionManager.checkDragNote(new Vector2(mouseStateCurrent.X, mouseStateCurrent.Y));
 
             collisionManager.CheckCollisions(0, new Vector2(mouseStateCurrent.X, mouseStateCurrent.Y));
@@ -683,7 +763,9 @@ namespace beethoven3
             collisionManager.CheckCollisions(5, new Vector2(mouseStateCurrent.X, mouseStateCurrent.Y));
 
         }
+
 #if Kinect
+        //키넥트 충돌 처리
         private void HandleInput()
         {
             collisionManager.checkDragNote(new Vector2(drawrec1.X, drawrec1.Y));
@@ -704,6 +786,7 @@ namespace beethoven3
 #endif
 
 
+        //템포변경
         private void tempoChange(double changedT)
         {
             isChangedTempo = true;
@@ -711,36 +794,34 @@ namespace beethoven3
             this.changedTempo = changedT;
 
             float frequency = 0;
-        //    if (slow)//tempo slow
-            //{
             
+            //현재 템포 가져와소 float frequency에 넣기//resultFmod 는 성공여부만 나타남
             resultFmod = sndChannel.getFrequency(ref frequency);
+         
+            //템포설정
             sndChannel.setFrequency(frequency * (float)changedT);
+            
+            //템포를 다른 노트 모두에 적용
             file.ChangeArrayNoteTempo(changedT);
 
+            //현재 설정된 두번째 가이드라인이 있으면 지움
             GuideLineManager.DeleteAllSecondGuideLine();
-            //}
-            //else
-            //{
-            //    resultFmod = sndChannel.getFrequency(ref frequency);
-            //    sndChannel.setFrequency(frequency*2f);
-            //}
+        
 
         }
 
 
-        private void SetBasicTempo()
+        //템포 변경 전에 기본 템포를 저장해둠. 다시 롤백할 때 필요
+        public void SetBasicTempo()
         {
             if (!isChangedTempo)
             {
-
                sndChannel.getFrequency(ref basicFrequency);
             }
-
-
         }
 
-        private void ReturnBasicTempo()
+        //이전에 설정한 기본 템포로 돌아감 
+        public void ReturnBasicTempo()
         {
             if (basicFrequency != 0)
             {
@@ -751,6 +832,7 @@ namespace beethoven3
         }
 
         //일단 안쓰임
+        //일정 시간이 지나면 다시 원래 템포로 돌아옴
         //private void AutoRetrunChangeTempo(GameTime gameTime)
         //{
         //    if (isChangedTempo)
@@ -770,22 +852,21 @@ namespace beethoven3
         //    }
         //}
 
+
+        ////템포가 변하고나서 얼마나 변했는지 시간을 재는데 사용
         private void StartChangedTime(GameTime gameTime)
         {
-
-            //템포가 변하고나서 얼마나 변했는지 시간을 재는데 사용
+            
             if (isChangedTempo)
             {
                 //처음시작 
-                chagneLimitedTime += gameTime.ElapsedGameTime.TotalMilliseconds;
-               
+                chagneLimitedTime += gameTime.ElapsedGameTime.TotalMilliseconds;  
             }
-         
-
         }
 
 
         //다시 원점으로 돌아갈 때 쓰임 
+        
         //늘어나거나 줄어드는 양을 계산해주고 
         
         private void SetOptionalTime()
@@ -793,31 +874,29 @@ namespace beethoven3
             //임시로 넣은 것일 뿐
             if (oneTime)
             {
-
+                //템포 다시 원상복귀
                 file.ChangeArrayNoteTempoBack(this.changedTempo);
            
                 double time = 0;
 
-              
-                 time = ((this.chagneLimitedTime / 1000) - ((this.chagneLimitedTime / 1000) / this.changedTempo)) * -1;
-                
-              
+                //옵션 계산
+                time = ((this.chagneLimitedTime / 1000) - ((this.chagneLimitedTime / 1000) / this.changedTempo)) * -1;
+                                
                 optionalTime += time;
 
+                //각 노트 시작에 옵션을 더함
                 file.OptionalArrayNote(optionalTime);
+                
                 //템포가 0.9배가 된상태에서 1초동안 지속이 된다면 모두 4-  4/4   3초씩 줄여야 한다ㅣ
+                
                 oneTime = false;
                 chagneLimitedTime = 0;
+                
+
                 //원래 템포로 돌아감
                 ReturnBasicTempo();
             }   
-
-
         }
-
-
-
-
 
 
 
@@ -859,15 +938,6 @@ namespace beethoven3
                     //2의 템포가 2초동안 빨라지는 ㅔ
                 }
             }
-            //if (keyState.IsKeyDown(Keys.O))
-            //{
-            //    // resultFmod = sndChannel.getFrequency(ref basicFrequency);
-            //    // sndChannel.setFrequency(60000.0f);
-            //    if (!isChangedTempo)
-            //    {
-            //        tempoChange(-1.2f);
-            //    }
-            //}
 
             if (keyState.IsKeyDown(Keys.L))
             {
@@ -876,112 +946,51 @@ namespace beethoven3
 
                 SetOptionalTime();
             }
-
-
-            if (keyState.IsKeyDown(Keys.NumPad1))
-            {
-             //   SoundManager.SndPlay("snd/ka");
-             //   collisionManager.CheckCollisions(0);
-
-         //       sortMode = SpriteSortMode.BackToFront;
-            }
-            if (keyState.IsKeyDown(Keys.NumPad2))
-            {
-             //   SoundManager.SndPlay("snd/maid");
-              //  collisionManager.CheckCollisions(1);
-         //       sortMode = SpriteSortMode.FrontToBack;
-            }
-            if (keyState.IsKeyDown(Keys.NumPad3))
-            {
-              //  SoundManager.SndPlay("snd/jo");
-               // collisionManager.CheckCollisions(2);
-          //      sortMode = SpriteSortMode.Deferred;
-            }
-
-            if (keyState.IsKeyDown(Keys.NumPad4))
-            {
-              //  SoundManager.SndStop();
-              //  collisionManager.CheckCollisions(3);
-         //       sortMode = SpriteSortMode.Immediate;
-            }
-            if (keyState.IsKeyDown(Keys.NumPad5))
-            {
-              //  collisionManager.CheckCollisions(4);
-          //      sortMode = SpriteSortMode.Texture;
-            }
-            if (keyState.IsKeyDown(Keys.N))
-            {
-                //  collisionManager.CheckCollisions(4);
-          //      blendMode = BlendState.AlphaBlend;
-              //  MarkManager.changeMarkPattern(0);
-            }
-
-            if (keyState.IsKeyDown(Keys.M))
-            {
-                //  collisionManager.CheckCollisions(4);
-          //      blendMode = BlendState.Additive;
-               // MarkManager.changeMarkPattern(1);
-            }
-
-            if (keyState.IsKeyDown(Keys.NumPad8))
-            {
-           //     //  collisionManager.CheckCollisions(4);
-//blendMode = BlendState.NonPremultiplied;
-
-              //  MarkManager.changeMarkPattern(2);
-            }
-
-            if (keyState.IsKeyDown(Keys.NumPad9))
-            {
-                //  collisionManager.CheckCollisions(4);
-           //     blendMode = BlendState.Opaque;
-                scoreManager.Gage = scoreManager.Gage + 10;
-            }
-      
-      
-          
         }
         /// <summary>
         /// Allows the game to run logic such as updating the world,
         /// checking for collisions, gathering input, and playing audio.
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
+        /// 
         protected override void Update(GameTime gameTime)
         {
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
-         //   _guiManager.Update(gameTime);
+      
             mouseStateCurrent = Mouse.GetState();
 
            switch (gameState)
-            {
+           {
+               #region 타이틀
+               //타이틀 화면
                 case GameStates.Menu:
-
-                  //  menuScene.Update(gameTime);
+                    //곡선택화면으로
                     if ((Keyboard.GetState().IsKeyDown(Keys.Space))                    )
                     {
                         gameState = GameStates.SongMenu;
                     }
-                    if ((Keyboard.GetState().IsKeyDown(Keys.A)))
-                    {
-                        menuScene.setButton1();
-                    }
-
+                    
+                    //상점 대문으로
                     if ((Keyboard.GetState().IsKeyDown(Keys.S)))
                     {
                         gameState = GameStates.ShopDoor;
                     }
                     break;
+               #endregion
 
-
+               #region 상점대문
+                //상점대문
                case GameStates.ShopDoor:
 
                    Rectangle rect = new Rectangle(mouseStateCurrent.X, mouseStateCurrent.Y, 5, 5);
 
                    //mousecursor on right hand item section
+                   //오른쪽지휘봉 아이템
                    if (rect.Intersects(shopDoor.getRectRightHand()))
                    {
+                       //hover on
                        shopDoor.setClickRightHand(true);
                        //click the right hand item section
                        if (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released )
@@ -989,11 +998,12 @@ namespace beethoven3
                            gameState = GameStates.RightItemShop;
                        }
                    }
-
                    else
                    {
+                       //hover off
                        shopDoor.setClickRightHand(false);
                    }
+
 
                    //mouse cursor on left hadn item section
                    if (rect.Intersects(shopDoor.getRectLeftHand()))
@@ -1009,6 +1019,7 @@ namespace beethoven3
                    {
                        shopDoor.setClickLeftHand(false);
                    }
+
 
                    //note
                    if (rect.Intersects(shopDoor.getRectNote()))
@@ -1059,30 +1070,244 @@ namespace beethoven3
                    }
                     break;
 
+                #endregion
 
-               case  GameStates.LeftItemShop:
+               #region 아이템상점들
+               case GameStates.RightItemShop:
+
+                   Rectangle mouseRect = new Rectangle(mouseStateCurrent.X, mouseStateCurrent.Y, 5, 5);
+                   int i;
+
+                   //아이템 rect
+                   List<Rectangle> rectRightItems = rightItemShop.getRectRightItem();
                    
+                   //아이템/
+                   List<Item> shopRightItems = rightItemShop.getShopRightItem();
+
+                   //다이얼로그를 띄웠을 때 이것이 중복실행되지 않도록 
+                   if (!rightItemShop.getWearOne() && !rightItemShop.getBuyOne())
+                   {
+                       for (i = 0; i < rectRightItems.Count; i++)
+                       {
+                           //아이템을 선택 했을때
+                           if (mouseRect.Intersects(rectRightItems[i]) && mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released)
+                           {
+                               //어두어짐
+                               rightItemShop.setDarkBackground(true);
+                                
+                               selectedItem = shopRightItems[i];
+                               
+                               //이미 산거이면 true
+                               if (rightItemShop.haveOne(shopRightItems[i]))
+                               {
+                                   //장착 메시지 박스 띄우기 
+                                   rightItemShop.setWearOne(true);
+                                   //반복 없애기
+                                   i = rectRightItems.Count;                                 
+                               }
+                               else
+                               {
+                                   //구입 메시지 박스 띄우기 
+                                   rightItemShop.setBuyOne(true);
+                                   //반복 없애기
+                                   i = rectRightItems.Count;
+                               }
+                           }
+                       }
+                   }
+
+                   //돈 부족 메시지 띄우기
+                   if (rightItemShop.getNoGold())
+                   {
+                       //버튼 Hover
+                       if (mouseRect.Intersects(rightItemShop.getRectNoGoldButton()))
+                       {
+                           //눌린모양
+                           rightItemShop.setHoverNoGoldButton(true);
+                           //버튼 누르면
+                           if (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released)
+                           {
+                                //다시 밝게
+                               rightItemShop.setDarkBackground(false);
+                               //메시지 없애기
+                               rightItemShop.setNoGold(false);
+                           }
+                       }
+                       //버튼 not hover
+                       else
+                       {
+                           rightItemShop.setHoverNoGoldButton(false);
+                       }
+                   }
+
+                    //장착 메시지 띄우기
+                   //message box about wearing item 
+                   if (rightItemShop.getWearOne())
+                   {
+                       //mouse cursor on yes button
+                       if (mouseRect.Intersects(rightItemShop.getRectYesButton()))
+                       {
+                           rightItemShop.setHoverYesButton(true);
+
+                           if (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released)
+                           {
+                               //선택된 아이템이 있으면
+                               if (selectedItem != null)
+                               {
+                                   //find the index of item in myrightitem list
+                                   //아이템 찾기
+                                   int index = itemManager.getIndexOfMyRightItem(selectedItem);
+
+                                   //아이템을 찾았으면
+                                   if (index != -1)
+                                   {
+                                       //change index
+                                       //장착
+                                       itemManager.setRightHandIndex(index);
+
+                                       //return to normal , remove message box
+                                       //메시지 박스 지우기
+                                       rightItemShop.setWearOne(false);
+                                       //밝게 하기
+                                       rightItemShop.setDarkBackground(false);
+                                   }
+                                   //아이템을 찾지 못했으면
+                                   else
+                                   {
+                                       Trace.WriteLine("get wrong index( no item in list)");
+                                   }
+                               }
+                               //선택된 아이템이 없으면
+                               else
+                               {
+                                   Trace.WriteLine("nothing is selected");
+                               }
+                           }
+                       }
+                       else
+                       {
+                           rightItemShop.setHoverYesButton(false);
+                       }
+                       //mouse cursor on no button
+                       //노버튼 눌렀을 때
+                       if (mouseRect.Intersects(rightItemShop.getRectNoButton()))
+                       {
+                           rightItemShop.setHoverNoButton(true);
+                           if (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released)
+                           {
+                               //return to normal , remove message box
+                               rightItemShop.setWearOne(false);
+                               rightItemShop.setDarkBackground(false);
+                           }
+                       }
+                       else
+                       {
+                           rightItemShop.setHoverNoButton(false);
+                       }
+
+                   }
+                  
+                   //구입 메시지
+                   //message box about buying item
+                   if (rightItemShop.getBuyOne())
+                   {
+                       //mouse cursor on right button
+                       if (mouseRect.Intersects(rightItemShop.getRectYesButton()) )
+                       {
+                           rightItemShop.setHoverYesButton(true);
+                           if (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released)
+                           {
+                               //add item to my item
+                               if (selectedItem != null)
+                               {
+                                 
+                                    
+                                   //돈으로 물건사기 
+                                   //buy item with money
+
+
+                                   //돈이 충분히 있다.
+                                   if (scoreManager.TotalGold >= selectedItem.GetCost())
+                                   {
+
+                                       //전체 돈에서 구입비용 차감
+                                       scoreManager.TotalGold -= selectedItem.GetCost();
+                                       rightItemShop.addItemtoMyItem(selectedItem);
+                                       rightItemShop.setBuyOne(false);
+                                       rightItemShop.setDarkBackground(false);
+                                       //돈을 파일에 저장
+                                       reportManager.SaveGoldToFile();
+                                   }
+                                   //돈이 없다.
+                                   else
+                                   {
+
+                                       rightItemShop.setBuyOne(false);
+                                       //"돈 부족" 메시지 띄운다.
+                                       rightItemShop.setNoGold(true);
+
+                                       
+                                   }
+
+                                 
+                                  
+                               }
+                               else
+                               {
+                                   Trace.WriteLine("nothing is selected");
+                                 
+                               }
+                           }
+                           
+                       }
+                       else
+                       {
+                           rightItemShop.setHoverYesButton(false);
+                       }
+
+                       if (mouseRect.Intersects(rightItemShop.getRectNoButton()))
+                       {
+                           rightItemShop.setHoverNoButton(true);
+                           if (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released)
+                           {
+                               //return to normal , remove message box
+                               rightItemShop.setBuyOne(false);
+                               rightItemShop.setDarkBackground(false);
+                           }
+                       }
+                       else
+                       {
+                           rightItemShop.setHoverNoButton(false);
+                       }
+
+                   }
+
+                   break;
+
+
+               case GameStates.LeftItemShop:
+
                    Rectangle mouseRectinleft = new Rectangle(mouseStateCurrent.X, mouseStateCurrent.Y, 5, 5);
                    int j;
                    //클릭했을때 어두워지는것.
-                   List<Rectangle> rectLeftItems =  leftItemShop.getRectLeftItem();
+                   List<Rectangle> rectLeftItems = leftItemShop.getRectLeftItem();
                    List<Item> shopLeftItems = leftItemShop.getShopLeftItem();
                    for (j = 0; j < rectLeftItems.Count; j++)
                    {
                        if (mouseRectinleft.Intersects(rectLeftItems[j]) && mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released)
                        {
-                           leftItemShop.setDarkBackground(true);   
+                           leftItemShop.setDarkBackground(true);
                            //메시지 박스 띄우기  
-                            selectedItem = shopLeftItems[j];
+                           selectedItem = shopLeftItems[j];
                            //이미 산거이면 true
-                            if (leftItemShop.haveOne(shopLeftItems[j]))
-                            {
-                                leftItemShop.setWearOne(true);
-                            }
-                            else
-                            {
-                                leftItemShop.setBuyOne(true);
-                            }
+                           if (leftItemShop.haveOne(shopLeftItems[j]))
+                           {
+                               leftItemShop.setWearOne(true);
+                           }
+                           else
+                           {
+                               leftItemShop.setBuyOne(true);
+                           }
                        }
                    }
 
@@ -1137,7 +1362,7 @@ namespace beethoven3
                                    }
                                    else
                                    {
-                                       
+
                                        //get wrong index( no item in list)
                                    }
                                }
@@ -1145,7 +1370,7 @@ namespace beethoven3
                                {
                                    //nothing is selected
                                }
-                          }
+                           }
                        }
                        else
                        {
@@ -1159,7 +1384,7 @@ namespace beethoven3
                            {
                                //return to normal , remove message box
                                leftItemShop.setWearOne(false);
-                               leftItemShop.setDarkBackground(false);   
+                               leftItemShop.setDarkBackground(false);
                            }
                        }
                        else
@@ -1213,11 +1438,11 @@ namespace beethoven3
 
 
                                    }
-                                   
+
                                }
                                else
                                {
-                                   
+
                                    //nothing is selected
                                }
                            }
@@ -1242,207 +1467,6 @@ namespace beethoven3
                        }
                    }
                    break;
-
-               case GameStates.RightItemShop:
-
-                   Rectangle mouseRect = new Rectangle(mouseStateCurrent.X, mouseStateCurrent.Y, 5, 5);
-                   int i;
-
-
-                   //클릭했을때 어두워지는것.
-                   List<Rectangle> rectRightItems = rightItemShop.getRectRightItem();
-                   List<Item> shopRightItems = rightItemShop.getShopRightItem();
-
-                   //다이얼로그를 띄웠을 때 이것이 중복실행되지 않도록 
-                   if (!rightItemShop.getWearOne() && !rightItemShop.getBuyOne())
-                   {
-                       for (i = 0; i < rectRightItems.Count; i++)
-                       {
-                           if (mouseRect.Intersects(rectRightItems[i]) && mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released)
-                           {
-                               rightItemShop.setDarkBackground(true);
-                               //메시지 박스 띄우기  
-                               selectedItem = shopRightItems[i];
-                               //이미 산거이면 true
-                               if (rightItemShop.haveOne(shopRightItems[i]))
-                               {
-                                   rightItemShop.setWearOne(true);
-                                   i = rectRightItems.Count;
-                                  
-                               }
-                               else
-                               {
-                                   rightItemShop.setBuyOne(true);
-                                   i = rectRightItems.Count;
-                                  
-                               }
-                           }
-                           
-                       }
-                   }
-
-                   //돈 부족 메시지 
-                   if (rightItemShop.getNoGold())
-                   {
-                       if (mouseRect.Intersects(rightItemShop.getRectNoGoldButton()))
-                       {
-
-                           rightItemShop.setHoverNoGoldButton(true);
-                           if (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released)
-                           {
-
-                               rightItemShop.setDarkBackground(false);
-
-                               rightItemShop.setNoGold(false);
-                           }
-
-                       }
-                       else
-                       {
-                           rightItemShop.setHoverNoGoldButton(false);
-                       }
-
-
-                   }
-
-
-                   //message box about wearing item 
-                   if (rightItemShop.getWearOne())
-                   {
-                       //mouse cursor on yes button
-                       if (mouseRect.Intersects(rightItemShop.getRectYesButton()))
-                       {
-                           rightItemShop.setHoverYesButton(true);
-
-                           if (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released)
-                           {
-
-                               if (selectedItem != null)
-                               {
-                                   //find the index of item in myrightitem list
-                                   int index = itemManager.getIndexOfMyRightItem(selectedItem);
-                                   if (index != -1)
-                                   {
-                                       //change index
-                                       itemManager.setRightHandIndex(index);
-
-                                       //return to normal , remove message box
-                                       rightItemShop.setWearOne(false);
-                                       rightItemShop.setDarkBackground(false);
-                                   }
-                                   else
-                                   {
-                                       
-
-                                       //get wrong index( no item in list)
-                                   }
-
-                               }
-                               else
-                               {
-                                   //nothing is selected
-                               }
-                           }
-                       }
-                       else
-                       {
-                           rightItemShop.setHoverYesButton(false);
-                       }
-                       //mouse cursor on no button
-                       if (mouseRect.Intersects(rightItemShop.getRectNoButton()))
-                       {
-                           rightItemShop.setHoverNoButton(true);
-                           if (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released)
-                           {
-                               //return to normal , remove message box
-                               rightItemShop.setWearOne(false);
-                               rightItemShop.setDarkBackground(false);
-                           }
-                       }
-                       else
-                       {
-                           rightItemShop.setHoverNoButton(false);
-                       }
-
-                   }
-                  
-
-                   //message box about buying item
-                   if (rightItemShop.getBuyOne())
-                   {
-                       //mouse cursor on right button
-                       if (mouseRect.Intersects(rightItemShop.getRectYesButton()) )
-                       {
-                           rightItemShop.setHoverYesButton(true);
-                           if (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released)
-                           {
-                               //add item to my item
-                               if (selectedItem != null)
-                               {
-                                 
-                                    
-                                   //돈으로 물건사기 
-                                   //buy item with money
-
-
-                                   //돈이 충분히 있다.
-                                   if (scoreManager.TotalGold >= selectedItem.GetCost())
-                                   {
-
-                                       //전체 돈에서 구입비용 차감
-                                       scoreManager.TotalGold -= selectedItem.GetCost();
-                                       rightItemShop.addItemtoMyItem(selectedItem);
-                                       rightItemShop.setBuyOne(false);
-                                       rightItemShop.setDarkBackground(false);
-                                       //돈을 파일에 저장
-                                       reportManager.SaveGoldToFile();
-                                   }
-                                   //돈이 없다.
-                                   else
-                                   {
-
-                                       rightItemShop.setBuyOne(false);
-                                       //"돈 부족" 메시지 띄운다.
-                                       rightItemShop.setNoGold(true);
-
-                                       
-                                   }
-
-                                   //return to normal , remove message box
-                                  
-                               }
-                               else
-                               {
-                                   //nothing is selected
-                               }
-                           }
-                           
-                       }
-                       else
-                       {
-                           rightItemShop.setHoverYesButton(false);
-                       }
-
-                       if (mouseRect.Intersects(rightItemShop.getRectNoButton()))
-                       {
-                           rightItemShop.setHoverNoButton(true);
-                           if (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released)
-                           {
-                               //return to normal , remove message box
-                               rightItemShop.setBuyOne(false);
-                               rightItemShop.setDarkBackground(false);
-                           }
-                       }
-                       else
-                       {
-                           rightItemShop.setHoverNoButton(false);
-                       }
-
-                   }
-
-                   break;
-
-
 
                case GameStates.NoteItemShop:
 
@@ -1977,8 +2001,10 @@ namespace beethoven3
                    }
                    break;
 
+               #endregion
 
-                case GameStates.Playing:
+               #region 플레이화면
+               case GameStates.Playing:
 
                    //곡이 끝내게 되면 결과 화면으로
                    //go to result scene right after finishing a piece
@@ -1988,16 +2014,17 @@ namespace beethoven3
                        gameState = GameStates.ResultManager;
                        //점수기록판에 기재
 
-                       reportManager.AddSongInfoManager(scoreManager.SongName, scoreManager.TotalScore, "myPicture.jpg");//여기에 현재 자신의 사진 이름이 들어가야 함.(날짜시간 포함해서 독립적으로)
+                       //reportManager의 scoreInfoManager에 곡명과 자기사진 추가
+                       //여기에 현재 자신의 사진 이름이 들어가야 함.(날짜시간 포함해서 독립적으로)
+                       reportManager.AddSongInfoManager(scoreManager.SongName, scoreManager.TotalScore, "myPicture.jpg");
+                       
+                       //현재 노래 제목
                        currentSongName = scoreManager.SongName;
                        
                        //점수 기록 파일로 저장
                        //save recored scores in the file
                        reportManager.SaveReport();
 
-
-                       
-                       
                        //gold 파일에  저장
                        scoreManager.TotalGold += scoreManager.Gold;
                        reportManager.SaveGoldToFile();
@@ -2005,18 +2032,18 @@ namespace beethoven3
                        //기록판에 보여줄 유저 사진 찾기
                        //Fine user pictures which will be seen in score board
                        reportManager.MakePictures(currentSongName, GraphicsDevice);
+                       
                        //Texture2D texture = null; 
                        //Stream str = System.IO.File.OpenWrite("gesture.jpg");
                        //texture.SaveAsJpeg(str, 1200, 900);
 
                    }
+
+                   //마크 업데이트
                     MarkManager.Update(gameTime);
                     startNoteManager.Update(gameTime);
                     HandleKeyboardInput(Keyboard.GetState());
                     HandleMouseInput(Mouse.GetState());
-#if Kinect
-                    HandleInput();  
-#endif
                     file.Update(spriteBatch, gameTime, this.changedTempo, this.optionalTime);
                     DragNoteManager.Update(gameTime);
                     GoldManager.Update(gameTime);
@@ -2025,15 +2052,20 @@ namespace beethoven3
                     badManager.Update(gameTime);
                     goldGetManager.Update(gameTime);
                     scoreManager.Update(gameTime);
-                    memberManager.Update(gameTime);
-
-                   //3초만에 원상복귀
-             //       AutoRetrunChangeTempo(gameTime);
-
+                    memberManager.Update(gameTime);            
                     StartChangedTime(gameTime);
+#if Kinect
+                    HandleInput();
+#endif
+                    //3초만에 원상복귀
+                    //       AutoRetrunChangeTempo(gameTime);
+
                 break;
 
+               #endregion
 
+               #region 결과 결산
+               //결과 창
                 case GameStates.ResultManager:
 
                     Rectangle rectMouse = new Rectangle(mouseStateCurrent.X, mouseStateCurrent.Y, 5, 5);
@@ -2048,74 +2080,63 @@ namespace beethoven3
                         {
                             gameState = GameStates.RecordBoard;
 
-                            //record db에 올리기
-
-                            //file.SetEndFile(false);
-                            //file.SetTime(0.0);
-                            //String dir = "c:\\beethoven\\";
-                            //file.FileLoading(dir, "*.txt");
-                            //file.SetNewNote(true);
-                            //file.SetCurrentRightNoteIndex(0);
-                         //   scoreManager = new ScoreManager();
-                            //badManager = new BadManager();
-
-                            /////////////////////////////////////
-                            //Vector2 mark1Location = new Vector2(200, 140);
-                            //Vector2 mark2Location = new Vector2(400, 270);
-                            //Vector2 mark3Location = new Vector2(300, 370);
-                            //Vector2 mark4Location = new Vector2(200, 570);
-                            //Vector2 mark5Location = new Vector2(100, 370);
-                            //Vector2 mark6Location = new Vector2(100, 270);
-
+                           
+                            //현재 마커 위치 저장
                             Vector2 mark1Location = MarkManager.Marks[0].MarkSprite.Location;
                             Vector2 mark2Location = MarkManager.Marks[1].MarkSprite.Location;
                             Vector2 mark3Location = MarkManager.Marks[2].MarkSprite.Location;
                             Vector2 mark4Location = MarkManager.Marks[3].MarkSprite.Location;
                             Vector2 mark5Location = MarkManager.Marks[4].MarkSprite.Location;
                             Vector2 mark6Location = MarkManager.Marks[5].MarkSprite.Location;
+                            
+                            
+                            //두번째꺼 재실행시 이상한거 생기는것 방지
                             startNoteManager = new StartNoteManager(
-                                spriteSheet, 
+                                spriteSheet,
                                 new Rectangle(0, 200, 52, 55),
                                 1);
-                                MarkManager.initialize(
-                                    // markManager = new MarkManager(
-                                   spriteSheet,
-                                   new Rectangle(0, 200, 50, 55),
-                                   1,
-                                   mark1Location,
-                                   mark2Location,
-                                   mark3Location,
-                                   mark4Location,
-                                   mark5Location,
-                                   mark6Location,
-                                   startNoteManager,
-                                   removeAreaRec
 
-                                   );
-                            //두번째꺼 재실행시 이상한거 생기는것 방지
-                            /////////////////////////////
-                        //    noteFileManager = new NoteFileManager();
-                            
+
+                            //froze 방지
+                            MarkManager.initialize(
+                                // markManager = new MarkManager(
+                                spriteSheet,
+                                new Rectangle(0, 200, 50, 55),
+                                1,
+                                mark1Location,
+                                mark2Location,
+                                mark3Location,
+                                mark4Location,
+                                mark5Location,
+                                mark6Location,
+                                startNoteManager,
+                                removeAreaRec
+
+                                );
+                            //파일 저장
                             file = new File(startNoteManager, noteFileManager, badManager, scoreManager);
 
-                            String dir = "c:\\beethoven\\";
+                            
 
-                            file.FileLoading(dir, "*.mnf");
+                            if (!System.IO.File.Exists(songsDir))
+                            {
+                                System.IO.Directory.CreateDirectory(songsDir);
+                            }
+
+                            file.FileLoading(songsDir, "*.mnf");
                            
                             scoreManager.init();
 
-                           
-                          //  collisionManager = new CollisionManager(perfectManager,
-                            //게임이 끝났을 떄 다시 정비하기 위한 공간. 
-
-                        }
+                          }
                     }
                     else
                     {
                         resultManager.setClickNextButton(false);
                     }
                 break;
+                #endregion
 
+               #region 순위판 
                 case GameStates.RecordBoard:
 
                     Rectangle rectMouseRecordBoard = new Rectangle(mouseStateCurrent.X, mouseStateCurrent.Y, 5, 5);
@@ -2137,29 +2158,36 @@ namespace beethoven3
                         recordBoard.setClickNextButton(false);
                     }
                 break;
-
-
+                #endregion
+               
+               #region 곡선택메뉴
                 case GameStates.SongMenu:
-                    result = songMenu.Update();
-                    if (result == -1)
+                resultSongMenu = songMenu.Update();
+
+                //뒤로가기
+                if (resultSongMenu == -1)
                     {
                         gameState = GameStates.Menu;
 
                     }
-
-                    else if(result != -2)
+                // 선택 되었음
+                else if (resultSongMenu != -2)
                     {
                         gameState = GameStates.Playing;
-                        file.Loading(result);
-
-                        sndSystem.createSound("C:\\beethoven\\"+noteFileManager.noteFiles[result].Mp3, FMOD.MODE.HARDWARE, ref sndSound);
+                        file.Loading(resultSongMenu);
+                        
+                        //노래찾아서 재생하기
+                        
+                        //*** 재생시간동안 로딩
+                        sndSystem.createSound(songsDir + noteFileManager.noteFiles[resultSongMenu].Mp3, FMOD.MODE.HARDWARE, ref sndSound);
                         sndSystem.playSound(CHANNELINDEX.FREE, sndSound, false, ref sndChannel);
                     }
 
-                    break;  
-            }
+                    break;
+               #endregion
+           }
            mouseStatePrevious = mouseStateCurrent;
-            base.Update(gameTime);
+           base.Update(gameTime);
         }
 
         /// <summary>
@@ -2172,28 +2200,23 @@ namespace beethoven3
 #if Kineck
             Window.Title = drawrec1.X.ToString() + " - " + drawrec1.Y.ToString() + "마우스" + mouseStateCurrent.X.ToString() + "-" + mouseStateCurrent.Y.ToString();
 #endif
-            //Window.Title = ;
-
+            
             GraphicsDevice.Clear(Color.White);
-           // spriteBatch.Begin(sortMode,blendMode);
-          //  _guiManager.Draw(gameTime);
-            // graphics.GraphicsDevice.
             spriteBatch.Begin();
-
+            //타이틀화면
             if (gameState == GameStates.Menu)
             {
-                //spriteBatch.Draw(menu,
-                //    new Rectangle(0, 0, this.Window.ClientBounds.Width,
-                //        this.Window.ClientBounds.Height),
-                //        Color.White);
                 menuScene.Draw(spriteBatch, this.Window.ClientBounds.Width, this.Window.ClientBounds.Height);
 
             }
+
+            //상전대문
             if (gameState == GameStates.ShopDoor)
             {
                 shopDoor.Draw(spriteBatch, this.Window.ClientBounds.Width, this.Window.ClientBounds.Height);
             }
-        
+
+            #region 아이템샵들
             if (gameState == GameStates.RightItemShop)
             {
                 rightItemShop.Draw(spriteBatch, this.Window.ClientBounds.Width, this.Window.ClientBounds.Height);
@@ -2220,29 +2243,34 @@ namespace beethoven3
             {
                 backgroundItemShop.Draw(spriteBatch, this.Window.ClientBounds.Width, this.Window.ClientBounds.Height);
             }
+            #endregion
 
             if (gameState == GameStates.SongMenu)
             {
                 songMenu.Draw(spriteBatch);
 
             }
-           
+
+            #region 플레이화면
             if ((gameState == GameStates.Playing))
             {
-          //      spriteBatch.Draw(tileSprite, new Rectangle(64, 64, 256, 256), new Rectangle(256, 256, 256, 256), Color.White, 0, Vector2.Zero, SpriteEffects.None, .10f);
+                //배경
                 spriteBatch.Draw(playBackgroud1,
                 new Rectangle(0, 0, this.Window.ClientBounds.Width,
                     this.Window.ClientBounds.Height),
                     Color.White);
 
                 MarkManager.Draw(spriteBatch);
+                
+                //startnoteclass에 가야 보이고 안보이게 할 수 있음
                 startNoteManager.Draw(spriteBatch);
                 CurveManager.Draw(gameTime, spriteBatch);
                 GuideLineManager.Draw(gameTime, spriteBatch);
+                
                 //이걸 주석하면 드래그노트 체크하는거 안보임 하지만 체크는 됨
                 //DragNoteManager.Draw(spriteBatch);
+                
                 memberManager.Draw(spriteBatch);
-
                 GoldManager.Draw(spriteBatch);
 
                 file.Draw(spriteBatch, gameTime);
@@ -2250,46 +2278,33 @@ namespace beethoven3
                 goodManager.Draw(spriteBatch);
                 badManager.Draw(spriteBatch);
                 goldGetManager.Draw(spriteBatch);
+                
                 //가운데 빨간 사각형 주석하면 보이지않는다.
                 //     spriteBatch.Draw(dot, removeAreaRec, Color.Red);
-                int combo = scoreManager.Combo;
-                int max = scoreManager.Max;
-                int total = scoreManager.TotalScore;
-                int gold = scoreManager.Gold;
-                spriteBatch.DrawString(pericles36Font, combo.ToString(), scorePosition, Color.Black);
-                spriteBatch.DrawString(pericles36Font, gold.ToString(), new Vector2(scorePosition.X + 120, scorePosition.Y), Color.Black);
-                spriteBatch.DrawString(pericles36Font, total.ToString(), new Vector2(scorePosition.X + 240, scorePosition.Y), Color.Black);
+                
+                
+                //콤보 글씨
+                spriteBatch.DrawString(pericles36Font, scoreManager.Combo.ToString(), scorePosition, Color.Black);
+                //골드 글씨
+                spriteBatch.DrawString(pericles36Font, scoreManager.Gold.ToString(), new Vector2(scorePosition.X + 120, scorePosition.Y), Color.Black);
+                //최대 max
+                spriteBatch.DrawString(pericles36Font, scoreManager.Max.ToString(), new Vector2(scorePosition.X + 240, scorePosition.Y), Color.Black);
 
+                //기본 템포 설정( 템포가 바뀐상태이면 안변함)
                 SetBasicTempo();
-                // int heartgage = heart.Width * gage ;
+
 
                 ////test
 
                 spriteBatch.Draw(uiBackground, new Vector2(0, 0), Color.White);
+                
                 int gage = scoreManager.Gage;
                 //0이하이거나 넘어가지 않게 
 
+                //하트. gage양 만큼 하트가 나타남.
                 spriteBatch.Draw(uiHeart, new Vector2(0, 6), new Rectangle(0, 0, gage, 50), Color.White);
-                //spriteBatch.Draw(progressBar, originalPosition, progressBarBackground, Color.White);
-                //spriteBatch.Draw(progressBar, currentPosition + progressBarOffset, progressBarForeground, Color.Blue);
-
-                ////test
-                ////하트
-                //spriteBatch.Draw(tileSprite, new Rectangle(64, 64, 256, 256), new Rectangle(256, 256, 256, 256), Color.White, 0, Vector2.Zero, SpriteEffects.None,.10f);
-
-
-                ////원
-                //spriteBatch.Draw(tileSprite, new Rectangle(0, 0, 256, 256), new Rectangle(256, 0, 256, 256), Color.White, 0, Vector2.Zero, SpriteEffects.None, .15f);
-
-
-                ////모양
-                //spriteBatch.Draw(tileSprite, new Rectangle(128, 128, 256, 256), new Rectangle(0, 0, 256, 256), Color.White, 0, Vector2.Zero, SpriteEffects.None, .05f);
-
-
-                ////별
-                //spriteBatch.Draw(tileSprite, new Rectangle(192, 192, 256, 256), new Rectangle(0, 256, 256, 256), Color.White, 0, Vector2.Zero, SpriteEffects.None, .01f);
-
-                //Window.Title = "정렬데모순서 - " +blendMode.ToString()+" : "+ sortMode.ToString();
+              
+  
 #if Kinect
                 //컬러 디스플레이
                 if (KinectVideoTexture != null)
@@ -2316,31 +2331,28 @@ namespace beethoven3
             
 #endif
             }
+            #endregion
+
+
 
             if (gameState == GameStates.ResultManager)
             {
+                //class resultManager 에 draw실행
                 resultManager.Draw(spriteBatch, this.Window.ClientBounds.Width, this.Window.ClientBounds.Height,reportManager.IsHighScore(currentSongName,scoreManager.TotalScore));
 
-                //int combo = scoreManager.Combo;
-                //int max = scoreManager.Max;
-                //int total = scoreManager.TotalScore;
-                //int perfect = scoreManager.Perfect;
-                //int good = scoreManager.Good;
-                //int bad = scoreManager.Bad;
-                //int gold = scoreManager.Gold;
-                //int perfomance = scoreManager.Perfomance;
-                
+                //노래제목
                 String songFile = scoreManager.SongName;
-
+                //제목으로 노트파일에서 찾기
                 NoteFile noteFile = noteFileManager.FindNoteFile(songFile);
-
-
+                
+                //노트파일로 사진 가져오기
                 spriteBatch.Draw(songMenu.FindPicture(noteFile), new Rectangle(70, 70, 100, 100), Color.White);
-
-
+                
+                //노트파일로 노래 제목가져오기
                 spriteBatch.DrawString(pericles36Font, noteFile.Name, new Vector2(200,80), Color.White);
+                //노트파일로 가수 가져오기
                 spriteBatch.DrawString(pericles36Font, noteFile.Artist, new Vector2(200,130), Color.White);
-                //난이도//spriteBatch.DrawString(pericles36Font, , new Vector2(200,80), Color.White);
+                //***//난이도//spriteBatch.DrawString(pericles36Font, , new Vector2(200,80), Color.White);
 
 
                 spriteBatch.DrawString(pericles36Font, scoreManager.Perfect.ToString(), new Vector2(300, 300), Color.White);
@@ -2348,32 +2360,26 @@ namespace beethoven3
                 spriteBatch.DrawString(pericles36Font, scoreManager.Bad.ToString(), new Vector2(300, 400), Color.White);
                 spriteBatch.DrawString(pericles36Font, scoreManager.Perfomance.ToString(), new Vector2(700, 300), Color.White);
                 spriteBatch.DrawString(pericles36Font, scoreManager.Max.ToString(), new Vector2(700, 350), Color.White);
-
                 spriteBatch.DrawString(pericles36Font, scoreManager.Combo.ToString(), new Vector2(700, 400), Color.White);
-
                 spriteBatch.DrawString(pericles36Font, scoreManager.Gold.ToString(), new Vector2(700, 450), Color.White);
-
-
                 spriteBatch.DrawString(pericles36Font, scoreManager.TotalScore.ToString(), new Vector2(700, 500), Color.White);
-                
-                //rank
             }
+
 
             if (gameState == GameStates.RecordBoard)
             {
                 recordBoard.Draw(spriteBatch, this. Window.ClientBounds.Width, this.Window.ClientBounds.Height);
 
-
+                //현재 노래 제목으로 5개 높은 노래 가져오기
                 List<ScoreInfo> highScores = reportManager.GetHighScore(currentSongName);
 
                 int i;
                 for (i = 0; i < highScores.Count; i++)
                 {
+                    //노래 사진
                     spriteBatch.Draw(reportManager.FindPicture(highScores[i].UserPicture), new Rectangle(200, (i + 1) * 100, 100, 100), Color.White);
-
+                    //노래 점수 
                     spriteBatch.DrawString(pericles36Font, highScores[i].Score.ToString(), new Vector2(300, (i+1)*100), Color.Black);
-
-
                 }
 
             }

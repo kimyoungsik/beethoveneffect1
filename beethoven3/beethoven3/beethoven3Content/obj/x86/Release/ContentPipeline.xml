@@ -110,15 +110,6 @@
       <Time>2012-11-14T15:28:56.9540001+09:00</Time>
     </Item>
     <Item>
-      <Source>Textures\dot.bmp</Source>
-      <Name>Textures\dot</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Textures\dot.xnb</Output>
-      <Time>2012-11-21T10:47:25.9729367+09:00</Time>
-    </Item>
-    <Item>
       <Source>ui\background.png</Source>
       <Name>ui\background</Name>
       <Importer>TextureImporter</Importer>

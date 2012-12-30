@@ -46,10 +46,27 @@ namespace beethoven3
         {
             this.scoreManager = scoreManager;
         }
-        
+
+        public String MakeNewDir(String dir)
+        {
+            if (!System.IO.File.Exists(dir))
+            {
+                System.IO.Directory.CreateDirectory(dir);
+            }
+            return dir;
+            
+        }
+
+
         public void SaveReport()
         {
-            TextWriter tw = new StreamWriter("c:\\beethovenRecord\\record.txt");
+            //저장되는 파일
+             String dir = "C:\\beethovenRecord\\record.txt";
+             dir = MakeNewDir(dir);
+
+
+            //record txt 에 저장
+            TextWriter tw = new StreamWriter(dir);
             int i, j;
             for (i = 0; i < scoreInfoManagers.Count; i++)
             {
@@ -69,7 +86,10 @@ namespace beethoven3
 
         public void SaveGoldToFile()
         {
-            TextWriter tw = new StreamWriter("c:\\beethovenRecord\\gold.txt");
+            String dir = "c:\\beethovenRecord\\gold.txt";
+            dir = MakeNewDir(dir);
+
+            TextWriter tw = new StreamWriter(dir);
             tw.WriteLine("**");
             tw.WriteLine(scoreManager.TotalGold);
             tw.Close();
@@ -78,8 +98,10 @@ namespace beethoven3
 
         public void LoadReport()
         {
+            String dir = "c:\\beethovenRecord\\record.txt";
+            dir = MakeNewDir(dir);
 
-            StreamReader sr = new StreamReader("c:\\beethovenRecord\\record.txt");
+            StreamReader sr = new StreamReader(dir);
             String line;
             String songTitle=null;
             String[] contents;
@@ -98,9 +120,6 @@ namespace beethoven3
                    }
                    line = sr.ReadLine();          
             }
-  //          line = sr.ReadLine();
-
-//            scoreManager.TotalGold = Int32.Parse(line);
             
             sr.Close();
         }
