@@ -946,6 +946,16 @@ namespace beethoven3
 
                 SetOptionalTime();
             }
+
+             if (keyState.IsKeyDown(Keys.F))
+            {
+               // sndChannel.setFrequency(44100.0f);
+               // ReturnBasicTempo();
+                 memberManager.SetMembersFrameTime(0.02f);
+                //memberSetMembersFrameTime
+            }
+
+           
         }
         /// <summary>
         /// Allows the game to run logic such as updating the world,

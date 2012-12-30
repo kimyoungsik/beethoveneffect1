@@ -141,7 +141,6 @@
     <Compile Include="Marker\MarkManager.cs" />
     <Compile Include="Member\MemberManager.cs" />
     <Compile Include="Menu\MenuScene.cs" />
-    <Compile Include="File\NoteFile.cs" />
     <Compile Include="File\NoteFileManager.cs" />
     <Compile Include="Curve\NoteInfo.cs" />
     <Compile Include="Item\NoteItemShop.cs" />
@@ -154,7 +153,6 @@
     <Compile Include="File\ReportManager.cs" />
     <Compile Include="Result\ResultManager.cs" />
     <Compile Include="Item\RightItemShop.cs" />
-    <Compile Include="Score\ScoreInfo.cs" />
     <Compile Include="Score\ScoreManager.cs" />
     <Compile Include="Item\ShopDoor.cs" />
     <Compile Include="Score\ScoreInfoManager.cs" />

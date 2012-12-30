@@ -11,95 +11,99 @@ namespace beethoven3
     {
 
         #region declarations
-        private List<Sprite> firstMembers = new List<Sprite>();
-        private List<Sprite> secondMembers = new List<Sprite>();
-        private List<Sprite> thirdMembers = new List<Sprite>();
-        private List<Sprite> forthMembers = new List<Sprite>();
-        private List<Sprite> fifthMembers = new List<Sprite>();
-        private List<Sprite> sixthMembers = new List<Sprite>();
+
+        private List<Sprite> violinMembers = new List<Sprite>();
+        private List<Sprite> fluteMembers = new List<Sprite>();
+        private List<Sprite> timpaniMembers = new List<Sprite>();
+        private List<Sprite> hornMembers = new List<Sprite>();
+        private List<Sprite> contrabaseMembers = new List<Sprite>();
+        private List<Sprite> celloMembers = new List<Sprite>();
+
+        private Texture2D violinMemberPlay;
+        private Texture2D fluteMemberPlay;
+        private Texture2D timpaniMemberPlay;
+        private Texture2D hornMemberPlay;
+        private Texture2D contrabaseMemberPlay;
+        private Texture2D celloMemberPlay;
+
+        private Texture2D violinMemberMiss;
+        private Texture2D fluteMemberMiss;
+        private Texture2D timpaniMemberMiss;
+        private Texture2D hornMemberMiss;
+        private Texture2D contrabaseMemberMiss;
+        private Texture2D celloMemberMiss;
         
-        private Texture2D firstMemberPlay;
-        private Texture2D secondMemberPlay;
-        private Texture2D thirdMemberPlay;
-        private Texture2D forthMemberPlay;
-        private Texture2D fifthMemberPlay;
-        private Texture2D sixthMemberPlay;
-        
-        private Texture2D firstMemberMiss;
-        private Texture2D secondMemberMiss;
-        private Texture2D thirdMemberMiss;
-        private Texture2D forthMemberMiss;
-        private Texture2D fifthMemberMiss;
-        private Texture2D sixthMemberMiss;
-        
-        private int firstMemberState;
-        private int secondMemberState;
-        private int thirdMemberState;
-        private int forthMemberState;
-        private int fifthMemberState;
-        private int sixthMemberState;
+
+        /// <summary>
+        //*** 스트로트 포함된 member
+        /// </summary>
+        private int violinMemberState;
+        private int fluteMemberState;
+        private int timpaniMemberState;
+        private int hornMemberState;
+        private int contrabaseMemberState;
+        private int celloMemberState;
 
         #endregion
         public MemberManager()
         {
-              
-         firstMemberState = 0;
-         secondMemberState = 0;
-         thirdMemberState = 0;
-         forthMemberState = 0;
-         fifthMemberState = 0;
-         sixthMemberState = 0; 
+
+            violinMemberState = 0;
+            fluteMemberState = 0;
+            timpaniMemberState = 0;
+            hornMemberState = 0;
+            contrabaseMemberState = 0;
+            celloMemberState = 0; 
 
         }
         public void LoadContent(ContentManager cm)
         {
-            firstMemberPlay = cm.Load<Texture2D>(@"character\violin");
-            secondMemberPlay = cm.Load<Texture2D>(@"character\flute");
-            thirdMemberPlay = cm.Load<Texture2D>(@"character\timpani");
-            forthMemberPlay = cm.Load<Texture2D>(@"character\horn");
-            fifthMemberPlay = cm.Load<Texture2D>(@"character\contrabase");
-            sixthMemberPlay = cm.Load<Texture2D>(@"character\cello");
+            violinMemberPlay = cm.Load<Texture2D>(@"character\violin");
+            fluteMemberPlay = cm.Load<Texture2D>(@"character\flute");
+            timpaniMemberPlay = cm.Load<Texture2D>(@"character\timpani");
+            hornMemberPlay = cm.Load<Texture2D>(@"character\horn");
+            contrabaseMemberPlay = cm.Load<Texture2D>(@"character\contrabase");
+            celloMemberPlay = cm.Load<Texture2D>(@"character\cello");
 
-            firstMemberMiss = cm.Load<Texture2D>(@"character\violin");
-            secondMemberMiss = cm.Load<Texture2D>(@"character\flute");
-            thirdMemberMiss = cm.Load<Texture2D>(@"character\timpani");
-            forthMemberMiss = cm.Load<Texture2D>(@"character\horn");
-            fifthMemberMiss = cm.Load<Texture2D>(@"character\contrabase");
-            sixthMemberMiss = cm.Load<Texture2D>(@"character\cello");
-          
+            violinMemberMiss = cm.Load<Texture2D>(@"character\violin");
+            fluteMemberMiss = cm.Load<Texture2D>(@"character\flute");
+            timpaniMemberMiss = cm.Load<Texture2D>(@"character\timpani");
+            hornMemberMiss = cm.Load<Texture2D>(@"character\horn");
+            contrabaseMemberMiss = cm.Load<Texture2D>(@"character\contrabase");
+            celloMemberMiss = cm.Load<Texture2D>(@"character\cello");
         }
 
         
         public void init() 
         {
 
-            ///프레임카운트 일단 1
+            
             //first Run //바이올린
-            MakeMember(firstMemberPlay, new Rectangle(0,0,114,160),new Vector2(110,160),Vector2.Zero,0f,15,15,0,1f);
+            MakeMember(violinMemberPlay, new Rectangle(0, 0, 114, 158), new Vector2(110, 160),/*velocity*/ Vector2.Zero,/*speed*/ 0f,/*collisionRadius*/ 15,/*프레임*/ 15,/*memberNumber*/ 0,/*scale*/ 1f);
             //second Run //플룻
-            MakeMember(secondMemberPlay, new Rectangle(0, 0, 253, 595), new Vector2(170, -110), Vector2.Zero, 0f, 15,5, 1, 0.4f);
+            MakeMember(fluteMemberPlay, new Rectangle(0, 0, 253, 595), new Vector2(170, -110), Vector2.Zero, 0f, 15, 5, 1, 0.4f);
             //third Run //팀파니
-            MakeMember(thirdMemberPlay, new Rectangle(0, 0, 196, 238), new Vector2(170, 170), Vector2.Zero, 0f, 15, 5, 2, 1f);
+            MakeMember(timpaniMemberPlay, new Rectangle(0, 0, 196, 238), new Vector2(170, 170), Vector2.Zero, 0f, 15, 5, 2, 1f);
             //forth Run // 호른
-            MakeMember(forthMemberPlay, new Rectangle(0, 0, 280, 595), new Vector2(370, 290), Vector2.Zero, 0f, 15, 5 , 3, 0.28f);
+            MakeMember(hornMemberPlay, new Rectangle(0, 0, 280, 595), new Vector2(370, 290), Vector2.Zero, 0f, 15, 5, 3, 0.28f);
             //fifth Run //콘타라 베이스
-            MakeMember(fifthMemberPlay, new Rectangle(0, 0, 172, 254), new Vector2(420, 220), Vector2.Zero, 0f, 15, 8, 4, 1f);
+            MakeMember(contrabaseMemberPlay, new Rectangle(0, 0, 172, 254), new Vector2(420, 220), Vector2.Zero, 0f, 15, 8, 4, 1f);
             //sixth Run //첼로 
-            MakeMember(sixthMemberPlay, new Rectangle(0, 0, 325, 595), new Vector2(510, -40), Vector2.Zero, 0f , 15, 5, 5, 0.42f);
+            MakeMember(celloMemberPlay, new Rectangle(0, 0, 325, 595), new Vector2(510, -40), Vector2.Zero, 0f, 15, 5, 5, 0.42f);
 
 
             //first Run
-            MakeMember(firstMemberMiss, new Rectangle(0, 0, 490, 800), new Vector2(20, -150), Vector2.Zero, 0f, 15, 1, 0, 0.3f);
+            MakeMember(violinMemberMiss, new Rectangle(0, 0, 490, 800), new Vector2(20, -150), Vector2.Zero, 0f, 15, 1, 0, 0.3f);
             //second Run
-            MakeMember(secondMemberMiss, new Rectangle(0, 0, 258, 595), new Vector2(170, -110), Vector2.Zero, 0f, 15, 1, 1, 0.4f);
+            MakeMember(fluteMemberMiss, new Rectangle(0, 0, 258, 595), new Vector2(170, -110), Vector2.Zero, 0f, 15, 1, 1, 0.4f);
             //third Run
-            MakeMember(thirdMemberMiss, new Rectangle(0, 0, 471, 595), new Vector2(170, -170), Vector2.Zero, 0f, 15, 1, 2, 0.4f);
+            MakeMember(timpaniMemberMiss, new Rectangle(0, 0, 471, 595), new Vector2(170, -170), Vector2.Zero, 0f, 15, 1, 2, 0.4f);
             //forth Run
-            MakeMember(forthMemberMiss, new Rectangle(0, 0, 312, 800), new Vector2(370, -290), Vector2.Zero, 0f, 15, 1, 3, 0.28f);
+            MakeMember(hornMemberMiss, new Rectangle(0, 0, 312, 800), new Vector2(370, -290), Vector2.Zero, 0f, 15, 1, 3, 0.28f);
             //fifth Run
-            MakeMember(fifthMemberMiss, new Rectangle(0, 0, 372, 800), new Vector2(420, -220), Vector2.Zero, 0f, 15, 1, 4, 0.3f);
+            MakeMember(contrabaseMemberMiss, new Rectangle(0, 0, 372, 800), new Vector2(420, -220), Vector2.Zero, 0f, 15, 1, 4, 0.3f);
             //sixth Run
-            MakeMember(sixthMemberMiss, new Rectangle(0, 0, 320, 595), new Vector2(510, -40), Vector2.Zero, 0f, 15, 1, 5, 0.42f);
+            MakeMember(celloMemberMiss, new Rectangle(0, 0, 320, 595), new Vector2(510, -40), Vector2.Zero, 0f, 15, 1, 5, 0.42f);
 
        
         }
@@ -120,11 +124,15 @@ namespace beethoven3
                 location,
                 texture,
                 InitialFrame,
-                velocity, scale);
+                velocity, 
+                scale);
 
             thisMember.Velocity *= speed;
 
-            for (int x = 1; x < frameCount; x++)
+           
+
+            // 처음부터 마지막 프레임까지 연주
+            for (int x = 0; x < frameCount; x++)
             {
                 thisMember.AddFrame(new Rectangle(
                     InitialFrame.X + (InitialFrame.Width * x),
@@ -133,7 +141,8 @@ namespace beethoven3
                     InitialFrame.Height));
             }
 
-            for (int x = frameCount-1; x > 0; x--)
+            //마지막 프레임을 빼고 그 앞에서부터 처음까지 다시 연주
+            for (int x = frameCount - 2; x >= 0; x--)
             {
                 thisMember.AddFrame(new Rectangle(
                     InitialFrame.X + (InitialFrame.Width * x),
@@ -147,55 +156,86 @@ namespace beethoven3
             switch (memberNumber)
             {
                 case 0:
-                    firstMembers.Add(thisMember);
+                    violinMembers.Add(thisMember);
                     break;
 
                 case 1:
-                    secondMembers.Add(thisMember);
+                    fluteMembers.Add(thisMember);
                     break;
 
                 case 2:
-                    thirdMembers.Add(thisMember);
+                    timpaniMembers.Add(thisMember);
                     break;
 
                 case 3:
-                    forthMembers.Add(thisMember);
+                    hornMembers.Add(thisMember);
                     break;
 
                 case 4:
-                    fifthMembers.Add(thisMember);
+                    contrabaseMembers.Add(thisMember);
                     break;
 
                 case 5:
-                    sixthMembers.Add(thisMember);
+                    celloMembers.Add(thisMember);
                     break;
 
             }
         }
 
+        //멤버들의 프레임 속도 변화
+        public void SetMembersFrameTime(float speed)
+        {
+            foreach (Sprite violin in violinMembers)
+            {
+                violin.FrameTime = speed;
+            }
+            foreach (Sprite flute in fluteMembers)
+            {
+                flute.FrameTime = speed;
+            }
+            foreach (Sprite timpani in timpaniMembers)
+            {
+                timpani.FrameTime = speed;
+            }
+            foreach (Sprite horn in hornMembers)
+            {
+                horn.FrameTime = speed;
+            }
+            foreach (Sprite contrabase in contrabaseMembers)
+            {
+                contrabase.FrameTime = speed;
+            }
+            foreach (Sprite cello in celloMembers)
+            {
+                cello.FrameTime = speed;
+            }
+        }
+
+
+
         #region update and draw
         
         public void Update(GameTime gameTime)
         {
-            firstMembers[firstMemberState].Update(gameTime);
-            secondMembers[secondMemberState].Update(gameTime);
-            thirdMembers[thirdMemberState].Update(gameTime);
-            forthMembers[forthMemberState].Update(gameTime);
-            fifthMembers[fifthMemberState].Update(gameTime);
-            sixthMembers[sixthMemberState].Update(gameTime);
+            violinMembers[violinMemberState].Update(gameTime);
+            fluteMembers[fluteMemberState].Update(gameTime);
+            timpaniMembers[timpaniMemberState].Update(gameTime);
+            hornMembers[hornMemberState].Update(gameTime);
+            contrabaseMembers[contrabaseMemberState].Update(gameTime);
+            celloMembers[celloMemberState].Update(gameTime);
         }
         
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            
-            
-            thirdMembers[thirdMemberState].Draw(spriteBatch);
-            secondMembers[secondMemberState].Draw(spriteBatch);
-            firstMembers[firstMemberState].Draw(spriteBatch);
-            forthMembers[forthMemberState].Draw(spriteBatch);
-            fifthMembers[fifthMemberState].Draw(spriteBatch);
-            sixthMembers[sixthMemberState].Draw(spriteBatch);
+
+
+            timpaniMembers[violinMemberState].Draw(spriteBatch);
+            fluteMembers[fluteMemberState].Draw(spriteBatch);
+            violinMembers[timpaniMemberState].Draw(spriteBatch);
+            hornMembers[hornMemberState].Draw(spriteBatch);
+            contrabaseMembers[contrabaseMemberState].Draw(spriteBatch);
+            celloMembers[celloMemberState].Draw(spriteBatch);
         }
 
 
@@ -204,27 +244,27 @@ namespace beethoven3
             switch (member)
             {
                 case 0:
-                    firstMemberState = state;
+                    violinMemberState = state;
                     break;
                     
                 case 1:
-                    secondMemberState = state;
+                    fluteMemberState = state;
                     break;
 
                 case 2:
-                    thirdMemberState = state;
+                    timpaniMemberState = state;
                     break;
 
                 case 3:
-                    forthMemberState = state;
+                    hornMemberState = state;
                     break;
                     
                 case 4:
-                    fifthMemberState = state;
+                    contrabaseMemberState = state;
                     break;
 
                 case 5:
-                    sixthMemberState = state; 
+                    celloMemberState = state; 
                     break;   
             }
 

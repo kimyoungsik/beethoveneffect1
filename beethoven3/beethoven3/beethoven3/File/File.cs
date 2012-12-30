@@ -206,12 +206,16 @@ namespace beethoven3
 
                             String picture = sr.ReadLine();
 
+                            double startTime = Convert.ToDouble(sr.ReadLine());
+
+                            double endTime = Convert.ToDouble(sr.ReadLine());
+
                             //0: version , 1:name , 2: artist, 3: mp3, 4: picture
-                            noteFileManager.Add("1", name, artist, mp3, picture);
 
-                            startTime = Convert.ToDouble(sr.ReadLine());
+                            //노트정보관리에 다음 사항을 넣는다. //*** 버전 추가 
+                            noteFileManager.Add("1", name, artist, mp3, picture, startTime, endTime);
 
-                            endTime = Convert.ToDouble(sr.ReadLine());
+                            
 
                             bpm = Int32.Parse(sr.ReadLine());
                         }
@@ -240,13 +244,20 @@ namespace beethoven3
         /// </summary>
         /// <param name="fileName"></param>
 
+        //노래 시작하기 바로 직전 //***로딩 여기서?
         public void Loading(int noteNumber)
         {
             String name = noteFileManager.noteFiles[noteNumber].Name;
+            
+            //시작 시간 설정
+            startTime = noteFileManager.noteFiles[noteNumber].StartTime;
+            
+            //끝나는 시간 설정
+            endTime = noteFileManager.noteFiles[noteNumber].EndTime;
 
             StreamReader sr = new StreamReader("C:\\beethoven\\" + name, Encoding.Unicode);
             scoreManager.SongName = name;
-          
+         
             //첫줄은 헤더
             String stringLine = sr.ReadLine();
             while (stringLine != "##################### [BODY] #####################")

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-
+using System.Diagnostics;
 namespace beethoven3
 {
     class Sprite
@@ -18,14 +18,20 @@ namespace beethoven3
 
         private int frameWidth = 0;
         private int frameHeight = 0;
+        
+        //주어진 시간에 표시되는 프레임을 저장
         private int currentFrame;
 
         //frametime에 정해놓은 시간동안 표시 (timeforcurrentframe과 비교)
         private float frameTime = 0.1f;
         private float timeForCurrentFrame = 0.0f;
+        //
 
+        //효과
         private Color tintColor = Color.White;
         private float rotation ;
+        //
+
 
         //make collinsion
         public int CollisionRadius = 0;
@@ -39,6 +45,10 @@ namespace beethoven3
         protected Vector2 velocity = Vector2.Zero;
 
         protected float scale = 1.0f;
+        
+        
+
+
         #endregion
 
         #region constructor
@@ -47,6 +57,7 @@ namespace beethoven3
             Texture2D texture,
             Rectangle initialFrame,
             Vector2 velocity,
+            //기본적으로 scale은 1, 값이 들어가면 그 값을 따른다.
             float scale = 1.0f
              )
         {
@@ -92,6 +103,7 @@ namespace beethoven3
             set { rotation = value % MathHelper.TwoPi; }
         }
 
+        //프레임 지정, 그러나 프레임 안에서 해당하는 수만큼만 가능+
         public int Frame
         {
             get { return currentFrame; }
@@ -135,14 +147,12 @@ namespace beethoven3
                 return location +
                     new Vector2(frameWidth / 2, frameHeight / 2);
             }
-    
         }
-
-     
 
         #endregion
 
         #region collision
+
         public Rectangle BoundingBoxRect
         {
             get
@@ -205,13 +215,16 @@ namespace beethoven3
         #endregion
 
         #region update and draw
-        public virtual void Update(GameTime gameTime)
+        public virtual void Update(GameTime gameTime) 
         {
             float elapsed = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            timeForCurrentFrame += elapsed;
+           
+            timeForCurrentFrame += (elapsed);
+          
+            //여기에 얼마나 자주 들어가는것에 따라서 프레임이 빨리 바뀌거나 느리게 바뀐다. 
+            //frameTime을 바꾼다.
 
-            //"bool animate enable" it to stop spriting
             if (timeForCurrentFrame >= FrameTime)
             {
                 currentFrame = (currentFrame + 1) % (frames.Count);
