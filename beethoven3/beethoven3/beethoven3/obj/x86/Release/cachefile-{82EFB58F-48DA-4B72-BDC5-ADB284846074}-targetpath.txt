@@ -63,4 +63,3 @@ Content\background\itemBackground.xnb
 Content\background\itemBackground2.xnb
 Content\shopdoor\nogold.xnb
 Content\shopdoor\nogoldhover.xnb
-Content\character\contrabase2.xnb

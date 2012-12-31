@@ -15,6 +15,7 @@ namespace beethoven3
         private static int markFrameCount;
         public static List<Mark> Marks = new List<Mark>();
         private static float scale =1.0f;
+       
         //가운데 빈공간 (노트들이 없어질 부분)
         public static Rectangle centerArea;
 
@@ -29,10 +30,11 @@ namespace beethoven3
         private static StartNoteManager startNoteManager;
 
         //마커와 노트시작 사이의 거리
-        public static float distance = 70.0f;
+        public static float distance = 80.0f;
         #endregion
          
         #region initialization
+        
         //70 이라면. 속도 곱하기 시간은 거리
         // 시간은 = 거리/속도 
         public static void initialize(
@@ -63,6 +65,9 @@ namespace beethoven3
             addMark(mark4Loc);
             addMark(mark5Loc); 
        
+
+            //GetStartNoteLocatin => 마커 위치와 거리를 주면 그에 따라서 스타트 노트 위치를 반환한다.
+            // 그 값을 가지고 스타트 노트를 만든다.
             startNoteManager.addStartNote(GetStartNoteLocation(mark0Loc, distance, 0));
             startNoteManager.addStartNote(GetStartNoteLocation(mark1Loc, distance, 1));
             startNoteManager.addStartNote(GetStartNoteLocation(mark2Loc, distance, 2));
@@ -257,6 +262,7 @@ namespace beethoven3
                     bool find0 = false;
                     while (!find0)
                     {
+                        //거리만큼 뺀다.
                         otherCenter.Y -= x;
                         if (Vector2.Distance(center, otherCenter) == distance || otherCenter.Y < 0)
                         {
@@ -290,6 +296,7 @@ namespace beethoven3
                         }
                     }
                     break;
+
                 case 3:
 
                     bool find3 = false;
@@ -302,7 +309,9 @@ namespace beethoven3
                         }
                     }
                     break;
+
                 case 4:
+
                     bool find4 = false;
                     while (!find4)
                     {
@@ -313,6 +322,7 @@ namespace beethoven3
                         }
                     }
                     break;
+
                 case 5:
 
                     bool find5 = false;

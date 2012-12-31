@@ -2189,8 +2189,9 @@ namespace beethoven3
                         //노래찾아서 재생하기
                         
                         //*** 재생시간동안 로딩
-                        sndSystem.createSound(songsDir + noteFileManager.noteFiles[resultSongMenu].Mp3, FMOD.MODE.HARDWARE, ref sndSound);
-                        sndSystem.playSound(CHANNELINDEX.FREE, sndSound, false, ref sndChannel);
+                   
+                         sndSystem.createSound(songsDir + noteFileManager.noteFiles[resultSongMenu].Mp3, FMOD.MODE.HARDWARE, ref sndSound);
+                         sndSystem.playSound(CHANNELINDEX.FREE, sndSound, false, ref sndChannel);
                     }
 
                     break;
@@ -2421,7 +2422,6 @@ namespace beethoven3
 
             List<Item> myRightHand = itemManager.getShopRightHandItem();
             spriteBatch.Draw(myRightHand[itemManager.getRightHandIndex()].ItemSprite.Texture, drawrec1, Color.Red);
-            
 
             Joint j2r = j2.ScaleTo(1024, 768, .3f, .3f);
 

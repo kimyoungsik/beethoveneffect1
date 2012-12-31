@@ -73,4 +73,3 @@ D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\background
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\background\itemBackground2.xnb
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopdoor\nogold.xnb
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopdoor\nogoldhover.xnb
-D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\character\contrabase2.xnb

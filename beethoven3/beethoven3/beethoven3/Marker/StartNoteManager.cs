@@ -23,11 +23,9 @@ namespace beethoven3
         
         public static NoteManager rightNoteManager;
         public static NoteManager leftNoteManager;
-    //    public static NoteManager doubleNoteManager;
         public static NoteManager longNoteManager;
         //BPS에 따라 달라진다.
         public static float noteSpeed = 70.0f;
-      //  public static float noteSpeed = 70.0f;
         #endregion
          
 
@@ -66,16 +64,6 @@ namespace beethoven3
                 //notetype
                 );
 
-            //doublenote
-            //doubleNoteManager = new NoteManager(
-            //    //노크와 시작마커가 같은 sprite
-            //    texture,
-            //     new Rectangle(0, 200, 50, 50),
-            //    1,
-            //    15,
-            //    noteSpeed
-            //    //notetype
-            //    );
 
             //doublenote
             longNoteManager = new NoteManager(
@@ -209,11 +197,11 @@ namespace beethoven3
             leftNoteManager.Draw(spriteBatch);
          //   doubleNoteManager.Draw(spriteBatch);
             longNoteManager.Draw(spriteBatch);
-            //스타트 표시점 보이지 않게
-            //foreach (StartNote startNote in StartNotes)
-            //{
-            //    startNote.Draw(spriteBatch);
-            //}
+            //스타트 표시점 보이지 않게 하려면 주석을 달아야 한다.
+            foreach (StartNote startNote in StartNotes)
+            {
+                startNote.Draw(spriteBatch);
+            }
         }
         #endregion
 
