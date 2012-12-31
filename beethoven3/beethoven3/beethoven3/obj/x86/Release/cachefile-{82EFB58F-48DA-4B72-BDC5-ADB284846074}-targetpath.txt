@@ -63,3 +63,5 @@ Content\background\itemBackground.xnb
 Content\background\itemBackground2.xnb
 Content\shopdoor\nogold.xnb
 Content\shopdoor\nogoldhover.xnb
+Content\notes\starNote.xnb
+Content\markers\starMarker.xnb

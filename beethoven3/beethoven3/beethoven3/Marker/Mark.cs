@@ -10,6 +10,7 @@ namespace beethoven3
     class Mark
     {
         #region declarations
+        
         public Sprite MarkSprite;
         // private float speed = 120f;
         
@@ -22,6 +23,7 @@ namespace beethoven3
         #endregion
 
         #region constructor
+
         public Mark(
             Texture2D texture,
             Vector2 location,

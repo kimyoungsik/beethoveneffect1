@@ -562,6 +562,24 @@
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopdoor\nogoldhover.xnb</Output>
       <Time>2012-12-29T11:09:34.7544325+09:00</Time>
     </Item>
+    <Item>
+      <Source>notes\starNote.png</Source>
+      <Name>notes\starNote</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\starNote.xnb</Output>
+      <Time>2013-01-01T00:47:01.9035887+09:00</Time>
+    </Item>
+    <Item>
+      <Source>markers\starMarker.png</Source>
+      <Name>markers\starMarker</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\markers\starMarker.xnb</Output>
+      <Time>2013-01-01T00:47:12.4221903+09:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

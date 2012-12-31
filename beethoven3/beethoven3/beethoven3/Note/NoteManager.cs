@@ -43,6 +43,16 @@ namespace beethoven3
 
         #endregion
 
+
+        #region properties
+        public Texture2D TextureChange
+        {
+            get { return Texture; }
+            set { Texture = value; }
+        }
+        #endregion
+
+
         #region method
         public void MakeNote(
             Vector2 location,
@@ -70,10 +80,8 @@ namespace beethoven3
         }
         #endregion
 
+
         #region update and draw
-
-
-
         public void Update(GameTime gameTime)
         {
             for (int x = LittleNotes.Count - 1; x >= 0; x--)
@@ -92,9 +100,6 @@ namespace beethoven3
                 littleNote.Draw(spriteBatch);
             }
         }
-
-
-
         #endregion
     }
 }

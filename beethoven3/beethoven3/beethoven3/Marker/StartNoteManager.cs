@@ -31,6 +31,7 @@ namespace beethoven3
 
         #region constructor
 
+        //각 노트를 만든다. 노트의 텍스쳐는 아래 texture
         public StartNoteManager(
             Texture2D texture,
             Rectangle initialFrame,
@@ -100,6 +101,29 @@ namespace beethoven3
         #endregion
 
         #region method
+
+        //각 노트의 모양을 바꾸다.
+        //노래 선택하고 시작하기전에 설정한다.
+        public void changeRightNoteImage(Texture2D texture)
+        {
+            rightNoteManager.TextureChange = texture;
+        }
+
+        public void changeLeftNoteImage(Texture2D texture)
+        {
+            leftNoteManager.TextureChange = texture;
+        }
+
+        
+        public void changeLongNoteImage(Texture2D texture)
+        {
+            longNoteManager.TextureChange = texture;
+        }
+
+       
+
+
+
         public void addStartNote(Vector2 location)
         {
             StartNote thisStartNote = new StartNote(

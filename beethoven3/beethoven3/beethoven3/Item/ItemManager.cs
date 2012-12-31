@@ -16,7 +16,7 @@ namespace beethoven3
         private List<Item> effectItem = new List<Item>();
         private List<Item> noteItem = new List<Item>();
         private List<Item> backgroundItem = new List<Item>();
-      
+       
        
         //아이템 텍스쳐
         private Texture2D[] rightHandTexture = new Texture2D[5];
@@ -24,6 +24,12 @@ namespace beethoven3
         private Texture2D[] effectTexture = new Texture2D[5];
         private Texture2D[] noteTexture = new Texture2D[5];
         private Texture2D[] backgroundTexture = new Texture2D[5];
+        //팔지는 않지만 텍스쳐만 가지고 있음
+        private Texture2D[] markTexture = new Texture2D[5];
+        //롱노트라 왼손노트를 따로 만들 때 쓰임
+        //***  private Texture2D[] longNoteTexture = new Texture2D[5];
+        //***  private Texture2D[] leftNoteTexture = new Texture2D[5];
+
 
    
         //내가 착용한 아이템-착용함수 제작
@@ -49,10 +55,17 @@ namespace beethoven3
         public void Init()
         {
             int i;
+
+            //아이템 상점에 올림
             for (i = 0; i < 4; i++)
             {
                 addItem(rightHandItem, new Vector2(100, 100), rightHandTexture[i], new Rectangle(0, 0, rightHandTexture[i].Width, rightHandTexture[i].Height), 1,/*cost*/ (i+1)*5);
             }
+            for (i = 0; i < 1; i++)
+            {
+                addItem(noteItem, new Vector2(100, 100), noteTexture[i], new Rectangle(0, 0, noteTexture[i].Width, noteTexture[i].Height), 1,/*cost*/ 25);
+            }
+
                 for (i = 0; i < 2; i++)
             {
                 addItem(leftHandItem, new Vector2(100, 100), leftHandTexture[i], new Rectangle(0, 0, leftHandTexture[i].Width, leftHandTexture[i].Height), 1,/*cost*/ 7);
@@ -61,15 +74,16 @@ namespace beethoven3
                 //have to additem, effect, node , background
                 addItem(effectItem, new Vector2(100, 100), effectTexture[i], new Rectangle(0, 0, effectTexture[i].Width, effectTexture[i].Height), 1,/*cost*/ 16);
 
-                addItem(noteItem, new Vector2(100, 100), noteTexture[i], new Rectangle(0, 0, noteTexture[i].Width, noteTexture[i].Height), 1,/*cost*/ 25);
-
+               
                 addItem(backgroundItem, new Vector2(100, 100), backgroundTexture[i], new Rectangle(0, 0, backgroundTexture[i].Width, backgroundTexture[i].Height), 1,/*cost*/ 45);
             
             }
 
-         
+            
 
             //test
+
+            //구입한 아이템으로 설정
             buyItem(myRightHandItem, rightHandItem[0]);
             buyItem(myLeftHandItem, leftHandItem[0]);
             buyItem(myEffectItem, effectItem[0]);
@@ -79,6 +93,7 @@ namespace beethoven3
         
         }
 
+        //각 아이템 텍스쳐 저장
         public void LoadContent(ContentManager cm)
         {
 
@@ -97,15 +112,15 @@ namespace beethoven3
             effectTexture[0] = cm.Load<Texture2D>(@"Textures\red");
             effectTexture[1] = cm.Load<Texture2D>(@"Textures\heart");
 
-            noteTexture[0] = cm.Load<Texture2D>(@"Bitmap1");
-            noteTexture[1] = cm.Load<Texture2D>(@"Bitmap2");
-
+            noteTexture[0] = cm.Load<Texture2D>(@"notes\starNote");
+            //노트랑 한쌍이다.
+            markTexture[0] = cm.Load<Texture2D>(@"markers\starMarker");
 
             backgroundTexture[0] = cm.Load<Texture2D>(@"Textures\red");
             backgroundTexture[1] = cm.Load<Texture2D>(@"Textures\heart");
 
-
-
+            
+        
         }
 
       
@@ -127,17 +142,51 @@ namespace beethoven3
             itemList.Add(thisItem);
         }
 
+        //아이템 구입
         public void buyItem( List<Item> itemArray ,Item item)
         {
             itemArray.Add(item);
         }
 
+        //***아이템 팔기, 중요하진 않지만 구현 
         //maybe no function sell item
         //public void sellItem(List<Item> itemArray, Item item)
         //{
         //    itemArray.Remove(item);
         //}
         
+
+        //오른손텍스쳐 반환 , 게임 로딩전에 각 노트 배경 등을 변경
+        public Texture2D[] GetRightHandTexture()
+        {
+            return this.rightHandTexture;
+        }
+
+        public Texture2D[] GetLeftHandTexture()
+        {
+            return this.leftHandTexture;
+        }
+
+        public Texture2D[] GetNoteTexture()
+        {
+            return this.noteTexture;
+        }
+
+        public Texture2D[] GetEffectTexture()
+        {
+            return this.effectTexture;
+        }
+
+        public Texture2D[] GetBackgroundTexture()
+        {
+            return this.backgroundTexture;
+        }
+
+        public Texture2D[] GetMarkerTexture()
+        {
+            return this.markTexture;
+        }
+
 
         ///////////////////index
         public void setRightHandIndex(int index)
@@ -271,6 +320,7 @@ namespace beethoven3
 
         //get index 
 
+        //아이템을 넣으면 그 인덱스가 나타난다.
         public int getIndexOfMyRightItem(Item item)
         {
             int i;

@@ -283,6 +283,7 @@ namespace beethoven3
             shopDoor.LoadContent(Content);
 
             //아이템관리
+            //startnotemanager 생성보다 앞에 있어야 한다.
             itemManager = new ItemManager();
             itemManager.LoadContent(Content);
             itemManager.Init();
@@ -338,13 +339,26 @@ namespace beethoven3
             /////텍스쳐 로드 -END
 
             
-            //시작 노트 관리 생성            
+            //시작 노트 관리 생성    
+            //여기에 들어가는 텍스쳐가 노트의 텍스쳐가 된다.
+            //상점의 텍스쳐가 들어가야 한다. 
+
             startNoteManager = new StartNoteManager(
                 spriteSheet,
                 new Rectangle(0, 200, 52, 55),
                 1);
 
+
+            //Texture2D starNote = Content.Load<Texture2D>(@"notes\starNote");
+
+            //Texture2D[] rightNoteTextures = itemManager.GetNoteTexture();
+            //startNoteManager = new StartNoteManager(
+            //   rightNoteTextures[itemManager.getNoteIndex()],
+            //   new Rectangle(0, 0, 250, 250),
+            //   1);
+
             //첫 마커 위치   
+            //첫 마커위치도 저장된 값에서 가져와서 
             Vector2 mark1Location = new Vector2(450, 270);
             Vector2 mark2Location = new Vector2(550, 370);
             Vector2 mark3Location = new Vector2(550, 470);
@@ -415,7 +429,6 @@ namespace beethoven3
             //노트파일 읽기 관리 생성
             file = new File(startNoteManager, noteFileManager, badManager, scoreManager);
             
-
             //곡선택화면 곡 불러오는 폴더 
             String dir = "C:\\beethoven";
            
@@ -479,6 +492,8 @@ namespace beethoven3
             ////키넥트 셋업
             setupKinect();
 #endif
+
+
         }
 
      
@@ -2183,11 +2198,45 @@ namespace beethoven3
                 // 선택 되었음
                 else if (resultSongMenu != -2)
                     {
+
+
+                        ////각 아이템에 따른 텍스쳐 변경
+
+                        //Texture2D[] rightNoteTextures = itemManager.GetNoteTexture();
+
+                        ////왼손 노트 // 일단은 오른손노트랑 같이 함.
+                        //Texture2D[] leftNoteTextures = itemManager.GetNoteTexture();
+                        ////롱노트 // 일단은 오른손노트랑 같이 함.
+                        //Texture2D[] longNoteTextures = itemManager.GetNoteTexture();
+
+                        ////노트 - 달라야 될때도 있어서 나누어 놨다.
+                        ////오른손노트
+                        //startNoteManager.changeRightNoteImage(rightNoteTextures[itemManager.getNoteIndex()]);
+                        ////롱노트 //*** 임시로 오른손노트랑 똑같은걸로 해놓음
+                        //startNoteManager.changeLongNoteImage(longNoteTextures[itemManager.getNoteIndex()]);
+                        ////왼손노트
+                        //startNoteManager.changeLeftNoteImage(leftNoteTextures[itemManager.getNoteIndex()]);
+
+                        ////마커 텍스쳐 가져오기
+                        //Texture2D[] markersTextures = itemManager.GetMarkerTexture();
+                        ////변경
+                        //MarkManager.chageMarksImages(markersTextures[itemManager.getNoteIndex()]);
+
+
+                        //startNoteManager = new StartNoteManager(
+                        //rightNoteTextures[itemManager.getNoteIndex()],
+                        //new Rectangle(0, 0, 200, 200),
+                        //1);
+
+
+
                         gameState = GameStates.Playing;
                         file.Loading(resultSongMenu);
-                        
-                        //노래찾아서 재생하기
-                        
+                    
+                    
+                    
+                    
+                        //노래찾아서 재생하기    
                         //*** 재생시간동안 로딩
                    
                          sndSystem.createSound(songsDir + noteFileManager.noteFiles[resultSongMenu].Mp3, FMOD.MODE.HARDWARE, ref sndSound);
@@ -2295,7 +2344,7 @@ namespace beethoven3
                 
                 
                 //콤보 글씨
-                spriteBatch.DrawString(pericles36Font, scoreManager.Combo.ToString(), scorePosition, Color.Black);
+                spriteBatch.DrawString(pericles36Font, scoreManager.Combo.ToString(), new Vector2(512,454), Color.Black);
                 //골드 글씨
                 spriteBatch.DrawString(pericles36Font, scoreManager.Gold.ToString(), new Vector2(scorePosition.X + 120, scorePosition.Y), Color.Black);
                 //최대 max
@@ -2304,7 +2353,7 @@ namespace beethoven3
                 //기본 템포 설정( 템포가 바뀐상태이면 안변함)
                 SetBasicTempo();
 
-
+                //512, 454 중심
                 ////test
 
                 spriteBatch.Draw(uiBackground, new Vector2(0, 0), Color.White);
@@ -2374,6 +2423,8 @@ namespace beethoven3
                 spriteBatch.DrawString(pericles36Font, scoreManager.Combo.ToString(), new Vector2(700, 400), Color.White);
                 spriteBatch.DrawString(pericles36Font, scoreManager.Gold.ToString(), new Vector2(700, 450), Color.White);
                 spriteBatch.DrawString(pericles36Font, scoreManager.TotalScore.ToString(), new Vector2(700, 500), Color.White);
+
+
             }
 
 

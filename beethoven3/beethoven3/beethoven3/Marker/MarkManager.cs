@@ -13,6 +13,8 @@ namespace beethoven3
         private static Texture2D markTexture;
         private static Rectangle markInitialFrame;
         private static int markFrameCount;
+
+        //마크 리스트
         public static List<Mark> Marks = new List<Mark>();
         private static float scale =1.0f;
        
@@ -30,7 +32,7 @@ namespace beethoven3
         private static StartNoteManager startNoteManager;
 
         //마커와 노트시작 사이의 거리
-        public static float distance = 80.0f;
+        public static float distance = 300.0f;
         #endregion
          
         #region initialization
@@ -109,6 +111,15 @@ namespace beethoven3
             {
                 Marks.RemoveAt(i);
             }
+        }
+
+        public static void chageMarksImages(Texture2D texture)
+        {
+            for (int i = 0; i < Marks.Count; i++)
+            {
+                Marks[i].MarkSprite.Texture = texture;
+            }
+
         }
 
 
@@ -254,7 +265,7 @@ namespace beethoven3
         public static Vector2 GetStartNoteLocation(Vector2 center, float distance, int type)
         {
             Vector2 otherCenter = center;
-            int x = 70;
+            float x = distance;
             switch (type)
             {
                 case 0:

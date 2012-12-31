@@ -547,7 +547,7 @@ namespace beethoven3
                                         // if 마커에 맞추었을 때 
                                         // 스타트로 날아간 후에 어느정도 시간이 지났을 때
                                         // 
-                                        DrawGuidLine(arrayNotes[0].MarkLocation, arrayNotes[1].MarkLocation, true, arrayNotes[0].StartTime, arrayNotes[1].StartTime);
+                                        DrawGuidLine(arrayNotes[0].MarkLocation-1, arrayNotes[1].MarkLocation-1, true, arrayNotes[0].StartTime, arrayNotes[1].StartTime);
                                     }
                                 }
                                 if (arrayNotes.Count > 2)
@@ -557,7 +557,7 @@ namespace beethoven3
                                     {
                                         //일반 가이드라인
                                         // DrawGuidLine(rightNoteMarks[currentRightNoteIndex + 1].MarkLocation, rightNoteMarks[currentRightNoteIndex + 2].MarkLocation, false);               
-                                        DrawGuidLine(arrayNotes[1].MarkLocation, arrayNotes[2].MarkLocation, false, arrayNotes[0].StartTime, arrayNotes[1].StartTime);
+                                        DrawGuidLine(arrayNotes[1].MarkLocation-1, arrayNotes[2].MarkLocation-1, false, arrayNotes[0].StartTime, arrayNotes[1].StartTime);
                                     }
                                 }
                             }
