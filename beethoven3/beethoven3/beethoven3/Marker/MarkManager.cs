@@ -113,11 +113,14 @@ namespace beethoven3
             }
         }
 
-        public static void chageMarksImages(Texture2D texture)
+        public static void chageMarksImages(Texture2D texture, Rectangle rect)
         {
             for (int i = 0; i < Marks.Count; i++)
             {
                 Marks[i].MarkSprite.Texture = texture;
+
+                //각 크기 값을 정해놓은 frame을 바꾼다.
+                Marks[i].MarkSprite.ChangeFrameRect(rect);
             }
 
         }

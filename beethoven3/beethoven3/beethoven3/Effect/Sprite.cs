@@ -14,6 +14,8 @@ namespace beethoven3
         public Texture2D Texture;
 
         //스프라이트에 정의된 각 애니메이션 프레임의 rectangle 객체
+        //텍스쳐를 바꾸면 frams의 rec를 바꿔야 한다.
+
         protected List<Rectangle> frames = new List<Rectangle>();
 
         private int frameWidth = 0;
@@ -121,6 +123,7 @@ namespace beethoven3
         }
 
         // currentframe rectangle
+        
         public Rectangle Source
         {
             get { return frames[currentFrame]; }
@@ -211,6 +214,15 @@ namespace beethoven3
             frames.Add(frameRectangle);
         }
 
+        //프레임의 각 RECT값을 변경
+        public void ChangeFrameRect(Rectangle rect)
+        {
+            int i;
+            for (i = 0; i < frames.Count; i++)
+            {
+                frames[i] = rect;
+            }
+        }
 
         #endregion
 

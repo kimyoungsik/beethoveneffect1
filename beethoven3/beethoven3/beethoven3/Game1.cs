@@ -2217,10 +2217,10 @@ namespace beethoven3
                         ////왼손노트
                         //startNoteManager.changeLeftNoteImage(leftNoteTextures[itemManager.getNoteIndex()]);
 
-                        ////마커 텍스쳐 가져오기
-                        //Texture2D[] markersTextures = itemManager.GetMarkerTexture();
-                        ////변경
-                        //MarkManager.chageMarksImages(markersTextures[itemManager.getNoteIndex()]);
+                        //마커 텍스쳐 가져오기
+                        Texture2D[] markersTextures = itemManager.GetMarkerTexture();
+                        //변경
+                        MarkManager.chageMarksImages(markersTextures[itemManager.getNoteIndex()],new Rectangle(0,0,265,240));
 
 
                         //startNoteManager = new StartNoteManager(
@@ -2228,7 +2228,7 @@ namespace beethoven3
                         //new Rectangle(0, 0, 200, 200),
                         //1);
 
-
+                       
 
                         gameState = GameStates.Playing;
                         file.Loading(resultSongMenu);
