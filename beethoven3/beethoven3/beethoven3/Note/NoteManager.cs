@@ -94,7 +94,9 @@ namespace beethoven3
 
         public void MakeNote(
             Vector2 location,
-            Vector2 velocity
+            Vector2 velocity,
+            /*시작노트의 위치(1베이스)*/
+            int markLocation
             )
         {
             Sprite thisNote = new Sprite(
@@ -115,6 +117,9 @@ namespace beethoven3
                     InitialFrame.Height));
             }
             thisNote.CollisionRadius = CollisionRadius;
+
+            /*시작 노트의 위치를 저장*/
+            thisNote.StartNoteLoation = markLocation - 1;
             LittleNotes.Add(thisNote);
         }
         #endregion

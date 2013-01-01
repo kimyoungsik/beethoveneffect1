@@ -50,6 +50,7 @@ namespace beethoven3
             Vector2 mark4Loc,
             Vector2 mark5Loc,
             StartNoteManager startNoteMana,
+            /*지워지는 영역*/
             Rectangle area
             )
         {
@@ -123,6 +124,11 @@ namespace beethoven3
                 Marks[i].MarkSprite.ChangeFrameRect(rect);
 
                 Marks[i].MarkSprite.Scale = scale;
+                int a = (int)((rect.Width * scale) / 2);
+
+                int b = a;
+
+                Marks[i].MarkSprite.CollisionRadius= a;
             }
 
         }

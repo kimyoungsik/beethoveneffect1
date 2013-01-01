@@ -49,7 +49,8 @@ namespace beethoven3
                texture,
                new Rectangle(0, 200, 50, 50),
                1,
-               15,
+               /*반지름 for 충돌*/
+               initialFrame.Width/2,
                //notespeed 영향주는것 1
                noteSpeed
                 //notetype
@@ -60,7 +61,7 @@ namespace beethoven3
                 texture,
                  new Rectangle(0, 200, 50, 50),
                 1,
-                15,
+                initialFrame.Width / 2,
                 noteSpeed
                 //notetype
                 );
@@ -72,7 +73,7 @@ namespace beethoven3
                  texture,
                   new Rectangle(0, 0, 50, 50),
                  1,
-                 15,
+                initialFrame.Width / 2,
                  noteSpeed
                 //notetype
                  );
@@ -147,8 +148,10 @@ namespace beethoven3
         }
         
         //오른손 노트
+        //매개변수로 들어오는 markNumber가 (1베이스) 시작 노트의 위치이다. 
         public void MakeRightNote(int markNumber)
         {
+            
             Vector2 location = StartNotes[markNumber-1].StartNoteSprite.Location;
 
             Vector2 direction =
@@ -156,7 +159,8 @@ namespace beethoven3
                             location;
             //속도 1로 맞추기 
             direction.Normalize();
-            rightNoteManager.MakeNote(location, direction);
+
+            rightNoteManager.MakeNote(location, direction,/*시작 노트의 위치*/markNumber);
         }
 
         //왼손노트
@@ -170,7 +174,7 @@ namespace beethoven3
                             MarkManager.Marks[markNumber-1].MarkSprite.Location -
                             location;
             direction.Normalize();
-            leftNoteManager.MakeNote(location, direction);
+            leftNoteManager.MakeNote(location, direction,/*시작 노트의 위치*/markNumber);
         }
 
         //public void MakeDoubleNote(int markNumber)
@@ -196,7 +200,7 @@ namespace beethoven3
                             MarkManager.Marks[markNumber-1].MarkSprite.Location -
                             location;
             direction.Normalize();
-            longNoteManager.MakeNote(location, direction);
+            longNoteManager.MakeNote(location, direction,/*시작 노트의 위치*/markNumber);
         }
         
 

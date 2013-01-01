@@ -48,7 +48,7 @@ namespace beethoven3
                         initialFrame.Height));
             }
             this.location = location;
-            MarkSprite.CollisionRadius = markRadius;
+            MarkSprite.CollisionRadius = initialFrame.Width/2;
         }
         #endregion
         

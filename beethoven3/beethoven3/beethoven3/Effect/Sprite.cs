@@ -48,7 +48,8 @@ namespace beethoven3
 
         protected float scale = 1.0f;
         
-        
+        //각 노트의 시작 노트의 위치를 저장해둔다.(0베이스)
+        private int startNoteLoation = -1;
 
 
         #endregion
@@ -75,6 +76,14 @@ namespace beethoven3
 
 
         #region properties
+
+        public int StartNoteLoation
+        {
+            get { return startNoteLoation; }
+            set { startNoteLoation = value; }
+
+
+        }
         public float Scale
         {
             get { return scale; }
@@ -185,18 +194,24 @@ namespace beethoven3
         }
 
 
-
+        //거리 판단
+        //오른손 노트와 마커 판단의 경우 : otherCenter => note's center, otherRadius => note's radius
+        //otherradius는 안쓰임 일단.
         public int JudgedNote(Vector2 otherCenter, float otherRadius)
         {
             //bad
             int ret = 0;
 
             //반/2 보다 가까울때  , perfect
+
+            Trace.WriteLine(Vector2.Distance(Center, otherCenter));
+            //마커 센터에서 노트의 센터 사이의 거리가  마커의 radius/2 보다 작을 떄  
             if (Vector2.Distance(Center, otherCenter) <
                 (CollisionRadius/2))
             {
                 ret = 2;
             }
+            //마커 센터에서 노트의 센터 사이의 거리가  마커의 radius 보다 작을 떄  
             //반들어왔을때 . good
             else if (Vector2.Distance(Center, otherCenter) <
                 (CollisionRadius))
@@ -250,18 +265,17 @@ namespace beethoven3
         {
             spriteBatch.Draw(
                 Texture,
-                Center,
+                //위치: Center-> location 으로 바꿈 (마커와 노트 매칭 떄문에 )
+                location,
                 Source,
                 tintColor,
                 rotation,
-                new Vector2(frameWidth / 2, frameHeight / 2),
+                //origin ->  new Vector2(frameWidth / 2, frameHeight / 2) ->  new Vector2(0,0) 으로 바꿈 (마커와 노트 매칭 떄문에 )
+                new Vector2(0,0),
                 scale,
                 SpriteEffects.None,
-                0.0f);
-            
+                0.0f);   
         }
-
-
         #endregion
     }
 }
