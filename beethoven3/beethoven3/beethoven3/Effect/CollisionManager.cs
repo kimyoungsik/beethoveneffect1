@@ -102,8 +102,9 @@ namespace beethoven3
                     //0번 마커는 0번 스타토 노트에서 출발한 것만  검사하면 되지 않느가?
                     //0번 스타트 노트에서 출발한것은 알 수가 있는가?
 
-
-
+                    Trace.WriteLine("noteCenter:"+littleNote.Center+" markcndter:"+MarkManager.Marks[number].MarkSprite.Center);
+                    Vector2 notecenter = littleNote.Center;
+                    Vector2 markcenter = MarkManager.Marks[number].MarkSprite.Center;
                     int judgment = MarkManager.Marks[number].MarkSprite.JudgedNote(
                         littleNote.Center,
                         littleNote.CollisionRadius);

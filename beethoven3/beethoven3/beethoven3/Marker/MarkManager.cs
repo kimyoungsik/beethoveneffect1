@@ -122,13 +122,12 @@ namespace beethoven3
 
                 //각 크기 값을 정해놓은 frame을 바꾼다.
                 Marks[i].MarkSprite.ChangeFrameRect(rect);
-
+               // markInitialFrame = rect;
                 Marks[i].MarkSprite.Scale = scale;
-                int a = (int)((rect.Width * scale) / 2);
 
-                int b = a;
-
-                Marks[i].MarkSprite.CollisionRadius= a;
+                //반지름
+                int radius = (int)((rect.Width * scale) / 2);
+                Marks[i].MarkSprite.CollisionRadius = radius;
             }
 
         }
