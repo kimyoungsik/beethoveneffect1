@@ -886,8 +886,8 @@ namespace beethoven3
               
                 //마커의 반지름으로
                 int judgment = MarkManager.Marks[number].MarkSprite.JudgedNote(
-                    littleNote.Center,
-                    littleNote.CollisionRadius);
+                    littleNote.Center
+                    );
 
                 return judgment;
         }

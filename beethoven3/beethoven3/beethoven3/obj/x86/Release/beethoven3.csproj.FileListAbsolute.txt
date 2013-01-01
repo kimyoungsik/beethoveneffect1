@@ -75,3 +75,5 @@ D:\beethoven\beethoven3\beethoven3\beethoven3\obj\x86\Release\Microsoft.Xna.Fram
 D:\beethoven\beethoven3\beethoven3\beethoven3\obj\x86\Release\beethoven3.exe
 D:\beethoven\beethoven3\beethoven3\beethoven3\obj\x86\Release\beethoven3.pdb
 D:\beethoven\beethoven3\beethoven3\beethoven3\obj\x86\Release\beethoven3.csprojResolveAssemblyReference.cache
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\markers\turnMarker.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\turnNote2.xnb

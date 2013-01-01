@@ -17,7 +17,6 @@ namespace beethoven3
         private List<Item> noteItem = new List<Item>();
         private List<Item> backgroundItem = new List<Item>();
        
-       
         //아이템 텍스쳐
         private Texture2D[] rightHandTexture = new Texture2D[5];
         private Texture2D[] leftHandTexture = new Texture2D[5];
@@ -30,13 +29,11 @@ namespace beethoven3
         //***  private Texture2D[] longNoteTexture = new Texture2D[5];
         //***  private Texture2D[] leftNoteTexture = new Texture2D[5];
 
-
-   
         //내가 착용한 아이템-착용함수 제작
         private int rightHandIndex = 0;
         private int leftHandIndex = 0;
         private int effectIndex = 0;
-        private int noteIndex = 0;
+        private int noteIndex =0;
         private int backgroundIndex = 0;
 
         //내가 가지고 있는 아이템
@@ -49,7 +46,6 @@ namespace beethoven3
         public ItemManager()
         {
                       
-
         }
 
         public void Init()
@@ -61,7 +57,7 @@ namespace beethoven3
             {
                 addItem(rightHandItem, new Vector2(100, 100), rightHandTexture[i], new Rectangle(0, 0, rightHandTexture[i].Width, rightHandTexture[i].Height), 1,/*cost*/ (i+1)*5);
             }
-            for (i = 0; i < 1; i++)
+            for (i = 0; i < 2; i++)
             {
                 addItem(noteItem, new Vector2(100, 100), noteTexture[i], new Rectangle(0, 0, noteTexture[i].Width, noteTexture[i].Height), 1,/*cost*/ 25);
             }
@@ -79,8 +75,6 @@ namespace beethoven3
             
             }
 
-            
-
             //test
 
             //구입한 아이템으로 설정
@@ -89,8 +83,6 @@ namespace beethoven3
             buyItem(myEffectItem, effectItem[0]);
             buyItem(myNoteItem, noteItem[0]);
             buyItem(myBackgroundItem, backgroundItem[0]);
-            
-        
         }
 
         //각 아이템 텍스쳐 저장
@@ -113,14 +105,14 @@ namespace beethoven3
             effectTexture[1] = cm.Load<Texture2D>(@"Textures\heart");
 
             noteTexture[0] = cm.Load<Texture2D>(@"notes\starNote");
+            noteTexture[1] = cm.Load<Texture2D>(@"notes\turnNote2");
             //노트랑 한쌍이다.
             markTexture[0] = cm.Load<Texture2D>(@"markers\starMarker");
+            markTexture[1] = cm.Load<Texture2D>(@"markers\turnMarker");
 
             backgroundTexture[0] = cm.Load<Texture2D>(@"Textures\red");
             backgroundTexture[1] = cm.Load<Texture2D>(@"Textures\heart");
 
-            
-        
         }
 
       

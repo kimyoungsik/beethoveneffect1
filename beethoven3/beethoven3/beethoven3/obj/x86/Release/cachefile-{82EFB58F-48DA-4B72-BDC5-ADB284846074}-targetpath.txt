@@ -65,3 +65,5 @@ Content\Fonts\damagefont.xnb
 Content\Fonts\Pericles36.xnb
 Content\MessageFont.xnb
 Content\Fonts\PerpetuaFont.xnb
+Content\markers\turnMarker.xnb
+Content\notes\turnNote2.xnb

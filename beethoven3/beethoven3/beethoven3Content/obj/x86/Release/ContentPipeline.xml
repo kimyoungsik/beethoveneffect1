@@ -580,6 +580,24 @@
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Fonts\PerpetuaFont.xnb</Output>
       <Time>2012-12-25T17:37:05.7514826+09:00</Time>
     </Item>
+    <Item>
+      <Source>markers\turnMarker.png</Source>
+      <Name>markers\turnMarker</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\markers\turnMarker.xnb</Output>
+      <Time>2013-01-01T21:17:08.9928164+09:00</Time>
+    </Item>
+    <Item>
+      <Source>notes\turnNote2.png</Source>
+      <Name>notes\turnNote2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\turnNote2.xnb</Output>
+      <Time>2013-01-01T21:20:45.9862277+09:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

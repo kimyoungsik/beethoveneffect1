@@ -49,7 +49,7 @@ namespace beethoven3
             for (int i = 0; i < DragNoteManager.DragNotes.Count(); i++ )
             {
                 Sprite dragNote = DragNoteManager.DragNotes[i];
-                int judgment = dragNote.JudgedNote(mousePoint, 15.0f);
+                int judgment = dragNote.JudgedNote(mousePoint);
                 if (judgment == 2)
                 {
                    
@@ -102,17 +102,18 @@ namespace beethoven3
                     //0번 마커는 0번 스타토 노트에서 출발한 것만  검사하면 되지 않느가?
                     //0번 스타트 노트에서 출발한것은 알 수가 있는가?
 
-                    Trace.WriteLine("noteCenter:"+littleNote.Center+" markcndter:"+MarkManager.Marks[number].MarkSprite.Center);
-                    Vector2 notecenter = littleNote.Center;
-                    Vector2 markcenter = MarkManager.Marks[number].MarkSprite.Center;
+                    //노트와 마커의 센터 위치 파악 하기 위한 것.
+                 //   Trace.WriteLine("noteCenter:"+littleNote.Center+" markcndter:"+MarkManager.Marks[number].MarkSprite.Center);
+                 //   Vector2 notecenter = littleNote.Center;
+                 //   Vector2 markcenter = MarkManager.Marks[number].MarkSprite.Center;
                     int judgment = MarkManager.Marks[number].MarkSprite.JudgedNote(
-                        littleNote.Center,
-                        littleNote.CollisionRadius);
+                        littleNote.Center
+                        );
                     //perfect
                     if (judgment == 2)
                     {
 
-                        int mouseJudgment = MarkManager.Marks[number].MarkSprite.JudgedNote(mousePoint, roundPoint);
+                        int mouseJudgment = MarkManager.Marks[number].MarkSprite.JudgedNote(mousePoint);
                         if (mouseJudgment != 0)
                         {
 
@@ -129,7 +130,7 @@ namespace beethoven3
                     //good
                     else if (judgment == 1)
                     {
-                        int mouseJudgment = MarkManager.Marks[number].MarkSprite.JudgedNote(mousePoint, roundPoint);
+                        int mouseJudgment = MarkManager.Marks[number].MarkSprite.JudgedNote(mousePoint);
                         if (mouseJudgment != 0)
                         {
 
@@ -161,57 +162,56 @@ namespace beethoven3
             for (x = 0; x < StartNoteManager.leftNoteManager.LittleNotes.Count; x++)
             {
                 Sprite littleNote = StartNoteManager.leftNoteManager.LittleNotes[x];
-
-                //0:bad 1:good 2:perfect
-
-                ///노트의 반지름으로 
-                //judgment = littleNote.JudgedNote(
-                //    mark.MarkSprite.Center,
-                //    mark.MarkSprite.CollisionRadius);
-
-                //마커의 반지름으로
-                int judgment = MarkManager.Marks[number].MarkSprite.JudgedNote(
-                    littleNote.Center,
-                    littleNote.CollisionRadius);
-                //perfect
-                if (judgment == 2)
+                if (littleNote.StartNoteLoation == number)
                 {
-                    int mouseJudgment = MarkManager.Marks[number].MarkSprite.JudgedNote(mousePoint, roundPoint);
-                    if (mouseJudgment != 0)
+                    //0:bad 1:good 2:perfect
+
+                    ///노트의 반지름으로 
+                    //judgment = littleNote.JudgedNote(
+                    //    mark.MarkSprite.Center,
+                    //    mark.MarkSprite.CollisionRadius);
+
+                    //마커의 반지름으로
+                    int judgment = MarkManager.Marks[number].MarkSprite.JudgedNote(
+                        littleNote.Center
+                        );
+                    //perfect
+                    if (judgment == 2)
                     {
-                        
-                        perfectManager.AddExplosion(littleNote.Center, Vector2.Zero);
-                        StartNoteManager.leftNoteManager.LittleNotes.RemoveAt(x);
-                 
-                        scoreManager.Perfect = scoreManager.Perfect + 1;
-                        scoreManager.Combo = scoreManager.Combo + 1;
-                        scoreManager.Gage = scoreManager.Gage + 10;
-                    }
-                }
+                        int mouseJudgment = MarkManager.Marks[number].MarkSprite.JudgedNote(mousePoint);
+                        if (mouseJudgment != 0)
+                        {
 
-                //good
-                else if (judgment == 1)
-                {
-                    int mouseJudgment = MarkManager.Marks[number].MarkSprite.JudgedNote(mousePoint, roundPoint);
-                    if (mouseJudgment != 0)
-                    {
-                        goodManager.AddExplosion(littleNote.Center, Vector2.Zero);
-                        StartNoteManager.leftNoteManager.LittleNotes.RemoveAt(x);
-                    
-                        scoreManager.Good = scoreManager.Good + 1;
-                        scoreManager.Combo = scoreManager.Combo + 1;
-                        scoreManager.Gage = scoreManager.Gage + 10;
+                            perfectManager.AddExplosion(littleNote.Center, Vector2.Zero);
+                            StartNoteManager.leftNoteManager.LittleNotes.RemoveAt(x);
+
+                            scoreManager.Perfect = scoreManager.Perfect + 1;
+                            scoreManager.Combo = scoreManager.Combo + 1;
+                            scoreManager.Gage = scoreManager.Gage + 10;
+                        }
                     }
-                }
-                else
-                {
+
+                    //good
+                    else if (judgment == 1)
+                    {
+                        int mouseJudgment = MarkManager.Marks[number].MarkSprite.JudgedNote(mousePoint);
+                        if (mouseJudgment != 0)
+                        {
+                            goodManager.AddExplosion(littleNote.Center, Vector2.Zero);
+                            StartNoteManager.leftNoteManager.LittleNotes.RemoveAt(x);
+
+                            scoreManager.Good = scoreManager.Good + 1;
+                            scoreManager.Combo = scoreManager.Combo + 1;
+                            scoreManager.Gage = scoreManager.Gage + 10;
+                        }
+                    }
+                    else
+                    {
+                    }
                 }
             
             }
         }
-
-
-     
 
         public void checkLongNoteToMarker(int number, Vector2 mousePoint)
         {
@@ -219,49 +219,48 @@ namespace beethoven3
             for (int x = 0; x < StartNoteManager.longNoteManager.LittleNotes.Count; x++)
             {
                 Sprite littleNote = StartNoteManager.longNoteManager.LittleNotes[x];
-
-                //0:bad 1:good 2:perfect
-
-                ///노트의 반지름으로 
-                //judgment = littleNote.JudgedNote(
-                //    mark.MarkSprite.Center,
-                //    mark.MarkSprite.CollisionRadius);
-
-                //마커의 반지름으로
-                int judgment = MarkManager.Marks[number].MarkSprite.JudgedNote(
-                    littleNote.Center,
-                    littleNote.CollisionRadius);
-                //perfect
-                if (judgment == 2)
+                if (littleNote.StartNoteLoation == number)
                 {
-                    int mouseJudgment = MarkManager.Marks[number].MarkSprite.JudgedNote(mousePoint, roundPoint);
-                     if (mouseJudgment != 0)
-                     {
-                         perfectManager.AddExplosion(littleNote.Center, Vector2.Zero);
-                         StartNoteManager.longNoteManager.LittleNotes.RemoveAt(x);
+                    //0:bad 1:good 2:perfect
+                    ///노트의 반지름으로 
+                    //judgment = littleNote.JudgedNote(
+                    //    mark.MarkSprite.Center,
+                    //    mark.MarkSprite.CollisionRadius);
+                    //마커의 반지름으로
+                    int judgment = MarkManager.Marks[number].MarkSprite.JudgedNote(
+                        littleNote.Center
+                        );
+                    //perfect
+                    if (judgment == 2)
+                    {
+                        int mouseJudgment = MarkManager.Marks[number].MarkSprite.JudgedNote(mousePoint);
+                        if (mouseJudgment != 0)
+                        {
+                            perfectManager.AddExplosion(littleNote.Center, Vector2.Zero);
+                            StartNoteManager.longNoteManager.LittleNotes.RemoveAt(x);
 
-                         scoreManager.LongNoteScore = scoreManager.LongNoteScore + 1;
-                         scoreManager.Combo = scoreManager.Combo + 1;
-                     }
-                }
+                            scoreManager.LongNoteScore = scoreManager.LongNoteScore + 1;
+                            scoreManager.Combo = scoreManager.Combo + 1;
+                        }
+                    }
+                    //good
+                    else if (judgment == 1)
+                    {
+                        int mouseJudgment = MarkManager.Marks[number].MarkSprite.JudgedNote(mousePoint);
+                        if (mouseJudgment != 0)
+                        {
+                            //롱노트 효과를 바꾸던지 아니면 하나의 효과만 나오게 하던지
+                            perfectManager.AddExplosion(littleNote.Center, Vector2.Zero);
+                            StartNoteManager.longNoteManager.LittleNotes.RemoveAt(x);
 
-                //good
-                else if (judgment == 1)
-                {
-                    int mouseJudgment = MarkManager.Marks[number].MarkSprite.JudgedNote(mousePoint, roundPoint);
-                     if (mouseJudgment != 0)
-                     {
-                         //롱노트 효과를 바꾸던지 아니면 하나의 효과만 나오게 하던지
-                         perfectManager.AddExplosion(littleNote.Center, Vector2.Zero);
-                         StartNoteManager.longNoteManager.LittleNotes.RemoveAt(x);
+                            scoreManager.LongNoteScore = scoreManager.LongNoteScore + 1;
+                            scoreManager.Combo = scoreManager.Combo + 1;
+                        }
+                    }
+                    else
+                    {
 
-                         scoreManager.LongNoteScore = scoreManager.LongNoteScore + 1;
-                         scoreManager.Combo = scoreManager.Combo + 1;
-                     }
-                }
-                else
-                {
-
+                    }
                 }
             }
         }
@@ -273,13 +272,13 @@ namespace beethoven3
             { 
                 Sprite gold = GoldManager.Golds[i];
 
-                int judgment = gold.JudgedNote(mousePoint, roundPoint);
+                int judgment = gold.JudgedNote(mousePoint);
 
                 if (judgment != 0)
                 {
                     goldGetManager.AddExplosion(gold.Center, Vector2.Zero);
                     GoldManager.Golds.RemoveAt(i);
-                 
+                  
                     scoreManager.Gold = scoreManager.Gold + 1;
 
 
