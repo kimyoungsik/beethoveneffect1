@@ -113,7 +113,7 @@ namespace beethoven3
             // Color myColor = Color.White;
             //  myColor.A = 50;
 
-            spriteBatch.Draw(myEffectItems[itemManager.getLeftHandIndex()].ItemSprite.Texture, usedItemRect, Color.White);
+            spriteBatch.Draw(myEffectItems[itemManager.getEffectIndex()].ItemSprite.Texture, usedItemRect, Color.White);
 
             if (darkBackground)
             {
@@ -184,11 +184,6 @@ namespace beethoven3
                     recYesButton = new Rectangle((int)yesButtonLocation.X - 100, (int)yesButtonLocation.Y - 60, 200, 120);
 
                     recNoButton = new Rectangle((int)noButtonLocation.X - 100, (int)noButtonLocation.Y - 60, 200, 120);
-
-
-
-
-
                 }
 
 

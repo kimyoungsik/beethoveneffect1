@@ -688,6 +688,7 @@ namespace beethoven3
 
 
         #endregion
+        
         //디스플레이
         #region Color display
 
@@ -900,6 +901,27 @@ namespace beethoven3
             }   
         }
 
+        //상점안에서 상점 대문으로 가는 키보드 처리
+        private void HandleKeyboardInputinShopDoor(KeyboardState keyState)
+        {
+            if (keyState.IsKeyDown(Keys.B))
+            {
+                gameState = GameStates.Menu;
+
+            }
+
+        }
+
+        //상점 대문에서 타이틀 화면으로 가는 키보드 처리
+        private void HandleKeyboardInputinItemShop(KeyboardState keyState)
+        {
+            if (keyState.IsKeyDown(Keys.B))
+            {
+                gameState = GameStates.ShopDoor;
+
+            }
+
+        }
 
 
         private void HandleKeyboardInput(KeyboardState keyState)
@@ -995,6 +1017,8 @@ namespace beethoven3
                #region 상점대문
                 //상점대문
                case GameStates.ShopDoor:
+                    //타이틀화면으로 돌아가는 키보드처리
+                    HandleKeyboardInputinShopDoor(Keyboard.GetState());
 
                    Rectangle rect = new Rectangle(mouseStateCurrent.X, mouseStateCurrent.Y, 5, 5);
 
@@ -1086,6 +1110,8 @@ namespace beethoven3
 
                #region 아이템상점들
                case GameStates.RightItemShop:
+                   //상점대문으로 돌아가는 키보드처리
+                   HandleKeyboardInputinItemShop(Keyboard.GetState());
 
                    Rectangle mouseRect = new Rectangle(mouseStateCurrent.X, mouseStateCurrent.Y, 5, 5);
                    int i;
@@ -1232,8 +1258,6 @@ namespace beethoven3
                                //add item to my item
                                if (selectedItem != null)
                                {
-                                 
-                                    
                                    //돈으로 물건사기 
                                    //buy item with money
 
@@ -1298,6 +1322,8 @@ namespace beethoven3
 
 
                case GameStates.LeftItemShop:
+                   //상점대문으로 돌아가는 키보드처리
+                   HandleKeyboardInputinItemShop(Keyboard.GetState());
 
                    Rectangle mouseRectinleft = new Rectangle(mouseStateCurrent.X, mouseStateCurrent.Y, 5, 5);
                    int j;
@@ -1481,6 +1507,8 @@ namespace beethoven3
                    break;
 
                case GameStates.NoteItemShop:
+                   //상점대문으로 돌아가는 키보드처리
+                   HandleKeyboardInputinItemShop(Keyboard.GetState());
 
                    Rectangle mouseRectinNote = new Rectangle(mouseStateCurrent.X, mouseStateCurrent.Y, 5, 5);
                    int s;
@@ -1600,7 +1628,6 @@ namespace beethoven3
                                    //돈으로 물건사기 
                                    //buy item with money
 
-
                                    //돈이 충분히 있다.
                                    if (scoreManager.TotalGold >= selectedItem.GetCost())
                                    {
@@ -1656,6 +1683,8 @@ namespace beethoven3
 
 
                case GameStates.EffectItemShop:
+                   //상점대문으로 돌아가는 키보드처리
+                   HandleKeyboardInputinItemShop(Keyboard.GetState());
 
                    Rectangle mouseRectinEffect = new Rectangle(mouseStateCurrent.X, mouseStateCurrent.Y, 5, 5);
                    int k;
@@ -1837,6 +1866,8 @@ namespace beethoven3
 
 
                case GameStates.BackgroundItemShop:
+                   //상점대문으로 돌아가는 키보드처리
+                   HandleKeyboardInputinItemShop(Keyboard.GetState());
 
                    Rectangle mouseRectinBackground = new Rectangle(mouseStateCurrent.X, mouseStateCurrent.Y, 5, 5);
                    int r;

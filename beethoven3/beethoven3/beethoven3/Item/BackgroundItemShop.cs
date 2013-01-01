@@ -34,7 +34,7 @@ namespace beethoven3
 
         public void addItemtoMyItem(Item item)
         {
-            itemManager.addMyEffectItem(item);
+            itemManager.addMyBackgroundItem(item);
             myBackgroundItems = itemManager.getMyBackgroundItem();
 
         }
@@ -113,7 +113,7 @@ namespace beethoven3
             // Color myColor = Color.White;
             //  myColor.A = 50;
 
-            spriteBatch.Draw(myBackgroundItems[itemManager.getLeftHandIndex()].ItemSprite.Texture, usedItemRect, Color.White);
+            spriteBatch.Draw(myBackgroundItems[itemManager.getBackgroundIndex()].ItemSprite.Texture, usedItemRect, Color.White);
 
             if (darkBackground)
             {
