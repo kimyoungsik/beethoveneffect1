@@ -349,22 +349,9 @@ namespace beethoven3
                 1);
 
 
-            //Texture2D starNote = Content.Load<Texture2D>(@"notes\starNote");
-
-            //Texture2D[] rightNoteTextures = itemManager.GetNoteTexture();
-            //startNoteManager = new StartNoteManager(
-            //   rightNoteTextures[itemManager.getNoteIndex()],
-            //   new Rectangle(0, 0, 250, 250),
-            //   1);
-
             //첫 마커 위치   
-            //첫 마커위치도 저장된 값에서 가져와서 
-            Vector2 mark1Location = new Vector2(450, 270);
-            Vector2 mark2Location = new Vector2(550, 370);
-            Vector2 mark3Location = new Vector2(550, 470);
-            Vector2 mark4Location = new Vector2(450, 570);
-            Vector2 mark5Location = new Vector2(350, 470);
-            Vector2 mark6Location = new Vector2(350, 370);
+            //마커 위치 처음 시작은 일단 마커매니저의 제일 0번째 것으로 시작
+            Vector2[] initMarkLocation = MarkManager.GetPattern(0);
 
 
             //마크 관리 초기화 (STATIC)
@@ -373,12 +360,12 @@ namespace beethoven3
                 spriteSheet,
                 new Rectangle(0, 200, 50, 55),
                 1,
-                mark1Location,
-                mark2Location,
-                mark3Location,
-                mark4Location,
-                mark5Location,
-                mark6Location,
+                initMarkLocation[0],
+                initMarkLocation[1],
+                initMarkLocation[2],
+                initMarkLocation[3],
+                initMarkLocation[4],
+                initMarkLocation[5],
                 startNoteManager,
                 removeAreaRec
                 );
@@ -2202,7 +2189,7 @@ namespace beethoven3
 
                         ////각 아이템에 따른 텍스쳐 변경
 
-                        //Texture2D[] rightNoteTextures = itemManager.GetNoteTexture();
+                        Texture2D[] rightNoteTextures = itemManager.GetNoteTexture();
 
                         ////왼손 노트 // 일단은 오른손노트랑 같이 함.
                         //Texture2D[] leftNoteTextures = itemManager.GetNoteTexture();
@@ -2211,25 +2198,35 @@ namespace beethoven3
 
                         ////노트 - 달라야 될때도 있어서 나누어 놨다.
                         ////오른손노트
-                        //startNoteManager.changeRightNoteImage(rightNoteTextures[itemManager.getNoteIndex()]);
+
+                        //마커리스트에 맞는 scale
+                        float[] rightNoteScale = new float[5];
+                        rightNoteScale[0] = 0.5f;
+
+                        startNoteManager.changeRightNoteImage(rightNoteTextures[itemManager.getNoteIndex()], new Rectangle(0, 0, rightNoteTextures[itemManager.getNoteIndex()].Width, rightNoteTextures[itemManager.getNoteIndex()].Height), rightNoteScale[0]);
+                        
+
                         ////롱노트 //*** 임시로 오른손노트랑 똑같은걸로 해놓음
                         //startNoteManager.changeLongNoteImage(longNoteTextures[itemManager.getNoteIndex()]);
                         ////왼손노트
                         //startNoteManager.changeLeftNoteImage(leftNoteTextures[itemManager.getNoteIndex()]);
 
-                        //마커 텍스쳐 가져오기
+                        //마커리스트 텍스쳐 가져오기
                         Texture2D[] markersTextures = itemManager.GetMarkerTexture();
-                        //변경
-                        MarkManager.chageMarksImages(markersTextures[itemManager.getNoteIndex()],new Rectangle(0,0,265,240));
+                        
+                        //*** 마커리스트에 맞는 rect, 바로width와 height 를 가져와서 넣기 때문에 필요 없을 수 도 있다.
+                        //Rectangle[] markersRectangle = new Rectangle[5];
+                        //markersRectangle[0] = new Rectangle(0,0,265,240);
 
+                        //마커리스트에 맞는 scale
+                        float[] markersScale = new float[5];
+                        markersScale[0] = 0.5f;
+    
 
-                        //startNoteManager = new StartNoteManager(
-                        //rightNoteTextures[itemManager.getNoteIndex()],
-                        //new Rectangle(0, 0, 200, 200),
-                        //1);
+                        //현재 장착한 마커로 설정//(마커,마커의 rect크기. scale)
+                        MarkManager.chageMarksImages(markersTextures[itemManager.getNoteIndex()], new Rectangle(0,0,markersTextures[itemManager.getNoteIndex()].Width,markersTextures[itemManager.getNoteIndex()].Height), markersScale[0]);
 
-                       
-
+                        
                         gameState = GameStates.Playing;
                         file.Loading(resultSongMenu);
                     

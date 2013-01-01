@@ -113,7 +113,7 @@ namespace beethoven3
             }
         }
 
-        public static void chageMarksImages(Texture2D texture, Rectangle rect)
+        public static void chageMarksImages(Texture2D texture, Rectangle rect, float scale)
         {
             for (int i = 0; i < Marks.Count; i++)
             {
@@ -121,68 +121,13 @@ namespace beethoven3
 
                 //각 크기 값을 정해놓은 frame을 바꾼다.
                 Marks[i].MarkSprite.ChangeFrameRect(rect);
+
+                Marks[i].MarkSprite.Scale = scale;
             }
 
         }
 
 
-        //public static void changeMarkPattern(int number)
-        //{
-        //    Vector2 mark0Loc = Vector2.Zero;
-        //    Vector2 mark1Loc = Vector2.Zero;
-        //    Vector2 mark2Loc = Vector2.Zero;
-        //    Vector2 mark3Loc = Vector2.Zero;
-        //    Vector2 mark4Loc = Vector2.Zero;
-        //    Vector2 mark5Loc = Vector2.Zero;
-        
-        //    //배열로 리펙토링
-
-        //    if (number == 0)
-        //    {
-              
-        //            Marks[0].MarkSprite.Location = new Vector2(500, 170);
-        //            Marks[1].MarkSprite.Location = new Vector2(600, 270);
-        //            Marks[2].MarkSprite.Location = new Vector2(600, 370);
-        //            Marks[3].MarkSprite.Location = new Vector2(500, 470);
-        //            Marks[4].MarkSprite.Location = new Vector2(400, 370);
-        //            Marks[5].MarkSprite.Location = new Vector2(400, 270);
-
-        //            startNoteManager.StartNotes[0].StartNoteSprite.Location = GetStartNoteLocation(new Vector2(500, 170), distance, 0);
-        //            startNoteManager.StartNotes[1].StartNoteSprite.Location = GetStartNoteLocation(new Vector2(600, 270), distance, 1);
-        //            startNoteManager.StartNotes[2].StartNoteSprite.Location = GetStartNoteLocation(new Vector2(600, 370), distance, 2);
-        //            startNoteManager.StartNotes[3].StartNoteSprite.Location = GetStartNoteLocation(new Vector2(500, 470), distance, 3);
-        //            startNoteManager.StartNotes[4].StartNoteSprite.Location = GetStartNoteLocation(new Vector2(400, 370), distance, 4);
-        //            startNoteManager.StartNotes[5].StartNoteSprite.Location = GetStartNoteLocation(new Vector2(400, 270), distance, 5);
-
-        //    }
-
-        //    else if (number == 1)
-        //    {
-
-
-        //        Marks[0].MarkSprite.Location = new Vector2(300, 270);
-        //        Marks[1].MarkSprite.Location = new Vector2(400, 370);
-        //        Marks[2].MarkSprite.Location = new Vector2(400, 470);
-        //        Marks[3].MarkSprite.Location = new Vector2(300, 570);
-        //        Marks[4].MarkSprite.Location = new Vector2(200, 470);
-        //        Marks[5].MarkSprite.Location = new Vector2(100, 370);
-
-        //        startNoteManager.StartNotes[0].StartNoteSprite.Location = GetStartNoteLocation(new Vector2(300, 270), distance, 0);
-        //        startNoteManager.StartNotes[1].StartNoteSprite.Location = GetStartNoteLocation(new Vector2(400, 370), distance, 1);
-        //        startNoteManager.StartNotes[2].StartNoteSprite.Location = GetStartNoteLocation(new Vector2(400, 470), distance, 2);
-        //        startNoteManager.StartNotes[3].StartNoteSprite.Location = GetStartNoteLocation(new Vector2(300, 570), distance, 3);
-        //        startNoteManager.StartNotes[4].StartNoteSprite.Location = GetStartNoteLocation(new Vector2(200, 470), distance, 4);
-        //        startNoteManager.StartNotes[5].StartNoteSprite.Location = GetStartNoteLocation(new Vector2(100, 370), distance, 5);
-
-        //    }
-        //    else if (number == 2)
-        //    {
-
-        
-
-        //    }
-          
-        //}
 
 
         //현재 저장되어 있는 마커의 위치를 가져온다. 
@@ -214,23 +159,23 @@ namespace beethoven3
             
             if (index == 0)
             {
-                mark0Loc = new Vector2(450, 170);
-                mark1Loc = new Vector2(650, 370);
-                mark2Loc = new Vector2(650, 470);
-                mark3Loc = new Vector2(450, 670);
-                mark4Loc = new Vector2(250, 470);
-                mark5Loc = new Vector2(250, 370);
+                mark0Loc = new Vector2(270, 240); 
+                mark1Loc = new Vector2(270, 420);
+                mark2Loc = new Vector2(350, 600);
+                mark3Loc = new Vector2(600, 240);
+                mark4Loc = new Vector2(600, 420);
+                mark5Loc = new Vector2(520, 600);
 
             }
             else if (index == 1)
             {
 
-                mark0Loc = new Vector2(450, 270);
-                mark1Loc = new Vector2(550, 370);
-                mark2Loc = new Vector2(550, 470);
-                mark3Loc = new Vector2(450, 570);
-                mark4Loc = new Vector2(350, 470);
-                mark5Loc = new Vector2(350, 370);
+                mark0Loc = new Vector2(200, 240);
+                mark1Loc = new Vector2(200, 420);
+                mark2Loc = new Vector2(280, 600);
+                mark3Loc = new Vector2(670, 240);
+                mark4Loc = new Vector2(670, 420);
+                mark5Loc = new Vector2(590, 600);
             }
             vectorarray[0] = mark0Loc;
             vectorarray[1] = mark1Loc;
@@ -277,8 +222,8 @@ namespace beethoven3
                     while (!find0)
                     {
                         //거리만큼 뺀다.
-                        otherCenter.Y -= x;
-                        if (Vector2.Distance(center, otherCenter) == distance || otherCenter.Y < 0)
+                        otherCenter.X -= x;
+                        if (Vector2.Distance(center, otherCenter) == distance || otherCenter.X < 0)
                         {
                             find0 = true;
                         }
@@ -290,8 +235,8 @@ namespace beethoven3
                     bool find1 = false;
                     while (!find1)
                     {
-                        otherCenter.X += x;
-                        if (Vector2.Distance(center, otherCenter) == distance || otherCenter.X > 2000)
+                        otherCenter.X -= x;
+                        if (Vector2.Distance(center, otherCenter) == distance || otherCenter.X < 0)
                         {
                             find1 = true;
                         }
@@ -303,8 +248,8 @@ namespace beethoven3
                     bool find2 = false;
                     while (!find2)
                     {
-                        otherCenter.X += x;
-                        if (Vector2.Distance(center, otherCenter) == distance || otherCenter.X > 2000)
+                        otherCenter.X -= x;
+                        if (Vector2.Distance(center, otherCenter) == distance || otherCenter.X < 0)
                         {
                             find2 = true;
                         }
@@ -316,8 +261,8 @@ namespace beethoven3
                     bool find3 = false;
                     while (!find3)
                     {
-                        otherCenter.Y += x;
-                        if (Vector2.Distance(center, otherCenter) == distance || otherCenter.Y < 1500)
+                        otherCenter.X += x;
+                        if (Vector2.Distance(center, otherCenter) == distance || otherCenter.X > 2000)
                         {
                             find3 = true;
                         }
@@ -329,8 +274,8 @@ namespace beethoven3
                     bool find4 = false;
                     while (!find4)
                     {
-                        otherCenter.X -= x;
-                        if (Vector2.Distance(center, otherCenter) == distance || otherCenter.X < 0)
+                        otherCenter.X += x;
+                        if (Vector2.Distance(center, otherCenter) == distance || otherCenter.X > 2000)
                         {
                             find4 = true;
                         }
@@ -342,9 +287,8 @@ namespace beethoven3
                     bool find5 = false;
                     while (!find5)
                     {
-                        otherCenter.X -= x;
-
-                        if (Vector2.Distance(center, otherCenter) == distance || otherCenter.X < 0)
+                        otherCenter.X += x;
+                        if (Vector2.Distance(center, otherCenter) == distance || otherCenter.X > 2000)
                         {
                             find5 = true;
                         }

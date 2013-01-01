@@ -104,10 +104,14 @@ namespace beethoven3
 
         //각 노트의 모양을 바꾸다.
         //노래 선택하고 시작하기전에 설정한다.
-        public void changeRightNoteImage(Texture2D texture)
+        public void changeRightNoteImage(Texture2D texture, Rectangle rect,float scale)
         {
             rightNoteManager.TextureChange = texture;
+            rightNoteManager.InitFrameChange = rect;
+            rightNoteManager.ScaleChange = scale;
         }
+
+       
 
         public void changeLeftNoteImage(Texture2D texture)
         {

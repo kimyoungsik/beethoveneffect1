@@ -617,6 +617,7 @@ namespace beethoven3
 
                             //이미 저장되어 있는 인덱스에 따른 패튼 가져오기
                             //Get some patterns which is alread stored according to the index
+
                             Endlocations = MarkManager.GetPattern(arrayNotes[0].MarkLocation);
 
                            

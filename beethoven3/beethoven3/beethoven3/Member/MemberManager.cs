@@ -78,17 +78,17 @@ namespace beethoven3
 
             
             //바이올린
-            MakeMember(violinMemberPlay, new Rectangle(0, 0, 114, 158), new Vector2(280, 170),/*velocity*/ Vector2.Zero,/*speed*/ 0f,/*collisionRadius*/ 15,/*프레임*/ 15,/*memberNumber*/ 0,/*scale*/ 1.2f);
+            MakeMember(violinMemberPlay, new Rectangle(0, 0, 114, 158), new Vector2(200, 80),/*velocity*/ Vector2.Zero,/*speed*/ 0f,/*collisionRadius*/ 15,/*프레임*/ 15,/*memberNumber*/ 0,/*scale*/ 1.2f);
              //플룻 
-            MakeMember(fluteMemberPlay, new Rectangle(0, 0, 253, 595), new Vector2(230, -120), Vector2.Zero, 0f, 15, 5, 1, 0.4f);
+            MakeMember(fluteMemberPlay, new Rectangle(0, 0, 253, 595), new Vector2(210, -170), Vector2.Zero, 0f, 15, 5, 1, 0.4f);
              //팀파니 
-            MakeMember(timpaniMemberPlay, new Rectangle(0, 0, 196, 238), new Vector2(370, 0), Vector2.Zero, 0f, 15, 5, 2, 1f);
+            MakeMember(timpaniMemberPlay, new Rectangle(0, 0, 196, 238), new Vector2(370, -10), Vector2.Zero, 0f, 15, 5, 2, 1f);
              // 호른
-            MakeMember(hornMemberPlay, new Rectangle(0, 0, 280, 595), new Vector2(450, -180), Vector2.Zero, 0f, 15, 5, 3, 0.32f);
+            MakeMember(hornMemberPlay, new Rectangle(0, 0, 280, 595), new Vector2(460, -190), Vector2.Zero, 0f, 15, 5, 3, 0.32f);
              //콘타라 베이스
-            MakeMember(contrabaseMemberPlay, new Rectangle(0, 0, 172, 254), new Vector2(570, 45), Vector2.Zero, 0f, 15, 8, 4, 1f);
-            //첼로 
-            MakeMember(celloMemberPlay, new Rectangle(0, 0, 325, 595), new Vector2(580, -40), Vector2.Zero, 0f, 15, 5, 5, 0.42f);
+            MakeMember(contrabaseMemberPlay, new Rectangle(0, 0, 172, 254), new Vector2(610, -5), Vector2.Zero, 0f, 15, 8, 4, 0.9f);
+            //첼로  
+            MakeMember(celloMemberPlay, new Rectangle(0, 0, 325, 595), new Vector2(630, -130), Vector2.Zero, 0f, 15, 5, 5, 0.40f);
 
 
             //실수했을때

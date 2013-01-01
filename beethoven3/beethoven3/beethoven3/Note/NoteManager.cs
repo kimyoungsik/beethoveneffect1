@@ -19,7 +19,7 @@ namespace beethoven3
         private static int FrameCount;
         public float noteSpeed;
         private static int CollisionRadius;
-   
+        private float Scale = 1.0f;
         #endregion
 
 
@@ -30,6 +30,8 @@ namespace beethoven3
             int frameCount,
             int collisionRadius,
             float noteSpeed
+          
+
         
             )
        {
@@ -38,6 +40,7 @@ namespace beethoven3
             FrameCount = frameCount;
             CollisionRadius = collisionRadius;
             this.noteSpeed = noteSpeed;
+           
           //  this.noteType = noteType;
        }
 
@@ -45,15 +48,50 @@ namespace beethoven3
 
 
         #region properties
+
+        
         public Texture2D TextureChange
         {
             get { return Texture; }
             set { Texture = value; }
         }
+        public Rectangle InitFrameChange
+        {
+            get { return InitialFrame; }
+            set { InitialFrame = value; }
+
+        }
+
+        public float ScaleChange
+        {
+            get { return Scale; }
+            set { Scale = value; }
+
+        }
+ 
+
+
         #endregion
 
 
         #region method
+        ////노트의 littlenotes 의 texture, rect를 전부 변경 
+        //public void ChangeImage(Texture2D texture, Rectangle rect)
+        //{
+        //    int i;
+        //    for (i = 0; i < LittleNotes.Count; i++)
+        //    {
+        //        LittleNotes[i].Texture = texture;
+        //        LittleNotes[i].ChangeFrameRect(rect);
+
+        //    }
+        //}
+
+
+
+
+
+
         public void MakeNote(
             Vector2 location,
             Vector2 velocity
@@ -63,7 +101,8 @@ namespace beethoven3
                 location,
                 Texture,
                 InitialFrame,
-                velocity);
+                velocity,
+                this.Scale);
 
             thisNote.Velocity *= noteSpeed;
 
