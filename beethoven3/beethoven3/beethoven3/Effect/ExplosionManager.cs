@@ -36,6 +36,8 @@ namespace beethoven3
         private Color initialColor = new Color(1.0f, 0.3f, 0f) * 0.5f;
         private Color finalColor = new Color(0f, 0f, 0f, 0f);
 
+        private float scale;
+
         Random rand = new Random();
 
         //활성화 폭발에서 생성한 모든 입자 저장 리스트//입자 생명이 다하면 리스트에 서 제외
@@ -47,11 +49,13 @@ namespace beethoven3
             int pieceCount,
             Rectangle pointRectangle,
             Color initialColor,
-            Color finalColor)
+            Color finalColor,
+            float scale)
         {
             this.initialColor = initialColor;
             this.finalColor = finalColor;
             this.texture = texture;
+            this.scale = scale;
             for (int x = 0; x < pieceCount; x++)
             {
                 pieceRectangles.Add(new Rectangle(
@@ -89,8 +93,10 @@ namespace beethoven3
             //중점구하기 
             Vector2 pieceLocation = location -
                 new Vector2(pieceRectangles[0].Width / 2,
-                    pieceRectangles[0].Height / 2);
+                    pieceRectangles[0].Height * scale / 2);
+            /*scale 포함 */
 
+            
 
             int pieces = rand.Next(minPieceCount, maxPieceCount + 1);
 
@@ -109,13 +115,15 @@ namespace beethoven3
                     //지속기간
                     durationCount,
                     initialColor,
-                    finalColor));
+                    finalColor,
+                    scale));
             }
 
             int points = rand.Next(minPointCount, maxPointCount + 1);
             for (int x = 0; x < points; x++)
             {
                 ExplosionParticles.Add(new Particle(
+                   
                     location,
                     texture,
                     pointRectangle,
@@ -125,7 +133,8 @@ namespace beethoven3
                     explosionMaxSpeed,
                     durationCount,
                     initialColor,
-                    finalColor));
+                    finalColor,
+                    scale));
 
             }
             //SoundManager.PlayExplosion();

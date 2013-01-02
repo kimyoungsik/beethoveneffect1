@@ -60,8 +60,9 @@ namespace beethoven3
             float maxSpeed,
             int duration,
             Color initialColor,
-            Color finalColor)
-            : base(location, texture, initialFrame, velocity)
+            Color finalColor,
+            float scale)
+            : base(location, texture, initialFrame, velocity,scale)
         {
             initialDuration = duration;
             remainingDuration = duration;
@@ -101,6 +102,7 @@ namespace beethoven3
             if (IsActive)
             {
                 base.Draw(spriteBatch);
+        
             }
         }
 

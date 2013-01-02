@@ -379,7 +379,8 @@ namespace beethoven3
                  new Rectangle(0, 450, 2, 2),
                  /*RGB시작 컬러 -> 끝나는 컬러*/
                  new Color(1.0f, 0.3f, 0f) * 0.5f,
-                 new Color(0f, 0f, 0f, 0f));
+                 new Color(0f, 0f, 0f, 0f),
+                 2f);
 
             goodManager = new ExplosionManager(
                  spriteSheet,
@@ -387,7 +388,8 @@ namespace beethoven3
                  3,
                  new Rectangle(0, 450, 2, 2),
                  new Color(0f, 0f, 1.0f) * 0.5f,
-                 new Color(0f, 0f, 0f, 0f));
+                 new Color(0f, 0f, 0f, 0f),
+                 2f);
 
             badManager = new ExplosionManager(
                  spriteSheet,
@@ -395,7 +397,8 @@ namespace beethoven3
                  3,
                  new Rectangle(0, 450, 2, 2),
                  new Color(0f, 1.0f, 0f) * 0.5f,
-                 new Color(0f, 0f, 0f, 0f));
+                 new Color(0f, 0f, 0f, 0f),
+                 2f);
 
             goldGetManager = new ExplosionManager(
               spriteSheet,
@@ -403,7 +406,8 @@ namespace beethoven3
               3,
               new Rectangle(0, 450, 2, 2),
               new Color(1f, 0.5f, 0.5f) * 0.5f,
-              new Color(0f, 0f, 0f, 0f));
+              new Color(0f, 0f, 0f, 0f),
+              2f);
 
             /////이펙트 생성 -END
 

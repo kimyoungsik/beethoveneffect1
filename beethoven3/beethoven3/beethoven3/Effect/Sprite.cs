@@ -18,8 +18,8 @@ namespace beethoven3
 
         protected List<Rectangle> frames = new List<Rectangle>();
 
-        private int frameWidth = 0;
-        private int frameHeight = 0;
+        protected int frameWidth = 0;
+        protected int frameHeight = 0;
         
         //주어진 시간에 표시되는 프레임을 저장
         private int currentFrame;
@@ -30,8 +30,8 @@ namespace beethoven3
         //
 
         //효과
-        private Color tintColor = Color.White;
-        private float rotation ;
+        protected Color tintColor = Color.White;
+        protected float rotation;
         //
 
 
