@@ -67,3 +67,7 @@ Content\Fonts\damagefont.xnb
 Content\Fonts\Pericles36.xnb
 Content\MessageFont.xnb
 Content\Fonts\PerpetuaFont.xnb
+Content\Explosion\windExplosion2.xnb
+Content\Explosion\heartExplosion2.xnb
+Content\Explosion\smallheart2.xnb
+Content\Explosion\needleExplosion2.xnb

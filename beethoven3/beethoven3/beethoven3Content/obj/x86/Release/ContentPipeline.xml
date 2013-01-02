@@ -598,6 +598,42 @@
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Fonts\PerpetuaFont.xnb</Output>
       <Time>2012-12-25T17:37:05.7514826+09:00</Time>
     </Item>
+    <Item>
+      <Source>Explosion\windExplosion2.png</Source>
+      <Name>Explosion\windExplosion2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Explosion\windExplosion2.xnb</Output>
+      <Time>2013-01-02T10:40:12.8289333+09:00</Time>
+    </Item>
+    <Item>
+      <Source>Explosion\heartExplosion2.png</Source>
+      <Name>Explosion\heartExplosion2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Explosion\heartExplosion2.xnb</Output>
+      <Time>2013-01-02T10:52:19.9655231+09:00</Time>
+    </Item>
+    <Item>
+      <Source>Explosion\smallheart2.png</Source>
+      <Name>Explosion\smallheart2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Explosion\smallheart2.xnb</Output>
+      <Time>2013-01-02T11:03:31.5339347+09:00</Time>
+    </Item>
+    <Item>
+      <Source>Explosion\needleExplosion2.png</Source>
+      <Name>Explosion\needleExplosion2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Explosion\needleExplosion2.xnb</Output>
+      <Time>2013-01-02T11:12:12.7637473+09:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

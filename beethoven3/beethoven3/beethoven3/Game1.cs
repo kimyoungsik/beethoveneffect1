@@ -175,6 +175,12 @@ namespace beethoven3
         private Texture2D playBackgroud1;
         private Texture2D playBackgroud2;
 
+        //Explosion
+        private Texture2D windExplosion;
+        private Texture2D heartExplosion;
+        private Texture2D needleExplosion;
+
+
         //놓친 노트가 없어지는 곳
         //the place where miss note disapper
         //마커 패턴에 따라 달라져야 함. 
@@ -338,7 +344,20 @@ namespace beethoven3
             pericles36Font = Content.Load<SpriteFont>(@"Fonts\Pericles36");
             /////텍스쳐 로드 -END
 
-            
+            //explosion
+            windExplosion = Content.Load<Texture2D>(@"Explosion\windExplosion2");
+            heartExplosion = Content.Load<Texture2D>(@"Explosion\smallheart2");
+            needleExplosion = Content.Load<Texture2D>(@"Explosion\needleExplosion2");
+            //wind용
+            //perfectManager = new ExplosionManager(
+        //    cloudExplosion,
+        //    new Rectangle(0, 0, 156, 152),
+        //    6,
+        //    new Rectangle(0, 450, 2, 2),
+        //    /*RGB시작 컬러 -> 끝나는 컬러*/
+        //    new Color(1.0f, 0.3f, 0f) * 0.5f,
+        //    new Color(0f, 0f, 0f, 0f),
+        //    1f);
             //시작 노트 관리 생성    
             //여기에 들어가는 텍스쳐가 노트의 텍스쳐가 된다.
             //상점의 텍스쳐가 들어가야 한다. 
@@ -373,32 +392,32 @@ namespace beethoven3
             /////이펙트 생성 -START
 
             perfectManager = new ExplosionManager(
-                 spriteSheet,
-                 new Rectangle(0, 100, 50, 50),
-                 3,
+                 needleExplosion,
+                 new Rectangle(0, 0, 130, 122),
+                 8,
                  new Rectangle(0, 450, 2, 2),
                  /*RGB시작 컬러 -> 끝나는 컬러*/
                  new Color(1.0f, 0.3f, 0f) * 0.5f,
                  new Color(0f, 0f, 0f, 0f),
-                 2f);
+                 1.5f);
 
             goodManager = new ExplosionManager(
-                 spriteSheet,
-                 new Rectangle(0, 100, 50, 50),
-                 3,
+                 needleExplosion,
+                 new Rectangle(0, 0, 130, 122),
+                 8,
                  new Rectangle(0, 450, 2, 2),
                  new Color(0f, 0f, 1.0f) * 0.5f,
                  new Color(0f, 0f, 0f, 0f),
-                 2f);
+                 1.5f);
 
             badManager = new ExplosionManager(
-                 spriteSheet,
+                 needleExplosion,
                  new Rectangle(0, 100, 50, 50),
                  3,
                  new Rectangle(0, 450, 2, 2),
                  new Color(0f, 1.0f, 0f) * 0.5f,
                  new Color(0f, 0f, 0f, 0f),
-                 2f);
+                 1f);
 
             goldGetManager = new ExplosionManager(
               spriteSheet,
