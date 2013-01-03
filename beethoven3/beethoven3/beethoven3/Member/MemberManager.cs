@@ -32,7 +32,30 @@ namespace beethoven3
         private Texture2D hornMemberMiss;
         private Texture2D contrabaseMemberMiss;
         private Texture2D celloMemberMiss;
-        
+
+        //스트로크 1단계
+        private Texture2D violinMemberPlay1;
+        private Texture2D fluteMemberPlay1;
+        private Texture2D timpaniMemberPlay1;
+        private Texture2D hornMemberPlay1;
+        private Texture2D contrabaseMemberPlay1;
+        private Texture2D celloMemberPlay1;
+
+        //스트로크 2단계
+        private Texture2D violinMemberPlay2;
+        private Texture2D fluteMemberPlay2;
+        private Texture2D timpaniMemberPlay2;
+        private Texture2D hornMemberPlay2;
+        private Texture2D contrabaseMemberPlay2;
+        private Texture2D celloMemberPlay2;
+
+        //스트로크 3단계
+        private Texture2D violinMemberPlay3;
+        private Texture2D fluteMemberPlay3;
+        private Texture2D timpaniMemberPlay3;
+        private Texture2D hornMemberPlay3;
+        private Texture2D contrabaseMemberPlay3;
+        private Texture2D celloMemberPlay3;
         /// <summary>
         //*** 스트로트 포함된 member
         /// </summary>
@@ -64,6 +87,33 @@ namespace beethoven3
             contrabaseMemberPlay = cm.Load<Texture2D>(@"character\contrabase");
             celloMemberPlay = cm.Load<Texture2D>(@"character\cello");
 
+
+
+            violinMemberPlay1 = cm.Load<Texture2D>(@"character\violin");
+            fluteMemberPlay1 = cm.Load<Texture2D>(@"character\flute");
+            timpaniMemberPlay1 = cm.Load<Texture2D>(@"character\timpani");
+            hornMemberPlay1 = cm.Load<Texture2D>(@"character\horn");
+            contrabaseMemberPlay1 = cm.Load<Texture2D>(@"character\contrabase1");
+            celloMemberPlay1 = cm.Load<Texture2D>(@"character\cello");
+
+
+            violinMemberPlay2 = cm.Load<Texture2D>(@"character\violin");
+            fluteMemberPlay2 = cm.Load<Texture2D>(@"character\flute");
+            timpaniMemberPlay2 = cm.Load<Texture2D>(@"character\timpani");
+            hornMemberPlay2 = cm.Load<Texture2D>(@"character\horn");
+            contrabaseMemberPlay2 = cm.Load<Texture2D>(@"character\contrabase2");
+            celloMemberPlay2 = cm.Load<Texture2D>(@"character\cello");
+
+
+
+            violinMemberPlay3 = cm.Load<Texture2D>(@"character\violin");
+            fluteMemberPlay3 = cm.Load<Texture2D>(@"character\flute");
+            timpaniMemberPlay3 = cm.Load<Texture2D>(@"character\timpani");
+            hornMemberPlay3 = cm.Load<Texture2D>(@"character\horn");
+            contrabaseMemberPlay3 = cm.Load<Texture2D>(@"character\contrabase3");
+            celloMemberPlay3 = cm.Load<Texture2D>(@"character\cello");
+
+
             violinMemberMiss = cm.Load<Texture2D>(@"character\violin");
             fluteMemberMiss = cm.Load<Texture2D>(@"character\flute");
             timpaniMemberMiss = cm.Load<Texture2D>(@"character\timpani");
@@ -76,7 +126,7 @@ namespace beethoven3
         public void init() 
         {
 
-            
+            //NO STROKE
             //바이올린
             MakeMember(violinMemberPlay, new Rectangle(0, 0, 114, 158), new Vector2(170, 70),/*velocity*/ Vector2.Zero,/*speed*/ 0f,/*collisionRadius*/ 15,/*프레임*/ 15,/*memberNumber*/ 0,/*scale*/ 1.2f);
              //플룻 
@@ -90,20 +140,65 @@ namespace beethoven3
             //첼로  
             MakeMember(celloMemberPlay, new Rectangle(0, 0, 325, 595), new Vector2(730, 55), Vector2.Zero, 0f, 15, 5, 5, 0.40f);
 
-
-            //실수했을때
+            //STROKE1
             //바이올린
-            MakeMember(violinMemberMiss, new Rectangle(0, 0, 114, 158), new Vector2(280, 170),/*velocity*/ Vector2.Zero,/*speed*/ 0f,/*collisionRadius*/ 15,/*프레임*/ 15,/*memberNumber*/ 0,/*scale*/ 1.2f);
+            MakeMember(violinMemberPlay1, new Rectangle(0, 0, 114, 158), new Vector2(170, 70),/*velocity*/ Vector2.Zero,/*speed*/ 0f,/*collisionRadius*/ 15,/*프레임*/ 15,/*memberNumber*/ 0,/*scale*/ 1.2f);
             //플룻 
-            MakeMember(fluteMemberMiss, new Rectangle(0, 0, 253, 595), new Vector2(230, -120), Vector2.Zero, 0f, 15, 5, 1, 0.4f);
+            MakeMember(fluteMemberPlay1, new Rectangle(0, 0, 253, 595), new Vector2(270, 20), Vector2.Zero, 0f, 15, 5, 1, 0.4f);
             //팀파니 
-            MakeMember(timpaniMemberMiss, new Rectangle(0, 0, 196, 238), new Vector2(370, 0), Vector2.Zero, 0f, 15, 5, 2, 1f);
+            MakeMember(timpaniMemberPlay1, new Rectangle(0, 0, 196, 238), new Vector2(350, 10), Vector2.Zero, 0f, 15, 5, 2, 1f);
             // 호른
-            MakeMember(hornMemberMiss, new Rectangle(0, 0, 280, 595), new Vector2(450, -180), Vector2.Zero, 0f, 15, 5, 3, 0.32f);
+            MakeMember(hornMemberPlay1, new Rectangle(0, 0, 280, 595), new Vector2(540, 30), Vector2.Zero, 0f, 15, 5, 3, 0.32f);
             //콘타라 베이스
-            MakeMember(contrabaseMemberMiss, new Rectangle(0, 0, 172, 254), new Vector2(570, 45), Vector2.Zero, 0f, 15, 8, 4, 1f);
-            //첼로 
-            MakeMember(celloMemberMiss, new Rectangle(0, 0, 325, 595), new Vector2(580, -40), Vector2.Zero, 0f, 15, 5, 5, 0.42f);
+            MakeMember(contrabaseMemberPlay1, new Rectangle(0, 0, 172, 254), new Vector2(610, 20), Vector2.Zero, 0f, 15, 8, 4, 0.9f);
+            //첼로  
+            MakeMember(celloMemberPlay1, new Rectangle(0, 0, 325, 595), new Vector2(730, 55), Vector2.Zero, 0f, 15, 5, 5, 0.40f);
+
+
+            //STROKE2
+            //바이올린
+            MakeMember(violinMemberPlay2, new Rectangle(0, 0, 114, 158), new Vector2(170, 70),/*velocity*/ Vector2.Zero,/*speed*/ 0f,/*collisionRadius*/ 15,/*프레임*/ 15,/*memberNumber*/ 0,/*scale*/ 1.2f);
+            //플룻 
+            MakeMember(fluteMemberPlay2, new Rectangle(0, 0, 253, 595), new Vector2(270, 20), Vector2.Zero, 0f, 15, 5, 1, 0.4f);
+            //팀파니 
+            MakeMember(timpaniMemberPlay2, new Rectangle(0, 0, 196, 238), new Vector2(350, 10), Vector2.Zero, 0f, 15, 5, 2, 1f);
+            // 호른
+            MakeMember(hornMemberPlay2, new Rectangle(0, 0, 280, 595), new Vector2(540, 30), Vector2.Zero, 0f, 15, 5, 3, 0.32f);
+            //콘타라 베이스
+            MakeMember(contrabaseMemberPlay2, new Rectangle(0, 0, 172, 254), new Vector2(610, 20), Vector2.Zero, 0f, 15, 8, 4, 0.9f);
+            //첼로  
+            MakeMember(celloMemberPlay2, new Rectangle(0, 0, 325, 595), new Vector2(730, 55), Vector2.Zero, 0f, 15, 5, 5, 0.40f);
+
+
+            // STROKE3
+            //바이올린
+            MakeMember(violinMemberPlay3, new Rectangle(0, 0, 114, 158), new Vector2(170, 70),/*velocity*/ Vector2.Zero,/*speed*/ 0f,/*collisionRadius*/ 15,/*프레임*/ 15,/*memberNumber*/ 0,/*scale*/ 1.2f);
+            //플룻 
+            MakeMember(fluteMemberPlay3, new Rectangle(0, 0, 253, 595), new Vector2(270, 20), Vector2.Zero, 0f, 15, 5, 1, 0.4f);
+            //팀파니 
+            MakeMember(timpaniMemberPlay3, new Rectangle(0, 0, 196, 238), new Vector2(350, 10), Vector2.Zero, 0f, 15, 5, 2, 1f);
+            // 호른
+            MakeMember(hornMemberPlay3, new Rectangle(0, 0, 280, 595), new Vector2(540, 30), Vector2.Zero, 0f, 15, 5, 3, 0.32f);
+            //콘타라 베이스
+            MakeMember(contrabaseMemberPlay3, new Rectangle(0, 0, 172, 254), new Vector2(610, 20), Vector2.Zero, 0f, 15, 8, 4, 0.9f);
+            //첼로  
+            MakeMember(celloMemberPlay3, new Rectangle(0, 0, 325, 595), new Vector2(730, 55), Vector2.Zero, 0f, 15, 5, 5, 0.40f);
+
+
+
+            //실수 했을 때
+            //바이올린
+            MakeMember(violinMemberMiss, new Rectangle(0, 0, 114, 158), new Vector2(170, 70),/*velocity*/ Vector2.Zero,/*speed*/ 0f,/*collisionRadius*/ 15,/*프레임*/ 15,/*memberNumber*/ 0,/*scale*/ 1.2f);
+            //플룻 
+            MakeMember(fluteMemberMiss, new Rectangle(0, 0, 253, 595), new Vector2(270, 20), Vector2.Zero, 0f, 15, 5, 1, 0.4f);
+            //팀파니 
+            MakeMember(timpaniMemberMiss, new Rectangle(0, 0, 196, 238), new Vector2(350, 10), Vector2.Zero, 0f, 15, 5, 2, 1f);
+            // 호른
+            MakeMember(hornMemberMiss, new Rectangle(0, 0, 280, 595), new Vector2(540, 30), Vector2.Zero, 0f, 15, 5, 3, 0.32f);
+            //콘타라 베이스
+            MakeMember(contrabaseMemberMiss, new Rectangle(0, 0, 172, 254), new Vector2(610, 20), Vector2.Zero, 0f, 15, 8, 4, 0.9f);
+            //첼로  
+            MakeMember(celloMemberMiss, new Rectangle(0, 0, 325, 595), new Vector2(730, 55), Vector2.Zero, 0f, 15, 5, 5, 0.40f);
 
 
            
@@ -111,6 +206,7 @@ namespace beethoven3
         }
 
         //멤버 생성
+        //멤버 생성할 때 각 LIST를 차곡차곡 들어가게 된다. 즉 스트로크 1은 배열 2번째에들어감
         public void MakeMember(
           Texture2D texture, 
           Rectangle InitialFrame,
@@ -236,7 +332,7 @@ namespace beethoven3
             celloMembers[celloMemberState].Draw(spriteBatch);
         }
 
-
+        //멤버의 상태를 바꾼다 , 노말 스트로크 등, 
         public void SetMemberState(int member, int state)
         {                 
             switch (member)

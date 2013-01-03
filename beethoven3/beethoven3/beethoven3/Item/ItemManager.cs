@@ -101,8 +101,11 @@ namespace beethoven3
             //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             //have to additem, effect, node , background
 
-            effectTexture[0] = cm.Load<Texture2D>(@"Textures\red");
-            effectTexture[1] = cm.Load<Texture2D>(@"Textures\heart");
+            //WIND
+            effectTexture[0] = cm.Load<Texture2D>(@"Explosion\windExplosion2");
+            //바늘효과
+            effectTexture[1] = cm.Load<Texture2D>(@"Explosion\needleExplosion2");
+
 
             noteTexture[0] = cm.Load<Texture2D>(@"notes\starNote");
             noteTexture[1] = cm.Load<Texture2D>(@"notes\turnNote2");

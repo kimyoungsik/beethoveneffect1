@@ -175,7 +175,7 @@ namespace beethoven3
         private Texture2D playBackgroud1;
         private Texture2D playBackgroud2;
 
-        //Explosion
+        ////Explosion
         private Texture2D windExplosion;
         private Texture2D heartExplosion;
         private Texture2D needleExplosion;
@@ -389,14 +389,14 @@ namespace beethoven3
                 removeAreaRec
                 );
 
-            /////이펙트 생성 -START
-
+            ///////이펙트 생성 -START
+            //여기서 이걸 생성해야 하는 이유 : collins class에 매개변수로 줘야 한다.
             perfectManager = new ExplosionManager(
-                 needleExplosion,
+                  needleExplosion,
                  new Rectangle(0, 0, 130, 122),
                  8,
                  new Rectangle(0, 450, 2, 2),
-                 /*RGB시작 컬러 -> 끝나는 컬러*/
+                /*RGB시작 컬러 -> 끝나는 컬러*/
                  new Color(1.0f, 0.3f, 0f) * 0.5f,
                  new Color(0f, 0f, 0f, 0f),
                  1.5f);
@@ -428,7 +428,7 @@ namespace beethoven3
               new Color(0f, 0f, 0f, 0f),
               2f);
 
-            /////이펙트 생성 -END
+            ///////이펙트 생성 -END
 
             //충돌관리 생성
             collisionManager = new CollisionManager(perfectManager, goodManager, badManager, goldGetManager, scoreManager, memberManager);
@@ -1002,6 +1002,23 @@ namespace beethoven3
                 //memberSetMembersFrameTime
             }
 
+            //스트로크 1
+            if (keyState.IsKeyDown(Keys.T))
+            {
+                memberManager.SetMemberState(4, 1);
+            }
+
+            //스트로크 2
+            if (keyState.IsKeyDown(Keys.Y))
+            {
+                memberManager.SetMemberState(4, 2);
+            }
+
+            //스트로크 3
+            if (keyState.IsKeyDown(Keys.U))
+            {
+                memberManager.SetMemberState(4, 3);
+            }
            
         }
         /// <summary>
@@ -2280,6 +2297,48 @@ namespace beethoven3
                         //현재 장착한 마커로 설정//(마커,마커의 rect크기. scale)
                         MarkManager.chageMarksImages(markersTextures[itemManager.getNoteIndex()], new Rectangle(0,0,markersTextures[itemManager.getNoteIndex()].Width,markersTextures[itemManager.getNoteIndex()].Height), markersScale[0]);
 
+
+
+                        /////이펙트 생성 -START
+
+                        perfectManager = new ExplosionManager(
+                              needleExplosion,
+                             new Rectangle(0, 0, 130, 122),
+                             8,
+                             new Rectangle(0, 450, 2, 2),
+                            /*RGB시작 컬러 -> 끝나는 컬러*/
+                             new Color(1.0f, 0.3f, 0f) * 0.5f,
+                             new Color(0f, 0f, 0f, 0f),
+                             1.5f);
+
+                        goodManager = new ExplosionManager(
+                             needleExplosion,
+                             new Rectangle(0, 0, 130, 122),
+                             8,
+                             new Rectangle(0, 450, 2, 2),
+                             new Color(0f, 0f, 1.0f) * 0.5f,
+                             new Color(0f, 0f, 0f, 0f),
+                             1.5f);
+
+                        badManager = new ExplosionManager(
+                             needleExplosion,
+                             new Rectangle(0, 100, 50, 50),
+                             3,
+                             new Rectangle(0, 450, 2, 2),
+                             new Color(0f, 1.0f, 0f) * 0.5f,
+                             new Color(0f, 0f, 0f, 0f),
+                             1f);
+
+                        goldGetManager = new ExplosionManager(
+                          spriteSheet,
+                          new Rectangle(0, 100, 50, 50),
+                          3,
+                          new Rectangle(0, 450, 2, 2),
+                          new Color(1f, 0.5f, 0.5f) * 0.5f,
+                          new Color(0f, 0f, 0f, 0f),
+                          2f);
+
+                        /////이펙트 생성 -END
                         
                         gameState = GameStates.Playing;
                         file.Loading(resultSongMenu);

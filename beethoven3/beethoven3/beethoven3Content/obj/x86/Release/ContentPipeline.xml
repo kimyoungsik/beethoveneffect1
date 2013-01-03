@@ -634,6 +634,33 @@
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Explosion\needleExplosion2.xnb</Output>
       <Time>2013-01-02T11:12:12.7637473+09:00</Time>
     </Item>
+    <Item>
+      <Source>character\contrabase1.png</Source>
+      <Name>character\contrabase1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\character\contrabase1.xnb</Output>
+      <Time>2013-01-03T08:02:54.3990912+09:00</Time>
+    </Item>
+    <Item>
+      <Source>character\contrabase2.png</Source>
+      <Name>character\contrabase2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\character\contrabase2.xnb</Output>
+      <Time>2013-01-03T08:15:46.8312718+09:00</Time>
+    </Item>
+    <Item>
+      <Source>character\contrabase3.png</Source>
+      <Name>character\contrabase3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\character\contrabase3.xnb</Output>
+      <Time>2013-01-03T08:02:54.4490941+09:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>
