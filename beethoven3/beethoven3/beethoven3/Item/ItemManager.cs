@@ -43,6 +43,25 @@ namespace beethoven3
         private List<Item> myNoteItem = new List<Item>();
         public List<Item> myBackgroundItem = new List<Item>();
 
+
+        //이펙트 특성  -start
+
+        //각 이펙트마다 rect init
+        private Rectangle[] effectInitFrams = new Rectangle[5];
+        //각 이펙트 마다 frameCount
+        private int[] effectFrameCount = new int[5];
+        //각 이펙트 마다 scale
+        private float[] effecScale = new float[5];
+
+        //이펙트 특성  -end
+
+        //노트 특성
+        float[] rightNoteScale = new float[5];
+
+        //마커특성
+        private float[] markersScale = new float[5];
+                
+
         public ItemManager()
         {
                       
@@ -74,6 +93,24 @@ namespace beethoven3
                 addItem(backgroundItem, new Vector2(100, 100), backgroundTexture[i], new Rectangle(0, 0, backgroundTexture[i].Width, backgroundTexture[i].Height), 1,/*cost*/ 45);
             
             }
+
+            //이펙트 특성 -start
+            effectInitFrams[0] = new Rectangle(0, 0, 156, 152);
+            effectInitFrams[1] = new Rectangle(0, 0, 130, 122);
+
+            effectFrameCount[0] = 6;
+            effectFrameCount[1] = 8;
+            
+            effecScale[0] = 1.0f;
+            effecScale[1] = 1.0f;
+            //이펙트 특성 -end
+
+            //마커 특성 -
+            markersScale[0] = 0.5f;
+
+            //노트 특성
+            
+            rightNoteScale[0] = 0.5f;
 
             //test
 
@@ -149,7 +186,37 @@ namespace beethoven3
         //{
         //    itemArray.Remove(item);
         //}
+
+        //노트특성 Get하기
+        public float[] GetRightNoteScale()
+        {
+            return this.rightNoteScale;
+        }
         
+
+
+        //마커특성 Get하기
+        public float[] GetMarkersScale()
+        {
+            return this.markersScale;
+        }
+        
+        
+        //effect특성 Get하기 - start
+        public  Rectangle[] GetEffectInitFrame()
+        {
+            return this.effectInitFrams;
+        }
+
+        public  int[] GetEffectFrameCount()
+        {
+            return this.effectFrameCount;
+        }
+
+        public  float[] GetEffectScale()
+        {
+            return this.effecScale;
+        }
 
         //오른손텍스쳐 반환 , 게임 로딩전에 각 노트 배경 등을 변경
         public Texture2D[] GetRightHandTexture()

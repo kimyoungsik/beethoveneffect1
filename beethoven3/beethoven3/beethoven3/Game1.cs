@@ -125,8 +125,6 @@ namespace beethoven3
         /////FMOD 선언 - END
 
 
-
-
         /////템포 관련 -START
         //템포 변경 여부 -TRUE면 템포 변경된 상태
         private bool isChangedTempo= false;
@@ -2257,30 +2255,33 @@ namespace beethoven3
                 else if (resultSongMenu != -2)
                     {
 
-
+                        //*** 롱노트와 왼손노트에도 다른 텍스쳐를 입혀야 함.
                         ////각 아이템에 따른 텍스쳐 변경
 
                         Texture2D[] rightNoteTextures = itemManager.GetNoteTexture();
 
                         ////왼손 노트 // 일단은 오른손노트랑 같이 함.
-                        //Texture2D[] leftNoteTextures = itemManager.GetNoteTexture();
+                        Texture2D[] leftNoteTextures = itemManager.GetNoteTexture();
                         ////롱노트 // 일단은 오른손노트랑 같이 함.
-                        //Texture2D[] longNoteTextures = itemManager.GetNoteTexture();
+                        Texture2D[] longNoteTextures = itemManager.GetNoteTexture();
 
                         ////노트 - 달라야 될때도 있어서 나누어 놨다.
                         ////오른손노트
 
-                        //마커리스트에 맞는 scale
-                        float[] rightNoteScale = new float[5];
-                        rightNoteScale[0] = 0.5f;
-
+                        //노트 맞는 scale 
+                        float[] rightNoteScale = itemManager.GetRightNoteScale();
+                        float[] leftNoteScale = itemManager.GetRightNoteScale();
+                        float[] longNoteScale = itemManager.GetRightNoteScale();
+                       
+                        //오른손 노트 이미지 바꾸기
                         startNoteManager.changeRightNoteImage(rightNoteTextures[itemManager.getNoteIndex()], new Rectangle(0, 0, rightNoteTextures[itemManager.getNoteIndex()].Width, rightNoteTextures[itemManager.getNoteIndex()].Height), rightNoteScale[0]);
-                        
 
+                        
                         ////롱노트 //*** 임시로 오른손노트랑 똑같은걸로 해놓음
-                        //startNoteManager.changeLongNoteImage(longNoteTextures[itemManager.getNoteIndex()]);
+                        startNoteManager.changeLongNoteImage(longNoteTextures[itemManager.getNoteIndex()], new Rectangle(0, 0, longNoteTextures[itemManager.getNoteIndex()].Width, longNoteTextures[itemManager.getNoteIndex()].Height), longNoteScale[0]);
+
                         ////왼손노트
-                        //startNoteManager.changeLeftNoteImage(leftNoteTextures[itemManager.getNoteIndex()]);
+                        startNoteManager.changeLeftNoteImage(leftNoteTextures[itemManager.getNoteIndex()], new Rectangle(0, 0, leftNoteTextures[itemManager.getNoteIndex()].Width, leftNoteTextures[itemManager.getNoteIndex()].Height), leftNoteScale[0]);
 
                         //마커리스트 텍스쳐 가져오기
                         Texture2D[] markersTextures = itemManager.GetMarkerTexture();
@@ -2289,10 +2290,9 @@ namespace beethoven3
                         //Rectangle[] markersRectangle = new Rectangle[5];
                         //markersRectangle[0] = new Rectangle(0,0,265,240);
 
-                        //마커리스트에 맞는 scale
-                        float[] markersScale = new float[5];
-                        markersScale[0] = 0.5f;
-    
+                        //***마커리스트에 맞는 =>>itemManager로 옮김
+                        float[] markersScale = itemManager.GetMarkersScale();
+                        
 
                         //현재 장착한 마커로 설정//(마커,마커의 rect크기. scale)
                         MarkManager.chageMarksImages(markersTextures[itemManager.getNoteIndex()], new Rectangle(0,0,markersTextures[itemManager.getNoteIndex()].Width,markersTextures[itemManager.getNoteIndex()].Height), markersScale[0]);
@@ -2300,28 +2300,37 @@ namespace beethoven3
 
 
                         /////이펙트 생성 -START
+                        Texture2D[] explosionTexture = itemManager.GetEffectTexture();
+                        
+                        //특성 로드
+                        Rectangle[] effectInitFrame = itemManager.GetEffectInitFrame();
+                        int[] effectFramCount = itemManager.GetEffectFrameCount();
+                        float[] effecScale = itemManager.GetEffectScale();
+                        
+                
+
 
                         perfectManager = new ExplosionManager(
-                              needleExplosion,
-                             new Rectangle(0, 0, 130, 122),
-                             8,
+                               explosionTexture[itemManager.getEffectIndex()],
+                             effectInitFrame[itemManager.getEffectIndex()],
+                             effectFramCount[itemManager.getEffectIndex()],
                              new Rectangle(0, 450, 2, 2),
                             /*RGB시작 컬러 -> 끝나는 컬러*/
                              new Color(1.0f, 0.3f, 0f) * 0.5f,
                              new Color(0f, 0f, 0f, 0f),
-                             1.5f);
+                             effecScale[itemManager.getEffectIndex()]);
 
                         goodManager = new ExplosionManager(
-                             needleExplosion,
-                             new Rectangle(0, 0, 130, 122),
-                             8,
+                             explosionTexture[itemManager.getEffectIndex()],
+                              effectInitFrame[itemManager.getEffectIndex()],
+                             effectFramCount[itemManager.getEffectIndex()],
                              new Rectangle(0, 450, 2, 2),
                              new Color(0f, 0f, 1.0f) * 0.5f,
                              new Color(0f, 0f, 0f, 0f),
-                             1.5f);
+                             effecScale[itemManager.getEffectIndex()]);
 
                         badManager = new ExplosionManager(
-                             needleExplosion,
+                             explosionTexture[itemManager.getEffectIndex()],
                              new Rectangle(0, 100, 50, 50),
                              3,
                              new Rectangle(0, 450, 2, 2),
@@ -2337,7 +2346,8 @@ namespace beethoven3
                           new Color(1f, 0.5f, 0.5f) * 0.5f,
                           new Color(0f, 0f, 0f, 0f),
                           2f);
-
+                        collisionManager = new CollisionManager(perfectManager, goodManager, badManager, goldGetManager, scoreManager, memberManager);
+            
                         /////이펙트 생성 -END
                         
                         gameState = GameStates.Playing;

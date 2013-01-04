@@ -112,17 +112,21 @@ namespace beethoven3
             rightNoteManager.ScaleChange = scale;
         }
 
-       
 
-        public void changeLeftNoteImage(Texture2D texture)
+
+        public void changeLeftNoteImage(Texture2D texture, Rectangle rect, float scale)
         {
             leftNoteManager.TextureChange = texture;
+            leftNoteManager.InitFrameChange = rect;
+            leftNoteManager.ScaleChange = scale;
         }
 
-        
-        public void changeLongNoteImage(Texture2D texture)
+
+        public void changeLongNoteImage(Texture2D texture, Rectangle rect, float scale)
         {
             longNoteManager.TextureChange = texture;
+            longNoteManager.InitFrameChange = rect;
+            longNoteManager.ScaleChange = scale;
         }
 
        
