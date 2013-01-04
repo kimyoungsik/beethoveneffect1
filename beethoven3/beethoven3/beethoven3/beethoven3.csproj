@@ -118,6 +118,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Effect\Explosion.cs" />
+    <Compile Include="Effect\ExplosionSprite.cs" />
     <Compile Include="Item\BackgroundItemShop.cs" />
     <Compile Include="Effect\CollisionManager.cs" />
     <Compile Include="Curve\Curve.cs" />
@@ -126,6 +128,7 @@
     <Compile Include="Item\EffectItemShop.cs" />
     <Compile Include="Effect\ExplosionManager.cs" />
     <Compile Include="File\File.cs" />
+    <Compile Include="Note\RightNoteInfo.cs" />
     <Compile Include="Sound\fmod.cs" />
     <Compile Include="Sound\fmod_dsp.cs" />
     <Compile Include="Sound\fmod_errors.cs" />

@@ -177,18 +177,16 @@ namespace beethoven3
         private Texture2D windExplosion;
         private Texture2D heartExplosion;
         private Texture2D needleExplosion;
-
+        private Texture2D starExplosion1;
+        private Texture2D starExplosion2;
+        private Texture2D leafExplosion;
 
         //놓친 노트가 없어지는 곳
         //the place where miss note disapper
         //마커 패턴에 따라 달라져야 함. 
         private Rectangle removeAreaRec = new Rectangle(0, 0, 0, 0);
 
-
         /////Texture end 
-
-
-
 
 
         /////키넥트 관련 선언 - START
@@ -346,8 +344,26 @@ namespace beethoven3
             windExplosion = Content.Load<Texture2D>(@"Explosion\windExplosion2");
             heartExplosion = Content.Load<Texture2D>(@"Explosion\smallheart2");
             needleExplosion = Content.Load<Texture2D>(@"Explosion\needleExplosion2");
+
+            starExplosion1 = Content.Load<Texture2D>(@"Explosion\starExplosion");
+            starExplosion2 = Content.Load<Texture2D>(@"Explosion\starExplosion2");
+            leafExplosion = Content.Load<Texture2D>(@"Explosion\leafExplosion");
             //wind용
-            //perfectManager = new ExplosionManager(
+
+            perfectManager = new ExplosionManager();
+            perfectManager.ExplosionInit(starExplosion2, new Rectangle(0, 0, 166, 162), 9, 1f,45);
+
+            goodManager = new ExplosionManager();
+            goodManager.ExplosionInit(starExplosion1, new Rectangle(0, 0, 166, 162), 9, 1f, 45);
+
+            badManager = new ExplosionManager();
+            badManager.ExplosionInit(starExplosion1, new Rectangle(0, 0, 166, 162), 9, 1f, 45);
+
+            
+            goldGetManager = new ExplosionManager();
+            goldGetManager.ExplosionInit(leafExplosion, new Rectangle(0, 0, 166, 162), 9, 1f, 45 );
+
+        //    perfectManager = new ExplosionManager(
         //    cloudExplosion,
         //    new Rectangle(0, 0, 156, 152),
         //    6,
@@ -359,6 +375,7 @@ namespace beethoven3
             //시작 노트 관리 생성    
             //여기에 들어가는 텍스쳐가 노트의 텍스쳐가 된다.
             //상점의 텍스쳐가 들어가야 한다. 
+
 
             startNoteManager = new StartNoteManager(
                 spriteSheet,
@@ -389,42 +406,42 @@ namespace beethoven3
 
             ///////이펙트 생성 -START
             //여기서 이걸 생성해야 하는 이유 : collins class에 매개변수로 줘야 한다.
-            perfectManager = new ExplosionManager(
-                  needleExplosion,
-                 new Rectangle(0, 0, 130, 122),
-                 8,
-                 new Rectangle(0, 450, 2, 2),
-                /*RGB시작 컬러 -> 끝나는 컬러*/
-                 new Color(1.0f, 0.3f, 0f) * 0.5f,
-                 new Color(0f, 0f, 0f, 0f),
-                 1.5f);
+            //perfectManager = new ExplosionManager(
+            //      needleExplosion,
+            //     new Rectangle(0, 0, 130, 122),
+            //     8,
+            //     new Rectangle(0, 450, 2, 2),
+            //    /*RGB시작 컬러 -> 끝나는 컬러*/
+            //     new Color(1.0f, 0.3f, 0f) * 0.5f,
+            //     new Color(0f, 0f, 0f, 0f),
+            //     1.5f);
 
-            goodManager = new ExplosionManager(
-                 needleExplosion,
-                 new Rectangle(0, 0, 130, 122),
-                 8,
-                 new Rectangle(0, 450, 2, 2),
-                 new Color(0f, 0f, 1.0f) * 0.5f,
-                 new Color(0f, 0f, 0f, 0f),
-                 1.5f);
+            //goodManager = new ExplosionManager(
+            //     needleExplosion,
+            //     new Rectangle(0, 0, 130, 122),
+            //     8,
+            //     new Rectangle(0, 450, 2, 2),
+            //     new Color(0f, 0f, 1.0f) * 0.5f,
+            //     new Color(0f, 0f, 0f, 0f),
+            //     1.5f);
 
-            badManager = new ExplosionManager(
-                 needleExplosion,
-                 new Rectangle(0, 100, 50, 50),
-                 3,
-                 new Rectangle(0, 450, 2, 2),
-                 new Color(0f, 1.0f, 0f) * 0.5f,
-                 new Color(0f, 0f, 0f, 0f),
-                 1f);
+            //badManager = new ExplosionManager(
+            //     needleExplosion,
+            //     new Rectangle(0, 100, 50, 50),
+            //     3,
+            //     new Rectangle(0, 450, 2, 2),
+            //     new Color(0f, 1.0f, 0f) * 0.5f,
+            //     new Color(0f, 0f, 0f, 0f),
+            //     1f);
 
-            goldGetManager = new ExplosionManager(
-              spriteSheet,
-              new Rectangle(0, 100, 50, 50),
-              3,
-              new Rectangle(0, 450, 2, 2),
-              new Color(1f, 0.5f, 0.5f) * 0.5f,
-              new Color(0f, 0f, 0f, 0f),
-              2f);
+            //goldGetManager = new ExplosionManager(
+            //  spriteSheet,
+            //  new Rectangle(0, 100, 50, 50),
+            //  3,
+            //  new Rectangle(0, 450, 2, 2),
+            //  new Color(1f, 0.5f, 0.5f) * 0.5f,
+            //  new Color(0f, 0f, 0f, 0f),
+            //  2f);
 
             ///////이펙트 생성 -END
 
@@ -2297,8 +2314,6 @@ namespace beethoven3
                         //현재 장착한 마커로 설정//(마커,마커의 rect크기. scale)
                         MarkManager.chageMarksImages(markersTextures[itemManager.getNoteIndex()], new Rectangle(0,0,markersTextures[itemManager.getNoteIndex()].Width,markersTextures[itemManager.getNoteIndex()].Height), markersScale[0]);
 
-
-
                         /////이펙트 생성 -START
                         Texture2D[] explosionTexture = itemManager.GetEffectTexture();
                         
@@ -2306,46 +2321,66 @@ namespace beethoven3
                         Rectangle[] effectInitFrame = itemManager.GetEffectInitFrame();
                         int[] effectFramCount = itemManager.GetEffectFrameCount();
                         float[] effecScale = itemManager.GetEffectScale();
+
+
+                    //    perfectManager = new ExplosionManager(
+                    // starExplosion1,
+                    //new Rectangle(0, 0, 166, 162),
+                    //9,
+                    //new Rectangle(0, 450, 2, 2),
+                    //        /*RGB시작 컬러 -> 끝나는 컬러*/
+                    //new Color(1.0f, 0.3f, 0f) * 0.5f,
+                    //new Color(0f, 0f, 0f, 0f),
+                    //1.5f);
+
+                    //    goodManager = new ExplosionManager(
+                    //         starExplosion2,
+                    //         new Rectangle(0, 0, 166, 162),
+                    //9,
+                    //         new Rectangle(0, 450, 2, 2),
+                    //         new Color(0f, 0f, 1.0f) * 0.5f,
+                    //         new Color(0f, 0f, 0f, 0f),
+                    //         1.5f);
+                     
                         
-                
+                        //perfectManager = new ExplosionManager(
+                        //       explosionTexture[itemManager.getEffectIndex()],
+                        //     effectInitFrame[itemManager.getEffectIndex()],
+                        //     effectFramCount[itemManager.getEffectIndex()],
+                        //     new Rectangle(0, 450, 2, 2),
+                        //    /*RGB시작 컬러 -> 끝나는 컬러*/
+                        //     new Color(1.0f, 0.3f, 0f) * 0.5f,
+                        //     new Color(0f, 0f, 0f, 0f),
+                        //     effecScale[itemManager.getEffectIndex()]);
+
+                        //goodManager = new ExplosionManager(
+                        //     explosionTexture[itemManager.getEffectIndex()],
+                        //      effectInitFrame[itemManager.getEffectIndex()],
+                        //     effectFramCount[itemManager.getEffectIndex()],
+                        //     new Rectangle(0, 450, 2, 2),
+                        //     new Color(0f, 0f, 1.0f) * 0.5f,
+                        //     new Color(0f, 0f, 0f, 0f),
+                        //     effecScale[itemManager.getEffectIndex()]);
+
+                        //badManager = new ExplosionManager(
+                        //     explosionTexture[itemManager.getEffectIndex()],
+                        //     new Rectangle(0, 100, 50, 50),
+                        //     3,
+                        //     new Rectangle(0, 450, 2, 2),
+                        //     new Color(0f, 1.0f, 0f) * 0.5f,
+                        //     new Color(0f, 0f, 0f, 0f),
+                        //     1f);
+
+                        //goldGetManager = new ExplosionManager(
+                        //  spriteSheet,
+                        //  new Rectangle(0, 100, 50, 50),
+                        //  3,
+                        //  new Rectangle(0, 450, 2, 2),
+                        //  new Color(1f, 0.5f, 0.5f) * 0.5f,
+                        //  new Color(0f, 0f, 0f, 0f),
+                        //  2f);
 
 
-                        perfectManager = new ExplosionManager(
-                               explosionTexture[itemManager.getEffectIndex()],
-                             effectInitFrame[itemManager.getEffectIndex()],
-                             effectFramCount[itemManager.getEffectIndex()],
-                             new Rectangle(0, 450, 2, 2),
-                            /*RGB시작 컬러 -> 끝나는 컬러*/
-                             new Color(1.0f, 0.3f, 0f) * 0.5f,
-                             new Color(0f, 0f, 0f, 0f),
-                             effecScale[itemManager.getEffectIndex()]);
-
-                        goodManager = new ExplosionManager(
-                             explosionTexture[itemManager.getEffectIndex()],
-                              effectInitFrame[itemManager.getEffectIndex()],
-                             effectFramCount[itemManager.getEffectIndex()],
-                             new Rectangle(0, 450, 2, 2),
-                             new Color(0f, 0f, 1.0f) * 0.5f,
-                             new Color(0f, 0f, 0f, 0f),
-                             effecScale[itemManager.getEffectIndex()]);
-
-                        badManager = new ExplosionManager(
-                             explosionTexture[itemManager.getEffectIndex()],
-                             new Rectangle(0, 100, 50, 50),
-                             3,
-                             new Rectangle(0, 450, 2, 2),
-                             new Color(0f, 1.0f, 0f) * 0.5f,
-                             new Color(0f, 0f, 0f, 0f),
-                             1f);
-
-                        goldGetManager = new ExplosionManager(
-                          spriteSheet,
-                          new Rectangle(0, 100, 50, 50),
-                          3,
-                          new Rectangle(0, 450, 2, 2),
-                          new Color(1f, 0.5f, 0.5f) * 0.5f,
-                          new Color(0f, 0f, 0f, 0f),
-                          2f);
                         collisionManager = new CollisionManager(perfectManager, goodManager, badManager, goldGetManager, scoreManager, memberManager);
             
                         /////이펙트 생성 -END
@@ -2356,11 +2391,11 @@ namespace beethoven3
                     
                     
                     
-                        //노래찾아서 재생하기    
-                        //*** 재생시간동안 로딩
+                    //노래찾아서 재생하기    
+                    //*** 재생시간동안 로딩
                    
-                         sndSystem.createSound(songsDir + noteFileManager.noteFiles[resultSongMenu].Mp3, FMOD.MODE.HARDWARE, ref sndSound);
-                         sndSystem.playSound(CHANNELINDEX.FREE, sndSound, false, ref sndChannel);
+                        sndSystem.createSound(songsDir + noteFileManager.noteFiles[resultSongMenu].Mp3, FMOD.MODE.HARDWARE, ref sndSound);
+                        sndSystem.playSound(CHANNELINDEX.FREE, sndSound, false, ref sndChannel);
                     }
 
                     break;
@@ -2462,7 +2497,6 @@ namespace beethoven3
                 //가운데 빨간 사각형 주석하면 보이지않는다.
                 //     spriteBatch.Draw(dot, removeAreaRec, Color.Red);
                 
-                
                 //콤보 글씨
                 spriteBatch.DrawString(pericles36Font, scoreManager.Combo.ToString(), new Vector2(512,454), Color.Black);
                 //골드 글씨
@@ -2513,8 +2547,6 @@ namespace beethoven3
             }
             #endregion
 
-
-
             if (gameState == GameStates.ResultManager)
             {
                 //class resultManager 에 draw실행
@@ -2534,7 +2566,6 @@ namespace beethoven3
                 spriteBatch.DrawString(pericles36Font, noteFile.Artist, new Vector2(200,130), Color.White);
                 //***//난이도//spriteBatch.DrawString(pericles36Font, , new Vector2(200,80), Color.White);
 
-
                 spriteBatch.DrawString(pericles36Font, scoreManager.Perfect.ToString(), new Vector2(300, 300), Color.White);
                 spriteBatch.DrawString(pericles36Font, scoreManager.Good.ToString(), new Vector2(300, 350), Color.White);
                 spriteBatch.DrawString(pericles36Font, scoreManager.Bad.ToString(), new Vector2(300, 400), Color.White);
@@ -2543,8 +2574,6 @@ namespace beethoven3
                 spriteBatch.DrawString(pericles36Font, scoreManager.Combo.ToString(), new Vector2(700, 400), Color.White);
                 spriteBatch.DrawString(pericles36Font, scoreManager.Gold.ToString(), new Vector2(700, 450), Color.White);
                 spriteBatch.DrawString(pericles36Font, scoreManager.TotalScore.ToString(), new Vector2(700, 500), Color.White);
-
-
             }
 
 

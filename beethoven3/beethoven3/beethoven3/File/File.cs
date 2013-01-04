@@ -342,8 +342,8 @@ namespace beethoven3
         /// <param name="startMarkLocation"></param>
         /// <param name="endMarkLocation"></param>
         /// <param name="gold"></param>
-        
-        public void DrawGuidLine(int startMarkLocation, int endMarkLocation, bool gold,double firstStartTime, double secondStartTime)
+
+        public void DrawGuidLine(int startMarkLocation, int endMarkLocation, bool gold, double firstStartTime, double secondStartTime, RightNoteInfo rightNote)
         {
             double ratio = 0.6;
             //double startRatio = 0.2;
@@ -378,7 +378,7 @@ namespace beethoven3
             secondMid.X = start.X + (float)(angle2.X * (length * ratio));
             secondMid.Y = start.Y + (float)(angle2.Y * (length * ratio));
 
-            GuideLineManager.AddGuideLine(start, firstMid, secondMid, end, (secondStartTime - firstStartTime) * 1000, gold);
+            GuideLineManager.AddGuideLine(start, firstMid, secondMid, end, (secondStartTime - firstStartTime) * 1000, gold, rightNote);
 
         }
 
@@ -496,8 +496,6 @@ namespace beethoven3
                     //Trace.WriteLine(optionalTime.ToString());
                     //Trace.WriteLine(noteTime.ToString());
 
-
-
                     if (noteTime <= processTime )
                     {
                         //PlayNote(타입,날아가는 마커 위치)
@@ -509,11 +507,10 @@ namespace beethoven3
                         {
                             //시간에 맞춰서 뿌려줘야 함. 
                             //notecontent[2] => 마커위치
-                            startNoteManager.MakeRightNote(arrayNotes[0].MarkLocation);
+                            RightNoteInfo rightNote = startNoteManager.MakeRightNote(arrayNotes[0].MarkLocation);
 
                             try
                             {
-
                                 //현재오른손노트와 다음 노트와 연결, 그리고 그 다음 노트와 연결
                                 //시작점,제어점1,제어점2,끝점,지속시간
 
@@ -521,7 +518,6 @@ namespace beethoven3
 
                                 //현재노트가  오른손 노트이고, 그 다음 노트가 오른손노트일 때
                                 //  if (rightNoteMarks[currentRightNoteIndex].IsRight && rightNoteMarks[currentRightNoteIndex + 1].IsRight)
-
 
                                 ////오른손 노트여부 : [0]-> 0 ,, 마커 위치 [1]
                                 //double[] firstRightNote = GetNote(0);
@@ -536,20 +532,22 @@ namespace beethoven3
                                 //{
                                 //    thirdRightNote = GetNote(2);
                                 //}
-
+                                
+                                //적어도 1개 이상의 오른손 노트가 있을 때
                                 if (arrayNotes.Count > 1)
                                 {
+                                    //현재 노트로 오른손노트이고 다음 노트도 오른손 노트일때
                                     if (arrayNotes[0].IsRight && arrayNotes[1].IsRight)
                                     {
                                         //골드라인
                                         //  DrawGuidLine(rightNoteMarks[currentRightNoteIndex].MarkLocation, rightNoteMarks[currentRightNoteIndex + 1].MarkLocation, true);
-
                                         // if 마커에 맞추었을 때 
                                         // 스타트로 날아간 후에 어느정도 시간이 지났을 때
-                                        // 
-                                        DrawGuidLine(arrayNotes[0].MarkLocation-1, arrayNotes[1].MarkLocation-1, true, arrayNotes[0].StartTime, arrayNotes[1].StartTime);
+                                        DrawGuidLine(arrayNotes[0].MarkLocation - 1, arrayNotes[1].MarkLocation - 1, true, arrayNotes[0].StartTime, arrayNotes[1].StartTime, rightNote);
                                     }
                                 }
+
+                                //적어도 노트가 2개 이상
                                 if (arrayNotes.Count > 2)
                                 {
                                     if (arrayNotes[1].IsRight && arrayNotes[2].IsRight)
@@ -557,7 +555,7 @@ namespace beethoven3
                                     {
                                         //일반 가이드라인
                                         // DrawGuidLine(rightNoteMarks[currentRightNoteIndex + 1].MarkLocation, rightNoteMarks[currentRightNoteIndex + 2].MarkLocation, false);               
-                                        DrawGuidLine(arrayNotes[1].MarkLocation-1, arrayNotes[2].MarkLocation-1, false, arrayNotes[0].StartTime, arrayNotes[1].StartTime);
+                                        DrawGuidLine(arrayNotes[1].MarkLocation - 1, arrayNotes[2].MarkLocation - 1, false, arrayNotes[0].StartTime, arrayNotes[1].StartTime, rightNote);
                                     }
                                 }
                             }
@@ -582,8 +580,6 @@ namespace beethoven3
                         //롱노트
                         else if (arrayNotes[0].Type == "4")
                         {
-
-
                             /* 다른것도 마찬가지이지만 롱노트가 여러개가 동시에 만들어질 경우
                              하나 밖에 나오지 않는다.
                              이것을 해결하려면. 바로 이곳에서 noteManager class의 객체를 만들어야 한다. 
@@ -759,7 +755,7 @@ namespace beethoven3
                     if (checkLongNoteInCenterArea(startNoteNumber))
                     {
                         
-                        badManager.AddExplosion(StartNoteManager.longNoteManager.LittleNotes[0].Center, Vector2.Zero);
+                  //?      badManager.AddExplosion(StartNoteManager.longNoteManager.LittleNotes[0].Center, Vector2.Zero);
                         StartNoteManager.longNoteManager.LittleNotes.RemoveAt(0);
                         scoreManager.Bad = scoreManager.Bad + 1;
                         if (scoreManager.Combo > scoreManager.Max)
@@ -836,7 +832,7 @@ namespace beethoven3
                 {
 
 
-                    badManager.AddExplosion(littleNote.Center, Vector2.Zero);
+                  //  badManager.AddExplosion(littleNote.Center, Vector2.Zero);
                     StartNoteManager.rightNoteManager.LittleNotes.RemoveAt(i);
                     scoreManager.Bad = scoreManager.Bad + 1;
                     if (scoreManager.Combo > scoreManager.Max)
@@ -864,7 +860,7 @@ namespace beethoven3
 
                 if (littleNote.IsBoxColliding(MarkManager.centerArea))
                 {
-                    badManager.AddExplosion(littleNote.Center, Vector2.Zero);
+                //    badManager.AddExplosion(littleNote.Center, Vector2.Zero);
                     StartNoteManager.leftNoteManager.LittleNotes.RemoveAt(i);
                     scoreManager.Bad = scoreManager.Bad + 1;
                     if (scoreManager.Combo > scoreManager.Max)

@@ -94,7 +94,7 @@ namespace beethoven3
             {
                // try
                // {
-                    BadManager.AddExplosion(DragNotes[i].Center, Vector2.Zero);
+                 //   BadManager.AddExplosion(DragNotes[i].Center, Vector2.Zero);
                     DragNotes.RemoveAt(i);
                     ScoreManager.DragNoteScore = ScoreManager.DragNoteScore + 1;
                     if (ScoreManager.Combo > ScoreManager.Max)

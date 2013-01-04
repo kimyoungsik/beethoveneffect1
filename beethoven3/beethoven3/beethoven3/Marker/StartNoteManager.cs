@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace beethoven3
 {
+
     class StartNoteManager
     {
         
@@ -153,7 +154,9 @@ namespace beethoven3
         
         //오른손 노트
         //매개변수로 들어오는 markNumber가 (1베이스) 시작 노트의 위치이다. 
-        public void MakeRightNote(int markNumber)
+
+        //반환 : 노트의 객체
+        public RightNoteInfo MakeRightNote(int markNumber)
         {
             
             Vector2 location = StartNotes[markNumber-1].StartNoteSprite.Location;
@@ -164,7 +167,10 @@ namespace beethoven3
             //속도 1로 맞추기 
             direction.Normalize();
 
-            rightNoteManager.MakeNote(location, direction,/*시작 노트의 위치*/markNumber);
+            RightNoteInfo rightNoteInfo = rightNoteManager.MakeNote(location, direction,/*시작 노트의 위치*/markNumber);
+
+            return rightNoteInfo;
+
         }
 
         //왼손노트

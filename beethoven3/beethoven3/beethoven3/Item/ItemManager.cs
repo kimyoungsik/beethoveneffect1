@@ -36,6 +36,8 @@ namespace beethoven3
         private int noteIndex =0;
         private int backgroundIndex = 0;
 
+
+
         //내가 가지고 있는 아이템
         public List<Item> myRightHandItem = new List<Item>();
         private List<Item> myLeftHandItem = new List<Item>();
@@ -87,22 +89,36 @@ namespace beethoven3
                 
                 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 //have to additem, effect, node , background
-                addItem(effectItem, new Vector2(100, 100), effectTexture[i], new Rectangle(0, 0, effectTexture[i].Width, effectTexture[i].Height), 1,/*cost*/ 16);
-
+               
                
                 addItem(backgroundItem, new Vector2(100, 100), backgroundTexture[i], new Rectangle(0, 0, backgroundTexture[i].Width, backgroundTexture[i].Height), 1,/*cost*/ 45);
             
             }
+            for (i = 0; i < 5; i++)
+            {
+                addItem(effectItem, new Vector2(100, 100), effectTexture[i], new Rectangle(0, 0, effectTexture[i].Width, effectTexture[i].Height), 1,/*cost*/ 16);
+            }
+
 
             //이펙트 특성 -start
             effectInitFrams[0] = new Rectangle(0, 0, 156, 152);
             effectInitFrams[1] = new Rectangle(0, 0, 130, 122);
+            effectInitFrams[2] = new Rectangle(0, 0, 166, 162);
+            effectInitFrams[3] = new Rectangle(0, 0, 166, 162);
+            effectInitFrams[4] = new Rectangle(0, 0, 166, 162);
+
 
             effectFrameCount[0] = 6;
             effectFrameCount[1] = 8;
+            effectFrameCount[2] = 9;
+            effectFrameCount[3] = 9;
+            effectFrameCount[4] = 9;
             
             effecScale[0] = 1.0f;
             effecScale[1] = 1.0f;
+            effecScale[2] = 1.0f;
+            effecScale[3] = 1.0f;
+            effecScale[4] = 1.0f;
             //이펙트 특성 -end
 
             //마커 특성 -
@@ -142,7 +158,10 @@ namespace beethoven3
             effectTexture[0] = cm.Load<Texture2D>(@"Explosion\windExplosion2");
             //바늘효과
             effectTexture[1] = cm.Load<Texture2D>(@"Explosion\needleExplosion2");
-
+            effectTexture[2] = cm.Load<Texture2D>(@"Explosion\starExplosion");
+            effectTexture[3] = cm.Load<Texture2D>(@"Explosion\starExplosion2");
+            effectTexture[4] = cm.Load<Texture2D>(@"Explosion\leafExplosion");
+ 
 
             noteTexture[0] = cm.Load<Texture2D>(@"notes\starNote");
             noteTexture[1] = cm.Load<Texture2D>(@"notes\turnNote2");
@@ -412,6 +431,7 @@ namespace beethoven3
             return index;
         }
 
+
         public int getIndexOfMyEffectItem(Item item)
         {
             int i;
@@ -425,6 +445,23 @@ namespace beethoven3
             }
             return index;
         }
+
+        //my index 말고 
+        public int getIndexOfEffectItem(Item item)
+        {
+            int i;
+            int index = -1;
+            for (i = 0; i < effectItem.Count; i++)
+            {
+                if (item == effectItem[i])
+                {
+                    index = i;
+                }
+            }
+            return index;
+        }
+
+
 
         public int getIndexOfMyNoteItem(Item item)
         {

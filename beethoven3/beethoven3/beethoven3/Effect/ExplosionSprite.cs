@@ -4,24 +4,19 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-
+using System.Diagnostics;
 namespace beethoven3
 {
-    class Particle : Sprite
+    class ExplosionSprite : Sprite
+
     {
 
-        //가속(속도에 반영)
-        private Vector2 acceleration;
-        //속도 값 범위 정함
-        private float maxSpeed;
         private int initialDuration;
 
         //남은시점
         private int remainingDuration;
 
-        //색의 변화 
-        private Color initialColor;
-        private Color finalColor;
+
 
         //차이, 입자가 얼마나 많은 프레임동안 존재하는지
         public int ElapsedDuration
@@ -51,25 +46,18 @@ namespace beethoven3
             }
         }
 
-        public Particle(
+        public ExplosionSprite(
             Vector2 location,
             Texture2D texture,
             Rectangle initialFrame,
             Vector2 velocity,
-            Vector2 acceleration,
-            float maxSpeed,
             int duration,
-            Color initialColor,
-            Color finalColor,
             float scale)
             : base(location, texture, initialFrame, velocity,scale)
         {
             initialDuration = duration;
             remainingDuration = duration;
-            this.acceleration = acceleration;
-            this.initialColor = initialColor;
-            this.maxSpeed = maxSpeed;
-            this.finalColor = finalColor;
+          
         }
 
 
@@ -77,23 +65,8 @@ namespace beethoven3
         {
             if (IsActive)
             {
-
-                velocity += acceleration;
-
-                //입자 최대 속도를 초과하는지 체크 
-                
-                if (velocity.Length() > maxSpeed)
-                {
-                //보정
-                    velocity.Normalize();
-                    velocity *= maxSpeed;
-                }
-                //Lerp, 0이면 첫번째 파라미터 리턴 1이면 두번쨰파라미터,, 그 사이값
-                TintColor = Color.Lerp(
-                    initialColor,
-                    finalColor,
-                    DurationProgress);
                 remainingDuration--;
+                Trace.WriteLine(remainingDuration);
                 base.Update(gameTime);
             }
         }
@@ -103,7 +76,7 @@ namespace beethoven3
             if (IsActive)
             {
                 base.Draw(spriteBatch);
-        
+
             }
         }
 

@@ -74,3 +74,6 @@ Content\Explosion\needleExplosion2.xnb
 Content\character\contrabase1.xnb
 Content\character\contrabase2.xnb
 Content\character\contrabase3.xnb
+Content\Explosion\leafExplosion.xnb
+Content\Explosion\starExplosion.xnb
+Content\Explosion\starExplosion2.xnb

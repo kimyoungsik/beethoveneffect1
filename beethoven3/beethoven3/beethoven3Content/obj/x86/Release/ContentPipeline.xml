@@ -661,6 +661,33 @@
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\character\contrabase3.xnb</Output>
       <Time>2013-01-03T08:02:54.4490941+09:00</Time>
     </Item>
+    <Item>
+      <Source>Explosion\leafExplosion.png</Source>
+      <Name>Explosion\leafExplosion</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Explosion\leafExplosion.xnb</Output>
+      <Time>2013-01-04T20:08:12.9330857+09:00</Time>
+    </Item>
+    <Item>
+      <Source>Explosion\starExplosion.png</Source>
+      <Name>Explosion\starExplosion</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Explosion\starExplosion.xnb</Output>
+      <Time>2013-01-04T20:08:12.9430862+09:00</Time>
+    </Item>
+    <Item>
+      <Source>Explosion\starExplosion2.png</Source>
+      <Name>Explosion\starExplosion2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Explosion\starExplosion2.xnb</Output>
+      <Time>2013-01-04T20:08:12.9510867+09:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>
