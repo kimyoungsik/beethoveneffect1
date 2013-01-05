@@ -45,8 +45,11 @@ namespace beethoven3
         public GuideLine(Vector2 p0, Vector2 p1, Vector2 p2, Vector2 p3, double time, bool showGold)
         {
            
-                GoldManager.DeleteAll();
-            
+            //다른 골드라인을 만들기 전에 , 지워주기
+         if(showGold)
+         {
+            GoldManager.DeleteAll();
+         } 
             this.showGold = showGold;
             SetLine(p0, p1, p2, p3, time);
             
@@ -96,6 +99,8 @@ namespace beethoven3
         /// <param name="p2">제어점1</param>
         /// <param name="p3">끝나는점</param>
         /// <param name="time">지속시간</param>
+        /// 
+
         public void SetLine(Vector2 p0, Vector2 p1, Vector2 p2, Vector2 p3, double time)
         {
             Vector2 PlotPoint;
@@ -160,7 +165,7 @@ namespace beethoven3
                // dotChangedTime += gameTime.ElapsedGameTime.TotalMilliseconds;
                 Trace.WriteLine(changedTime);
 
-                //동전아니고  
+                //동전라인 아닌 가이드라인 
                 if (!showGold)
                 {
                     for (i = 0; i < Points.Count - 1; i++)

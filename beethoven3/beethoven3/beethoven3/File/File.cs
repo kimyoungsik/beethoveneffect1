@@ -549,8 +549,8 @@ namespace beethoven3
                                     if (arrayNotes[1].IsRight && arrayNotes[2].IsRight)
                                     // if (rightNoteMarks[currentRightNoteIndex + 1].IsRight && rightNoteMarks[currentRightNoteIndex + 2].IsRight)
                                     {
-                                   //     DrawGuideLineInfo drawGuideLineInfo = new DrawGuideLineInfo(arrayNotes[1].MarkLocation - 1, arrayNotes[2].MarkLocation - 1, false, arrayNotes[0].StartTime, arrayNotes[1].StartTime);
-                                    //    drawGuideLineQueue.Enqueue(drawGuideLineInfo);
+                                        DrawGuideLineInfo drawGuideLineInfo = new DrawGuideLineInfo(arrayNotes[1].MarkLocation - 1, arrayNotes[2].MarkLocation - 1, false, arrayNotes[0].StartTime, arrayNotes[1].StartTime);
+                                        drawGuideLineQueue.Enqueue(drawGuideLineInfo);
                                        
                                         //일반 가이드라인
                                         // DrawGuidLine(rightNoteMarks[currentRightNoteIndex + 1].MarkLocation, rightNoteMarks[currentRightNoteIndex + 2].MarkLocation, false);               
