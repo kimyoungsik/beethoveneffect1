@@ -104,6 +104,9 @@ namespace beethoven3
 
         #region method
 
+
+
+
         //각 노트의 모양을 바꾸다.
         //노래 선택하고 시작하기전에 설정한다.
         public void changeRightNoteImage(Texture2D texture, Rectangle rect,float scale)
@@ -146,9 +149,9 @@ namespace beethoven3
         public void deleteAllMarks()
         {
             // for (int i = 0; i < 6; i++)
-            for (int i = 0; i < StartNotes.Count; i++)
+            for (int i = 0; i < 6; i++)
             {
-                StartNotes.RemoveAt(i);
+                StartNotes.RemoveAt(0);
             }
         }
         

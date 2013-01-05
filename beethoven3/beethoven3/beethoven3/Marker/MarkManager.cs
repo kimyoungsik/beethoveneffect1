@@ -60,15 +60,27 @@ namespace beethoven3
             centerArea = area;
 
             startNoteManager = startNoteMana;
-            
+            //새로 넣기 전에 지워주기 
+            if (Marks.Count > 0)
+            {
+                for (int i = 0; i < 6; i++)
+                {
+                    Marks.RemoveAt(0);
+                }
+            }
             addMark(mark0Loc);
             addMark(mark1Loc);
             addMark(mark2Loc);
             addMark(mark3Loc);
             addMark(mark4Loc);
-            addMark(mark5Loc); 
-       
+            addMark(mark5Loc);
 
+            //새로 넣기 전에 지워주기 
+            if(startNoteManager.StartNotes.Count > 0)
+            {
+                startNoteManager.deleteAllMarks();
+            }
+              
             //GetStartNoteLocatin => 마커 위치와 거리를 주면 그에 따라서 스타트 노트 위치를 반환한다.
             // 그 값을 가지고 스타트 노트를 만든다.
             startNoteManager.addStartNote(GetStartNoteLocation(mark0Loc, distance, 0));

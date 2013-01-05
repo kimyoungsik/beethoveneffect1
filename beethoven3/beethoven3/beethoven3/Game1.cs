@@ -2154,13 +2154,15 @@ namespace beethoven3
 
                            
                             //현재 마커 위치 저장
-                            Vector2 mark1Location = MarkManager.Marks[0].MarkSprite.Location;
-                            Vector2 mark2Location = MarkManager.Marks[1].MarkSprite.Location;
-                            Vector2 mark3Location = MarkManager.Marks[2].MarkSprite.Location;
-                            Vector2 mark4Location = MarkManager.Marks[3].MarkSprite.Location;
-                            Vector2 mark5Location = MarkManager.Marks[4].MarkSprite.Location;
-                            Vector2 mark6Location = MarkManager.Marks[5].MarkSprite.Location;
-                            
+                            //Vector2 mark1Location = MarkManager.Marks[0].MarkSprite.Location;
+                            //Vector2 mark2Location = MarkManager.Marks[1].MarkSprite.Location;
+                            //Vector2 mark3Location = MarkManager.Marks[2].MarkSprite.Location;
+                            //Vector2 mark4Location = MarkManager.Marks[3].MarkSprite.Location;
+                            //Vector2 mark5Location = MarkManager.Marks[4].MarkSprite.Location;
+                            //Vector2 mark6Location = MarkManager.Marks[5].MarkSprite.Location;
+
+                            //현재 위치 말고, 기본은 0으로 해놓고
+                            Vector2[] zeroIndexMarkers = MarkManager.GetPattern(0);
                             
                             //두번째꺼 재실행시 이상한거 생기는것 방지
                             startNoteManager = new StartNoteManager(
@@ -2168,19 +2170,19 @@ namespace beethoven3
                                 new Rectangle(0, 200, 52, 55),
                                 1);
 
-
+                            
                             //froze 방지
                             MarkManager.initialize(
                                 // markManager = new MarkManager(
                                 spriteSheet,
                                 new Rectangle(0, 200, 50, 55),
                                 1,
-                                mark1Location,
-                                mark2Location,
-                                mark3Location,
-                                mark4Location,
-                                mark5Location,
-                                mark6Location,
+                                zeroIndexMarkers[0],
+                                zeroIndexMarkers[1],
+                                zeroIndexMarkers[2],
+                                zeroIndexMarkers[3],
+                                zeroIndexMarkers[4],
+                                zeroIndexMarkers[5],
                                 startNoteManager,
                                 removeAreaRec
 
