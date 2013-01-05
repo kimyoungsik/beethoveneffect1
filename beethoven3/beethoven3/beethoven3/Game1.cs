@@ -2435,7 +2435,7 @@ namespace beethoven3
                 //     spriteBatch.Draw(dot, removeAreaRec, Color.Red);
                 
                 //콤보 글씨
-                spriteBatch.DrawString(pericles36Font, scoreManager.Combo.ToString(), new Vector2(512,454), Color.Black);
+                spriteBatch.DrawString(pericles36Font, scoreManager.Combo.ToString(), new Vector2(512, 420), Color.Black);
                 //골드 글씨
                 spriteBatch.DrawString(pericles36Font, scoreManager.Gold.ToString(), new Vector2(scorePosition.X + 120, scorePosition.Y), Color.Black);
                 //최대 max

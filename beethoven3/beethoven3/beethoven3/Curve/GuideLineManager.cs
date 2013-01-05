@@ -11,11 +11,6 @@ namespace beethoven3
     {
         #region declarations
         public static List<GuideLine> GuideLines = new List<GuideLine>();
-
-        //  public static List<Curve> GuideLines = new List<Curve>();
-
-        private static RightNoteInfo rightNoteInfo;
-
         #endregion
 
 
@@ -28,11 +23,11 @@ namespace beethoven3
         /// <param name="p2">제어점1</param>
         /// <param name="p3">끝나는점</param>
         /// <param name="time">지속시간</param>
-        public static void AddGuideLine(Vector2 p0, Vector2 p1, Vector2 p2, Vector2 p3, double time, bool showGold, RightNoteInfo rightNote)
+        public static void AddGuideLine(Vector2 p0, Vector2 p1, Vector2 p2, Vector2 p3, double time, bool showGold)
         {
             GuideLine guideLine = new GuideLine(p0, p1, p2, p3, time, showGold);
+            
             GuideLines.Add(guideLine);
-            rightNoteInfo = rightNote;
         }
 
         //갑자기 템포가 변했을떄 현재 그려진것드을 지워준다. (지속기간이 다르기 때무에 오래 남게된다)
@@ -60,21 +55,12 @@ namespace beethoven3
         #region update and draw
         public static void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-           // if (rightNoteInfo.Index != null)
-           // {
-
-              //  if (StartNoteManager.rightNoteManager.LittleNotes[rightNoteInfo.Index] != rightNoteInfo.Sprite)
-              //  {
-                    foreach (GuideLine guideLine in GuideLines)
-                    {
-                        guideLine.Draw(gameTime, spriteBatch);
-                    }
-                //}
-          //  }
-            //foreach (Curve guideLine in GuideLines)
-            //{
-            //    guideLine.Draw(gameTime, spriteBatch);
-            //}
+       
+            foreach (GuideLine guideLine in GuideLines)
+            {
+                guideLine.Draw(gameTime, spriteBatch);
+            }
+            
         }
 
         #endregion

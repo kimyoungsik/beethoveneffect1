@@ -120,6 +120,7 @@
   <ItemGroup>
     <Compile Include="Effect\Explosion.cs" />
     <Compile Include="Effect\ExplosionSprite.cs" />
+    <Compile Include="File\DrawGuideLineInfo.cs" />
     <Compile Include="Item\BackgroundItemShop.cs" />
     <Compile Include="Effect\CollisionManager.cs" />
     <Compile Include="Curve\Curve.cs" />

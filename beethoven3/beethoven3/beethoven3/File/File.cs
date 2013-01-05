@@ -47,6 +47,7 @@ namespace beethoven3
         //패턴이 바뀌는 중인지 체크
         private bool patternChanging = false;
 
+        public Queue drawGuideLineQueue = new Queue();
 
         //////////////////////////////////FOR PATTERN CHAGNE//////////////////////////////
         //패턴 바뀌기전의 마커위치들
@@ -343,7 +344,7 @@ namespace beethoven3
         /// <param name="endMarkLocation"></param>
         /// <param name="gold"></param>
 
-        public void DrawGuidLine(int startMarkLocation, int endMarkLocation, bool gold, double firstStartTime, double secondStartTime, RightNoteInfo rightNote)
+        public void DrawGuidLine(int startMarkLocation, int endMarkLocation, bool gold, double firstStartTime, double secondStartTime)
         {
             double ratio = 0.6;
             //double startRatio = 0.2;
@@ -378,7 +379,7 @@ namespace beethoven3
             secondMid.X = start.X + (float)(angle2.X * (length * ratio));
             secondMid.Y = start.Y + (float)(angle2.Y * (length * ratio));
 
-            GuideLineManager.AddGuideLine(start, firstMid, secondMid, end, (secondStartTime - firstStartTime) * 1000, gold, rightNote);
+            GuideLineManager.AddGuideLine(start, firstMid, secondMid, end, (secondStartTime - firstStartTime) * 1000, gold);
 
         }
 
@@ -455,7 +456,6 @@ namespace beethoven3
                     //현재 진행 상황, 진행이 많이 될수록 값이 적게 나온다.
                     double diffrence = endPatternChangeTime - processTime;
 
-
                     for (i = 0; i < 6; i++)
                     {
                         changedMarks[i].X = GetLocation(initMarkersLocation[i].X, Endlocations[i].X, lastingTime - diffrence, lastingTime);
@@ -475,32 +475,38 @@ namespace beethoven3
                     patternChanging = false;
                     //isFirstGettingMarker = false;
                 }
-
-
-
-
             }
-
-
             //////////////////////////////////////////////////////////////////
             if (processTime < endTime)
             {
                 //노트가 아무것도 없으면 실행되지 않는다.
                 //it doesn't work if there is no note.
+                if (drawGuideLineQueue.Count > 0)
+                {
+                    DrawGuideLineInfo guideline = (DrawGuideLineInfo)drawGuideLineQueue.Peek();
+                    
 
+                    if (guideline.FirstStartTime <= processTime)
+                    {
+                        DrawGuideLineInfo guideline2 = (DrawGuideLineInfo)drawGuideLineQueue.Dequeue();
+                     //   Trace.WriteLine(guideline.StartMarkLocation +"-"+ guideline.EndMarkLocation);
+                        DrawGuidLine(guideline2.StartMarkLocation, guideline2.EndMarkLocation, guideline2.Gold, guideline2.FirstStartTime, guideline2.SecondStartTime);
+                    }
+                }
                 if (arrayNotes.Count != 0)
                 {
 
                     //시간에 맞추어서 노트가 날아갈 수 있게 생성 시간을 정한다. 
                     noteTime = GetNoteStartTime(arrayNotes[0].StartTime);
-                    //Trace.WriteLine(optionalTime.ToString());
-                    //Trace.WriteLine(noteTime.ToString());
+                 
 
                     if (noteTime <= processTime )
                     {
                         //PlayNote(타입,날아가는 마커 위치)
                         //타입 0-오른손 1-왼손 2-양손 3-롱노트 4-드래그노트 
+                        //Trace.WriteLine(processTime);
 
+                      
                         //오른손 노트
 
                         if (arrayNotes[0].Type == "1")
@@ -517,21 +523,7 @@ namespace beethoven3
                                 //outof range로 문제 될 수 있음
 
                                 //현재노트가  오른손 노트이고, 그 다음 노트가 오른손노트일 때
-                                //  if (rightNoteMarks[currentRightNoteIndex].IsRight && rightNoteMarks[currentRightNoteIndex + 1].IsRight)
-
-                                ////오른손 노트여부 : [0]-> 0 ,, 마커 위치 [1]
-                                //double[] firstRightNote = GetNote(0);
-                                //double[] secondRightNote = null;
-                                //double[] thirdRightNote = null;
-                                //if (arrayNotes.Count > 1)
-                                //{
-                                //    secondRightNote = GetNote(1);
-                                //}
-
-                                //if (arrayNotes.Count > 2)
-                                //{
-                                //    thirdRightNote = GetNote(2);
-                                //}
+                                
                                 
                                 //적어도 1개 이상의 오른손 노트가 있을 때
                                 if (arrayNotes.Count > 1)
@@ -539,11 +531,15 @@ namespace beethoven3
                                     //현재 노트로 오른손노트이고 다음 노트도 오른손 노트일때
                                     if (arrayNotes[0].IsRight && arrayNotes[1].IsRight)
                                     {
+                                        DrawGuideLineInfo drawGuideLineInfo = new DrawGuideLineInfo(arrayNotes[0].MarkLocation - 1, arrayNotes[1].MarkLocation - 1, true, arrayNotes[0].StartTime, arrayNotes[1].StartTime);
+                                    
+                                        drawGuideLineQueue.Enqueue(drawGuideLineInfo);
+                                      
                                         //골드라인
                                         //  DrawGuidLine(rightNoteMarks[currentRightNoteIndex].MarkLocation, rightNoteMarks[currentRightNoteIndex + 1].MarkLocation, true);
                                         // if 마커에 맞추었을 때 
                                         // 스타트로 날아간 후에 어느정도 시간이 지났을 때
-                                        DrawGuidLine(arrayNotes[0].MarkLocation - 1, arrayNotes[1].MarkLocation - 1, true, arrayNotes[0].StartTime, arrayNotes[1].StartTime, rightNote);
+                                      //  DrawGuidLine(arrayNotes[0].MarkLocation - 1, arrayNotes[1].MarkLocation - 1, true, arrayNotes[0].StartTime, arrayNotes[1].StartTime);
                                     }
                                 }
 
@@ -553,9 +549,12 @@ namespace beethoven3
                                     if (arrayNotes[1].IsRight && arrayNotes[2].IsRight)
                                     // if (rightNoteMarks[currentRightNoteIndex + 1].IsRight && rightNoteMarks[currentRightNoteIndex + 2].IsRight)
                                     {
+                                   //     DrawGuideLineInfo drawGuideLineInfo = new DrawGuideLineInfo(arrayNotes[1].MarkLocation - 1, arrayNotes[2].MarkLocation - 1, false, arrayNotes[0].StartTime, arrayNotes[1].StartTime);
+                                    //    drawGuideLineQueue.Enqueue(drawGuideLineInfo);
+                                       
                                         //일반 가이드라인
                                         // DrawGuidLine(rightNoteMarks[currentRightNoteIndex + 1].MarkLocation, rightNoteMarks[currentRightNoteIndex + 2].MarkLocation, false);               
-                                        DrawGuidLine(arrayNotes[1].MarkLocation - 1, arrayNotes[2].MarkLocation - 1, false, arrayNotes[0].StartTime, arrayNotes[1].StartTime, rightNote);
+                                     //   DrawGuidLine(arrayNotes[1].MarkLocation - 1, arrayNotes[2].MarkLocation - 1, false, arrayNotes[0].StartTime, arrayNotes[1].StartTime);
                                     }
                                 }
                             }

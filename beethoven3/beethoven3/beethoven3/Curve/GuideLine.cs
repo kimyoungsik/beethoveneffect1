@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-
+using System.Diagnostics;
 
 
 namespace beethoven3
@@ -28,7 +28,7 @@ namespace beethoven3
      //   private Vector2 currentPosition;
      //   private int count = 0;
 
-        private bool end = false;
+        private bool end;
         private bool goldEnd = false;
         private bool showGold;
         #endregion
@@ -44,6 +44,9 @@ namespace beethoven3
         /// <param name="time">지속시간</param>
         public GuideLine(Vector2 p0, Vector2 p1, Vector2 p2, Vector2 p3, double time, bool showGold)
         {
+           
+                GoldManager.DeleteAll();
+            
             this.showGold = showGold;
             SetLine(p0, p1, p2, p3, time);
             
@@ -154,8 +157,10 @@ namespace beethoven3
             if (Points.Count > 0 && !end)
             {
                 changedTime += gameTime.ElapsedGameTime.TotalMilliseconds;
-                dotChangedTime += gameTime.ElapsedGameTime.TotalMilliseconds;
+               // dotChangedTime += gameTime.ElapsedGameTime.TotalMilliseconds;
+                Trace.WriteLine(changedTime);
 
+                //동전아니고  
                 if (!showGold)
                 {
                     for (i = 0; i < Points.Count - 1; i++)
@@ -196,7 +201,8 @@ namespace beethoven3
                         DeleteAllPoints();
                         if (this.showGold)
                         {
-                            GoldManager.DeleteAll();
+                            //동전삭제
+                        //    GoldManager.DeleteAll();
                         }
                             //지워지기 시작하면 true -> 화면에서 안보이게 함
                         end = true;

@@ -114,7 +114,6 @@ namespace beethoven3
             {
                 Points.RemoveAt(i);
             }
-           
         }
         #endregion
 

@@ -66,7 +66,7 @@ namespace beethoven3
             if (IsActive)
             {
                 remainingDuration--;
-                Trace.WriteLine(remainingDuration);
+               
                 base.Update(gameTime);
             }
         }
