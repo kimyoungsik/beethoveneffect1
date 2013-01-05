@@ -176,23 +176,33 @@ namespace beethoven3
             
             if (index == 0)
             {
-                mark0Loc = new Vector2(270, 240); 
-                mark1Loc = new Vector2(270, 420);
-                mark2Loc = new Vector2(350, 600);
-                mark3Loc = new Vector2(600, 240);
-                mark4Loc = new Vector2(600, 420);
-                mark5Loc = new Vector2(520, 600);
+                mark0Loc = new Vector2(250, 260); 
+                mark1Loc = new Vector2(220, 420);
+                mark2Loc = new Vector2(330, 580);
+                mark3Loc = new Vector2(620, 260);
+                mark4Loc = new Vector2(650, 420);
+                mark5Loc = new Vector2(550, 580);
 
             }
             else if (index == 1)
             {
 
                 mark0Loc = new Vector2(200, 240);
-                mark1Loc = new Vector2(200, 420);
-                mark2Loc = new Vector2(280, 600);
-                mark3Loc = new Vector2(670, 240);
-                mark4Loc = new Vector2(670, 420);
-                mark5Loc = new Vector2(590, 600);
+                mark1Loc = new Vector2(150, 420);
+                mark2Loc = new Vector2(260, 620);
+                mark3Loc = new Vector2(680, 240);
+                mark4Loc = new Vector2(730, 420);
+                mark5Loc = new Vector2(610, 620);
+            }
+            else if (index == 2)
+            {
+
+                mark0Loc = new Vector2(300, 280);
+                mark1Loc = new Vector2(270, 420);
+                mark2Loc = new Vector2(360, 560);
+                mark3Loc = new Vector2(570, 280);
+                mark4Loc = new Vector2(600, 420);
+                mark5Loc = new Vector2(520, 560);
             }
             vectorarray[0] = mark0Loc;
             vectorarray[1] = mark1Loc;
