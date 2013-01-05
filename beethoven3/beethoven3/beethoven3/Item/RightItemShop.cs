@@ -125,7 +125,7 @@ namespace beethoven3
 
             //장착아이템 텍스쳐
             //리스트에서 인덱스만 가져와서 표시
-            spriteBatch.Draw(myRightItems[itemManager.getRightHandIndex()].ItemSprite.Texture, usedItemRect, Color.White);
+            spriteBatch.Draw(rightItems[itemManager.getRightHandIndex()].ItemSprite.Texture, usedItemRect, Color.White);
 
             
             if (darkBackground)

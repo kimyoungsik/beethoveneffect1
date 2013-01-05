@@ -19,12 +19,12 @@ namespace beethoven3
 
         private MemberManager memberManager;
 
-
+        private ItemManager itemManager;
         private float roundPoint = 15.0f;
         #endregion 
 
         #region constructor
-        public CollisionManager(ExplosionManager perfectManager, ExplosionManager goodManager, ExplosionManager badManager,ExplosionManager goldGetManager, ScoreManager scoreManager, MemberManager memberManager)
+        public CollisionManager(ExplosionManager perfectManager, ExplosionManager goodManager, ExplosionManager badManager,ExplosionManager goldGetManager, ScoreManager scoreManager, MemberManager memberManager, ItemManager itemManager)
         {
             this.perfectManager = perfectManager;
             this.goodManager = goodManager;
@@ -35,6 +35,7 @@ namespace beethoven3
 
 
             this.memberManager = memberManager;
+            this.itemManager = itemManager;
         }
         #endregion
 
@@ -53,7 +54,7 @@ namespace beethoven3
                 if (judgment == 2)
                 {
 
-                    perfectManager.AddExplosions(new Vector2(dragNote.Center.X - 166 / 2, dragNote.Center.Y - 162 / 2));
+                    perfectManager.AddExplosions(new Vector2(dragNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, dragNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
                     DragNoteManager.DragNotes.RemoveAt(i);
 
                     scoreManager.DragNoteScore = scoreManager.DragNoteScore + 1;
@@ -63,7 +64,7 @@ namespace beethoven3
                 else if (judgment == 1)
                 {
 
-                    perfectManager.AddExplosions(new Vector2(dragNote.Center.X - 166 / 2, dragNote.Center.Y - 162 / 2));
+                    perfectManager.AddExplosions(new Vector2(dragNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, dragNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
                     DragNoteManager.DragNotes.RemoveAt(i);
                 //    ScoreManager.otherScore += 1;
                     scoreManager.DragNoteScore = scoreManager.DragNoteScore + 1;
@@ -117,7 +118,7 @@ namespace beethoven3
                         if (mouseJudgment != 0)
                         {
 
-                            perfectManager.AddExplosions(new Vector2(littleNote.Center.X - 166 / 2, littleNote.Center.Y - 162 / 2));
+                            perfectManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
                             StartNoteManager.rightNoteManager.LittleNotes.RemoveAt(x);
 
                             scoreManager.Perfect = scoreManager.Perfect + 1;
@@ -134,7 +135,7 @@ namespace beethoven3
                         if (mouseJudgment != 0)
                         {
 
-                            goodManager.AddExplosions(new Vector2(littleNote.Center.X - 166 / 2, littleNote.Center.Y - 162 / 2));
+                            goodManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
 
                             StartNoteManager.rightNoteManager.LittleNotes.RemoveAt(x);
 
@@ -182,7 +183,7 @@ namespace beethoven3
                         if (mouseJudgment != 0)
                         {
 
-                            perfectManager.AddExplosions(new Vector2(littleNote.Center.X - 166 / 2, littleNote.Center.Y - 162 / 2));
+                            perfectManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
                             StartNoteManager.leftNoteManager.LittleNotes.RemoveAt(x);
 
                             scoreManager.Perfect = scoreManager.Perfect + 1;
@@ -197,7 +198,7 @@ namespace beethoven3
                         int mouseJudgment = MarkManager.Marks[number].MarkSprite.JudgedNote(mousePoint);
                         if (mouseJudgment != 0)
                         {
-                            goodManager.AddExplosions(new Vector2(littleNote.Center.X - 166 / 2, littleNote.Center.Y - 162 / 2));
+                            goodManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
                             StartNoteManager.leftNoteManager.LittleNotes.RemoveAt(x);
 
                             scoreManager.Good = scoreManager.Good + 1;
@@ -236,7 +237,7 @@ namespace beethoven3
                         int mouseJudgment = MarkManager.Marks[number].MarkSprite.JudgedNote(mousePoint);
                         if (mouseJudgment != 0)
                         {
-                            perfectManager.AddExplosions(new Vector2(littleNote.Center.X - 166 / 2, littleNote.Center.Y - 162 / 2));
+                            perfectManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
                             StartNoteManager.longNoteManager.LittleNotes.RemoveAt(x);
 
                             scoreManager.LongNoteScore = scoreManager.LongNoteScore + 1;
@@ -250,7 +251,7 @@ namespace beethoven3
                         if (mouseJudgment != 0)
                         {
                             //롱노트 효과를 바꾸던지 아니면 하나의 효과만 나오게 하던지
-                            perfectManager.AddExplosions(new Vector2(littleNote.Center.X - 166 / 2, littleNote.Center.Y - 162 / 2));
+                            perfectManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
                             StartNoteManager.longNoteManager.LittleNotes.RemoveAt(x);
 
                             scoreManager.LongNoteScore = scoreManager.LongNoteScore + 1;
@@ -276,7 +277,7 @@ namespace beethoven3
 
                 if (judgment != 0)
                 {
-                    goldGetManager.AddExplosions(new Vector2(gold.Center.X - 166 / 2, gold.Center.Y - 162 / 2));
+                    goldGetManager.AddExplosions(new Vector2(gold.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, gold.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
                     GoldManager.Golds.RemoveAt(i);
                   
                     scoreManager.Gold = scoreManager.Gold + 1;

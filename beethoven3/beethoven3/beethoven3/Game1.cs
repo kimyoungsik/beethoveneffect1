@@ -362,8 +362,10 @@ namespace beethoven3
 
             //텍스쳐 크기
 
-             
 
+            ///////이펙트 생성 -START
+
+         
 
             perfectManager = new ExplosionManager();
             perfectManager.ExplosionInit(itemManager.GetEffectTexture()[effectIndex], itemManager.GetEffectInitFrame()[effectIndex], itemManager.GetEffectFrameCount()[effectIndex], itemManager.GetEffectScale()[effectIndex], itemManager.GetEffectDulation()[effectIndex]);
@@ -382,15 +384,9 @@ namespace beethoven3
             //일단은 miss effect로
             goldGetManager = new ExplosionManager();
             goldGetManager.ExplosionInit(itemManager.GetMissEffectTexture()[effectIndex], itemManager.GetEffectInitFrame()[effectIndex], itemManager.GetEffectFrameCount()[effectIndex], itemManager.GetEffectScale()[effectIndex], itemManager.GetEffectDulation()[effectIndex]);
-        //    perfectManager = new ExplosionManager(
-        //    cloudExplosion,
-        //    new Rectangle(0, 0, 156, 152),
-        //    6,
-        //    new Rectangle(0, 450, 2, 2),
-        //    /*RGB시작 컬러 -> 끝나는 컬러*/
-        //    new Color(1.0f, 0.3f, 0f) * 0.5f,
-        //    new Color(0f, 0f, 0f, 0f),
-        //    1f);
+
+            ///////이펙트 생성 -END
+       
             //시작 노트 관리 생성    
             //여기에 들어가는 텍스쳐가 노트의 텍스쳐가 된다.
             //상점의 텍스쳐가 들어가야 한다. 
@@ -423,49 +419,10 @@ namespace beethoven3
                 removeAreaRec
                 );
 
-            ///////이펙트 생성 -START
-            //여기서 이걸 생성해야 하는 이유 : collins class에 매개변수로 줘야 한다.
-            //perfectManager = new ExplosionManager(
-            //      needleExplosion,
-            //     new Rectangle(0, 0, 130, 122),
-            //     8,
-            //     new Rectangle(0, 450, 2, 2),
-            //    /*RGB시작 컬러 -> 끝나는 컬러*/
-            //     new Color(1.0f, 0.3f, 0f) * 0.5f,
-            //     new Color(0f, 0f, 0f, 0f),
-            //     1.5f);
-
-            //goodManager = new ExplosionManager(
-            //     needleExplosion,
-            //     new Rectangle(0, 0, 130, 122),
-            //     8,
-            //     new Rectangle(0, 450, 2, 2),
-            //     new Color(0f, 0f, 1.0f) * 0.5f,
-            //     new Color(0f, 0f, 0f, 0f),
-            //     1.5f);
-
-            //badManager = new ExplosionManager(
-            //     needleExplosion,
-            //     new Rectangle(0, 100, 50, 50),
-            //     3,
-            //     new Rectangle(0, 450, 2, 2),
-            //     new Color(0f, 1.0f, 0f) * 0.5f,
-            //     new Color(0f, 0f, 0f, 0f),
-            //     1f);
-
-            //goldGetManager = new ExplosionManager(
-            //  spriteSheet,
-            //  new Rectangle(0, 100, 50, 50),
-            //  3,
-            //  new Rectangle(0, 450, 2, 2),
-            //  new Color(1f, 0.5f, 0.5f) * 0.5f,
-            //  new Color(0f, 0f, 0f, 0f),
-            //  2f);
-
-            ///////이펙트 생성 -END
+           
 
             //충돌관리 생성
-            collisionManager = new CollisionManager(perfectManager, goodManager, badManager, goldGetManager, scoreManager, memberManager);
+            collisionManager = new CollisionManager(perfectManager, goodManager, badManager, goldGetManager, scoreManager, memberManager,/*effect크기*/itemManager);
             
             //노트정보 관리 생성
             noteFileManager = new NoteFileManager();
@@ -1268,7 +1225,7 @@ namespace beethoven3
                                {
                                    //find the index of item in myrightitem list
                                    //아이템 찾기
-                                   int index = itemManager.getIndexOfMyRightItem(selectedItem);
+                                   int index = itemManager.getIndexOfAllRightItem(selectedItem);
 
                                    //아이템을 찾았으면
                                    if (index != -1)
@@ -1462,7 +1419,7 @@ namespace beethoven3
                                if (selectedItem != null)
                                {
                                    //find the index of item in myleftitem list
-                                   int index = itemManager.getIndexOfMyLeftItem(selectedItem);
+                                   int index = itemManager.getIndexOfAllLeftItem(selectedItem);
                                    if (index != -1)
                                    {
                                        //change index
@@ -1521,11 +1478,8 @@ namespace beethoven3
                                //add item to my item
                                if (selectedItem != null)
                                {
-
-
                                    //돈으로 물건사기 
                                    //buy item with money
-
 
                                    //돈이 충분히 있다.
                                    if (scoreManager.TotalGold >= selectedItem.GetCost())
@@ -1644,7 +1598,7 @@ namespace beethoven3
                                if (selectedItem != null)
                                {
                                    //find the index of item in myleftitem list
-                                   int index = itemManager.getIndexOfMyNoteItem(selectedItem);
+                                   int index = itemManager.getIndexOfAllNoteItem(selectedItem);
                                    if (index != -1)
                                    {
                                        //change index
@@ -2007,7 +1961,7 @@ namespace beethoven3
                                if (selectedItem != null)
                                {
                                    //find the index of item in myleftitem list
-                                   int index = itemManager.getIndexOfMyBackgroundItem(selectedItem);
+                                   int index = itemManager.getIndexOfAllBackgroundItem(selectedItem);
                                    if (index != -1)
                                    {
                                        //change index
@@ -2342,78 +2296,9 @@ namespace beethoven3
                         int[] effectFramCount = itemManager.GetEffectFrameCount();
                         float[] effecScale = itemManager.GetEffectScale();
 
-
-                    //    perfectManager = new ExplosionManager(
-                    // starExplosion1,
-                    //new Rectangle(0, 0, 166, 162),
-                    //9,
-                    //new Rectangle(0, 450, 2, 2),
-                    //        /*RGB시작 컬러 -> 끝나는 컬러*/
-                    //new Color(1.0f, 0.3f, 0f) * 0.5f,
-                    //new Color(0f, 0f, 0f, 0f),
-                    //1.5f);
-
-                    //    goodManager = new ExplosionManager(
-                    //         starExplosion2,
-                    //         new Rectangle(0, 0, 166, 162),
-                    //9,
-                    //         new Rectangle(0, 450, 2, 2),
-                    //         new Color(0f, 0f, 1.0f) * 0.5f,
-                    //         new Color(0f, 0f, 0f, 0f),
-                    //         1.5f);
-                     
-                        
-                        //perfectManager = new ExplosionManager(
-                        //       explosionTexture[itemManager.getEffectIndex()],
-                        //     effectInitFrame[itemManager.getEffectIndex()],
-                        //     effectFramCount[itemManager.getEffectIndex()],
-                        //     new Rectangle(0, 450, 2, 2),
-                        //    /*RGB시작 컬러 -> 끝나는 컬러*/
-                        //     new Color(1.0f, 0.3f, 0f) * 0.5f,
-                        //     new Color(0f, 0f, 0f, 0f),
-                        //     effecScale[itemManager.getEffectIndex()]);
-
-                        //goodManager = new ExplosionManager(
-                        //     explosionTexture[itemManager.getEffectIndex()],
-                        //      effectInitFrame[itemManager.getEffectIndex()],
-                        //     effectFramCount[itemManager.getEffectIndex()],
-                        //     new Rectangle(0, 450, 2, 2),
-                        //     new Color(0f, 0f, 1.0f) * 0.5f,
-                        //     new Color(0f, 0f, 0f, 0f),
-                        //     effecScale[itemManager.getEffectIndex()]);
-
-                        //badManager = new ExplosionManager(
-                        //     explosionTexture[itemManager.getEffectIndex()],
-                        //     new Rectangle(0, 100, 50, 50),
-                        //     3,
-                        //     new Rectangle(0, 450, 2, 2),
-                        //     new Color(0f, 1.0f, 0f) * 0.5f,
-                        //     new Color(0f, 0f, 0f, 0f),
-                        //     1f);
-
-                        //goldGetManager = new ExplosionManager(
-                        //  spriteSheet,
-                        //  new Rectangle(0, 100, 50, 50),
-                        //  3,
-                        //  new Rectangle(0, 450, 2, 2),
-                        //  new Color(1f, 0.5f, 0.5f) * 0.5f,
-                        //  new Color(0f, 0f, 0f, 0f),
-                        //  2f);
-
-
+        
+                        //이펙트 
                         int effectIndex = itemManager.getEffectIndex();
-
-                        ////***임시로 - 아래에 바로 넣었음
-                        ////텍스쳐 가져오기
-                        //Texture2D[] effectTextures = itemManager.GetEffectTexture();
-                        //Texture2D[] goodEffectTextures = itemManager.GetGoodEffectTexture();
-                        //Texture2D[] badEffectTextures = itemManager.GetBadEffectTexture();
-                        //Texture2D[] missEffectTextures = itemManager.GetMissEffectTexture();
-
-                        ////텍스쳐 크기
-
-
-
 
                         perfectManager = new ExplosionManager();
                         perfectManager.ExplosionInit(itemManager.GetEffectTexture()[effectIndex], itemManager.GetEffectInitFrame()[effectIndex], itemManager.GetEffectFrameCount()[effectIndex], itemManager.GetEffectScale()[effectIndex], itemManager.GetEffectDulation()[effectIndex]);
@@ -2433,10 +2318,7 @@ namespace beethoven3
                         goldGetManager = new ExplosionManager();
                         goldGetManager.ExplosionInit(itemManager.GetMissEffectTexture()[effectIndex], itemManager.GetEffectInitFrame()[effectIndex], itemManager.GetEffectFrameCount()[effectIndex], itemManager.GetEffectScale()[effectIndex], itemManager.GetEffectDulation()[effectIndex]);
   
-
-
-
-                        collisionManager = new CollisionManager(perfectManager, goodManager, badManager, goldGetManager, scoreManager, memberManager);
+                        collisionManager = new CollisionManager(perfectManager, goodManager, badManager, goldGetManager, scoreManager, memberManager,itemManager);
             
                         /////이펙트 생성 -END
                         

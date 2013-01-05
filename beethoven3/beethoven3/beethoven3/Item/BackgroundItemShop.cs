@@ -113,7 +113,7 @@ namespace beethoven3
             // Color myColor = Color.White;
             //  myColor.A = 50;
 
-            spriteBatch.Draw(myBackgroundItems[itemManager.getBackgroundIndex()].ItemSprite.Texture, usedItemRect, Color.White);
+            spriteBatch.Draw(backgroundItems[itemManager.getBackgroundIndex()].ItemSprite.Texture, usedItemRect, Color.White);
 
             if (darkBackground)
             {
