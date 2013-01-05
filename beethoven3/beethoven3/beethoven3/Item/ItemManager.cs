@@ -16,20 +16,41 @@ namespace beethoven3
         private List<Item> effectItem = new List<Item>();
         private List<Item> noteItem = new List<Item>();
         private List<Item> backgroundItem = new List<Item>();
-       
+
+
+        //내가 가지고 있는 아이템
+        private List<Item> myRightHandItem = new List<Item>();
+        private List<Item> myLeftHandItem = new List<Item>();
+        private List<Item> myEffectItem = new List<Item>();
+        private List<Item> myNoteItem = new List<Item>();
+        private List<Item> myBackgroundItem = new List<Item>();
+
+
         //아이템 텍스쳐
         private Texture2D[] rightHandTexture = new Texture2D[5];
         private Texture2D[] leftHandTexture = new Texture2D[5];
         private Texture2D[] effectTexture = new Texture2D[5];
         private Texture2D[] noteTexture = new Texture2D[5];
         private Texture2D[] backgroundTexture = new Texture2D[5];
+        
         //팔지는 않지만 텍스쳐만 가지고 있음
         private Texture2D[] markTexture = new Texture2D[5];
+        
+        //Great의 이펙트 말고 다른 이펙트는 숨겨서 표현
+        private Texture2D[] goodEffectTexture = new Texture2D[5];
+        private Texture2D[] badEffectTexture = new Texture2D[5];
+        private Texture2D[] missEffectTexture = new Texture2D[5];
+        
+        
+        
         //롱노트라 왼손노트를 따로 만들 때 쓰임
         //***  private Texture2D[] longNoteTexture = new Texture2D[5];
         //***  private Texture2D[] leftNoteTexture = new Texture2D[5];
 
+        
         //내가 착용한 아이템-착용함수 제작
+        //이걸 베이스를 자기가 산 아이템만 해당하는 것이 아니라 전체를 베이스로 
+
         private int rightHandIndex = 0;
         private int leftHandIndex = 0;
         private int effectIndex = 0;
@@ -37,13 +58,6 @@ namespace beethoven3
         private int backgroundIndex = 0;
 
 
-
-        //내가 가지고 있는 아이템
-        public List<Item> myRightHandItem = new List<Item>();
-        private List<Item> myLeftHandItem = new List<Item>();
-        public List<Item> myEffectItem = new List<Item>();
-        private List<Item> myNoteItem = new List<Item>();
-        public List<Item> myBackgroundItem = new List<Item>();
 
 
         //이펙트 특성  -start
@@ -54,6 +68,8 @@ namespace beethoven3
         private int[] effectFrameCount = new int[5];
         //각 이펙트 마다 scale
         private float[] effecScale = new float[5];
+        //지속기간
+        private int[] effectDulation = new int[5];
 
         //이펙트 특성  -end
 
@@ -74,52 +90,65 @@ namespace beethoven3
             int i;
 
             //아이템 상점에 올림
+            
+            //오른손 아이템 
             for (i = 0; i < 4; i++)
             {
                 addItem(rightHandItem, new Vector2(100, 100), rightHandTexture[i], new Rectangle(0, 0, rightHandTexture[i].Width, rightHandTexture[i].Height), 1,/*cost*/ (i+1)*5);
             }
+
+            //노트 아이템
             for (i = 0; i < 2; i++)
             {
                 addItem(noteItem, new Vector2(100, 100), noteTexture[i], new Rectangle(0, 0, noteTexture[i].Width, noteTexture[i].Height), 1,/*cost*/ 25);
             }
 
-                for (i = 0; i < 2; i++)
+            //왼손 아이템
+            for (i = 0; i < 2; i++)
             {
                 addItem(leftHandItem, new Vector2(100, 100), leftHandTexture[i], new Rectangle(0, 0, leftHandTexture[i].Width, leftHandTexture[i].Height), 1,/*cost*/ 7);
                 
                 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 //have to additem, effect, node , background
-               
-               
-                addItem(backgroundItem, new Vector2(100, 100), backgroundTexture[i], new Rectangle(0, 0, backgroundTexture[i].Width, backgroundTexture[i].Height), 1,/*cost*/ 45);
-            
             }
-            for (i = 0; i < 5; i++)
+
+            //배경아이템
+            for (i = 0; i < 2; i++)
+            {
+                addItem(backgroundItem, new Vector2(100, 100), backgroundTexture[i], new Rectangle(0, 0, backgroundTexture[i].Width, backgroundTexture[i].Height), 1,/*cost*/ 45);
+            }
+
+
+            //이펙트 아이템
+            for (i = 0; i < 3; i++)
             {
                 addItem(effectItem, new Vector2(100, 100), effectTexture[i], new Rectangle(0, 0, effectTexture[i].Width, effectTexture[i].Height), 1,/*cost*/ 16);
+              
             }
 
 
+            //GREAT-BAD-MISS-GOOD모든 이펙트가 다음과 같이 따라감
             //이펙트 특성 -start
             effectInitFrams[0] = new Rectangle(0, 0, 156, 152);
             effectInitFrams[1] = new Rectangle(0, 0, 130, 122);
             effectInitFrams[2] = new Rectangle(0, 0, 166, 162);
-            effectInitFrams[3] = new Rectangle(0, 0, 166, 162);
-            effectInitFrams[4] = new Rectangle(0, 0, 166, 162);
-
+        
 
             effectFrameCount[0] = 6;
             effectFrameCount[1] = 8;
             effectFrameCount[2] = 9;
-            effectFrameCount[3] = 9;
-            effectFrameCount[4] = 9;
-            
+           
             effecScale[0] = 1.0f;
             effecScale[1] = 1.0f;
             effecScale[2] = 1.0f;
-            effecScale[3] = 1.0f;
-            effecScale[4] = 1.0f;
-            //이펙트 특성 -end
+
+            //지속시간
+            effectDulation[0] =  45;
+            effectDulation[1] =  45;
+            effectDulation[2] = 45;
+           //이펙트 특성 -end
+
+
 
             //마커 특성 -
             markersScale[0] = 0.5f;
@@ -154,17 +183,28 @@ namespace beethoven3
             //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             //have to additem, effect, node , background
 
-            //WIND
             effectTexture[0] = cm.Load<Texture2D>(@"Explosion\windExplosion2");
-            //바늘효과
             effectTexture[1] = cm.Load<Texture2D>(@"Explosion\needleExplosion2");
             effectTexture[2] = cm.Load<Texture2D>(@"Explosion\starExplosion");
-            effectTexture[3] = cm.Load<Texture2D>(@"Explosion\starExplosion2");
-            effectTexture[4] = cm.Load<Texture2D>(@"Explosion\leafExplosion");
- 
+            
+
+            goodEffectTexture[0] = cm.Load<Texture2D>(@"Explosion\windExplosion2");
+            goodEffectTexture[1] = cm.Load<Texture2D>(@"Explosion\needleExplosion2");
+            goodEffectTexture[2] = cm.Load<Texture2D>(@"Explosion\starExplosion2");
+            
+            badEffectTexture[0] = cm.Load<Texture2D>(@"Explosion\windExplosion2");
+            badEffectTexture[1] = cm.Load<Texture2D>(@"Explosion\needleExplosion2");
+            badEffectTexture[2] = cm.Load<Texture2D>(@"Explosion\leafExplosion");
+         
+            missEffectTexture[0] = cm.Load<Texture2D>(@"Explosion\windExplosion2");
+            missEffectTexture[1] = cm.Load<Texture2D>(@"Explosion\needleExplosion2");
+            missEffectTexture[2] = cm.Load<Texture2D>(@"Explosion\leafExplosion");
+         
+       
 
             noteTexture[0] = cm.Load<Texture2D>(@"notes\starNote");
             noteTexture[1] = cm.Load<Texture2D>(@"notes\turnNote2");
+            
             //노트랑 한쌍이다.
             markTexture[0] = cm.Load<Texture2D>(@"markers\starMarker");
             markTexture[1] = cm.Load<Texture2D>(@"markers\turnMarker");
@@ -237,6 +277,12 @@ namespace beethoven3
             return this.effecScale;
         }
 
+        public int[] GetEffectDulation()
+        {
+            return this.effectDulation;
+        }
+
+        //텍스쳐 반환
         //오른손텍스쳐 반환 , 게임 로딩전에 각 노트 배경 등을 변경
         public Texture2D[] GetRightHandTexture()
         {
@@ -258,6 +304,7 @@ namespace beethoven3
             return this.effectTexture;
         }
 
+
         public Texture2D[] GetBackgroundTexture()
         {
             return this.backgroundTexture;
@@ -268,7 +315,24 @@ namespace beethoven3
             return this.markTexture;
         }
 
+        public Texture2D[] GetGoodEffectTexture()
+        {
+            return this.goodEffectTexture;
+        }
 
+
+        public Texture2D[] GetBadEffectTexture()
+        {
+            return this.badEffectTexture;
+        }
+
+        public Texture2D[] GetMissEffectTexture()
+        {
+            return this.missEffectTexture;
+        }
+
+
+        //현재 자기가 장착한 인덱스 set , get
         ///////////////////index
         public void setRightHandIndex(int index)
         {
@@ -320,10 +384,11 @@ namespace beethoven3
         {
             return this.backgroundIndex;
         }
-     
+ 
+    
         ////////////////get MY item list////////////////////////////
  
-
+        //내가 가지고 있는 아이템 리스트가져오기
         public List<Item> getMyRightHandItem()
         {
             return this.myRightHandItem;
@@ -348,6 +413,8 @@ namespace beethoven3
             return this.myBackgroundItem;
         }
 
+
+        //물건 사게 되면 내 아이템리스트에 추가하기 
         ///////////////////add item //////////////////////
         
         public void addMyRightHandItem(Item item)
@@ -372,6 +439,7 @@ namespace beethoven3
         }
 
 
+        // 샵에 있는 전체 아이템 리스트 가져오기
         //GET SHOP ITEM LIST
 
         public List<Item> getShopRightHandItem()
@@ -399,6 +467,8 @@ namespace beethoven3
             return this.backgroundItem;
         }
 
+
+        
         //get index 
 
         //아이템을 넣으면 그 인덱스가 나타난다.
@@ -446,20 +516,7 @@ namespace beethoven3
             return index;
         }
 
-        //my index 말고 
-        public int getIndexOfEffectItem(Item item)
-        {
-            int i;
-            int index = -1;
-            for (i = 0; i < effectItem.Count; i++)
-            {
-                if (item == effectItem[i])
-                {
-                    index = i;
-                }
-            }
-            return index;
-        }
+        
 
 
 
@@ -496,5 +553,93 @@ namespace beethoven3
             return index;
 
         }
+
+
+        //자신의 장착아이템이 아니라 전체에서 찾는다. 
+        //get index 
+
+        //아이템을 넣으면 그 인덱스가 나타난다.
+        public int getIndexOfAllRightItem(Item item)
+        {
+            int i;
+            int index = -1;
+            for (i = 0; i < rightHandItem.Count; i++)
+            {
+                if (item == rightHandItem[i])
+                {
+                    index = i;
+                }
+            }
+            return index;
+        }
+
+
+        public int getIndexOfAllLeftItem(Item item)
+        {
+            int i;
+            int index = -1;
+            for (i = 0; i < leftHandItem.Count; i++)
+            {
+                if (item == leftHandItem[i])
+                {
+                    index = i;
+                }
+            }
+            return index;
+        }
+
+
+        public int getIndexOfAllEffectItem(Item item)
+        {
+            int i;
+            int index = -1;
+            for (i = 0; i < effectItem.Count; i++)
+            {
+                if (item == effectItem[i])
+                {
+                    index = i;
+                }
+            }
+            return index;
+        }
+
+     
+
+
+        public int getIndexOfAllNoteItem(Item item)
+        {
+            int i;
+            int index = -1;
+            for (i = 0; i < noteItem.Count; i++)
+            {
+                if (item == noteItem[i])
+                {
+                    index = i;
+                }
+
+            }
+
+            return index;
+
+        }
+
+        public int getIndexOfAllBackgroundItem(Item item)
+        {
+            int i;
+            int index = -1;
+            for (i = 0; i < backgroundItem.Count; i++)
+            {
+                if (item == backgroundItem[i])
+                {
+                    index = i;
+                }
+
+            }
+
+            return index;
+
+        }
+
+
     }
 }

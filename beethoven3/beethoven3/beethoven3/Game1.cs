@@ -174,12 +174,12 @@ namespace beethoven3
         private Texture2D playBackgroud2;
 
         ////Explosion
-        private Texture2D windExplosion;
-        private Texture2D heartExplosion;
-        private Texture2D needleExplosion;
-        private Texture2D starExplosion1;
-        private Texture2D starExplosion2;
-        private Texture2D leafExplosion;
+        //private Texture2D windExplosion;
+        //private Texture2D heartExplosion;
+        //private Texture2D needleExplosion;
+        //private Texture2D starExplosion1;
+        //private Texture2D starExplosion2;
+        //private Texture2D leafExplosion;
 
         //놓친 노트가 없어지는 곳
         //the place where miss note disapper
@@ -341,28 +341,47 @@ namespace beethoven3
             /////텍스쳐 로드 -END
 
             //explosion
-            windExplosion = Content.Load<Texture2D>(@"Explosion\windExplosion2");
-            heartExplosion = Content.Load<Texture2D>(@"Explosion\smallheart2");
-            needleExplosion = Content.Load<Texture2D>(@"Explosion\needleExplosion2");
+            //windExplosion = Content.Load<Texture2D>(@"Explosion\windExplosion2");
+            //heartExplosion = Content.Load<Texture2D>(@"Explosion\smallheart2");
+            //needleExplosion = Content.Load<Texture2D>(@"Explosion\needleExplosion2");
 
-            starExplosion1 = Content.Load<Texture2D>(@"Explosion\starExplosion");
-            starExplosion2 = Content.Load<Texture2D>(@"Explosion\starExplosion2");
-            leafExplosion = Content.Load<Texture2D>(@"Explosion\leafExplosion");
-            //wind용
+            //starExplosion1 = Content.Load<Texture2D>(@"Explosion\starExplosion");
+            //starExplosion2 = Content.Load<Texture2D>(@"Explosion\starExplosion2");
+            //leafExplosion = Content.Load<Texture2D>(@"Explosion\leafExplosion");
+            ////wind용
+
+            //현재 장착한 이펙트의 인덱스를 전체 베이스에 찾음
+            int effectIndex = itemManager.getEffectIndex();
+
+            //***임시로 - 아래에 바로 넣었음
+            //텍스쳐 가져오기
+            Texture2D[] effectTextures = itemManager.GetEffectTexture();
+            Texture2D[] goodEffectTextures = itemManager.GetGoodEffectTexture();
+            Texture2D[] badEffectTextures = itemManager.GetBadEffectTexture();
+            Texture2D[] missEffectTextures = itemManager.GetMissEffectTexture();
+
+            //텍스쳐 크기
+
+             
+
 
             perfectManager = new ExplosionManager();
-            perfectManager.ExplosionInit(starExplosion2, new Rectangle(0, 0, 166, 162), 9, 1f,45);
+            perfectManager.ExplosionInit(itemManager.GetEffectTexture()[effectIndex], itemManager.GetEffectInitFrame()[effectIndex], itemManager.GetEffectFrameCount()[effectIndex], itemManager.GetEffectScale()[effectIndex], itemManager.GetEffectDulation()[effectIndex]);
 
             goodManager = new ExplosionManager();
-            goodManager.ExplosionInit(starExplosion1, new Rectangle(0, 0, 166, 162), 9, 1f, 45);
+            goodManager.ExplosionInit(itemManager.GetGoodEffectTexture()[effectIndex], itemManager.GetEffectInitFrame()[effectIndex], itemManager.GetEffectFrameCount()[effectIndex], itemManager.GetEffectScale()[effectIndex], itemManager.GetEffectDulation()[effectIndex]);
 
             badManager = new ExplosionManager();
-            badManager.ExplosionInit(starExplosion1, new Rectangle(0, 0, 166, 162), 9, 1f, 45);
+            badManager.ExplosionInit(itemManager.GetBadEffectTexture()[effectIndex], itemManager.GetEffectInitFrame()[effectIndex], itemManager.GetEffectFrameCount()[effectIndex], itemManager.GetEffectScale()[effectIndex], itemManager.GetEffectDulation()[effectIndex]);
 
-            
+            //미스도 투입되면
+            //missManager = new ExplosionManager();
+            //missManager.ExplosionInit(missEffectTextures[effectIndex], new Rectangle(0, 0, 166, 162), 9, 1f, 45);
+
+
+            //일단은 miss effect로
             goldGetManager = new ExplosionManager();
-            goldGetManager.ExplosionInit(leafExplosion, new Rectangle(0, 0, 166, 162), 9, 1f, 45 );
-
+            goldGetManager.ExplosionInit(itemManager.GetMissEffectTexture()[effectIndex], itemManager.GetEffectInitFrame()[effectIndex], itemManager.GetEffectFrameCount()[effectIndex], itemManager.GetEffectScale()[effectIndex], itemManager.GetEffectDulation()[effectIndex]);
         //    perfectManager = new ExplosionManager(
         //    cloudExplosion,
         //    new Rectangle(0, 0, 156, 152),
@@ -1804,7 +1823,8 @@ namespace beethoven3
                                if (selectedItem != null)
                                {
                                    //find the index of item in myleftitem list
-                                   int index = itemManager.getIndexOfMyEffectItem(selectedItem);
+                                   //전체 아이템에서 내가 산 아이템의 위치를 찾는다.
+                                   int index = itemManager.getIndexOfAllEffectItem(selectedItem);
                                    if (index != -1)
                                    {
                                        //change index
@@ -2379,6 +2399,41 @@ namespace beethoven3
                         //  new Color(1f, 0.5f, 0.5f) * 0.5f,
                         //  new Color(0f, 0f, 0f, 0f),
                         //  2f);
+
+
+                        int effectIndex = itemManager.getEffectIndex();
+
+                        ////***임시로 - 아래에 바로 넣었음
+                        ////텍스쳐 가져오기
+                        //Texture2D[] effectTextures = itemManager.GetEffectTexture();
+                        //Texture2D[] goodEffectTextures = itemManager.GetGoodEffectTexture();
+                        //Texture2D[] badEffectTextures = itemManager.GetBadEffectTexture();
+                        //Texture2D[] missEffectTextures = itemManager.GetMissEffectTexture();
+
+                        ////텍스쳐 크기
+
+
+
+
+                        perfectManager = new ExplosionManager();
+                        perfectManager.ExplosionInit(itemManager.GetEffectTexture()[effectIndex], itemManager.GetEffectInitFrame()[effectIndex], itemManager.GetEffectFrameCount()[effectIndex], itemManager.GetEffectScale()[effectIndex], itemManager.GetEffectDulation()[effectIndex]);
+
+                        goodManager = new ExplosionManager();
+                        goodManager.ExplosionInit(itemManager.GetGoodEffectTexture()[effectIndex], itemManager.GetEffectInitFrame()[effectIndex], itemManager.GetEffectFrameCount()[effectIndex], itemManager.GetEffectScale()[effectIndex], itemManager.GetEffectDulation()[effectIndex]);
+
+                        badManager = new ExplosionManager();
+                        badManager.ExplosionInit(itemManager.GetBadEffectTexture()[effectIndex], itemManager.GetEffectInitFrame()[effectIndex], itemManager.GetEffectFrameCount()[effectIndex], itemManager.GetEffectScale()[effectIndex], itemManager.GetEffectDulation()[effectIndex]);
+
+                        //미스도 투입되면
+                        //missManager = new ExplosionManager();
+                        //missManager.ExplosionInit(missEffectTextures[effectIndex], new Rectangle(0, 0, 166, 162), 9, 1f, 45);
+
+
+                        //일단은 miss effect로
+                        goldGetManager = new ExplosionManager();
+                        goldGetManager.ExplosionInit(itemManager.GetMissEffectTexture()[effectIndex], itemManager.GetEffectInitFrame()[effectIndex], itemManager.GetEffectFrameCount()[effectIndex], itemManager.GetEffectScale()[effectIndex], itemManager.GetEffectDulation()[effectIndex]);
+  
+
 
 
                         collisionManager = new CollisionManager(perfectManager, goodManager, badManager, goldGetManager, scoreManager, memberManager);
