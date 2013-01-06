@@ -813,6 +813,7 @@ namespace beethoven3
         {
             isChangedTempo = true;
 
+            
             this.changedTempo = changedT;
 
             float frequency = 0;
@@ -949,6 +950,8 @@ namespace beethoven3
             {
                 sndSystem.createSound("C:\\beethoven\\"+noteFileManager, FMOD.MODE.HARDWARE, ref sndSound);
                 sndSystem.playSound(CHANNELINDEX.FREE, sndSound, false, ref sndChannel);
+
+              
             }
             if (keyState.IsKeyDown(Keys.P))
             {

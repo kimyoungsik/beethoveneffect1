@@ -318,7 +318,7 @@ namespace beethoven3
 
                         //PATTERN CHANGE
                         //패턴 체인지
-                        else if (lines[1] == "C")
+                        else if (lines[1] == "P")
                         {
                             arrayNotes.Add(new NoteInfo(isright,/*startTime*/Convert.ToDouble(lines[0]), /*not markLocation but change type */Int32.Parse(lines[2]), /*type*/lines[1], /*not lastTime but Lasting time(지속시간)*/Convert.ToDouble(lines[3]), Vector2.Zero, Vector2.Zero, Vector2.Zero, Vector2.Zero));
 
@@ -514,7 +514,7 @@ namespace beethoven3
                         //타입 0-오른손 1-왼손 2-양손 3-롱노트 4-드래그노트 
                         //Trace.WriteLine(processTime);
 
-                      
+                        Trace.WriteLine(arrayNotes[0].Type);
                         //오른손 노트
 
                         if (arrayNotes[0].Type == "1")
@@ -613,6 +613,8 @@ namespace beethoven3
                         }
                         //패턴 변환
                         //pattern change
+
+                            
                         else if (arrayNotes[0].Type == "P" )
                         {
                             //marklocation이란 attribute에는 몇번 패턴으로 변할 것인가.
@@ -666,6 +668,8 @@ namespace beethoven3
             else
             {
                 endFile = true;
+
+                //snd 종료
             }
                 
 

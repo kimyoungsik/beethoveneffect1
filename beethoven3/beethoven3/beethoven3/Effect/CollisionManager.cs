@@ -162,7 +162,7 @@ namespace beethoven3
                     else if (judgment == -1)
                     {
 
-                        Trace.WriteLine(littleNote.IsEarlyOne);
+                        //Trace.WriteLine(littleNote.IsEarlyOne);
                         //빨리 맞은거 
                         if (littleNote.IsEarlyOne)
                         {

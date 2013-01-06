@@ -199,7 +199,7 @@ namespace beethoven3
         public static void SetRemoveArea(int patternIndex, int MarkWidth, int MarkHeight)
         {
             Vector2[] markLoc = GetPattern(patternIndex);
-            centerArea = new Rectangle((int)markLoc[0].X + (MarkWidth + MarkWidth ), (int)markLoc[0].Y + MarkHeight / 2, (int)markLoc[5].X - ((int)markLoc[0].X + (MarkWidth + MarkWidth)), (int)markLoc[5].Y - ((int)markLoc[0].Y));
+            centerArea = new Rectangle((int)markLoc[0].X + (MarkWidth *2 ), (int)markLoc[0].Y + MarkHeight / 2, (int)markLoc[5].X - ((int)markLoc[0].X + (MarkWidth *3)), (int)markLoc[5].Y - ((int)markLoc[0].Y));
         }
 
         public static Vector2[] GetPattern(int index)
