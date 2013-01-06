@@ -192,28 +192,19 @@ namespace beethoven3
         //0번과 5번 마커 위치 필요
         public static void SetRemoveArea(Vector2 mark0Loc, Vector2 mark5Loc, int MarkWidth, int MarkHeight)
         {
-
             centerArea = new Rectangle((int)mark0Loc.X + (MarkWidth + MarkWidth / 2), (int)mark0Loc.Y + MarkHeight / 2, (int)mark5Loc.X - ((int)mark0Loc.X + (MarkWidth + MarkWidth)), (int)mark5Loc.Y - ((int)mark0Loc.Y));
-  
-
        }
 
         //INDEX필요 
         public static void SetRemoveArea(int patternIndex, int MarkWidth, int MarkHeight)
         {
-
             Vector2[] markLoc = GetPattern(patternIndex);
-
-
-            centerArea = new Rectangle((int)markLoc[0].X + (MarkWidth + MarkWidth / 2), (int)markLoc[0].Y + MarkHeight / 2, (int)markLoc[5].X - ((int)markLoc[0].X + (MarkWidth + MarkWidth)), (int)markLoc[5].Y - ((int)markLoc[0].Y));
-
-
+            centerArea = new Rectangle((int)markLoc[0].X + (MarkWidth + MarkWidth ), (int)markLoc[0].Y + MarkHeight / 2, (int)markLoc[5].X - ((int)markLoc[0].X + (MarkWidth + MarkWidth)), (int)markLoc[5].Y - ((int)markLoc[0].Y));
         }
 
         public static Vector2[] GetPattern(int index)
         {
             //마커 가로길이 , 마크 없어지는 영역 지정을 위해
-            
             
             ////초기에는 마커가 없다. 
             //if (Marks != null)
@@ -221,8 +212,6 @@ namespace beethoven3
             //    markWidth = Marks[0].MarkSprite.Texture.Width;
             //}
            
-          
-
             Vector2[] vectorarray = new Vector2[6];
 
             Vector2 mark0Loc = Vector2.Zero;

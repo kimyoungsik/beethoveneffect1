@@ -15,7 +15,7 @@ namespace beethoven3
         private Texture2D menu;
 
         //test
-        private Texture2D heart;
+      //  private Texture2D heart;
 
         bool button1;
 
@@ -26,8 +26,8 @@ namespace beethoven3
 
         public void LoadContent(ContentManager cm)
         {
-            menu = cm.Load<Texture2D>(@"Textures\menu");
-            heart = cm.Load<Texture2D>(@"Textures\heart");   
+            menu = cm.Load<Texture2D>(@"Menu\firstMenuBackground");
+          //  heart = cm.Load<Texture2D>(@"Textures\heart");   
         }
 
         public void Update(GameTime gameTime)
@@ -44,18 +44,18 @@ namespace beethoven3
                      height),
                      Color.White);
 
-            if (button1)
-            {
-                spriteBatch.Draw(heart,
-                new Rectangle(0, 0, 100,
-                    100),
-                    Color.White);
-            }
+            //if (button1)
+            //{
+            //    spriteBatch.Draw(heart,
+            //    new Rectangle(0, 0, 100,
+            //        100),
+            //        Color.White);
+            //}
         }
 
-        public void setButton1()
-        {
-            this.button1 = true;
-        }
+        //public void setButton1()
+        //{
+        //    this.button1 = true;
+        //}
     }
 }

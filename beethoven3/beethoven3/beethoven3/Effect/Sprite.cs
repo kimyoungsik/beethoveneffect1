@@ -51,7 +51,7 @@ namespace beethoven3
         //각 노트의 시작 노트의 위치를 저장해둔다.(0베이스)
         private int startNoteLoation = -1;
 
-
+        private bool isEarlyOne;
         #endregion
 
         #region constructor
@@ -71,11 +71,20 @@ namespace beethoven3
             frames.Add(initialFrame);
             frameWidth = initialFrame.Width;
             frameHeight = initialFrame.Height;
+            isEarlyOne = true;
         }
         #endregion
 
 
         #region properties
+
+        public bool IsEarlyOne
+        {
+            get { return isEarlyOne; }
+            set { isEarlyOne = value; }
+
+
+        }
 
         public int StartNoteLoation
         {
@@ -196,8 +205,9 @@ namespace beethoven3
 
         //거리 판단
         //오른손 노트와 마커 판단의 경우 : otherCenter => note's center, otherRadius => note's radius
-        //otherradius는 안쓰임 일단.
-        public int JudgedNote(Vector2 otherCenter)
+        //otherradiu는 perfect good에만 쓰임 
+        //bad가 없는것 : long note, dragNote
+        public int JudgedNote(Vector2 noteCenter, float noteRadius)
         {
             //bad
             int ret = 0;
@@ -206,21 +216,51 @@ namespace beethoven3
 
           //  Trace.WriteLine(Vector2.Distance(Center, otherCenter));
             //마커 센터에서 노트의 센터 사이의 거리가  마커의 radius/2 보다 작을 떄  
-            if (Vector2.Distance(Center, otherCenter) <
+            if (Vector2.Distance(Center, noteCenter) <
                 (CollisionRadius/2))
             {
                 ret = 2;
             }
             //마커 센터에서 노트의 센터 사이의 거리가  마커의 radius 보다 작을 떄  
             //반들어왔을때 . good
-            else if (Vector2.Distance(Center, otherCenter) <
+            else if (Vector2.Distance(Center, noteCenter) <
                 (CollisionRadius))
             {
                 ret = 1;
             }
+            else if (Vector2.Distance(Center, noteCenter) <
+               (CollisionRadius + noteRadius))
+            {
+                ret = -1;
+            }
             return ret;
         }
 
+
+        public int JudgedNote(Vector2 noteCenter)
+        {
+            //bad
+            int ret = 0;
+
+            //반/2 보다 가까울때  , perfect
+
+            //  Trace.WriteLine(Vector2.Distance(Center, otherCenter));
+            //마커 센터에서 노트의 센터 사이의 거리가  마커의 radius/2 보다 작을 떄  
+            if (Vector2.Distance(Center, noteCenter) <
+                (CollisionRadius / 2))
+            {
+                ret = 2;
+            }
+            //마커 센터에서 노트의 센터 사이의 거리가  마커의 radius 보다 작을 떄  
+            //반들어왔을때 . good
+            else if (Vector2.Distance(Center, noteCenter) <
+                (CollisionRadius))
+            {
+                ret = 1;
+            }
+       
+            return ret;
+        }
         #endregion
 
         #region method

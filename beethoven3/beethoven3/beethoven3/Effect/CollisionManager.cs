@@ -21,6 +21,8 @@ namespace beethoven3
 
         private ItemManager itemManager;
         private float roundPoint = 15.0f;
+
+       // private bool isEarlyOne = true;
         #endregion 
 
         #region constructor
@@ -107,10 +109,13 @@ namespace beethoven3
                  //   Trace.WriteLine("noteCenter:"+littleNote.Center+" markcndter:"+MarkManager.Marks[number].MarkSprite.Center);
                  //   Vector2 notecenter = littleNote.Center;
                  //   Vector2 markcenter = MarkManager.Marks[number].MarkSprite.Center;
+
+                 
                     int judgment = MarkManager.Marks[number].MarkSprite.JudgedNote(
-                        littleNote.Center
+                        littleNote.Center,(littleNote.Texture.Width*littleNote.Scale)/4
                         );
                     //perfect
+                 
                     if (judgment == 2)
                     {
 
@@ -124,8 +129,13 @@ namespace beethoven3
                             scoreManager.Perfect = scoreManager.Perfect + 1;
                             scoreManager.Combo = scoreManager.Combo + 1;
                             scoreManager.Gage = scoreManager.Gage + 10;
-                        }
 
+                          
+                        }
+                        
+                        //가운데를 이미 지났으므로 느리게 맞은 노트가 될 수 있다.
+                        littleNote.IsEarlyOne = false;
+                      
                     }
 
                     //good
@@ -145,6 +155,39 @@ namespace beethoven3
                             scoreManager.Gage = scoreManager.Gage + 10;
 
                             memberManager.SetMemberState(1, 1);
+                          
+                        }
+                    }
+                        //bad 
+                    else if (judgment == -1)
+                    {
+
+                        Trace.WriteLine(littleNote.IsEarlyOne);
+                        //빨리 맞은거 
+                        if (littleNote.IsEarlyOne)
+                        {
+                            int mouseJudgment = MarkManager.Marks[number].MarkSprite.JudgedNote(mousePoint);
+                            if (mouseJudgment != 0)
+                            {
+                                //효과와 내용
+                                //이펙트 및 템포 빨라지기
+                      
+                            }
+                        }
+                        //느리게 맞은거
+                        else
+                        {
+                            int mouseJudgment = MarkManager.Marks[number].MarkSprite.JudgedNote(mousePoint);
+                            if (mouseJudgment != 0)
+                            {
+
+                                //효과와 내용
+                                //이펙트 및 템포 느려지기
+
+                            }
+                         
+
+
                         }
                     }
                     else
@@ -190,6 +233,10 @@ namespace beethoven3
                             scoreManager.Combo = scoreManager.Combo + 1;
                             scoreManager.Gage = scoreManager.Gage + 10;
                         }
+
+                        //가운데를 이미 지났으므로 느리게 맞은 노트가 될 수 있다.
+                        littleNote.IsEarlyOne = false;
+                      
                     }
 
                     //good
@@ -204,6 +251,39 @@ namespace beethoven3
                             scoreManager.Good = scoreManager.Good + 1;
                             scoreManager.Combo = scoreManager.Combo + 1;
                             scoreManager.Gage = scoreManager.Gage + 10;
+                        }
+                    }
+
+                                                //bad 
+                    else if (judgment == -1)
+                    {
+
+                       
+                        //빨리 맞은거 
+                        if (littleNote.IsEarlyOne)
+                        {
+                            int mouseJudgment = MarkManager.Marks[number].MarkSprite.JudgedNote(mousePoint);
+                            if (mouseJudgment != 0)
+                            {
+                                //효과와 내용
+                                //이펙트 및 템포 빨라지기
+
+                            }
+                        }
+                        //느리게 맞은거
+                        else
+                        {
+                            int mouseJudgment = MarkManager.Marks[number].MarkSprite.JudgedNote(mousePoint);
+                            if (mouseJudgment != 0)
+                            {
+
+                                //효과와 내용
+                                //이펙트 및 템포 느려지기
+
+                            }
+
+
+
                         }
                     }
                     else
@@ -321,6 +401,7 @@ namespace beethoven3
 
                     scoreManager.Combo = 0;
                     scoreManager.Gage = scoreManager.Gage - 1;
+
                 }
 
             }

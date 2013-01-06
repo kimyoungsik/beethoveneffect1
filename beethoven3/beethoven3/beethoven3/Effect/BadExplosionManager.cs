@@ -87,7 +87,7 @@ namespace beethoven3
         #region update and draw
         public void Update(GameTime gameTime)
         {
-            Trace.WriteLine(Explosions.Count);
+            //Trace.WriteLine(Explosions.Count);
             int i;
             for (i = 0; i < Explosions.Count; i++)
             {

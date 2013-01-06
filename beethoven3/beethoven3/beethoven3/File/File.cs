@@ -613,7 +613,7 @@ namespace beethoven3
                         }
                         //패턴 변환
                         //pattern change
-                        else if (arrayNotes[0].Type == "C" )
+                        else if (arrayNotes[0].Type == "P" )
                         {
                             //marklocation이란 attribute에는 몇번 패턴으로 변할 것인가.
                             //marklocation means which pattern the note will be changed

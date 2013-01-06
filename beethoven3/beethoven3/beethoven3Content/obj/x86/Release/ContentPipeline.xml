@@ -688,6 +688,15 @@
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Fonts\PerpetuaFont.xnb</Output>
       <Time>2012-12-25T17:37:05.7514826+09:00</Time>
     </Item>
+    <Item>
+      <Source>Menu\firstMenuBackground.png</Source>
+      <Name>Menu\firstMenuBackground</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Menu\firstMenuBackground.xnb</Output>
+      <Time>2013-01-07T00:03:23.0597058+09:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>
