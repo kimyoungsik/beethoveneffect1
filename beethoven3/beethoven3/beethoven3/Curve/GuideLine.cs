@@ -163,7 +163,7 @@ namespace beethoven3
             {
                 changedTime += gameTime.ElapsedGameTime.TotalMilliseconds;
                // dotChangedTime += gameTime.ElapsedGameTime.TotalMilliseconds;
-                Trace.WriteLine(changedTime);
+                //Trace.WriteLine(changedTime);
 
                 //동전라인 아닌 가이드라인 
                 if (!showGold)

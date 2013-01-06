@@ -512,9 +512,11 @@ namespace beethoven3
             {
                 mark.Draw(spriteBatch);
             }
-            spriteBatch.Draw(Game1.idot, centerArea, Color.Red);
 
-            Trace.WriteLine(centerArea);
+            //노트 없어지는 영역 표시
+//            spriteBatch.Draw(Game1.idot, centerArea, Color.Red);
+
+         //   Trace.WriteLine(centerArea);
         }
         #endregion
     }

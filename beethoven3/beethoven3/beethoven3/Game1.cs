@@ -70,9 +70,9 @@ namespace beethoven3
         private File file;
 
         /////이펙트 관리 - start
-        private ExplosionManager perfectManager;
-        private ExplosionManager goodManager;
-        private ExplosionManager badManager;
+        private PerfectExplosionManager perfectManager;
+        private GoodExplosionManager goodManager;
+        private BadExplosionManager badManager;
         private ExplosionManager goldGetManager;
         /////이펙트 관리 - end
         
@@ -356,25 +356,25 @@ namespace beethoven3
 
             //***임시로 - 아래에 바로 넣었음
             //텍스쳐 가져오기
-            Texture2D[] effectTextures = itemManager.GetEffectTexture();
-            Texture2D[] goodEffectTextures = itemManager.GetGoodEffectTexture();
-            Texture2D[] badEffectTextures = itemManager.GetBadEffectTexture();
-            Texture2D[] missEffectTextures = itemManager.GetMissEffectTexture();
+            //Texture2D[] effectTextures = itemManager.GetEffectTexture();
+            //Texture2D[] goodEffectTextures = itemManager.GetGoodEffectTexture();
+            //Texture2D[] badEffectTextures = itemManager.GetBadEffectTexture();
+            //Texture2D[] missEffectTextures = itemManager.GetMissEffectTexture();
 
             //텍스쳐 크기
 
 
             ///////이펙트 생성 -START
 
-         
 
-            perfectManager = new ExplosionManager();
+
+            perfectManager = new PerfectExplosionManager();
             perfectManager.ExplosionInit(itemManager.GetEffectTexture()[effectIndex], itemManager.GetEffectInitFrame()[effectIndex], itemManager.GetEffectFrameCount()[effectIndex], itemManager.GetEffectScale()[effectIndex], itemManager.GetEffectDulation()[effectIndex]);
 
-            goodManager = new ExplosionManager();
+            goodManager = new GoodExplosionManager();
             goodManager.ExplosionInit(itemManager.GetGoodEffectTexture()[effectIndex], itemManager.GetEffectInitFrame()[effectIndex], itemManager.GetEffectFrameCount()[effectIndex], itemManager.GetEffectScale()[effectIndex], itemManager.GetEffectDulation()[effectIndex]);
 
-            badManager = new ExplosionManager();
+            badManager = new BadExplosionManager();
             badManager.ExplosionInit(itemManager.GetBadEffectTexture()[effectIndex], itemManager.GetEffectInitFrame()[effectIndex], itemManager.GetEffectFrameCount()[effectIndex], itemManager.GetEffectScale()[effectIndex], itemManager.GetEffectDulation()[effectIndex]);
 
             //미스도 투입되면
@@ -430,7 +430,7 @@ namespace beethoven3
             noteFileManager = new NoteFileManager();
             
             //노트파일 읽기 관리 생성
-            file = new File(startNoteManager, noteFileManager, badManager, scoreManager);
+            file = new File(startNoteManager, noteFileManager, badManager, scoreManager ,itemManager);
             
             //곡선택화면 곡 불러오는 폴더 
             String dir = "C:\\beethoven";
@@ -2133,6 +2133,10 @@ namespace beethoven3
                     StartChangedTime(gameTime);
 #if Kinect
                     HandleInput();
+
+                    collisionManager.CheckRightNoteInCenterArea();
+                    collisionManager.CheckLeftNoteInCenterArea();
+
 #endif
                     //3초만에 원상복귀
                     //       AutoRetrunChangeTempo(gameTime);
@@ -2198,7 +2202,7 @@ namespace beethoven3
 
                                 );
                             //파일 저장
-                            file = new File(startNoteManager, noteFileManager, badManager, scoreManager);
+                            file = new File(startNoteManager, noteFileManager, badManager, scoreManager, itemManager);
 
                             
 
@@ -2347,13 +2351,13 @@ namespace beethoven3
                         //이펙트 
                         int effectIndex = itemManager.getEffectIndex();
 
-                        perfectManager = new ExplosionManager();
+                        perfectManager = new PerfectExplosionManager();
                         perfectManager.ExplosionInit(itemManager.GetEffectTexture()[effectIndex], itemManager.GetEffectInitFrame()[effectIndex], itemManager.GetEffectFrameCount()[effectIndex], itemManager.GetEffectScale()[effectIndex], itemManager.GetEffectDulation()[effectIndex]);
 
-                        goodManager = new ExplosionManager();
+                        goodManager = new GoodExplosionManager();
                         goodManager.ExplosionInit(itemManager.GetGoodEffectTexture()[effectIndex], itemManager.GetEffectInitFrame()[effectIndex], itemManager.GetEffectFrameCount()[effectIndex], itemManager.GetEffectScale()[effectIndex], itemManager.GetEffectDulation()[effectIndex]);
 
-                        badManager = new ExplosionManager();
+                        badManager = new BadExplosionManager();
                         badManager.ExplosionInit(itemManager.GetBadEffectTexture()[effectIndex], itemManager.GetEffectInitFrame()[effectIndex], itemManager.GetEffectFrameCount()[effectIndex], itemManager.GetEffectScale()[effectIndex], itemManager.GetEffectDulation()[effectIndex]);
 
                         //미스도 투입되면

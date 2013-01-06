@@ -17,7 +17,7 @@ namespace beethoven3
         private static int FrameCount;
         private static float NoteSpeed;
         private static int CollisionRadius;
-        private static ExplosionManager BadManager;
+        private static BadExplosionManager BadManager;
         private static ScoreManager ScoreManager;
         
         #endregion
@@ -32,7 +32,7 @@ namespace beethoven3
             int frameCount,
             int collisionRadius,
             float noteSpeed,
-            ExplosionManager badManager,
+            BadExplosionManager badManager,
             ScoreManager scoreManager
             )
         {

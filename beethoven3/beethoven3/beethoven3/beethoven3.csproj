@@ -118,8 +118,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Effect\BadExplosionManager.cs" />
     <Compile Include="Effect\Explosion.cs" />
     <Compile Include="Effect\ExplosionSprite.cs" />
+    <Compile Include="Effect\GoodExplosionManager.cs" />
+    <Compile Include="Effect\PerfectExplosionManager.cs" />
     <Compile Include="File\DrawGuideLineInfo.cs" />
     <Compile Include="Item\BackgroundItemShop.cs" />
     <Compile Include="Effect\CollisionManager.cs" />

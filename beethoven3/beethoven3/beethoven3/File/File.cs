@@ -20,7 +20,11 @@ namespace beethoven3
         private NoteFileManager noteFileManager;
        //   private Queue allNotes = new Queue();
        //  private String[] noteContents;
+        private ItemManager itemManager;
+        
         private List<NoteInfo> arrayNotes = new List<NoteInfo>();
+
+
 
         private double noteTime;
         private bool newNote = true;
@@ -33,7 +37,7 @@ namespace beethoven3
         private int currentRightNoteIndex;
         private double time;
 
-        private ExplosionManager badManager;
+        private BadExplosionManager badManager;
 
         private ScoreManager scoreManager;
 
@@ -82,7 +86,7 @@ namespace beethoven3
         
         #region constructor
 
-        public File(StartNoteManager startNoteManager, NoteFileManager noteFileManager, ExplosionManager badManager, ScoreManager scoreManager)       
+        public File(StartNoteManager startNoteManager, NoteFileManager noteFileManager, BadExplosionManager badManager, ScoreManager scoreManager, ItemManager itemManager)       
         {
 
              this.startNoteManager = startNoteManager;
@@ -95,7 +99,7 @@ namespace beethoven3
 
              this.scoreManager = scoreManager;
              this.endFile = false;
-
+             this.itemManager = itemManager;
              
              newNote = true;
         }
@@ -803,7 +807,8 @@ namespace beethoven3
                 {
 
 
-                  //  badManager.AddExplosion(littleNote.Center, Vector2.Zero);
+                    badManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
+
                     StartNoteManager.rightNoteManager.LittleNotes.RemoveAt(i);
                     scoreManager.Bad = scoreManager.Bad + 1;
                     if (scoreManager.Combo > scoreManager.Max)
@@ -831,7 +836,7 @@ namespace beethoven3
 
                 if (littleNote.IsBoxColliding(MarkManager.centerArea))
                 {
-                //    badManager.AddExplosion(littleNote.Center, Vector2.Zero);
+                    badManager.AddExplosions(littleNote.Center);
                     StartNoteManager.leftNoteManager.LittleNotes.RemoveAt(i);
                     scoreManager.Bad = scoreManager.Bad + 1;
                     if (scoreManager.Combo > scoreManager.Max)
@@ -887,8 +892,8 @@ namespace beethoven3
         public void Update(SpriteBatch spriteBatch, GameTime gameTime, double changedTempo, double optionalTime)
         {
             //오른노트가 사각형 범위로 가면 지워지도록
-            CheckRightNoteInCenterArea();
-            CheckLeftNoteInCenterArea();
+         //   CheckRightNoteInCenterArea();
+         //   CheckLeftNoteInCenterArea();
             this.time += gameTime.ElapsedGameTime.TotalSeconds;
             FindNote(this.time, changedTempo, optionalTime);
         

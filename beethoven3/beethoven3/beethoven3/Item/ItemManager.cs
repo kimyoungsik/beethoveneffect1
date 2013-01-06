@@ -194,11 +194,11 @@ namespace beethoven3
             
             badEffectTexture[0] = cm.Load<Texture2D>(@"Explosion\windExplosion2");
             badEffectTexture[1] = cm.Load<Texture2D>(@"Explosion\needleExplosion2");
-            badEffectTexture[2] = cm.Load<Texture2D>(@"Explosion\leafExplosion");
+            badEffectTexture[2] = cm.Load<Texture2D>(@"Explosion\starExplosion2");
          
             missEffectTexture[0] = cm.Load<Texture2D>(@"Explosion\windExplosion2");
             missEffectTexture[1] = cm.Load<Texture2D>(@"Explosion\needleExplosion2");
-            missEffectTexture[2] = cm.Load<Texture2D>(@"Explosion\leafExplosion");
+            missEffectTexture[2] = cm.Load<Texture2D>(@"Explosion\starExplosion2");
          
        
 
