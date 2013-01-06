@@ -129,14 +129,17 @@ namespace beethoven3
 
             //GREAT-BAD-MISS-GOOD모든 이펙트가 다음과 같이 따라감
             //이펙트 특성 -start
-            effectInitFrams[0] = new Rectangle(0, 0, 156, 152);
+            
+            
+            effectInitFrams[0] = new Rectangle(0, 0, 166, 162);
             effectInitFrams[1] = new Rectangle(0, 0, 130, 122);
-            effectInitFrams[2] = new Rectangle(0, 0, 166, 162);
-        
+            effectInitFrams[2] = new Rectangle(0, 0, 156, 152);
 
-            effectFrameCount[0] = 6;
+            effectFrameCount[0] = 9;
             effectFrameCount[1] = 8;
-            effectFrameCount[2] = 9;
+            effectFrameCount[2] = 6;
+           
+            
            
             effecScale[0] = 1.0f;
             effecScale[1] = 1.0f;
@@ -145,7 +148,7 @@ namespace beethoven3
             //지속시간
             effectDulation[0] =  45;
             effectDulation[1] =  45;
-            effectDulation[2] = 45;
+            effectDulation[2] =  45;
            //이펙트 특성 -end
 
 
@@ -182,10 +185,11 @@ namespace beethoven3
 
             //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             //have to additem, effect, node , background
-
-            effectTexture[0] = cm.Load<Texture2D>(@"Explosion\windExplosion2");
+            effectTexture[0] = cm.Load<Texture2D>(@"Explosion\starExplosion");
             effectTexture[1] = cm.Load<Texture2D>(@"Explosion\needleExplosion2");
-            effectTexture[2] = cm.Load<Texture2D>(@"Explosion\starExplosion");
+            effectTexture[2] = cm.Load<Texture2D>(@"Explosion\windExplosion2");
+           
+            
             
 
             goodEffectTexture[0] = cm.Load<Texture2D>(@"Explosion\windExplosion2");

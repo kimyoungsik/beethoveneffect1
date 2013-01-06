@@ -115,35 +115,35 @@ namespace beethoven3
 
         //점수위치
         Vector2 scorePosition = new Vector2(705, 5);
+        ///***
+        ///////FMOD 선언 - START
+        //private FMOD.System sndSystem;
+        //private FMOD.Channel sndChannel = new FMOD.Channel();
+        //private FMOD.Sound sndSound = new FMOD.Sound();
+        //private FMOD.RESULT resultFmod;
+        //// private FMOD.DSPConnection dspconnectiontemp = null;
+        ///////FMOD 선언 - END
 
-        /////FMOD 선언 - START
-        private FMOD.System sndSystem;
-        private FMOD.Channel sndChannel = new FMOD.Channel();
-        private FMOD.Sound sndSound = new FMOD.Sound();
-        private FMOD.RESULT resultFmod;
-        // private FMOD.DSPConnection dspconnectiontemp = null;
-        /////FMOD 선언 - END
 
-
-        /////템포 관련 -START
-        //템포 변경 여부 -TRUE면 템포 변경된 상태
-        private bool isChangedTempo= false;
+      //  /////템포 관련 -START
+      //  //템포 변경 여부 -TRUE면 템포 변경된 상태
+      //  private bool isChangedTempo= false;
         
-        //변경된 템포
-        private double changedTempo = 0;
+      //  //변경된 템포
+      //  private double changedTempo = 0;
         
-        //기존 변경되기전 템포
-        private float basicFrequency = 0;
+      //  //기존 변경되기전 템포
+      //  private float basicFrequency = 0;
 
-        //템포 변하고 나서 변하는 시간
-        private double chagneLimitedTime = 0;
+      //  //템포 변하고 나서 변하는 시간
+      //  private double chagneLimitedTime = 0;
 
-        //템포 변경되면 다른 뒤의 모든 노트들에게 영향이 가는 시간의 량, 더하거나 빼준다.
-        private double optionalTime = 0;
-
-        //템포관련해서 한번만 실행 -- 임시로 넣은것
-        private bool oneTime = true;
-        /////템포 관련 -END
+      //  //템포 변경되면 다른 뒤의 모든 노트들에게 영향이 가는 시간의 량, 더하거나 빼준다.
+      //  private double optionalTime = 0;
+      //  ///***
+      //  //템포관련해서 한번만 실행 -- 임시로 넣은것
+      ////  private bool oneTime = true;
+      //  /////템포 관련 -END
 
       
         //마우스 상태 
@@ -271,11 +271,11 @@ namespace beethoven3
 
             /* 음원을 로드시킬 때 createStream 과 createSound 두가지가 있는 것을 확인할 수 있는데
  createStream은 배경음악을, createSound는 효과음을 넣는것이 좋습니다.*/
-
-            //FMOD 세팅 -START
-            resultFmod = FMOD.Factory.System_Create(ref sndSystem);
-            sndSystem.init(1, FMOD.INITFLAG.NORMAL, (IntPtr)null);
-            //FMOD 세팅 -END
+            ///***
+            ////FMOD 세팅 -START
+            //resultFmod = FMOD.Factory.System_Create(ref sndSystem);
+            //sndSystem.init(1, FMOD.INITFLAG.NORMAL, (IntPtr)null);
+            ////FMOD 세팅 -END
            
            //타이틀화면
             menuScene = new MenuScene();
@@ -315,12 +315,6 @@ namespace beethoven3
             memberManager = new MemberManager();
             memberManager.LoadContent(Content);
             memberManager.init();
-
-            /////기존 XNA MP3플레이 - 삭제 가능성 있음 //***
-            SoundManager.Init();
-            LoadSound();
-            /////
-            
 
             /////텍스쳐 로드 -START
             //배경
@@ -431,7 +425,8 @@ namespace beethoven3
             
             //노트파일 읽기 관리 생성
             file = new File(startNoteManager, noteFileManager, badManager, scoreManager ,itemManager);
-            
+
+            SoundFmod.initialize(file);
             //곡선택화면 곡 불러오는 폴더 
             String dir = "C:\\beethoven";
            
@@ -498,18 +493,6 @@ namespace beethoven3
 #endif
 
 
-        }
-
-     
-        //*** xna지원 mp3재생
-        public void LoadSound()
-        {
-            int count = SoundManager.sndFiles.Count();
-            for (int i = 0; i < count; i++)
-            {
-                SoundManager.soundEngine[i] = Content.Load<Song>(SoundManager.sndFiles[i]);
-           //     SoundManager.soundEngineInstance[i] = SoundManager.soundEngine[i].CreateInstance();
-            }
         }
 
 #if Kinect
@@ -807,119 +790,121 @@ namespace beethoven3
 
 
    
-
-        //템포변경
-        private void tempoChange(double changedT)
-        {
-            isChangedTempo = true;
+        ///***
+        ////템포변경
+        //private void tempoChange(double changedT)
+        //{
+        //    isChangedTempo = true;
 
             
-            this.changedTempo = changedT;
+        //    this.changedTempo = changedT;
 
-            float frequency = 0;
+        //    float frequency = 0;
             
-            //현재 템포 가져와소 float frequency에 넣기//resultFmod 는 성공여부만 나타남
-            resultFmod = sndChannel.getFrequency(ref frequency);
+        //    //현재 템포 가져와소 float frequency에 넣기//resultFmod 는 성공여부만 나타남
+        //    resultFmod = sndChannel.getFrequency(ref frequency);
          
-            //템포설정
-            sndChannel.setFrequency(frequency * (float)changedT);
+        //    //템포설정
+        //    sndChannel.setFrequency(frequency * (float)changedT);
             
-            //템포를 다른 노트 모두에 적용
-            file.ChangeArrayNoteTempo(changedT);
+        //    //템포를 다른 노트 모두에 적용
+        //    file.ChangeArrayNoteTempo(changedT);
 
-            //현재 설정된 두번째 가이드라인이 있으면 지움
-            GuideLineManager.DeleteAllSecondGuideLine();
+        //    //현재 설정된 두번째 가이드라인이 있으면 지움
+        //    GuideLineManager.DeleteAllSecondGuideLine();
         
 
-        }
+        //}
 
-
-        //템포 변경 전에 기본 템포를 저장해둠. 다시 롤백할 때 필요
-        public void SetBasicTempo()
-        {
-            if (!isChangedTempo)
-            {
-               sndChannel.getFrequency(ref basicFrequency);
-            }
-        }
-
-        //이전에 설정한 기본 템포로 돌아감 
-        public void ReturnBasicTempo()
-        {
-            if (basicFrequency != 0)
-            {
-                sndChannel.setFrequency(basicFrequency);
-                isChangedTempo = false;
-                changedTempo = 0;
-            }
-        }
-
-        //일단 안쓰임
-        //일정 시간이 지나면 다시 원래 템포로 돌아옴
-        //private void AutoRetrunChangeTempo(GameTime gameTime)
+        /////***
+        ////템포 변경 전에 기본 템포를 저장해둠. 다시 롤백할 때 필요
+        //public void SetBasicTempo()
         //{
+        //    if (!isChangedTempo)
+        //    {
+        //       sndChannel.getFrequency(ref basicFrequency);
+        //    }
+        //}
+
+        ////이전에 설정한 기본 템포로 돌아감 
+        //public void ReturnBasicTempo()
+        //{
+        //    if (basicFrequency != 0)
+        //    {
+        //        sndChannel.setFrequency(basicFrequency);
+        //        isChangedTempo = false;
+        //        changedTempo = 0;
+        //    }
+        //}
+
+        ////일단 안쓰임
+        ////일정 시간이 지나면 다시 원래 템포로 돌아옴
+        ////private void AutoRetrunChangeTempo(GameTime gameTime)
+        ////{
+        ////    if (isChangedTempo)
+        ////    {              
+        ////        //처음시작 
+        ////        chagneLimitedTime += gameTime.ElapsedGameTime.TotalMilliseconds;
+        ////        //Trace.WriteLine(chagneLimitedTime.ToString());
+                
+                
+        ////        if (chagneLimitedTime >= 3000 && oneTime)
+        ////        {
+        ////            optionalTime =( 3 - (3 / this.changedTempo) ) *-1;
+        ////                //템포가 4배가 된상태에서 1초동안 지속이 된다면 모두 1-  1/4   0.75초씩 줄여야 한다ㅣ
+        ////            oneTime = false;
+        ////            ReturnBasicTempo();
+        ////        }   
+        ////    }
+        ////}
+
+        /////***
+        //////템포가 변하고나서 얼마나 변했는지 시간을 재는데 사용
+        //private void StartChangedTime(GameTime gameTime)
+        //{
+            
         //    if (isChangedTempo)
-        //    {              
+        //    {
         //        //처음시작 
-        //        chagneLimitedTime += gameTime.ElapsedGameTime.TotalMilliseconds;
-        //        //Trace.WriteLine(chagneLimitedTime.ToString());
-                
-                
-        //        if (chagneLimitedTime >= 3000 && oneTime)
-        //        {
-        //            optionalTime =( 3 - (3 / this.changedTempo) ) *-1;
-        //                //템포가 4배가 된상태에서 1초동안 지속이 된다면 모두 1-  1/4   0.75초씩 줄여야 한다ㅣ
-        //            oneTime = false;
-        //            ReturnBasicTempo();
-        //        }   
+        //        chagneLimitedTime += gameTime.ElapsedGameTime.TotalMilliseconds;  
         //    }
         //}
 
 
-        ////템포가 변하고나서 얼마나 변했는지 시간을 재는데 사용
-        private void StartChangedTime(GameTime gameTime)
-        {
-            
-            if (isChangedTempo)
-            {
-                //처음시작 
-                chagneLimitedTime += gameTime.ElapsedGameTime.TotalMilliseconds;  
-            }
-        }
-
-
-        //다시 원점으로 돌아갈 때 쓰임 
+        ////다시 원점으로 돌아갈 때 쓰임 
         
-        //늘어나거나 줄어드는 양을 계산해주고 
-        
-        private void SetOptionalTime()
-        {
-            //임시로 넣은 것일 뿐
-            if (oneTime)
-            {
-                //템포 다시 원상복귀
-                file.ChangeArrayNoteTempoBack(this.changedTempo);
+        ////늘어나거나 줄어드는 양을 계산해주고 
+        ///// <summary>
+        ///// ***
+        ///// </summary>
+        //private void SetOptionalTime()
+        //{
+        //    //임시로 넣은 것일 뿐
+        //    if (oneTime)
+        //    {
+        //        //템포 다시 원상복귀
+        //        file.ChangeArrayNoteTempoBack(this.changedTempo);
            
-                double time = 0;
+        //        double time = 0;
 
-                //옵션 계산
-                time = ((this.chagneLimitedTime / 1000) - ((this.chagneLimitedTime / 1000) / this.changedTempo)) * -1;
+        //        //옵션 계산
+        //        time = ((this.chagneLimitedTime / 1000) - ((this.chagneLimitedTime / 1000) / this.changedTempo)) * -1;
                                 
-                optionalTime += time;
+        //        optionalTime += time;
 
-                //각 노트 시작에 옵션을 더함
-                file.OptionalArrayNote(optionalTime);
+        //        //각 노트 시작에 옵션을 더함
+        //        file.OptionalArrayNote(optionalTime);
                 
-                //템포가 0.9배가 된상태에서 1초동안 지속이 된다면 모두 4-  4/4   3초씩 줄여야 한다ㅣ
+        //        //템포가 0.9배가 된상태에서 1초동안 지속이 된다면 모두 4-  4/4   3초씩 줄여야 한다ㅣ
                 
-                oneTime = false;
-                chagneLimitedTime = 0;
+        //        oneTime = false;
+        //        chagneLimitedTime = 0;
                 
 
-                //원래 템포로 돌아감
-                ReturnBasicTempo();
-            }   
-        }
+        //        //원래 템포로 돌아감
+        //        ReturnBasicTempo();
+        //    }   
+        //}
 
         //상점안에서 상점 대문으로 가는 키보드 처리
         private void HandleKeyboardInputinShopDoor(KeyboardState keyState)
@@ -948,8 +933,8 @@ namespace beethoven3
         {
             if (keyState.IsKeyDown(Keys.B))
             {
-                sndSystem.createSound("C:\\beethoven\\"+noteFileManager, FMOD.MODE.HARDWARE, ref sndSound);
-                sndSystem.playSound(CHANNELINDEX.FREE, sndSound, false, ref sndChannel);
+                SoundFmod.sndSystem.createSound("C:\\beethoven\\" + noteFileManager, FMOD.MODE.HARDWARE, ref SoundFmod.sndSound);
+                SoundFmod.sndSystem.playSound(CHANNELINDEX.FREE, SoundFmod.sndSound, false, ref SoundFmod.sndChannel);
 
               
             }
@@ -959,10 +944,10 @@ namespace beethoven3
                // sndChannel.setFrequency(60000.0f);
                 //임시
                 //BOOL 은 일단 임시로 
-                oneTime = true;
-                if (!isChangedTempo)
+                SoundFmod.oneTime = true;
+                if (!SoundFmod.isChangedTempo)
                 {
-                    tempoChange(1.2f);
+                    SoundFmod.tempoChange(1.2f);
 
                     //2의 템포가 2초동안 빨라지는 ㅔ
                 }
@@ -974,12 +959,12 @@ namespace beethoven3
                 // sndChannel.setFrequency(60000.0f);
                 //임시
                 //BOOL 은 일단 임시로 
-                oneTime = true;
-                if (!isChangedTempo)
+                SoundFmod.oneTime = true;
+                if (!SoundFmod.isChangedTempo)
                 {
 
                     //그 양만큼 템포 조절됨
-                    tempoChange(0.8f);
+                    SoundFmod.tempoChange(0.8f);
 
                     //2의 템포가 2초동안 빨라지는 ㅔ
                 }
@@ -990,7 +975,7 @@ namespace beethoven3
                // sndChannel.setFrequency(44100.0f);
                // ReturnBasicTempo();
 
-                SetOptionalTime();
+                SoundFmod.SetOptionalTime();
             }
 
              if (keyState.IsKeyDown(Keys.F))
@@ -2124,7 +2109,7 @@ namespace beethoven3
                     startNoteManager.Update(gameTime);
                     HandleKeyboardInput(Keyboard.GetState());
                     HandleMouseInput(Mouse.GetState());
-                    file.Update(spriteBatch, gameTime, this.changedTempo, this.optionalTime);
+                    file.Update(spriteBatch, gameTime, SoundFmod.changedTempo, SoundFmod.optionalTime);
                     DragNoteManager.Update(gameTime);
                     GoldManager.Update(gameTime);
                     perfectManager.Update(gameTime);
@@ -2133,7 +2118,7 @@ namespace beethoven3
                     goldGetManager.Update(gameTime);
                     scoreManager.Update(gameTime);
                     memberManager.Update(gameTime);            
-                    StartChangedTime(gameTime);
+                    SoundFmod.StartChangedTime(gameTime);
 #if Kinect
                     HandleInput();
 
@@ -2384,9 +2369,9 @@ namespace beethoven3
                     
                     //노래찾아서 재생하기    
                     //*** 재생시간동안 로딩
-                   
-                        sndSystem.createSound(songsDir + noteFileManager.noteFiles[resultSongMenu].Mp3, FMOD.MODE.HARDWARE, ref sndSound);
-                        sndSystem.playSound(CHANNELINDEX.FREE, sndSound, false, ref sndChannel);
+
+                        SoundFmod.sndSystem.createSound(songsDir + noteFileManager.noteFiles[resultSongMenu].Mp3, FMOD.MODE.HARDWARE, ref SoundFmod.sndSound);
+                        SoundFmod.sndSystem.playSound(CHANNELINDEX.FREE, SoundFmod.sndSound, false, ref SoundFmod.sndChannel);
                     }
 
                     break;
@@ -2496,8 +2481,7 @@ namespace beethoven3
                 spriteBatch.DrawString(pericles36Font, scoreManager.Max.ToString(), new Vector2(scorePosition.X + 240, scorePosition.Y), Color.Black);
 
                 //기본 템포 설정( 템포가 바뀐상태이면 안변함)
-                SetBasicTempo();
-
+                SoundFmod.SetBasicTempo();
                 //512, 454 중심
                 ////test
 

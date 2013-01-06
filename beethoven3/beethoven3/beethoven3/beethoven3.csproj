@@ -164,10 +164,10 @@
     <Compile Include="Item\ShopDoor.cs" />
     <Compile Include="Score\ScoreInfoManager.cs" />
     <Compile Include="Menu\SongMenu.cs" />
-    <Compile Include="Sound\SoundManager.cs" />
     <Compile Include="Effect\Sprite.cs" />
     <Compile Include="Marker\StartNote.cs" />
     <Compile Include="Marker\StartNoteManager.cs" />
+    <Compile Include="Sound\SoundFmod.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />
