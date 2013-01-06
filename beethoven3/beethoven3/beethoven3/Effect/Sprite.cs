@@ -165,15 +165,15 @@ namespace beethoven3
 
         #region collision
 
-        public Rectangle BoundingBoxRect
+        public Rectangle BoundingBoxRect 
         {
             get
             {
                 return new Rectangle(
                     (int)location.X + BoundingXPadding,
                     (int)location.Y + BoundingYPadding,
-                    frameWidth - (BoundingXPadding * 2),
-                    frameHeight - (BoundingYPadding * 2));
+                    (int)(frameWidth*scale) - (BoundingXPadding * 2),
+                    (int)(frameHeight*scale)  - (BoundingYPadding * 2));
             }
         }
 

@@ -184,13 +184,14 @@ namespace beethoven3
         //놓친 노트가 없어지는 곳
         //the place where miss note disapper
         //마커 패턴에 따라 달라져야 함. 
-        private Rectangle removeAreaRec = new Rectangle(0, 0, 0, 0);
+      //  private Rectangle removeAreaRec = new Rectangle(0, 0, 0, 0);
 
         /////Texture end 
 
 
         /////키넥트 관련 선언 - START
         //for kinect
+        public static Texture2D idot;
 #if Kinect
         //키넥트
         KinectSensor nui = null;
@@ -402,6 +403,7 @@ namespace beethoven3
             //마커 위치 처음 시작은 일단 마커매니저의 제일 0번째 것으로 시작
             Vector2[] initMarkLocation = MarkManager.GetPattern(0);
 
+        //    removeAreaRec = MarkManager.GetRemoveArea(0);
 
             //마크 관리 초기화 (STATIC)
             //***시작시 마커 위치에 관한 사항 결정 못함.  
@@ -415,8 +417,8 @@ namespace beethoven3
                 initMarkLocation[3],
                 initMarkLocation[4],
                 initMarkLocation[5],
-                startNoteManager,
-                removeAreaRec
+                startNoteManager
+                
                 );
 
            
@@ -485,6 +487,7 @@ namespace beethoven3
             reportManager.LoadGoldFromFile();
 
             currentSongName = "";
+            idot = Content.Load<Texture2D>("Bitmap2");
 #if Kinect
             idot1 = Content.Load<Texture2D>("Bitmap1");
             idot2 = Content.Load<Texture2D>("Bitmap2");
@@ -802,6 +805,8 @@ namespace beethoven3
         }
 #endif
 
+
+   
 
         //템포변경
         private void tempoChange(double changedT)
@@ -2162,8 +2167,13 @@ namespace beethoven3
                             //Vector2 mark6Location = MarkManager.Marks[5].MarkSprite.Location;
 
                             //현재 위치 말고, 기본은 0으로 해놓고
+
+
+                            Vector2 markerSize = MarkManager.GetMarkerSize();
+
+
                             Vector2[] zeroIndexMarkers = MarkManager.GetPattern(0);
-                            
+                         //   removeAreaRec = MarkManager.GetRemoveArea(0);
                             //두번째꺼 재실행시 이상한거 생기는것 방지
                             startNoteManager = new StartNoteManager(
                                 spriteSheet,
@@ -2183,8 +2193,8 @@ namespace beethoven3
                                 zeroIndexMarkers[3],
                                 zeroIndexMarkers[4],
                                 zeroIndexMarkers[5],
-                                startNoteManager,
-                                removeAreaRec
+                                startNoteManager
+                               
 
                                 );
                             //파일 저장
@@ -2285,10 +2295,45 @@ namespace beethoven3
 
                         //***마커리스트에 맞는 =>>itemManager로 옮김
                         float[] markersScale = itemManager.GetMarkersScale();
-                        
 
+                       
+
+                       
+                        
                         //현재 장착한 마커로 설정//(마커,마커의 rect크기. scale)
+                        //개별 마커및 전체 마커에도 설정함
                         MarkManager.chageMarksImages(markersTextures[itemManager.getNoteIndex()], new Rectangle(0,0,markersTextures[itemManager.getNoteIndex()].Width,markersTextures[itemManager.getNoteIndex()].Height), markersScale[0]);
+                        
+                        //노트 사라지는 영역 지정을 위해 사용
+                        Vector2 markerSize = MarkManager.GetMarkerSize();
+
+                        //일단 처음은 항상 0 부터 시작
+                      //  MarkManager.GetPattern(0, (int)markerSize.X, (int)markerSize.Y);
+                        MarkManager.SetRemoveArea(0, (int)markerSize.X, (int)markerSize.Y);
+                     
+
+                      //  Vector2[] zeroIndexMarkers = MarkManager.GetPattern(0, (int)markerSize.X, (int)markerSize.Y);
+                        //   removeAreaRec = MarkManager.GetRemoveArea(0);
+                  
+
+ 
+                        //MarkManager.initialize(
+                        //    // markManager = new MarkManager(
+                        //    markersTextures[itemManager.getNoteIndex()],
+                        //   new Rectangle(0, 0, markersTextures[itemManager.getNoteIndex()].Width, markersTextures[itemManager.getNoteIndex()].Height),
+                        //    1,
+                        //    zeroIndexMarkers[0],
+                        //    zeroIndexMarkers[1],
+                        //    zeroIndexMarkers[2],
+                        //    zeroIndexMarkers[3],
+                        //    zeroIndexMarkers[4],
+                        //    zeroIndexMarkers[5],
+                        //    startNoteManager,
+                        //    markersScale[0]
+
+
+                        //    );
+
 
                         /////이펙트 생성 -START
                         Texture2D[] explosionTexture = itemManager.GetEffectTexture();
@@ -2434,7 +2479,7 @@ namespace beethoven3
                 goldGetManager.Draw(spriteBatch);
                 
                 //가운데 빨간 사각형 주석하면 보이지않는다.
-                //     spriteBatch.Draw(dot, removeAreaRec, Color.Red);
+            //    spriteBatch.Draw(idot, removeAreaRec, Color.Red);
                 
                 //콤보 글씨
                 spriteBatch.DrawString(pericles36Font, scoreManager.Combo.ToString(), new Vector2(512, 420), Color.Black);

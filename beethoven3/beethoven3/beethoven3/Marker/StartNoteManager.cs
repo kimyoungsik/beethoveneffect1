@@ -159,7 +159,7 @@ namespace beethoven3
         //매개변수로 들어오는 markNumber가 (1베이스) 시작 노트의 위치이다. 
 
         //반환 : 노트의 객체
-        public RightNoteInfo MakeRightNote(int markNumber)
+        public void MakeRightNote(int markNumber)
         {
             
             Vector2 location = StartNotes[markNumber-1].StartNoteSprite.Location;
@@ -170,9 +170,9 @@ namespace beethoven3
             //속도 1로 맞추기 
             direction.Normalize();
 
-            RightNoteInfo rightNoteInfo = rightNoteManager.MakeNote(location, direction,/*시작 노트의 위치*/markNumber);
+        rightNoteManager.MakeNote(location, direction,/*시작 노트의 위치*/markNumber);
 
-            return rightNoteInfo;
+          //  return rightNoteInfo;
 
         }
 
@@ -190,19 +190,7 @@ namespace beethoven3
             leftNoteManager.MakeNote(location, direction,/*시작 노트의 위치*/markNumber);
         }
 
-        //public void MakeDoubleNote(int markNumber)
-        //{
-        //    //노트시작점의 위치
-        //    Vector2 location = StartNotes[markNumber].StartNoteSprite.Location;
-
-        //    //노트시작점에서 마크의 방향
-        //    Vector2 direction =
-        //                    MarkManager.Marks[markNumber].MarkSprite.Location -
-        //                    location;
-        //    direction.Normalize();
-        //    doubleNoteManager.MakeNote(location, direction);
-        //}
-
+  
         public void MakeLongNote(int markNumber)
         {
             //노트시작점의 위치

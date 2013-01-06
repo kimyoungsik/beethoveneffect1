@@ -451,7 +451,7 @@ namespace beethoven3
                 if (processTime < endPatternChangeTime && processTime > startPatternChangeTime)
                 {
                     patternChanging = true;
-
+                    
 
                     //현재 진행 상황, 진행이 많이 될수록 값이 적게 나온다.
                     double diffrence = endPatternChangeTime - processTime;
@@ -461,14 +461,18 @@ namespace beethoven3
                         changedMarks[i].X = GetLocation(initMarkersLocation[i].X, Endlocations[i].X, lastingTime - diffrence, lastingTime);
                         changedMarks[i].Y = GetLocation(initMarkersLocation[i].Y, Endlocations[i].Y,  lastingTime - diffrence, lastingTime);
                     }
-
-
                     MarkManager.changeMarkPattern(changedMarks[0], changedMarks[1], changedMarks[2], changedMarks[3], changedMarks[4], changedMarks[5]);
 
+                    Vector2 markerSize = MarkManager.GetMarkerSize();
+                    MarkManager.SetRemoveArea(changedMarks[0], changedMarks[5], (int)markerSize.X, (int)markerSize.Y);
+            
+                           
                 }
                 else if (processTime <= startPatternChangeTime)
                 {
                     patternChanging = true;
+                    
+                   
                 }
                 else
                 {
@@ -513,7 +517,7 @@ namespace beethoven3
                         {
                             //시간에 맞춰서 뿌려줘야 함. 
                             //notecontent[2] => 마커위치
-                            RightNoteInfo rightNote = startNoteManager.MakeRightNote(arrayNotes[0].MarkLocation);
+                            startNoteManager.MakeRightNote(arrayNotes[0].MarkLocation);
 
                             try
                             {
@@ -613,9 +617,10 @@ namespace beethoven3
                             //이미 저장되어 있는 인덱스에 따른 패튼 가져오기
                             //Get some patterns which is alread stored according to the index
 
+                           // Vector2 markerSize = MarkManager.GetMarkerSize();
                             Endlocations = MarkManager.GetPattern(arrayNotes[0].MarkLocation);
 
-                           
+                            
                             //패턴이 변하는 중이 아니라면 처음 마커위치를 가져온다. 
                            // if(!isFirstGettingMarker)
                            // {
@@ -632,39 +637,6 @@ namespace beethoven3
                             //lastingtime
                              lastingTime = endPatternChangeTime - arrayNotes[0].StartTime;
                              patternChanging = true;
-//                            //진행시간이 끝나는 시간보다 적을 때
-//                            if (processTime < endPatternChangeTime && processTime > arrayNotes[0].StartTime)
-//                            {
-//                                patternChanging = true;
-                                
-
-//                                //현재 진행 상황, 진행이 많이 될수록 값이 적게 나온다.
-//                                double diffrence = endPatternChangeTime - processTime;
-
-
-//                                for (i = 0; i < 6; i++)
-//                                {
-//                                    changedMarks[i].X = GetLocation(Endlocations[i].X, initMarkersLocation[i].X, lastingTime - diffrence, lastingTime);
-//                                    changedMarks[i].Y = GetLocation(Endlocations[i].Y, initMarkersLocation[i].Y, lastingTime - diffrence, lastingTime);
-//                                }
-
-
-//                                MarkManager.changeMarkPattern(changedMarks[0], changedMarks[1], changedMarks[2], changedMarks[3], changedMarks[4], changedMarks[5]);
-
-//                            }
-//                            else if (processTime <= arrayNotes[0].StartTime)
-//                            {
-//                                patternChanging = true;
-//                            }
-//                            else
-//                            {
-//                                patternChanging = false;
-////isFirstGettingMarker = false;
-//                            }
-
-                            //명령하는 위치로 패턴 변환
-                            //locatinos make the pattern location change
-                           // MarkManager.changeMarkPattern(locations[0], locations[1], locations[2], locations[3], locations[4], locations[5]);
                         }
 
 

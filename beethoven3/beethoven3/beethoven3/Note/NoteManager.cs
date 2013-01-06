@@ -87,7 +87,7 @@ namespace beethoven3
 
         //반환 : 각 노트의 객체
 
-        public RightNoteInfo MakeNote(
+        public void MakeNote(
             Vector2 location,
             Vector2 velocity,
             /*시작노트의 위치(1베이스)*/
@@ -118,8 +118,8 @@ namespace beethoven3
             LittleNotes.Add(thisNote);
 
             //객체와 index를 넘김
-            RightNoteInfo rightNoteInfo = new RightNoteInfo(thisNote, LittleNotes.Count - 1);
-            return rightNoteInfo;
+        //    RightNoteInfo rightNoteInfo = new RightNoteInfo(thisNote, LittleNotes.Count - 1);
+          //  return rightNoteInfo;
         }
         #endregion
 

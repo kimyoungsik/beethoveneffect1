@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-
+using System.Diagnostics;
 namespace beethoven3
 {
     static class MarkManager
@@ -33,6 +33,9 @@ namespace beethoven3
 
         //마커와 노트시작 사이의 거리
         public static float distance = 300.0f;
+
+
+       
         #endregion
          
         #region initialization
@@ -50,15 +53,17 @@ namespace beethoven3
             Vector2 mark4Loc,
             Vector2 mark5Loc,
             StartNoteManager startNoteMana,
+            float Scale = 1.0f
             /*지워지는 영역*/
-            Rectangle area
+        //    Rectangle area
+            //GETPATTEN 함수 실행시에 지정되도록 한다,. 
             )
         {
             markTexture = texture;
             markInitialFrame = initialFrame;
             markFrameCount = frameCount;
-            centerArea = area;
-
+        //    centerArea = area;
+            scale = Scale;
             startNoteManager = startNoteMana;
             //새로 넣기 전에 지워주기 
             if (Marks.Count > 0)
@@ -89,6 +94,8 @@ namespace beethoven3
             startNoteManager.addStartNote(GetStartNoteLocation(mark3Loc, distance, 3));
             startNoteManager.addStartNote(GetStartNoteLocation(mark4Loc, distance, 4));
             startNoteManager.addStartNote(GetStartNoteLocation(mark5Loc, distance, 5));
+
+            
         }
         #endregion
 
@@ -126,22 +133,42 @@ namespace beethoven3
             }
         }
 
-        public static void chageMarksImages(Texture2D texture, Rectangle rect, float scale)
+        public static void chageMarksImages(Texture2D Texture, Rectangle Rect, float Scale)
         {
+
+            markTexture = Texture;
+            markInitialFrame = Rect;
+            scale = Scale;
+
             for (int i = 0; i < Marks.Count; i++)
             {
-                Marks[i].MarkSprite.Texture = texture;
+                Marks[i].MarkSprite.Texture = Texture;
 
                 //각 크기 값을 정해놓은 frame을 바꾼다.
-                Marks[i].MarkSprite.ChangeFrameRect(rect);
+                Marks[i].MarkSprite.ChangeFrameRect(Rect);
                // markInitialFrame = rect;
                 Marks[i].MarkSprite.Scale = scale;
 
                 //반지름
-                int radius = (int)((rect.Width * scale) / 2);
+                int radius = (int)((Rect.Width * Scale) / 2);
                 Marks[i].MarkSprite.CollisionRadius = radius;
             }
 
+        }
+
+
+        //마커의 정확한 가로 세로 길이를 반환한다.
+        //노트를 지우는 영역을 만드는데 필요하다.
+
+        public static Vector2 GetMarkerSize()
+        {
+            Vector2 size;
+
+
+            size.X = markTexture.Width * scale;
+            size.Y = markTexture.Height * scale;
+
+            return size;
         }
 
 
@@ -162,8 +189,40 @@ namespace beethoven3
 
         }
 
+        //0번과 5번 마커 위치 필요
+        public static void SetRemoveArea(Vector2 mark0Loc, Vector2 mark5Loc, int MarkWidth, int MarkHeight)
+        {
+
+            centerArea = new Rectangle((int)mark0Loc.X + MarkWidth, (int)mark0Loc.Y + MarkHeight / 2, (int)mark5Loc.X - ((int)mark0Loc.X + MarkWidth), (int)mark5Loc.Y - ((int)mark0Loc.Y));
+  
+
+       }
+
+        //INDEX필요 
+        public static void SetRemoveArea(int patternIndex, int MarkWidth, int MarkHeight)
+        {
+
+            Vector2[] markLoc = GetPattern(patternIndex);
+
+
+            centerArea = new Rectangle((int)markLoc[0].X + MarkWidth, (int)markLoc[0].Y + MarkHeight / 2, (int)markLoc[5].X - ((int)markLoc[0].X + MarkWidth), (int)markLoc[5].Y - ((int)markLoc[0].Y));
+
+
+        }
+
         public static Vector2[] GetPattern(int index)
         {
+            //마커 가로길이 , 마크 없어지는 영역 지정을 위해
+            
+            
+            ////초기에는 마커가 없다. 
+            //if (Marks != null)
+            //{
+            //    markWidth = Marks[0].MarkSprite.Texture.Width;
+            //}
+           
+          
+
             Vector2[] vectorarray = new Vector2[6];
 
             Vector2 mark0Loc = Vector2.Zero;
@@ -173,43 +232,57 @@ namespace beethoven3
             Vector2 mark4Loc = Vector2.Zero;
             Vector2 mark5Loc = Vector2.Zero;
 
-            
-            if (index == 0)
+            switch (index)
             {
-                mark0Loc = new Vector2(250, 260); 
-                mark1Loc = new Vector2(220, 420);
-                mark2Loc = new Vector2(330, 580);
-                mark3Loc = new Vector2(620, 260);
-                mark4Loc = new Vector2(650, 420);
-                mark5Loc = new Vector2(550, 580);
+                case 0:
+                    mark0Loc = new Vector2(250, 260);
+                    mark1Loc = new Vector2(210, 420);
+                    mark2Loc = new Vector2(250, 580);
+                    mark3Loc = new Vector2(620, 260);
+                    mark4Loc = new Vector2(660, 420);
+                    mark5Loc = new Vector2(620, 580);
+
+                  
+                    break;
+
+                case 1:
+
+                    mark0Loc = new Vector2(200, 240);
+                    mark1Loc = new Vector2(140, 420);
+                    mark2Loc = new Vector2(200, 620);
+                    mark3Loc = new Vector2(680, 240);
+                    mark4Loc = new Vector2(740, 420);
+                    mark5Loc = new Vector2(680, 620);
+                 //   centerArea = new Rectangle(250, 260, 220, 320);
+                    break;
+
+                case 2:
+
+                    mark0Loc = new Vector2(300, 280);
+                    mark1Loc = new Vector2(260, 420);
+                    mark2Loc = new Vector2(300, 560);
+                    mark3Loc = new Vector2(570, 280);
+                    mark4Loc = new Vector2(610, 420);
+                    mark5Loc = new Vector2(570, 560);
+              //      centerArea = new Rectangle(250, 260, 220, 320);
+                    break;
+
+                    
 
             }
-            else if (index == 1)
-            {
-
-                mark0Loc = new Vector2(200, 240);
-                mark1Loc = new Vector2(150, 420);
-                mark2Loc = new Vector2(260, 620);
-                mark3Loc = new Vector2(680, 240);
-                mark4Loc = new Vector2(730, 420);
-                mark5Loc = new Vector2(610, 620);
-            }
-            else if (index == 2)
-            {
-
-                mark0Loc = new Vector2(300, 280);
-                mark1Loc = new Vector2(270, 420);
-                mark2Loc = new Vector2(360, 560);
-                mark3Loc = new Vector2(570, 280);
-                mark4Loc = new Vector2(600, 420);
-                mark5Loc = new Vector2(520, 560);
-            }
+           
             vectorarray[0] = mark0Loc;
             vectorarray[1] = mark1Loc;
             vectorarray[2] = mark2Loc;
             vectorarray[3] = mark3Loc;
             vectorarray[4] = mark4Loc;
             vectorarray[5] = mark5Loc;
+
+
+            //마커 없어지는 영역
+               //마크 가장 왼쪽 위치 + 마크 가로길이 , 마크 가장 오른쪽 위치 + 마크가로길이 
+          //  centerArea = new Rectangle((int)mark0Loc.X , (int)mark0Loc.Y, (int)mark5Loc.X - (int)mark0Loc.X, (int)mark5Loc.Y - (int)mark0Loc.Y);
+  
 
             return vectorarray;
         }
@@ -428,6 +501,9 @@ namespace beethoven3
             {
                 mark.Update(gameTime);
             }
+
+           
+                
         }
 
         public static void Draw(SpriteBatch spriteBatch)
@@ -436,6 +512,9 @@ namespace beethoven3
             {
                 mark.Draw(spriteBatch);
             }
+            spriteBatch.Draw(Game1.idot, centerArea, Color.Red);
+
+            Trace.WriteLine(centerArea);
         }
         #endregion
     }
