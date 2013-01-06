@@ -791,63 +791,64 @@ namespace beethoven3
 
         }
 
+        //이거는 collinsion으로 옮겨감
 
-        /// <summary>
-        /// 오른 손 노트 사각형 범위 들어가면 삭제 , 반복문 돌 필요가 없는지 다시 검토
-        /// </summary>
-        public void CheckRightNoteInCenterArea()
-        {
-            int i;
-            for (i=0; i<StartNoteManager.rightNoteManager.LittleNotes.Count; i++ )
-            {
-                 Sprite littleNote = StartNoteManager.rightNoteManager.LittleNotes[i];
+        ///// <summary>
+        ///// 오른 손 노트 사각형 범위 들어가면 삭제 , 반복문 돌 필요가 없는지 다시 검토
+        ///// </summary>
+        //public void CheckRightNoteInCenterArea()
+        //{
+        //    int i;
+        //    for (i=0; i<StartNoteManager.rightNoteManager.LittleNotes.Count; i++ )
+        //    {
+        //         Sprite littleNote = StartNoteManager.rightNoteManager.LittleNotes[i];
 
                 
-                if (littleNote.IsBoxColliding(MarkManager.centerArea))
-                {
+        //        if (littleNote.IsBoxColliding(MarkManager.centerArea))
+        //        {
 
 
-                    badManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
+        //            badManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
 
-                    StartNoteManager.rightNoteManager.LittleNotes.RemoveAt(i);
-                    scoreManager.Bad = scoreManager.Bad + 1;
-                    if (scoreManager.Combo > scoreManager.Max)
-                    {
-                        scoreManager.Max = scoreManager.Combo;
-                    }
+        //            StartNoteManager.rightNoteManager.LittleNotes.RemoveAt(i);
+        //            scoreManager.Bad = scoreManager.Bad + 1;
+        //            if (scoreManager.Combo > scoreManager.Max)
+        //            {
+        //                scoreManager.Max = scoreManager.Combo;
+        //            }
 
 
-                    scoreManager.Combo = 0;
-                    scoreManager.Gage = scoreManager.Gage - 1;
-                }
+        //            scoreManager.Combo = 0;
+        //            scoreManager.Gage = scoreManager.Gage - 1;
+        //        }
             
-            }
+        //    }
             
 
-        }
+        //}
 
-        public void CheckLeftNoteInCenterArea()
-        {
-            int i;
-            for (i = 0; i < StartNoteManager.leftNoteManager.LittleNotes.Count; i++)
-            {
-                Sprite littleNote = StartNoteManager.leftNoteManager.LittleNotes[i];
+        //public void CheckLeftNoteInCenterArea()
+        //{
+        //    int i;
+        //    for (i = 0; i < StartNoteManager.leftNoteManager.LittleNotes.Count; i++)
+        //    {
+        //        Sprite littleNote = StartNoteManager.leftNoteManager.LittleNotes[i];
 
 
-                if (littleNote.IsBoxColliding(MarkManager.centerArea))
-                {
-                    badManager.AddExplosions(littleNote.Center);
-                    StartNoteManager.leftNoteManager.LittleNotes.RemoveAt(i);
-                    scoreManager.Bad = scoreManager.Bad + 1;
-                    if (scoreManager.Combo > scoreManager.Max)
-                    {
-                        scoreManager.Max = scoreManager.Combo;
-                    }
-                    scoreManager.Combo = 0;
+        //        if (littleNote.IsBoxColliding(MarkManager.centerArea))
+        //        {
+        //            badManager.AddExplosions(littleNote.Center);
+        //            StartNoteManager.leftNoteManager.LittleNotes.RemoveAt(i);
+        //            scoreManager.Bad = scoreManager.Bad + 1;
+        //            if (scoreManager.Combo > scoreManager.Max)
+        //            {
+        //                scoreManager.Max = scoreManager.Combo;
+        //            }
+        //            scoreManager.Combo = 0;
 
-                }
-            }
-        }
+        //        }
+        //    }
+        //}
 
 
         public int checkLongNoteToMarker(int number)

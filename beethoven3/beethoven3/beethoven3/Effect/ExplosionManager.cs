@@ -15,9 +15,11 @@ namespace beethoven3
         private Texture2D texture;
         private Rectangle initialFrame;
         private float scale;
-        private int frameCount;
+        private int frameCount;  
         private int duration;
-        public List<Explosion> Explosions = new List<Explosion>();
+
+        //public => private // 삭제 영역에 들어가면 삭제 되는 곳에서 발견 // 내 생각엔 특별히 public으로 할 이유가 없다. 
+        private List<Explosion> Explosions = new List<Explosion>();
         
        
         #endregion

@@ -193,7 +193,7 @@ namespace beethoven3
         public static void SetRemoveArea(Vector2 mark0Loc, Vector2 mark5Loc, int MarkWidth, int MarkHeight)
         {
 
-            centerArea = new Rectangle((int)mark0Loc.X + MarkWidth, (int)mark0Loc.Y + MarkHeight / 2, (int)mark5Loc.X - ((int)mark0Loc.X + MarkWidth), (int)mark5Loc.Y - ((int)mark0Loc.Y));
+            centerArea = new Rectangle((int)mark0Loc.X + (MarkWidth + MarkWidth / 2), (int)mark0Loc.Y + MarkHeight / 2, (int)mark5Loc.X - ((int)mark0Loc.X + (MarkWidth + MarkWidth)), (int)mark5Loc.Y - ((int)mark0Loc.Y));
   
 
        }
@@ -205,7 +205,7 @@ namespace beethoven3
             Vector2[] markLoc = GetPattern(patternIndex);
 
 
-            centerArea = new Rectangle((int)markLoc[0].X + MarkWidth, (int)markLoc[0].Y + MarkHeight / 2, (int)markLoc[5].X - ((int)markLoc[0].X + MarkWidth), (int)markLoc[5].Y - ((int)markLoc[0].Y));
+            centerArea = new Rectangle((int)markLoc[0].X + (MarkWidth + MarkWidth / 2), (int)markLoc[0].Y + MarkHeight / 2, (int)markLoc[5].X - ((int)markLoc[0].X + (MarkWidth + MarkWidth)), (int)markLoc[5].Y - ((int)markLoc[0].Y));
 
 
         }
@@ -514,7 +514,7 @@ namespace beethoven3
             }
 
             //노트 없어지는 영역 표시
-//            spriteBatch.Draw(Game1.idot, centerArea, Color.Red);
+            spriteBatch.Draw(Game1.idot, centerArea, Color.Red);
 
          //   Trace.WriteLine(centerArea);
         }
