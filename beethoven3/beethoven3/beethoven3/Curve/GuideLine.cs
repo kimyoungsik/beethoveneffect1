@@ -31,6 +31,9 @@ namespace beethoven3
         private bool end;
         private bool goldEnd = false;
         private bool showGold;
+
+        private LineRenderer lineRenderer;
+
         #endregion
 
         #region constructor
@@ -42,9 +45,9 @@ namespace beethoven3
         /// <param name="p2">제어점1</param>
         /// <param name="p3">끝나는점</param>
         /// <param name="time">지속시간</param>
-        public GuideLine(Vector2 p0, Vector2 p1, Vector2 p2, Vector2 p3, double time, bool showGold)
+        public GuideLine(Vector2 p0, Vector2 p1, Vector2 p2, Vector2 p3, double time, bool showGold, LineRenderer lineRenderer)
         {
-           
+            this.lineRenderer = lineRenderer;
             //다른 골드라인을 만들기 전에 , 지워주기
          if(showGold)
          {
@@ -173,30 +176,11 @@ namespace beethoven3
                         j = i + 1;
 
                         //라인 그리기
-                        LineRenderer.DrawLine(Game1.spriteSheet, new Rectangle(0, 0, 20, 20), spriteBatch.GraphicsDevice, spriteBatch, (Vector2)Points[i], (Vector2)Points[j], Color.White);
+                        lineRenderer.DrawLine(Game1.spriteSheet, new Rectangle(0, 0, 20, 20), spriteBatch.GraphicsDevice, spriteBatch, (Vector2)Points[i], (Vector2)Points[j], Color.White);
                     }
                 }
               
-                //if (dotChangedTime >= dotTime && PointsQueue.Count > 1)
-                //{
-                //    if (count == 0)
-                //    {
-                //        currentPosition = (Vector2)PointsQueue.Peek();
-                //        //판별하는 마크
-                //        DragNoteManager.MakeDragNote(currentPosition, new Vector2(0, 0));
-                //    }
-                //    count++;
-                //    if (count == 20)
-                //    {
-                //        count = 0;
-                //    //   DragNoteManager.DeleteDragNoteFromFront();
-                //    }
-
-                //    //따라다니면서 마크 찍는 것
-                //    //LineRenderer.DrawLine(Game1.spriteSheet, new Rectangle(0, 100, 50, 50), spriteBatch.GraphicsDevice, spriteBatch, (Vector2)PointsQueue.Dequeue(), (Vector2)PointsQueue.Peek(), Color.White);
-                //    PointsQueue.Dequeue();
-                //    dotChangedTime = 0.0f;
-                //}
+              
                 if (changedTime > time)
                 {
                    

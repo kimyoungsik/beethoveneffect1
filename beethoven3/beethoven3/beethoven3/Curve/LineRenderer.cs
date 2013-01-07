@@ -13,21 +13,25 @@ using Microsoft.Xna.Framework.Media;
 
 namespace beethoven3
 {
-    static class LineRenderer
+    class LineRenderer
     {
         #region declarations
-        static Color m_LIneColor = Color.White;
-        static Texture2D m_LineTexture = null;
+        private Color m_LIneColor = Color.White;
+        private Texture2D m_LineTexture = null;
       
         #endregion 
 
+        public LineRenderer()
+        {
 
+        }
+            
 
         #region methods
         
-  
+        
         // 라인을 그리기 위해 1x1 짜리 하얀색 pixel 텍스쳐를 만듬.
-        static private void CreateLineTexture(GraphicsDevice device)
+        private void CreateLineTexture(GraphicsDevice device)
         {
             m_LineTexture = Game1.heart;
             //m_LineTexture = new Texture2D(device, 1, 1, true, SurfaceFormat.Color);
@@ -36,7 +40,7 @@ namespace beethoven3
             //m_LineTexture.SetData<Color>(pixels);
         }
 
-        static private void CreateNewLineTexture(Texture2D texture)
+         private void CreateNewLineTexture(Texture2D texture)
         {
             m_LineTexture = texture;
             //m_LineTexture = new Texture2D(device, 1, 1, true, SurfaceFormat.Color);
@@ -45,20 +49,20 @@ namespace beethoven3
             //m_LineTexture.SetData<Color>(pixels);
         }
 
-        static public Color LineColor
+         public Color LineColor
         {
             set { m_LIneColor = value; }
         }
         
 
         
-        static public void DrawLine(Texture2D texture,Rectangle frame,GraphicsDevice device, SpriteBatch spriteBatch, Vector2 vStart, Vector2 vEnd, Color color)
+         public void DrawLine(Texture2D texture,Rectangle frame,GraphicsDevice device, SpriteBatch spriteBatch, Vector2 vStart, Vector2 vEnd, Color color)
         {
             m_LIneColor = color;
             Draw(texture, frame,device, spriteBatch, vStart, vEnd);
         }
 
-        static public void DrawDirectLine(Texture2D texture,Rectangle frame,GraphicsDevice device, SpriteBatch spriteBatch, Vector2 vStart, Vector2 vEnd, Color color)
+         public void DrawDirectLine(Texture2D texture,Rectangle frame,GraphicsDevice device, SpriteBatch spriteBatch, Vector2 vStart, Vector2 vEnd, Color color)
         {
             m_LIneColor = color;
             DirectDraw(texture, frame,device, spriteBatch, vStart, vEnd);
@@ -69,7 +73,7 @@ namespace beethoven3
         // 선을 그리기 위해, 두 점간의 거리와 각도를 구한다.
         // 그리고 SpriteBatch의 angle과 scale 특징을 이용해서 늘리고 회전한다.
         
-        static public void Draw(Texture2D texture,Rectangle frame,GraphicsDevice device, SpriteBatch spriteBatch, Vector2 vStart, Vector2 vEnd)
+         public void Draw(Texture2D texture,Rectangle frame,GraphicsDevice device, SpriteBatch spriteBatch, Vector2 vStart, Vector2 vEnd)
         {
             if (m_LineTexture == null)
                 CreateNewLineTexture(texture);
@@ -81,7 +85,7 @@ namespace beethoven3
             spriteBatch.Draw(m_LineTexture, vStart, frame, m_LIneColor);
         }
 
-        static public void DirectDraw(Texture2D texture,Rectangle frame,GraphicsDevice device, SpriteBatch spriteBatch, Vector2 vStart, Vector2 vEnd)
+         public void DirectDraw(Texture2D texture,Rectangle frame,GraphicsDevice device, SpriteBatch spriteBatch, Vector2 vStart, Vector2 vEnd)
         {
             if (m_LineTexture == null)
                 CreateNewLineTexture(texture);

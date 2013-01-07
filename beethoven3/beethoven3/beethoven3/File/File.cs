@@ -41,6 +41,10 @@ namespace beethoven3
 
         private ScoreManager scoreManager;
 
+        private CurveManager curveManager;
+
+        private GuideLineManager guideLineManager;
+
         private bool endFile;
 
         private Double startTime;
@@ -86,7 +90,7 @@ namespace beethoven3
         
         #region constructor
 
-        public File(StartNoteManager startNoteManager, NoteFileManager noteFileManager, BadExplosionManager badManager, ScoreManager scoreManager, ItemManager itemManager)       
+        public File(StartNoteManager startNoteManager, NoteFileManager noteFileManager, BadExplosionManager badManager, ScoreManager scoreManager, ItemManager itemManager, CurveManager curveManager,GuideLineManager guideLineManager)       
         {
 
              this.startNoteManager = startNoteManager;
@@ -100,7 +104,9 @@ namespace beethoven3
              this.scoreManager = scoreManager;
              this.endFile = false;
              this.itemManager = itemManager;
-             
+
+             this.curveManager = curveManager;
+             this.guideLineManager = guideLineManager;
              newNote = true;
         }
         
@@ -383,7 +389,7 @@ namespace beethoven3
             secondMid.X = start.X + (float)(angle2.X * (length * ratio));
             secondMid.Y = start.Y + (float)(angle2.Y * (length * ratio));
 
-            GuideLineManager.AddGuideLine(start, firstMid, secondMid, end, (secondStartTime - firstStartTime) * 1000, gold);
+            guideLineManager.AddGuideLine(start, firstMid, secondMid, end, (secondStartTime - firstStartTime) * 1000, gold);
 
         }
 
@@ -638,7 +644,8 @@ namespace beethoven3
                         {
                             //case 4:
                             //시작점,제어점1,제어점2,끝점,지속시간
-                            CurveManager.addCurve(arrayNotes[0].StartPoint, arrayNotes[0].FirstOperatorPoint, arrayNotes[0].SecondOperatorPoint, arrayNotes[0].EndPoint, (arrayNotes[0].LastTime - arrayNotes[0].StartTime) * 1000);
+                            //커브매니저에 커브를 만든다.
+                            curveManager.addCurve(arrayNotes[0].StartPoint, arrayNotes[0].FirstOperatorPoint, arrayNotes[0].SecondOperatorPoint, arrayNotes[0].EndPoint, (arrayNotes[0].LastTime - arrayNotes[0].StartTime) * 1000);
                         }
                         //패턴 변환
                         //pattern change

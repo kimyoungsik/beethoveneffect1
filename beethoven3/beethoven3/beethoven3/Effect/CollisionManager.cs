@@ -49,10 +49,17 @@ namespace beethoven3
        /// <param name="mousePoint"></param>
         public void checkDragNote(Vector2 mousePoint)
         {
+            //드래그 노트
+            //Curve 클래스에 만든 dragnote를 검사해 간다.
+            
             for (int i = 0; i < DragNoteManager.DragNotes.Count(); i++ )
             {
+                //DragNoteManager 의 텍스쳐 값.
                 Sprite dragNote = DragNoteManager.DragNotes[i];
+                
+
                 int judgment = dragNote.JudgedNote(mousePoint);
+                Trace.WriteLine(judgment);
                 if (judgment == 2)
                 {
 

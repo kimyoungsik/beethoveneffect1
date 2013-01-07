@@ -128,7 +128,7 @@
     <Compile Include="Effect\CollisionManager.cs" />
     <Compile Include="Curve\Curve.cs" />
     <Compile Include="Curve\CurveManager.cs" />
-    <Compile Include="Note\DragNoteManager.cs" />
+    <Compile Include="Curve\DragNoteManager.cs" />
     <Compile Include="Item\EffectItemShop.cs" />
     <Compile Include="Effect\ExplosionManager.cs" />
     <Compile Include="File\File.cs" />

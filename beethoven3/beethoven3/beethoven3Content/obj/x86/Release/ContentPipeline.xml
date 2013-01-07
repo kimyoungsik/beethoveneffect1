@@ -2,15 +2,6 @@
 <XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline">
   <Asset Type="Pipeline:BuildItemCollection">
     <Item>
-      <Source>Textures\SpriteSheet.png</Source>
-      <Name>Textures\SpriteSheet</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Textures\SpriteSheet.xnb</Output>
-      <Time>2010-03-29T06:39:12+09:00</Time>
-    </Item>
-    <Item>
       <Source>Textures\TitleScreen.png</Source>
       <Name>Textures\TitleScreen</Name>
       <Importer>TextureImporter</Importer>
@@ -36,15 +27,6 @@
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Textures\red.xnb</Output>
       <Time>2012-11-07T17:27:47.0659035+09:00</Time>
-    </Item>
-    <Item>
-      <Source>Textures\SpriteSheet7.png</Source>
-      <Name>Textures\SpriteSheet7</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Textures\SpriteSheet7.xnb</Output>
-      <Time>2012-11-10T21:01:30.1268165+09:00</Time>
     </Item>
     <Item>
       <Source>Textures\SpriteSheet8.png</Source>
@@ -623,6 +605,15 @@
       <Time>2013-01-04T20:08:12.9510867+09:00</Time>
     </Item>
     <Item>
+      <Source>DrawLine\drawLineNote1.png</Source>
+      <Name>DrawLine\drawLineNote1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\DrawLine\drawLineNote1.xnb</Output>
+      <Time>2013-01-07T20:58:57.8404454+09:00</Time>
+    </Item>
+    <Item>
       <Source>Menu\firstMenuBackground.png</Source>
       <Name>Menu\firstMenuBackground</Name>
       <Importer>TextureImporter</Importer>
@@ -630,6 +621,15 @@
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Menu\firstMenuBackground.xnb</Output>
       <Time>2013-01-07T00:03:23.0597058+09:00</Time>
+    </Item>
+    <Item>
+      <Source>DrawLine\drawLineMark.png</Source>
+      <Name>DrawLine\drawLineMark</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\DrawLine\drawLineMark.xnb</Output>
+      <Time>2013-01-07T21:19:00.7252465+09:00</Time>
     </Item>
     <Item>
       <Source>snd\ka.mp3</Source>

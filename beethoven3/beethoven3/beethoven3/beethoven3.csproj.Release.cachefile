@@ -1,8 +1,6 @@
-Content\Textures\SpriteSheet.xnb
 Content\Textures\TitleScreen.xnb
 Content\Textures\heart.xnb
 Content\Textures\red.xnb
-Content\Textures\SpriteSheet7.xnb
 Content\Textures\SpriteSheet8.xnb
 Content\Textures\menu.xnb
 Content\Title\box.xnb
@@ -67,7 +65,9 @@ Content\character\contrabase2.xnb
 Content\Explosion\leafExplosion.xnb
 Content\Explosion\starExplosion.xnb
 Content\Explosion\starExplosion2.xnb
+Content\DrawLine\drawLineNote1.xnb
 Content\Menu\firstMenuBackground.xnb
+Content\DrawLine\drawLineMark.xnb
 Content\snd\ka.xnb
 Content\snd\jo.xnb
 Content\snd\maid.xnb

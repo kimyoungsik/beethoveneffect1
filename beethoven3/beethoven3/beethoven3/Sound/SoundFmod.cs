@@ -120,9 +120,25 @@ namespace beethoven3
 
             //***다시확인
             //현재 설정된 두번째 가이드라인이 있으면 지움
-            GuideLineManager.DeleteAllSecondGuideLine();
+            //GuideLineManager.DeleteAllSecondGuideLine();
 
 
+        }
+        public static void PlaySound(String name)
+        {
+            //노래찾아서 재생하기    
+            //*** 재생시간동안 로딩
+
+            sndSystem.createSound(name, FMOD.MODE.HARDWARE, ref SoundFmod.sndSound);
+            sndSystem.playSound(CHANNELINDEX.FREE, SoundFmod.sndSound, false, ref SoundFmod.sndChannel);
+        }
+        public static void StopSound()
+        {
+            sndSystem.close();
+
+            //다시 셋팅
+            resultFmod = FMOD.Factory.System_Create(ref sndSystem);
+            sndSystem.init(1, FMOD.INITFLAG.NORMAL, (IntPtr)null);
         }
 
 

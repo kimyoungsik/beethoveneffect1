@@ -115,35 +115,7 @@ namespace beethoven3
 
         //점수위치
         Vector2 scorePosition = new Vector2(705, 5);
-        ///***
-        ///////FMOD 선언 - START
-        //private FMOD.System sndSystem;
-        //private FMOD.Channel sndChannel = new FMOD.Channel();
-        //private FMOD.Sound sndSound = new FMOD.Sound();
-        //private FMOD.RESULT resultFmod;
-        //// private FMOD.DSPConnection dspconnectiontemp = null;
-        ///////FMOD 선언 - END
-
-
-      //  /////템포 관련 -START
-      //  //템포 변경 여부 -TRUE면 템포 변경된 상태
-      //  private bool isChangedTempo= false;
-        
-      //  //변경된 템포
-      //  private double changedTempo = 0;
-        
-      //  //기존 변경되기전 템포
-      //  private float basicFrequency = 0;
-
-      //  //템포 변하고 나서 변하는 시간
-      //  private double chagneLimitedTime = 0;
-
-      //  //템포 변경되면 다른 뒤의 모든 노트들에게 영향이 가는 시간의 량, 더하거나 빼준다.
-      //  private double optionalTime = 0;
-      //  ///***
-      //  //템포관련해서 한번만 실행 -- 임시로 넣은것
-      ////  private bool oneTime = true;
-      //  /////템포 관련 -END
+  
 
       
         //마우스 상태 
@@ -173,25 +145,39 @@ namespace beethoven3
         private Texture2D playBackgroud1;
         private Texture2D playBackgroud2;
 
-        ////Explosion
-        //private Texture2D windExplosion;
-        //private Texture2D heartExplosion;
-        //private Texture2D needleExplosion;
-        //private Texture2D starExplosion1;
-        //private Texture2D starExplosion2;
-        //private Texture2D leafExplosion;
-
-        //놓친 노트가 없어지는 곳
-        //the place where miss note disapper
-        //마커 패턴에 따라 달라져야 함. 
-      //  private Rectangle removeAreaRec = new Rectangle(0, 0, 0, 0);
-
+       //드래그 라인 모양
+        public static Texture2D drawLineNote1;
         /////Texture end 
+
+        //드래그 라인 안의 마커점
+
+        public static Texture2D drawLineMarker;
+
+
+        //드래그 라인의 렌더링
+        LineRenderer dragLineRenderer;
+ 
+        //드래그 라인안의 마커점 렌더링
+
+        LineRenderer dragLineMarkerRenderer;
+        
+        //드래그라인 파일에서 뽑아낼떄 CurveManager만듬
+        CurveManager curveManager;
+
+        //가이드 라인의 렌더링
+        LineRenderer guideLineRenderer;
+
+        GuideLineManager guideLineManager;
+
+
 
 
         /////키넥트 관련 선언 - START
         //for kinect
         public static Texture2D idot;
+
+
+
 #if Kinect
         //키넥트
         KinectSensor nui = null;
@@ -335,15 +321,15 @@ namespace beethoven3
             pericles36Font = Content.Load<SpriteFont>(@"Fonts\Pericles36");
             /////텍스쳐 로드 -END
 
-            //explosion
-            //windExplosion = Content.Load<Texture2D>(@"Explosion\windExplosion2");
-            //heartExplosion = Content.Load<Texture2D>(@"Explosion\smallheart2");
-            //needleExplosion = Content.Load<Texture2D>(@"Explosion\needleExplosion2");
+            /////////////////드래그 라인 관련
 
-            //starExplosion1 = Content.Load<Texture2D>(@"Explosion\starExplosion");
-            //starExplosion2 = Content.Load<Texture2D>(@"Explosion\starExplosion2");
-            //leafExplosion = Content.Load<Texture2D>(@"Explosion\leafExplosion");
-            ////wind용
+            //드래그 라인
+            drawLineNote1 = Content.Load<Texture2D>(@"DrawLine\drawLineNote1");
+
+            //드래그 라인 마커점
+            drawLineMarker = Content.Load<Texture2D>(@"DrawLine\drawLineMark");
+
+            
 
             //현재 장착한 이펙트의 인덱스를 전체 베이스에 찾음
             int effectIndex = itemManager.getEffectIndex();
@@ -355,9 +341,27 @@ namespace beethoven3
             //Texture2D[] badEffectTextures = itemManager.GetBadEffectTexture();
             //Texture2D[] missEffectTextures = itemManager.GetMissEffectTexture();
 
+            
+
+
+            //드래그 라인 렌더링
+            dragLineRenderer = new LineRenderer();
+
+
+            //드래그 라인 안의 마커점의 렌더링 
+            dragLineMarkerRenderer = new LineRenderer();
+
+            //드래그라인 
+            curveManager = new CurveManager(dragLineRenderer, dragLineMarkerRenderer);
+
+            //가이드 라인 렌더링
+
+            guideLineRenderer = new LineRenderer();
+
+            //가이드 라인 
+            guideLineManager = new GuideLineManager(guideLineRenderer);
+
             //텍스쳐 크기
-
-
             ///////이펙트 생성 -START
 
 
@@ -422,9 +426,16 @@ namespace beethoven3
             
             //노트정보 관리 생성
             noteFileManager = new NoteFileManager();
-            
+            //드래그 라인 렌더링
+            dragLineRenderer = new LineRenderer();
+
+            dragLineMarkerRenderer = new LineRenderer();
+            //드래그라인 
+            curveManager = new CurveManager(dragLineRenderer, dragLineMarkerRenderer);
+
+
             //노트파일 읽기 관리 생성
-            file = new File(startNoteManager, noteFileManager, badManager, scoreManager ,itemManager);
+            file = new File(startNoteManager, noteFileManager, badManager, scoreManager ,itemManager, curveManager, guideLineManager);
 
             SoundFmod.initialize(file);
             //곡선택화면 곡 불러오는 폴더 
@@ -440,10 +451,11 @@ namespace beethoven3
             file.FileLoading(dir, "*.mnf");
             
             //드래그노트 초기화
+            //이것은 노트 안에서 움직이는 마커점
             DragNoteManager.initialize(
-                 spriteSheet,
-                 new Rectangle(0, 100, 50, 50),
-                 6,
+                 drawLineMarker,
+                 new Rectangle(0, 0, 100, 100),
+                 1,
                  15,
                  0,
                  badManager,
@@ -456,7 +468,8 @@ namespace beethoven3
                 1,
                 15,
                 0);
-
+            
+            
             //***
             songMenu = new SongMenu(noteFileManager);
             songMenu.Load(Content,graphics.GraphicsDevice);
@@ -2106,7 +2119,7 @@ namespace beethoven3
                        //Texture2D texture = null; 
                        //Stream str = System.IO.File.OpenWrite("gesture.jpg");
                        //texture.SaveAsJpeg(str, 1200, 900);
-
+                       SoundFmod.StopSound();
                    }
 
                    //마크 업데이트
@@ -2115,7 +2128,9 @@ namespace beethoven3
                     HandleKeyboardInput(Keyboard.GetState());
                     HandleMouseInput(Mouse.GetState());
                     file.Update(spriteBatch, gameTime, SoundFmod.changedTempo, SoundFmod.optionalTime);
+                    //*** 어떻게 돼는건지 모르겠음 
                     DragNoteManager.Update(gameTime);
+                   ////
                     GoldManager.Update(gameTime);
                     perfectManager.Update(gameTime);
                     goodManager.Update(gameTime);
@@ -2194,8 +2209,10 @@ namespace beethoven3
                                
 
                                 );
+
+
                             //파일 저장
-                            file = new File(startNoteManager, noteFileManager, badManager, scoreManager, itemManager);
+                            file = new File(startNoteManager, noteFileManager, badManager, scoreManager, itemManager, curveManager, guideLineManager);
 
                             
 
@@ -2370,13 +2387,13 @@ namespace beethoven3
                         file.Loading(resultSongMenu);
                     
                     
-                    
+                        SoundFmod.PlaySound(songsDir + noteFileManager.noteFiles[resultSongMenu].Mp3);
                     
                     //노래찾아서 재생하기    
                     //*** 재생시간동안 로딩
 
-                        SoundFmod.sndSystem.createSound(songsDir + noteFileManager.noteFiles[resultSongMenu].Mp3, FMOD.MODE.HARDWARE, ref SoundFmod.sndSound);
-                        SoundFmod.sndSystem.playSound(CHANNELINDEX.FREE, SoundFmod.sndSound, false, ref SoundFmod.sndChannel);
+                        //SoundFmod.sndSystem.createSound(, FMOD.MODE.HARDWARE, ref SoundFmod.sndSound);
+                        //SoundFmod.sndSystem.playSound(CHANNELINDEX.FREE, SoundFmod.sndSound, false, ref SoundFmod.sndChannel);
                     }
 
                     break;
@@ -2460,8 +2477,8 @@ namespace beethoven3
                 
                 //startnoteclass에 가야 보이고 안보이게 할 수 있음
                 startNoteManager.Draw(spriteBatch);
-                CurveManager.Draw(gameTime, spriteBatch);
-                GuideLineManager.Draw(gameTime, spriteBatch);
+                curveManager.Draw(gameTime, spriteBatch);
+                guideLineManager.Draw(gameTime, spriteBatch);
                 
                 //이걸 주석하면 드래그노트 체크하는거 안보임 하지만 체크는 됨
                 //DragNoteManager.Draw(spriteBatch);

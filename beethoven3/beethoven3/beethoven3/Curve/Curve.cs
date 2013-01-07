@@ -10,12 +10,15 @@ using System.Diagnostics;
 
 namespace beethoven3
 {
+    /// <summary>
+    /// 드래그 노트 커브를 나타냄
+    /// </summary>
     class Curve
     {
 
         #region declarations
         // public static List<Vector2> points = new List<Vector2>();
-        public Queue PointsQueue = new Queue();
+        private Queue PointsQueue = new Queue();
         private List<Vector2> Points = new List<Vector2>();
         //곡선의 기준시간
         private double time = 0.0f;
@@ -29,6 +32,9 @@ namespace beethoven3
         private int count = 0;
 
         private bool end = false;
+
+        private LineRenderer lineRenderer;
+        private LineRenderer dragLineMarkerRenderer;
         #endregion
 
         #region constructor
@@ -40,10 +46,11 @@ namespace beethoven3
         /// <param name="p2">제어점1</param>
         /// <param name="p3">끝나는점</param>
         /// <param name="time">지속시간</param>
-        public Curve(Vector2 p0, Vector2 p1, Vector2 p2, Vector2 p3, double time)
+        public Curve(Vector2 p0, Vector2 p1, Vector2 p2, Vector2 p3, double time, LineRenderer lineRenderer, LineRenderer dragLineMarkerRenderer)
         {
             SetLine(p0, p1, p2, p3, time);
-       
+            this.lineRenderer = lineRenderer;
+            this.dragLineMarkerRenderer = dragLineMarkerRenderer;
         }
         #endregion
 
@@ -135,7 +142,7 @@ namespace beethoven3
                     j = i + 1;
 
                     //라인 그리기
-                    LineRenderer.DrawLine(Game1.spriteSheet, new Rectangle(0, 0, 50, 50), spriteBatch.GraphicsDevice, spriteBatch, (Vector2)Points[i], (Vector2)Points[j], Color.White);
+                    lineRenderer.DrawLine(Game1.drawLineNote1, new Rectangle(0, 0, 100, 100), spriteBatch.GraphicsDevice, spriteBatch, (Vector2)Points[i], (Vector2)Points[j], Color.White);
 
                     
                 }
@@ -146,7 +153,8 @@ namespace beethoven3
                     if (count == 0)
                     {
                         currentPosition = (Vector2)PointsQueue.Peek();
-                        //판별하는 마크
+                        //판별하는 마크를 만든다.
+
                         DragNoteManager.MakeDragNote(currentPosition, new Vector2(0,0));
                     }
                     count++;
@@ -163,7 +171,7 @@ namespace beethoven3
 
                     //따라다니면서 마크 찍는 것
                     //공굴러가거나 움직이는 스프라이트로 너무 깜빡인다 싶으면 20을 좀 줄이면 됨
-                    LineRenderer.DrawLine(Game1.spriteSheet, new Rectangle(0, 100, 50, 50), spriteBatch.GraphicsDevice, spriteBatch, (Vector2)PointsQueue.Dequeue(), (Vector2)PointsQueue.Peek(), Color.White);
+                    dragLineMarkerRenderer.DrawLine(DragNoteManager.Texture, DragNoteManager.InitialFrame, spriteBatch.GraphicsDevice, spriteBatch, (Vector2)PointsQueue.Dequeue(), (Vector2)PointsQueue.Peek(), Color.White);
                     dotChangedTime = 0.0f;
 
                 }

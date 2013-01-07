@@ -7,11 +7,20 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace beethoven3
 {
-    static class CurveManager
+    class CurveManager
     {
         #region declarations
-        public static List<Curve> Curves = new List<Curve>();
+        private List<Curve> Curves = new List<Curve>();
+        private LineRenderer lineRenderer;
+        private LineRenderer dragLineMarkerRenderer;
 
+
+        public CurveManager(LineRenderer lineRenderer, LineRenderer dragLineMarkerRenderer)
+        {
+            this.lineRenderer = lineRenderer;
+            this.dragLineMarkerRenderer = dragLineMarkerRenderer;
+
+        }
       //  public static List<Curve> GuideLines = new List<Curve>();
         #endregion
           
@@ -24,9 +33,10 @@ namespace beethoven3
         /// <param name="p2">제어점1</param>
         /// <param name="p3">끝나는점</param>
         /// <param name="time">지속시간</param>
-        public static void addCurve(Vector2 p0, Vector2 p1, Vector2 p2, Vector2 p3, double time)
+        public void addCurve(Vector2 p0, Vector2 p1, Vector2 p2, Vector2 p3, double time)
         {
-            Curve curve = new Curve(p0, p1, p2, p3, time);
+
+            Curve curve = new Curve(p0, p1, p2, p3, time, lineRenderer, dragLineMarkerRenderer);
             Curves.Add(curve);    
         }
 
@@ -42,7 +52,7 @@ namespace beethoven3
         #region update and draw
 
 
-        public static void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             foreach (Curve curve in Curves)
             {
