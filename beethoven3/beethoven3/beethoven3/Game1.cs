@@ -938,42 +938,42 @@ namespace beethoven3
 
               
             }
-            if (keyState.IsKeyDown(Keys.P))
-            {
+            //if (keyState.IsKeyDown(Keys.P))
+            //{
               
-                //임시
-                //BOOL 은 일단 임시로
+            //    //임시
+            //    //BOOL 은 일단 임시로
 
-                //템포가 바뀐 상태가 아니어야 한다.
-                //템포가 바뀐상태라면 다시 기본템포로 돌리고 변경 
-                SoundFmod.oneTime = true;
-                if (!SoundFmod.isChangedTempo)
-                {
-                    SoundFmod.tempoChange(1.2f);
+            //    //템포가 바뀐 상태가 아니어야 한다.
+            //    //템포가 바뀐상태라면 다시 기본템포로 돌리고 변경 
+            //    SoundFmod.oneTime = true;
+            //    if (!SoundFmod.isChangedTempo)
+            //    {
+            //        SoundFmod.tempoChange(1.2f);
 
-                    //2의 템포가 2초동안 빨라지는 ㅔ
-                }
+            //        //2의 템포가 2초동안 빨라지는 ㅔ
+            //    }
 
-            }
+            //}
 
-            if (keyState.IsKeyDown(Keys.O))
-            {
+            //if (keyState.IsKeyDown(Keys.O))
+            //{
              
-                //임시
-                //BOOL 은 일단 임시로 
-                SoundFmod.oneTime = true;
+            //    //임시
+            //    //BOOL 은 일단 임시로 
+            //    SoundFmod.oneTime = true;
 
-                //템포가 바뀐 상태가 아니어야 한다.
-                //템포가 바뀐상태라면 다시 기본템포로 돌리고 변경 
-                if (!SoundFmod.isChangedTempo)
-                {
+            //    //템포가 바뀐 상태가 아니어야 한다.
+            //    //템포가 바뀐상태라면 다시 기본템포로 돌리고 변경 
+            //    if (!SoundFmod.isChangedTempo)
+            //    {
 
-                    //그 양만큼 템포 조절됨
-                    SoundFmod.tempoChange(0.8f);
+            //        //그 양만큼 템포 조절됨
+            //        SoundFmod.tempoChange(0.8f);
 
-                    //2의 템포가 2초동안 빨라지는 ㅔ
-                }
-            }
+            //        //2의 템포가 2초동안 빨라지는 ㅔ
+            //    }
+            //}
 
             if (keyState.IsKeyDown(Keys.L))
             {

@@ -31,7 +31,7 @@ namespace beethoven3
 
         /////템포 관련 -START
         //템포 변경 여부 -TRUE면 템포 변경된 상태
-        public static bool isChangedTempo = false;
+        public static int isChangedTempo = 0;
 
         //변경된 템포
         public static double changedTempo = 0;
@@ -46,7 +46,7 @@ namespace beethoven3
         public static double optionalTime = 0;
 
         //템포관련해서 한번만 실행 -- 임시로 넣은것
-        public static bool oneTime = true;
+      //  public static bool oneTime = true;
         /////템포 관련 -END
 
         private static File file;
@@ -72,8 +72,14 @@ namespace beethoven3
         //템포변경
         public static void tempoChange(double changedT)
         {
-            isChangedTempo = true;
-
+            if (changedT > 1.0)
+            {
+                isChangedTempo++;
+            }
+            else
+            {
+                isChangedTempo--;
+            }
             //바뀐 템포 => 나중에 file note들을 다시 재정비 할 때 필요
             changedTempo = changedT;
 
@@ -99,7 +105,8 @@ namespace beethoven3
         //템포 변경 전에 기본 템포를 저장해둠. 다시 롤백할 때 필요
         public static void SetBasicTempo()
         {
-            if (!isChangedTempo)
+            //템포가 안변하면
+            if (isChangedTempo == 0)
             {
                 sndChannel.getFrequency(ref basicFrequency);
             }
@@ -111,7 +118,9 @@ namespace beethoven3
             if (basicFrequency != 0)
             {
                 sndChannel.setFrequency(basicFrequency);
-                isChangedTempo = false;
+
+                //변하지 않음
+                isChangedTempo = 0;
                 changedTempo = 0;
             }
         }
@@ -143,7 +152,7 @@ namespace beethoven3
         {
             //템포가 바뀌는 중인가?
             //초기화안해도 되는건가? -> SetOptionalTime 여기에서 초기화 한다. 
-            if (isChangedTempo)
+            if (isChangedTempo != 0)
             {
                 //처음시작 
                 chagneLimitedTime += gameTime.ElapsedGameTime.TotalMilliseconds;
@@ -186,7 +195,7 @@ namespace beethoven3
 
                 //템포가 0.9배가 된상태에서 1초동안 지속이 된다면 모두 4-  4/4   3초씩 줄여야 한다ㅣ
 
-                oneTime = false;
+                //oneTime = false;
                 chagneLimitedTime = 0;
 
 
