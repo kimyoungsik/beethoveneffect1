@@ -281,6 +281,8 @@ namespace beethoven3
             }
         }
 
+        //콘트라베이스의 경우에는 0.1이정상
+
         //멤버들의 프레임 속도 변화
         public void SetMembersFrameTime(float speed)
         {

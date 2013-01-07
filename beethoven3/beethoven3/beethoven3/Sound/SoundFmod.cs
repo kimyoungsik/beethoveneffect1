@@ -6,10 +6,12 @@ using FMOD;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
-using Microsoft.Xna.Framework.Graphics;
+//using Microsoft.Xna.Framework.GamerServices;
+//using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+
+using System.Diagnostics;
 namespace beethoven3
 {
     static class SoundFmod
@@ -72,7 +74,7 @@ namespace beethoven3
         {
             isChangedTempo = true;
 
-
+            //바뀐 템포 => 나중에 file note들을 다시 재정비 할 때 필요
             changedTempo = changedT;
 
             float frequency = 0;
@@ -86,6 +88,7 @@ namespace beethoven3
             //템포를 다른 노트 모두에 적용
             file.ChangeArrayNoteTempo(changedT);
 
+            //***다시확인
             //현재 설정된 두번째 가이드라인이 있으면 지움
             GuideLineManager.DeleteAllSecondGuideLine();
 
@@ -138,11 +141,13 @@ namespace beethoven3
         ////템포가 변하고나서 얼마나 변했는지 시간을 재는데 사용
         public static void StartChangedTime(GameTime gameTime)
         {
-
+            //템포가 바뀌는 중인가?
+            //초기화안해도 되는건가? -> SetOptionalTime 여기에서 초기화 한다. 
             if (isChangedTempo)
             {
                 //처음시작 
                 chagneLimitedTime += gameTime.ElapsedGameTime.TotalMilliseconds;
+                Trace.WriteLine(chagneLimitedTime);
             }
         }
 
@@ -153,21 +158,31 @@ namespace beethoven3
 
         public static void SetOptionalTime()
         {
-            //임시로 넣은 것일 뿐
-            if (oneTime)
-            {
+            ////임시로 넣은 것일 뿐
+            //if (oneTime)
+            //{
                 //템포 다시 원상복귀
+                //현재는 시작시간만, 지속시간(끝시간도 바꿀예정)
+
                 file.ChangeArrayNoteTempoBack(changedTempo);
 
                 double time = 0;
 
                 //옵션 계산
-                time = ((chagneLimitedTime / 1000) - ((chagneLimitedTime / 1000) / changedTempo)) * -1;
-
-                optionalTime += time;
-
+                //chagneLimitedTime : 템포가 변하고 나서 얼마나 시간이 흘렀나 millisecond로 나타냄
+                //옵션 : 
+                time = ((chagneLimitedTime / 1000) - ((chagneLimitedTime / changedTempo) / 1000)) * -1;
+                // time = 템포 변하고 지나간 일반적인 시간  -  템포가 변하고 지나간 변화된 시간. => 차이, 그 차이를 빼주면 된다.
+                //빨라졌을 떄는 음수가 나오고 (전체적으로 떙기고), 느려졌을 때는 양수가 나온다. 
+               
+                //***이거 왜 축척?
+               optionalTime = time;
+              
                 //각 노트 시작에 옵션을 더함
+                //옵션이 지속시간(끝시간)에도 영향을 줘야 할듯. 
                 file.OptionalArrayNote(optionalTime);
+
+
 
                 //템포가 0.9배가 된상태에서 1초동안 지속이 된다면 모두 4-  4/4   3초씩 줄여야 한다ㅣ
 
@@ -177,7 +192,7 @@ namespace beethoven3
 
                 //원래 템포로 돌아감
                 ReturnBasicTempo();
-            }
+            //}
         }
 
     }

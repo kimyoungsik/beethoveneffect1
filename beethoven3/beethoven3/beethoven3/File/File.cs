@@ -388,6 +388,13 @@ namespace beethoven3
         }
 
         //템포로 나누어 시간 변경
+
+        //모든 노트의 시작 시간인 startTime을 changedTempo로 나누게 되면 ( 3초 / 1.2 => 2.5 초 빨라진다. 3초 / 0.9 => 3.33 느려진다)
+
+        //여기에서 추가해야 될 것은
+        
+       //드래그노트 , 롱노트 , 패턴 변화시에 지속 시간이란것이 있는데 그것역시도 줄여줘야 한다. (끝나는 시간을 줄여주면 될듯)
+
         public void ChangeArrayNoteTempo(double changedTempo)
         {
             int i;
@@ -396,6 +403,12 @@ namespace beethoven3
 
                 arrayNotes[i].StartTime = arrayNotes[i].StartTime / changedTempo;
 
+                if (!(arrayNotes[i].Type == "1") && !(arrayNotes[i].Type == "B") && !(arrayNotes[i].Type == "2"))
+                {
+                    arrayNotes[i].LastTime = arrayNotes[i].LastTime / changedTempo;
+
+                }
+                //끝나는시간
             }
 
         }
@@ -410,6 +423,13 @@ namespace beethoven3
 
                 arrayNotes[i].StartTime = arrayNotes[i].StartTime * changedTempo;
 
+
+                //끝나는 시간도
+                if (!(arrayNotes[i].Type == "1") && !(arrayNotes[i].Type == "B") && !(arrayNotes[i].Type == "2"))
+                {
+                    arrayNotes[i].LastTime = arrayNotes[i].LastTime * changedTempo;
+
+                }
             }
 
         }
@@ -422,11 +442,20 @@ namespace beethoven3
             {
 
                 arrayNotes[i].StartTime +=  optionalTime;
+
+                //끝나는시간.
+
+                //끝나는 시간도
+                if (!(arrayNotes[i].Type == "1") && !(arrayNotes[i].Type == "B") && !(arrayNotes[i].Type == "2"))
+                {
+                    arrayNotes[i].LastTime += optionalTime;
+
+                }
             }
 
         }
 
-
+        //안쓰임
         public double ChangeTimeOfNote(double inputTime, double changedTempo)
         {
             double outputTime = 0.0f;
@@ -514,7 +543,7 @@ namespace beethoven3
                         //타입 0-오른손 1-왼손 2-양손 3-롱노트 4-드래그노트 
                         //Trace.WriteLine(processTime);
 
-                        Trace.WriteLine(arrayNotes[0].Type);
+                        //Trace.WriteLine(arrayNotes[0].Type);
                         //오른손 노트
 
                         if (arrayNotes[0].Type == "1")

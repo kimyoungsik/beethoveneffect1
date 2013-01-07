@@ -940,10 +940,12 @@ namespace beethoven3
             }
             if (keyState.IsKeyDown(Keys.P))
             {
-               // resultFmod = sndChannel.getFrequency(ref basicFrequency);
-               // sndChannel.setFrequency(60000.0f);
+              
                 //임시
-                //BOOL 은 일단 임시로 
+                //BOOL 은 일단 임시로
+
+                //템포가 바뀐 상태가 아니어야 한다.
+                //템포가 바뀐상태라면 다시 기본템포로 돌리고 변경 
                 SoundFmod.oneTime = true;
                 if (!SoundFmod.isChangedTempo)
                 {
@@ -951,15 +953,18 @@ namespace beethoven3
 
                     //2의 템포가 2초동안 빨라지는 ㅔ
                 }
+
             }
 
             if (keyState.IsKeyDown(Keys.O))
             {
-                // resultFmod = sndChannel.getFrequency(ref basicFrequency);
-                // sndChannel.setFrequency(60000.0f);
+             
                 //임시
                 //BOOL 은 일단 임시로 
                 SoundFmod.oneTime = true;
+
+                //템포가 바뀐 상태가 아니어야 한다.
+                //템포가 바뀐상태라면 다시 기본템포로 돌리고 변경 
                 if (!SoundFmod.isChangedTempo)
                 {
 

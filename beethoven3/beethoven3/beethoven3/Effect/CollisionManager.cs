@@ -130,7 +130,14 @@ namespace beethoven3
                             scoreManager.Combo = scoreManager.Combo + 1;
                             scoreManager.Gage = scoreManager.Gage + 10;
 
-                          
+                            //템포 원상 복귀
+                            if (SoundFmod.isChangedTempo)
+                            {
+                                memberManager.SetMemberState(4, 0);
+                                SoundFmod.SetOptionalTime();
+                                //움직이는 속도 정상
+                                memberManager.SetMembersFrameTime(0.1f);
+                            }
                         }
                         
                         //가운데를 이미 지났으므로 느리게 맞은 노트가 될 수 있다.
@@ -155,7 +162,14 @@ namespace beethoven3
                             scoreManager.Gage = scoreManager.Gage + 10;
 
                             memberManager.SetMemberState(1, 1);
-                          
+                            //템포 원상 복귀
+                            if (SoundFmod.isChangedTempo)
+                            {
+                                memberManager.SetMemberState(4, 0);
+                                SoundFmod.SetOptionalTime();
+                                //움직이는 속도 정상
+                                memberManager.SetMembersFrameTime(0.1f);
+                            }
                         }
                     }
                         //bad 
@@ -171,7 +185,17 @@ namespace beethoven3
                             {
                                 //효과와 내용
                                 //이펙트 및 템포 빨라지기
-                      
+                                goodManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
+
+                                StartNoteManager.rightNoteManager.LittleNotes.RemoveAt(x);
+                                if (!SoundFmod.isChangedTempo)
+                                {
+                                    SoundFmod.tempoChange(1.2f);
+                                    memberManager.SetMemberState(4, 3);
+                                    //2의 템포가 2초동안 빨라지는 ㅔ
+                                    //움직이는 속도 빨라짐
+                                    memberManager.SetMembersFrameTime(0.02f);
+                                }
                             }
                         }
                         //느리게 맞은거
@@ -180,10 +204,23 @@ namespace beethoven3
                             int mouseJudgment = MarkManager.Marks[number].MarkSprite.JudgedNote(mousePoint);
                             if (mouseJudgment != 0)
                             {
+                                goodManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
 
+                                StartNoteManager.rightNoteManager.LittleNotes.RemoveAt(x);
                                 //효과와 내용
                                 //이펙트 및 템포 느려지기
-
+                                if (!SoundFmod.isChangedTempo)
+                                {
+                                    //스트로크
+                                    memberManager.SetMemberState(4, 2);
+                                    //그 양만큼 템포 조절됨
+                                    
+                                    SoundFmod.tempoChange(0.8f);
+                                    
+                                    //멤버들 느려짐
+                                    memberManager.SetMembersFrameTime(0.18f);
+                                    
+                                }
                             }
                          
 
