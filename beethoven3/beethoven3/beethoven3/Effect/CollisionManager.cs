@@ -59,7 +59,7 @@ namespace beethoven3
                 
 
                 int judgment = dragNote.JudgedNote(mousePoint);
-                Trace.WriteLine(judgment);
+                //Trace.WriteLine(judgment);
                 if (judgment == 2)
                 {
 
@@ -190,7 +190,7 @@ namespace beethoven3
                     else if (judgment == -1)
                     {
 
-                        Trace.WriteLine(SoundFmod.isChangedTempo);
+                        //Trace.WriteLine(SoundFmod.isChangedTempo);
                         //빨리 맞은거 
                         if (littleNote.IsEarlyOne)
                         {
@@ -530,7 +530,8 @@ namespace beethoven3
 
                 if (littleNote.IsBoxColliding(MarkManager.centerArea))
                 {
-                    badManager.AddExplosions(littleNote.Center);
+                    badManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
+
                     StartNoteManager.leftNoteManager.LittleNotes.RemoveAt(i);
                     scoreManager.Bad = scoreManager.Bad + 1;
                     if (scoreManager.Combo > scoreManager.Max)
@@ -542,6 +543,34 @@ namespace beethoven3
                 }
             }
         }
+
+         public void CheckLongNoteInCenterArea()
+        {
+          //롱노트 사각형을 만나면 사라지게끔
+                  
+              int i;
+              for (i = 0; i < StartNoteManager.longNoteManager.LittleNotes.Count; i++)
+              {
+                  Sprite littleNote = StartNoteManager.longNoteManager.LittleNotes[i];
+
+                  if (littleNote.IsBoxColliding(MarkManager.centerArea))
+                  {
+                      
+                      badManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
+
+                      StartNoteManager.longNoteManager.LittleNotes.RemoveAt(i);
+                      scoreManager.Bad = scoreManager.Bad + 1;
+                      if (scoreManager.Combo > scoreManager.Max)
+                      {
+                          scoreManager.Max = scoreManager.Combo;
+                      }
+
+                      scoreManager.Combo = 0;
+                  }
+              }
+        }
+
+
 
 
 

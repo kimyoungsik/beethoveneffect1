@@ -435,7 +435,7 @@ namespace beethoven3
 
 
             //노트파일 읽기 관리 생성
-            file = new File(startNoteManager, noteFileManager, badManager, scoreManager ,itemManager, curveManager, guideLineManager);
+            file = new File(startNoteManager, noteFileManager, collisionManager, scoreManager ,itemManager, curveManager, guideLineManager);
 
             SoundFmod.initialize(file);
             //곡선택화면 곡 불러오는 폴더 
@@ -2212,7 +2212,7 @@ namespace beethoven3
 
 
                             //파일 저장
-                            file = new File(startNoteManager, noteFileManager, badManager, scoreManager, itemManager, curveManager, guideLineManager);
+                            file = new File(startNoteManager, noteFileManager, collisionManager, scoreManager, itemManager, curveManager, guideLineManager);
 
                             
 
@@ -2279,6 +2279,7 @@ namespace beethoven3
 
                         ////왼손 노트 // 일단은 오른손노트랑 같이 함.
                         Texture2D[] leftNoteTextures = itemManager.GetNoteTexture();
+
                         ////롱노트 // 일단은 오른손노트랑 같이 함.
                         Texture2D[] longNoteTextures = itemManager.GetNoteTexture();
 

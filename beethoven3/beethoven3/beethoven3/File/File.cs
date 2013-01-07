@@ -37,7 +37,9 @@ namespace beethoven3
         private int currentRightNoteIndex;
         private double time;
 
-        private BadExplosionManager badManager;
+     //   private BadExplosionManager badManager;
+
+        private CollisionManager collisionManager;
 
         private ScoreManager scoreManager;
 
@@ -90,7 +92,7 @@ namespace beethoven3
         
         #region constructor
 
-        public File(StartNoteManager startNoteManager, NoteFileManager noteFileManager, BadExplosionManager badManager, ScoreManager scoreManager, ItemManager itemManager, CurveManager curveManager,GuideLineManager guideLineManager)       
+        public File(StartNoteManager startNoteManager, NoteFileManager noteFileManager, CollisionManager collisionManager, ScoreManager scoreManager, ItemManager itemManager, CurveManager curveManager, GuideLineManager guideLineManager)       
         {
 
              this.startNoteManager = startNoteManager;
@@ -99,8 +101,8 @@ namespace beethoven3
              currentRightNoteIndex = 0;
              time = 0;
             
-             this.badManager = badManager;
-
+          //   this.badManager = badManager;
+             this.collisionManager = collisionManager;
              this.scoreManager = scoreManager;
              this.endFile = false;
              this.itemManager = itemManager;
@@ -765,34 +767,57 @@ namespace beethoven3
                 {
                     startNoteManager.MakeLongNote(startNoteNumber);
 
-                    //여기에서 손이 이곳에  있으면 되는것으로 
-                      
-                    if (checkLongNoteInCenterArea(startNoteNumber))
-                    {
+                    ////여기에서 손이 이곳에  있으면 되는것으로 
+                    //int i;
+                    //for (i = 0; i < StartNoteManager.longNoteManager.LittleNotes.Count; i++)
+                    //{
+                    //    Sprite littleNote = StartNoteManager.longNoteManager.LittleNotes[i];
+
+
+                    //}
+                    ////롱노트 사각형을 만나면 사라지게끔
+                    //if (checkLongNoteInCenterArea(startNoteNumber))
+                    //{
+                        collisionManager.CheckLongNoteInCenterArea();
+
                         
-                  //?      badManager.AddExplosion(StartNoteManager.longNoteManager.LittleNotes[0].Center, Vector2.Zero);
-                        StartNoteManager.longNoteManager.LittleNotes.RemoveAt(0);
-                        scoreManager.Bad = scoreManager.Bad + 1;
-                        if (scoreManager.Combo > scoreManager.Max)
-                        {
-                            scoreManager.Max = scoreManager.Combo;
-                        }
+                        //Vector2 center = StartNoteManager.longNoteManager.LittleNotes[0].Center;
+                        //badManager.AddExplosions(new Vector2(center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
+                   
+                        //StartNoteManager.longNoteManager.LittleNotes.RemoveAt(0);
+                        //scoreManager.Bad = scoreManager.Bad + 1;
+                        //if (scoreManager.Combo > scoreManager.Max)
+                        //{
+                        //    scoreManager.Max = scoreManager.Combo;
+                        //}
     
-                        scoreManager.Combo = 0;
-                    }
+                        //scoreManager.Combo = 0;
+                   // }
                 }
                 else//시간 지난후에 다시 들어오지 않게 
                 {
-                    try
+                    //노트가 없어질떄 까지
+                    if (StartNoteManager.longNoteManager.LittleNotes.Count > 0)
                     {
-                        StartNoteManager.longNoteManager.LittleNotes.RemoveAt(0);
+                        try
+                        {
+                            StartNoteManager.longNoteManager.LittleNotes.RemoveAt(0);
+                        }
+                        catch (ArgumentOutOfRangeException)
+                        {
+                            Trace.WriteLine("outofrange in longnote");
+                        }
+
                     }
-                    catch (ArgumentOutOfRangeException)
+
+                    else
                     {
-                        //Trace.WriteLine("outofrange in longnote");
+                        //노트가 없어지면ㅍ
+                         drawLine = false;
+                        
+
                     }
-                    // drawLine = false;
-                    //이게 어디엔가에 있어야 할 듯 . 
+                    
    
                     //if (StartNoteManager.longNoteManager.LittleNotes.Count >= 1)
                     //{
