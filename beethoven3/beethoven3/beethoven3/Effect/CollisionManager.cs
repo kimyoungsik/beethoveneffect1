@@ -183,7 +183,7 @@ namespace beethoven3
                     else if (judgment == -1)
                     {
 
-                        //Trace.WriteLine(littleNote.IsEarlyOne);
+                        Trace.WriteLine(SoundFmod.isChangedTempo);
                         //빨리 맞은거 
                         if (littleNote.IsEarlyOne)
                         {
@@ -263,10 +263,10 @@ namespace beethoven3
                                     SoundFmod.SetOptionalTime();
 
                                     //그 양만큼 템포 조절됨
-                                    SoundFmod.tempoChange(0.9f);
+                                    SoundFmod.tempoChange(0.8f);
 
                                     //멤버들 느려짐
-                                    memberManager.SetMembersFrameTime(0.13f);
+                                    memberManager.SetMembersFrameTime(0.16f);
 
                                     //스트로크
                                     memberManager.SetMemberState(4, 2);
@@ -279,10 +279,10 @@ namespace beethoven3
                                     SoundFmod.SetOptionalTime();
 
                                     //그 양만큼 템포 조절됨
-                                    SoundFmod.tempoChange(0.8f);
+                                    SoundFmod.tempoChange(0.7f);
 
                                     //멤버들 느려짐
-                                    memberManager.SetMembersFrameTime(0.16f);
+                                    memberManager.SetMembersFrameTime(0.19f);
 
                                     //스트로크
                                     memberManager.SetMemberState(4, 3);

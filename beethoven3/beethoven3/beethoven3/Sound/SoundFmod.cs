@@ -72,14 +72,38 @@ namespace beethoven3
         //템포변경
         public static void tempoChange(double changedT)
         {
-            if (changedT > 1.0)
+            if (changedT == 1.1f)
             {
-                isChangedTempo++;
+                isChangedTempo = 1;
+            }
+            else if (changedT == 1.2f)
+            {
+                isChangedTempo = 2;
+            }
+            else if (changedT == 1.3f)
+            {
+                isChangedTempo = 3;
+            }
+            else if (changedT == 0.9f)
+            {
+                isChangedTempo = -1;
+            }
+            else if (changedT == 0.8f)
+            {
+                isChangedTempo = -2;
+            }
+            else if (changedT == 0.7f)
+            {
+                isChangedTempo = -3;
             }
             else
             {
-                isChangedTempo--;
+
             }
+
+
+
+
             //바뀐 템포 => 나중에 file note들을 다시 재정비 할 때 필요
             changedTempo = changedT;
 
@@ -156,7 +180,7 @@ namespace beethoven3
             {
                 //처음시작 
                 chagneLimitedTime += gameTime.ElapsedGameTime.TotalMilliseconds;
-                Trace.WriteLine(chagneLimitedTime);
+                //Trace.WriteLine(chagneLimitedTime);
             }
         }
 

@@ -185,24 +185,24 @@ namespace beethoven3
 
             //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             //have to additem, effect, node , background
-            effectTexture[0] = cm.Load<Texture2D>(@"Explosion\starExplosion");
+            effectTexture[0] = cm.Load<Texture2D>(@"Explosion\starExplosion2");
             effectTexture[1] = cm.Load<Texture2D>(@"Explosion\needleExplosion2");
             effectTexture[2] = cm.Load<Texture2D>(@"Explosion\windExplosion2");
-           
-            
-            
 
-            goodEffectTexture[0] = cm.Load<Texture2D>(@"Explosion\windExplosion2");
+
+
+
+            goodEffectTexture[0] = cm.Load<Texture2D>(@"Explosion\starExplosion2");
             goodEffectTexture[1] = cm.Load<Texture2D>(@"Explosion\needleExplosion2");
-            goodEffectTexture[2] = cm.Load<Texture2D>(@"Explosion\starExplosion2");
-            
-            badEffectTexture[0] = cm.Load<Texture2D>(@"Explosion\windExplosion2");
+            goodEffectTexture[2] = cm.Load<Texture2D>(@"Explosion\windExplosion2");
+
+            badEffectTexture[0] = cm.Load<Texture2D>(@"Explosion\starExplosion");
             badEffectTexture[1] = cm.Load<Texture2D>(@"Explosion\needleExplosion2");
-            badEffectTexture[2] = cm.Load<Texture2D>(@"Explosion\starExplosion2");
-         
-            missEffectTexture[0] = cm.Load<Texture2D>(@"Explosion\windExplosion2");
+            badEffectTexture[2] = cm.Load<Texture2D>(@"Explosion\windExplosion2");
+
+            missEffectTexture[0] = cm.Load<Texture2D>(@"Explosion\starExplosion");
             missEffectTexture[1] = cm.Load<Texture2D>(@"Explosion\needleExplosion2");
-            missEffectTexture[2] = cm.Load<Texture2D>(@"Explosion\starExplosion2");
+            missEffectTexture[2] = cm.Load<Texture2D>(@"Explosion\windExplosion2");
          
        
 
