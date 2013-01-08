@@ -1,0 +1,3 @@
+c:\users\김영식\documents\visual studio 2010\Projects\beethoven3\beethoven3\beethoven3Content\obj\x86\Debug\ResolveAssemblyReference.cache
+Z:\beethoveneffect1\beethoven3\beethoven3\beethoven3Content\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\beethoven\beethoven3\beethoven3\beethoven3Content\obj\x86\Debug\beethoven3Content.contentprojResolveAssemblyReference.cache
