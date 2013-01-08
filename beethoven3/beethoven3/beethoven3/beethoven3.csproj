@@ -133,9 +133,6 @@
     <Compile Include="Effect\ExplosionManager.cs" />
     <Compile Include="File\File.cs" />
     <Compile Include="Note\RightNoteInfo.cs" />
-    <Compile Include="Sound\fmod.cs" />
-    <Compile Include="Sound\fmod_dsp.cs" />
-    <Compile Include="Sound\fmod_errors.cs" />
     <Compile Include="Curve\GoldManager.cs" />
     <Compile Include="Curve\GuideLine.cs" />
     <Compile Include="Curve\GuideLineManager.cs" />
@@ -167,6 +164,10 @@
     <Compile Include="Effect\Sprite.cs" />
     <Compile Include="Marker\StartNote.cs" />
     <Compile Include="Marker\StartNoteManager.cs" />
+    <Compile Include="Sound\fmod.cs" />
+    <Compile Include="Sound\fmod_dsp.cs" />
+    <Compile Include="Sound\fmod_errors.cs" />
+    <Compile Include="Sound\fmod_memoryinfo.cs" />
     <Compile Include="Sound\SoundFmod.cs" />
   </ItemGroup>
   <ItemGroup>

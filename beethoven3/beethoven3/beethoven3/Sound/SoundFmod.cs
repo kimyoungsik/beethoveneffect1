@@ -63,7 +63,7 @@ namespace beethoven3
 
             //FMOD 세팅 -START
             resultFmod = FMOD.Factory.System_Create(ref sndSystem);
-            sndSystem.init(1, FMOD.INITFLAG.NORMAL, (IntPtr)null);
+            sndSystem.init(1, FMOD.INITFLAGS.NORMAL, (IntPtr)null);
             //FMOD 세팅 -END
         }
 
@@ -138,7 +138,7 @@ namespace beethoven3
 
             //다시 셋팅
             resultFmod = FMOD.Factory.System_Create(ref sndSystem);
-            sndSystem.init(1, FMOD.INITFLAG.NORMAL, (IntPtr)null);
+            sndSystem.init(1, FMOD.INITFLAGS    .NORMAL, (IntPtr)null);
         }
 
 
