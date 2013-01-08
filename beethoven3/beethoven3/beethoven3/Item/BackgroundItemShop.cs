@@ -146,6 +146,15 @@ namespace beethoven3
                 }
 
 
+                //if(sellOrWearOne)
+                //{
+                
+
+
+
+                //    recWearButton
+                //}
+
                 //to BUY item
                 if (buyOne)
                 {
@@ -185,8 +194,6 @@ namespace beethoven3
                     recYesButton = new Rectangle((int)yesButtonLocation.X - 100, (int)yesButtonLocation.Y - 60, 200, 120);
 
                     recNoButton = new Rectangle((int)noButtonLocation.X - 100, (int)noButtonLocation.Y - 60, 200, 120);
-
-
 
 
 

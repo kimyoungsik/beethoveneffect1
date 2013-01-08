@@ -700,9 +700,6 @@ namespace beethoven3
                            //70이면 100
                            // 70보다 크면 +100
 
-
-
-
                             Curve.dragNoteSpeed = GetDragNoteSpeed(arrayNotes[0].MarkLocation);
                         }
 

@@ -189,9 +189,6 @@ namespace beethoven3
             effectTexture[1] = cm.Load<Texture2D>(@"Explosion\needleExplosion2");
             effectTexture[2] = cm.Load<Texture2D>(@"Explosion\windExplosion2");
 
-
-
-
             goodEffectTexture[0] = cm.Load<Texture2D>(@"Explosion\starExplosion2");
             goodEffectTexture[1] = cm.Load<Texture2D>(@"Explosion\needleExplosion2");
             goodEffectTexture[2] = cm.Load<Texture2D>(@"Explosion\windExplosion2");
@@ -204,8 +201,6 @@ namespace beethoven3
             missEffectTexture[1] = cm.Load<Texture2D>(@"Explosion\needleExplosion2");
             missEffectTexture[2] = cm.Load<Texture2D>(@"Explosion\windExplosion2");
          
-       
-
             noteTexture[0] = cm.Load<Texture2D>(@"notes\starNote");
             noteTexture[1] = cm.Load<Texture2D>(@"notes\turnNote2");
             
@@ -215,10 +210,8 @@ namespace beethoven3
 
             backgroundTexture[0] = cm.Load<Texture2D>(@"Textures\red");
             backgroundTexture[1] = cm.Load<Texture2D>(@"Textures\heart");
-
         }
 
-      
         private void addItem(
           List<Item> itemList,
           Vector2 location,
@@ -243,12 +236,11 @@ namespace beethoven3
             itemArray.Add(item);
         }
 
-        //***아이템 팔기, 중요하진 않지만 구현 
-        //maybe no function sell item
-        //public void sellItem(List<Item> itemArray, Item item)
-        //{
-        //    itemArray.Remove(item);
-        //}
+        //아이템 팔기, 중요하진 않지만 구현 
+        public void sellItem(List<Item> itemArray, Item item)
+        {
+            itemArray.Remove(item);
+        }
 
         //노트특성 Get하기
         public float[] GetRightNoteScale()
@@ -256,14 +248,11 @@ namespace beethoven3
             return this.rightNoteScale;
         }
         
-
-
         //마커특성 Get하기
         public float[] GetMarkersScale()
         {
             return this.markersScale;
         }
-        
         
         //effect특성 Get하기 - start
         public  Rectangle[] GetEffectInitFrame()
@@ -440,6 +429,28 @@ namespace beethoven3
         public void addMyBackgroundItem(Item item)
         {
             this.myBackgroundItem.Add(item);
+        }
+
+        //물건 팔게되면 내 아이템에서 빼기
+        public void removeMyRightHandItem(Item item)
+        {
+            this.myRightHandItem.Remove(item);
+        }
+        public void removeMyLeftHandItem(Item item)
+        {
+            this.myLeftHandItem.Remove(item);
+        }
+        public void removeMyEffectItem(Item item)
+        {
+            this.myEffectItem.Remove(item);
+        }
+        public void removeMyNoteItem(Item item)
+        {
+            this.myNoteItem.Remove(item);
+        }
+        public void removeMyBackgroundItem(Item item)
+        {
+            this.myBackgroundItem.Remove(item);
         }
 
 

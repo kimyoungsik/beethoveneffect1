@@ -68,6 +68,13 @@ Content\Explosion\starExplosion2.xnb
 Content\DrawLine\drawLineNote1.xnb
 Content\Menu\firstMenuBackground.xnb
 Content\DrawLine\drawLineMark.xnb
+Content\shopdoor\sCancelButton.xnb
+Content\shopdoor\sellorwearPanel.xnb
+Content\shopdoor\sSellButton.xnb
+Content\shopdoor\sWearButton.xnb
+Content\shopdoor\hoverSCancelButton.xnb
+Content\shopdoor\hoverSSellButton.xnb
+Content\shopdoor\hoverSWearButton.xnb
 Content\snd\ka.xnb
 Content\snd\ka.wma
 Content\snd\jo.xnb
@@ -78,3 +85,6 @@ Content\Fonts\damagefont.xnb
 Content\Fonts\Pericles36.xnb
 Content\MessageFont.xnb
 Content\Fonts\PerpetuaFont.xnb
+Content\shopdoor\sellPanel.xnb
+Content\shopdoor\handInItemButton.xnb
+Content\shopdoor\hoverHandInItemButton.xnb

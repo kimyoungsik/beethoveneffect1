@@ -20,6 +20,8 @@ namespace beethoven3
         //버튼띄울때 장착or구입 여부 확인하기위해서.
         protected bool buyOne;
         protected bool wearOne;
+        protected bool sellOrWearOne;
+        protected bool sellOne;
 
         protected SpriteFont pericles36Font;
 
@@ -28,14 +30,37 @@ namespace beethoven3
         protected Texture2D noButton;
         protected Texture2D putPanel;
         protected Texture2D buyPanel;
+        protected Texture2D sellPanel;
+
+        protected Texture2D sellorwearPanel;
+
+
+        protected Texture2D sWearButton;
+        protected Texture2D sSellButton;
+        protected Texture2D sCancelButton;      
+            
         protected Texture2D hoverYesButton;
         protected Texture2D hoverNoButton;
+        protected Texture2D hoverSWearButton;
+        protected Texture2D hoverSSellButton;
+        protected Texture2D hoverSCancelButton;      
 
         protected Rectangle recYesButton;
         protected Rectangle recNoButton;
+        protected Rectangle recWearButton;
+        protected Rectangle recSellButton;
+        protected Rectangle recCancelButton;
 
         protected bool isHoverYesButton;
         protected bool isHoverNoButton;
+
+        protected bool isHoverSellYesButton;
+        protected bool isHoverSellNoButton;
+
+
+        protected bool isHoverWearButton;
+        protected bool isHoverSellButton;
+        protected bool isHoverCancelButton;
 
         protected Texture2D usedItemBackground;
         protected Texture2D ItemBackground;
@@ -43,12 +68,19 @@ namespace beethoven3
         protected Texture2D hoverNoGoldButton;
         protected Texture2D noGoldButton;
 
+        protected Texture2D hoverHandInItemButton;
+        protected Texture2D handInItemButton;
+
         protected bool noGold;
         protected bool isHoverNoGoldButton;
 
+        protected bool handInItem;
+        protected bool isHoverHandInItem;
+        
+        
 
         protected Rectangle recNoGoldButton;
-
+        protected Rectangle recHandInButton;
    
         public ItemShop(ItemManager itemManager, ScoreManager scoreManager)
         {
@@ -68,6 +100,8 @@ namespace beethoven3
             noButton = cm.Load<Texture2D>(@"shopdoor\noButton");
             putPanel = cm.Load<Texture2D>(@"shopdoor\putPanel");
             buyPanel = cm.Load<Texture2D>(@"shopdoor\buyPanel");
+            sellPanel = cm.Load<Texture2D>(@"shopdoor\sellPanel");
+
             hoverYesButton = cm.Load<Texture2D>(@"shopdoor\hoverYesButton");
             hoverNoButton = cm.Load<Texture2D>(@"shopdoor\hoverNoButton");
 
@@ -76,6 +110,20 @@ namespace beethoven3
 
             noGoldButton = cm.Load<Texture2D>(@"shopdoor\nogold");
             hoverNoGoldButton = cm.Load<Texture2D>(@"shopdoor\nogoldhover");
+
+            sellorwearPanel = cm.Load<Texture2D>(@"shopdoor\sellorwearPanel");
+
+            sWearButton = cm.Load<Texture2D>(@"shopdoor\sWearButton");
+            sSellButton = cm.Load<Texture2D>(@"shopdoor\sSellButton");
+            sCancelButton = cm.Load<Texture2D>(@"shopdoor\sCancelButton");
+
+
+            hoverSWearButton = cm.Load<Texture2D>(@"shopdoor\hoverSWearButton");
+            hoverSSellButton = cm.Load<Texture2D>(@"shopdoor\hoverSSellButton");
+            hoverSCancelButton = cm.Load<Texture2D>(@"shopdoor\hoverSCancelButton");
+
+            hoverHandInItemButton = cm.Load<Texture2D>(@"shopdoor\hoverHandInItemButton");
+            handInItemButton = cm.Load<Texture2D>(@"shopdoor\handInItemButton");
 
             pericles36Font = cm.Load<SpriteFont>(@"Fonts\Pericles36");
 
@@ -97,11 +145,36 @@ namespace beethoven3
             return this.buyOne;
         }
 
+        //사기, 팔기 메시지 
 
+        public void setSellOrWearOne(bool value)
+        {
+            this.sellOrWearOne = value;
+           // Trace.WriteLine(value);
+        }
+               
+        public bool getSellOrWearOne()
+        {
+            return this.sellOrWearOne;
+        }
+
+
+
+
+        public void setSellOne(bool value)
+        {
+            this.sellOne = value;
+        }
+
+        public bool getSellOne()
+        {
+            return this.sellOne;
+        }
+
+        
         public void setWearOne(bool value)
         {
             this.wearOne = value;
-            
         }
 
         public bool getWearOne()
@@ -121,67 +194,34 @@ namespace beethoven3
             return this.noGold;
         }
 
+        public void setHandInItem(bool value)
+        {
+            this.handInItem = value;
+       
+        }
 
-        //public List<Rectangle> getRectRightItem()
-        //{
+        public bool getHandInItem()
+        {
+            return this.handInItem;
+        }
+        
+        
 
-        //    return rectRightItems;
-        //}
+        public Rectangle getRectWearButton()
+        {
+            return this.recWearButton;
+        }
 
-        //public List<Item> getShopRightItem()
-        //{
+        public Rectangle getRectSellButton()
+        {
+            return this.recSellButton;
+        }
 
-        //    return rightItems;
-        //}
-
-        //public bool haveOne(Item shopItem)
-        //{
-        //    bool ret = false;
-        //    int i;
-        //    for (i = 0; i < myRightItems.Count; i++)
-        //    {
-        //        if (shopItem == myRightItems[i])
-        //        {
-        //            ret = true;
-        //            i = myRightItems.Count;
-        //        }
-        //    }
-        //    return ret;
-        //}
-
-        //public virtual void setLocationItems()
-        //{
-        //    int i;
-        //    for (i = 0; i < rightItems.Count; i++)
-        //    {
-
-        //        Rectangle rectRightHand = new Rectangle(300, i * 150, 100, 100);
-        //        rectRightItems.Add(rectRightHand);
-        //    }
-
-        //}
-
-        //public void SaveReport()
-        //{
-        //    TextWriter tw = new StreamWriter("c:\\beethovenRecord\\record.txt");
-        //    int i, j;
-        //    for (i = 0; i < scoreInfoManagers.Count; i++)
-        //    {
-        //        tw.WriteLine("%%");
-        //        tw.WriteLine(scoreInfoManagers[i].SongName);
-        //        List<ScoreInfo> scoreInfos = scoreInfoManagers[i].GetScoreInfos();
-        //        for (j = 0; j < scoreInfos.Count; j++)
-        //        {
-        //            tw.WriteLine(scoreInfos[j].UserPicture + '$' + scoreInfos[j].Score);
-        //        }
-        //    }
-
-            
-        //    tw.WriteLine("**");
-        //    tw.WriteLine(scoreManager.TotalGold);
-
-        //    tw.Close();
-        //}
+        public Rectangle getRectCancelButton()
+        {
+            return this.recCancelButton;
+        }
+        
 
         public Rectangle getRectYesButton()
         {
@@ -197,11 +237,62 @@ namespace beethoven3
             return this.recNoGoldButton;
         }
 
+        public Rectangle getRectHandInItemButton()
+        {
+            return this.recHandInButton;
+        }
+
+        
+
+        
+        public void setHoverWearButton(bool value)
+        {
+
+            this.isHoverWearButton = value;
+        }
+
+        public void setHoverSellButton(bool value)
+        {
+
+            this.isHoverSellButton = value;
+        }
+        public void setHoverCancelButton(bool value)
+        {
+
+            this.isHoverCancelButton = value;
+        }
+
+
+        public void setHoverSellYesButton(bool value)
+        {
+
+            this.isHoverSellYesButton = value;
+        }
+
+
+        public void setHoverSellNoButton(bool value)
+        {
+
+            this.isHoverSellNoButton = value;
+        }
+
+
+       
+        
         public void setHoverYesButton(bool value)
         {
 
             this.isHoverYesButton = value;
         }
+
+        
+
+        public void setHoverNoButton(bool value)
+        {
+
+            this.isHoverNoButton = value;
+        }
+
         
         public void setHoverNoGoldButton(bool value)
         {
@@ -209,11 +300,16 @@ namespace beethoven3
             this.isHoverNoGoldButton = value;
         }
 
-        public void setHoverNoButton(bool value)
+
+
+        public void setHoverHandInItemButton(bool value)
         {
 
-            this.isHoverNoButton = value;
+            this.isHoverHandInItem = value;
         }
+
+        
+
 
         public virtual void Draw(SpriteBatch spriteBatch, int width, int height)
         {
