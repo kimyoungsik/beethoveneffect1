@@ -336,6 +336,7 @@ namespace beethoven3
                         //BPM CHANGE
                         else if (lines[1] == "B")
                         {
+                            arrayNotes.Add(new NoteInfo(isright,/*startTime*/Convert.ToDouble(lines[0]), /*bps*/Int32.Parse(lines[2]), /*type*/lines[1], /*not lastTime*/0, Vector2.Zero, Vector2.Zero, Vector2.Zero, Vector2.Zero));
 
                         }
                     }
@@ -683,7 +684,27 @@ namespace beethoven3
                              patternChanging = true;
                         }
 
+                        else if (arrayNotes[0].Type == "B")
+                        {
 
+                         //   StartNoteManager.noteSpeed = arrayNotes[0].MarkLocation;
+                            StartNoteManager.rightNoteManager.noteSpeed = arrayNotes[0].MarkLocation;
+                            StartNoteManager.leftNoteManager.noteSpeed = arrayNotes[0].MarkLocation;
+                            StartNoteManager.longNoteManager.noteSpeed = arrayNotes[0].MarkLocation;
+                            
+
+                            //마커속도 변화
+
+
+                           //70보다 낮으면 30
+                           //70이면 100
+                           // 70보다 크면 +100
+
+
+
+
+                            Curve.dragNoteSpeed = GetDragNoteSpeed(arrayNotes[0].MarkLocation);
+                        }
 
                         arrayNotes.RemoveAt(0);
 
@@ -720,9 +741,27 @@ namespace beethoven3
             return  startPoint + ((endPoint - startPoint) * ((float)currentTime / (float)lastingTime));  
  //         시작점 + (      (끝점 - 시작점)* (lasttime - currentTime/lasttime))
         }
-   
 
 
+        public int GetDragNoteSpeed(int beforeSpeed)
+        {
+            int noteSpeed = 100;
+
+            if (beforeSpeed < 70)
+            {
+
+                noteSpeed = 30;
+            }
+            else if (beforeSpeed > 70)
+            {
+
+                noteSpeed = beforeSpeed + 100;
+            }
+
+            return noteSpeed;
+
+
+        }
         
         public Vector2 GetMarkerLocation(int markerNumber)
         {

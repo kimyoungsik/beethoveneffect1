@@ -16,7 +16,8 @@ namespace beethoven3
         public static Texture2D Texture;
         public static Rectangle InitialFrame;
         private static int FrameCount;
-        private static float NoteSpeed;
+        //노트 스피드로서 역할을 제대로 하지 않는다.
+        public static float NoteSpeed;
         private static int CollisionRadius;
         private static BadExplosionManager BadManager;
         private static ScoreManager ScoreManager;

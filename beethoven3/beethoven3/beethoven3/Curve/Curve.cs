@@ -35,6 +35,10 @@ namespace beethoven3
 
         private LineRenderer lineRenderer;
         private LineRenderer dragLineMarkerRenderer;
+
+
+        public static int dragNoteSpeed= 100;
+
         #endregion
 
         #region constructor
@@ -110,7 +114,8 @@ namespace beethoven3
             
             
             //나누어주는 count에 더하는 수를 크게하면 드래그노트 안을 지나가는 공이 빨라진다. 
-            dotTime = time / (PointsQueue.Count+20);
+            //이것이 드래그 노트 속도에 영향을 줌
+            dotTime = time / (PointsQueue.Count + dragNoteSpeed);
             end = false;
         }
 
