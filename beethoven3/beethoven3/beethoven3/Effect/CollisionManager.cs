@@ -796,7 +796,7 @@ namespace beethoven3
                 {
 
 
-                    badManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
+//                    badManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
                     
                     //글자 띄우기
                     missBannerManager.AddBanners(missLocation);
@@ -830,7 +830,7 @@ namespace beethoven3
 
                 if (littleNote.IsBoxColliding(MarkManager.centerArea))
                 {
-                    badManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
+                  //  badManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
                     
                     //글자 띄우기
                     missBannerManager.AddBanners(missLocation);
@@ -859,9 +859,9 @@ namespace beethoven3
                   if (littleNote.IsBoxColliding(MarkManager.centerArea))
                   {
                       
-                      badManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
+                    //  badManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
                       //글자 띄우기
-                      //                      missBannerManager.AddBanners(missLocation);
+                                            missBannerManager.AddBanners(missLocation);
 
                       StartNoteManager.longNoteManager.LittleNotes.RemoveAt(i);
                       scoreManager.Bad = scoreManager.Bad + 1;
