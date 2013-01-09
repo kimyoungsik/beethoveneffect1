@@ -229,6 +229,10 @@ namespace beethoven3
                 cost);
             itemList.Add(thisItem);
         }
+        
+        /////////////////////////////////
+        //버튼을 눌러서 구입 ,팔기는 add~, remove를 이용하고
+        //이것은 코드상에서 할 수 있도록 함
 
         //아이템 구입
         public void buyItem( List<Item> itemArray ,Item item)
@@ -236,11 +240,12 @@ namespace beethoven3
             itemArray.Add(item);
         }
 
-        //아이템 팔기, 중요하진 않지만 구현 
+        //아이템 팔기
         public void sellItem(List<Item> itemArray, Item item)
         {
             itemArray.Remove(item);
         }
+        //////////////////////////////////////
 
         //노트특성 Get하기
         public float[] GetRightNoteScale()

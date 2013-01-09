@@ -36,7 +36,7 @@ namespace beethoven3
         {
             itemManager.addMyRightHandItem(item);
 
-            //더하고 다시 갱신하는 듯.
+            //더하고 다시 갱신
             myRightItems = itemManager.getMyRightHandItem();
             
         }
@@ -47,7 +47,7 @@ namespace beethoven3
         {
             itemManager.removeMyRightHandItem(item);
 
-            //더하고 다시 갱신하는 듯.
+            //더하고 다시 갱신
             myRightItems = itemManager.getMyRightHandItem();
 
         }
