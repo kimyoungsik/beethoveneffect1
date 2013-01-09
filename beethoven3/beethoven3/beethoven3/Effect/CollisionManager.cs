@@ -15,6 +15,13 @@ namespace beethoven3
         private BadExplosionManager badManager;
         private ExplosionManager goldGetManager;
 
+        //글씨나타내기
+        private PerfectBannerManager perfectBannerManager;
+        //private GoodBannerManager goodBannerManager;
+        //private BadBannerManager badBannerManager;
+        //private MissBannerManager missBannerManager;
+
+
         private ScoreManager scoreManager;
 
         private MemberManager memberManager;
@@ -26,12 +33,15 @@ namespace beethoven3
         #endregion 
 
         #region constructor
-        public CollisionManager(PerfectExplosionManager perfectManager, GoodExplosionManager goodManager, BadExplosionManager badManager, ExplosionManager goldGetManager, ScoreManager scoreManager, MemberManager memberManager, ItemManager itemManager)
+        public CollisionManager(PerfectExplosionManager perfectManager, GoodExplosionManager goodManager, BadExplosionManager badManager, ExplosionManager goldGetManager,
+            ScoreManager scoreManager, MemberManager memberManager, ItemManager itemManager, PerfectBannerManager perfectBannerManager)
         {
             this.perfectManager = perfectManager;
             this.goodManager = goodManager;
             this.badManager = badManager;
             this.goldGetManager = goldGetManager;
+
+            this.perfectBannerManager = perfectBannerManager;
 
             this.scoreManager = scoreManager;
 
@@ -133,9 +143,17 @@ namespace beethoven3
                             perfectManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
                             StartNoteManager.rightNoteManager.LittleNotes.RemoveAt(x);
 
+                            //퍼펙트 띄우기
+                            perfectBannerManager.AddBanners(new Vector2(170, 275));
+
+
                             scoreManager.Perfect = scoreManager.Perfect + 1;
                             scoreManager.Combo = scoreManager.Combo + 1;
                             scoreManager.Gage = scoreManager.Gage + 10;
+                            //xxx
+                            //가운데 perfect글자
+                           // Game1.isPerfectMark = true;
+
 
                             //템포 원상 복귀
                             if (SoundFmod.isChangedTempo != 0)

@@ -2,22 +2,13 @@
 <XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline">
   <Asset Type="Pipeline:BuildItemCollection">
     <Item>
-      <Source>Textures\TitleScreen.png</Source>
-      <Name>Textures\TitleScreen</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Textures\TitleScreen.xnb</Output>
-      <Time>2013-01-08T22:57:38.3249725+09:00</Time>
-    </Item>
-    <Item>
       <Source>Textures\heart.png</Source>
       <Name>Textures\heart</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Textures\heart.xnb</Output>
-      <Time>2013-01-08T22:57:38.3249725+09:00</Time>
+      <Time>2013-01-09T21:06:52.316411+09:00</Time>
     </Item>
     <Item>
       <Source>Textures\red.png</Source>
@@ -695,6 +686,69 @@
       <Time>2013-01-09T01:33:46.5018016+09:00</Time>
     </Item>
     <Item>
+      <Source>shopdoor\sellPanel.png</Source>
+      <Name>shopdoor\sellPanel</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopdoor\sellPanel.xnb</Output>
+      <Time>2013-01-09T01:52:29.2720204+09:00</Time>
+    </Item>
+    <Item>
+      <Source>shopdoor\handInItemButton.png</Source>
+      <Name>shopdoor\handInItemButton</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopdoor\handInItemButton.xnb</Output>
+      <Time>2013-01-09T02:20:37.4015758+09:00</Time>
+    </Item>
+    <Item>
+      <Source>shopdoor\hoverHandInItemButton.png</Source>
+      <Name>shopdoor\hoverHandInItemButton</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopdoor\hoverHandInItemButton.xnb</Output>
+      <Time>2013-01-09T02:20:37.4025759+09:00</Time>
+    </Item>
+    <Item>
+      <Source>character\horn1.png</Source>
+      <Name>character\horn1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\character\horn1.xnb</Output>
+      <Time>2013-01-09T20:05:10.4226748+09:00</Time>
+    </Item>
+    <Item>
+      <Source>character\horn2.png</Source>
+      <Name>character\horn2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\character\horn2.xnb</Output>
+      <Time>2013-01-09T20:05:10.4246749+09:00</Time>
+    </Item>
+    <Item>
+      <Source>character\horn3.png</Source>
+      <Name>character\horn3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\character\horn3.xnb</Output>
+      <Time>2013-01-09T20:05:10.426675+09:00</Time>
+    </Item>
+    <Item>
+      <Source>markers\whiteMarker.png</Source>
+      <Name>markers\whiteMarker</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\markers\whiteMarker.xnb</Output>
+      <Time>2013-01-09T20:25:15.3715939+09:00</Time>
+    </Item>
+    <Item>
       <Source>snd\ka.mp3</Source>
       <Name>snd\ka</Name>
       <Importer>Mp3Importer</Importer>
@@ -761,67 +815,40 @@
       <Time>2013-01-08T22:57:38.3099716+09:00</Time>
     </Item>
     <Item>
-      <Source>shopdoor\sellPanel.png</Source>
-      <Name>shopdoor\sellPanel</Name>
+      <Source>judgement\perfect.png</Source>
+      <Name>judgement\perfect</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopdoor\sellPanel.xnb</Output>
-      <Time>2013-01-09T01:52:29.2720204+09:00</Time>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\judgement\perfect.xnb</Output>
+      <Time>2013-01-09T21:19:26.53855+09:00</Time>
     </Item>
     <Item>
-      <Source>shopdoor\handInItemButton.png</Source>
-      <Name>shopdoor\handInItemButton</Name>
+      <Source>judgement\bad.png</Source>
+      <Name>judgement\bad</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopdoor\handInItemButton.xnb</Output>
-      <Time>2013-01-09T02:20:37.4015758+09:00</Time>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\judgement\bad.xnb</Output>
+      <Time>2013-01-09T21:19:26.5395501+09:00</Time>
     </Item>
     <Item>
-      <Source>shopdoor\hoverHandInItemButton.png</Source>
-      <Name>shopdoor\hoverHandInItemButton</Name>
+      <Source>judgement\good.png</Source>
+      <Name>judgement\good</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopdoor\hoverHandInItemButton.xnb</Output>
-      <Time>2013-01-09T02:20:37.4025759+09:00</Time>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\judgement\good.xnb</Output>
+      <Time>2013-01-09T21:19:26.555551+09:00</Time>
     </Item>
     <Item>
-      <Source>character\horn1.png</Source>
-      <Name>character\horn1</Name>
+      <Source>judgement\miss.png</Source>
+      <Name>judgement\miss</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\character\horn1.xnb</Output>
-      <Time>2013-01-09T20:05:10.4226748+09:00</Time>
-    </Item>
-    <Item>
-      <Source>character\horn2.png</Source>
-      <Name>character\horn2</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\character\horn2.xnb</Output>
-      <Time>2013-01-09T20:05:10.4246749+09:00</Time>
-    </Item>
-    <Item>
-      <Source>character\horn3.png</Source>
-      <Name>character\horn3</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\character\horn3.xnb</Output>
-      <Time>2013-01-09T20:05:10.426675+09:00</Time>
-    </Item>
-    <Item>
-      <Source>markers\whiteMarker.png</Source>
-      <Name>markers\whiteMarker</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\markers\whiteMarker.xnb</Output>
-      <Time>2013-01-09T20:25:15.3715939+09:00</Time>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\judgement\miss.xnb</Output>
+      <Time>2013-01-09T21:19:26.5365499+09:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

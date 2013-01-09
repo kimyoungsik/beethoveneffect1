@@ -1,4 +1,3 @@
-Content\Textures\TitleScreen.xnb
 Content\Textures\heart.xnb
 Content\Textures\red.xnb
 Content\Textures\SpriteSheet8.xnb
@@ -75,6 +74,13 @@ Content\shopdoor\sWearButton.xnb
 Content\shopdoor\hoverSCancelButton.xnb
 Content\shopdoor\hoverSSellButton.xnb
 Content\shopdoor\hoverSWearButton.xnb
+Content\shopdoor\sellPanel.xnb
+Content\shopdoor\handInItemButton.xnb
+Content\shopdoor\hoverHandInItemButton.xnb
+Content\character\horn1.xnb
+Content\character\horn2.xnb
+Content\character\horn3.xnb
+Content\markers\whiteMarker.xnb
 Content\snd\ka.xnb
 Content\snd\ka.wma
 Content\snd\jo.xnb
@@ -85,10 +91,7 @@ Content\Fonts\damagefont.xnb
 Content\Fonts\Pericles36.xnb
 Content\MessageFont.xnb
 Content\Fonts\PerpetuaFont.xnb
-Content\shopdoor\sellPanel.xnb
-Content\shopdoor\handInItemButton.xnb
-Content\shopdoor\hoverHandInItemButton.xnb
-Content\character\horn1.xnb
-Content\character\horn2.xnb
-Content\character\horn3.xnb
-Content\markers\whiteMarker.xnb
+Content\judgement\perfect.xnb
+Content\judgement\bad.xnb
+Content\judgement\good.xnb
+Content\judgement\miss.xnb

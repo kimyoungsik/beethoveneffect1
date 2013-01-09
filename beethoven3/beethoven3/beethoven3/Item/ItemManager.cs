@@ -207,7 +207,7 @@ namespace beethoven3
             //노트랑 한쌍이다.
             markTexture[0] = cm.Load<Texture2D>(@"markers\whiteMarker");
             markTexture[1] = cm.Load<Texture2D>(@"markers\turnMarker");
-           // markTexture[2] = cm.Load<Texture2D>(@"markers\whiteMarker");
+          
 
             backgroundTexture[0] = cm.Load<Texture2D>(@"Textures\red");
             backgroundTexture[1] = cm.Load<Texture2D>(@"Textures\heart");

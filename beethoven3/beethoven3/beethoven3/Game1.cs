@@ -76,7 +76,11 @@ namespace beethoven3
         private ExplosionManager goldGetManager;
         /////이펙트 관리 - end
         
-       
+       //판정 배너 띄우기 
+
+        private PerfectBannerManager perfectBannerManager;
+
+
         //아이템 관리
         private ItemManager itemManager;
 
@@ -147,7 +151,34 @@ namespace beethoven3
 
        //드래그 라인 모양
         public static Texture2D drawLineNote1;
+
+     
+        //perfect,good,bad,miss 판정 배너
+        private Texture2D perfectBanner;
+
+        private Texture2D goodBanner;
+
+        private Texture2D badBanner;
+
+        private Texture2D missBanner;
+
+
+
         /////Texture end 
+
+        //perfect,good,bad,miss 마크 띄우는 여부
+
+        //xxx
+        //public static bool isPerfectMark = false;
+
+        //public static bool isGoodMark = false;
+
+        //public static bool isBadMark = false;
+
+        //public static bool isMissMark = false;
+
+
+        //ExplosionSprite perfectSprite;
 
         //드래그 라인 안의 마커점
 
@@ -283,7 +314,7 @@ namespace beethoven3
             /////아이템 상점 -START
             rightItemShop = new RightItemShop(itemManager,  scoreManager);
             rightItemShop.LoadContent(Content);
-
+                
             leftItemShop = new LeftItemShop(itemManager, scoreManager);
             leftItemShop.LoadContent(Content);
 
@@ -311,7 +342,7 @@ namespace beethoven3
             spriteSheet = Content.Load<Texture2D>(@"Textures\SpriteSheet8");
             
             //드래그 노트
-            heart = Content.Load<Texture2D>(@"Textures\heart");
+           // heart = Content.Load<Texture2D>(@"Textures\heart");
            
             //진행상황
             uiBackground = Content.Load<Texture2D>(@"ui\background");
@@ -319,9 +350,31 @@ namespace beethoven3
             
             //폰트
             pericles36Font = Content.Load<SpriteFont>(@"Fonts\Pericles36");
+
+            
+            //perfect,good,bad,miss 판정 배너 
+            perfectBanner = Content.Load<Texture2D>(@"judgement\perfect");
+
+            goodBanner = Content.Load<Texture2D>(@"judgement\good");
+
+            badBanner = Content.Load<Texture2D>(@"judgement\bad");
+
+            missBanner = Content.Load<Texture2D>(@"judgement\miss");
+
+
+
+
             /////텍스쳐 로드 -END
 
+            //xxx
+            ////판정 마크 관련
+            //perfect 마크
+            //perfectSprite = new ExplosionSprite(new Vector2(this.Window.ClientBounds.Width / 2, this.Window.ClientBounds.Height / 2), perfectMark, new Rectangle(0, 0, 1380, 428), Vector2.Zero, 30, 0.5f);
+            
             /////////////////드래그 라인 관련
+
+            
+            
 
             //드래그 라인
             drawLineNote1 = Content.Load<Texture2D>(@"DrawLine\drawLineNote1");
@@ -375,6 +428,12 @@ namespace beethoven3
             badManager = new BadExplosionManager();
             badManager.ExplosionInit(itemManager.GetBadEffectTexture()[effectIndex], itemManager.GetEffectInitFrame()[effectIndex], itemManager.GetEffectFrameCount()[effectIndex], itemManager.GetEffectScale()[effectIndex], itemManager.GetEffectDulation()[effectIndex]);
 
+
+
+            perfectBannerManager = new PerfectBannerManager();
+            
+            perfectBannerManager.BannerInit(perfectBanner,new Rectangle(0,0,1380,428),/*sprite로 바꾸면 frameCount바꾸기*/1,0.5f,30);
+
             //미스도 투입되면
             //missManager = new ExplosionManager();
             //missManager.ExplosionInit(missEffectTextures[effectIndex], new Rectangle(0, 0, 166, 162), 9, 1f, 45);
@@ -422,7 +481,7 @@ namespace beethoven3
            
 
             //충돌관리 생성
-            collisionManager = new CollisionManager(perfectManager, goodManager, badManager, goldGetManager, scoreManager, memberManager,/*effect크기*/itemManager);
+            collisionManager = new CollisionManager(perfectManager, goodManager, badManager, goldGetManager, scoreManager, memberManager,/*effect크기*/itemManager,perfectBannerManager);
             
             //노트정보 관리 생성
             noteFileManager = new NoteFileManager();
@@ -3060,6 +3119,9 @@ namespace beethoven3
                     scoreManager.Update(gameTime);
                     memberManager.Update(gameTime);            
                     SoundFmod.StartChangedTime(gameTime);
+
+                    perfectBannerManager.Update(gameTime);
+
 #if Kinect
                     HandleInput();
 
@@ -3301,7 +3363,7 @@ namespace beethoven3
                         goldGetManager = new ExplosionManager();
                         goldGetManager.ExplosionInit(itemManager.GetMissEffectTexture()[effectIndex], itemManager.GetEffectInitFrame()[effectIndex], itemManager.GetEffectFrameCount()[effectIndex], itemManager.GetEffectScale()[effectIndex], itemManager.GetEffectDulation()[effectIndex]);
   
-                        collisionManager = new CollisionManager(perfectManager, goodManager, badManager, goldGetManager, scoreManager, memberManager,itemManager);
+                        collisionManager = new CollisionManager(perfectManager, goodManager, badManager, goldGetManager, scoreManager, memberManager,itemManager,perfectBannerManager);
             
                         /////이펙트 생성 -END
                         
@@ -3413,6 +3475,9 @@ namespace beethoven3
                 goodManager.Draw(spriteBatch);
                 badManager.Draw(spriteBatch);
                 goldGetManager.Draw(spriteBatch);
+
+
+                perfectBannerManager.Draw(spriteBatch);
                 
                 //가운데 빨간 사각형 주석하면 보이지않는다.
             //    spriteBatch.Draw(idot, removeAreaRec, Color.Red);
@@ -3436,7 +3501,8 @@ namespace beethoven3
 
                 //하트. gage양 만큼 하트가 나타남.
                 spriteBatch.Draw(uiHeart, new Vector2(0, 6), new Rectangle(0, 0, gage, 50), Color.White);
-              
+
+
   
 #if Kinect
                 //컬러 디스플레이
