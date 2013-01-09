@@ -787,6 +787,42 @@
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopdoor\hoverHandInItemButton.xnb</Output>
       <Time>2013-01-09T02:20:37.4025759+09:00</Time>
     </Item>
+    <Item>
+      <Source>character\horn1.png</Source>
+      <Name>character\horn1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\character\horn1.xnb</Output>
+      <Time>2013-01-09T20:05:10.4226748+09:00</Time>
+    </Item>
+    <Item>
+      <Source>character\horn2.png</Source>
+      <Name>character\horn2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\character\horn2.xnb</Output>
+      <Time>2013-01-09T20:05:10.4246749+09:00</Time>
+    </Item>
+    <Item>
+      <Source>character\horn3.png</Source>
+      <Name>character\horn3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\character\horn3.xnb</Output>
+      <Time>2013-01-09T20:05:10.426675+09:00</Time>
+    </Item>
+    <Item>
+      <Source>markers\whiteMarker.png</Source>
+      <Name>markers\whiteMarker</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\markers\whiteMarker.xnb</Output>
+      <Time>2013-01-09T20:25:15.3715939+09:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

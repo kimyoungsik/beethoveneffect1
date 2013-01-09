@@ -154,7 +154,7 @@ namespace beethoven3
 
 
             //마커 특성 -
-            markersScale[0] = 0.5f;
+            markersScale[0] = 1.0f;
 
             //노트 특성
             
@@ -205,8 +205,9 @@ namespace beethoven3
             noteTexture[1] = cm.Load<Texture2D>(@"notes\turnNote2");
             
             //노트랑 한쌍이다.
-            markTexture[0] = cm.Load<Texture2D>(@"markers\starMarker");
+            markTexture[0] = cm.Load<Texture2D>(@"markers\whiteMarker");
             markTexture[1] = cm.Load<Texture2D>(@"markers\turnMarker");
+           // markTexture[2] = cm.Load<Texture2D>(@"markers\whiteMarker");
 
             backgroundTexture[0] = cm.Load<Texture2D>(@"Textures\red");
             backgroundTexture[1] = cm.Load<Texture2D>(@"Textures\heart");

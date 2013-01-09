@@ -92,7 +92,7 @@ namespace beethoven3
             violinMemberPlay1 = cm.Load<Texture2D>(@"character\violin");
             fluteMemberPlay1 = cm.Load<Texture2D>(@"character\flute");
             timpaniMemberPlay1 = cm.Load<Texture2D>(@"character\timpani");
-            hornMemberPlay1 = cm.Load<Texture2D>(@"character\horn");
+            hornMemberPlay1 = cm.Load<Texture2D>(@"character\horn1");
             contrabaseMemberPlay1 = cm.Load<Texture2D>(@"character\contrabase1");
             celloMemberPlay1 = cm.Load<Texture2D>(@"character\cello");
 
@@ -100,7 +100,7 @@ namespace beethoven3
             violinMemberPlay2 = cm.Load<Texture2D>(@"character\violin");
             fluteMemberPlay2 = cm.Load<Texture2D>(@"character\flute");
             timpaniMemberPlay2 = cm.Load<Texture2D>(@"character\timpani");
-            hornMemberPlay2 = cm.Load<Texture2D>(@"character\horn");
+            hornMemberPlay2 = cm.Load<Texture2D>(@"character\horn2");
             contrabaseMemberPlay2 = cm.Load<Texture2D>(@"character\contrabase2");
             celloMemberPlay2 = cm.Load<Texture2D>(@"character\cello");
 
@@ -109,7 +109,7 @@ namespace beethoven3
             violinMemberPlay3 = cm.Load<Texture2D>(@"character\violin");
             fluteMemberPlay3 = cm.Load<Texture2D>(@"character\flute");
             timpaniMemberPlay3 = cm.Load<Texture2D>(@"character\timpani");
-            hornMemberPlay3 = cm.Load<Texture2D>(@"character\horn");
+            hornMemberPlay3 = cm.Load<Texture2D>(@"character\horn3");
             contrabaseMemberPlay3 = cm.Load<Texture2D>(@"character\contrabase3");
             celloMemberPlay3 = cm.Load<Texture2D>(@"character\cello");
 

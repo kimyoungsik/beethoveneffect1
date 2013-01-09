@@ -202,15 +202,23 @@ namespace beethoven3
                                 goodManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
 
                                 StartNoteManager.rightNoteManager.LittleNotes.RemoveAt(x);
+                                int i;
+
                                 //false
+
                                 //느린상태 일 때
                                 if (SoundFmod.isChangedTempo <= 0)
                                 {
                                     SoundFmod.tempoChange(1.1f);
                                     //스트로크
-                                    memberManager.SetMemberState(4, 1);
-                                  
-                                    //움직이는 속도 빨라짐
+                                    
+                                    for (i = 0; i < 6; i++)
+                                    {
+
+                                        memberManager.SetMemberState(i, 1);
+                                        memberManager.SetMemberState(i, 1);
+                                    }
+                                        //움직이는 속도 빨라짐
                                     memberManager.SetMembersFrameTime(0.07f);
                                 }
                                 else if (SoundFmod.isChangedTempo == 1)
@@ -219,8 +227,14 @@ namespace beethoven3
 
                                     SoundFmod.tempoChange(1.2f);
                                     //스트로크
-                                    memberManager.SetMemberState(4, 2);
+                                    //memberManager.SetMemberState(4, 2);
                                     
+                                    for (i = 0; i < 6; i++)
+                                    {
+
+                                        memberManager.SetMemberState(i, 2);
+                                        memberManager.SetMemberState(i, 2);
+                                    }
                                     //움직이는 속도 빨라짐
                                     memberManager.SetMembersFrameTime(0.04f);
                                 }
@@ -231,7 +245,14 @@ namespace beethoven3
 
                                     SoundFmod.tempoChange(1.3f);
                                     //스트로크
-                                    memberManager.SetMemberState(4, 3);
+                                  //  memberManager.SetMemberState(4, 3);
+
+                                    for (i = 0; i < 6; i++)
+                                    {
+
+                                        memberManager.SetMemberState(i,3);
+                                        memberManager.SetMemberState(i,3);
+                                    }
 
                                     //움직이는 속도 빨라짐
                                     memberManager.SetMembersFrameTime(0.01f);
@@ -247,6 +268,8 @@ namespace beethoven3
                                 goodManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
 
                                 StartNoteManager.rightNoteManager.LittleNotes.RemoveAt(x);
+                                int i;
+
                                 //효과와 내용
                                 //이펙트 및 템포 느려지기
                                 //빠른 상태일 때
@@ -260,8 +283,12 @@ namespace beethoven3
                                     memberManager.SetMembersFrameTime(0.13f);
 
                                     //스트로크
-                                    memberManager.SetMemberState(4, 1);
-                                    
+                                    for (i = 0; i < 6; i++)
+                                    {
+
+                                        memberManager.SetMemberState(i, 1);
+                                        memberManager.SetMemberState(i, 1);
+                                    }
                                 }
 
                                 else if (SoundFmod.isChangedTempo == -1)
@@ -276,7 +303,13 @@ namespace beethoven3
                                     memberManager.SetMembersFrameTime(0.16f);
 
                                     //스트로크
-                                    memberManager.SetMemberState(4, 2);
+                                    //memberManager.SetMemberState(4, 2);
+                                    for (i = 0; i < 6; i++)
+                                    {
+
+                                        memberManager.SetMemberState(i, 2);
+                                        memberManager.SetMemberState(i, 2);
+                                    }
 
                                 }
 
@@ -292,7 +325,13 @@ namespace beethoven3
                                     memberManager.SetMembersFrameTime(0.19f);
 
                                     //스트로크
-                                    memberManager.SetMemberState(4, 3);
+                                    //memberManager.SetMemberState(4, 3);
+                                    for (i = 0; i < 6; i++)
+                                    {
+
+                                        memberManager.SetMemberState(i, 3);
+                                        memberManager.SetMemberState(i, 3);
+                                    }
 
                                 }
                             }
