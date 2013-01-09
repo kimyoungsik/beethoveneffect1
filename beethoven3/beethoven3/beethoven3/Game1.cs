@@ -79,6 +79,9 @@ namespace beethoven3
        //판정 배너 띄우기 
 
         private PerfectBannerManager perfectBannerManager;
+        private GoodBannerManager goodBannerManager;
+        private BadBannerManager badBannerManager;
+        private MissBannerManager missBannerManager;
 
 
         //아이템 관리
@@ -418,7 +421,7 @@ namespace beethoven3
             ///////이펙트 생성 -START
 
 
-
+            //폭발 효과
             perfectManager = new PerfectExplosionManager();
             perfectManager.ExplosionInit(itemManager.GetEffectTexture()[effectIndex], itemManager.GetEffectInitFrame()[effectIndex], itemManager.GetEffectFrameCount()[effectIndex], itemManager.GetEffectScale()[effectIndex], itemManager.GetEffectDulation()[effectIndex]);
 
@@ -429,10 +432,21 @@ namespace beethoven3
             badManager.ExplosionInit(itemManager.GetBadEffectTexture()[effectIndex], itemManager.GetEffectInitFrame()[effectIndex], itemManager.GetEffectFrameCount()[effectIndex], itemManager.GetEffectScale()[effectIndex], itemManager.GetEffectDulation()[effectIndex]);
 
 
-
+            //판정 글씨 나타내기 
             perfectBannerManager = new PerfectBannerManager();
-            
             perfectBannerManager.BannerInit(perfectBanner,new Rectangle(0,0,1380,428),/*sprite로 바꾸면 frameCount바꾸기*/1,0.5f,30);
+
+
+            goodBannerManager = new GoodBannerManager();
+            goodBannerManager.BannerInit(goodBanner, new Rectangle(0, 0, 1020, 368),/*sprite로 바꾸면 frameCount바꾸기*/1, 0.5f, 30);
+
+
+            badBannerManager = new BadBannerManager();
+            badBannerManager.BannerInit(badBanner, new Rectangle(0, 0, 782, 400),/*sprite로 바꾸면 frameCount바꾸기*/1, 0.7f, 30);
+
+            missBannerManager = new MissBannerManager();
+            missBannerManager.BannerInit(missBanner, new Rectangle(0, 0, 975, 412),/*sprite로 바꾸면 frameCount바꾸기*/1, 0.5f, 30);
+
 
             //미스도 투입되면
             //missManager = new ExplosionManager();
@@ -481,7 +495,7 @@ namespace beethoven3
            
 
             //충돌관리 생성
-            collisionManager = new CollisionManager(perfectManager, goodManager, badManager, goldGetManager, scoreManager, memberManager,/*effect크기*/itemManager,perfectBannerManager);
+            collisionManager = new CollisionManager(perfectManager, goodManager, badManager, goldGetManager, scoreManager, memberManager,/*effect크기*/itemManager,perfectBannerManager,goodBannerManager,badBannerManager,missBannerManager);
             
             //노트정보 관리 생성
             noteFileManager = new NoteFileManager();
@@ -1095,7 +1109,7 @@ namespace beethoven3
                 this.Exit();
       
             mouseStateCurrent = Mouse.GetState();
-
+            
            switch (gameState)
            {
                #region 타이틀
@@ -3121,6 +3135,9 @@ namespace beethoven3
                     SoundFmod.StartChangedTime(gameTime);
 
                     perfectBannerManager.Update(gameTime);
+                    goodBannerManager.Update(gameTime);
+                    badBannerManager.Update(gameTime);
+                    missBannerManager.Update(gameTime);
 
 #if Kinect
                     HandleInput();
@@ -3294,9 +3311,12 @@ namespace beethoven3
                         //***마커리스트에 맞는 =>>itemManager로 옮김
                         float[] markersScale = itemManager.GetMarkersScale();
 
-                       
 
-                       
+                        
+                        for (int q = 0; q < 6; q++)
+                        {
+                            memberManager.SetMemberState(q, 0);
+                        }
                         
                         //현재 장착한 마커로 설정//(마커,마커의 rect크기. scale)
                         //개별 마커및 전체 마커에도 설정함
@@ -3363,7 +3383,7 @@ namespace beethoven3
                         goldGetManager = new ExplosionManager();
                         goldGetManager.ExplosionInit(itemManager.GetMissEffectTexture()[effectIndex], itemManager.GetEffectInitFrame()[effectIndex], itemManager.GetEffectFrameCount()[effectIndex], itemManager.GetEffectScale()[effectIndex], itemManager.GetEffectDulation()[effectIndex]);
   
-                        collisionManager = new CollisionManager(perfectManager, goodManager, badManager, goldGetManager, scoreManager, memberManager,itemManager,perfectBannerManager);
+                        collisionManager = new CollisionManager(perfectManager, goodManager, badManager, goldGetManager, scoreManager, memberManager,itemManager,perfectBannerManager,goodBannerManager,badBannerManager,missBannerManager);
             
                         /////이펙트 생성 -END
                         
@@ -3478,6 +3498,9 @@ namespace beethoven3
 
 
                 perfectBannerManager.Draw(spriteBatch);
+                goodBannerManager.Draw(spriteBatch);
+                badBannerManager.Draw(spriteBatch);
+                missBannerManager.Draw(spriteBatch);
                 
                 //가운데 빨간 사각형 주석하면 보이지않는다.
             //    spriteBatch.Draw(idot, removeAreaRec, Color.Red);

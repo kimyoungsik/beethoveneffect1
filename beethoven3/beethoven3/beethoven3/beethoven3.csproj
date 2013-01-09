@@ -118,11 +118,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Effect\BadBannerManager.cs" />
     <Compile Include="Effect\BadExplosionManager.cs" />
     <Compile Include="Effect\Banner.cs" />
     <Compile Include="Effect\Explosion.cs" />
     <Compile Include="Effect\ExplosionSprite.cs" />
+    <Compile Include="Effect\GoodBannerManager.cs" />
     <Compile Include="Effect\GoodExplosionManager.cs" />
+    <Compile Include="Effect\MissBannerManager.cs" />
     <Compile Include="Effect\PerfectBannerManager.cs" />
     <Compile Include="Effect\PerfectExplosionManager.cs" />
     <Compile Include="File\DrawGuideLineInfo.cs" />

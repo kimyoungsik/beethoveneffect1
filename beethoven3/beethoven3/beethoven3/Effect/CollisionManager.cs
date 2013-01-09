@@ -17,9 +17,9 @@ namespace beethoven3
 
         //글씨나타내기
         private PerfectBannerManager perfectBannerManager;
-        //private GoodBannerManager goodBannerManager;
-        //private BadBannerManager badBannerManager;
-        //private MissBannerManager missBannerManager;
+        private GoodBannerManager goodBannerManager;
+        private BadBannerManager badBannerManager;
+        private MissBannerManager missBannerManager;
 
 
         private ScoreManager scoreManager;
@@ -34,7 +34,7 @@ namespace beethoven3
 
         #region constructor
         public CollisionManager(PerfectExplosionManager perfectManager, GoodExplosionManager goodManager, BadExplosionManager badManager, ExplosionManager goldGetManager,
-            ScoreManager scoreManager, MemberManager memberManager, ItemManager itemManager, PerfectBannerManager perfectBannerManager)
+            ScoreManager scoreManager, MemberManager memberManager, ItemManager itemManager, PerfectBannerManager perfectBannerManager, GoodBannerManager goodBannerManager, BadBannerManager badBannerManager, MissBannerManager missBannerManager)
         {
             this.perfectManager = perfectManager;
             this.goodManager = goodManager;
@@ -42,6 +42,9 @@ namespace beethoven3
             this.goldGetManager = goldGetManager;
 
             this.perfectBannerManager = perfectBannerManager;
+            this.goodBannerManager = goodBannerManager;
+            this.badBannerManager = badBannerManager;
+            this.missBannerManager = missBannerManager;
 
             this.scoreManager = scoreManager;
 
@@ -74,16 +77,26 @@ namespace beethoven3
                 {
 
                     perfectManager.AddExplosions(new Vector2(dragNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, dragNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
+                    //퍼펙트 글자 띄우기
+                    perfectBannerManager.AddBanners(new Vector2(170, 275));
+
+                    
                     DragNoteManager.DragNotes.RemoveAt(i);
 
                     scoreManager.DragNoteScore = scoreManager.DragNoteScore + 1;
                     scoreManager.Combo = scoreManager.Combo + 1;
+
+
                 }
                 //good
                 else if (judgment == 1)
                 {
 
-                    perfectManager.AddExplosions(new Vector2(dragNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, dragNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
+                    goodManager.AddExplosions(new Vector2(dragNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, dragNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
+
+                    //굿 글자 띄우기
+                    goodBannerManager.AddBanners(new Vector2(170, 275));
+                    
                     DragNoteManager.DragNotes.RemoveAt(i);
                 //    ScoreManager.otherScore += 1;
                     scoreManager.DragNoteScore = scoreManager.DragNoteScore + 1;
@@ -143,18 +156,14 @@ namespace beethoven3
                             perfectManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
                             StartNoteManager.rightNoteManager.LittleNotes.RemoveAt(x);
 
-                            //퍼펙트 띄우기
+                            //퍼펙트 글자 띄우기
                             perfectBannerManager.AddBanners(new Vector2(170, 275));
 
 
                             scoreManager.Perfect = scoreManager.Perfect + 1;
                             scoreManager.Combo = scoreManager.Combo + 1;
                             scoreManager.Gage = scoreManager.Gage + 10;
-                            //xxx
-                            //가운데 perfect글자
-                           // Game1.isPerfectMark = true;
-
-
+                       
                             //템포 원상 복귀
                             if (SoundFmod.isChangedTempo != 0)
                             {
@@ -163,8 +172,11 @@ namespace beethoven3
                                 //움직이는 속도 정상
                                 memberManager.SetMembersFrameTime(0.1f);
                                 //멤버 스크로크 효과 없어지게함
-                                memberManager.SetMemberState(4, 0);
-                                
+                                int i;
+                                for (i = 0; i < 6; i++)
+                                {
+                                    memberManager.SetMemberState(i, 0);
+                                }
                             }
                         }
                         
@@ -181,6 +193,8 @@ namespace beethoven3
                         {
 
                             goodManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
+                            //굿 글자 띄우기
+                            goodBannerManager.AddBanners(new Vector2(170, 275));
 
                             StartNoteManager.rightNoteManager.LittleNotes.RemoveAt(x);
 
@@ -199,7 +213,11 @@ namespace beethoven3
                                 //움직이는 속도 정상
                                 memberManager.SetMembersFrameTime(0.1f);
                                 //멤버 스크로크 효과 없어지게함
-                                memberManager.SetMemberState(4, 0);
+                                int i;
+                                for (i = 0; i < 6; i++)
+                                {
+                                    memberManager.SetMemberState(i, 0);
+                                }
                                 
                             }
                         }
@@ -217,7 +235,11 @@ namespace beethoven3
                             {
                                 //효과와 내용
                                 //이펙트 및 템포 빨라지기
-                                goodManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
+                                badManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
+
+                                //배드 글자 띄우기
+                                badBannerManager.AddBanners(new Vector2(170, 275));
+
 
                                 StartNoteManager.rightNoteManager.LittleNotes.RemoveAt(x);
                                 int i;
@@ -234,7 +256,7 @@ namespace beethoven3
                                     {
 
                                         memberManager.SetMemberState(i, 1);
-                                        memberManager.SetMemberState(i, 1);
+                                       
                                     }
                                         //움직이는 속도 빨라짐
                                     memberManager.SetMembersFrameTime(0.07f);
@@ -251,7 +273,7 @@ namespace beethoven3
                                     {
 
                                         memberManager.SetMemberState(i, 2);
-                                        memberManager.SetMemberState(i, 2);
+                                       
                                     }
                                     //움직이는 속도 빨라짐
                                     memberManager.SetMembersFrameTime(0.04f);
@@ -269,7 +291,7 @@ namespace beethoven3
                                     {
 
                                         memberManager.SetMemberState(i,3);
-                                        memberManager.SetMemberState(i,3);
+                                       
                                     }
 
                                     //움직이는 속도 빨라짐
@@ -283,7 +305,10 @@ namespace beethoven3
                             int mouseJudgment = MarkManager.Marks[number].MarkSprite.JudgedNote(mousePoint);
                             if (mouseJudgment != 0)
                             {
-                                goodManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
+                                badManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
+
+                                //배드 글자 띄우기
+                                badBannerManager.AddBanners(new Vector2(170, 275));
 
                                 StartNoteManager.rightNoteManager.LittleNotes.RemoveAt(x);
                                 int i;
@@ -305,7 +330,7 @@ namespace beethoven3
                                     {
 
                                         memberManager.SetMemberState(i, 1);
-                                        memberManager.SetMemberState(i, 1);
+                                       
                                     }
                                 }
 
@@ -326,7 +351,7 @@ namespace beethoven3
                                     {
 
                                         memberManager.SetMemberState(i, 2);
-                                        memberManager.SetMemberState(i, 2);
+                                        
                                     }
 
                                 }
@@ -348,7 +373,7 @@ namespace beethoven3
                                     {
 
                                         memberManager.SetMemberState(i, 3);
-                                        memberManager.SetMemberState(i, 3);
+                                        
                                     }
 
                                 }
@@ -395,11 +420,31 @@ namespace beethoven3
                         {
 
                             perfectManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
+
+                            // 글자 띄우기
+                            perfectBannerManager.AddBanners(new Vector2(170, 275));
+
                             StartNoteManager.leftNoteManager.LittleNotes.RemoveAt(x);
 
                             scoreManager.Perfect = scoreManager.Perfect + 1;
                             scoreManager.Combo = scoreManager.Combo + 1;
                             scoreManager.Gage = scoreManager.Gage + 10;
+
+                            //템포 원상 복귀
+                            if (SoundFmod.isChangedTempo != 0)
+                            {
+
+                                SoundFmod.SetOptionalTime();
+                                //움직이는 속도 정상
+                                memberManager.SetMembersFrameTime(0.1f);
+                                //멤버 스크로크 효과 없어지게함
+                                int i;
+                                for (i = 0; i < 6; i++)
+                                {
+                                    memberManager.SetMemberState(i, 0);
+                                }
+                            }
+
                         }
 
                         //가운데를 이미 지났으므로 느리게 맞은 노트가 될 수 있다.
@@ -414,19 +459,37 @@ namespace beethoven3
                         if (mouseJudgment != 0)
                         {
                             goodManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
+
+                            // 글자 띄우기
+                            goodBannerManager.AddBanners(new Vector2(170, 275));
+
                             StartNoteManager.leftNoteManager.LittleNotes.RemoveAt(x);
 
                             scoreManager.Good = scoreManager.Good + 1;
                             scoreManager.Combo = scoreManager.Combo + 1;
                             scoreManager.Gage = scoreManager.Gage + 10;
+
+                            //템포 원상 복귀
+                            if (SoundFmod.isChangedTempo != 0)
+                            {
+
+                                SoundFmod.SetOptionalTime();
+                                //움직이는 속도 정상
+                                memberManager.SetMembersFrameTime(0.1f);
+                                //멤버 스크로크 효과 없어지게함
+                                int i;
+                                for (i = 0; i < 6; i++)
+                                {
+                                    memberManager.SetMemberState(i, 0);
+                                }
+                            }
+
                         }
                     }
 
                                                 //bad 
                     else if (judgment == -1)
                     {
-
-                       
                         //빨리 맞은거 
                         if (littleNote.IsEarlyOne)
                         {
@@ -435,7 +498,68 @@ namespace beethoven3
                             {
                                 //효과와 내용
                                 //이펙트 및 템포 빨라지기
+                                badManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
 
+                                //배드 글자 띄우기
+                                badBannerManager.AddBanners(new Vector2(170, 275));
+
+
+                                StartNoteManager.rightNoteManager.LittleNotes.RemoveAt(x);
+                                int i;
+
+                                //false
+
+                                //느린상태 일 때
+                                if (SoundFmod.isChangedTempo <= 0)
+                                {
+                                    SoundFmod.tempoChange(1.1f);
+                                    //스트로크
+
+                                    for (i = 0; i < 6; i++)
+                                    {
+
+                                        memberManager.SetMemberState(i, 1);
+                                      
+                                    }
+                                    //움직이는 속도 빨라짐
+                                    memberManager.SetMembersFrameTime(0.07f);
+                                }
+                                else if (SoundFmod.isChangedTempo == 1)
+                                {
+                                    SoundFmod.SetOptionalTime();
+
+                                    SoundFmod.tempoChange(1.2f);
+                                    //스트로크
+                                    //memberManager.SetMemberState(4, 2);
+
+                                    for (i = 0; i < 6; i++)
+                                    {
+
+                                        memberManager.SetMemberState(i, 2);
+                                        
+                                    }
+                                    //움직이는 속도 빨라짐
+                                    memberManager.SetMembersFrameTime(0.04f);
+                                }
+                                else if (SoundFmod.isChangedTempo == 2)
+                                {
+
+                                    SoundFmod.SetOptionalTime();
+
+                                    SoundFmod.tempoChange(1.3f);
+                                    //스트로크
+                                    //  memberManager.SetMemberState(4, 3);
+
+                                    for (i = 0; i < 6; i++)
+                                    {
+
+                                        memberManager.SetMemberState(i, 3);
+                                        
+                                    }
+
+                                    //움직이는 속도 빨라짐
+                                    memberManager.SetMembersFrameTime(0.01f);
+                                }
                             }
                         }
                         //느리게 맞은거
@@ -444,15 +568,107 @@ namespace beethoven3
                             int mouseJudgment = MarkManager.Marks[number].MarkSprite.JudgedNote(mousePoint);
                             if (mouseJudgment != 0)
                             {
+                                badManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
+
+                                //배드 글자 띄우기
+                                badBannerManager.AddBanners(new Vector2(170, 275));
+
+                                StartNoteManager.rightNoteManager.LittleNotes.RemoveAt(x);
+                                int i;
 
                                 //효과와 내용
                                 //이펙트 및 템포 느려지기
+                                //빠른 상태일 때
+                                if (SoundFmod.isChangedTempo >= 0)
+                                {
 
+                                    //그 양만큼 템포 조절됨
+                                    SoundFmod.tempoChange(0.9f);
+
+                                    //멤버들 느려짐
+                                    memberManager.SetMembersFrameTime(0.13f);
+
+                                    //스트로크
+                                    for (i = 0; i < 6; i++)
+                                    {
+
+                                        memberManager.SetMemberState(i, 1);
+                                       
+                                    }
+                                }
+
+                                else if (SoundFmod.isChangedTempo == -1)
+                                {
+
+                                    SoundFmod.SetOptionalTime();
+
+                                    //그 양만큼 템포 조절됨
+                                    SoundFmod.tempoChange(0.8f);
+
+                                    //멤버들 느려짐
+                                    memberManager.SetMembersFrameTime(0.16f);
+
+                                    //스트로크
+                                    //memberManager.SetMemberState(4, 2);
+                                    for (i = 0; i < 6; i++)
+                                    {
+
+                                        memberManager.SetMemberState(i, 2);
+                                       
+                                    }
+
+                                }
+
+                                else if (SoundFmod.isChangedTempo == -2)
+                                {
+
+                                    SoundFmod.SetOptionalTime();
+
+                                    //그 양만큼 템포 조절됨
+                                    SoundFmod.tempoChange(0.7f);
+
+                                    //멤버들 느려짐
+                                    memberManager.SetMembersFrameTime(0.19f);
+
+                                    //스트로크
+                                    //memberManager.SetMemberState(4, 3);
+                                    for (i = 0; i < 6; i++)
+                                    {
+
+                                        memberManager.SetMemberState(i, 3);
+                                       
+                                    }
+
+                                }
                             }
-
-
-
                         }
+                       
+                        ////빨리 맞은거 
+                        //if (littleNote.IsEarlyOne)
+                        //{
+                        //    int mouseJudgment = MarkManager.Marks[number].MarkSprite.JudgedNote(mousePoint);
+                        //    if (mouseJudgment != 0)
+                        //    {
+                        //        //효과와 내용
+                        //        //이펙트 및 템포 빨라지기
+
+                        //    }
+                        //}
+                        ////느리게 맞은거
+                        //else
+                        //{
+                        //    int mouseJudgment = MarkManager.Marks[number].MarkSprite.JudgedNote(mousePoint);
+                        //    if (mouseJudgment != 0)
+                        //    {
+
+                        //        //효과와 내용
+                        //        //이펙트 및 템포 느려지기
+
+                        //    }
+
+
+
+                        //}
                     }
                     else
                     {
@@ -486,6 +702,10 @@ namespace beethoven3
                         if (mouseJudgment != 0)
                         {
                             perfectManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
+                            // 글자 띄우기
+                            perfectBannerManager.AddBanners(new Vector2(170, 275));
+
+                            
                             StartNoteManager.longNoteManager.LittleNotes.RemoveAt(x);
 
                             scoreManager.LongNoteScore = scoreManager.LongNoteScore + 1;
@@ -499,7 +719,11 @@ namespace beethoven3
                         if (mouseJudgment != 0)
                         {
                             //롱노트 효과를 바꾸던지 아니면 하나의 효과만 나오게 하던지
-                            perfectManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
+                            goodManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
+
+                            // 글자 띄우기
+                            goodBannerManager.AddBanners(new Vector2(170, 275));
+
                             StartNoteManager.longNoteManager.LittleNotes.RemoveAt(x);
 
                             scoreManager.LongNoteScore = scoreManager.LongNoteScore + 1;
@@ -558,6 +782,10 @@ namespace beethoven3
 
 
                     badManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
+                    
+                    //글자 띄우기
+                    missBannerManager.AddBanners(new Vector2(170, 275));
+
 
                     StartNoteManager.rightNoteManager.LittleNotes.RemoveAt(i);
                     scoreManager.Bad = scoreManager.Bad + 1;
@@ -588,6 +816,9 @@ namespace beethoven3
                 if (littleNote.IsBoxColliding(MarkManager.centerArea))
                 {
                     badManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
+                    
+                    //글자 띄우기
+                    missBannerManager.AddBanners(new Vector2(170, 275));
 
                     StartNoteManager.leftNoteManager.LittleNotes.RemoveAt(i);
                     scoreManager.Bad = scoreManager.Bad + 1;
@@ -614,6 +845,8 @@ namespace beethoven3
                   {
                       
                       badManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
+                      //글자 띄우기
+//                      missBannerManager.AddBanners(new Vector2(170, 275));
 
                       StartNoteManager.longNoteManager.LittleNotes.RemoveAt(i);
                       scoreManager.Bad = scoreManager.Bad + 1;
