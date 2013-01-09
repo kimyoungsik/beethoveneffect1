@@ -192,14 +192,20 @@ namespace beethoven3
         //0번과 5번 마커 위치 필요
         public static void SetRemoveArea(Vector2 mark0Loc, Vector2 mark5Loc, int MarkWidth, int MarkHeight)
         {
-            centerArea = new Rectangle((int)mark0Loc.X + (MarkWidth + MarkWidth / 2), (int)mark0Loc.Y + MarkHeight / 2, (int)mark5Loc.X - ((int)mark0Loc.X + (MarkWidth + MarkWidth)), (int)mark5Loc.Y - ((int)mark0Loc.Y));
-       }
+          //  centerArea = new Rectangle((int)mark0Loc.X + (MarkWidth + MarkWidth / 2), (int)mark0Loc.Y + MarkHeight / 2, (int)mark5Loc.X - ((int)mark0Loc.X + (MarkWidth + MarkWidth)), (int)mark5Loc.Y - ((int)mark0Loc.Y));
+            centerArea = new Rectangle(((int)mark5Loc.X - ((int)mark0Loc.X + MarkWidth)) / 2 + (int)mark0Loc.X + MarkWidth - 2, (int)mark0Loc.Y, 4, ((int)mark5Loc.Y + MarkHeight) - (int)mark0Loc.Y);
+
+        
+        }
 
         //INDEX필요 
         public static void SetRemoveArea(int patternIndex, int MarkWidth, int MarkHeight)
         {
             Vector2[] markLoc = GetPattern(patternIndex);
-            centerArea = new Rectangle((int)markLoc[0].X + (MarkWidth *2 ), (int)markLoc[0].Y + MarkHeight / 2, (int)markLoc[5].X - ((int)markLoc[0].X + (MarkWidth *3)), (int)markLoc[5].Y - ((int)markLoc[0].Y));
+         //   centerArea = new Rectangle((int)markLoc[0].X + (MarkWidth *2 ), (int)markLoc[0].Y + MarkHeight / 2, (int)markLoc[5].X - ((int)markLoc[0].X + (MarkWidth *3)), (int)markLoc[5].Y - ((int)markLoc[0].Y));
+            centerArea = new Rectangle(((int)markLoc[5].X - ((int)markLoc[0].X + MarkWidth)) / 2 + (int)markLoc[0].X + MarkWidth - 2, (int)markLoc[0].Y, 4, ((int)markLoc[5].Y + MarkHeight) - (int)markLoc[0].Y);
+
+        
         }
 
         public static Vector2[] GetPattern(int index)
