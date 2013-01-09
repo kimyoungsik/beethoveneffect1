@@ -29,12 +29,19 @@ namespace beethoven3
         private ItemManager itemManager;
         private float roundPoint = 15.0f;
 
+        private Vector2 sizeScreen;
+        private Vector2 perfectLocation;
+        private Vector2 goodLocation;
+        private Vector2 badLocation;
+        private Vector2 missLocation;
+
        // private bool isEarlyOne = true;
         #endregion 
 
         #region constructor
         public CollisionManager(PerfectExplosionManager perfectManager, GoodExplosionManager goodManager, BadExplosionManager badManager, ExplosionManager goldGetManager,
-            ScoreManager scoreManager, MemberManager memberManager, ItemManager itemManager, PerfectBannerManager perfectBannerManager, GoodBannerManager goodBannerManager, BadBannerManager badBannerManager, MissBannerManager missBannerManager)
+            ScoreManager scoreManager, MemberManager memberManager, ItemManager itemManager, 
+            PerfectBannerManager perfectBannerManager, GoodBannerManager goodBannerManager, BadBannerManager badBannerManager, MissBannerManager missBannerManager,Vector2 sizeScreen)
         {
             this.perfectManager = perfectManager;
             this.goodManager = goodManager;
@@ -48,9 +55,17 @@ namespace beethoven3
 
             this.scoreManager = scoreManager;
 
-
+            //화면사이즈
+            this.sizeScreen = sizeScreen;
             this.memberManager = memberManager;
             this.itemManager = itemManager;
+
+            this.perfectLocation = new Vector2(sizeScreen.X/2-1380/4,sizeScreen.Y/2-428/4);
+            this.goodLocation = new Vector2(sizeScreen.X/2 - 1020/4,sizeScreen.Y/2-  368/4);
+            this.badLocation = new Vector2(sizeScreen.X/2 - (int)((782*0.7)/2), sizeScreen.Y/2 - (int)((400*0.7)/2));
+            this.missLocation = new Vector2(sizeScreen.X/2 - 975/4, sizeScreen.Y/2 - 412/4);
+
+
         }
         #endregion
 
@@ -78,7 +93,7 @@ namespace beethoven3
 
                     perfectManager.AddExplosions(new Vector2(dragNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, dragNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
                     //퍼펙트 글자 띄우기
-                    perfectBannerManager.AddBanners(new Vector2(170, 275));
+                    perfectBannerManager.AddBanners(perfectLocation);
 
                     
                     DragNoteManager.DragNotes.RemoveAt(i);
@@ -95,7 +110,7 @@ namespace beethoven3
                     goodManager.AddExplosions(new Vector2(dragNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, dragNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
 
                     //굿 글자 띄우기
-                    goodBannerManager.AddBanners(new Vector2(170, 275));
+                    goodBannerManager.AddBanners(goodLocation);
                     
                     DragNoteManager.DragNotes.RemoveAt(i);
                 //    ScoreManager.otherScore += 1;
@@ -157,7 +172,7 @@ namespace beethoven3
                             StartNoteManager.rightNoteManager.LittleNotes.RemoveAt(x);
 
                             //퍼펙트 글자 띄우기
-                            perfectBannerManager.AddBanners(new Vector2(170, 275));
+                            perfectBannerManager.AddBanners(perfectLocation);
 
 
                             scoreManager.Perfect = scoreManager.Perfect + 1;
@@ -194,7 +209,7 @@ namespace beethoven3
 
                             goodManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
                             //굿 글자 띄우기
-                            goodBannerManager.AddBanners(new Vector2(170, 275));
+                            goodBannerManager.AddBanners(goodLocation);
 
                             StartNoteManager.rightNoteManager.LittleNotes.RemoveAt(x);
 
@@ -238,7 +253,7 @@ namespace beethoven3
                                 badManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
 
                                 //배드 글자 띄우기
-                                badBannerManager.AddBanners(new Vector2(170, 275));
+                                badBannerManager.AddBanners(badLocation);
 
 
                                 StartNoteManager.rightNoteManager.LittleNotes.RemoveAt(x);
@@ -308,7 +323,7 @@ namespace beethoven3
                                 badManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
 
                                 //배드 글자 띄우기
-                                badBannerManager.AddBanners(new Vector2(170, 275));
+                                badBannerManager.AddBanners(badLocation);
 
                                 StartNoteManager.rightNoteManager.LittleNotes.RemoveAt(x);
                                 int i;
@@ -422,7 +437,7 @@ namespace beethoven3
                             perfectManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
 
                             // 글자 띄우기
-                            perfectBannerManager.AddBanners(new Vector2(170, 275));
+                            perfectBannerManager.AddBanners(perfectLocation);
 
                             StartNoteManager.leftNoteManager.LittleNotes.RemoveAt(x);
 
@@ -461,7 +476,7 @@ namespace beethoven3
                             goodManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
 
                             // 글자 띄우기
-                            goodBannerManager.AddBanners(new Vector2(170, 275));
+                            goodBannerManager.AddBanners(goodLocation);
 
                             StartNoteManager.leftNoteManager.LittleNotes.RemoveAt(x);
 
@@ -501,7 +516,7 @@ namespace beethoven3
                                 badManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
 
                                 //배드 글자 띄우기
-                                badBannerManager.AddBanners(new Vector2(170, 275));
+                                badBannerManager.AddBanners(badLocation);
 
 
                                 StartNoteManager.rightNoteManager.LittleNotes.RemoveAt(x);
@@ -571,7 +586,7 @@ namespace beethoven3
                                 badManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
 
                                 //배드 글자 띄우기
-                                badBannerManager.AddBanners(new Vector2(170, 275));
+                                badBannerManager.AddBanners(badLocation);
 
                                 StartNoteManager.rightNoteManager.LittleNotes.RemoveAt(x);
                                 int i;
@@ -703,7 +718,7 @@ namespace beethoven3
                         {
                             perfectManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
                             // 글자 띄우기
-                            perfectBannerManager.AddBanners(new Vector2(170, 275));
+                            perfectBannerManager.AddBanners(perfectLocation);
 
                             
                             StartNoteManager.longNoteManager.LittleNotes.RemoveAt(x);
@@ -722,7 +737,7 @@ namespace beethoven3
                             goodManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
 
                             // 글자 띄우기
-                            goodBannerManager.AddBanners(new Vector2(170, 275));
+                            goodBannerManager.AddBanners(goodLocation);
 
                             StartNoteManager.longNoteManager.LittleNotes.RemoveAt(x);
 
@@ -784,7 +799,7 @@ namespace beethoven3
                     badManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
                     
                     //글자 띄우기
-                    missBannerManager.AddBanners(new Vector2(170, 275));
+                    missBannerManager.AddBanners(missLocation);
 
 
                     StartNoteManager.rightNoteManager.LittleNotes.RemoveAt(i);
@@ -818,7 +833,7 @@ namespace beethoven3
                     badManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
                     
                     //글자 띄우기
-                    missBannerManager.AddBanners(new Vector2(170, 275));
+                    missBannerManager.AddBanners(missLocation);
 
                     StartNoteManager.leftNoteManager.LittleNotes.RemoveAt(i);
                     scoreManager.Bad = scoreManager.Bad + 1;
@@ -846,7 +861,7 @@ namespace beethoven3
                       
                       badManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
                       //글자 띄우기
-//                      missBannerManager.AddBanners(new Vector2(170, 275));
+                      //                      missBannerManager.AddBanners(missLocation);
 
                       StartNoteManager.longNoteManager.LittleNotes.RemoveAt(i);
                       scoreManager.Bad = scoreManager.Bad + 1;

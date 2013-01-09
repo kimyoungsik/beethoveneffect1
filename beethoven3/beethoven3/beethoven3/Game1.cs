@@ -495,7 +495,7 @@ namespace beethoven3
            
 
             //충돌관리 생성
-            collisionManager = new CollisionManager(perfectManager, goodManager, badManager, goldGetManager, scoreManager, memberManager,/*effect크기*/itemManager,perfectBannerManager,goodBannerManager,badBannerManager,missBannerManager);
+            collisionManager = new CollisionManager(perfectManager, goodManager, badManager, goldGetManager, scoreManager, memberManager,/*effect크기*/itemManager,perfectBannerManager,goodBannerManager,badBannerManager,missBannerManager,new Vector2(this.Window.ClientBounds.Width,this.Window.ClientBounds.Height));
             
             //노트정보 관리 생성
             noteFileManager = new NoteFileManager();
@@ -3382,8 +3382,8 @@ namespace beethoven3
                         //일단은 miss effect로
                         goldGetManager = new ExplosionManager();
                         goldGetManager.ExplosionInit(itemManager.GetMissEffectTexture()[effectIndex], itemManager.GetEffectInitFrame()[effectIndex], itemManager.GetEffectFrameCount()[effectIndex], itemManager.GetEffectScale()[effectIndex], itemManager.GetEffectDulation()[effectIndex]);
-  
-                        collisionManager = new CollisionManager(perfectManager, goodManager, badManager, goldGetManager, scoreManager, memberManager,itemManager,perfectBannerManager,goodBannerManager,badBannerManager,missBannerManager);
+
+                        collisionManager = new CollisionManager(perfectManager, goodManager, badManager, goldGetManager, scoreManager, memberManager, itemManager, perfectBannerManager, goodBannerManager, badBannerManager, missBannerManager, new Vector2(this.Window.ClientBounds.Width, this.Window.ClientBounds.Height));
             
                         /////이펙트 생성 -END
                         
