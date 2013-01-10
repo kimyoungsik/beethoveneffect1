@@ -837,7 +837,7 @@ namespace beethoven3
                     {
                         try
                         {
-                            StartNoteManager.longNoteManager.LittleNotes.RemoveAt(0);
+                            StartNoteManager.longNoteManager.LittleNotes.RemoveAt(StartNoteManager.longNoteManager.LittleNotes.Count-1);
                         }
                         catch (ArgumentOutOfRangeException)
                         {
@@ -850,8 +850,6 @@ namespace beethoven3
                     {
                         //노트가 없어지면ㅍ
                          drawLine = false;
-                        
-
                     }
                     
    

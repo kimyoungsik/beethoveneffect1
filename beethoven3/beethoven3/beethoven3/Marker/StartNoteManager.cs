@@ -133,9 +133,6 @@ namespace beethoven3
             longNoteManager.ScaleChange = scale;
         }
 
-       
-
-
 
         public void addStartNote(Vector2 location)
         {

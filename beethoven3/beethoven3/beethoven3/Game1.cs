@@ -166,6 +166,9 @@ namespace beethoven3
         private Texture2D missBanner;
 
 
+        //combo number texture
+
+    //    private Texture2D comboNumberTexture;
 
         /////Texture end 
 
@@ -204,7 +207,7 @@ namespace beethoven3
         GuideLineManager guideLineManager;
 
 
-
+    //    StaticSprite comboNumber;
 
         /////키넥트 관련 선언 - START
         //for kinect
@@ -365,7 +368,7 @@ namespace beethoven3
             missBanner = Content.Load<Texture2D>(@"judgement\miss");
 
 
-
+     //       comboNumberTexture = Content.Load<Texture2D>(@"number\comboNumbers");
 
             /////텍스쳐 로드 -END
 
@@ -397,8 +400,10 @@ namespace beethoven3
             //Texture2D[] badEffectTextures = itemManager.GetBadEffectTexture();
             //Texture2D[] missEffectTextures = itemManager.GetMissEffectTexture();
 
-            
 
+
+
+          //  comboNumber = new StaticSprite(new Vector2(0, 0), comboNumberTexture, new Rectangle(0, 0, 154, 200), Vector2.Zero, 1f);
 
             //드래그 라인 렌더링
             dragLineRenderer = new LineRenderer();
@@ -3411,6 +3416,55 @@ namespace beethoven3
         /// This is called when the game should draw itself.
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
+        
+        
+        ////입력 숫자
+        ////출력 숫자를 나타내는 그림
+        ////location -> 마지막 숫자를 기준으로 
+        //public void ConverIntToDrawing(int number,Vector2 location)
+        //{
+        //    int num = number;
+        //    int[] eachNumbers = new int[20];
+
+
+        //    //자릿수
+        //    int length = 1;
+            
+        //    //몇 자리 인지 센다.
+        //    //몫
+        //    int share;
+        //    share = num / 10;
+        //    eachNumbers[length-1] = num % 10;
+
+        //    while (share > 0)
+        //    {
+        //        share = num / 10;
+        //        length++;
+        //        eachNumbers[length - 1] = num % 10;
+        //    }
+
+
+        //    int i;
+
+        //    for (i = 0; i < length; i++)
+        //    {
+        //        //끝자리 부터
+                
+
+        //    }
+            
+        //}
+
+
+        //숫자에 맞는 텍스쳐 반환
+        //sprite를 상속받는거 만들고 그건 근데 current frame만 나타낼 수 있는걸로 
+
+        
+
+
+
+
+
         protected override void Draw(GameTime gameTime)
         {
            

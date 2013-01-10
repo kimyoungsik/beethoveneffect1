@@ -126,8 +126,10 @@
     <Compile Include="Effect\GoodBannerManager.cs" />
     <Compile Include="Effect\GoodExplosionManager.cs" />
     <Compile Include="Effect\MissBannerManager.cs" />
+    <Compile Include="Effect\Numbers.cs" />
     <Compile Include="Effect\PerfectBannerManager.cs" />
     <Compile Include="Effect\PerfectExplosionManager.cs" />
+    <Compile Include="Effect\StaticSprite.cs" />
     <Compile Include="File\DrawGuideLineInfo.cs" />
     <Compile Include="Item\BackgroundItemShop.cs" />
     <Compile Include="Effect\CollisionManager.cs" />
