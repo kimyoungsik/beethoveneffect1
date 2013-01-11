@@ -269,7 +269,9 @@ namespace beethoven3
         //gold
         private Texture2D gold;
 
+        //사람 없음 나타내는 메시지 박스
 
+        private Texture2D noPerson;
         //float volume = 0;
 
         /////Texture end 
@@ -316,6 +318,10 @@ namespace beethoven3
         public static Texture2D idot;
 
         private Item selectedItem;
+
+
+        private bool isNoPerson;
+
 
 #if Kinect
        
@@ -445,6 +451,9 @@ namespace beethoven3
 
             missBanner = Content.Load<Texture2D>(@"judgement\miss");
 
+
+
+            noPerson = Content.Load<Texture2D>(@"shopdoor\nogold");
 
             /////텍스쳐 로드 -END
 
@@ -683,8 +692,9 @@ namespace beethoven3
 #if Kinect
         void FaceDetect()
         {
-
-            int faceCount = 0;
+            bool maxFlg = false;
+            bool minFlg = false;
+            isNoPerson = false;
             if (nui.ElevationAngle >= 0)
             {
                 nui.ElevationAngle = nui.MinElevationAngle;
@@ -695,6 +705,7 @@ namespace beethoven3
                 {
                     if (nui.ElevationAngle < nui.MinElevationAngle + 3)
                     {//각도가 다내려갈 때까지 아무것도 없으면
+                        isNoPerson = true;
                         break;
                     }
 
@@ -711,12 +722,121 @@ namespace beethoven3
                     {
 
                     }
-
-                    faceCount++;
                 }
+                if (isNoPerson)
+                {
+                    maxFlg = false;
+                    minFlg = false;
+                    while (true)
+                    {
+                        if (maxFlg == true)
+                            break;
+                        try
+                        {
+                            nui.ElevationAngle = nui.MaxElevationAngle;
+                            maxFlg = true;
+                        }
+                        catch (Exception ex)
+                        {
+                        }
+                    }
 
+                    while (true)
+                    {
+                        if (minFlg == true)
+                            break;
+                        try
+                        {
+                            nui.ElevationAngle = nui.MinElevationAngle;
+                            minFlg = true;
+                        }
+                        catch (Exception ex)
+                        {
+                        }
+                    }
+                    
+                    
+                    isNoPerson = false;
+                    while (true)
+                    {
+                        if (nui.ElevationAngle > nui.MaxElevationAngle - 3)
+                        {//각도가 다내려갈 때까지 아무것도 없으면
+                            isNoPerson = true;
+                            break;
+                        }
 
+                        if (fy > 0.2f && fy < 0.3f)
+                        {
+                            break;
+                        }
 
+                        try
+                        {
+                            nui.ElevationAngle += 3;
+                        }
+                        catch (Exception ex)
+                        {
+
+                        }
+                    }
+                }
+                if (isNoPerson)
+                {
+                    maxFlg = false;
+                    minFlg = false;
+                    while (true)
+                    {
+                        if (minFlg == true)
+                            break;
+                        try
+                        {
+                            nui.ElevationAngle = nui.MinElevationAngle;
+                            minFlg = true;
+                        }
+                        catch (Exception ex)
+                        {
+                        }
+                    }
+                    while (true)
+                    {
+                        if (maxFlg == true)
+                            break;
+                        try
+                        {
+                            nui.ElevationAngle = nui.MaxElevationAngle;
+                            maxFlg = true;
+                        }
+                        catch (Exception ex)
+                        {
+                        }
+                    }
+                    
+                    
+                    isNoPerson = false;
+                    while (true)
+                    {
+                        if (nui.ElevationAngle < nui.MinElevationAngle + 3)
+                        {//각도가 다내려갈 때까지 아무것도 없으면
+                            //프로그램 종료
+                            isNoPerson = true;
+                            break;
+                        }
+
+                        if (fy > 0.2f && fy < 0.3f)
+                        {
+                            break;
+                        }
+
+                        try
+                        {
+                            nui.ElevationAngle -= 3;
+                        }
+                        catch (Exception ex)
+                        {
+
+                        }
+                    }
+                }
             }
             else
             {
@@ -725,12 +845,16 @@ namespace beethoven3
 
                 while (true)
                 {
-                    if (nui.ElevationAngle > nui.MaxElevationAngle - 3)//각도가 다내려갈 때까지 아무것도 없으면
+                    if (nui.ElevationAngle > nui.MaxElevationAngle - 3)
+                    {//각도가 다내려갈 때까지 아무것도 없으면
+                        isNoPerson = true;
                         break;
+                    }
 
                     if (fy > 0.3f && fy < 0.4f)
+                    {
                         break;
-
+                    }
                     try
                     {
                         nui.ElevationAngle += 3;
@@ -739,9 +863,121 @@ namespace beethoven3
                     {
 
                     }
-
-                    faceCount++;
                 }
+                if (isNoPerson)
+                {
+                    maxFlg = false;
+                    minFlg = false;
+                    
+                    while (true)
+                    {
+                        if (minFlg == true)
+                            break;
+                        try
+                        {
+                            nui.ElevationAngle = nui.MinElevationAngle;
+                            minFlg = true;
+                        }
+                        catch (Exception ex)
+                        {
+                        }
+                    }
+                    while (true)
+                    {
+                        if (maxFlg == true)
+                            break;
+                        try
+                        {
+                            nui.ElevationAngle = nui.MaxElevationAngle;
+                            maxFlg = true;
+                        }
+                        catch (Exception ex)
+                        {
+                        }
+                    }
+                    
+                    isNoPerson = false;
+                    while (true)
+                    {
+                        if (nui.ElevationAngle < nui.MinElevationAngle + 3)
+                        {//각도가 다내려갈 때까지 아무것도 없으면
+                            isNoPerson = true;
+                            break;
+                        }
+
+                        if (fy > 0.3f && fy < 0.4f)
+                        {
+                            break;
+                        }
+                        try
+                        {
+                            nui.ElevationAngle -= 3;
+                        }
+                        catch (Exception ex)
+                        {
+
+                        }
+                    }
+                }
+                if (isNoPerson)
+                {
+                    maxFlg = false;
+                    minFlg = false;
+                    
+                    while (true)
+                    {
+                        if (maxFlg == true)
+                            break;
+                        try
+                        {
+                            nui.ElevationAngle = nui.MaxElevationAngle;
+                            maxFlg = true;
+                        }
+                        catch (Exception ex)
+                        {
+                        }
+                    }
+
+                    while (true)
+                    {
+                        if (minFlg == true)
+                            break;
+                        try
+                        {
+                            nui.ElevationAngle = nui.MinElevationAngle;
+                            minFlg = true;
+                        }
+                        catch (Exception ex)
+                        {
+                        }
+                    }
+                    
+                    
+                    isNoPerson = false;
+                    while (true)
+                    {
+                        if (nui.ElevationAngle > nui.MaxElevationAngle - 3)
+                        {//각도가 다내려갈 때까지 아무것도 없으면
+                            //각도가 다내려갈 때까지 아무것도 없으면
+                            isNoPerson = true;
+                            break;
+                        }
+
+                        if (fy > 0.3f && fy < 0.4f)
+                        {
+                            break;
+                        }
+                        try
+                        {
+                            nui.ElevationAngle += 3;
+                        }
+                        catch (Exception ex)
+                        {
+
+                        }
+                    }
+                }
+
             }
 
 
@@ -975,7 +1211,7 @@ namespace beethoven3
                 case "next":
                 case "nest":
                 case "naxt":
-                    ts3 = new ThreadStart(AngleUp);
+                    ts3 = new ThreadStart(AngleDown);
                     th3 = new Thread(ts3);
                     th3.Start();
                     break;
@@ -4015,8 +4251,15 @@ namespace beethoven3
             //타이틀화면
             if (gameState == GameStates.Menu)
             {
-                menuScene.Draw(spriteBatch, this.Window.ClientBounds.Width, this.Window.ClientBounds.Height);
 
+                Trace.WriteLine(isNoPerson);
+                menuScene.Draw(spriteBatch, this.Window.ClientBounds.Width, this.Window.ClientBounds.Height);
+                if (isNoPerson)
+                {
+                    spriteBatch.Draw(noPerson, new Rectangle(200, 200, 727, 278), Color.White);
+
+
+                }
             }
 
             //상전대문
