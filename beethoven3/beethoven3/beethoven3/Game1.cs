@@ -41,7 +41,7 @@ namespace beethoven3
 
         //스켈레톤 한명만
         int CurrentTrackingId = 0;
-
+        public static bool finalClick;
         //음성인식
         SpeechRecognitionEngine sre;
         RecognizerInfo ri;
@@ -102,8 +102,8 @@ namespace beethoven3
         Rectangle VideoDisplayRectangle;
         Texture2D idot1;
         Texture2D idot2;
-        Rectangle drawrec1;
-        Rectangle drawrec2;
+        public static Rectangle drawrec1;
+        public static Rectangle drawrec2;
 
         //손
         DepthImagePoint handPoint;
@@ -114,16 +114,16 @@ namespace beethoven3
         float userParam = .3f;
 
         //손가락 클릭
-        //private void skip() { }
-        //public delegate void afterReady();
-        //private afterReady afterColorReady;
-        //private afterReady afterDepthReady;
-        //public KinectSettings settings { get; set; }
-        //public List<Hand> hands { get; set; }
-        //int listCount = 0;
-        //bool clickJudge = false;
-        //List<DepthImagePoint> handList = new List<DepthImagePoint>();
-        //List<bool> clickList = new List<bool>();
+        private void skip() { }
+        public delegate void afterReady();
+        private afterReady afterColorReady;
+        private afterReady afterDepthReady;
+        public KinectSettings settings { get; set; }
+        public List<Hand> hands { get; set; }
+        int listCount = 0;
+        bool clickJudge = false;
+        List<DepthImagePoint> handList = new List<DepthImagePoint>();
+        List<bool> clickList = new List<bool>();
 #endif
         //기본 글꼴
         //basic font
@@ -981,26 +981,26 @@ namespace beethoven3
             }
 
 
-            if (fy >= 180)
-            {
-                userParam = 0.4f;
-            }
-            else if (fy < 180 && fy >= 170)
-            {
-                userParam = 0.35f;
-            }
-            else if (fy < 170 && fy >= 160)
-            {
-                userParam = 0.30f;
-            }
-            else if (fy < 160 && fy >= 150)
-            {
-                userParam = 0.25f;
-            }
-            else
-            {
-                userParam = 0.3f;
-            }
+            //if (fy >= 180)
+            //{
+            //    userParam = 0.4f;
+            //}
+            //else if (fy < 180 && fy >= 170)
+            //{
+            //    userParam = 0.35f;
+            //}
+            //else if (fy < 170 && fy >= 160)
+            //{
+            //    userParam = 0.30f;
+            //}
+            //else if (fy < 160 && fy >= 150)
+            //{
+            //    userParam = 0.25f;
+            //}
+            //else
+            //{
+            //    userParam = 0.3f;
+            //}
 
 
         }
@@ -1090,10 +1090,10 @@ namespace beethoven3
                 nui.ColorFrameReady += new EventHandler<ColorImageFrameReadyEventArgs>(nui_ColorFrameReady);
 
                 //클릭
-                //afterColorReady = skip;
-                //afterDepthReady = skip;
-                //settings = new KinectSettings();
-                //hands = new List<Hand>();
+                afterColorReady = skip;
+                afterDepthReady = skip;
+                settings = new KinectSettings();
+                hands = new List<Hand>();
 
                 //제스쳐2
                 //_dtw = new DtwGestureRecognizer(12, 0.6, 2, 2, 10);
@@ -1306,6 +1306,7 @@ namespace beethoven3
 
         void nui_DepthFrameReady(object sender, DepthImageFrameReadyEventArgs e)
         {
+            //에러
             DepthImageFrame ImageParam = e.OpenDepthImageFrame();
             if (ImageParam == null)
                 return;
@@ -1369,105 +1370,114 @@ namespace beethoven3
 
 
             }
-
-            //bool[][] near = generateValidMatrix(tempWidth, tempHeight, depth);
-
-
-            ////화면에 띄우기
-            ////indexCount = 0;
-            ////for (int i = 0; i < tempWidth; i++)
-            ////{
-            ////    for (int j = 0; j < tempHeight; j++)
-            ////    {
-            ////        if (near[j][i] == true)
-            ////        {
-            ////            bitmap[indexCount] = new Color(255, 255, 255, 255);
-            ////        }
-            ////        else
-            ////        {
-            ////            bitmap[indexCount] = new Color(0, 0, 0, 255);
-            ////        }
-            ////        indexCount++;
-            ////    }
-            ////}
-            ////KinectVideoTexture.SetData(bitmap);
+            if (Skeletons != null)
+            {
+                foreach (Skeleton s in Skeletons)
+                    if (s.TrackingState == SkeletonTrackingState.Tracked)
+                    {
+                        bool[][] near = generateValidMatrix(tempWidth, tempHeight, depth);//에러
 
 
-            //hands = localizeHands(near);
-            //afterDepthReady();
+                        //화면에 띄우기
+                        //indexCount = 0;
+                        //for (int i = 0; i < tempWidth; i++)
+                        //{
+                        //    for (int j = 0; j < tempHeight; j++)
+                        //    {
+                        //        if (near[j][i] == true)
+                        //        {
+                        //            bitmap[indexCount] = new Color(255, 255, 255, 255);
+                        //        }
+                        //        else
+                        //        {
+                        //            bitmap[indexCount] = new Color(0, 0, 0, 255);
+                        //        }
+                        //        indexCount++;
+                        //    }
+                        //}
+                        //KinectVideoTexture.SetData(bitmap);
 
-            //if (Skeletons != null)
-            //{
-            //    foreach (Skeleton s in Skeletons)
-            //        if (s.TrackingState == SkeletonTrackingState.Tracked)
-            //        {
-            //            if (hands.Count > 0)
-            //            {
-            //                if (hands[0].fingertips.Count > 0)
-            //                {
-            //                    clickJudge = false;
-            //                }
-            //                else
-            //                {
-            //                    clickJudge = true;
-            //                }
-            //            }
-            //        }
-            //}
 
-            ////10개의 프레임에 대한 정보를 리스트에 저장
-            //int maxCount = 10;
-            //if (listCount < maxCount)
-            //{
-            //    handList.Add(handPoint);
-            //    clickList.Add(clickJudge);
-            //    listCount++;
-            //}
-            //else
-            //{
-            //    handList.RemoveAt(0);
-            //    clickList.RemoveAt(0);
-            //    handList.Add(handPoint);
-            //    clickList.Add(clickJudge);
-            //}
+                        hands = localizeHands(near);
+                        afterDepthReady();
+                    }
+            }
+        
 
-            //bool finalClick = true;
-            //if (listCount >= maxCount)
-            //{
+            if (Skeletons != null)
+            {
+                foreach (Skeleton s in Skeletons)
+                    if (s.TrackingState == SkeletonTrackingState.Tracked)
+                    {
+                        if (hands.Count > 0)
+                        {
+                            if (hands[0].fingertips.Count > 0)
+                            {
+                                clickJudge = false;
+                            }
+                            else
+                            {
+                                clickJudge = true;
+                            }
+                        }
+                    }
+            }
 
-            //    double handDistance = Math.Sqrt((handList[0].X - handList[9].X) * (handList[0].X - handList[9].X) + (handList[0].Y - handList[9].Y) * (handList[0].Y - handList[9].Y));
-            //    //message = handDistance.ToString();
-            //    if (clickList[0] == true)
-            //    {
-            //        if (handDistance > 10)
-            //        {
-            //            finalClick = false;
-            //        }
-            //        for (int i = 0; i < maxCount - 1; i++)
-            //        {
-            //            for (int j = i + 1; j < maxCount; j++)
-            //            {
-            //                if (clickList[i] != clickList[j])
-            //                {
-            //                    finalClick = false;
-            //                }
-            //            }
-            //        }
-            //    }
-            //    else
-            //    {
-            //        finalClick = false;
-            //    }
+            //10개의 프레임에 대한 정보를 리스트에 저장
+            int maxCount = 10;
+            if (listCount < maxCount)
+            {
+                handList.Add(handPoint);
+                clickList.Add(clickJudge);
+                listCount++;
+            }
+            else
+            {
+                handList.RemoveAt(0);
+                clickList.RemoveAt(0);
+                handList.Add(handPoint);
+                clickList.Add(clickJudge);
+            }
 
-            //}
-            //if (finalClick == true)
-            //{
-            //    message = "click";
-            //}
-            //else
-            //{
-            //    message = "No click";
-            //}
+            finalClick = true;
+            if (listCount >= maxCount)
+            {
+
+                double handDistance = Math.Sqrt((handList[0].X - handList[9].X) * (handList[0].X - handList[9].X) + (handList[0].Y - handList[9].Y) * (handList[0].Y - handList[9].Y));
+                //message = handDistance.ToString();
+                if (clickList[0] == true)
+                {
+                    if (handDistance > 10)
+                    {
+                        finalClick = false;
+                    }
+                    for (int i = 0; i < maxCount - 1; i++)
+                    {
+                        for (int j = i + 1; j < maxCount; j++)
+                        {
+                            if (clickList[i] != clickList[j])
+                            {
+                                finalClick = false;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    finalClick = false;
+                }
+
+            }
+
+            //클릭여부
+            if (finalClick == true)
+            {
+                message = "click";
+            }
+            else
+            {
+                message = "No click";
+            }
 
             /////////////////////////////////
 
@@ -1512,6 +1522,358 @@ namespace beethoven3
                 }
             }
         }
+
+        private List<Hand> localizeHands(bool[][] valid)
+        {
+            int i, j, k;
+
+            List<Hand> hands = new List<Hand>();
+
+            List<PointFT> insidePoints = new List<PointFT>();
+            List<PointFT> contourPoints = new List<PointFT>();
+
+
+            bool[][] contour = new bool[valid.Length][];
+            for (i = 0; i < valid.Length; ++i)
+            {
+                contour[i] = new bool[valid[0].Length];
+            }
+
+            int count = 0;
+            for (i = 1; i < valid.Length - 1; ++i)
+            {
+                for (j = 1; j < valid[i].Length - 1; ++j)
+                {
+
+                    if (valid[i][j])
+                    {
+                        count = this.numValidPixelAdjacent(ref i, ref j, ref valid);
+
+                        if (count == 4)
+                        {
+                            insidePoints.Add(new PointFT(i, j));
+                        }
+                        else
+                        {
+                            contour[i][j] = true;
+                            contourPoints.Add(new PointFT(i, j));
+                        }
+
+                    }
+                }
+            }
+            for (i = 0; i < contourPoints.Count; ++i)
+            {
+                Hand hand = new Hand();
+                if (contour[contourPoints[i].X][contourPoints[i].Y])
+                {
+                    hand.contour = CalculateFrontier(ref valid, contourPoints[i], ref contour);
+
+                    if (hand.contour.Count / (contourPoints.Count * 1.0f) > 0.20f
+                        && hand.contour.Count > settings.k)
+                    {
+                        hand.calculateContainerBox(settings.containerBoxReduction);
+                        hands.Add(hand);
+                    }
+                    if (hands.Count >= settings.maxTrackedHands)
+                    {
+                        break;
+                    }
+                }
+
+            }
+
+            for (i = 0; i < insidePoints.Count; ++i)
+            {
+                for (j = 0; j < hands.Count; ++j)
+                {
+                    if (hands[j].isPointInsideContainerBox(insidePoints[i]))
+                    {
+                        hands[j].inside.Add(insidePoints[i]);
+                    }
+                }
+            }
+
+            float min, max, distance = 0;
+
+            for (i = 0; i < hands.Count; ++i)
+            {
+                max = float.MinValue;
+                for (j = 0; j < hands[i].inside.Count; j += settings.findCenterInsideJump)
+                {
+                    min = float.MaxValue;
+                    for (k = 0; k < hands[i].contour.Count; k += settings.findCenterInsideJump)
+                    {
+                        distance = PointFT.distanceEuclidean(hands[i].inside[j], hands[i].contour[k]);
+                        if (!hands[i].isCircleInsideContainerBox(hands[i].inside[j], distance)) continue;
+                        if (distance < min) min = distance;
+                        if (min < max) break;
+                    }
+
+                    if (max < min && min != float.MaxValue)
+                    {
+                        max = min;
+                        hands[i].palm = hands[i].inside[j];
+                    }
+                }
+            }
+
+            PointFT p1, p2, p3, pAux, r1, r2;
+            int size;
+            double angle;
+            int jump;
+
+            for (i = 0; i < hands.Count; ++i)
+            {
+                max = hands[i].contour.Count;
+                size = hands[i].contour.Count;
+                jump = (int)(size * settings.fingertipFindJumpPerc);
+                for (j = 0; j < settings.k; j += 1)
+                {
+                    p1 = hands[i].contour[(j - settings.k + size) % size];
+                    p2 = hands[i].contour[j];
+                    p3 = hands[i].contour[(j + settings.k) % size];
+                    r1 = p1 - p2;
+                    r2 = p3 - p2;
+
+                    angle = PointFT.angle(r1, r2);
+
+                    if (angle > 0 && angle < settings.theta)
+                    {
+                        pAux = p3 + ((p1 - p3) / 2);
+                        if (PointFT.distanceEuclideanSquared(pAux, hands[i].palm) >
+                            PointFT.distanceEuclideanSquared(hands[i].contour[j], hands[i].palm))
+                            continue;
+
+                        hands[i].fingertips.Add(hands[i].contour[j]);
+                        max = hands[i].contour.Count + j - jump;
+                        max = Math.Min(max, hands[i].contour.Count);
+                        j += jump;
+                        break;
+                    }
+                }
+                for (; j < max; j += settings.findFingertipsJump)
+                {
+                    p1 = hands[i].contour[(j - settings.k + size) % size];
+                    p2 = hands[i].contour[j];
+                    p3 = hands[i].contour[(j + settings.k) % size];
+                    r1 = p1 - p2;
+                    r2 = p3 - p2;
+
+                    angle = PointFT.angle(r1, r2);
+
+                    if (angle > 0 && angle < settings.theta)
+                    {
+                        pAux = p3 + ((p1 - p3) / 2);
+                        if (PointFT.distanceEuclideanSquared(pAux, hands[i].palm) >
+                            PointFT.distanceEuclideanSquared(hands[i].contour[j], hands[i].palm))
+                            continue;
+
+                        hands[i].fingertips.Add(hands[i].contour[j]);
+                        j += jump;
+                    }
+                }
+            }
+
+            return hands;
+        }
+        private List<PointFT> CalculateFrontier(ref bool[][] valid, PointFT start, ref bool[][] contour)
+        {
+            List<PointFT> list = new List<PointFT>();
+            PointFT last = new PointFT(-1, -1);
+            PointFT current = new PointFT(start);
+            int dir = 0;
+
+            do
+            {
+                if (valid[current.X][current.Y])
+                {
+                    dir = (dir + 1) % 4;
+                    if (current != last)
+                    {
+                        list.Add(new PointFT(current.X, current.Y));
+                        last = new PointFT(current);
+                        contour[current.X][current.Y] = false;
+                    }
+                }
+                else
+                {
+                    dir = (dir + 4 - 1) % 4;
+                }
+
+                switch (dir)
+                {
+                    case 0: current.X += 1; break;
+                    case 1: current.Y += 1; break;
+                    case 2: current.X -= 1; break;
+                    case 3: current.Y -= 1; break;
+                }
+            } while (current != start);
+
+            return list;
+        }
+
+        private int numValidPixelAdjacent(ref int i, ref int j, ref bool[][] valid)
+        {
+            int count = 0;
+
+            if (valid[i + 1][j]) ++count;
+            if (valid[i - 1][j]) ++count;
+            if (valid[i][j + 1]) ++count;
+            if (valid[i][j - 1]) ++count;
+            return count;
+        }
+
+
+
+        private bool[][] generateValidMatrix(int tempWidth, int tempHeight, int[] distance)
+        {
+            int x1 = 0;
+            int x2 = tempWidth;
+            int y1 = 0;
+            int y2 = tempHeight;
+            bool[][] near = new bool[y2 - y1][];
+            for (int i = 0; i < near.Length; ++i)
+            {
+                near[i] = new bool[x2 - x1];
+            }
+            int max = int.MinValue, min = int.MaxValue;
+
+            for (int k = 0; k < distance.Length; ++k)
+            {
+                if (distance[k] > max) max = distance[k];
+                if (distance[k] < min && distance[k] != -1) min = distance[k];
+            }
+
+            int handDepth = handPoint.Depth;//에러
+            ////
+
+            int margin = (int)(min + settings.nearSpacePerc * (max - min));
+            int index = 0;
+            if (settings.absoluteSpace != -1) margin = min + settings.absoluteSpace;
+            for (int i = 0; i < near.Length; ++i)
+            {
+                for (int j = 0; j < near[i].Length; ++j)
+                {
+                    index = tempWidth * (i + y1) + (j + x1);
+                    if (distance[index] < handDepth + 120 && distance[index] > handDepth - 120)
+                    {
+                        near[i][j] = true;
+                    }
+                    else
+                    {
+                        near[i][j] = false;
+                    }
+                }
+            }
+
+            if (settings.smoothingIterations > 0)
+            {
+                near = dilate(near, settings.smoothingIterations);
+                near = erode(near, settings.smoothingIterations);
+            }
+
+
+            int m;
+            for (int j = 0; j < near[0].Length; ++j)
+                near[0][j] = false;
+            m = near.Length - 1;
+            for (int j = 0; j < near[0].Length; ++j)
+                near[m][j] = false;
+
+            for (int i = 0; i < near.Length; ++i)
+                near[i][0] = false;
+
+            m = near[0].Length - 1;
+            for (int i = 0; i < near.Length; ++i)
+                near[i][m] = false;
+
+            return near;
+        }
+
+        private bool[][] dilate(bool[][] image, int it)
+        {
+            bool[][] dilateImage = new bool[image.Length][];
+            for (int i = 0; i < image.Length; ++i)
+            {
+                dilateImage[i] = new bool[image[i].Length];
+            }
+
+            int[][] distance = manhattanDistanceMatrix(image, true);
+
+            for (int i = 0; i < image.Length; i++)
+            {
+                for (int j = 0; j < image[i].Length; j++)
+                {
+                    dilateImage[i][j] = ((distance[i][j] <= it) ? true : false);
+                }
+            }
+
+            return dilateImage;
+        }
+
+        private bool[][] erode(bool[][] image, int it)
+        {
+            bool[][] erodeImage = new bool[image.Length][];
+            for (int i = 0; i < image.Length; ++i)
+            {
+                erodeImage[i] = new bool[image[i].Length];
+            }
+
+            int[][] distance = manhattanDistanceMatrix(image, false);
+
+            for (int i = 0; i < image.Length; i++)
+            {
+                for (int j = 0; j < image[i].Length; j++)
+                {
+                    erodeImage[i][j] = ((distance[i][j] > it) ? true : false);
+                }
+            }
+
+            return erodeImage;
+        }
+
+
+        private int[][] manhattanDistanceMatrix(bool[][] image, bool zeroDistanceValue)
+        {
+            int[][] distanceMatrix = new int[image.Length][];
+            for (int i = 0; i < distanceMatrix.Length; ++i)
+            {
+                distanceMatrix[i] = new int[image[i].Length];
+            }
+
+            for (int i = 0; i < distanceMatrix.Length; i++)
+            {
+                for (int j = 0; j < distanceMatrix[i].Length; j++)
+                {
+                    if ((image[i][j] && zeroDistanceValue) || (!image[i][j] && !zeroDistanceValue))
+                    {
+                        distanceMatrix[i][j] = 0;
+                    }
+                    else
+                    {
+
+                        distanceMatrix[i][j] = image.Length + image[i].Length;
+                        if (i > 0) distanceMatrix[i][j] = Math.Min(distanceMatrix[i][j], distanceMatrix[i - 1][j] + 1);
+                        if (j > 0) distanceMatrix[i][j] = Math.Min(distanceMatrix[i][j], distanceMatrix[i][j - 1] + 1);
+                    }
+                }
+            }
+            for (int i = distanceMatrix.Length - 1; i >= 0; i--)
+            {
+                for (int j = distanceMatrix[i].Length - 1; j >= 0; j--)
+                {
+
+                    if (i + 1 < distanceMatrix.Length)
+                        distanceMatrix[i][j] = Math.Min(distanceMatrix[i][j], distanceMatrix[i + 1][j] + 1);
+                    if (j + 1 < distanceMatrix[i].Length)
+                        distanceMatrix[i][j] = Math.Min(distanceMatrix[i][j], distanceMatrix[i][j + 1] + 1);
+                }
+            }
+
+            return distanceMatrix;
+        }
+
 
         void nui_SkeletonFrameReady(object sender, SkeletonFrameReadyEventArgs e)
         {
@@ -4248,6 +4610,8 @@ namespace beethoven3
             
             GraphicsDevice.Clear(Color.White);
             spriteBatch.Begin();
+
+
             //타이틀화면
             if (gameState == GameStates.Menu)
             {
@@ -4306,6 +4670,7 @@ namespace beethoven3
                 {
                     spriteBatch.DrawString(messageFont, message, Vector2.Zero, Color.Red);
                 }
+
 
 #endif
                 //if (isReady  == 1)
@@ -4438,12 +4803,47 @@ namespace beethoven3
                 }
 
             }
-                   
+#if Kinect
+            if (KinectVideoTexture != null)
+            {
+                spriteBatch.Draw(KinectVideoTexture, VideoDisplayRectangle, Color.White);
+                //setupKinect.draw();
+
+            }
+            if (Skeletons != null)
+            {
+                foreach (Skeleton s in Skeletons)
+                    if (s.TrackingState == SkeletonTrackingState.Tracked)
+                    {
+                        drawpoint(s.Joints[JointType.HandRight], s.Joints[JointType.HandLeft]);
+
+                    }
+            }
+#endif
             spriteBatch.End();
             
             base.Draw(gameTime);
         }
+#if Kinect
+        void drawpoint(Joint j1, Joint j2)
+        {
+            ////실질적인 스케일 변환
+            Joint j1r = j1.ScaleTo(SCR_W, SCR_H, userParam, userParam);
 
+            //그리기
+            drawrec1.X = (int)j1r.Position.X - drawrec1.Width / 2;
+            drawrec1.Y = (int)j1r.Position.Y - drawrec1.Height / 2;
+            spriteBatch.Draw(idot1, drawrec1, Color.Red);
+
+
+            Joint j2r = j2.ScaleTo(SCR_W, SCR_H, userParam, userParam);
+
+            drawrec2.X = (int)j2r.Position.X - drawrec2.Width / 2;
+            drawrec2.Y = (int)j2r.Position.Y - drawrec2.Height / 2;
+
+            spriteBatch.Draw(idot2, drawrec2, Color.Blue);
+        }
+#endif
 
 
        

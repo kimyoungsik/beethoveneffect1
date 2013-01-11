@@ -136,6 +136,11 @@
     <Compile Include="Effect\PerfectExplosionManager.cs" />
     <Compile Include="Effect\StaticSprite.cs" />
     <Compile Include="File\DrawGuideLineInfo.cs" />
+    <Compile Include="FingerTracking\Hand.cs" />
+    <Compile Include="FingerTracking\KinectSettings.cs" />
+    <Compile Include="FingerTracking\MyQueue.cs" />
+    <Compile Include="FingerTracking\PointFT.cs" />
+    <Compile Include="FingerTracking\Vector3FT.cs" />
     <Compile Include="Item\BackgroundItemShop.cs" />
     <Compile Include="Effect\CollisionManager.cs" />
     <Compile Include="Curve\Curve.cs" />

@@ -118,6 +118,9 @@ namespace beethoven3
         {
             MouseState mouse = Mouse.GetState();
             KeyboardState key = Keyboard.GetState();
+
+
+
             Rectangle mouseRectangle = new Rectangle(mouse.X, mouse.Y, 1, 1);
 
             //검은색 버튼 눌렀을 때,
@@ -149,7 +152,7 @@ namespace beethoven3
 
             //left 버튼 누를 때
             if ((mouseRectangle.Intersects(new Rectangle(170, 310, 60, 60)) && mouse.LeftButton == ButtonState.Pressed && pastmouse.LeftButton == ButtonState.Released)
-                || (key.IsKeyDown(Keys.Left) && !pastkey.IsKeyDown(Keys.Left)))
+                || (key.IsKeyDown(Keys.Left) && !pastkey.IsKeyDown(Keys.Left)) || Game1.drawrec1.Intersects(new Rectangle(170, 310, 60, 60)) && Game1.finalClick)
             {
                 if (scene_number > 0)
                 {
@@ -158,7 +161,7 @@ namespace beethoven3
                     frame = 0;
                 }
             }
-            else if (mouseRectangle.Intersects(new Rectangle(170, 310, 60, 60)) && mouse.LeftButton == ButtonState.Released)
+            else if (mouseRectangle.Intersects(new Rectangle(170, 310, 60, 60)) && mouse.LeftButton == ButtonState.Released || Game1.drawrec1.Intersects(new Rectangle(170, 310, 60, 60)))
             {
                 arrawframebutton[0] = true;
             }
@@ -205,7 +208,7 @@ namespace beethoven3
 
             //right
             if ((mouseRectangle.Intersects(new Rectangle(770, 310, 60, 60)) && mouse.LeftButton == ButtonState.Pressed && pastmouse.LeftButton == ButtonState.Released)
-                || (key.IsKeyDown(Keys.Right) && !pastkey.IsKeyDown(Keys.Right)))
+                || (key.IsKeyDown(Keys.Right) && !pastkey.IsKeyDown(Keys.Right)) || Game1.drawrec1.Intersects(new Rectangle(770, 310, 60, 60)) && Game1.finalClick)
             {
                 if (scene_number < noteFileManager.noteFiles.Count-1)
                 {
@@ -214,7 +217,7 @@ namespace beethoven3
                     frame = 0;
                 }
             }
-            else if (mouseRectangle.Intersects(new Rectangle(770, 310, 60, 60)) && mouse.LeftButton == ButtonState.Released)
+            else if (mouseRectangle.Intersects(new Rectangle(770, 310, 60, 60)) && mouse.LeftButton == ButtonState.Released || Game1.drawrec1.Intersects(new Rectangle(770, 310, 60, 60)))
             {
                 arrawframebutton[1] = true;
             }
