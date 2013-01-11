@@ -2,15 +2,6 @@
 <XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline">
   <Asset Type="Pipeline:BuildItemCollection">
     <Item>
-      <Source>Textures\heart.png</Source>
-      <Name>Textures\heart</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Textures\heart.xnb</Output>
-      <Time>2013-01-09T21:06:52.316411+09:00</Time>
-    </Item>
-    <Item>
       <Source>Textures\red.png</Source>
       <Name>Textures\red</Name>
       <Importer>TextureImporter</Importer>
@@ -749,6 +740,60 @@
       <Time>2013-01-09T20:25:15.3715939+09:00</Time>
     </Item>
     <Item>
+      <Source>Textures\heart.png</Source>
+      <Name>Textures\heart</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Textures\heart.xnb</Output>
+      <Time>2013-01-09T21:06:52.316411+09:00</Time>
+    </Item>
+    <Item>
+      <Source>judgement\bad.png</Source>
+      <Name>judgement\bad</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\judgement\bad.xnb</Output>
+      <Time>2013-01-09T21:19:26.5395501+09:00</Time>
+    </Item>
+    <Item>
+      <Source>judgement\good.png</Source>
+      <Name>judgement\good</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\judgement\good.xnb</Output>
+      <Time>2013-01-09T21:19:26.555551+09:00</Time>
+    </Item>
+    <Item>
+      <Source>judgement\miss.png</Source>
+      <Name>judgement\miss</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\judgement\miss.xnb</Output>
+      <Time>2013-01-09T21:19:26.5365499+09:00</Time>
+    </Item>
+    <Item>
+      <Source>judgement\perfect.png</Source>
+      <Name>judgement\perfect</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\judgement\perfect.xnb</Output>
+      <Time>2013-01-09T21:19:26.53855+09:00</Time>
+    </Item>
+    <Item>
+      <Source>comboNumbers\one.png</Source>
+      <Name>comboNumbers\one</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\comboNumbers\one.xnb</Output>
+      <Time>2013-01-11T09:27:54.3976315+09:00</Time>
+    </Item>
+    <Item>
       <Source>snd\ka.mp3</Source>
       <Name>snd\ka</Name>
       <Importer>Mp3Importer</Importer>
@@ -813,42 +858,6 @@
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Fonts\PerpetuaFont.xnb</Output>
       <Time>2013-01-08T22:57:38.3099716+09:00</Time>
-    </Item>
-    <Item>
-      <Source>judgement\perfect.png</Source>
-      <Name>judgement\perfect</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\judgement\perfect.xnb</Output>
-      <Time>2013-01-09T21:19:26.53855+09:00</Time>
-    </Item>
-    <Item>
-      <Source>judgement\bad.png</Source>
-      <Name>judgement\bad</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\judgement\bad.xnb</Output>
-      <Time>2013-01-09T21:19:26.5395501+09:00</Time>
-    </Item>
-    <Item>
-      <Source>judgement\good.png</Source>
-      <Name>judgement\good</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\judgement\good.xnb</Output>
-      <Time>2013-01-09T21:19:26.555551+09:00</Time>
-    </Item>
-    <Item>
-      <Source>judgement\miss.png</Source>
-      <Name>judgement\miss</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\judgement\miss.xnb</Output>
-      <Time>2013-01-09T21:19:26.5365499+09:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

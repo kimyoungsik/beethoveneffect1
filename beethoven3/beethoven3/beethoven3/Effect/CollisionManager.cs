@@ -21,6 +21,10 @@ namespace beethoven3
         private BadBannerManager badBannerManager;
         private MissBannerManager missBannerManager;
 
+        //Combo 띄우기
+
+        private ComboNumberManager comboNumberManager;
+
 
         private ScoreManager scoreManager;
 
@@ -35,13 +39,15 @@ namespace beethoven3
         private Vector2 badLocation;
         private Vector2 missLocation;
 
+        private Vector2 comboLocation;
        // private bool isEarlyOne = true;
         #endregion 
 
         #region constructor
         public CollisionManager(PerfectExplosionManager perfectManager, GoodExplosionManager goodManager, BadExplosionManager badManager, ExplosionManager goldGetManager,
-            ScoreManager scoreManager, MemberManager memberManager, ItemManager itemManager, 
-            PerfectBannerManager perfectBannerManager, GoodBannerManager goodBannerManager, BadBannerManager badBannerManager, MissBannerManager missBannerManager,Vector2 sizeScreen)
+            ScoreManager scoreManager, MemberManager memberManager, ItemManager itemManager,
+            PerfectBannerManager perfectBannerManager, GoodBannerManager goodBannerManager, BadBannerManager badBannerManager, MissBannerManager missBannerManager, Vector2 sizeScreen,
+            ComboNumberManager comboNumberManager)
         {
             this.perfectManager = perfectManager;
             this.goodManager = goodManager;
@@ -53,6 +59,8 @@ namespace beethoven3
             this.badBannerManager = badBannerManager;
             this.missBannerManager = missBannerManager;
 
+            this.comboNumberManager = comboNumberManager;
+
             this.scoreManager = scoreManager;
 
             //화면사이즈
@@ -60,11 +68,11 @@ namespace beethoven3
             this.memberManager = memberManager;
             this.itemManager = itemManager;
 
-            this.perfectLocation = new Vector2(sizeScreen.X/2-1380/4,sizeScreen.Y/2-428/4);
-            this.goodLocation = new Vector2(sizeScreen.X/2 - 1020/4,sizeScreen.Y/2-  368/4);
-            this.badLocation = new Vector2(sizeScreen.X/2 - (int)((782*0.7)/2), sizeScreen.Y/2 - (int)((400*0.7)/2));
-            this.missLocation = new Vector2(sizeScreen.X/2 - 975/4, sizeScreen.Y/2 - 412/4);
-
+            this.perfectLocation = new Vector2(sizeScreen.X / 2 - 1380 / 4, sizeScreen.Y / 2 - 428 / 4);
+            this.goodLocation = new Vector2(sizeScreen.X / 2 - 1020 / 4, sizeScreen.Y / 2 - 368 / 4);
+            this.badLocation = new Vector2(sizeScreen.X / 2 - (int)((782 * 0.7) / 2), sizeScreen.Y / 2 - (int)((400 * 0.7) / 2));
+            this.missLocation = new Vector2(sizeScreen.X / 2 - 975 / 4, sizeScreen.Y / 2 - 412 / 4);
+            this.comboLocation = new Vector2(sizeScreen.X / 2, sizeScreen.Y / 2);
 
         }
         #endregion
@@ -123,6 +131,44 @@ namespace beethoven3
                 }
             }
         }
+
+        public void AddComboNumber(int number, int duration = 30)
+        {
+            int num = number;
+            int[] eachNumbers = new int[6];
+            Vector2[] eachNumberLocations = new Vector2[6];
+
+            //자릿수
+            int length = 1;
+
+            //몇 자리 인지 센다.
+            //몫
+            int share;
+            share = num / 10;
+            eachNumbers[length - 1] = num % 10;
+
+
+            while (share > 0)
+            {
+                share = share / 10;
+                length++;
+                eachNumbers[length - 1] = share % 10;
+            }
+
+
+            int i;
+
+            for (i = 0; i < length; i++)
+            {
+                //끝자리 부터
+                comboNumberManager.AddComboNumbers(new Vector2(comboLocation.X - i * 100, comboLocation.Y), eachNumbers[i], duration);
+
+
+            }
+
+        }
+
+
         
         private void checkRightNoteToMarker(int number,Vector2 mousePoint)
         {
@@ -179,6 +225,9 @@ namespace beethoven3
                             scoreManager.Combo = scoreManager.Combo + 1;
                             scoreManager.Gage = scoreManager.Gage + 10;
                        
+                            //콤보 글자 띄우기
+                            AddComboNumber(scoreManager.Combo);
+
                             //템포 원상 복귀
                             if (SoundFmod.isChangedTempo != 0)
                             {
@@ -743,6 +792,9 @@ namespace beethoven3
 
                             scoreManager.LongNoteScore = scoreManager.LongNoteScore + 1;
                             scoreManager.Combo = scoreManager.Combo + 1;
+
+
+                            AddComboNumber(scoreManager.Combo, 5);
                         }
                     }
                     else

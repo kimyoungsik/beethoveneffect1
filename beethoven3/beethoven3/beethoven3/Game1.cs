@@ -83,6 +83,9 @@ namespace beethoven3
         private BadBannerManager badBannerManager;
         private MissBannerManager missBannerManager;
 
+        //콤보 숫자
+        ComboNumberManager comboNumberManager;
+
 
         //아이템 관리
         private ItemManager itemManager;
@@ -406,6 +409,8 @@ namespace beethoven3
             //Texture2D[] badEffectTextures = itemManager.GetBadEffectTexture();
             //Texture2D[] missEffectTextures = itemManager.GetMissEffectTexture();
 
+            comboNumberManager = new ComboNumberManager();
+            comboNumberManager.LoadContent(Content);
 
 
 
@@ -506,7 +511,7 @@ namespace beethoven3
            
 
             //충돌관리 생성
-            collisionManager = new CollisionManager(perfectManager, goodManager, badManager, goldGetManager, scoreManager, memberManager,/*effect크기*/itemManager,perfectBannerManager,goodBannerManager,badBannerManager,missBannerManager,new Vector2(this.Window.ClientBounds.Width,this.Window.ClientBounds.Height));
+            collisionManager = new CollisionManager(perfectManager, goodManager, badManager, goldGetManager, scoreManager, memberManager,/*effect크기*/itemManager,perfectBannerManager,goodBannerManager,badBannerManager,missBannerManager,new Vector2(this.Window.ClientBounds.Width,this.Window.ClientBounds.Height),comboNumberManager);
             
             //노트정보 관리 생성
             noteFileManager = new NoteFileManager();
@@ -3150,6 +3155,8 @@ namespace beethoven3
                     badBannerManager.Update(gameTime);
                     missBannerManager.Update(gameTime);
 
+                    comboNumberManager.Update(gameTime);
+
 #if Kinect
                     HandleInput();
 
@@ -3398,7 +3405,7 @@ namespace beethoven3
                         goldGetManager = new ExplosionManager();
                         goldGetManager.ExplosionInit(itemManager.GetMissEffectTexture()[effectIndex], itemManager.GetEffectInitFrame()[effectIndex], itemManager.GetEffectFrameCount()[effectIndex], itemManager.GetEffectScale()[effectIndex], itemManager.GetEffectDulation()[effectIndex]);
 
-                        collisionManager = new CollisionManager(perfectManager, goodManager, badManager, goldGetManager, scoreManager, memberManager, itemManager, perfectBannerManager, goodBannerManager, badBannerManager, missBannerManager, new Vector2(this.Window.ClientBounds.Width, this.Window.ClientBounds.Height));
+                        collisionManager = new CollisionManager(perfectManager, goodManager, badManager, goldGetManager, scoreManager, memberManager, itemManager, perfectBannerManager, goodBannerManager, badBannerManager, missBannerManager, new Vector2(this.Window.ClientBounds.Width, this.Window.ClientBounds.Height),comboNumberManager);
             
                         /////이펙트 생성 -END
                         
@@ -3431,52 +3438,7 @@ namespace beethoven3
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         
-        
-        ////입력 숫자
-        ////출력 숫자를 나타내는 그림
-        ////location -> 마지막 숫자를 기준으로 
-        //public void ConverIntToDrawing(int number,Vector2 location)
-        //{
-        //    int num = number;
-        //    int[] eachNumbers = new int[20];
-
-
-        //    //자릿수
-        //    int length = 1;
-            
-        //    //몇 자리 인지 센다.
-        //    //몫
-        //    int share;
-        //    share = num / 10;
-        //    eachNumbers[length-1] = num % 10;
-
-        //    while (share > 0)
-        //    {
-        //        share = num / 10;
-        //        length++;
-        //        eachNumbers[length - 1] = num % 10;
-        //    }
-
-
-        //    int i;
-
-        //    for (i = 0; i < length; i++)
-        //    {
-        //        //끝자리 부터
-                
-
-        //    }
-            
-        //}
-
-
-        //숫자에 맞는 텍스쳐 반환
-        //sprite를 상속받는거 만들고 그건 근데 current frame만 나타낼 수 있는걸로 
-
-        
-
-
-
+    
 
 
         protected override void Draw(GameTime gameTime)
@@ -3577,6 +3539,10 @@ namespace beethoven3
                 goodBannerManager.Draw(spriteBatch);
                 badBannerManager.Draw(spriteBatch);
                 missBannerManager.Draw(spriteBatch);
+
+
+                comboNumberManager.Draw(spriteBatch);
+
                 
                 //가운데 빨간 사각형 주석하면 보이지않는다.
             //    spriteBatch.Draw(idot, removeAreaRec, Color.Red);
