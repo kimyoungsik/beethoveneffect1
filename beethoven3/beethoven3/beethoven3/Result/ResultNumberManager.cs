@@ -64,7 +64,7 @@ namespace beethoven3
         }
 
 
-        public void AddComboNumbers(Vector2 location, int num)
+        public void AddResultNumbers(Vector2 location, int num)
         {
             switch (num)
             {
@@ -122,13 +122,13 @@ namespace beethoven3
 
             }
 
-            ResultNumber thisComboNumbers = new ResultNumber(
+            ResultNumber thisResultNumbers = new ResultNumber(
                 texture,
                 location,
                 initialFrame,
                 frameCount,
                 scale);
-            resultNumbers.Add(thisComboNumbers);
+            resultNumbers.Add(thisResultNumbers);
 
 
         }

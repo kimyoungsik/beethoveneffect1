@@ -152,6 +152,8 @@ namespace beethoven3
             {
                 sndChannel.getFrequency(ref basicFrequency);
             }
+
+           
         }
 
         //이전에 설정한 기본 템포로 돌아감 
@@ -166,6 +168,34 @@ namespace beethoven3
                 changedTempo = 0;
             }
         }
+
+
+        public static float GetVolume()
+        {
+            float volume = 0;
+
+            sndChannel.getVolume(ref volume);
+
+            return volume;
+
+        }
+
+
+        public static void SetVolume(float volume)
+        {
+            if( volume <0)
+            {
+
+                volume = 0;
+            }
+            else if( volume > 1)
+            {
+
+                volume = 1;
+            }
+            sndChannel.setVolume(volume);
+        }
+        
 
         //일단 안쓰임
         //일정 시간이 지나면 다시 원래 템포로 돌아옴

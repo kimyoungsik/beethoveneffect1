@@ -476,7 +476,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\markers\starMarker.xnb</Output>
-      <Time>2013-01-08T22:57:38.3549742+09:00</Time>
+      <Time>2013-01-11T15:35:39.1916454+09:00</Time>
     </Item>
     <Item>
       <Source>markers\turnMarker.png</Source>
@@ -737,7 +737,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\markers\whiteMarker.xnb</Output>
-      <Time>2013-01-09T20:25:15.3715939+09:00</Time>
+      <Time>2013-01-11T15:35:37.453546+09:00</Time>
     </Item>
     <Item>
       <Source>Textures\heart.png</Source>
@@ -867,6 +867,15 @@
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\resultNumbers\one.xnb</Output>
       <Time>2013-01-11T09:52:22.7516166+09:00</Time>
+    </Item>
+    <Item>
+      <Source>gold\gold.png</Source>
+      <Name>gold\gold</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\gold\gold.xnb</Output>
+      <Time>2013-01-11T15:49:05.5497665+09:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

@@ -172,6 +172,11 @@ namespace beethoven3
         private Texture2D missBanner;
 
 
+        //gold
+        private Texture2D gold;
+
+
+        //float volume = 0;
 
         /////Texture end 
 
@@ -391,7 +396,9 @@ namespace beethoven3
             //드래그 라인 마커점
             drawLineMarker = Content.Load<Texture2D>(@"DrawLine\drawLineMark");
 
-            
+
+
+            gold = Content.Load<Texture2D>(@"gold\gold");
 
             //현재 장착한 이펙트의 인덱스를 전체 베이스에 찾음
             int effectIndex = itemManager.getEffectIndex();
@@ -551,12 +558,14 @@ namespace beethoven3
                  scoreManager);
 
             //골드 초기화
+            //크기 0.3
             GoldManager.initialize(
-                spriteSheet,
-                new Rectangle(0, 100, 20, 20),
+                gold,
+                new Rectangle(0, 0, 200, 200),
                 1,
                 15,
-                0);
+                0,
+                0.3f);
             
             
             //***
@@ -566,6 +575,8 @@ namespace beethoven3
             
             resultManager = new ResultManager();
             resultManager.LoadContent(Content);
+
+
 
             //점수기록판 화면
             recordBoard = new RecordBoard();
@@ -1102,13 +1113,21 @@ namespace beethoven3
             //스트로크 2
             if (keyState.IsKeyDown(Keys.Y))
             {
-                memberManager.SetMemberState(4, 2);
+           
+             ////   SoundFmod.sndChannel.getVolume(ref volume);
+             //   //sndChannel.setVolume
+
+             //   Trace.WriteLine(volume);
             }
 
             //스트로크 3
             if (keyState.IsKeyDown(Keys.U))
             {
-                memberManager.SetMemberState(4, 3);
+             //   //0부터 1까지
+
+             //   RESULT a = SoundFmod.sndChannel.setVolume(0.5f);
+             ////   SoundFmod.sndChannel.setPaused(true);
+             //   Trace.WriteLine(volume);
             }
            
         }
@@ -3131,7 +3150,7 @@ namespace beethoven3
                        //texture.SaveAsJpeg(str, 1200, 900);
                        SoundFmod.StopSound();
 
-                       resultNumberManager.AddComboNumbers(new Vector2(300, 300), scoreManager.Perfect);
+                       resultNumberManager.AddResultNumbers(new Vector2(200, 300), scoreManager.Perfect);
                
                    }
 
@@ -3624,6 +3643,9 @@ namespace beethoven3
 
                 resultNumberManager.Draw(spriteBatch);
 
+
+                //진짜 화면에 나타나는것은 update,플레이에 있음.
+                //이것은 지울 예정임/
                 spriteBatch.DrawString(pericles36Font, scoreManager.Perfect.ToString(), new Vector2(300, 300), Color.White);
                 spriteBatch.DrawString(pericles36Font, scoreManager.Good.ToString(), new Vector2(300, 350), Color.White);
                 spriteBatch.DrawString(pericles36Font, scoreManager.Bad.ToString(), new Vector2(300, 400), Color.White);

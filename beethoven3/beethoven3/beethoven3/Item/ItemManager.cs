@@ -168,7 +168,7 @@ namespace beethoven3
             buyItem(myEffectItem, effectItem[0]);
             buyItem(myNoteItem, noteItem[0]);
             buyItem(myBackgroundItem, backgroundItem[0]);
-        }
+        }   
 
         //각 아이템 텍스쳐 저장
         public void LoadContent(ContentManager cm)
@@ -537,10 +537,6 @@ namespace beethoven3
             return index;
         }
 
-        
-
-
-
         public int getIndexOfMyNoteItem(Item item)
         {
             int i;
@@ -555,7 +551,6 @@ namespace beethoven3
             }
 
             return index;
-
         }
 
         public int getIndexOfMyBackgroundItem(Item item)
@@ -658,9 +653,6 @@ namespace beethoven3
             }
 
             return index;
-
         }
-
-
     }
 }

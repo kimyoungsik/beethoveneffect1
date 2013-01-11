@@ -175,6 +175,7 @@
     <Compile Include="Effect\Sprite.cs" />
     <Compile Include="Marker\StartNote.cs" />
     <Compile Include="Marker\StartNoteManager.cs" />
+    <Compile Include="Setting\SettingBoard.cs" />
     <Compile Include="Sound\fmod.cs" />
     <Compile Include="Sound\fmod_dsp.cs" />
     <Compile Include="Sound\fmod_errors.cs" />

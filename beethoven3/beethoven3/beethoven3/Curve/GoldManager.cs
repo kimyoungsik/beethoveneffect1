@@ -17,7 +17,7 @@ namespace beethoven3
         private static int FrameCount;
         private static float NoteSpeed;
         private static int CollisionRadius;
-
+        private static float Scale;
         #endregion
 
 
@@ -29,7 +29,8 @@ namespace beethoven3
             Rectangle initialFrame,
             int frameCount,
             int collisionRadius,
-            float noteSpeed
+            float noteSpeed,
+            float scale
 
             )
         {
@@ -38,6 +39,7 @@ namespace beethoven3
             FrameCount = frameCount;
             CollisionRadius = collisionRadius;
             NoteSpeed = noteSpeed;
+            Scale = scale;
         }
         #endregion
 
@@ -51,7 +53,8 @@ namespace beethoven3
                 location,
                 Texture,
                 InitialFrame,
-                velocity);
+                velocity,
+                Scale);
 
             gold.Velocity *= NoteSpeed;
 
