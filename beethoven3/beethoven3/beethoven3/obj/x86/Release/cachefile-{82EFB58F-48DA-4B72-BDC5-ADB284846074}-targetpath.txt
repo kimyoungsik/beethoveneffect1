@@ -96,3 +96,4 @@ Content\Fonts\damagefont.xnb
 Content\Fonts\Pericles36.xnb
 Content\MessageFont.xnb
 Content\Fonts\PerpetuaFont.xnb
+Content\resultNumbers\one.xnb

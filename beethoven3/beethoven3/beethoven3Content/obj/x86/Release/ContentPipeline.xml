@@ -859,6 +859,15 @@
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Fonts\PerpetuaFont.xnb</Output>
       <Time>2013-01-08T22:57:38.3099716+09:00</Time>
     </Item>
+    <Item>
+      <Source>resultNumbers\one.png</Source>
+      <Name>resultNumbers\one</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\resultNumbers\one.xnb</Output>
+      <Time>2013-01-11T09:52:22.7516166+09:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

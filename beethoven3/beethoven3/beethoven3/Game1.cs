@@ -86,6 +86,9 @@ namespace beethoven3
         //콤보 숫자
         ComboNumberManager comboNumberManager;
 
+        //결과화면 숫자
+        ResultNumberManager resultNumberManager;
+
 
         //아이템 관리
         private ItemManager itemManager;
@@ -169,9 +172,6 @@ namespace beethoven3
         private Texture2D missBanner;
 
 
-        //combo number texture
-
-    //    private Texture2D comboNumberTexture;
 
         /////Texture end 
 
@@ -377,15 +377,9 @@ namespace beethoven3
             missBanner = Content.Load<Texture2D>(@"judgement\miss");
 
 
-     //       comboNumberTexture = Content.Load<Texture2D>(@"number\comboNumbers");
-
             /////텍스쳐 로드 -END
 
-            //xxx
-            ////판정 마크 관련
-            //perfect 마크
-            //perfectSprite = new ExplosionSprite(new Vector2(this.Window.ClientBounds.Width / 2, this.Window.ClientBounds.Height / 2), perfectMark, new Rectangle(0, 0, 1380, 428), Vector2.Zero, 30, 0.5f);
-            
+         
             /////////////////드래그 라인 관련
 
             
@@ -409,8 +403,14 @@ namespace beethoven3
             //Texture2D[] badEffectTextures = itemManager.GetBadEffectTexture();
             //Texture2D[] missEffectTextures = itemManager.GetMissEffectTexture();
 
+            //콤보 숫자
             comboNumberManager = new ComboNumberManager();
             comboNumberManager.LoadContent(Content);
+
+            //결과화면 숫자
+            resultNumberManager = new ResultNumberManager();
+            resultNumberManager.LoadContent(Content);
+
 
 
 
@@ -3130,6 +3130,9 @@ namespace beethoven3
                        //Stream str = System.IO.File.OpenWrite("gesture.jpg");
                        //texture.SaveAsJpeg(str, 1200, 900);
                        SoundFmod.StopSound();
+
+                       resultNumberManager.AddComboNumbers(new Vector2(300, 300), scoreManager.Perfect);
+               
                    }
 
                    //마크 업데이트
@@ -3156,7 +3159,7 @@ namespace beethoven3
                     missBannerManager.Update(gameTime);
 
                     comboNumberManager.Update(gameTime);
-
+                    
 #if Kinect
                     HandleInput();
 
@@ -3174,6 +3177,8 @@ namespace beethoven3
                #region 결과 결산
                //결과 창
                 case GameStates.ResultManager:
+
+                   resultNumberManager.Update(gameTime);
 
                     Rectangle rectMouse = new Rectangle(mouseStateCurrent.X, mouseStateCurrent.Y, 5, 5);
 
@@ -3542,7 +3547,7 @@ namespace beethoven3
 
 
                 comboNumberManager.Draw(spriteBatch);
-
+                
                 
                 //가운데 빨간 사각형 주석하면 보이지않는다.
             //    spriteBatch.Draw(idot, removeAreaRec, Color.Red);
@@ -3615,6 +3620,9 @@ namespace beethoven3
                 //노트파일로 가수 가져오기
                 spriteBatch.DrawString(pericles36Font, noteFile.Artist, new Vector2(200,130), Color.White);
                 //***//난이도//spriteBatch.DrawString(pericles36Font, , new Vector2(200,80), Color.White);
+
+
+                resultNumberManager.Draw(spriteBatch);
 
                 spriteBatch.DrawString(pericles36Font, scoreManager.Perfect.ToString(), new Vector2(300, 300), Color.White);
                 spriteBatch.DrawString(pericles36Font, scoreManager.Good.ToString(), new Vector2(300, 350), Color.White);
