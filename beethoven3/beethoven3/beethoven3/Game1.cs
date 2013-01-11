@@ -10,15 +10,16 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using FMOD;
 using Microsoft.Kinect;
+using System.Runtime.InteropServices;
+using System.Diagnostics;
 using Coding4Fun.Kinect.Wpf;
 using System.IO;
 using System.Threading;
+using Microsoft.Samples.Kinect.SwipeGestureRecognizer;
 using Microsoft.Speech.Recognition;
 using Microsoft.Speech.AudioFormat;
-using System.Diagnostics;
-using FMOD;
-
 
 namespace beethoven3
 {
@@ -31,6 +32,99 @@ namespace beethoven3
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+
+#if Kinect
+
+        //키넥트
+        KinectSensor nui = null;
+        Skeleton[] Skeletons = null;
+
+        //스켈레톤 한명만
+        int CurrentTrackingId = 0;
+
+        //음성인식
+        SpeechRecognitionEngine sre;
+        RecognizerInfo ri;
+        KinectAudioSource source;
+        Stream audioStream;
+
+        //쓰레드
+        ThreadStart ts;
+        Thread th;
+
+        ThreadStart ts1;
+        Thread th1;
+
+        ThreadStart ts2;
+        Thread th2;
+
+        ThreadStart ts3;
+        Thread th3;
+
+        ThreadStart ts4;
+        Thread th4;
+
+        //제스쳐
+        private Recognizer activeRecognizer;
+
+        //사진찍기
+        Texture2D CapturePic;
+        bool PicFlag = false;
+
+        //일반 제스쳐
+        //private const int MinimumFrames = 6;
+        //private const int BufferSize = 32;
+        //private DtwGestureRecognizer _dtw;
+        //private int _flipFlop;
+        //private ArrayList _video;
+
+
+        //머리찾기
+        float fy;
+        double bestFy = 1000;
+        int bestAngle = 0;
+        bool gestureFlag = false;
+
+        //키재기
+        float fheadY;
+        float fhipY;
+        float fcenterZ;
+        double factheight;
+
+        //폰트
+        SpriteFont messageFont;
+        string message = "start";
+
+
+
+        //화면에 띄우기
+        Texture2D KinectVideoTexture;
+        Rectangle VideoDisplayRectangle;
+        Texture2D idot1;
+        Texture2D idot2;
+        Rectangle drawrec1;
+        Rectangle drawrec2;
+
+        //손
+        DepthImagePoint handPoint;
+        short[] ImageBits;
+        ColorImagePoint[] depthLocation;
+
+        //사람 키에 따른 미세조정 파라미터
+        float userParam = .3f;
+
+        //손가락 클릭
+        //private void skip() { }
+        //public delegate void afterReady();
+        //private afterReady afterColorReady;
+        //private afterReady afterDepthReady;
+        //public KinectSettings settings { get; set; }
+        //public List<Hand> hands { get; set; }
+        //int listCount = 0;
+        //bool clickJudge = false;
+        //List<DepthImagePoint> handList = new List<DepthImagePoint>();
+        //List<bool> clickList = new List<bool>();
+#endif
         //기본 글꼴
         //basic font
         private SpriteFont pericles36Font;
@@ -221,40 +315,10 @@ namespace beethoven3
         //for kinect
         public static Texture2D idot;
 
-
+        private Item selectedItem;
 
 #if Kinect
-        //키넥트
-        KinectSensor nui = null;
-        Skeleton[] Skeletons = null;
-
-        //음성인식
-        SpeechRecognitionEngine sre;
-        RecognizerInfo ri;
-        KinectAudioSource source;
-        Stream audioStream;
-
-        //쓰레드
-        ThreadStart ts;
-        Thread th;
-
-        //폰트
-        SpriteFont messageFont;
-        string message = "";
-
-
-        Texture2D KinectVideoTexture;
-        Rectangle VideoDisplayRectangle;
-        Texture2D idot1;
-        Texture2D idot2;
-
-        Rectangle drawrec1;
-        Rectangle drawrec2;
-        Item selectedItem;
-
-
-     //   int isReady = 0;
-
+       
 
 
 #endif
@@ -288,7 +352,7 @@ namespace beethoven3
 #if Kinect
             
             //KINECT
-             VideoDisplayRectangle = new Rectangle(0, 0, 1200, 900);
+            VideoDisplayRectangle = new Rectangle(0, 0, SCR_W, SCR_H);
 
             drawrec1 = new Rectangle(0, 0, GraphicsDevice.Viewport.Width / 20, GraphicsDevice.Viewport.Height / 20);
             drawrec2 = new Rectangle(0, 0, GraphicsDevice.Viewport.Width / 20, GraphicsDevice.Viewport.Height / 20);
@@ -596,21 +660,125 @@ namespace beethoven3
 
             currentSongName = "";
             idot = Content.Load<Texture2D>("Bitmap2");
+
 #if Kinect
             idot1 = Content.Load<Texture2D>("Bitmap1");
             idot2 = Content.Load<Texture2D>("Bitmap2");
             messageFont = Content.Load<SpriteFont>("MessageFont");
-
-            ////키넥트 셋업
             setupKinect();
+
+            /*제스쳐 인식인데 
+             전체 구간에서 계속 실행 된다. 
+             *이것이 다른것에 영향을 줄 수도 있다. 
+             */
+            activeRecognizer = CreateRecognizer();
+
+            ts4 = new ThreadStart(FaceDetect);
+            th4 = new Thread(ts4);
+            th4.Start();
+
 #endif
+
+        }
+#if Kinect
+        void FaceDetect()
+        {
+
+            int faceCount = 0;
+            if (nui.ElevationAngle >= 0)
+            {
+                nui.ElevationAngle = nui.MinElevationAngle;
+                nui.ElevationAngle = nui.MaxElevationAngle;
+
+
+                while (true)
+                {
+                    if (nui.ElevationAngle < nui.MinElevationAngle + 3)
+                    {//각도가 다내려갈 때까지 아무것도 없으면
+                        break;
+                    }
+
+                    if (fy > 0.2f && fy < 0.3f)
+                    {
+                        break;
+                    }
+
+                    try
+                    {
+                        nui.ElevationAngle -= 3;
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
+
+                    faceCount++;
+                }
+
+
+
+            }
+            else
+            {
+                nui.ElevationAngle = nui.MaxElevationAngle;
+                nui.ElevationAngle = nui.MinElevationAngle;
+
+                while (true)
+                {
+                    if (nui.ElevationAngle > nui.MaxElevationAngle - 3)//각도가 다내려갈 때까지 아무것도 없으면
+                        break;
+
+                    if (fy > 0.3f && fy < 0.4f)
+                        break;
+
+                    try
+                    {
+                        nui.ElevationAngle += 3;
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
+
+                    faceCount++;
+                }
+            }
+
+
+            if (fy >= 180)
+            {
+                userParam = 0.4f;
+            }
+            else if (fy < 180 && fy >= 170)
+            {
+                userParam = 0.35f;
+            }
+            else if (fy < 170 && fy >= 160)
+            {
+                userParam = 0.30f;
+            }
+            else if (fy < 160 && fy >= 150)
+            {
+                userParam = 0.25f;
+            }
+            else
+            {
+                userParam = 0.3f;
+            }
 
 
         }
+#endif
 
+        /// <summary>
+        /// UnloadContent will be called once per game and is the place to unload
+        /// all content.
+        /// </summary>
+        protected override void UnloadContent()
+        {
+            // TODO: Unload any non ContentManager content here
+        }
 #if Kinect
-        //키넥트 셋업
-        #region Kinect Setup
         protected bool setupKinect()
         {
             if (KinectSensor.KinectSensors.Count == 0)
@@ -621,11 +789,11 @@ namespace beethoven3
             //파라미터
             var parameters = new TransformSmoothParameters
             {
-                Smoothing = 0.3f,
-                Correction = 0.0f,
-                Prediction = 0.0f,
-                JitterRadius = 1.0f,
-                MaxDeviationRadius = 0.5f
+                //Smoothing = 0.3f,
+                //Correction = 0.0f,
+                //Prediction = 0.0f,
+                //JitterRadius = 1.0f,
+                //MaxDeviationRadius = 0.5f
 
 
                 //Smoothing = 0.5f,
@@ -634,11 +802,11 @@ namespace beethoven3
                 //JitterRadius = 0.05f,
                 //MaxDeviationRadius = 0.04f
 
-                //Smoothing = 0.5f,
-                //Correction = 0.1f,
-                //Prediction = 0.5f,
-                //JitterRadius = 0.1f,
-                //MaxDeviationRadius = 0.1f
+                Smoothing = 0.5f,
+                Correction = 0.1f,
+                Prediction = 0.5f,
+                JitterRadius = 0.1f,
+                MaxDeviationRadius = 0.1f
 
                 //Smoothing = 0.7f,
                 //Correction = 0.3f,
@@ -653,14 +821,23 @@ namespace beethoven3
                 //MaxDeviationRadius = 0.2f
             };
 
-            ////키넥트 센서
+            //키넥트 센서
             nui = KinectSensor.KinectSensors[0];
 
             try
             {
-                //컬러스트림 
-                //nui.ColorStream.Enable();
-                //nui.ColorFrameReady += new EventHandler<ColorImageFrameReadyEventArgs>(nui_ColorFrameReady);
+                nui.Start();
+            }
+            catch
+            {
+                nui = null;
+                return false;
+            }
+
+
+
+            if (nui != null)
+            {
 
                 //스켈레톤 스트림
                 nui.SkeletonStream.Enable(parameters);
@@ -668,26 +845,30 @@ namespace beethoven3
                 nui.SkeletonFrameReady += new EventHandler<SkeletonFrameReadyEventArgs>(nui_SkeletonFrameReady);
 
                 //뎁스스트림
-                //nui.DepthStream.Enable();
-                //nui.DepthFrameReady += new EventHandler<DepthImageFrameReadyEventArgs>(nui_DepthFrameReady);
+                nui.DepthStream.Enable();
+                nui.DepthFrameReady += new EventHandler<DepthImageFrameReadyEventArgs>(nui_DepthFrameReady);
 
-                //키넥트 시작
-                nui.Start();
+                //컬러스트림 
 
-                //음성인식
+                nui.ColorStream.Enable();
+                nui.ColorFrameReady += new EventHandler<ColorImageFrameReadyEventArgs>(nui_ColorFrameReady);
+
+                //클릭
+                //afterColorReady = skip;
+                //afterDepthReady = skip;
+                //settings = new KinectSettings();
+                //hands = new List<Hand>();
+
+                //제스쳐2
+                //_dtw = new DtwGestureRecognizer(12, 0.6, 2, 2, 10);
+                //_video = new ArrayList();
+                //Skeleton2DDataExtract.Skeleton2DdataCoordReady += NuiSkeleton2DdataCoordReady;
+
                 setupAudio();
-            }
-            catch
-            {
-                return false;
             }
 
             return true;
         }
-        #endregion
-
-        //음성인식
-        #region Speech Recognition
 
         private void setupAudio()
         {
@@ -726,6 +907,15 @@ namespace beethoven3
             choices.Add("stop");
             choices.Add("wiro");
             choices.Add("wero");
+            choices.Add("photo");
+            choices.Add("poto");
+            choices.Add("previous");
+            choices.Add("start");
+            choices.Add("back");
+            choices.Add("sizak");
+            choices.Add("sijak");
+            choices.Add("sizac");
+            choices.Add("sijac");
 
 
             var gb = new GrammarBuilder { Culture = ri.Culture };
@@ -733,15 +923,15 @@ namespace beethoven3
             var g = new Grammar(gb);
 
             sre.LoadGrammar(g);
-            sre.SpeechHypothesized += new EventHandler<SpeechHypothesizedEventArgs>(sre_SpeechHypothesized);
+            //sre.SpeechHypothesized += new EventHandler<SpeechHypothesizedEventArgs>(sre_SpeechHypothesized);
             sre.SpeechRecognized += new EventHandler<SpeechRecognizedEventArgs>(sre_SpeechRecognized);
 
             //쓰레드 시작
             ts = new ThreadStart(UserFunc);
             th = new Thread(ts);
             th.Start();
-        }
 
+        }
 
         private void UserFunc()
         {
@@ -764,102 +954,446 @@ namespace beethoven3
 
         void sre_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
         {
-            if (e.Result.Confidence < 0.5) return;//신뢰도 0.5미만일땐 리턴
+
+            if (e.Result.Confidence < 0.7) return;//신뢰도 0.5미만일땐 리턴
             message = e.Result.Text + " " + e.Result.Confidence.ToString();
             switch (e.Result.Text)
             {
-                case "stop":
-                    nui.ElevationAngle += 3;//앵글 올리기
-                    break;
+                //case "stop":
+                    //ts2 = new ThreadStart(AngleUp);
+                    //th2 = new Thread(ts2);
+                    //th2.Start();//앵글 올리기
+
+                    //카리스마타임 제스쳐 시작부분
+                    //string fileName = "RecordedGestures2012-12-21_03-35.txt";
+                    //LoadGesturesFromFile(fileName);
+                    //Skeleton2DDataExtract.Skeleton2DdataCoordReady += NuiSkeleton2DdataCoordReady;
+                    //gestureFlag = true;
+                    //break;
 
 
                 case "next":
                 case "nest":
                 case "naxt":
-                    nui.ElevationAngle -= 3;
+                    ts3 = new ThreadStart(AngleUp);
+                    th3 = new Thread(ts3);
+                    th3.Start();
                     break;
+
+                case "photo":
+                case "poto":
+
+                    break;
+
+
+                case "start":
+
+                case"sizak":
+                case"sijak":
+                case"sizac":
+                case"sijac":
+                    if (gameState == GameStates.Menu)
+                    {
+                        gameState = GameStates.SongMenu;
+                    }
+                    break;
+
+
             }
         }
 
-        void sre_SpeechHypothesized(object sender, SpeechHypothesizedEventArgs e)
+        //설정에 넣어야 할 부분
+        //앵글 업(쓰레드용)
+        void AngleUp()
         {
-            //if (e.Result.Confidence < 0.5) return;
-            //message = e.Result.Text + " " + e.Result.Confidence.ToString();
+            try
+            {
+                if (nui.ElevationAngle <= nui.MaxElevationAngle - 3)
+                    nui.ElevationAngle += 3;
+            }
+            catch (Exception ex)
+            {
+            }
 
-            //switch (e.Result.Text)
-            //{
-            //    case "Red":
-            //        nui.ElevationAngle -= 3;
-            //        break;
-            //    case "green":
-            //        nui.ElevationAngle += 3;
-            //        break;
-
-            //}
-
+            //th2.Abort();
         }
 
+        //앵글 다운(쓰레드용)
+        void AngleDown()
+        {
+            try
+            {
 
-        #endregion
-        
-        //디스플레이
-        #region Color display
+                if (nui.ElevationAngle >= nui.MinElevationAngle + 3)
+                    nui.ElevationAngle -= 3;
+            }
+            catch (Exception ex)
+            {
+            }
+            //th3.Abort();
+        }
 
-  
-        //컬러 프레임
         void nui_ColorFrameReady(object sender, ColorImageFrameReadyEventArgs e)
         {
-            byte[] ColorData = null;
-
-            using (ColorImageFrame ImageParam = e.OpenColorImageFrame())
+            if (PicFlag)
             {
-                if (ImageParam == null) return;
-                if (ColorData == null)
-                    ColorData = new byte[ImageParam.Width * ImageParam.Height * 4];
-                ImageParam.CopyPixelDataTo(ColorData);
-                KinectVideoTexture = new Texture2D(GraphicsDevice, ImageParam.Width, ImageParam.Height);
-                Color[] bitmap = new Color[ImageParam.Width * ImageParam.Height];
-                bitmap[0] = new Color(ColorData[2], ColorData[1], ColorData[0], 255);
+                byte[] ColorData = null;
 
-                int sourceOffset = 0;
-                for (int i = 0; i < bitmap.Length; i++)
+                using (ColorImageFrame ImageParam = e.OpenColorImageFrame())
                 {
-                    bitmap[i] = new Color(ColorData[sourceOffset + 2], ColorData[sourceOffset + 1], ColorData[sourceOffset], 255);
-                    sourceOffset += 4;
-                }
-                KinectVideoTexture.SetData(bitmap);
+                    if (ImageParam == null) return;
+                    if (ColorData == null)
+                        ColorData = new byte[ImageParam.Width * ImageParam.Height * 4];
+                    ImageParam.CopyPixelDataTo(ColorData);
+                    CapturePic = new Texture2D(GraphicsDevice, ImageParam.Width, ImageParam.Height);
+                    Color[] bitmap = new Color[ImageParam.Width * ImageParam.Height];
+                    bitmap[0] = new Color(ColorData[2], ColorData[1], ColorData[0], 255);
 
+                    int sourceOffset = 0;
+                    for (int i = 0; i < bitmap.Length; i++)
+                    {
+                        bitmap[i] = new Color(ColorData[sourceOffset + 2], ColorData[sourceOffset + 1], ColorData[sourceOffset], 255);
+                        sourceOffset += 4;
+                    }
+                    CapturePic.SetData(bitmap);
+                    //coding4fung tool kit에 비트맵 세이브가 있으니 그걸로 해볼것.
+                    ts1 = new ThreadStart(SavePic);
+                    th1 = new Thread(ts1);
+                    th1.Start();
+
+
+
+                }
+                PicFlag = false;
             }
         }
-        #endregion
-        
-        
-        //스켈레톤 프레임
-        #region Skeleton
+
+        void nui_DepthFrameReady(object sender, DepthImageFrameReadyEventArgs e)
+        {
+            DepthImageFrame ImageParam = e.OpenDepthImageFrame();
+            if (ImageParam == null)
+                return;
+
+            ImageBits = new short[ImageParam.PixelDataLength];
+            ImageParam.CopyPixelDataTo(ImageBits);
+
+            /////////////////////////////// 클릭이 필요할때///////////
+            depthLocation = new ColorImagePoint[ImageParam.PixelDataLength];
+
+            nui.MapDepthFrameToColorFrame(DepthImageFormat.Resolution640x480Fps30, ImageBits, ColorImageFormat.RgbResolution640x480Fps30, depthLocation);
+
+            int handDepth = handPoint.Depth;
+            int tempWidth = 110;
+            int tempHeight = 110;
+
+
+            KinectVideoTexture = new Texture2D(GraphicsDevice, tempWidth, tempHeight);
+            Color[] bitmap = new Color[tempWidth * tempHeight];
+            bitmap[0] = new Color(255, 255, 255, 255);
+
+            if (handPoint.X < tempWidth / 2)
+            {
+                handPoint.X = tempWidth / 2;
+            }
+            if (handPoint.X > ImageParam.Width - tempWidth / 2)
+            {
+                handPoint.X = ImageParam.Width - tempWidth / 2;
+            }
+            if (handPoint.Y < tempHeight / 2)
+            {
+                handPoint.Y = tempHeight / 2;
+            }
+            if (handPoint.Y > ImageParam.Height - tempHeight / 2)
+            {
+                handPoint.Y = ImageParam.Height - tempHeight / 2;
+            }
+
+
+
+            int indexCount = 0;
+            int[] depth = new int[tempHeight * tempWidth];
+
+            if (Skeletons != null)
+            {
+                foreach (Skeleton s in Skeletons)
+                    if (s.TrackingState == SkeletonTrackingState.Tracked)
+                    {
+                        for (int j = handPoint.Y - tempHeight / 2; j < handPoint.Y + tempHeight / 2; j++)
+                        {
+                            for (int i = handPoint.X - tempWidth / 2; i < handPoint.X + tempWidth / 2; i++)
+                            {
+                                //손만
+                                ColorImagePoint point = depthLocation[ImageParam.Width * j + i];
+                                depth[indexCount] = ImageBits[ImageParam.Width * j + i] >> DepthImageFrame.PlayerIndexBitmaskWidth;//인덱스 오류
+
+                                indexCount++;
+                            }
+                        }
+                    }
+
+
+            }
+
+            //bool[][] near = generateValidMatrix(tempWidth, tempHeight, depth);
+
+
+            ////화면에 띄우기
+            ////indexCount = 0;
+            ////for (int i = 0; i < tempWidth; i++)
+            ////{
+            ////    for (int j = 0; j < tempHeight; j++)
+            ////    {
+            ////        if (near[j][i] == true)
+            ////        {
+            ////            bitmap[indexCount] = new Color(255, 255, 255, 255);
+            ////        }
+            ////        else
+            ////        {
+            ////            bitmap[indexCount] = new Color(0, 0, 0, 255);
+            ////        }
+            ////        indexCount++;
+            ////    }
+            ////}
+            ////KinectVideoTexture.SetData(bitmap);
+
+
+            //hands = localizeHands(near);
+            //afterDepthReady();
+
+            //if (Skeletons != null)
+            //{
+            //    foreach (Skeleton s in Skeletons)
+            //        if (s.TrackingState == SkeletonTrackingState.Tracked)
+            //        {
+            //            if (hands.Count > 0)
+            //            {
+            //                if (hands[0].fingertips.Count > 0)
+            //                {
+            //                    clickJudge = false;
+            //                }
+            //                else
+            //                {
+            //                    clickJudge = true;
+            //                }
+            //            }
+            //        }
+            //}
+
+            ////10개의 프레임에 대한 정보를 리스트에 저장
+            //int maxCount = 10;
+            //if (listCount < maxCount)
+            //{
+            //    handList.Add(handPoint);
+            //    clickList.Add(clickJudge);
+            //    listCount++;
+            //}
+            //else
+            //{
+            //    handList.RemoveAt(0);
+            //    clickList.RemoveAt(0);
+            //    handList.Add(handPoint);
+            //    clickList.Add(clickJudge);
+            //}
+
+            //bool finalClick = true;
+            //if (listCount >= maxCount)
+            //{
+
+            //    double handDistance = Math.Sqrt((handList[0].X - handList[9].X) * (handList[0].X - handList[9].X) + (handList[0].Y - handList[9].Y) * (handList[0].Y - handList[9].Y));
+            //    //message = handDistance.ToString();
+            //    if (clickList[0] == true)
+            //    {
+            //        if (handDistance > 10)
+            //        {
+            //            finalClick = false;
+            //        }
+            //        for (int i = 0; i < maxCount - 1; i++)
+            //        {
+            //            for (int j = i + 1; j < maxCount; j++)
+            //            {
+            //                if (clickList[i] != clickList[j])
+            //                {
+            //                    finalClick = false;
+            //                }
+            //            }
+            //        }
+            //    }
+            //    else
+            //    {
+            //        finalClick = false;
+            //    }
+
+            //}
+            //if (finalClick == true)
+            //{
+            //    message = "click";
+            //}
+            //else
+            //{
+            //    message = "No click";
+            //}
+
+            /////////////////////////////////
+
+            //키재기
+            if (Skeletons != null)
+            {
+                foreach (Skeleton sd in Skeletons)
+                {
+                    if (sd.TrackingState == SkeletonTrackingState.Tracked)
+                    {
+                        Joint headJoint = sd.Joints[JointType.Head];
+                        DepthImagePoint depthPoint = ImageParam.MapFromSkeletonPoint(headJoint.Position);
+                        fy = (float)depthPoint.Y / (float)ImageParam.Height;
+
+
+
+                        foreach (Joint joint in sd.Joints)
+                        {
+                            DepthImagePoint depthP;
+                            depthP = ImageParam.MapFromSkeletonPoint(joint.Position);
+                            switch (joint.JointType)
+                            {
+                                case JointType.Head:
+                                    fheadY = (float)depthP.Y / ImageParam.Height;
+                                    break;
+                                case JointType.ShoulderCenter:
+                                    fcenterZ = (float)joint.Position.Z;
+                                    break;
+                                case JointType.HipCenter:
+                                    fhipY = (float)depthP.Y / ImageParam.Height;
+                                    break;
+
+                            }
+                        }
+                        double dbVal = (fhipY - fheadY) * 2;
+                        dbVal = dbVal * 1.25;
+                        factheight = (dbVal * (fcenterZ * 100) - fcenterZ * 2);
+                        //message = factheight.ToString();
+
+
+                    }
+                }
+            }
+        }
+
         void nui_SkeletonFrameReady(object sender, SkeletonFrameReadyEventArgs e)
         {
             using (SkeletonFrame frame = e.OpenSkeletonFrame())
             {
+                if (frame == null) return;
                 if (frame != null)
                 {
+
                     Skeletons = new Skeleton[frame.SkeletonArrayLength];
+
                     frame.CopySkeletonDataTo(Skeletons);
+
+                    Skeleton skeleton = null;
+                    if (CurrentTrackingId != 0)
+                    {
+                        skeleton =
+                            (from s in Skeletons
+                             where s.TrackingState == SkeletonTrackingState.Tracked &&
+                                   s.Joints[JointType.Head].TrackingState == JointTrackingState.Tracked &&
+                                   s.TrackingId == CurrentTrackingId
+                             select s).FirstOrDefault();
+
+                        if (skeleton == null)
+                        {
+                            CurrentTrackingId = 0;
+                            nui.SkeletonStream.AppChoosesSkeletons = false;
+                        }
+                    }
+                    else
+                    {
+                        skeleton =
+                            (from s in Skeletons
+                             where s.TrackingState == SkeletonTrackingState.Tracked &&
+                                   s.Joints[JointType.Head].TrackingState == JointTrackingState.Tracked
+                             select s).FirstOrDefault();
+
+                        if (skeleton != null)
+                        {
+                            CurrentTrackingId = skeleton.TrackingId;
+                            nui.SkeletonStream.AppChoosesSkeletons = true;
+                            nui.SkeletonStream.ChooseSkeletons(CurrentTrackingId);
+                        }
+                    }
+
                 }
+                if (Skeletons != null)
+                {
+                    foreach (Skeleton s in Skeletons)
+                        if (s.TrackingState == SkeletonTrackingState.Tracked)
+                        {
+                            handPoint = nui.MapSkeletonPointToDepth(s.Joints[JointType.HandRight].Position, DepthImageFormat.Resolution640x480Fps30);
+                        }
+                }
+
+                //제스쳐
+                if (gameState == GameStates.SongMenu)
+                {
+                    //activeRecognizer = CreateRecognizer();
+                    this.activeRecognizer.Recognize(sender, frame, Skeletons);
+                }
+                //제스쳐2
+                //if (gestureFlag == true)
+                //{
+                //    foreach (Skeleton data in Skeletons)
+                //    {
+                //        Skeleton2DDataExtract.ProcessData(data);
+                //    }
+                //}
             }
         }
-        #endregion
 
-#endif
-        /// <summary>
-        /// UnloadContent will be called once per game and is the place to unload
-        /// all content.
-        /// </summary>
-        protected override void UnloadContent()
+        void SavePic()
         {
-            // TODO: Unload any non ContentManager content here
+            Stream str = System.IO.File.OpenWrite("gesture.jpg");
+            CapturePic.SaveAsJpeg(str, SCR_W, SCR_H);
+            str.Dispose();
+            th1.Abort();
         }
 
+        private Recognizer CreateRecognizer()
+        {      
 
+            var recognizer = new Recognizer();
+
+            
+            recognizer.SwipeRightDetected += (s, e) =>
+            {//오른손이 왼쪽으로 동작할때
+                songMenu.isKinectRight = true;
+                //사진
+                foreach (Skeleton sd in Skeletons)
+                {
+
+                    if (sd.TrackingState == SkeletonTrackingState.Tracked)
+                    {
+                        PicFlag = true;
+
+
+                    }
+                }
+                message = "right";
+            };
+
+
+            recognizer.SwipeLeftDetected += (s, e) =>
+            {//왼손이 오른쪽으로 동작할때
+
+                songMenu.isKinectLeft = true;
+                //ts4 = new ThreadStart(FaceDetect);
+                //th4 = new Thread(ts4);
+                //th4.Start();
+                message = "left";
+            };
+
+            return recognizer;
+        }
+
+#endif
         //마우스 충돌 처리
         private void HandleMouseInput(MouseState mouseState)
         {
@@ -1154,6 +1688,7 @@ namespace beethoven3
                     if ((Keyboard.GetState().IsKeyDown(Keys.Space))                    )
                     {
                         gameState = GameStates.SongMenu;
+
                     }
                     
                     //상점 대문으로
@@ -3307,6 +3842,12 @@ namespace beethoven3
                #region 곡선택메뉴
                 case GameStates.SongMenu:
                 resultSongMenu = songMenu.Update();
+#if Kinect
+
+                //제스쳐//좌우 만 있음
+             //   activeRecognizer = CreateRecognizer();
+#endif
+
 
                 //뒤로가기
                 if (resultSongMenu == -1)
@@ -3467,10 +4008,7 @@ namespace beethoven3
 
         protected override void Draw(GameTime gameTime)
         {
-           
-#if Kineck
-            Window.Title = drawrec1.X.ToString() + " - " + drawrec1.Y.ToString() + "마우스" + mouseStateCurrent.X.ToString() + "-" + mouseStateCurrent.Y.ToString();
-#endif
+
             
             GraphicsDevice.Clear(Color.White);
             spriteBatch.Begin();
@@ -3520,6 +4058,13 @@ namespace beethoven3
             {
                 songMenu.Draw(spriteBatch);
 
+#if Kinect
+                if (message.Length > 0)
+                {
+                    spriteBatch.DrawString(messageFont, message, Vector2.Zero, Color.Red);
+                }
+
+#endif
                 //if (isReady  == 1)
                 //{
 
@@ -3593,31 +4138,7 @@ namespace beethoven3
               
               
   
-#if Kinect
-                //컬러 디스플레이
-                if (KinectVideoTexture != null)
-                {
-                    spriteBatch.Draw(KinectVideoTexture, VideoDisplayRectangle, Color.White);
 
-                }
-
-                //손에 따라 사각형 그리기
-                if (Skeletons != null)
-                {
-                    foreach (Skeleton s in Skeletons)
-                        if (s.TrackingState == SkeletonTrackingState.Tracked)
-                        {
-                            drawpoint(s.Joints[JointType.HandRight], s.Joints[JointType.HandLeft]);
-                        }
-                }
-
-                //음성인식 메시지
-                if (message.Length > 0)
-                {
-                    spriteBatch.DrawString(messageFont, message, Vector2.Zero, Color.White);
-                }
-            
-#endif
             }
             #endregion
 
@@ -3680,43 +4201,12 @@ namespace beethoven3
             base.Draw(gameTime);
         }
 
-#if Kinect
-        //손동작 스케일 변환
-        #region Hand scale
-        void drawpoint(Joint j1, Joint j2)
-        {
-            ////실질적인 스케일 변환
-            Joint j1r = j1.ScaleTo(1024, 768, .3f, .3f);
 
-            //그리기
-            drawrec1.X = (int)j1r.Position.X - drawrec1.Width / 2;
-            drawrec1.Y = (int)j1r.Position.Y - drawrec1.Height / 2;
 
-            //손 그대로에 그릴때(대신 화면 사이즈를 640*480으로 맞춰야함)
-            //ColorImagePoint jp1 = nui.MapSkeletonPointToColor(j1.Position, ColorImageFormat.RgbResolution640x480Fps30);
-            //drawrec1.X = jp1.X - drawrec1.Width / 2;
-            //drawrec1.Y = jp1.Y - drawrec1.Height / 2;
-
-            //이게 조금 느리다면 static으로 해서 개선 
-            //임시로 상점에 있는거 썼다.
-
-            List<Item> myRightHand = itemManager.getShopRightHandItem();
-            spriteBatch.Draw(myRightHand[itemManager.getRightHandIndex()].ItemSprite.Texture, drawrec1, Color.Red);
-
-            Joint j2r = j2.ScaleTo(1024, 768, .3f, .3f);
-
-            drawrec2.X = (int)j2r.Position.X - drawrec2.Width / 2;
-            drawrec2.Y = (int)j2r.Position.Y - drawrec2.Height / 2;
-
-            //ColorImagePoint jp2 = nui.MapSkeletonPointToColor(j2.Position, ColorImageFormat.RgbResolution640x480Fps30);
-            //drawrec2.X = jp2.X - drawrec2.Width / 2;
-            //drawrec2.Y = jp2.Y - drawrec2.Height / 2;
-
-            List<Item> myLeftHand = itemManager.getShopLeftHandItem();
-            spriteBatch.Draw(myLeftHand[itemManager.getLeftHandIndex()].ItemSprite.Texture, drawrec2, Color.Blue);
-        }
-        #endregion
-#endif
        
     }
+
+
+
+
 }

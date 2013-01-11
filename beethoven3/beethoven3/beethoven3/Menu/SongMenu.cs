@@ -36,6 +36,8 @@ namespace beethoven3
         Rectangle starttextrect;
         Texture2D[] top;
 
+        public bool isKinectRight = false;
+        public bool isKinectLeft = false;
         int scene_number;
         int fadeinout = 0;
         int[] arrawframe;
@@ -165,6 +167,43 @@ namespace beethoven3
                 arrawframebutton[0] = false;
                 arrawframe[0] = 0;
             }
+
+            //왼쪽 클릭 
+            if (isKinectLeft)
+            {
+                if (scene_number > 0)
+                {
+                    scene_number--;
+                    leftrightmove = -1;
+                    frame = 0;
+                }
+                isKinectLeft = false;
+
+
+            }
+
+
+
+            //오른쪾 클릭 
+            if(isKinectRight)
+
+            {
+                 if (scene_number < noteFileManager.noteFiles.Count-1)
+                {
+                    leftrightmove = 1;
+                    scene_number++;
+                    frame = 0;
+                }
+
+                 isKinectRight = false;
+
+
+            }
+
+
+
+
+            //right
             if ((mouseRectangle.Intersects(new Rectangle(770, 310, 60, 60)) && mouse.LeftButton == ButtonState.Pressed && pastmouse.LeftButton == ButtonState.Released)
                 || (key.IsKeyDown(Keys.Right) && !pastkey.IsKeyDown(Keys.Right)))
             {
