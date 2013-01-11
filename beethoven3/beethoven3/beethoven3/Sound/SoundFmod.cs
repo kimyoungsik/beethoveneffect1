@@ -131,6 +131,8 @@ namespace beethoven3
 
             sndSystem.createSound(name, FMOD.MODE.HARDWARE, ref SoundFmod.sndSound);
             sndSystem.playSound(CHANNELINDEX.FREE, SoundFmod.sndSound, false, ref SoundFmod.sndChannel);
+
+           // return 2;
         }
         public static void StopSound()
         {

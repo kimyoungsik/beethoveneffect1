@@ -243,6 +243,12 @@ namespace beethoven3
         Rectangle drawrec1;
         Rectangle drawrec2;
         Item selectedItem;
+
+
+     //   int isReady = 0;
+
+
+
 #endif
         /////키넥트 관련 선언 - END
 
@@ -3216,17 +3222,21 @@ namespace beethoven3
                                 );
 
 
+                            //파일을 다시 만들 필요는 없고 초기화만 시켜주면 된다.
+
+
                             //파일 저장
-                            file = new File(startNoteManager, noteFileManager, collisionManager, scoreManager, itemManager, curveManager, guideLineManager);
+                            //file = new File(startNoteManager, noteFileManager, collisionManager, scoreManager, itemManager, curveManager, guideLineManager);
 
-                            
+                            file.SetEndFile(false);
+                            file.SetTime(0);
 
-                            if (!System.IO.File.Exists(songsDir))
-                            {
-                                System.IO.Directory.CreateDirectory(songsDir);
-                            }
+                            //if (!System.IO.File.Exists(songsDir))
+                            //{
+                            //    System.IO.Directory.CreateDirectory(songsDir);
+                            //}
 
-                            file.FileLoading(songsDir, "*.mnf");
+                            //file.FileLoading(songsDir, "*.mnf");
                            
                             scoreManager.init();
 
@@ -3393,16 +3403,20 @@ namespace beethoven3
                         /////이펙트 생성 -END
                         
                         gameState = GameStates.Playing;
+                    
                         file.Loading(resultSongMenu);
-                    
-                    
-                        SoundFmod.PlaySound(songsDir + noteFileManager.noteFiles[resultSongMenu].Mp3);
-                    
-                    //노래찾아서 재생하기    
-                    //*** 재생시간동안 로딩
+                        
+                        //일반 0
+                        //로딩중 1
+                        //준비완료 2
+                        //isReady = 1;
 
-                        //SoundFmod.sndSystem.createSound(, FMOD.MODE.HARDWARE, ref SoundFmod.sndSound);
-                        //SoundFmod.sndSystem.playSound(CHANNELINDEX.FREE, SoundFmod.sndSound, false, ref SoundFmod.sndChannel);
+                        //노래 재생
+
+                       // isReady = SoundFmod.PlaySound(songsDir + noteFileManager.noteFiles[resultSongMenu].Mp3);
+
+                        SoundFmod.PlaySound(songsDir + noteFileManager.noteFiles[resultSongMenu].Mp3);
+                       
                     }
 
                     break;
@@ -3520,6 +3534,14 @@ namespace beethoven3
             {
                 songMenu.Draw(spriteBatch);
 
+                //if (isReady  == 1)
+                //{
+
+                //    spriteBatch.Draw(perfectBanner, new Rectangle(70, 70, 100, 100), Color.White);
+             
+                //}
+
+
             }
 
             #region 플레이화면
@@ -3578,8 +3600,8 @@ namespace beethoven3
 
                 //하트. gage양 만큼 하트가 나타남.
                 spriteBatch.Draw(uiHeart, new Vector2(0, 6), new Rectangle(0, 0, gage, 50), Color.White);
-
-
+              
+              
   
 #if Kinect
                 //컬러 디스플레이
