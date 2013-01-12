@@ -100,3 +100,4 @@ Content\resultNumbers\one.xnb
 Content\gold\gold.xnb
 Content\charisma\charisma2.xnb
 Content\charisma\charisma1.xnb
+Content\background\park.xnb

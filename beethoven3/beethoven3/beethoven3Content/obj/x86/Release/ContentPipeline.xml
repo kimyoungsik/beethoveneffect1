@@ -602,7 +602,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Menu\firstMenuBackground.xnb</Output>
-      <Time>2013-01-08T22:57:38.315972+09:00</Time>
+      <Time>2013-01-12T21:50:58.2422252+09:00</Time>
     </Item>
     <Item>
       <Source>DrawLine\drawLineMark.png</Source>
@@ -894,6 +894,15 @@
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\charisma\charisma1.xnb</Output>
       <Time>2013-01-12T09:44:14.7385475+09:00</Time>
+    </Item>
+    <Item>
+      <Source>background\park.png</Source>
+      <Name>background\park</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\background\park.xnb</Output>
+      <Time>2013-01-12T21:54:37.1617466+09:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

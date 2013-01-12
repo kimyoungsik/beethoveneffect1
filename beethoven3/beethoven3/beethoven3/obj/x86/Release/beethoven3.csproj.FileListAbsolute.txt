@@ -108,3 +108,4 @@ D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\gold\gold.
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Microsoft.Samples.Kinect.SwipeGestureRecognizer.dll
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\charisma\charisma2.xnb
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\charisma\charisma1.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\background\park.xnb
