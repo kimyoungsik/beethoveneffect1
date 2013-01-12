@@ -274,6 +274,12 @@ namespace beethoven3
         //gold
         private Texture2D gold;
 
+        //오른손 텍스쳐들
+
+        private Texture2D[] rightHandTextures;
+
+        private Texture2D[] leftHandTextures;
+
         //사람 없음 나타내는 메시지 박스
 
         private Texture2D noPerson;
@@ -287,6 +293,7 @@ namespace beethoven3
 
         public static Texture2D drawLineMarker;
 
+        
 
         //드래그 라인의 렌더링
         LineRenderer dragLineRenderer;
@@ -450,7 +457,10 @@ namespace beethoven3
             noPerson = Content.Load<Texture2D>(@"shopdoor\nogold");
 
 
-         //   charisma1 = Content.Load<Texture2D>(@"shopdoor\nogold");
+
+            rightHandTextures = itemManager.GetRightHandTexture();
+            leftHandTextures = itemManager.GetLeftHandTexture();
+            //   charisma1 = Content.Load<Texture2D>(@"shopdoor\nogold");
             /////텍스쳐 로드 -END
 
          
@@ -5335,19 +5345,32 @@ namespace beethoven3
         {
             ////실질적인 스케일 변환
             Joint j1r = j1.ScaleTo(SCR_W, SCR_H, userParam, userParam);
-
+         //   Vector2 rec = new Vector2(0,100,100);
             //그리기
             drawrec1.X = (int)j1r.Position.X - drawrec1.Width / 2;
             drawrec1.Y = (int)j1r.Position.Y - drawrec1.Height / 2;
-            spriteBatch.Draw(idot1, drawrec1, Color.Red);
+         //   spriteBatch.Draw(rightHandTextures[itemManager.getRightHandIndex()], drawrec1, new Rectangle(0,0,100,100), Color.White,0f,Vector2.Zero, 1.0f , SpriteEffects.None , 1.0f);
+            spriteBatch.Draw(
+              rightHandTextures[itemManager.getRightHandIndex()],
+                //위치: Center-> location 으로 바꿈 (마커와 노트 매칭 떄문에 )
+              new Vector2(drawrec1.X,drawrec1.Y),
 
+              null,
+              Color.White,
+              0f,
+                //origin ->  new Vector2(frameWidth / 2, frameHeight / 2) ->  new Vector2(0,0) 으로 바꿈 (마커와 노트 매칭 떄문에 )
+              new Vector2(0, 0),
+              //오른쪽 마크 크기 
+              1.5f,
+              SpriteEffects.None,
+              0.0f);   
 
             Joint j2r = j2.ScaleTo(SCR_W, SCR_H, userParam, userParam);
 
             drawrec2.X = (int)j2r.Position.X - drawrec2.Width / 2;
             drawrec2.Y = (int)j2r.Position.Y - drawrec2.Height / 2;
 
-            spriteBatch.Draw(idot2, drawrec2, Color.Blue);
+            spriteBatch.Draw(leftHandTextures[itemManager.getLeftHandIndex()], drawrec2, Color.White);
         }
 #endif
 
