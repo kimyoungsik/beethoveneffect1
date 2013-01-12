@@ -1208,17 +1208,17 @@ namespace beethoven3
             message = e.Result.Text + " " + e.Result.Confidence.ToString();
             switch (e.Result.Text)
             {
-                //case "stop":
+                case "stop":
                     //ts2 = new ThreadStart(AngleUp);
                     //th2 = new Thread(ts2);
                     //th2.Start();//앵글 올리기
 
                     //카리스마타임 제스쳐 시작부분
-                    //string fileName = "RecordedGestures2012-12-21_03-35.txt";
-                    //LoadGesturesFromFile(fileName);
-                    //Skeleton2DDataExtract.Skeleton2DdataCoordReady += NuiSkeleton2DdataCoordReady;
-                    //gestureFlag = true;
-                    //break;
+                    string fileName = "RecordedGestures2012-12-21_03-35.txt";
+                    LoadGesturesFromFile(fileName);
+                    Skeleton2DDataExtract.Skeleton2DdataCoordReady += NuiSkeleton2DdataCoordReady;
+                    gestureFlag = true;
+                    break;
 
 
                 case "next":
@@ -4854,6 +4854,19 @@ namespace beethoven3
                 spriteBatch.Draw(uiHeart, new Vector2(0, 6), new Rectangle(0, 0, gage, 50), Color.White);
 
                 charismaManager.Draw(gameTime, spriteBatch);
+
+
+                if (charismaManager.IsCharismaTime)
+                {
+
+                    //카리스마타임 제스쳐 시작부분
+                    string fileName = "RecordedGestures2012-12-21_03-35.txt";
+                    LoadGesturesFromFile(fileName);
+                    Skeleton2DDataExtract.Skeleton2DdataCoordReady += NuiSkeleton2DdataCoordReady;
+                    gestureFlag = true;
+
+                    charismaManager.IsCharismaTime = false;
+                }
                 //if (isCharisma1)
                 //{
 

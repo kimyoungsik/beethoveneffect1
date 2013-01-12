@@ -64,27 +64,27 @@ namespace beethoven3
 
     class CharismaManager
     {
-        
-
-
         #region declarations
-        // public static List<Vector2> points = new List<Vector2>();
-        
-        
+    
+        //카리스마 프레임을 가지고 있는 큐
         private Queue charismaFrames = new Queue();
-       //기준시간
-        private double time = 0.0f;
-        //경과 시간
-        private double changedTime = 0.0f;
+       
+        //file에서 가져오는 현재 게임의 흐름
         private double currentTime;
        
         private Texture2D charisma1;
         private Texture2D charisma2;
 
+        //카리스마 위치
         private Rectangle picLocation = new Rectangle(100,100,150,150);
 
-        private bool end = false;
+        //현재 카리스마 타입.
+        private int type;
 
+
+        private bool isCharismaTime = false;
+
+       
         #endregion
 
         #region constructor
@@ -106,8 +106,24 @@ namespace beethoven3
         
 
 
-
+        
         #region method
+
+        public int Type
+        {
+            get { return type; }
+            set { type = value; }
+        }
+
+
+        public bool IsCharismaTime
+        {
+            get { return isCharismaTime; }
+            set { isCharismaTime = value; }
+        }
+
+
+
         public void AddCharismaFrame(double startTime, double endTime, int type, double currentTime)
         {
             Texture2D texture  = GetTexture(type);
@@ -117,6 +133,7 @@ namespace beethoven3
 
             charismaFrames.Enqueue(charismaFrame);
             this.currentTime = currentTime;
+            this.type = type;
 
         }
 
@@ -140,40 +157,29 @@ namespace beethoven3
             return texture;
 
         }
-
-
-
-       
-     
         #endregion
 
         #region update and draw
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
 
-         //   Trace.WriteLine(charismaFrames.Count);
           if(charismaFrames.Count > 0)
-
           {
 
-        //      changedTime += gameTime.ElapsedGameTime.TotalMilliseconds;
               currentTime += gameTime.ElapsedGameTime.TotalSeconds;
               CharisimaFrame charismaFrame  = (CharisimaFrame)charismaFrames.Peek();
 
               if (currentTime > charismaFrame.StartTime)
-              {   
+              {
+                  isCharismaTime = true;
                   spriteBatch.Draw(charismaFrame.Texture, picLocation, Color.White);
               }
               if (currentTime > charismaFrame.EndTime)
-              { 
-                  
-                  charismaFrames.Dequeue();
-                  
+              {
+                  isCharismaTime = false;
+                  charismaFrames.Dequeue();  
               }
-
           }
-
-              
         }
         #endregion
 
