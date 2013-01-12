@@ -81,8 +81,10 @@ namespace beethoven3
         //현재 카리스마 타입.
         private int type;
 
+        //0 false ,가장 초기화 1 false , 현재 실행중 2, true  
+        private int isCharismaTime = 0;
 
-        private bool isCharismaTime = false;
+        private bool isJudgeCheck = false;
 
        
         #endregion
@@ -116,11 +118,18 @@ namespace beethoven3
         }
 
 
-        public bool IsCharismaTime
+        public int IsCharismaTime
         {
             get { return isCharismaTime; }
             set { isCharismaTime = value; }
         }
+
+        public bool IsJudgeCheck
+        {
+            get { return isJudgeCheck; }
+            set { isJudgeCheck = value; }
+        }
+
 
 
 
@@ -129,6 +138,9 @@ namespace beethoven3
             Texture2D texture  = GetTexture(type);
 
             CharisimaFrame charismaFrame = new CharisimaFrame(texture,startTime,endTime);
+
+            isCharismaTime = 0;
+            isJudgeCheck = false;
 
 
             charismaFrames.Enqueue(charismaFrame);
@@ -159,6 +171,9 @@ namespace beethoven3
         }
         #endregion
 
+
+
+
         #region update and draw
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
@@ -169,15 +184,21 @@ namespace beethoven3
               currentTime += gameTime.ElapsedGameTime.TotalSeconds;
               CharisimaFrame charismaFrame  = (CharisimaFrame)charismaFrames.Peek();
 
-              if (currentTime > charismaFrame.StartTime)
+              if (currentTime > charismaFrame.StartTime )
+              //          11              10
               {
-                  isCharismaTime = true;
+                  if (isCharismaTime == 0)
+                  {
+                      isCharismaTime = 2;
+                  }
                   spriteBatch.Draw(charismaFrame.Texture, picLocation, Color.White);
               }
               if (currentTime > charismaFrame.EndTime)
-              {
-                  isCharismaTime = false;
-                  charismaFrames.Dequeue();  
+              { //     8                    12
+               
+                  isCharismaTime = 0;
+                  charismaFrames.Dequeue();
+  
               }
           }
         }

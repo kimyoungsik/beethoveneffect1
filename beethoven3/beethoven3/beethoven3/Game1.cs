@@ -49,6 +49,7 @@ namespace beethoven3
         KinectAudioSource source;
         Stream audioStream;
 
+        private String kinectMessage = "__UNKNOWN";
         //쓰레드
         ThreadStart ts;
         Thread th;
@@ -1169,16 +1170,7 @@ namespace beethoven3
 
         }
 
-        //입력, 시작시간 끝나는시간 타입 
-
-        public void ShowCharisma(double startTime, double lastTime, int type)
-        {
-
-
-
-           
-
-        }
+    
 
 
 
@@ -1213,11 +1205,11 @@ namespace beethoven3
                     //th2 = new Thread(ts2);
                     //th2.Start();//앵글 올리기
 
-                    //카리스마타임 제스쳐 시작부분
-                    string fileName = "RecordedGestures2012-12-21_03-35.txt";
-                    LoadGesturesFromFile(fileName);
-                    Skeleton2DDataExtract.Skeleton2DdataCoordReady += NuiSkeleton2DdataCoordReady;
-                    gestureFlag = true;
+                    ////카리스마타임 제스쳐 시작부분
+                    //string fileName = "RecordedGestures2012-12-21_03-35.txt";
+                    //LoadGesturesFromFile(fileName);
+                    //Skeleton2DDataExtract.Skeleton2DdataCoordReady += NuiSkeleton2DdataCoordReady;
+                    //gestureFlag = true;
                     break;
 
 
@@ -1971,7 +1963,8 @@ namespace beethoven3
             {
 
                 string s = _dtw.Recognize(_video);
-                //message = s;
+                kinectMessage = s;
+                Trace.WriteLine(kinectMessage);
                 if (!s.Contains("__UNKNOWN"))
                 {
                     _video = new ArrayList();
@@ -2375,6 +2368,29 @@ namespace beethoven3
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         /// 
+
+
+        //카리스마 타임이맞는지 확인한다.
+        public void JudgeCharisma()
+        {
+            if(charismaManager.IsCharismaTime == 1 && !charismaManager.IsJudgeCheck) 
+            {
+                if(kinectMessage.Contains("__UNKNOWN"))
+                {
+
+                }
+                //나중에는 타입마다 이렇게 설정
+                //else if(charismaManager.Type == 0 && kinectMessage.Contains("@xxxxxx");
+                else
+                {
+                    perfectBannerManager.AddBanners(new Vector2(this.Window.ClientBounds.Width / 2 - 1380 / 4, this.Window.ClientBounds.Height / 2 - 428 / 4));
+                    scoreManager.Perfomance = scoreManager.Perfomance + 1;
+                    charismaManager.IsJudgeCheck = true;
+                }
+            
+            }
+        }
+            
         protected override void Update(GameTime gameTime)
         {
             // Allows the game to exit
@@ -4424,6 +4440,8 @@ namespace beethoven3
                     collisionManager.CheckRightNoteInCenterArea();
                     collisionManager.CheckLeftNoteInCenterArea();
 
+                    JudgeCharisma();
+
 #endif
                     //3초만에 원상복귀
                     //       AutoRetrunChangeTempo(gameTime);
@@ -4855,19 +4873,20 @@ namespace beethoven3
 
                 charismaManager.Draw(gameTime, spriteBatch);
 
-
-                if (charismaManager.IsCharismaTime)
+                Trace.WriteLine(charismaManager.IsCharismaTime);
+                if (charismaManager.IsCharismaTime == 2)
                 {
 
-                    //카리스마타임 제스쳐 시작부분
+                    ////카리스마타임 제스쳐 시작부분
                     string fileName = "RecordedGestures2012-12-21_03-35.txt";
                     LoadGesturesFromFile(fileName);
                     Skeleton2DDataExtract.Skeleton2DdataCoordReady += NuiSkeleton2DdataCoordReady;
                     gestureFlag = true;
 
-                    charismaManager.IsCharismaTime = false;
+                    charismaManager.IsCharismaTime = 1;
                 }
-                //if (isCharisma1)
+
+              //if (isCharisma1)
                 //{
 
                 //    spriteBatch.Draw(charisma1, new Rectangle(200, 200, 727, 278), Color.White);

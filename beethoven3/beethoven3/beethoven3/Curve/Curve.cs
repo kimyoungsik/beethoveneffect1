@@ -182,8 +182,7 @@ namespace beethoven3
                 }
                 if (changedTime > time)
                 {
-                  //Trace.WriteLine("time:" + time + "changedTime:" + changedTime);
-
+                
                     if (Points.Count > 0)
                     {
                         //지워지기 시작 
