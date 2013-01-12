@@ -3,15 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.GamerServices;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
+
 
 namespace beethoven3
 {
     class MenuScene
     {
-        
+        MouseState pastmouse;
+        KeyboardState pastkey;
         private Texture2D menu;
 
         //test
@@ -32,7 +37,33 @@ namespace beethoven3
 
         public void Update(GameTime gameTime)
         {
-          
+            MouseState mouse = Mouse.GetState();
+            KeyboardState key = Keyboard.GetState();
+
+            Rectangle mouseRectangle = new Rectangle(mouse.X, mouse.Y, 1, 1);
+
+            //Start
+            if ((mouseRectangle.Intersects(new Rectangle(440, 625, 150, 35)) && mouse.LeftButton == ButtonState.Pressed && pastmouse.LeftButton == ButtonState.Released)
+                || (key.IsKeyDown(Keys.Space) && !pastkey.IsKeyDown(Keys.Space)) || Game1.drawrec1.Intersects(new Rectangle(440, 625, 150, 35)) && Game1.finalClick)
+            {
+                Game1.gameState = Game1.GameStates.SongMenu;
+
+
+            }
+
+
+            //Shop
+            if ((mouseRectangle.Intersects(new Rectangle(880, 690, 110, 35)) && mouse.LeftButton == ButtonState.Pressed && pastmouse.LeftButton == ButtonState.Released)
+                || (key.IsKeyDown(Keys.S) && !pastkey.IsKeyDown(Keys.S)) || Game1.drawrec1.Intersects(new Rectangle(880, 690, 110, 35)) && Game1.finalClick)
+            {
+                Game1.gameState = Game1.GameStates.ShopDoor;
+
+
+            }
+
+            pastmouse = mouse;
+            pastkey = key;
+         
             
         }
 

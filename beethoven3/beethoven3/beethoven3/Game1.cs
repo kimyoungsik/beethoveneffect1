@@ -134,12 +134,12 @@ namespace beethoven3
         private SpriteFont pericles36Font;
 
 
-        enum GameStates { Menu, Playing, SongMenu, ShopDoor,
+        public enum GameStates { Menu, Playing, SongMenu, ShopDoor,
                           RightItemShop, LeftItemShop, EffectItemShop, NoteItemShop, BackgroundItemShop,
                           ResultManager, RecordBoard };
 
         //게임 씬, 처음시작은 메뉴
-        private GameStates gameState = GameStates.Menu;
+        public static GameStates gameState = GameStates.Menu;
 
         //타이틀 화면 
         private MenuScene menuScene;
@@ -2404,18 +2404,20 @@ namespace beethoven3
                #region 타이틀
                //타이틀 화면
                 case GameStates.Menu:
-                    //곡선택화면으로
-                    if ((Keyboard.GetState().IsKeyDown(Keys.Space))                    )
-                    {
-                        gameState = GameStates.SongMenu;
+                    ////곡선택화면으로
+                    //if ((Keyboard.GetState().IsKeyDown(Keys.Space))                    )
+                    //{
+                    //    gameState = GameStates.SongMenu;
 
-                    }
+                    //}
                     
-                    //상점 대문으로
-                    if ((Keyboard.GetState().IsKeyDown(Keys.S)))
-                    {
-                        gameState = GameStates.ShopDoor;
-                    }
+                    ////상점 대문으로
+                    //if ((Keyboard.GetState().IsKeyDown(Keys.S)))
+                    //{
+                    //    gameState = GameStates.ShopDoor;
+                    //}
+
+                   menuScene.Update(gameTime);
                     break;
                #endregion
 
