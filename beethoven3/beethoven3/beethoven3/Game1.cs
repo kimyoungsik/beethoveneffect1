@@ -1,6 +1,7 @@
 ﻿#define Kinect
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
@@ -72,11 +73,11 @@ namespace beethoven3
         bool PicFlag = false;
 
         //일반 제스쳐
-        //private const int MinimumFrames = 6;
-        //private const int BufferSize = 32;
-        //private DtwGestureRecognizer _dtw;
-        //private int _flipFlop;
-        //private ArrayList _video;
+        private const int MinimumFrames = 6;
+        private const int BufferSize = 32;
+        private DtwGestureRecognizer _dtw;
+        private int _flipFlop;
+        private ArrayList _video;
 
 
         //머리찾기
@@ -94,6 +95,8 @@ namespace beethoven3
         //폰트
         SpriteFont messageFont;
         string message = "start";
+
+//        Texture2D charisma1;
 
 
 
@@ -276,19 +279,7 @@ namespace beethoven3
 
         /////Texture end 
 
-        //perfect,good,bad,miss 마크 띄우는 여부
-
-        //xxx
-        //public static bool isPerfectMark = false;
-
-        //public static bool isGoodMark = false;
-
-        //public static bool isBadMark = false;
-
-        //public static bool isMissMark = false;
-
-
-        //ExplosionSprite perfectSprite;
+        private CharismaManager charismaManager;
 
         //드래그 라인 안의 마커점
 
@@ -322,6 +313,8 @@ namespace beethoven3
 
         private bool isNoPerson;
 
+
+      //  private bool isCharisma1;
 
 #if Kinect
        
@@ -452,9 +445,10 @@ namespace beethoven3
             missBanner = Content.Load<Texture2D>(@"judgement\miss");
 
 
-
             noPerson = Content.Load<Texture2D>(@"shopdoor\nogold");
 
+
+         //   charisma1 = Content.Load<Texture2D>(@"shopdoor\nogold");
             /////텍스쳐 로드 -END
 
          
@@ -602,9 +596,12 @@ namespace beethoven3
             //드래그라인 
             curveManager = new CurveManager(dragLineRenderer, dragLineMarkerRenderer);
 
+            //카리스마 매니저
+            charismaManager = new CharismaManager();
+            charismaManager.LoadContent(Content);
 
             //노트파일 읽기 관리 생성
-            file = new File(startNoteManager, noteFileManager, collisionManager, scoreManager ,itemManager, curveManager, guideLineManager);
+            file = new File(startNoteManager, noteFileManager, collisionManager, scoreManager, itemManager, curveManager, guideLineManager, charismaManager);
 
             SoundFmod.initialize(file);
             //곡선택화면 곡 불러오는 폴더 
@@ -658,6 +655,7 @@ namespace beethoven3
             //점수 기록 (TO FILE)
             reportManager = new ReportManager(scoreManager);
             
+           
 
             //LOAD REPORT SCORE FILE
             //점수기록판을 로드해서 게임에 올린다. 
@@ -682,9 +680,11 @@ namespace beethoven3
              */
             activeRecognizer = CreateRecognizer();
 
-            ts4 = new ThreadStart(FaceDetect);
-            th4 = new Thread(ts4);
-            th4.Start();
+
+            //!!! 페이스 인식, 디버깅 시에 잠시 
+            //ts4 = new ThreadStart(FaceDetect);
+            //th4 = new Thread(ts4);
+            //th4.Start();
 
 #endif
 
@@ -1096,8 +1096,8 @@ namespace beethoven3
                 hands = new List<Hand>();
 
                 //제스쳐2
-                //_dtw = new DtwGestureRecognizer(12, 0.6, 2, 2, 10);
-                //_video = new ArrayList();
+                _dtw = new DtwGestureRecognizer(12, 0.6, 2, 2, 10);
+                _video = new ArrayList();
                 //Skeleton2DDataExtract.Skeleton2DdataCoordReady += NuiSkeleton2DdataCoordReady;
 
                 setupAudio();
@@ -1168,6 +1168,19 @@ namespace beethoven3
             th.Start();
 
         }
+
+        //입력, 시작시간 끝나는시간 타입 
+
+        public void ShowCharisma(double startTime, double lastTime, int type)
+        {
+
+
+
+           
+
+        }
+
+
 
         private void UserFunc()
         {
@@ -1307,6 +1320,10 @@ namespace beethoven3
         void nui_DepthFrameReady(object sender, DepthImageFrameReadyEventArgs e)
         {
             //에러
+            if (e == null)
+            {
+                return;
+            }
             DepthImageFrame ImageParam = e.OpenDepthImageFrame();
             if (ImageParam == null)
                 return;
@@ -1936,14 +1953,103 @@ namespace beethoven3
                     this.activeRecognizer.Recognize(sender, frame, Skeletons);
                 }
                 //제스쳐2
-                //if (gestureFlag == true)
-                //{
-                //    foreach (Skeleton data in Skeletons)
-                //    {
-                //        Skeleton2DDataExtract.ProcessData(data);
-                //    }
-                //}
+                if (gestureFlag == true)
+                {
+                    foreach (Skeleton data in Skeletons)
+                    {
+                        Skeleton2DDataExtract.ProcessData(data);
+                    }
+                }
             }
+        }
+
+        private void NuiSkeleton2DdataCoordReady(object sender, Skeleton2DdataCoordEventArgs a)
+        {
+
+
+            if (_video.Count > MinimumFrames)
+            {
+
+                string s = _dtw.Recognize(_video);
+                //message = s;
+                if (!s.Contains("__UNKNOWN"))
+                {
+                    _video = new ArrayList();
+                }
+                if (gestureFlag == false)
+                {
+                    Skeleton2DDataExtract.Skeleton2DdataCoordReady -= NuiSkeleton2DdataCoordReady;
+                }
+                if (s.Contains("@Left hand swipe left"))
+                {
+                    gestureFlag = false;
+                }
+
+
+            }
+
+            if (_video.Count > BufferSize)
+            {
+                _video.RemoveAt(0);
+            }
+
+            if (!double.IsNaN(a.GetPoint(0).X))
+            {
+
+                _flipFlop = (_flipFlop + 1) % 2;
+                if (_flipFlop == 0)
+                {
+                    _video.Add(a.GetCoords());
+                }
+            }
+
+
+        }
+
+        private void LoadGesturesFromFile(string fileName)
+        {
+            int itemCount = 0;
+            string line;
+            string gestureName = String.Empty;
+
+
+            ArrayList frames = new ArrayList();
+            double[] items = new double[12];
+
+            System.IO.StreamReader file = new System.IO.StreamReader(fileName);
+            while ((line = file.ReadLine()) != null)
+            {
+                if (line.StartsWith("@"))
+                {
+                    gestureName = line;
+                    continue;
+                }
+
+                if (line.StartsWith("~"))
+                {
+                    frames.Add(items);
+                    itemCount = 0;
+                    items = new double[12];
+                    continue;
+                }
+
+                if (!line.StartsWith("----"))
+                {
+                    items[itemCount] = Double.Parse(line);
+                }
+
+                itemCount++;
+
+                if (line.StartsWith("----"))
+                {
+                    _dtw.AddOrUpdate(frames, gestureName);
+                    frames = new ArrayList();
+                    gestureName = String.Empty;
+                    itemCount = 0;
+                }
+            }
+
+            file.Close();
         }
 
         void SavePic()
@@ -4616,7 +4722,7 @@ namespace beethoven3
             if (gameState == GameStates.Menu)
             {
 
-                Trace.WriteLine(isNoPerson);
+               
                 menuScene.Draw(spriteBatch, this.Window.ClientBounds.Width, this.Window.ClientBounds.Height);
                 if (isNoPerson)
                 {
@@ -4719,7 +4825,10 @@ namespace beethoven3
 
 
                 comboNumberManager.Draw(spriteBatch);
-                
+
+
+             
+
                 
                 //가운데 빨간 사각형 주석하면 보이지않는다.
             //    spriteBatch.Draw(idot, removeAreaRec, Color.Red);
@@ -4743,8 +4852,14 @@ namespace beethoven3
 
                 //하트. gage양 만큼 하트가 나타남.
                 spriteBatch.Draw(uiHeart, new Vector2(0, 6), new Rectangle(0, 0, gage, 50), Color.White);
-              
-              
+
+                charismaManager.Draw(gameTime, spriteBatch);
+                //if (isCharisma1)
+                //{
+
+                //    spriteBatch.Draw(charisma1, new Rectangle(200, 200, 727, 278), Color.White);
+
+                //}
   
 
             }

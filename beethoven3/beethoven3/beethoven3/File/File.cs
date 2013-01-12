@@ -47,6 +47,8 @@ namespace beethoven3
 
         private GuideLineManager guideLineManager;
 
+        private CharismaManager charismaManager;
+
         private bool endFile;
 
         private Double startTime;
@@ -92,7 +94,7 @@ namespace beethoven3
         
         #region constructor
 
-        public File(StartNoteManager startNoteManager, NoteFileManager noteFileManager, CollisionManager collisionManager, ScoreManager scoreManager, ItemManager itemManager, CurveManager curveManager, GuideLineManager guideLineManager)       
+        public File(StartNoteManager startNoteManager, NoteFileManager noteFileManager, CollisionManager collisionManager, ScoreManager scoreManager, ItemManager itemManager, CurveManager curveManager, GuideLineManager guideLineManager, CharismaManager charismaManager)       
         {
 
              this.startNoteManager = startNoteManager;
@@ -109,6 +111,8 @@ namespace beethoven3
 
              this.curveManager = curveManager;
              this.guideLineManager = guideLineManager;
+
+             this.charismaManager = charismaManager;
              newNote = true;
         }
         
@@ -337,6 +341,13 @@ namespace beethoven3
                         else if (lines[1] == "B")
                         {
                             arrayNotes.Add(new NoteInfo(isright,/*startTime*/Convert.ToDouble(lines[0]), /*bps*/Int32.Parse(lines[2]), /*type*/lines[1], /*not lastTime*/0, Vector2.Zero, Vector2.Zero, Vector2.Zero, Vector2.Zero));
+
+                        }
+
+                          //카리스마
+                        else if (lines[1] == "C")
+                        {
+                            arrayNotes.Add(new NoteInfo(isright,/*startTime*/Convert.ToDouble(lines[0]), /*카리스마종류*/Int32.Parse(lines[2]), /*type*/lines[1], /*not lastTime*/Convert.ToDouble(lines[3]), Vector2.Zero, Vector2.Zero, Vector2.Zero, Vector2.Zero));
 
                         }
                     }
@@ -701,6 +712,18 @@ namespace beethoven3
                            // 70보다 크면 +100
 
                             Curve.dragNoteSpeed = GetDragNoteSpeed(arrayNotes[0].MarkLocation);
+                        }
+
+
+                        else if (arrayNotes[0].Type == "C")
+                        {
+                            //종류. 시작시간, 끝나는시간
+
+                            charismaManager.AddCharismaFrame(arrayNotes[0].StartTime, arrayNotes[0].LastTime, arrayNotes[0].MarkLocation, this.time);
+
+
+                            
+
                         }
 
                         arrayNotes.RemoveAt(0);

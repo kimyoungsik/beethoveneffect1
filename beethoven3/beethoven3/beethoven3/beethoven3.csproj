@@ -141,6 +141,11 @@
     <Compile Include="FingerTracking\MyQueue.cs" />
     <Compile Include="FingerTracking\PointFT.cs" />
     <Compile Include="FingerTracking\Vector3FT.cs" />
+    <Compile Include="Gesture\CharismaManager.cs" />
+    <Compile Include="Gesture\DtwGestureRecognizer.cs" />
+    <Compile Include="Gesture\PointT.cs" />
+    <Compile Include="Gesture\Skeleton2DdataCoordEventArgs.cs" />
+    <Compile Include="Gesture\Skeleton2DDataExtract.cs" />
     <Compile Include="Item\BackgroundItemShop.cs" />
     <Compile Include="Effect\CollisionManager.cs" />
     <Compile Include="Curve\Curve.cs" />
