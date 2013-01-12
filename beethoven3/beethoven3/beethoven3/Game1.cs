@@ -43,6 +43,7 @@ namespace beethoven3
         //스켈레톤 한명만
         int CurrentTrackingId = 0;
         public static bool finalClick;
+        public static bool pastClick = false;
         //음성인식
         SpeechRecognitionEngine sre;
         RecognizerInfo ri;
@@ -1039,17 +1040,17 @@ namespace beethoven3
                 //JitterRadius = 0.05f,
                 //MaxDeviationRadius = 0.04f
 
-                Smoothing = 0.5f,
-                Correction = 0.1f,
-                Prediction = 0.5f,
-                JitterRadius = 0.1f,
-                MaxDeviationRadius = 0.1f
+                //Smoothing = 0.5f,
+                //Correction = 0.1f,
+                //Prediction = 0.5f,
+                //JitterRadius = 0.1f,
+                //MaxDeviationRadius = 0.1f
 
-                //Smoothing = 0.7f,
-                //Correction = 0.3f,
-                //Prediction = 1.0f,
-                //JitterRadius = 1.0f,
-                //MaxDeviationRadius = 1.0f
+                Smoothing = 0.7f,
+                Correction = 0.3f,
+                Prediction = 1.0f,
+                JitterRadius = 1.0f,
+                MaxDeviationRadius = 1.0f
 
                 //Smoothing = 0.05f,
                 //Correction = 0.5f,
@@ -2535,7 +2536,9 @@ namespace beethoven3
                        for (i = 0; i < rectRightItems.Count; i++)
                        {
                            //아이템을 선택 했을때
-                           if (mouseRect.Intersects(rectRightItems[i]) && mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released)
+                           if ((mouseRect.Intersects(rectRightItems[i]) && mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released)||
+                               (drawrec1.Intersects(rectRightItems[i])&&finalClick))
+                          
                            {
                                //어두어짐
                                rightItemShop.setDarkBackground(true);
@@ -2557,6 +2560,9 @@ namespace beethoven3
                                    //반복 없애기
                                    i = rectRightItems.Count;
                                }
+
+                               //이게 있어야 중복해서 안된다.
+                               mouseStatePrevious = mouseStateCurrent;
                            }
                        }
                    }
@@ -2565,12 +2571,12 @@ namespace beethoven3
                    if (rightItemShop.getNoGold())
                    {
                        //버튼 Hover
-                       if (mouseRect.Intersects(rightItemShop.getRectNoGoldButton()))
+                       if (mouseRect.Intersects(rightItemShop.getRectNoGoldButton()) || drawrec1.Intersects(rightItemShop.getRectNoGoldButton()))
                        {
                            //눌린모양
                            rightItemShop.setHoverNoGoldButton(true);
                            //버튼 누르면
-                           if (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released)
+                           if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released)||finalClick)
                            {
                                 //다시 밝게
                                rightItemShop.setDarkBackground(false);
@@ -2911,7 +2917,7 @@ namespace beethoven3
                        }
 
                    }
-
+                   
                    break;
 
 
@@ -4459,14 +4465,15 @@ namespace beethoven3
                    resultNumberManager.Update(gameTime);
 
                     Rectangle rectMouse = new Rectangle(mouseStateCurrent.X, mouseStateCurrent.Y, 5, 5);
-
+                 
+                    
                     //nextButton 위에 마우스를 올려놨을 때
                     //mousecursor on nextButton item section
-                    if (rectMouse.Intersects(resultManager.getRectNextButton()))
+                    if (rectMouse.Intersects(resultManager.getRectNextButton()) || drawrec1.Intersects(resultManager.getRectNextButton()))
                     {
                         resultManager.setClickNextButton(true);
                         //click the right hand item section
-                        if (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released)
+                        if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released )|| (finalClick &&!pastClick))
                         {
                             gameState = GameStates.RecordBoard;
 
@@ -4536,6 +4543,8 @@ namespace beethoven3
                     {
                         resultManager.setClickNextButton(false);
                     }
+
+                    pastClick = finalClick;
                 break;
                 #endregion
 
@@ -4546,12 +4555,12 @@ namespace beethoven3
                    //nextButton 위에 마우스를 올려놨을 때
                     //mousecursor on nextButton item section
                     
-
-                    if (rectMouseRecordBoard.Intersects(recordBoard.getRectNextButton()))
+             
+                    if (rectMouseRecordBoard.Intersects(recordBoard.getRectNextButton())|| drawrec1.Intersects(resultManager.getRectNextButton()))
                     {
                         recordBoard.setClickNextButton(true);
                         //click the right hand item section
-                        if (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released)
+                        if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (finalClick && !pastClick))
                         {
                             gameState = GameStates.SongMenu;
                         }
@@ -4560,7 +4569,10 @@ namespace beethoven3
                     {
                         recordBoard.setClickNextButton(false);
                     }
+                    pastClick = finalClick;
                 break;
+
+                
                 #endregion
                
                #region 곡선택메뉴

@@ -18,7 +18,7 @@ namespace beethoven3
         private NoteFileManager noteFileManager;
 
 
-
+      //  bool pastClick;
         MouseState pastmouse;
         KeyboardState pastkey;
 
@@ -124,35 +124,35 @@ namespace beethoven3
             Rectangle mouseRectangle = new Rectangle(mouse.X, mouse.Y, 1, 1);
 
             //검은색 버튼 눌렀을 때,
-            if ((mouseRectangle.Intersects(new Rectangle(0, 0, 100, 40)) && mouse.LeftButton == ButtonState.Pressed && pastmouse.LeftButton == ButtonState.Released))
-            {
-                scene_number = 0;
-            }
-            if ((mouseRectangle.Intersects(new Rectangle(100, 0, 100, 40)) && mouse.LeftButton == ButtonState.Pressed && pastmouse.LeftButton == ButtonState.Released))
-            {
-                scene_number = 1;
-            }
-            if ((mouseRectangle.Intersects(new Rectangle(200, 0, 100, 40)) && mouse.LeftButton == ButtonState.Pressed && pastmouse.LeftButton == ButtonState.Released))
-            {
-                scene_number = 3;
-            }
-            if ((mouseRectangle.Intersects(new Rectangle(300, 0, 100, 40)) && mouse.LeftButton == ButtonState.Pressed && pastmouse.LeftButton == ButtonState.Released))
-            {
-                scene_number = 4;
-            }
-            if ((mouseRectangle.Intersects(new Rectangle(400, 0, 100, 40)) && mouse.LeftButton == ButtonState.Pressed && pastmouse.LeftButton == ButtonState.Released))
-            {
-                scene_number = 5;
-            }
-            if ((mouseRectangle.Intersects(new Rectangle(500, 0, 100, 40)) && mouse.LeftButton == ButtonState.Pressed && pastmouse.LeftButton == ButtonState.Released))
-            {
-                scene_number = 6;
-            }
+            //if ((mouseRectangle.Intersects(new Rectangle(0, 0, 100, 40)) && mouse.LeftButton == ButtonState.Pressed && pastmouse.LeftButton == ButtonState.Released))
+            //{
+            //    scene_number = 0;
+            //}
+            //if ((mouseRectangle.Intersects(new Rectangle(100, 0, 100, 40)) && mouse.LeftButton == ButtonState.Pressed && pastmouse.LeftButton == ButtonState.Released))
+            //{
+            //    scene_number = 1;
+            //}
+            //if ((mouseRectangle.Intersects(new Rectangle(200, 0, 100, 40)) && mouse.LeftButton == ButtonState.Pressed && pastmouse.LeftButton == ButtonState.Released))
+            //{
+            //    scene_number = 3;
+            //}
+            //if ((mouseRectangle.Intersects(new Rectangle(300, 0, 100, 40)) && mouse.LeftButton == ButtonState.Pressed && pastmouse.LeftButton == ButtonState.Released))
+            //{
+            //    scene_number = 4;
+            //}
+            //if ((mouseRectangle.Intersects(new Rectangle(400, 0, 100, 40)) && mouse.LeftButton == ButtonState.Pressed && pastmouse.LeftButton == ButtonState.Released))
+            //{
+            //    scene_number = 5;
+            //}
+            //if ((mouseRectangle.Intersects(new Rectangle(500, 0, 100, 40)) && mouse.LeftButton == ButtonState.Pressed && pastmouse.LeftButton == ButtonState.Released))
+            //{
+            //    scene_number = 6;
+            //}
 
 
             //left 버튼 누를 때
             if ((mouseRectangle.Intersects(new Rectangle(170, 310, 60, 60)) && mouse.LeftButton == ButtonState.Pressed && pastmouse.LeftButton == ButtonState.Released)
-                || (key.IsKeyDown(Keys.Left) && !pastkey.IsKeyDown(Keys.Left)) || Game1.drawrec1.Intersects(new Rectangle(170, 310, 60, 60)) && Game1.finalClick)
+                || (key.IsKeyDown(Keys.Left) && !pastkey.IsKeyDown(Keys.Left)) || Game1.drawrec1.Intersects(new Rectangle(170, 310, 60, 60)) && Game1.finalClick && !Game1.pastClick)
             {
                 if (scene_number > 0)
                 {
@@ -171,7 +171,7 @@ namespace beethoven3
                 arrawframe[0] = 0;
             }
 
-            //왼쪽 클릭 
+            //키넥트로 왼=> 오 왼쪽 이동
             if (isKinectLeft)
             {
                 if (scene_number > 0)
@@ -186,8 +186,7 @@ namespace beethoven3
             }
 
 
-
-            //오른쪾 클릭 
+            //키넥트로 오->왼 => 오른쪽 이동 
             if(isKinectRight)
 
             {
@@ -208,7 +207,7 @@ namespace beethoven3
 
             //right
             if ((mouseRectangle.Intersects(new Rectangle(770, 310, 60, 60)) && mouse.LeftButton == ButtonState.Pressed && pastmouse.LeftButton == ButtonState.Released)
-                || (key.IsKeyDown(Keys.Right) && !pastkey.IsKeyDown(Keys.Right)) || Game1.drawrec1.Intersects(new Rectangle(770, 310, 60, 60)) && Game1.finalClick)
+                || (key.IsKeyDown(Keys.Right) && !pastkey.IsKeyDown(Keys.Right)) || Game1.drawrec1.Intersects(new Rectangle(770, 310, 60, 60)) && Game1.finalClick && !Game1.pastClick)
             {
                 if (scene_number < noteFileManager.noteFiles.Count-1)
                 {
@@ -233,7 +232,8 @@ namespace beethoven3
             //}
 
 
-            if (mouseRectangle.Intersects(backrect) && mouse.LeftButton == ButtonState.Pressed && pastmouse.LeftButton == ButtonState.Released)
+
+            if (mouseRectangle.Intersects(backrect) && mouse.LeftButton == ButtonState.Pressed && pastmouse.LeftButton == ButtonState.Released || Game1.drawrec1.Intersects(backrect) && Game1.finalClick && !Game1.pastClick)
             {
                 return -1;
             }
@@ -241,7 +241,7 @@ namespace beethoven3
             {
                 textbutton = true;
             }
-            else if (mouseRectangle.Intersects(startrect) && mouse.LeftButton == ButtonState.Pressed && pastmouse.LeftButton == ButtonState.Released)
+            else if (mouseRectangle.Intersects(startrect) && mouse.LeftButton == ButtonState.Pressed && pastmouse.LeftButton == ButtonState.Released || Game1.drawrec1.Intersects(startrect) && Game1.finalClick && !Game1.pastClick)
             {
                 return scene_number;
             }
@@ -256,7 +256,7 @@ namespace beethoven3
 
             pastmouse = mouse;
             pastkey = key;
-         
+            Game1.pastClick = Game1.finalClick;
 
             return -2;
 
