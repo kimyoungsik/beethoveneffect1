@@ -87,6 +87,20 @@ namespace beethoven3
 
         //반환 : 각 노트의 객체
 
+        public void DeleteAllNote()
+        {
+            LittleNotes.Clear();
+            //int i;
+            //for (i = 0; i < LittleNotes.Count; i++)
+            //{
+            //    LittleNotes[i].IsShow = false;
+            //    LittleNotes.RemoveAt(i);
+            //}
+
+
+            
+        }
+
         public void MakeNote(
             Vector2 location,
             Vector2 velocity,

@@ -2424,24 +2424,11 @@ namespace beethoven3
 
             //}
 
-            //if (keyState.IsKeyDown(Keys.O))
-            //{
-             
-            //    //임시
-            //    //BOOL 은 일단 임시로 
-            //    SoundFmod.oneTime = true;
+            if (keyState.IsKeyDown(Keys.Escape))
+            {
 
-            //    //템포가 바뀐 상태가 아니어야 한다.
-            //    //템포가 바뀐상태라면 다시 기본템포로 돌리고 변경 
-            //    if (!SoundFmod.isChangedTempo)
-            //    {
-
-            //        //그 양만큼 템포 조절됨
-            //        SoundFmod.tempoChange(0.8f);
-
-            //        //2의 템포가 2초동안 빨라지는 ㅔ
-            //    }
-            //}
+                file.SetEndFile(true);
+            }
 
             if (keyState.IsKeyDown(Keys.L))
             {
@@ -4604,10 +4591,12 @@ namespace beethoven3
                    //go to result scene right after finishing a piece
                    if (file.GetEndFile())
                    {
+                      
+
                        //노래 총 시간으로 끝을 바꾸자
                        gameState = GameStates.ResultManager;
                        //점수기록판에 기재
-
+                      
                        //reportManager의 scoreInfoManager에 곡명과 자기사진 추가
                        //여기에 현재 자신의 사진 이름이 들어가야 함.(날짜시간 포함해서 독립적으로)
                        if(ScorePic == null)
@@ -4729,12 +4718,20 @@ namespace beethoven3
                             Vector2[] zeroIndexMarkers = MarkManager.GetPattern(0);
                          //   removeAreaRec = MarkManager.GetRemoveArea(0);
                             //두번째꺼 재실행시 이상한거 생기는것 방지
+                            //startNoteManager.DeleateAllNote();
+                            StartNoteManager.rightNoteManager.DeleteAllNote();
+                            StartNoteManager.leftNoteManager.DeleteAllNote();
+                            StartNoteManager.longNoteManager.DeleteAllNote();
+
+
                             startNoteManager = new StartNoteManager(
                                 spriteSheet,
                                 new Rectangle(0, 200, 52, 55),
                                 1);
 
-                            
+                            file.SetDrawLine(false);
+                            GoldManager.DeleteAll();
+
                             //froze 방지
                             MarkManager.initialize(
                                 // markManager = new MarkManager(
@@ -4754,7 +4751,7 @@ namespace beethoven3
 
 
                             //파일을 다시 만들 필요는 없고 초기화만 시켜주면 된다.
-
+                            //여러개 파일 다시 생성되서
 
                             //파일 저장
                             //file = new File(startNoteManager, noteFileManager, collisionManager, scoreManager, itemManager, curveManager, guideLineManager);
@@ -4966,7 +4963,7 @@ namespace beethoven3
                         /////이펙트 생성 -END
                         
                         gameState = GameStates.Playing;
-                    
+                        
                         file.Loading(resultSongMenu);
                         
                         //일반 0
@@ -5416,7 +5413,7 @@ namespace beethoven3
 
                 charismaManager.Draw(gameTime, spriteBatch);
 
-                Trace.WriteLine(charismaManager.IsCharismaTime);
+                //Trace.WriteLine(charismaManager.IsCharismaTime);
                 if (charismaManager.IsCharismaTime == 2)
                 {
 

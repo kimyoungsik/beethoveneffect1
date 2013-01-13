@@ -22,7 +22,7 @@ namespace beethoven3
        //  private String[] noteContents;
         private ItemManager itemManager;
         
-        private List<NoteInfo> arrayNotes = new List<NoteInfo>();
+        public List<NoteInfo> arrayNotes = new List<NoteInfo>(); 
 
 
 
@@ -147,6 +147,14 @@ namespace beethoven3
         {
             this.time = value;
         }
+
+
+        public void SetDrawLine(bool value)
+        {
+            this.drawLine = value;
+        }
+        
+        
         public void FileLoading(String dir, String file)
         {
             //폴더를 검사해서 
@@ -264,6 +272,9 @@ namespace beethoven3
         //노래 시작하기 바로 직전 //***로딩 여기서?
         public void Loading(int noteNumber)
         {
+            arrayNotes.Clear();
+            
+
             String name = noteFileManager.noteFiles[noteNumber].Name;
             
             //시작 시간 설정
@@ -1024,6 +1035,8 @@ namespace beethoven3
          //   CheckRightNoteInCenterArea();
          //   CheckLeftNoteInCenterArea();
             this.time += gameTime.ElapsedGameTime.TotalSeconds;
+
+            
             FindNote(this.time, changedTempo, optionalTime);
         
         }

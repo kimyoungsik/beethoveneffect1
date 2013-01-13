@@ -72,14 +72,14 @@ namespace beethoven3
 
         public static void DeleteAll()
         {
+            Golds.Clear();
+            //int count = Golds.Count;
            
-            int count = Golds.Count;
-           
-            while (Golds.Count > 0)
-            {
-                Golds.RemoveAt(0);
+            //while (Golds.Count > 0)
+            //{
+            //    Golds.RemoveAt(0);
                     
-            }
+            //}
           
         }
 

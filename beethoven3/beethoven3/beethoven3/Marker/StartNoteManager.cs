@@ -105,7 +105,13 @@ namespace beethoven3
         #region method
 
 
-
+        public void DeleateAllNote()
+        {
+            longNoteManager.DeleteAllNote();
+            rightNoteManager.DeleteAllNote();
+            leftNoteManager.DeleteAllNote();
+          
+        }
 
         //각 노트의 모양을 바꾸다.
         //노래 선택하고 시작하기전에 설정한다.
@@ -145,6 +151,7 @@ namespace beethoven3
         }
         public void deleteAllMarks()
         {
+            
             // for (int i = 0; i < 6; i++)
             for (int i = 0; i < 6; i++)
             {

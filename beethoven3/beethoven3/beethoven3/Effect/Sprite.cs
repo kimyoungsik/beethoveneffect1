@@ -20,7 +20,8 @@ namespace beethoven3
 
         protected int frameWidth = 0;
         protected int frameHeight = 0;
-        
+
+        protected bool isShow;
         //주어진 시간에 표시되는 프레임을 저장
         private int currentFrame;
 
@@ -72,6 +73,7 @@ namespace beethoven3
             frameWidth = initialFrame.Width;
             frameHeight = initialFrame.Height;
             isEarlyOne = true;
+            isShow = true;
         }
         #endregion
 
@@ -146,6 +148,12 @@ namespace beethoven3
         {
             get { return frames[currentFrame]; }
             set { Source = value; }
+        }
+
+        public bool IsShow
+        {
+            get { return isShow; }
+            set { isShow = value; }
         }
 
         // sprite's frame location rectangle
@@ -306,18 +314,20 @@ namespace beethoven3
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(
-                Texture,
-                //위치: Center-> location 으로 바꿈 (마커와 노트 매칭 떄문에 )
-                location,
-                Source,
-                tintColor,
-                rotation,
-                //origin ->  new Vector2(frameWidth / 2, frameHeight / 2) ->  new Vector2(0,0) 으로 바꿈 (마커와 노트 매칭 떄문에 )
-                new Vector2(0,0),
-                scale,
-                SpriteEffects.None,
-                0.0f);   
+            
+                spriteBatch.Draw(
+                    Texture,
+                    //위치: Center-> location 으로 바꿈 (마커와 노트 매칭 떄문에 )
+                    location,
+                    Source,
+                    tintColor,
+                    rotation,
+                    //origin ->  new Vector2(frameWidth / 2, frameHeight / 2) ->  new Vector2(0,0) 으로 바꿈 (마커와 노트 매칭 떄문에 )
+                    new Vector2(0, 0),
+                    scale,
+                    SpriteEffects.None,
+                    0.0f);
+           
         }
         #endregion
     }
