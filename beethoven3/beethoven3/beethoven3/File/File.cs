@@ -860,7 +860,13 @@ namespace beethoven3
                     {
                         try
                         {
+                            //롱노트 중간에 안먹히는거 롱노트 지울 때 [0]부터 지워서 그렇다. 
+
                             StartNoteManager.longNoteManager.LittleNotes.RemoveAt(StartNoteManager.longNoteManager.LittleNotes.Count-1);
+
+                            //miss 지우는것도 
+                            collisionManager.CheckLongNoteInCenterArea();
+
                         }
                         catch (ArgumentOutOfRangeException)
                         {

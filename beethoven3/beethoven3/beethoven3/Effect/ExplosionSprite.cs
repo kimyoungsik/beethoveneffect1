@@ -14,7 +14,7 @@ namespace beethoven3
         private int initialDuration;
 
         //남은시점
-        private int remainingDuration;
+        public int remainingDuration;
 
 
 
@@ -44,6 +44,7 @@ namespace beethoven3
             {
                 return (remainingDuration > 0);
             }
+
         }
 
         public ExplosionSprite(
@@ -63,7 +64,7 @@ namespace beethoven3
 
         public override void Update(GameTime gameTime)
         {
-            if (IsActive)
+            if (remainingDuration > 0)
             {
                 remainingDuration--;
                
@@ -73,7 +74,7 @@ namespace beethoven3
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (IsActive)
+            if (remainingDuration > 0)
             {
                 base.Draw(spriteBatch);
 

@@ -178,8 +178,30 @@ namespace beethoven3
 
         }
 
+        //private void DisappearAllMarks()
+        //{
 
-        
+
+        //        perfectBannerManager.DisappearAllMarks();
+        //        goodBannerManager.DisappearAllMarks();
+        //        badBannerManager.DisappearAllMarks();
+        //        missBannerManager.DisappearAllMarks();
+
+        //}
+
+        ////시간이지난 배너는 삭제
+        //public void DeleteMarks()
+        //{
+
+
+        //    perfectBannerManager.deleteAllMarks();
+        //    goodBannerManager.deleteAllMarks();
+        //    badBannerManager.deleteAllMarks();
+        //    missBannerManager.deleteAllMarks();
+
+        //}
+
+
         private void checkRightNoteToMarker(int number,Vector2 mousePoint)
         {
             //오른손 노트(움직이는것 반복)
@@ -227,7 +249,9 @@ namespace beethoven3
                             perfectManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
                             StartNoteManager.rightNoteManager.LittleNotes.RemoveAt(x);
 
+
                             //퍼펙트 글자 띄우기
+                            //DisappearAllMarks();
                             perfectBannerManager.AddBanners(perfectLocation);
 
 
@@ -270,6 +294,8 @@ namespace beethoven3
 
                             goodManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
                             //굿 글자 띄우기
+
+                            //DisappearAllMarks();
                             goodBannerManager.AddBanners(goodLocation);
 
                             StartNoteManager.rightNoteManager.LittleNotes.RemoveAt(x);
@@ -789,6 +815,7 @@ namespace beethoven3
                         {
                      //       perfectManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
                             // 글자 띄우기
+                            //DisappearAllMarks();
                             perfectBannerManager.AddBanners(perfectLocation);
 
                             
@@ -808,6 +835,8 @@ namespace beethoven3
                       //      goodManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
 
                             // 글자 띄우기
+                            missBannerManager.
+                            DisappearAllMarks();
                             perfectBannerManager.AddBanners(perfectLocation);
 
                             StartNoteManager.longNoteManager.LittleNotes.RemoveAt(x);
@@ -926,6 +955,8 @@ namespace beethoven3
           //롱노트 사각형을 만나면 사라지게끔
                   
               int i;
+
+
               for (i = 0; i < StartNoteManager.longNoteManager.LittleNotes.Count; i++)
               {
                   Sprite littleNote = StartNoteManager.longNoteManager.LittleNotes[i];
@@ -935,8 +966,9 @@ namespace beethoven3
                       
                     //  badManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
                       //글자 띄우기
-                      missBannerManager.AddBanners(missLocation);
-
+                      //DisappearAllMarks();
+                          missBannerManager.AddBanners(missLocation);
+                      
                       StartNoteManager.longNoteManager.LittleNotes.RemoveAt(i);
                       scoreManager.Bad = scoreManager.Bad + 1;
                       if (scoreManager.Combo > scoreManager.Max)

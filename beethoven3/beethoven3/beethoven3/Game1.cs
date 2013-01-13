@@ -561,7 +561,7 @@ namespace beethoven3
             badBannerManager.BannerInit(badBanner, new Rectangle(0, 0, 782, 400),/*sprite로 바꾸면 frameCount바꾸기*/1, 0.7f, 30);
 
             missBannerManager = new MissBannerManager();
-            missBannerManager.BannerInit(missBanner, new Rectangle(0, 0, 975, 412),/*sprite로 바꾸면 frameCount바꾸기*/1, 0.5f, 30);
+            missBannerManager.BannerInit(missBanner, new Rectangle(0, 0, 975, 412),/*sprite로 바꾸면 frameCount바꾸기*/1, 0.5f,30);
 
 
             //미스도 투입되면
@@ -4675,7 +4675,7 @@ namespace beethoven3
                     missBannerManager.Update(gameTime);
 
                     comboNumberManager.Update(gameTime);
-                    
+                 //   collisionManager.DeleteMarks();
 #if Kinect
                     HandleInput();
 
@@ -5373,11 +5373,13 @@ namespace beethoven3
                 badManager.Draw(spriteBatch);
                 goldGetManager.Draw(spriteBatch);
 
-
-                perfectBannerManager.Draw(spriteBatch);
-                goodBannerManager.Draw(spriteBatch);
-                badBannerManager.Draw(spriteBatch);
                 missBannerManager.Draw(spriteBatch);
+                badBannerManager.Draw(spriteBatch);
+                goodBannerManager.Draw(spriteBatch);
+                perfectBannerManager.Draw(spriteBatch);
+                
+                
+               
 
 
                 comboNumberManager.Draw(spriteBatch);

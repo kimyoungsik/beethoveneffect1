@@ -45,16 +45,33 @@ namespace beethoven3
                 frameCount,
                 scale);
             Banners.Add(thisBanner);
+
+            
         }
         public void deleteAllMarks()
         {
 
             for (int i = 0; i < Banners.Count; i++)
             {
-                Banners.RemoveAt(i);
+                //시간이 지난것은 자동삭제
+                if (Banners[i].BannerSprite.remainingDuration < 0)
+                {
+                    Banners.RemoveAt(i);
+                }
             }
         }
 
+        //Banners[0].BannerSprite.IsActive
+        public void DisappearAllMarks()
+        {
+            int i;
+
+
+            for (i = Banners.Count - 1; i > -1; i--)
+            {
+                Banners[i].BannerSprite.remainingDuration = -1;
+            }
+        }
 
 
         #endregion

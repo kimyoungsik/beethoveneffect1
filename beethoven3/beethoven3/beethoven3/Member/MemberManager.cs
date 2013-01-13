@@ -129,7 +129,10 @@ namespace beethoven3
             //NO STROKE
             //바이올린
             MakeMember(violinMemberPlay, new Rectangle(0, 0, 114, 158), new Vector2(170, 70),/*velocity*/ Vector2.Zero,/*speed*/ 0f,/*collisionRadius*/ 15,/*프레임*/ 15,/*memberNumber*/ 0,/*scale*/ 1.2f);
-             //플룻 
+
+            
+
+            //플룻 
             MakeMember(fluteMemberPlay, new Rectangle(0, 0, 253, 595), new Vector2(270, 20), Vector2.Zero, 0f, 15, 5, 1, 0.4f);
              //팀파니 
             MakeMember(timpaniMemberPlay, new Rectangle(0, 0, 196, 238), new Vector2(350, 10), Vector2.Zero, 0f, 15, 5, 2, 1f);
@@ -200,9 +203,18 @@ namespace beethoven3
             //첼로  
             MakeMember(celloMemberMiss, new Rectangle(0, 0, 325, 595), new Vector2(730, 55), Vector2.Zero, 0f, 15, 5, 5, 0.40f);
 
+         
+            foreach (Sprite flute in fluteMembers)
+            {
+                flute.FrameTime = 0.15f;
+            }
+            
+            foreach (Sprite cello in celloMembers)
+            {
+                cello.FrameTime = 0.15f;
+            }
 
-           
-       
+         
         }
 
         //멤버 생성
@@ -292,7 +304,7 @@ namespace beethoven3
             }
             foreach (Sprite flute in fluteMembers)
             {
-                flute.FrameTime = speed;
+                flute.FrameTime = speed + 0.05f;
             }
             foreach (Sprite timpani in timpaniMembers)
             {
@@ -308,7 +320,7 @@ namespace beethoven3
             }
             foreach (Sprite cello in celloMembers)
             {
-                cello.FrameTime = speed;
+                cello.FrameTime = speed + 0.05f;
             }
         }
 

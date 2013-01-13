@@ -51,10 +51,23 @@ namespace beethoven3
 
             for (int i = 0; i < Banners.Count; i++)
             {
-                Banners.RemoveAt(i);
+                if (Banners[i].BannerSprite.remainingDuration < 0)
+                {
+                    Banners.RemoveAt(i);
+                }
             }
         }
 
+        public void DisappearAllMarks()
+        {
+            int i;
+
+
+            for (i = Banners.Count - 1; i > -1; i--)
+            {
+                Banners[i].BannerSprite.remainingDuration = -1;
+            }
+        }
 
 
         #endregion
