@@ -50,7 +50,7 @@ namespace beethoven3
         {
             if (!System.IO.File.Exists(dir))
             {
-                System.IO.Directory.CreateDirectory(dir);
+                System.IO.File.OpenWrite(dir);
             }
             return dir;
             

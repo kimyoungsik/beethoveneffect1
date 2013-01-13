@@ -631,13 +631,15 @@ namespace beethoven3
 
             SoundFmod.initialize(file);
             //곡선택화면 곡 불러오는 폴더 
+           
             String dir = "C:\\beethoven";
            
             //폴더가 없으면 새로 만들기 
-            if (!System.IO.File.Exists(dir))
-            {
-                System.IO.Directory.CreateDirectory(dir);
-            }
+            //!!!
+            //if (!System.IO.File.Exists(dir))
+            //{
+            //    System.IO.File.Create(dir);
+            //}
 
             //곡을 불러오기
             file.FileLoading(dir, "*.mnf");
@@ -698,6 +700,7 @@ namespace beethoven3
             currentSongName = "";
             idot = Content.Load<Texture2D>("Bitmap2");
 
+            itemManager.LoadFileItem();
 #if Kinect
             idot1 = Content.Load<Texture2D>("Bitmap1");
             idot2 = Content.Load<Texture2D>("Bitmap2");
@@ -2379,6 +2382,7 @@ namespace beethoven3
         {
             if (keyState.IsKeyDown(Keys.B))
             {
+
                 gameState = GameStates.Menu;
 
             }
@@ -2390,6 +2394,7 @@ namespace beethoven3
         {
             if (keyState.IsKeyDown(Keys.B))
             {
+                itemManager.SaveFileItem();
                 gameState = GameStates.ShopDoor;
 
             }

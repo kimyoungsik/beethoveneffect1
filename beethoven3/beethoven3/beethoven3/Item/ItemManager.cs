@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
+using System.IO;
 namespace beethoven3
 {
     class ItemManager
@@ -163,12 +164,178 @@ namespace beethoven3
             //test
 
             //구입한 아이템으로 설정
-            buyItem(myRightHandItem, rightHandItem[0]);
-            buyItem(myLeftHandItem, leftHandItem[0]);
-            buyItem(myEffectItem, effectItem[0]);
-            buyItem(myNoteItem, noteItem[0]);
-            buyItem(myBackgroundItem, backgroundItem[0]);
-        }   
+            //buyItem(myRightHandItem, rightHandItem[0]);
+            //buyItem(myLeftHandItem, leftHandItem[0]);
+            //buyItem(myEffectItem, effectItem[0]);
+            //buyItem(myNoteItem, noteItem[0]);
+            //buyItem(myBackgroundItem, backgroundItem[0]);
+        }
+
+        public void SaveFileItem()
+        {
+            //자기 아이템이 전체 아이템의 몇번 인덱스 인지 파악한후에 저장
+            int i;
+            int index;
+            
+            String dir = "c:\\beethovenRecord\\itemManager.txt";
+            if (!System.IO.File.Exists(dir))
+            {
+                System.IO.File.OpenWrite(dir);
+               
+                
+            }
+
+            TextWriter tw = new StreamWriter(dir);
+            tw.WriteLine("**");
+            tw.WriteLine("rightHand");
+            
+            for(i=0; i<myRightHandItem.Count; i++)
+            {
+                index = getIndexOfAllRightItem(myRightHandItem[i]);
+                tw.WriteLine(index.ToString());
+            }
+
+            tw.WriteLine("**");
+            tw.WriteLine("leftHand");
+            for (i = 0; i < myLeftHandItem.Count; i++)
+            {
+                index = getIndexOfAllLeftItem(myLeftHandItem[i]);
+                tw.WriteLine(index.ToString());
+            }
+
+            tw.WriteLine("**");
+            tw.WriteLine("effect");
+            for (i = 0; i < myLeftHandItem.Count; i++)
+            {
+                index = getIndexOfAllEffectItem(myEffectItem[i]);
+                tw.WriteLine(index.ToString());
+            }
+            tw.WriteLine("**");
+            tw.WriteLine("note");
+            for (i = 0; i < myLeftHandItem.Count; i++)
+            {
+                index = getIndexOfAllNoteItem(myNoteItem[i]);
+                tw.WriteLine(index.ToString());
+            }
+
+            tw.WriteLine("**");
+            tw.WriteLine("background");
+            for (i = 0; i < myLeftHandItem.Count; i++)
+            {
+                index = getIndexOfAllBackgroundItem(myBackgroundItem[i]);
+                tw.WriteLine(index.ToString());
+            }
+            tw.WriteLine("**");
+            tw.WriteLine("!!");
+            tw.Close();
+        }
+
+
+        public void LoadFileItem()
+        {
+
+            String dir = "c:\\beethovenRecord\\itemManager.txt";
+            if (!System.IO.File.Exists(dir))
+            {
+                System.IO.File.OpenWrite(dir);
+                buyItem(myRightHandItem, rightHandItem[0]);
+                buyItem(myLeftHandItem, leftHandItem[0]);
+                buyItem(myEffectItem, effectItem[0]);
+                buyItem(myNoteItem, noteItem[0]);
+                buyItem(myBackgroundItem, backgroundItem[0]);
+            }
+
+            StreamReader sr = new StreamReader(dir);
+            String line;
+
+            line = sr.ReadLine();
+
+            if (line != null)
+            {
+                while (line != "!!")
+                {
+                    if (line == "rightHand")
+                    {
+
+                        line = sr.ReadLine();
+                        while (line != "**")
+                        {
+                            
+                            buyItem(myRightHandItem, rightHandItem[Int32.Parse(line)]);
+                            line = sr.ReadLine();
+
+                        }
+                    }
+
+                    if (line == "leftHand")
+                    {
+
+                        line = sr.ReadLine();
+                        while (line != "**")
+                        {
+
+                            buyItem(myLeftHandItem, leftHandItem[Int32.Parse(line)]);
+                            line = sr.ReadLine();
+
+                        }
+                    }
+
+
+                    if (line == "effect")
+                    {
+
+                        line = sr.ReadLine();
+                        while (line != "**")
+                        {
+
+                            buyItem(myEffectItem, effectItem[Int32.Parse(line)]);
+                            
+                            line = sr.ReadLine();
+
+                        }
+                    }
+
+
+                    if (line == "note")
+                    {
+
+                        line = sr.ReadLine();
+                        while (line != "**")
+                        {
+
+                            buyItem(myNoteItem, noteItem[Int32.Parse(line)]);
+                            line = sr.ReadLine();
+
+                        }
+                    }
+
+
+                    if (line == "background")
+                    {
+
+                        line = sr.ReadLine();
+                        while (line != "**")
+                        {
+
+                            buyItem(myBackgroundItem, backgroundItem[Int32.Parse(line)]);
+                            line = sr.ReadLine();
+
+                        }
+                    }
+
+
+
+                    line = sr.ReadLine();
+                }
+                sr.Close();
+            }
+
+        }
+
+
+
+
+
 
         //각 아이템 텍스쳐 저장
         public void LoadContent(ContentManager cm)
