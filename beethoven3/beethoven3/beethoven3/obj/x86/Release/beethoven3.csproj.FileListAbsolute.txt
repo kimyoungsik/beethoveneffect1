@@ -109,3 +109,11 @@ D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Microsoft.Samples.
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\charisma\charisma2.xnb
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\charisma\charisma1.xnb
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\background\park.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\metronome\metronome0.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\metronome\metronome1.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\metronome\metronome2.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\metronome\metronome3.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\metronome\metronome4.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\metronome\metronome5.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\metronome\metronome6.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\metronome\metronome7.xnb

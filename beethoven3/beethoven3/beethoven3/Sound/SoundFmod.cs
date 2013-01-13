@@ -124,6 +124,15 @@ namespace beethoven3
 
 
         }
+
+        //public static float GetTempo()
+        //{
+
+        //    float tempo = 0;
+        //    sndChannel.getFrequency(ref tempo);
+        //    return tempo;
+
+        //}
         public static void PlaySound(String name)
         {
             //노래찾아서 재생하기    
@@ -167,6 +176,13 @@ namespace beethoven3
                 isChangedTempo = 0;
                 changedTempo = 0;
             }
+            //다시 원래 대로 돌아왔으면
+
+            //이게 바뀐 템포인가에 대해서 바뀌지 않은 템포이다.
+            isChangedTempo = 0;
+
+            //현재 템포지정 
+            changedTempo = 0;
         }
 
 

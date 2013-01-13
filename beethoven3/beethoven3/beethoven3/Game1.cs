@@ -338,6 +338,7 @@ namespace beethoven3
 
       //  private bool isCharisma1;
 
+        private Texture2D[] metronomes;
 #if Kinect
        
 
@@ -716,6 +717,16 @@ namespace beethoven3
             //th4.Start();
             playingPictures = new Queue();
             showPictureTextures = new Texture2D[5];
+
+            metronomes = new Texture2D[8];
+            metronomes[0] = Content.Load<Texture2D>(@"metronome\metronome0");
+            metronomes[1] = Content.Load<Texture2D>(@"metronome\metronome1");
+            metronomes[2] = Content.Load<Texture2D>(@"metronome\metronome2");
+            metronomes[3] = Content.Load<Texture2D>(@"metronome\metronome3");
+            metronomes[4] = Content.Load<Texture2D>(@"metronome\metronome4");
+            metronomes[5] = Content.Load<Texture2D>(@"metronome\metronome5");
+            metronomes[6] = Content.Load<Texture2D>(@"metronome\metronome6");
+            metronomes[7] = Content.Load<Texture2D>(@"metronome\metronome7");
 #endif
 
         }
@@ -1051,6 +1062,9 @@ namespace beethoven3
         {
             if (KinectSensor.KinectSensors.Count == 0)
             {
+                //메시지 박스
+                //종료
+
                 return false;
             }
 
@@ -1100,9 +1114,15 @@ namespace beethoven3
             {
                 nui = null;
                 return false;
+               //Exit();
             }
 
-
+            //if (nui == null)
+            //{
+            //    //메시지 박스 
+            //    //종료
+                
+            //}
 
             if (nui != null)
             {
@@ -1335,6 +1355,9 @@ namespace beethoven3
                 }
                 PicFlag = false;
             }
+#if Kinect
+            getDepthFrame();
+#endif
         }
 
         void nui_DepthFrameReady(object sender, DepthImageFrameReadyEventArgs e)
@@ -2309,6 +2332,47 @@ namespace beethoven3
         //        ReturnBasicTempo();
         //    }   
         //}
+
+
+        //메트로놈
+        private Texture2D GetMetroTexture(double tempo)
+        {
+            Texture2D metoroTexture = metoroTexture = metronomes[4];
+            if (tempo == 1.0f)
+            {
+                metoroTexture = metronomes[4];
+            }
+            else if (tempo == 1.1f)
+            {
+                metoroTexture = metronomes[5];
+            }
+            else if (tempo == 1.2f)
+            {
+                metoroTexture = metronomes[6];
+            }
+            else if (tempo == 1.3f)
+            {
+                metoroTexture = metronomes[7];
+            }
+
+            else if (tempo == 0.9f)
+            {
+                metoroTexture = metronomes[3];
+            }
+            else if (tempo == 0.8f)
+            {
+                metoroTexture = metronomes[2];
+            }
+            else if (tempo == 0.7f)
+            {
+                metoroTexture = metronomes[1];
+            }
+
+            return metoroTexture;
+        }
+         
+
+
 
         //상점안에서 상점 대문으로 가는 키보드 처리
         private void HandleKeyboardInputinShopDoor(KeyboardState keyState)
@@ -5177,9 +5241,9 @@ namespace beethoven3
             spriteBatch.Begin();
 
 
-#if Kinect
-            getDepthFrame();
-#endif
+//#if Kinect
+//            getDepthFrame();
+//#endif
 
 
 
@@ -5264,6 +5328,32 @@ namespace beethoven3
                     this.Window.ClientBounds.Height),
                     Color.White);
 
+
+                double tempo =SoundFmod.changedTempo;
+              //  Trace.write(tempo);
+                Texture2D metoroTex = GetMetroTexture(tempo);
+               
+
+
+
+                //메트로늄
+                spriteBatch.Draw(
+                  metoroTex,
+                    //위치: Center-> location 으로 바꿈 (마커와 노트 매칭 떄문에 )
+                  new Vector2(10, 580),
+
+                  new Rectangle(0, 0, 150, 169),
+                  Color.White,
+                  0f,
+                    //origin ->  new Vector2(frameWidth / 2, frameHeight / 2) ->  new Vector2(0,0) 으로 바꿈 (마커와 노트 매칭 떄문에 )
+                  new Vector2(0, 0),
+                    //오른쪽 마크 크기 
+                  1f,
+                  SpriteEffects.None,
+                  0.0f);   
+
+
+
                 MarkManager.Draw(spriteBatch);
                 
                 //startnoteclass에 가야 보이고 안보이게 할 수 있음
@@ -5318,6 +5408,9 @@ namespace beethoven3
 
                 //하트. gage양 만큼 하트가 나타남.
                 spriteBatch.Draw(uiHeart, new Vector2(0, 6), new Rectangle(0, 0, gage, 50), Color.White);
+
+
+
 
                 charismaManager.Draw(gameTime, spriteBatch);
 

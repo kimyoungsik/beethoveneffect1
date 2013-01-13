@@ -101,3 +101,11 @@ Content\gold\gold.xnb
 Content\charisma\charisma2.xnb
 Content\charisma\charisma1.xnb
 Content\background\park.xnb
+Content\metronome\metronome0.xnb
+Content\metronome\metronome1.xnb
+Content\metronome\metronome2.xnb
+Content\metronome\metronome3.xnb
+Content\metronome\metronome4.xnb
+Content\metronome\metronome5.xnb
+Content\metronome\metronome6.xnb
+Content\metronome\metronome7.xnb
