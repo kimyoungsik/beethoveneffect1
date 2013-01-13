@@ -133,8 +133,14 @@ namespace beethoven3
 
 
 
-        //현재 찍힌 사진
-        String CurrentPic;
+        //스코어 보드에 쓰이는 사진
+        private String ScorePic;
+        private bool isScorePic = false;
+
+
+        private Queue playingPictures;
+        private int playPicturesCount = 0;
+        Texture2D[] showPictureTextures = new Texture2D[5];
 
 #endif
         //기본 글꼴
@@ -144,7 +150,7 @@ namespace beethoven3
 
         public enum GameStates { Menu, Playing, SongMenu, ShopDoor,
                           RightItemShop, LeftItemShop, EffectItemShop, NoteItemShop, BackgroundItemShop,
-                          ResultManager, RecordBoard };
+                          ResultManager, RecordBoard, ShowPictures };
 
         //게임 씬, 처음시작은 메뉴
         public static GameStates gameState = GameStates.Menu;
@@ -164,7 +170,7 @@ namespace beethoven3
         //마지막 순위 리스트 보여주는 화면 
         private RecordBoard recordBoard;
 
-
+        private ShowPictureScene showPictureScene;
 
         //노트 생성 부분 관리
         private StartNoteManager startNoteManager;
@@ -671,6 +677,10 @@ namespace beethoven3
             recordBoard = new RecordBoard();
             recordBoard.LoadContent(Content);
 
+
+            showPictureScene = new ShowPictureScene();
+            showPictureScene.LoadContent(Content);
+
             //점수 기록 (TO FILE)
             reportManager = new ReportManager(scoreManager);
             
@@ -704,10 +714,13 @@ namespace beethoven3
             //ts4 = new ThreadStart(FaceDetect);
             //th4 = new Thread(ts4);
             //th4.Start();
-
+            playingPictures = new Queue();
+            showPictureTextures = new Texture2D[5];
 #endif
 
         }
+
+
 #if Kinect
         void FaceDetect()
         {
@@ -2075,10 +2088,21 @@ namespace beethoven3
         void SavePic()
         {
             DateTime dateTime =DateTime.Now;
-            String gesture = "gesture_" + dateTime.Day.ToString() + "_" + dateTime.Hour.ToString() + "_" + dateTime.Minute.ToString() + "_" + dateTime.Second.ToString()+".jpg";
    
+            String gesture = "gesture_" + dateTime.Day.ToString() + "_" + dateTime.Hour.ToString() + "_" + dateTime.Minute.ToString() + "_" + dateTime.Second.ToString()+".jpg";
             String dir = "c:\\beethovenRecord\\userPicture\\"+gesture;
-            CurrentPic = gesture;
+
+            if (!isScorePic)
+            {
+                //마지막 스코어 보드에 쓰이는 사진
+                ScorePic = gesture;
+
+                isScorePic = true;
+            }
+
+            playingPictures.Enqueue(gesture);
+
+            
             Stream str = System.IO.File.OpenWrite(dir);
             CapturePic.SaveAsJpeg(str, SCR_W, SCR_H);
             str.Dispose();
@@ -4518,14 +4542,16 @@ namespace beethoven3
 
                        //reportManager의 scoreInfoManager에 곡명과 자기사진 추가
                        //여기에 현재 자신의 사진 이름이 들어가야 함.(날짜시간 포함해서 독립적으로)
-                       if(CurrentPic == null)
+                       if(ScorePic == null)
                        {
-                           CurrentPic = "myPicture.jpg";
+                           ScorePic = "myPicture.jpg";
                        }
 
 
-                       reportManager.AddSongInfoManager(scoreManager.SongName, scoreManager.TotalScore, CurrentPic);
-                       
+                       reportManager.AddSongInfoManager(scoreManager.SongName, scoreManager.TotalScore, ScorePic);
+
+
+                       isScorePic = false;
                        //현재 노래 제목
                        currentSongName = scoreManager.SongName;
                        
@@ -4543,9 +4569,9 @@ namespace beethoven3
                        //기록판에 보여줄 유저 사진 찾기
                        //Fine user pictures which will be seen in score board
                        reportManager.MakePictures(currentSongName, GraphicsDevice);
-                       
 
-
+                       playPicturesCount = 0;
+                       showPictureTextures = new Texture2D[5];
                        //Texture2D texture = null; 
                        //Stream str = System.IO.File.OpenWrite("gesture.jpg");
                        //texture.SaveAsJpeg(str, 1200, 900);
@@ -4615,7 +4641,7 @@ namespace beethoven3
                         //click the right hand item section
                         if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released )|| (finalClick &&!pastClick))
                         {
-                            gameState = GameStates.RecordBoard;
+                            gameState = GameStates.ShowPictures;
 
                            
                             //현재 마커 위치 저장
@@ -4688,7 +4714,28 @@ namespace beethoven3
                 break;
                 #endregion
 
-               #region 순위판 
+                   
+                #region 사진들
+                case GameStates.ShowPictures:
+                Rectangle rectMouseShowPictures = new Rectangle(mouseStateCurrent.X, mouseStateCurrent.Y, 5, 5);
+                if (rectMouseShowPictures.Intersects(showPictureScene.getRectNextButton()) || drawrec1.Intersects(showPictureScene.getRectNextButton()))
+                    {
+                        showPictureScene.setClickNextButton(true);
+                        //click the right hand item section
+                        if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (finalClick && !pastClick))
+                        {
+                            gameState = GameStates.RecordBoard;
+                        }
+                    }
+                    else
+                    {
+                        showPictureScene.setClickNextButton(false);
+                    }
+                    pastClick = finalClick;
+
+                break;
+                #endregion 
+                #region 순위판
                 case GameStates.RecordBoard:
 
                     Rectangle rectMouseRecordBoard = new Rectangle(mouseStateCurrent.X, mouseStateCurrent.Y, 5, 5);
@@ -4892,9 +4939,15 @@ namespace beethoven3
             //{
 
             //}
-
-            var ImageParam = nui.DepthStream.OpenNextFrame(0);
-            if (ImageParam == null)
+             
+          //  try
+          //  {
+                var ImageParam = nui.DepthStream.OpenNextFrame(0);
+          //  }
+          //  catch(Exception e )
+          //  {
+          //  }
+                if (ImageParam == null)
                 return;
 
             ImageBits = new short[ImageParam.PixelDataLength];
@@ -5324,12 +5377,55 @@ namespace beethoven3
             }
 
 
+
+            if (gameState == GameStates.ShowPictures)
+            {
+                showPictureScene.Draw(spriteBatch, this.Window.ClientBounds.Width, this.Window.ClientBounds.Height);
+                
+                
+
+                if(playingPictures.Count > 0 )
+                {
+                    //3개보다 많으면 3으로 
+                    playPicturesCount = (playingPictures.Count > 3 ? 3 : playingPictures.Count);
+                    int i;
+
+                    for (i = 0; i < playPicturesCount; i++)
+                    {
+
+                        FileStream fileStream = new FileStream(@"C:\\beethovenRecord\\userPicture\\" + playingPictures.Dequeue(), FileMode.Open);
+
+                        showPictureTextures[i] = Texture2D.FromStream(GraphicsDevice, fileStream);
+
+
+                    }
+
+                }
+                for (int i = 0; i < playPicturesCount; i++)
+                    {
+
+                        spriteBatch.Draw(showPictureTextures[i], new Rectangle(200, (i + 1) * 100, 100, 100), Color.White);
+                  
+
+                    }
+
+
+                
+
+                    
+
+            }
+
             if (gameState == GameStates.RecordBoard)
             {
                 recordBoard.Draw(spriteBatch, this. Window.ClientBounds.Width, this.Window.ClientBounds.Height);
 
                 //현재 노래 제목으로 5개 높은 노래 가져오기
                 List<ScoreInfo> highScores = reportManager.GetHighScore(currentSongName);
+
+
+               
+
 
                 int i;
                 for (i = 0; i < highScores.Count; i++)
