@@ -11,22 +11,33 @@ namespace beethoven3
     {
 
         #region declarations
-
-        private Texture2D zero;
-        private Texture2D one;
-        private Texture2D two;
-        private Texture2D three;
-        private Texture2D four;
-        private Texture2D five;
-        private Texture2D six;
-        private Texture2D seven;
-        private Texture2D eight;
-        private Texture2D nine;
         private Texture2D texture;
 
 
-        private Rectangle initialFrame = new Rectangle(0, 0, 126, 167);
-        private float scale = 1.0f;
+        private Texture2D pzero;
+        private Texture2D pone;
+        private Texture2D ptwo;
+        private Texture2D pthree;
+        private Texture2D pfour;
+        private Texture2D pfive;
+        private Texture2D psix;
+        private Texture2D pseven;
+        private Texture2D peight;
+        private Texture2D pnine;
+
+        private Texture2D gzero;
+        private Texture2D gone;
+        private Texture2D gtwo;
+        private Texture2D gthree;
+        private Texture2D gfour;
+        private Texture2D gfive;
+        private Texture2D gsix;
+        private Texture2D gseven;
+        private Texture2D geight;
+        private Texture2D gnine;
+        
+        private Rectangle initialFrame = new Rectangle(0, 0, 275, 376);
+        private float scale = 0.5f;
         private int frameCount = 1;
       //  private int duration = 40;
         private List<Number> ComboNumbers = new List<Number>();
@@ -39,88 +50,149 @@ namespace beethoven3
 
         public void LoadContent(ContentManager cm)
         {
-            //zero = cm.Load<Texture2D>(@"comboNumbers\zero");
-            //one = cm.Load<Texture2D>(@"comboNumbers\one");
-            //two = cm.Load<Texture2D>(@"comboNumbers\two");
-            //three = cm.Load<Texture2D>(@"comboNumbers\three");
-            //four = cm.Load<Texture2D>(@"comboNumbers\four");
-            //five = cm.Load<Texture2D>(@"comboNumbers\five");
-            //six = cm.Load<Texture2D>(@"comboNumbers\six");
-            //seven = cm.Load<Texture2D>(@"comboNumbers\seven");
-            //eight = cm.Load<Texture2D>(@"comboNumbers\eight");
-            //nine = cm.Load<Texture2D>(@"comboNumbers\nine");
+            pzero = cm.Load<Texture2D>(@"comboNumbers\perfect0");
+            pone = cm.Load<Texture2D>(@"comboNumbers\perfect1");
+            ptwo = cm.Load<Texture2D>(@"comboNumbers\perfect2");
+            pthree = cm.Load<Texture2D>(@"comboNumbers\perfect3");
+            pfour = cm.Load<Texture2D>(@"comboNumbers\perfect4");
+            pfive = cm.Load<Texture2D>(@"comboNumbers\perfect5");
+            psix = cm.Load<Texture2D>(@"comboNumbers\perfect6");
+            pseven = cm.Load<Texture2D>(@"comboNumbers\perfect7");
+            peight = cm.Load<Texture2D>(@"comboNumbers\perfect8");
+            pnine = cm.Load<Texture2D>(@"comboNumbers\perfect9");
 
-            zero = cm.Load<Texture2D>(@"comboNumbers\one");
-            one = cm.Load<Texture2D>(@"comboNumbers\one");
-            two = cm.Load<Texture2D>(@"comboNumbers\one");
-            three = cm.Load<Texture2D>(@"comboNumbers\one");
-            four = cm.Load<Texture2D>(@"comboNumbers\one");
-            five = cm.Load<Texture2D>(@"comboNumbers\one");
-            six = cm.Load<Texture2D>(@"comboNumbers\one");
-            seven = cm.Load<Texture2D>(@"comboNumbers\one");
-            eight = cm.Load<Texture2D>(@"comboNumbers\one");
-            nine = cm.Load<Texture2D>(@"comboNumbers\one");
-
-
+            gzero = cm.Load<Texture2D>(@"comboNumbers\good0");
+            gone = cm.Load<Texture2D>(@"comboNumbers\good1");
+            gtwo = cm.Load<Texture2D>(@"comboNumbers\good2");
+            gthree = cm.Load<Texture2D>(@"comboNumbers\good3");
+            gfour = cm.Load<Texture2D>(@"comboNumbers\good4");
+            gfive = cm.Load<Texture2D>(@"comboNumbers\good5");
+            gsix = cm.Load<Texture2D>(@"comboNumbers\good6");
+            gseven = cm.Load<Texture2D>(@"comboNumbers\good7");
+            geight = cm.Load<Texture2D>(@"comboNumbers\good8");
+            gnine = cm.Load<Texture2D>(@"comboNumbers\good9");
+       
 
         }
 
-              
-        public void AddComboNumbers(Vector2 location, int num, int duration = 30)
+        //타입에 따라,퍼펙트 0 ,good 1   
+        public void AddComboNumbers(Vector2 location, int num, int type, int duration = 30)
         {
-            switch (num)
+            if (type == 0)
             {
-                case 0:
+                switch (num)
+                {
+                    case 0:
 
-                    texture = zero;
+                        texture = pzero;
 
-                    break;
-                case 1:
+                        break;
+                    case 1:
 
-                    texture = one;
+                        texture = pone;
 
-                    break;
-                case 2:
+                        break;
+                    case 2:
 
-                    texture = two;
+                        texture = ptwo;
 
-                    break;
-                case 3:
+                        break;
+                    case 3:
 
-                    texture = three;
+                        texture = pthree;
 
-                    break;
-                case 4:
+                        break;
+                    case 4:
 
-                    texture = four;
+                        texture = pfour;
 
-                    break;
-                case 5:
+                        break;
+                    case 5:
 
-                    texture = five;
+                        texture = pfive;
 
-                    break;
-                case 6:
+                        break;
+                    case 6:
 
-                    texture = six;
+                        texture = psix;
 
-                    break;
-                case 7:
+                        break;
+                    case 7:
 
-                    texture = seven;
+                        texture = pseven;
 
-                    break;
-                case 8:
+                        break;
+                    case 8:
 
-                    texture = eight;
+                        texture = peight;
 
-                    break;
-                case 9:
+                        break;
+                    case 9:
 
-                    texture = nine;
+                        texture = pnine;
 
-                    break;
+                        break;
 
+
+                }
+            }
+            else if (type == 1)
+            {
+                switch (num)
+                {
+                    case 0:
+
+                        texture = gzero;
+
+                        break;
+                    case 1:
+
+                        texture = gone;
+
+                        break;
+                    case 2:
+
+                        texture = gtwo;
+
+                        break;
+                    case 3:
+
+                        texture = gthree;
+
+                        break;
+                    case 4:
+
+                        texture = gfour;
+
+                        break;
+                    case 5:
+
+                        texture = gfive;
+
+                        break;
+                    case 6:
+
+                        texture = gsix;
+
+                        break;
+                    case 7:
+
+                        texture = gseven;
+
+                        break;
+                    case 8:
+
+                        texture = geight;
+
+                        break;
+                    case 9:
+
+                        texture = gnine;
+
+                        break;
+
+
+                }
 
             }
 

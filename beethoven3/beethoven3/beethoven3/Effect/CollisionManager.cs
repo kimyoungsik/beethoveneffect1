@@ -131,10 +131,18 @@ namespace beethoven3
                 }
             }
         }
-
-        public void AddComboNumber(int number, int duration = 30)
+        //타입 perfect = 0 , good = 1
+        public void AddComboNumber(int number, int type , int duration = 30)
         {
             int num = number;
+            int j;
+            if (num > 10)
+            {
+                j = 2;
+                j++;
+
+
+            }
             int[] eachNumbers = new int[6];
             Vector2[] eachNumberLocations = new Vector2[6];
 
@@ -150,9 +158,11 @@ namespace beethoven3
 
             while (share > 0)
             {
-                share = share / 10;
                 length++;
                 eachNumbers[length - 1] = share % 10;
+                share = share / 10;
+                
+                
             }
 
 
@@ -161,7 +171,7 @@ namespace beethoven3
             for (i = 0; i < length; i++)
             {
                 //끝자리 부터
-                comboNumberManager.AddComboNumbers(new Vector2(comboLocation.X - i * 100, comboLocation.Y), eachNumbers[i], duration);
+                comboNumberManager.AddComboNumbers(new Vector2(comboLocation.X - i * 100, comboLocation.Y), eachNumbers[i], type ,duration);
 
 
             }
@@ -226,7 +236,9 @@ namespace beethoven3
                             scoreManager.Gage = scoreManager.Gage + 10;
                        
                             //콤보 글자 띄우기
-                            AddComboNumber(scoreManager.Combo);
+                            //perfect라서 두번쨰 매개변수가 0
+                            //good은 1
+                            AddComboNumber(scoreManager.Combo, 0);
 
                             //템포 원상 복귀
                             if (SoundFmod.isChangedTempo != 0)
@@ -268,6 +280,16 @@ namespace beethoven3
                             scoreManager.Gage = scoreManager.Gage + 10;
 
                             memberManager.SetMemberState(1, 1);
+
+
+
+
+                            //콤보 글자 띄우기
+                            //perfect라서 두번쨰 매개변수가 0
+                            //good은 1
+                            AddComboNumber(scoreManager.Combo, 1);
+
+
                             //템포 원상 복귀
                             //true
                             if (SoundFmod.isChangedTempo != 0)
@@ -794,7 +816,7 @@ namespace beethoven3
                             scoreManager.Combo = scoreManager.Combo + 1;
 
 
-                            AddComboNumber(scoreManager.Combo, 5);
+                            AddComboNumber(scoreManager.Combo, 1 ,5);
                         }
                     }
                     else

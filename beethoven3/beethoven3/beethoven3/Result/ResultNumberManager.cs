@@ -25,8 +25,8 @@ namespace beethoven3
         private Texture2D texture;
 
 
-        private Rectangle initialFrame = new Rectangle(0, 0, 126, 167);
-        private float scale = 1.0f;
+        private Rectangle initialFrame = new Rectangle(0, 0, 275, 376);
+        private float scale = 0.2f;
         private int frameCount = 1;
 
         private List<ResultNumber> resultNumbers = new List<ResultNumber>();
@@ -39,27 +39,17 @@ namespace beethoven3
 
         public void LoadContent(ContentManager cm)
         {
-            //zero = cm.Load<Texture2D>(@"resultNumbers\zero");
-            //one = cm.Load<Texture2D>(@"resultNumbers\one");
-            //two = cm.Load<Texture2D>(@"resultNumbers\two");
-            //three = cm.Load<Texture2D>(@"resultNumbers\three");
-            //four = cm.Load<Texture2D>(@"resultNumbers\four");
-            //five = cm.Load<Texture2D>(@"resultNumbers\five");
-            //six = cm.Load<Texture2D>(@"resultNumbers\six");
-            //seven = cm.Load<Texture2D>(@"resultNumbers\seven");
-            //eight = cm.Load<Texture2D>(@"resultNumbers\eight");
-            //nine = cm.Load<Texture2D>(@"resultNumbers\nine");
+            zero = cm.Load<Texture2D>(@"comboNumbers\perfect0");
+            one = cm.Load<Texture2D>(@"comboNumbers\perfect1");
+            two = cm.Load<Texture2D>(@"comboNumbers\perfect2");
+            three = cm.Load<Texture2D>(@"comboNumbers\perfect3");
+            four = cm.Load<Texture2D>(@"comboNumbers\perfect4");
+            five = cm.Load<Texture2D>(@"comboNumbers\perfect5");
+            six = cm.Load<Texture2D>(@"comboNumbers\perfect6");
+            seven = cm.Load<Texture2D>(@"comboNumbers\perfect7");
+            eight = cm.Load<Texture2D>(@"comboNumbers\perfect8");
+            nine = cm.Load<Texture2D>(@"comboNumbers\perfect9");
 
-            zero = cm.Load<Texture2D>(@"resultNumbers\one");
-            one = cm.Load<Texture2D>(@"resultNumbers\one");
-            two = cm.Load<Texture2D>(@"resultNumbers\one");
-            three = cm.Load<Texture2D>(@"resultNumbers\one");
-            four = cm.Load<Texture2D>(@"resultNumbers\one");
-            five = cm.Load<Texture2D>(@"resultNumbers\one");
-            six = cm.Load<Texture2D>(@"resultNumbers\one");
-            seven = cm.Load<Texture2D>(@"resultNumbers\one");
-            eight = cm.Load<Texture2D>(@"resultNumbers\one");
-            nine = cm.Load<Texture2D>(@"resultNumbers\one");
 
         }
 
