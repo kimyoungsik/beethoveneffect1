@@ -2098,14 +2098,18 @@ namespace beethoven3
                 ScorePic = gesture;
 
                 isScorePic = true;
+                Stream str = System.IO.File.OpenWrite(dir);
+                CapturePic.SaveAsJpeg(str, SCR_W, SCR_H);
+                str.Dispose();
             }
 
-            playingPictures.Enqueue(gesture);
+            playingPictures.Enqueue(CapturePic);
 
             
-            Stream str = System.IO.File.OpenWrite(dir);
-            CapturePic.SaveAsJpeg(str, SCR_W, SCR_H);
-            str.Dispose();
+           
+
+            
+           
             th1.Abort();
         }
 
@@ -5393,9 +5397,9 @@ namespace beethoven3
                     for (i = 0; i < playPicturesCount; i++)
                     {
 
-                        FileStream fileStream = new FileStream(@"C:\\beethovenRecord\\userPicture\\" + playingPictures.Dequeue(), FileMode.Open);
+                     //   FileStream fileStream = new FileStream(@"C:\\beethovenRecord\\userPicture\\" + playingPictures.Dequeue(), FileMode.Open);
 
-                        showPictureTextures[i] = Texture2D.FromStream(GraphicsDevice, fileStream);
+                        showPictureTextures[i] = (Texture2D)playingPictures.Dequeue();
 
 
                     }
