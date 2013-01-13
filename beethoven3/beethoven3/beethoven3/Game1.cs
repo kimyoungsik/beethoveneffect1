@@ -4718,10 +4718,10 @@ namespace beethoven3
                             Vector2[] zeroIndexMarkers = MarkManager.GetPattern(0);
                          //   removeAreaRec = MarkManager.GetRemoveArea(0);
                             //두번째꺼 재실행시 이상한거 생기는것 방지
-                            //startNoteManager.DeleateAllNote();
-                            StartNoteManager.rightNoteManager.DeleteAllNote();
-                            StartNoteManager.leftNoteManager.DeleteAllNote();
-                            StartNoteManager.longNoteManager.DeleteAllNote();
+                            startNoteManager.DeleateAllNote();
+                            //StartNoteManager.rightNoteManager.DeleteAllNote();
+                            //StartNoteManager.leftNoteManager.DeleteAllNote();
+                            //StartNoteManager.longNoteManager.DeleteAllNote();
 
 
                             startNoteManager = new StartNoteManager(
@@ -4729,8 +4729,13 @@ namespace beethoven3
                                 new Rectangle(0, 200, 52, 55),
                                 1);
 
+                            //드로우 라인
                             file.SetDrawLine(false);
+                            
+                            //골드 초기화 
                             GoldManager.DeleteAll();
+                            //카리스마
+                            charismaManager.IsCharismaTime = 0;
 
                             //froze 방지
                             MarkManager.initialize(
@@ -5407,8 +5412,6 @@ namespace beethoven3
 
                 //하트. gage양 만큼 하트가 나타남.
                 spriteBatch.Draw(uiHeart, new Vector2(0, 6), new Rectangle(0, 0, gage, 50), Color.White);
-
-
 
 
                 charismaManager.Draw(gameTime, spriteBatch);
