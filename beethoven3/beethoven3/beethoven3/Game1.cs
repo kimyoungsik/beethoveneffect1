@@ -72,7 +72,7 @@ namespace beethoven3
 
         //사진찍기
         Texture2D CapturePic;
-        bool PicFlag = false;
+        public static bool PicFlag = false;
 
         //일반 제스쳐
         private const int MinimumFrames = 6;
@@ -98,6 +98,7 @@ namespace beethoven3
         SpriteFont messageFont;
         string message = "start";
 
+        
 //        Texture2D charisma1;
 
 
@@ -129,6 +130,12 @@ namespace beethoven3
         bool clickJudge = false;
         List<DepthImagePoint> handList = new List<DepthImagePoint>();
         List<bool> clickList = new List<bool>();
+
+
+
+        //현재 찍힌 사진
+        String CurrentPic;
+
 #endif
         //기본 글꼴
         //basic font
@@ -1211,7 +1218,7 @@ namespace beethoven3
             message = e.Result.Text + " " + e.Result.Confidence.ToString();
             switch (e.Result.Text)
             {
-                case "stop":
+                //case "stop":
                     //ts2 = new ThreadStart(AngleUp);
                     //th2 = new Thread(ts2);
                     //th2.Start();//앵글 올리기
@@ -1221,15 +1228,15 @@ namespace beethoven3
                     //LoadGesturesFromFile(fileName);
                     //Skeleton2DDataExtract.Skeleton2DdataCoordReady += NuiSkeleton2DdataCoordReady;
                     //gestureFlag = true;
-                    break;
+                    //break;
 
 
-                case "next":
+                case "next":    
                 case "nest":
                 case "naxt":
-                    ts3 = new ThreadStart(AngleDown);
-                    th3 = new Thread(ts3);
-                    th3.Start();
+                    //ts3 = new ThreadStart(AngleDown);
+                    //th3 = new Thread(ts3);
+                    //th3.Start();
                     break;
 
                 case "photo":
@@ -1239,11 +1246,8 @@ namespace beethoven3
 
 
                 case "start":
-
-                case"sizak":
-                case"sijak":
-                case"sizac":
-                case"sijac":
+                case "stop":
+                
                     if (gameState == GameStates.Menu)
                     {
                         gameState = GameStates.SongMenu;
@@ -2070,7 +2074,12 @@ namespace beethoven3
 
         void SavePic()
         {
-            Stream str = System.IO.File.OpenWrite("gesture.jpg");
+            DateTime dateTime =DateTime.Now;
+            String gesture = "gesture_" + dateTime.Day.ToString() + "_" + dateTime.Hour.ToString() + "_" + dateTime.Minute.ToString() + "_" + dateTime.Second.ToString()+".jpg";
+   
+            String dir = "c:\\beethovenRecord\\userPicture\\"+gesture;
+            CurrentPic = gesture;
+            Stream str = System.IO.File.OpenWrite(dir);
             CapturePic.SaveAsJpeg(str, SCR_W, SCR_H);
             str.Dispose();
             th1.Abort();
@@ -2086,17 +2095,17 @@ namespace beethoven3
             {//오른손이 왼쪽으로 동작할때
                 songMenu.isKinectRight = true;
                 //사진
-                foreach (Skeleton sd in Skeletons)
-                {
+                //foreach (Skeleton sd in Skeletons)
+                //{
 
-                    if (sd.TrackingState == SkeletonTrackingState.Tracked)
-                    {
-                        PicFlag = true;
+                //    if (sd.TrackingState == SkeletonTrackingState.Tracked)
+                //    {
+                //        PicFlag = true;
 
 
-                    }
-                }
-                message = "right";
+                //    }
+                //}
+                //message = "right";
             };
 
 
@@ -2107,7 +2116,7 @@ namespace beethoven3
                 //ts4 = new ThreadStart(FaceDetect);
                 //th4 = new Thread(ts4);
                 //th4.Start();
-                message = "left";
+                //message = "left";
             };
 
             return recognizer;
@@ -4509,7 +4518,13 @@ namespace beethoven3
 
                        //reportManager의 scoreInfoManager에 곡명과 자기사진 추가
                        //여기에 현재 자신의 사진 이름이 들어가야 함.(날짜시간 포함해서 독립적으로)
-                       reportManager.AddSongInfoManager(scoreManager.SongName, scoreManager.TotalScore, "myPicture.jpg");
+                       if(CurrentPic == null)
+                       {
+                           CurrentPic = "myPicture.jpg";
+                       }
+
+
+                       reportManager.AddSongInfoManager(scoreManager.SongName, scoreManager.TotalScore, CurrentPic);
                        
                        //현재 노래 제목
                        currentSongName = scoreManager.SongName;
@@ -4522,13 +4537,20 @@ namespace beethoven3
                        scoreManager.TotalGold += scoreManager.Gold;
                        reportManager.SaveGoldToFile();
                        
+
+
+
                        //기록판에 보여줄 유저 사진 찾기
                        //Fine user pictures which will be seen in score board
                        reportManager.MakePictures(currentSongName, GraphicsDevice);
                        
+
+
                        //Texture2D texture = null; 
                        //Stream str = System.IO.File.OpenWrite("gesture.jpg");
                        //texture.SaveAsJpeg(str, 1200, 900);
+
+
                        SoundFmod.StopSound();
 
                        resultNumberManager.AddResultNumbers(new Vector2(200, 300), scoreManager.Perfect);

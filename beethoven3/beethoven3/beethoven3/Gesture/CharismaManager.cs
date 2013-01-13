@@ -185,17 +185,17 @@ namespace beethoven3
               CharisimaFrame charismaFrame  = (CharisimaFrame)charismaFrames.Peek();
 
               if (currentTime > charismaFrame.StartTime )
-              //          11              10
+             
               {
                   if (isCharismaTime == 0)
                   {
+                      Game1.PicFlag = true;
                       isCharismaTime = 2;
                   }
                   spriteBatch.Draw(charismaFrame.Texture, picLocation, Color.White);
               }
               if (currentTime > charismaFrame.EndTime)
-              { //     8                    12
-               
+              { 
                   isCharismaTime = 0;
                   charismaFrames.Dequeue();
   
