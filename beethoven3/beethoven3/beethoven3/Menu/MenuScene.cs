@@ -61,6 +61,16 @@ namespace beethoven3
 
             }
 
+            //Shop
+            if ((mouseRectangle.Intersects(new Rectangle(720, 560, 220, 40)) && mouse.LeftButton == ButtonState.Pressed && pastmouse.LeftButton == ButtonState.Released)
+                || (key.IsKeyDown(Keys.F1) && !pastkey.IsKeyDown(Keys.F1)) || Game1.drawrec1.Intersects(new Rectangle(720, 560, 220, 40)) && Game1.finalClick)
+            {
+                Game1.gameState = Game1.GameStates.SettingBoard;
+
+
+            }
+   
+
             pastmouse = mouse;
             pastkey = key;
          

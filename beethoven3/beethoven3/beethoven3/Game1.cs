@@ -150,7 +150,7 @@ namespace beethoven3
 
         public enum GameStates { Menu, Playing, SongMenu, ShopDoor,
                           RightItemShop, LeftItemShop, EffectItemShop, NoteItemShop, BackgroundItemShop,
-                          ResultManager, RecordBoard, ShowPictures };
+                          ResultManager, RecordBoard, ShowPictures, SettingBoard };
 
         //게임 씬, 처음시작은 메뉴
         public static GameStates gameState = GameStates.Menu;
@@ -177,6 +177,10 @@ namespace beethoven3
         
         //충돌 관리
         private CollisionManager collisionManager;
+
+        //세팅
+        private SettingBoard settingBoard;
+
         
         //악보파일 관리(불러오기 등)
         private File file;
@@ -720,6 +724,9 @@ namespace beethoven3
             //점수기록판 화면
             recordBoard = new RecordBoard();
             recordBoard.LoadContent(Content);
+
+            settingBoard = new SettingBoard();
+            settingBoard.LoadContent(Content);
 
 
             showPictureScene = new ShowPictureScene();
@@ -2419,7 +2426,7 @@ namespace beethoven3
 
 
         //상점안에서 상점 대문으로 가는 키보드 처리
-        private void HandleKeyboardInputinShopDoor(KeyboardState keyState)
+        private void HandleKeyboardInputGoToMenu(KeyboardState keyState)
         {
             if (keyState.IsKeyDown(Keys.B))
             {
@@ -2582,7 +2589,7 @@ namespace beethoven3
                 //상점대문
                case GameStates.ShopDoor:
                     //타이틀화면으로 돌아가는 키보드처리
-                    HandleKeyboardInputinShopDoor(Keyboard.GetState());
+                    HandleKeyboardInputGoToMenu(Keyboard.GetState());
 
                    Rectangle rect = new Rectangle(mouseStateCurrent.X, mouseStateCurrent.Y, 5, 5);
 
@@ -4727,6 +4734,37 @@ namespace beethoven3
 
                #endregion
 
+               #region Setting
+               case GameStates.SettingBoard:
+
+                HandleKeyboardInputGoToMenu(Keyboard.GetState());
+
+                Rectangle rectMouseSettingBoard = new Rectangle(mouseStateCurrent.X, mouseStateCurrent.Y, 5, 5);
+                   //nextButton 위에 마우스를 올려놨을 때
+                    //mousecursor on nextButton item section
+
+
+                if (rectMouseSettingBoard.Intersects(settingBoard.getRectNextButton()) || drawrec1.Intersects(settingBoard.getRectNextButton()))
+                    {
+                        recordBoard.setClickNextButton(true);
+                        //click the right hand item section
+                        if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (finalClick && !pastClick))
+                        {
+                            gameState = GameStates.Menu;
+                        }
+                    }
+                    else
+                    {
+                        settingBoard.setClickNextButton(false);
+                    }
+                    pastClick = finalClick;
+
+                   break;
+
+               
+               
+               #endregion
+
                #region 결과 결산
                //결과 창
                 case GameStates.ResultManager:
@@ -4857,9 +4895,9 @@ namespace beethoven3
                     Rectangle rectMouseRecordBoard = new Rectangle(mouseStateCurrent.X, mouseStateCurrent.Y, 5, 5);
                    //nextButton 위에 마우스를 올려놨을 때
                     //mousecursor on nextButton item section
-                    
-             
-                    if (rectMouseRecordBoard.Intersects(recordBoard.getRectNextButton())|| drawrec1.Intersects(resultManager.getRectNextButton()))
+
+
+                    if (rectMouseRecordBoard.Intersects(recordBoard.getRectNextButton()) || drawrec1.Intersects(recordBoard.getRectNextButton()))
                     {
                         recordBoard.setClickNextButton(true);
                         //click the right hand item section
@@ -5555,6 +5593,17 @@ namespace beethoven3
             }
 
             #endregion
+
+            #region Setting
+            if (gameState == GameStates.SettingBoard)
+            {
+                settingBoard.Draw(spriteBatch, this.Window.ClientBounds.Width, this.Window.ClientBounds.Height);
+
+           
+
+            }
+            #endregion
+
 
             #region 스코어 보드
 
