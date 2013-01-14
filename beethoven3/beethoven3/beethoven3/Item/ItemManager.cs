@@ -176,13 +176,12 @@ namespace beethoven3
             //자기 아이템이 전체 아이템의 몇번 인덱스 인지 파악한후에 저장
             int i;
             int index;
-            
-            String dir = "c:\\beethovenRecord\\itemManager.txt";
+           
+            String dir = System.Environment.CurrentDirectory + "\\beethovenRecord\\itemManager.txt";
             if (!System.IO.File.Exists(dir))
             {
-                System.IO.File.OpenWrite(dir);
-               
-                
+                var myFile = System.IO.File.Create(dir);
+                myFile.Close();
             }
 
             TextWriter tw = new StreamWriter(dir);
@@ -233,101 +232,106 @@ namespace beethoven3
 
         public void LoadFileItem()
         {
+          
 
-            String dir = "c:\\beethovenRecord\\itemManager.txt";
+
+            String dir = System.Environment.CurrentDirectory + "\\beethovenRecord\\itemManager.txt";
             if (!System.IO.File.Exists(dir))
             {
-                System.IO.File.OpenWrite(dir);
+                var myFile = System.IO.File.Create(dir);
+                myFile.Close();
                 buyItem(myRightHandItem, rightHandItem[0]);
                 buyItem(myLeftHandItem, leftHandItem[0]);
                 buyItem(myEffectItem, effectItem[0]);
                 buyItem(myNoteItem, noteItem[0]);
                 buyItem(myBackgroundItem, backgroundItem[0]);
             }
-
-            StreamReader sr = new StreamReader(dir);
-            String line;
-
-            line = sr.ReadLine();
-
-            if (line != null)
+            else
             {
-                while (line != "!!")
+                StreamReader sr = new StreamReader(dir);
+                String line;
+
+                line = sr.ReadLine();
+
+                if (line != null)
                 {
-                    if (line == "rightHand")
+                    while (line != "!!")
                     {
-
-                        line = sr.ReadLine();
-                        while (line != "**")
-                        {
-                            
-                            buyItem(myRightHandItem, rightHandItem[Int32.Parse(line)]);
-                            line = sr.ReadLine();
-
-                        }
-                    }
-
-                    if (line == "leftHand")
-                    {
-
-                        line = sr.ReadLine();
-                        while (line != "**")
+                        if (line == "rightHand")
                         {
 
-                            buyItem(myLeftHandItem, leftHandItem[Int32.Parse(line)]);
                             line = sr.ReadLine();
+                            while (line != "**")
+                            {
 
+                                buyItem(myRightHandItem, rightHandItem[Int32.Parse(line)]);
+                                line = sr.ReadLine();
+
+                            }
                         }
-                    }
 
-
-                    if (line == "effect")
-                    {
-
-                        line = sr.ReadLine();
-                        while (line != "**")
+                        if (line == "leftHand")
                         {
 
-                            buyItem(myEffectItem, effectItem[Int32.Parse(line)]);
-                            
                             line = sr.ReadLine();
+                            while (line != "**")
+                            {
 
+                                buyItem(myLeftHandItem, leftHandItem[Int32.Parse(line)]);
+                                line = sr.ReadLine();
+
+                            }
                         }
-                    }
 
 
-                    if (line == "note")
-                    {
-
-                        line = sr.ReadLine();
-                        while (line != "**")
+                        if (line == "effect")
                         {
 
-                            buyItem(myNoteItem, noteItem[Int32.Parse(line)]);
                             line = sr.ReadLine();
+                            while (line != "**")
+                            {
 
+                                buyItem(myEffectItem, effectItem[Int32.Parse(line)]);
+
+                                line = sr.ReadLine();
+
+                            }
                         }
-                    }
 
 
-                    if (line == "background")
-                    {
-
-                        line = sr.ReadLine();
-                        while (line != "**")
+                        if (line == "note")
                         {
 
-                            buyItem(myBackgroundItem, backgroundItem[Int32.Parse(line)]);
                             line = sr.ReadLine();
+                            while (line != "**")
+                            {
 
+                                buyItem(myNoteItem, noteItem[Int32.Parse(line)]);
+                                line = sr.ReadLine();
+
+                            }
                         }
+
+
+                        if (line == "background")
+                        {
+
+                            line = sr.ReadLine();
+                            while (line != "**")
+                            {
+
+                                buyItem(myBackgroundItem, backgroundItem[Int32.Parse(line)]);
+                                line = sr.ReadLine();
+
+                            }
+                        }
+
+
+
+                        line = sr.ReadLine();
                     }
-
-
-
-                    line = sr.ReadLine();
+                    sr.Close();
                 }
-                sr.Close();
             }
 
         }

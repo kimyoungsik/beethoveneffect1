@@ -1,0 +1,4 @@
+%%
+abc.mnf
+myPicture.jpg$0
+**

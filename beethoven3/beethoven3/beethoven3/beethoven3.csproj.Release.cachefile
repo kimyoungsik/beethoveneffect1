@@ -85,13 +85,6 @@ Content\judgement\bad.xnb
 Content\judgement\good.xnb
 Content\judgement\miss.xnb
 Content\judgement\perfect.xnb
-Content\snd\ka.xnb
-Content\snd\jo.xnb
-Content\snd\maid.xnb
-Content\Fonts\damagefont.xnb
-Content\Fonts\Pericles36.xnb
-Content\MessageFont.xnb
-Content\Fonts\PerpetuaFont.xnb
 Content\resultNumbers\one.xnb
 Content\gold\gold.xnb
 Content\charisma\charisma2.xnb
@@ -125,6 +118,13 @@ Content\comboNumbers\good6.xnb
 Content\comboNumbers\good7.xnb
 Content\comboNumbers\good8.xnb
 Content\comboNumbers\good9.xnb
+Content\snd\ka.xnb
+Content\snd\jo.xnb
+Content\snd\maid.xnb
+Content\Fonts\damagefont.xnb
+Content\Fonts\Pericles36.xnb
+Content\MessageFont.xnb
+Content\Fonts\PerpetuaFont.xnb
 Content\snd\ka.wma
 Content\snd\jo.wma
 Content\snd\maid.wma

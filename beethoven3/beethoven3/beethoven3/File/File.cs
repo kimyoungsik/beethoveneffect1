@@ -283,7 +283,7 @@ namespace beethoven3
             //끝나는 시간 설정
             endTime = noteFileManager.noteFiles[noteNumber].EndTime;
 
-            StreamReader sr = new StreamReader("C:\\beethoven\\" + name, Encoding.Unicode);
+            StreamReader sr = new StreamReader(System.Environment.CurrentDirectory+"\\beethovenSong\\" + name, Encoding.Unicode);
             scoreManager.SongName = name;
          
             //첫줄은 헤더
