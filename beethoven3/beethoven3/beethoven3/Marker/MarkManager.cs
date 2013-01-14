@@ -230,6 +230,24 @@ namespace beethoven3
             switch (index)
             {
                 case 0:
+                    //mark0Loc = new Vector2(250, 260);
+                    //mark1Loc = new Vector2(210, 420);
+                    //mark2Loc = new Vector2(250, 580);
+                    //mark3Loc = new Vector2(620, 260);
+                    //mark4Loc = new Vector2(660, 420);
+                    //mark5Loc = new Vector2(620, 580);
+
+                    ////큰거
+                    mark0Loc = new Vector2(200, 240);
+                    mark1Loc = new Vector2(140, 420);
+                    mark2Loc = new Vector2(200, 620);
+                    mark3Loc = new Vector2(680, 240);
+                    mark4Loc = new Vector2(740, 420);
+                    mark5Loc = new Vector2(680, 620);
+                  
+                    break;
+
+                case 1:
                     mark0Loc = new Vector2(250, 260);
                     mark1Loc = new Vector2(210, 420);
                     mark2Loc = new Vector2(250, 580);
@@ -237,17 +255,12 @@ namespace beethoven3
                     mark4Loc = new Vector2(660, 420);
                     mark5Loc = new Vector2(620, 580);
 
-                  
-                    break;
-
-                case 1:
-
-                    mark0Loc = new Vector2(200, 240);
-                    mark1Loc = new Vector2(140, 420);
-                    mark2Loc = new Vector2(200, 620);
-                    mark3Loc = new Vector2(680, 240);
-                    mark4Loc = new Vector2(740, 420);
-                    mark5Loc = new Vector2(680, 620);
+                    //mark0Loc = new Vector2(200, 240);
+                    //mark1Loc = new Vector2(140, 420);
+                    //mark2Loc = new Vector2(200, 620);
+                    //mark3Loc = new Vector2(680, 240);
+                    //mark4Loc = new Vector2(740, 420);
+                    //mark5Loc = new Vector2(680, 620);
                  //   centerArea = new Rectangle(250, 260, 220, 320);
                     break;
 

@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
+//using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
+//using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
+//using Microsoft.Xna.Framework.Media;
 
 
 namespace beethoven3
@@ -43,8 +43,8 @@ namespace beethoven3
             Rectangle mouseRectangle = new Rectangle(mouse.X, mouse.Y, 1, 1);
 
             //Start
-            if ((mouseRectangle.Intersects(new Rectangle(440, 625, 150, 35)) && mouse.LeftButton == ButtonState.Pressed && pastmouse.LeftButton == ButtonState.Released)
-                || (key.IsKeyDown(Keys.Space) && !pastkey.IsKeyDown(Keys.Space)) || Game1.drawrec1.Intersects(new Rectangle(440, 625, 150, 35)) && Game1.finalClick)
+            if ((mouseRectangle.Intersects(new Rectangle(160, 310, 160, 50)) && mouse.LeftButton == ButtonState.Pressed && pastmouse.LeftButton == ButtonState.Released)
+                || (key.IsKeyDown(Keys.Space) && !pastkey.IsKeyDown(Keys.Space)) || Game1.drawrec1.Intersects(new Rectangle(160, 310, 160, 50)) && Game1.finalClick)
             {
                 Game1.gameState = Game1.GameStates.SongMenu;
 
@@ -53,8 +53,8 @@ namespace beethoven3
 
 
             //Shop
-            if ((mouseRectangle.Intersects(new Rectangle(880, 690, 110, 35)) && mouse.LeftButton == ButtonState.Pressed && pastmouse.LeftButton == ButtonState.Released)
-                || (key.IsKeyDown(Keys.S) && !pastkey.IsKeyDown(Keys.S)) || Game1.drawrec1.Intersects(new Rectangle(880, 690, 110, 35)) && Game1.finalClick)
+            if ((mouseRectangle.Intersects(new Rectangle(720, 300, 160, 70)) && mouse.LeftButton == ButtonState.Pressed && pastmouse.LeftButton == ButtonState.Released)
+                || (key.IsKeyDown(Keys.S) && !pastkey.IsKeyDown(Keys.S)) || Game1.drawrec1.Intersects(new Rectangle(720, 300, 160, 70)) && Game1.finalClick)
             {
                 Game1.gameState = Game1.GameStates.ShopDoor;
 
