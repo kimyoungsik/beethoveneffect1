@@ -5363,7 +5363,8 @@ namespace beethoven3
                 //    spriteBatch.Draw(perfectBanner, new Rectangle(70, 70, 100, 100), Color.White);
              
                 //}
-
+                //String name = noteFileManager.noteFiles[songMenu.Scene_number].Name;
+            
 
             }
 
@@ -5485,7 +5486,7 @@ namespace beethoven3
 
             }
             #endregion
-
+            #region 결과 화면
             if (gameState == GameStates.ResultManager)
             {
                 //class resultManager 에 draw실행
@@ -5508,7 +5509,6 @@ namespace beethoven3
 
                 resultNumberManager.Draw(spriteBatch);
 
-
                 //진짜 화면에 나타나는것은 update,플레이에 있음.
                 //이것은 지울 예정임/
                 spriteBatch.DrawString(pericles36Font, scoreManager.Perfect.ToString(), new Vector2(300, 300), Color.White);
@@ -5521,6 +5521,9 @@ namespace beethoven3
                 spriteBatch.DrawString(pericles36Font, scoreManager.TotalScore.ToString(), new Vector2(700, 500), Color.White);
             }
 
+            #endregion
+
+            #region 사진 보여주기 
 
 
             if (gameState == GameStates.ShowPictures)
@@ -5554,12 +5557,11 @@ namespace beethoven3
 
                     }
 
-
-                
-
-                    
-
             }
+
+            #endregion
+
+            #region 스코어 보드
 
             if (gameState == GameStates.RecordBoard)
             {
@@ -5582,6 +5584,9 @@ namespace beethoven3
                 }
 
             }
+
+
+            #endregion
 #if Kinect
             if (KinectVideoTexture != null)
             {

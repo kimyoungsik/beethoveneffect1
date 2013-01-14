@@ -372,7 +372,7 @@ namespace beethoven3
             missEffectTexture[1] = cm.Load<Texture2D>(@"Explosion\needleExplosion2");
             missEffectTexture[2] = cm.Load<Texture2D>(@"Explosion\windExplosion2");
          
-            noteTexture[0] = cm.Load<Texture2D>(@"notes\starNote");
+            noteTexture[0] = cm.Load<Texture2D>(@"notes\planetNote1");
             noteTexture[1] = cm.Load<Texture2D>(@"notes\turnNote2");
             
             //노트랑 한쌍이다.

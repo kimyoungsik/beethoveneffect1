@@ -17,7 +17,7 @@ namespace beethoven3
     {
         private NoteFileManager noteFileManager;
 
-
+        private SpriteFont pericles36Font;
       //  bool pastClick;
         MouseState pastmouse;
         KeyboardState pastkey;
@@ -70,6 +70,7 @@ namespace beethoven3
         //컨텐츠 로드
         public void Load(ContentManager content,GraphicsDevice graphicsdevice)
         {
+            pericles36Font = content.Load<SpriteFont>(@"Fonts\Pericles36");
 
             background = content.Load<Texture2D>("SongMenu/background");
             leftright[0] = content.Load<Texture2D>("SongMenu/arrow1");
@@ -114,6 +115,14 @@ namespace beethoven3
         }
 
         //업데이트
+        public int Scene_number
+        {
+            get { return scene_number; }
+            set { scene_number = value; }
+        }
+
+
+
         public int Update()
         {
             MouseState mouse = Mouse.GetState();
@@ -272,10 +281,16 @@ namespace beethoven3
             spriteBatch.Draw(background, Vector2.Zero, new Color(fadeinout, fadeinout, fadeinout));
             drawText(spriteBatch);
             drawArrow(spriteBatch);
-            drawNumber(spriteBatch);
+           // drawNumber(spriteBatch);
             drawBack(spriteBatch);
             drawStart(spriteBatch);
-            TextAnimation1(spriteBatch); 
+            TextAnimation1(spriteBatch);
+
+
+            String name = noteFileManager.noteFiles[scene_number].Name;
+            spriteBatch.DrawString(pericles36Font, name, new Vector2(512, 420), Color.White);
+              
+
           //  drawTop(spriteBatch);
         }
         public void drawArrow(SpriteBatch spriteBatch)

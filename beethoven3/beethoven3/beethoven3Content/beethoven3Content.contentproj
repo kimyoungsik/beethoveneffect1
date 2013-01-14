@@ -629,13 +629,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="markers\whiteMarker.png">
-      <Name>whiteMarker</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Textures\heart.png">
       <Name>heart</Name>
       <Importer>TextureImporter</Importer>
@@ -839,6 +832,35 @@
     </Compile>
     <Compile Include="comboNumbers\good9.png">
       <Name>good9</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="markers\whiteMarker.png">
+      <Name>whiteMarker</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="notes\planetNote1.png">
+      <Name>planetNote1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="notes\planetNote2.png">
+      <Name>planetNote2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="notes\planetNote3.png">
+      <Name>planetNote3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="notes\planetNote4.png">
+      <Name>planetNote4</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

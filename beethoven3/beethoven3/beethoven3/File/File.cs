@@ -241,7 +241,7 @@ namespace beethoven3
                             //0: version , 1:name , 2: artist, 3: mp3, 4: picture
 
                             //노트정보관리에 다음 사항을 넣는다. //*** 버전 추가 
-                            noteFileManager.Add("1", name, artist, mp3, picture, startTime, endTime);
+                            noteFileManager.Add("1", 1,name, artist, mp3, picture, startTime, endTime);
 
                             
 
@@ -286,7 +286,7 @@ namespace beethoven3
             //끝나는 시간 설정
             endTime = noteFileManager.noteFiles[noteNumber].EndTime;
 
-            StreamReader sr = new StreamReader(System.Environment.CurrentDirectory+"\\beethovenSong\\" + name, Encoding.Unicode);
+            StreamReader sr = new StreamReader(System.Environment.CurrentDirectory+"\\beethovenSong\\" + name + ".mnf", Encoding.Unicode);
             scoreManager.SongName = name;
          
             //첫줄은 헤더

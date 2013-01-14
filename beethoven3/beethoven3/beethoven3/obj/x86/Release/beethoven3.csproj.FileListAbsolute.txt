@@ -136,3 +136,7 @@ D:\beethoven\beethoven3\beethoven3\beethoven3\obj\x86\Release\ResolveAssemblyRef
 D:\beethoven\beethoven3\beethoven3\beethoven3\obj\x86\Release\Microsoft.Xna.Framework.RuntimeProfile.txt
 D:\beethoven\beethoven3\beethoven3\beethoven3\obj\x86\Release\beethoven3.exe
 D:\beethoven\beethoven3\beethoven3\beethoven3\obj\x86\Release\beethoven3.pdb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\planetNote1.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\planetNote2.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\planetNote3.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\planetNote4.xnb

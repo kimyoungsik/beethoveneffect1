@@ -737,7 +737,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\markers\whiteMarker.xnb</Output>
-      <Time>2013-01-11T15:35:37.453546+09:00</Time>
+      <Time>2013-01-14T13:52:33.276087+09:00</Time>
     </Item>
     <Item>
       <Source>Textures\heart.png</Source>
@@ -1127,7 +1127,7 @@
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Fonts\Pericles36.xnb</Output>
-      <Time>2013-01-08T22:57:38.3089716+09:00</Time>
+      <Time>2013-01-14T13:40:14.1378107+09:00</Time>
     </Item>
     <Item>
       <Source>MessageFont.spritefont</Source>
@@ -1146,6 +1146,42 @@
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Fonts\PerpetuaFont.xnb</Output>
       <Time>2013-01-08T22:57:38.3099716+09:00</Time>
+    </Item>
+    <Item>
+      <Source>notes\planetNote1.png</Source>
+      <Name>notes\planetNote1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\planetNote1.xnb</Output>
+      <Time>2013-01-14T14:02:38.5147047+09:00</Time>
+    </Item>
+    <Item>
+      <Source>notes\planetNote2.png</Source>
+      <Name>notes\planetNote2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\planetNote2.xnb</Output>
+      <Time>2013-01-14T14:02:38.5297055+09:00</Time>
+    </Item>
+    <Item>
+      <Source>notes\planetNote3.png</Source>
+      <Name>notes\planetNote3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\planetNote3.xnb</Output>
+      <Time>2013-01-14T14:02:38.5317057+09:00</Time>
+    </Item>
+    <Item>
+      <Source>notes\planetNote4.png</Source>
+      <Name>notes\planetNote4</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\planetNote4.xnb</Output>
+      <Time>2013-01-14T14:02:38.5327057+09:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
