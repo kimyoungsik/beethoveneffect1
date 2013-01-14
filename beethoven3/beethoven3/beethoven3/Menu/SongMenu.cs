@@ -36,6 +36,9 @@ namespace beethoven3
         Rectangle starttextrect;
         Texture2D[] top;
 
+        private Texture2D levelTexture;
+
+
         public bool isKinectRight = false;
         public bool isKinectLeft = false;
         int scene_number;
@@ -64,6 +67,8 @@ namespace beethoven3
             startrect = new Rectangle(800, 655, 180, 45);
             starttextrect = new Rectangle(860, 660, 60, 30);
             top = new Texture2D[7];
+
+
         }
         
 
@@ -71,6 +76,9 @@ namespace beethoven3
         public void Load(ContentManager content,GraphicsDevice graphicsdevice)
         {
             pericles36Font = content.Load<SpriteFont>(@"Fonts\Pericles36");
+            levelTexture = content.Load<Texture2D>(@"ui\heart");
+
+
 
             background = content.Load<Texture2D>("SongMenu/background");
             leftright[0] = content.Load<Texture2D>("SongMenu/arrow1");
@@ -80,6 +88,8 @@ namespace beethoven3
             
             backtext = content.Load<Texture2D>("Status/backtext");
             starttext = content.Load<Texture2D>("Status/backtext");
+
+
 
             for (int i = 0; i < noteFileManager.noteFiles.Count; i++)
             {
@@ -289,7 +299,17 @@ namespace beethoven3
 
             String name = noteFileManager.noteFiles[scene_number].Name;
             spriteBatch.DrawString(pericles36Font, name, new Vector2(512, 420), Color.White);
-              
+
+
+       //     spriteBatch.Draw(uiBackground, new Vector2(0, 0), Color.White);
+
+            int level = noteFileManager.noteFiles[scene_number].Level;
+            //0이하이거나 넘어가지 않게 
+
+            Rectangle rec = new Rectangle(0, 0, level*40/*하나의 그림의 width*/, 50);
+            //하트. gage양 만큼 하트가 나타남.
+            spriteBatch.Draw(levelTexture, new Vector2(300, 700), rec, Color.White);
+
 
           //  drawTop(spriteBatch);
         }
@@ -372,10 +392,10 @@ namespace beethoven3
                     spriteBatch.Draw(pictures[scene_number + 1], new Rectangle(margin + 1024, 100, 500, 500), new Color(fadeinout, fadeinout, fadeinout));
             }
         }
-        public void drawNumber(SpriteBatch spriteBatch)
-        {
-            spriteBatch.DrawString(font, (scene_number + 1) + "/3", new Vector2(350, 510), Color.Black);
-        }
+        //public void drawNumber(SpriteBatch spriteBatch)
+        //{
+        //    spriteBatch.DrawString(font, (scene_number + 1) + "/3", new Vector2(350, 510), Color.Black);
+        //}
         public void drawBack(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(box, backrect, new Color(fadeinout, fadeinout, fadeinout));

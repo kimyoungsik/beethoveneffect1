@@ -5293,14 +5293,10 @@ namespace beethoven3
 //            getDepthFrame();
 //#endif
 
-
-
-
             //타이틀화면
+            #region 타이틀화면
             if (gameState == GameStates.Menu)
-            {
-
-               
+            {      
                 menuScene.Draw(spriteBatch, this.Window.ClientBounds.Width, this.Window.ClientBounds.Height);
                 if (isNoPerson)
                 {
@@ -5310,12 +5306,16 @@ namespace beethoven3
                 }
             }
 
+            #endregion
+
+            #region 상점 대문
             //상전대문
             if (gameState == GameStates.ShopDoor)
             {
                 shopDoor.Draw(spriteBatch, this.Window.ClientBounds.Width, this.Window.ClientBounds.Height);
             }
 
+            #endregion
             #region 아이템샵들
             if (gameState == GameStates.RightItemShop)
             {
@@ -5345,6 +5345,8 @@ namespace beethoven3
             }
             #endregion
 
+
+            #region 곡 선택
             if (gameState == GameStates.SongMenu)
             {
                 songMenu.Draw(spriteBatch);
@@ -5364,9 +5366,11 @@ namespace beethoven3
              
                 //}
                 //String name = noteFileManager.noteFiles[songMenu.Scene_number].Name;
-            
+
 
             }
+
+            #endregion 
 
             #region 플레이화면
             if ((gameState == GameStates.Playing))
@@ -5382,9 +5386,7 @@ namespace beethoven3
               //  Trace.write(tempo);
                 Texture2D metoroTex = GetMetroTexture(tempo);
                
-
-
-
+                
                 //메트로늄
                 spriteBatch.Draw(
                   metoroTex,
@@ -5427,14 +5429,7 @@ namespace beethoven3
                 goodBannerManager.Draw(spriteBatch);
                 perfectBannerManager.Draw(spriteBatch);
                 
-                
-               
-
-
                 comboNumberManager.Draw(spriteBatch);
-
-
-             
 
                 
                 //가운데 빨간 사각형 주석하면 보이지않는다.
