@@ -1239,23 +1239,17 @@ namespace beethoven3
             //원하는 단어 입력
             var choices = new Choices();
             //choices.Add("Yes");
-            choices.Add("green");
-            choices.Add("kinect");
-            choices.Add("go");
+          
             choices.Add("next");
             choices.Add("stop");
-            choices.Add("wiro");
-            choices.Add("wero");
-            choices.Add("photo");
-            choices.Add("poto");
             choices.Add("previous");
             choices.Add("start");
-            choices.Add("back");
-            choices.Add("sizak");
-            choices.Add("sijak");
-            choices.Add("sizac");
-            choices.Add("sijac");
-
+            choices.Add("tutorial");
+            choices.Add("setting");
+            choices.Add("shop");
+          
+          
+          
 
             var gb = new GrammarBuilder { Culture = ri.Culture };
             gb.Append(choices);
@@ -1302,42 +1296,79 @@ namespace beethoven3
             message = e.Result.Text + " " + e.Result.Confidence.ToString();
             switch (e.Result.Text)
             {
-                //case "stop":
-                    //ts2 = new ThreadStart(AngleUp);
-                    //th2 = new Thread(ts2);
-                    //th2.Start();//앵글 올리기
+          
 
-                    ////카리스마타임 제스쳐 시작부분
-                    //string fileName = "RecordedGestures2012-12-21_03-35.txt";
-                    //LoadGesturesFromFile(fileName);
-                    //Skeleton2DDataExtract.Skeleton2DdataCoordReady += NuiSkeleton2DdataCoordReady;
-                    //gestureFlag = true;
-                    //break;
+      
+                case "next":
 
+                    if (gameState == GameStates.ResultManager)
+                    {
+                        gameState = GameStates.ShowPictures;
+                    }
+                    if (gameState == GameStates.ShowPictures)
+                    {
+                        gameState = GameStates.RecordBoard;
+                    }
+                    if (gameState == GameStates.ShowPictures)
+                    {
+                        gameState = GameStates.SongMenu;
+                    }
 
-                case "next":    
-                case "nest":
-                case "naxt":
-                    //ts3 = new ThreadStart(AngleDown);
-                    //th3 = new Thread(ts3);
-                    //th3.Start();
                     break;
 
-                case "photo":
-                case "poto":
+                case "previous":
 
+                    if (gameState == GameStates.SongMenu || gameState == GameStates.ShopDoor || gameState == GameStates.SettingBoard)
+                    {
+                        gameState = GameStates.Menu;
+                    }
+                   
+                    if (gameState == GameStates.BackgroundItemShop || gameState == GameStates.EffectItemShop || gameState == GameStates.LeftItemShop || gameState == GameStates.RightItemShop || gameState == GameStates.NoteItemShop)
+                    {
+                        gameState = GameStates.ShopDoor;
+                    }
                     break;
 
 
                 case "start":
-                case "stop":
                 
                     if (gameState == GameStates.Menu)
                     {
                         gameState = GameStates.SongMenu;
                     }
+                    if (gameState == GameStates.SongMenu)
+                    {
+                        resultSongMenu = songMenu.Scene_number;
+                    }
+
+
                     break;
 
+
+             case "shop":
+                
+                    if (gameState == GameStates.Menu)
+                    {
+                        gameState = GameStates.ShopDoor;
+                    }
+                    break;
+
+              case "setting":
+                
+                    if (gameState == GameStates.Menu)
+                    {
+                        gameState = GameStates.SettingBoard;
+                    }
+                    break;
+
+              case "tutorial":
+                
+                    if (gameState == GameStates.Menu)
+                    {
+                    //    gameState = GameStates;
+                    }
+                    break;
+                    
 
             }
         }
@@ -4945,6 +4976,7 @@ namespace beethoven3
                #region 곡선택메뉴
                 case GameStates.SongMenu:
                 resultSongMenu = songMenu.Update();
+                   
 #if Kinect
 
                 //제스쳐//좌우 만 있음
