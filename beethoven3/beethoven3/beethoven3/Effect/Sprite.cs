@@ -34,7 +34,7 @@ namespace beethoven3
         protected Color tintColor = Color.White;
         protected float rotation;
         //
-
+        protected float layerDepth = 0.0f;
 
         //make collinsion
         public int CollisionRadius = 0;
@@ -84,6 +84,14 @@ namespace beethoven3
         {
             get { return isEarlyOne; }
             set { isEarlyOne = value; }
+
+
+        }
+
+        public float LayerDepth
+        {
+            get { return layerDepth; }
+            set { layerDepth = value; }
 
 
         }
@@ -326,7 +334,7 @@ namespace beethoven3
                     new Vector2(0, 0),
                     scale,
                     SpriteEffects.None,
-                    0.0f);
+                    layerDepth);
            
         }
         #endregion

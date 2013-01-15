@@ -27,7 +27,7 @@ namespace beethoven3
         public override void LoadContent(ContentManager cm)
         {
             base.LoadContent(cm);
-            noteItems = itemManager.getShopNoteItem();
+            noteItems = itemManager.getShopRightNoteItem();
             myNoteItems = itemManager.getMyNoteItem();
             setLocationItems();
         }

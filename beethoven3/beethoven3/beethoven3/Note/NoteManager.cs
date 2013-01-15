@@ -14,11 +14,11 @@ namespace beethoven3
         #region declarations
         public List<Sprite> LittleNotes = new List<Sprite>();
 
-        private static Texture2D Texture;
+        private Texture2D Texture;
         private Rectangle InitialFrame;
-        private static int FrameCount;
+        private int FrameCount;
         public float noteSpeed;
-        private static int CollisionRadius;
+        private int CollisionRadius;
         private float Scale = 1.0f;
         #endregion
 
@@ -105,7 +105,9 @@ namespace beethoven3
             Vector2 location,
             Vector2 velocity,
             /*시작노트의 위치(1베이스)*/
-            int markLocation
+            int markLocation,
+            float layer = 0.0f,
+            bool isAlpha = false
             )
         {
             Sprite thisNote = new Sprite(
@@ -114,6 +116,14 @@ namespace beethoven3
                 InitialFrame,
                 velocity,
                 this.Scale);
+            if (isAlpha)
+            {
+                Color color = Color.White;
+                color.A = 90;
+                thisNote.TintColor = color;
+            }
+            thisNote.LayerDepth = layer;
+            
 
             thisNote.Velocity *= noteSpeed;
 

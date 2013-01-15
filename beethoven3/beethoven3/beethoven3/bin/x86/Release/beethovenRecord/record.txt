@@ -4,4 +4,14 @@ myPicture.jpg$0
 myPicture.jpg$0
 myPicture.jpg$0
 myPicture.jpg$0
+%%
+abc
+myPicture.jpg$90
+myPicture.jpg$50
+myPicture.jpg$40
+myPicture.jpg$10
+%%
+bond
+myPicture.jpg$367
+myPicture.jpg$40
 **

@@ -160,44 +160,7 @@ namespace beethoven3
         
         public void FileLoading(String dir, String file)
         {
-            //폴더를 검사해서 
-            //파일을 읽어서 
-            //NOTEFILEMANAGER 
-            //String[] files = Directory.GetFiles(dir, file, SearchOption.AllDirectories);
-            //byte[] buffer;
-            //int i;
-            //for (i = 0; i < files.Length; i++)
-            //{
-            //    IFormatter formatter = new BinaryFormatter();
-            //    //streamReader sr = new StreamReader(files[i]);
-            //    FileStream fileStream = new FileStream(files[i], FileMode.Open, FileAccess.Read);
-            //    ()formatter.Deserialize(); 
-            // //  FileInfo fileStream = new FileInfo(files[i]);
-
-            //    BinaryReader br = new BinaryReader(fileStream);
-
-            //    char[]  buf0;
-            //    buf0 = br.ReadChars(128);
-            //    int a;
-            //    Console.WriteLine(buf0);
-
-            //    //int length = (int)fileStream.Length;
-            //    //buffer = new byte[length];
-            //    a = br.ReadInt32();
-                
-
-            //    //while ((count = fileStream.Read(buffer, sum, length - sum)) > 0)
-            //    //{
-            //    //    sum += count;
-            //    //}
-
-
-            //   // String line = sr.ReadLine();
-            //  //  String[] info = line.Split(' ');
-
-            //    //0: version , 1:name , 2: artist, 3: mp3, 4: picture
-            //   // noteFileManager.Add(info[0], info[1], info[2], info[3], info[4]);
-
+           
             String[] files = Directory.GetFiles(dir, file, SearchOption.AllDirectories);
 
             int i;
@@ -606,7 +569,7 @@ namespace beethoven3
                                     
                                         drawGuideLineQueue.Enqueue(drawGuideLineInfo);
                                       
-                                        //골드라인
+                                        //골드라인/
                                         //  DrawGuidLine(rightNoteMarks[currentRightNoteIndex].MarkLocation, rightNoteMarks[currentRightNoteIndex + 1].MarkLocation, true);
                                         // if 마커에 맞추었을 때 
                                         // 스타트로 날아간 후에 어느정도 시간이 지났을 때
@@ -657,7 +620,10 @@ namespace beethoven3
                              물론 객체를 계속 만들고 지우는것도 가능하다.
                              필요하다면 만들 수 도 있다.
                              */
-                            startNoteManager.MakeLongNote(arrayNotes[0].MarkLocation);
+
+                            //첫롱노트 
+                            startNoteManager.MakeLongNote(arrayNotes[0].MarkLocation,1.0f,false);
+                            
                             startNoteNumber = arrayNotes[0].MarkLocation;
 
                             //롱노트 //드래그노트는 끝나는 시간 까지, 포함 이건 noteInfo에포함해야 됨 
@@ -838,7 +804,7 @@ namespace beethoven3
                 //
                 if (drawLineTime >= processTime)
                 {
-                    startNoteManager.MakeLongNote(startNoteNumber);
+                    startNoteManager.MakeLongNote(startNoteNumber,0.0f,false);
 
                     ////여기에서 손이 이곳에  있으면 되는것으로 
                     //int i;

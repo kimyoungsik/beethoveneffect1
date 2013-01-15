@@ -195,7 +195,7 @@ namespace beethoven3
         }
 
   
-        public void MakeLongNote(int markNumber)
+        public void MakeLongNote(int markNumber,float layer = 0.0f, bool isAlpha = false)
         {
             //노트시작점의 위치
             Vector2 location = StartNotes[markNumber-1].StartNoteSprite.Location;
@@ -205,7 +205,7 @@ namespace beethoven3
                             MarkManager.Marks[markNumber-1].MarkSprite.Location -
                             location;
             direction.Normalize();
-            longNoteManager.MakeNote(location, direction,/*시작 노트의 위치*/markNumber);
+            longNoteManager.MakeNote(location, direction,/*시작 노트의 위치*/markNumber, layer, isAlpha);
         }
         
 

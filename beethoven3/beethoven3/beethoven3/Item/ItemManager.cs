@@ -15,7 +15,14 @@ namespace beethoven3
         private List<Item> rightHandItem = new List<Item>();
         private List<Item> leftHandItem = new List<Item>();
         private List<Item> effectItem = new List<Item>();
-        private List<Item> noteItem = new List<Item>();
+        private List<Item> rightNoteItem = new List<Item>();
+        private List<Item> leftNoteItem = new List<Item>();
+        private List<Item> dragNoteItem = new List<Item>();
+        private List<Item> longNoteItem = new List<Item>();
+        
+        
+        
+        
         private List<Item> backgroundItem = new List<Item>();
 
 
@@ -31,7 +38,10 @@ namespace beethoven3
         private Texture2D[] rightHandTexture = new Texture2D[5];
         private Texture2D[] leftHandTexture = new Texture2D[5];
         private Texture2D[] effectTexture = new Texture2D[5];
-        private Texture2D[] noteTexture = new Texture2D[5];
+        private Texture2D[] rightNoteTexture = new Texture2D[5];
+        private Texture2D[] leftNoteTexture = new Texture2D[5];
+        private Texture2D[] dragNoteTexture = new Texture2D[5];
+        private Texture2D[] longNoteTexture = new Texture2D[5];
         private Texture2D[] backgroundTexture = new Texture2D[5];
         
         //팔지는 않지만 텍스쳐만 가지고 있음
@@ -101,8 +111,10 @@ namespace beethoven3
             //노트 아이템
             for (i = 0; i < 2; i++)
             {
-                addItem(noteItem, new Vector2(100, 100), noteTexture[i], new Rectangle(0, 0, noteTexture[i].Width, noteTexture[i].Height), 1,/*cost*/ 25);
+                addItem(rightNoteItem, new Vector2(100, 100), rightNoteTexture[i], new Rectangle(0, 0, rightNoteTexture[i].Width, rightNoteTexture[i].Height), 1,/*cost*/ 25);
             }
+
+
 
             //왼손 아이템
             for (i = 0; i < 2; i++)
@@ -159,7 +171,7 @@ namespace beethoven3
 
             //노트 특성
             
-            rightNoteScale[0] = 0.5f;
+            rightNoteScale[0] = 1f;
 
             //test
 
@@ -243,7 +255,7 @@ namespace beethoven3
                 buyItem(myRightHandItem, rightHandItem[0]);
                 buyItem(myLeftHandItem, leftHandItem[0]);
                 buyItem(myEffectItem, effectItem[0]);
-                buyItem(myNoteItem, noteItem[0]);
+                buyItem(myNoteItem, rightNoteItem[0]);
                 buyItem(myBackgroundItem, backgroundItem[0]);
             }
             else
@@ -306,7 +318,7 @@ namespace beethoven3
                             while (line != "**")
                             {
 
-                                buyItem(myNoteItem, noteItem[Int32.Parse(line)]);
+                                buyItem(myNoteItem, rightNoteItem[Int32.Parse(line)]);
                                 line = sr.ReadLine();
 
                             }
@@ -372,9 +384,21 @@ namespace beethoven3
             missEffectTexture[1] = cm.Load<Texture2D>(@"Explosion\needleExplosion2");
             missEffectTexture[2] = cm.Load<Texture2D>(@"Explosion\windExplosion2");
          
-            noteTexture[0] = cm.Load<Texture2D>(@"notes\planetNote1");
-            noteTexture[1] = cm.Load<Texture2D>(@"notes\turnNote2");
+            rightNoteTexture[0] = cm.Load<Texture2D>(@"notes\planetNote1");
+            rightNoteTexture[1] = cm.Load<Texture2D>(@"notes\turnNote2");
+
+            leftNoteTexture[0] = cm.Load<Texture2D>(@"notes\planetNote2");
+            leftNoteTexture[1] = cm.Load<Texture2D>(@"notes\turnNote2");
+
+
+            dragNoteTexture[0] = cm.Load<Texture2D>(@"notes\planetNote3");
+            dragNoteTexture[1] = cm.Load<Texture2D>(@"notes\turnNote2");
+
+
+            longNoteTexture[0] = cm.Load<Texture2D>(@"notes\planetNote4");
+            longNoteTexture[1] = cm.Load<Texture2D>(@"notes\turnNote2");
             
+
             //노트랑 한쌍이다.
             markTexture[0] = cm.Load<Texture2D>(@"markers\whiteMarker");
             markTexture[1] = cm.Load<Texture2D>(@"markers\turnMarker");
@@ -464,10 +488,26 @@ namespace beethoven3
             return this.leftHandTexture;
         }
 
-        public Texture2D[] GetNoteTexture()
+        public Texture2D[] GetRightNoteTexture()
         {
-            return this.noteTexture;
+            return this.rightNoteTexture;
         }
+
+        public Texture2D[] GetLeftNoteTexture()
+        {
+            return this.leftNoteTexture;
+        }
+
+        public Texture2D[] GetDragNoteTexture()
+        {
+            return this.dragNoteTexture;
+        }
+
+        public Texture2D[] GetLongNoteTexture()
+        {
+            return this.longNoteTexture;
+        }
+
 
         public Texture2D[] GetEffectTexture()
         {
@@ -649,9 +689,9 @@ namespace beethoven3
             return this.effectItem;
         }
 
-        public List<Item> getShopNoteItem()
+        public List<Item> getShopRightNoteItem()
         {
-            return this.noteItem;
+            return this.rightNoteItem;
         }
 
         public List<Item> getShopBackgroundItem()
@@ -797,9 +837,9 @@ namespace beethoven3
         {
             int i;
             int index = -1;
-            for (i = 0; i < noteItem.Count; i++)
+            for (i = 0; i < rightNoteItem.Count; i++)
             {
-                if (item == noteItem[i])
+                if (item == rightNoteItem[i])
                 {
                     index = i;
                 }

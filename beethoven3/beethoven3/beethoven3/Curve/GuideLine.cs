@@ -50,10 +50,10 @@ namespace beethoven3
         {
             this.lineRenderer = lineRenderer;
             //다른 골드라인을 만들기 전에 , 지워주기
-         if(showGold)
-         {
-            GoldManager.DeleteAll();
-         } 
+             if(showGold)
+             {
+                GoldManager.DeleteAll();
+             } 
             this.showGold = showGold;
             SetLine(p0, p1, p2, p3, time);
             
@@ -189,11 +189,14 @@ namespace beethoven3
                     {
                         //지워지기 시작 
                         DeleteAllPoints();
-                        if (this.showGold)
-                        {
-                            //동전삭제
+
+                        //이걸 하면
+                        //두번째 동전만 안나오기 시작함..
+                        //if (this.showGold)
+                        //{
+                        //    //동전삭제
                         //    GoldManager.DeleteAll();
-                        }
+                        //}
                             //지워지기 시작하면 true -> 화면에서 안보이게 함
                         end = true;
                     }

@@ -120,7 +120,7 @@ namespace beethoven3
 
             //***다시확인
             //현재 설정된 두번째 가이드라인이 있으면 지움
-            //GuideLineManager.DeleteAllSecondGuideLine();
+           // guideLineManager.DeleteAllSecondGuideLine();
 
 
         }
