@@ -296,20 +296,24 @@ namespace beethoven3
             drawStart(spriteBatch);
             TextAnimation1(spriteBatch);
 
-
-            String name = noteFileManager.noteFiles[scene_number].Name;
-            spriteBatch.DrawString(pericles36Font, name, new Vector2(512, 420), Color.White);
+            //노래가 하나라도 있어야한다. 
 
 
-       //     spriteBatch.Draw(uiBackground, new Vector2(0, 0), Color.White);
+            if (scene_number != 0)
+            {
+                String name = noteFileManager.noteFiles[scene_number].Name;
+                spriteBatch.DrawString(pericles36Font, name, new Vector2(512, 420), Color.White);
 
-            int level = noteFileManager.noteFiles[scene_number].Level;
-            //0이하이거나 넘어가지 않게 
 
-            Rectangle rec = new Rectangle(0, 0, level*40/*하나의 그림의 width*/, 50);
-            //하트. gage양 만큼 하트가 나타남.
-            spriteBatch.Draw(levelTexture, new Vector2(300, 700), rec, Color.White);
+                //     spriteBatch.Draw(uiBackground, new Vector2(0, 0), Color.White);
 
+                int level = noteFileManager.noteFiles[scene_number].Level;
+                //0이하이거나 넘어가지 않게 
+
+                Rectangle rec = new Rectangle(0, 0, level * 40/*하나의 그림의 width*/, 50);
+                //하트. gage양 만큼 하트가 나타남.
+                spriteBatch.Draw(levelTexture, new Vector2(300, 700), rec, Color.White);
+            }
 
           //  drawTop(spriteBatch);
         }
@@ -340,7 +344,7 @@ namespace beethoven3
                 }
                 else
                 {
-                    if (scene_number != noteFileManager.noteFiles.Count-1)
+                    if (scene_number != 0 && scene_number != noteFileManager.noteFiles.Count-1)
                         spriteBatch.Draw(leftright[1], new Rectangle(770, 310, 60, 60), new Color(fadeinout, fadeinout, fadeinout));
                 }
             }

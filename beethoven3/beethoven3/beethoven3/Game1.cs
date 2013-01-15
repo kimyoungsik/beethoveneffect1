@@ -39,7 +39,7 @@ namespace beethoven3
         //키넥트
         KinectSensor nui = null;
         Skeleton[] Skeletons = null;
-
+        Skeleton skeleton = null;
         //스켈레톤 한명만
         int CurrentTrackingId = 0;
         public static bool finalClick;
@@ -49,6 +49,7 @@ namespace beethoven3
         RecognizerInfo ri;
         KinectAudioSource source;
         Stream audioStream;
+        double skeletonAngle;
 
         private String kinectMessage = "__UNKNOWN";
         //쓰레드
@@ -80,6 +81,8 @@ namespace beethoven3
         private DtwGestureRecognizer _dtw;
         private int _flipFlop;
         private ArrayList _video;
+        int postureCount = 0;
+        bool postureFlag = false;
 
 
         //머리찾기
@@ -1266,6 +1269,99 @@ namespace beethoven3
 
         }
 
+        //void sre_SpeechHypothesized(object sender, SpeechHypothesizedEventArgs e)
+        //{
+        //    if (e.Result.Confidence < 0.5) return;//신뢰도 0.5미만일땐 리턴
+        //    if (Skeletons != null)
+        //    {
+        //        foreach (Skeleton s in Skeletons)
+        //            if (s.TrackingState == SkeletonTrackingState.Tracked)
+        //            {
+        //                if (source.SoundSourceAngle < skeletonAngle + 10 && source.SoundSourceAngle > skeletonAngle - 10)
+        //                {
+        //                    message = e.Result.Text + " " + e.Result.Confidence.ToString();
+        //                    switch (e.Result.Text)
+        //                    {
+
+
+
+        //                        case "next":
+
+        //                            if (gameState == GameStates.ResultManager)
+        //                            {
+        //                                gameState = GameStates.ShowPictures;
+        //                            }
+        //                            if (gameState == GameStates.ShowPictures)
+        //                            {
+        //                                gameState = GameStates.RecordBoard;
+        //                            }
+        //                            if (gameState == GameStates.ShowPictures)
+        //                            {
+        //                                gameState = GameStates.SongMenu;
+        //                            }
+
+        //                            break;
+
+        //                        case "previous":
+
+        //                            if (gameState == GameStates.SongMenu || gameState == GameStates.ShopDoor || gameState == GameStates.SettingBoard)
+        //                            {
+        //                                gameState = GameStates.Menu;
+        //                            }
+
+        //                            if (gameState == GameStates.BackgroundItemShop || gameState == GameStates.EffectItemShop || gameState == GameStates.LeftItemShop || gameState == GameStates.RightItemShop || gameState == GameStates.NoteItemShop)
+        //                            {
+        //                                gameState = GameStates.ShopDoor;
+        //                            }
+        //                            break;
+
+
+        //                        case "start":
+
+        //                            if (gameState == GameStates.Menu)
+        //                            {
+        //                                gameState = GameStates.SongMenu;
+        //                            }
+        //                            if (gameState == GameStates.SongMenu)
+        //                            {
+        //                                resultSongMenu = songMenu.Scene_number;
+        //                            }
+
+
+        //                            break;
+
+
+        //                        case "shop":
+
+        //                            if (gameState == GameStates.Menu)
+        //                            {
+        //                                gameState = GameStates.ShopDoor;
+        //                            }
+        //                            break;
+
+        //                        case "setting":
+
+        //                            if (gameState == GameStates.Menu)
+        //                            {
+        //                                gameState = GameStates.SettingBoard;
+        //                            }
+        //                            break;
+
+        //                        case "tutorial":
+
+        //                            if (gameState == GameStates.Menu)
+        //                            {
+        //                                //    gameState = GameStates;
+        //                            }
+        //                            break;
+        //                    }
+        //                }
+        //            }
+
+
+        //    }
+        //}
+
     
 
 
@@ -1278,6 +1374,9 @@ namespace beethoven3
             {
                 source = nui.AudioSource;
                 source.BeamAngleMode = BeamAngleMode.Adaptive;
+                source.EchoCancellationMode = EchoCancellationMode.CancellationAndSuppression;
+                source.NoiseSuppression = true;
+                source.AutomaticGainControlEnabled = false;
                 audioStream = source.Start();
 
                 sre.SetInputToAudioStream(audioStream, new SpeechAudioFormatInfo(EncodingFormat.Pcm, 16000, 16, 1, 32000, 2, null));
@@ -1291,84 +1390,93 @@ namespace beethoven3
 
         void sre_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
         {
-
-            if (e.Result.Confidence < 0.7) return;//신뢰도 0.5미만일땐 리턴
-            message = e.Result.Text + " " + e.Result.Confidence.ToString();
-            switch (e.Result.Text)
+            if (e.Result.Confidence < 0.5) return;//신뢰도 0.5미만일땐 리턴
+            if (skeleton != null)
             {
-          
 
-      
-                case "next":
-
-                    if (gameState == GameStates.ResultManager)
+                if (skeleton.TrackingState == SkeletonTrackingState.Tracked)
                     {
-                        gameState = GameStates.ShowPictures;
+                        if (source.SoundSourceAngle < skeletonAngle + 10 && source.SoundSourceAngle > skeletonAngle - 10)
+                        {
+                            message = e.Result.Text + " " + e.Result.Confidence.ToString();
+                            switch (e.Result.Text)
+                            {
+
+
+
+                                case "next":
+
+                                    if (gameState == GameStates.ResultManager)
+                                    {
+                                        gameState = GameStates.ShowPictures;
+                                    }
+                                    if (gameState == GameStates.ShowPictures)
+                                    {
+                                        gameState = GameStates.RecordBoard;
+                                    }
+                                    if (gameState == GameStates.ShowPictures)
+                                    {
+                                        gameState = GameStates.SongMenu;
+                                    }
+
+                                    break;
+
+                                case "previous":
+
+                                    if (gameState == GameStates.SongMenu || gameState == GameStates.ShopDoor || gameState == GameStates.SettingBoard)
+                                    {
+                                        gameState = GameStates.Menu;
+                                    }
+
+                                    if (gameState == GameStates.BackgroundItemShop || gameState == GameStates.EffectItemShop || gameState == GameStates.LeftItemShop || gameState == GameStates.RightItemShop || gameState == GameStates.NoteItemShop)
+                                    {
+                                        gameState = GameStates.ShopDoor;
+                                    }
+                                    break;
+
+
+                                case "start":
+
+                                    if (gameState == GameStates.Menu)
+                                    {
+                                        gameState = GameStates.SongMenu;
+                                    }
+                                    if (gameState == GameStates.SongMenu)
+                                    {
+                                        resultSongMenu = songMenu.Scene_number;
+                                    }
+
+
+                                    break;
+
+
+                                case "shop":
+
+                                    if (gameState == GameStates.Menu)
+                                    {
+                                        gameState = GameStates.ShopDoor;
+                                    }
+                                    break;
+
+                                case "setting":
+
+                                    if (gameState == GameStates.Menu)
+                                    {
+                                        gameState = GameStates.SettingBoard;
+                                    }
+                                    break;
+
+                                case "tutorial":
+
+                                    if (gameState == GameStates.Menu)
+                                    {
+                                        //    gameState = GameStates;
+                                    }
+                                    break;
+                            }
+                        }
                     }
-                    if (gameState == GameStates.ShowPictures)
-                    {
-                        gameState = GameStates.RecordBoard;
-                    }
-                    if (gameState == GameStates.ShowPictures)
-                    {
-                        gameState = GameStates.SongMenu;
-                    }
 
-                    break;
-
-                case "previous":
-
-                    if (gameState == GameStates.SongMenu || gameState == GameStates.ShopDoor || gameState == GameStates.SettingBoard)
-                    {
-                        gameState = GameStates.Menu;
-                    }
-                   
-                    if (gameState == GameStates.BackgroundItemShop || gameState == GameStates.EffectItemShop || gameState == GameStates.LeftItemShop || gameState == GameStates.RightItemShop || gameState == GameStates.NoteItemShop)
-                    {
-                        gameState = GameStates.ShopDoor;
-                    }
-                    break;
-
-
-                case "start":
-                
-                    if (gameState == GameStates.Menu)
-                    {
-                        gameState = GameStates.SongMenu;
-                    }
-                    if (gameState == GameStates.SongMenu)
-                    {
-                        resultSongMenu = songMenu.Scene_number;
-                    }
-
-
-                    break;
-
-
-             case "shop":
-                
-                    if (gameState == GameStates.Menu)
-                    {
-                        gameState = GameStates.ShopDoor;
-                    }
-                    break;
-
-              case "setting":
-                
-                    if (gameState == GameStates.Menu)
-                    {
-                        gameState = GameStates.SettingBoard;
-                    }
-                    break;
-
-              case "tutorial":
-                
-                    if (gameState == GameStates.Menu)
-                    {
-                    //    gameState = GameStates;
-                    }
-                    break;
-                    
 
             }
         }
@@ -1504,10 +1612,10 @@ namespace beethoven3
             int indexCount = 0;
             int[] depth = new int[tempHeight * tempWidth];
 
-            if (Skeletons != null)
+            if (skeleton != null)
             {
-                foreach (Skeleton s in Skeletons)
-                    if (s.TrackingState == SkeletonTrackingState.Tracked)
+
+                if (skeleton.TrackingState == SkeletonTrackingState.Tracked)
                     {
                         for (int j = handPoint.Y - tempHeight / 2; j < handPoint.Y + tempHeight / 2; j++)
                         {
@@ -1524,10 +1632,10 @@ namespace beethoven3
 
 
             }
-            if (Skeletons != null)
+            if (skeleton != null)
             {
-                foreach (Skeleton s in Skeletons)
-                    if (s.TrackingState == SkeletonTrackingState.Tracked)
+
+                if (skeleton.TrackingState == SkeletonTrackingState.Tracked)
                     {
                         bool[][] near = generateValidMatrix(tempWidth, tempHeight, depth);//에러
 
@@ -1556,12 +1664,12 @@ namespace beethoven3
                         afterDepthReady();
                     }
             }
-        
 
-            if (Skeletons != null)
+
+            if (skeleton != null)
             {
-                foreach (Skeleton s in Skeletons)
-                    if (s.TrackingState == SkeletonTrackingState.Tracked)
+
+                if (skeleton.TrackingState == SkeletonTrackingState.Tracked)
                     {
                         if (hands.Count > 0)
                         {
@@ -1636,44 +1744,45 @@ namespace beethoven3
             /////////////////////////////////
 
             //키재기
-            if (Skeletons != null)
+            if (skeleton != null)
             {
-                foreach (Skeleton sd in Skeletons)
+
+
+                if (skeleton.TrackingState == SkeletonTrackingState.Tracked)
                 {
-                    if (sd.TrackingState == SkeletonTrackingState.Tracked)
+                    Joint headJoint = skeleton.Joints[JointType.Head];
+                    DepthImagePoint depthPoint = ImageParam.MapFromSkeletonPoint(headJoint.Position);
+                    fy = (float)depthPoint.Y / (float)ImageParam.Height;
+
+
+
+                    foreach (Joint joint in skeleton.Joints)
                     {
-                        Joint headJoint = sd.Joints[JointType.Head];
-                        DepthImagePoint depthPoint = ImageParam.MapFromSkeletonPoint(headJoint.Position);
-                        fy = (float)depthPoint.Y / (float)ImageParam.Height;
-
-
-
-                        foreach (Joint joint in sd.Joints)
+                        DepthImagePoint depthP;
+                        depthP = ImageParam.MapFromSkeletonPoint(joint.Position);
+                        switch (joint.JointType)
                         {
-                            DepthImagePoint depthP;
-                            depthP = ImageParam.MapFromSkeletonPoint(joint.Position);
-                            switch (joint.JointType)
-                            {
-                                case JointType.Head:
-                                    fheadY = (float)depthP.Y / ImageParam.Height;
-                                    break;
-                                case JointType.ShoulderCenter:
-                                    fcenterZ = (float)joint.Position.Z;
-                                    break;
-                                case JointType.HipCenter:
-                                    fhipY = (float)depthP.Y / ImageParam.Height;
-                                    break;
+                            case JointType.Head:
+                                fheadY = (float)depthP.Y / ImageParam.Height;
+                                break;
+                            case JointType.ShoulderCenter:
+                                fcenterZ = (float)joint.Position.Z;
+                                break;
+                            case JointType.HipCenter:
+                                fhipY = (float)depthP.Y / ImageParam.Height;
+                                break;
 
-                            }
                         }
-                        double dbVal = (fhipY - fheadY) * 2;
-                        dbVal = dbVal * 1.25;
-                        factheight = (dbVal * (fcenterZ * 100) - fcenterZ * 2);
-                        //message = factheight.ToString();
-
-
                     }
+                    double dbVal = (fhipY - fheadY) * 2;
+                    dbVal = dbVal * 1.25;
+                    factheight = (dbVal * (fcenterZ * 100) - fcenterZ * 2);
+                    //message = factheight.ToString();
                 }
+
+
+                    
+                
             }
         }
 
@@ -2041,7 +2150,7 @@ namespace beethoven3
 
                     frame.CopySkeletonDataTo(Skeletons);
 
-                    Skeleton skeleton = null;
+                    
                     if (CurrentTrackingId != 0)
                     {
                         skeleton =
@@ -2074,14 +2183,16 @@ namespace beethoven3
                     }
 
                 }
-                if (Skeletons != null)
+                if (skeleton != null)
                 {
-                    foreach (Skeleton s in Skeletons)
-                        if (s.TrackingState == SkeletonTrackingState.Tracked)
+
+                    if (skeleton.TrackingState == SkeletonTrackingState.Tracked)
                         {
-                            handPoint = nui.MapSkeletonPointToDepth(s.Joints[JointType.HandRight].Position, DepthImageFormat.Resolution640x480Fps30);
+                            skeletonAngle = (Math.Atan2(skeleton.Joints[JointType.ShoulderCenter].Position.X, skeleton.Joints[JointType.ShoulderCenter].Position.Z) * 180.00) / Math.PI + 10;//음성인식을 위한 스켈레톤 각도
+                            handPoint = nui.MapSkeletonPointToDepth(skeleton.Joints[JointType.HandRight].Position, DepthImageFormat.Resolution640x480Fps30);
                         }
                 }
+
 
                 //제스쳐
                 if (gameState == GameStates.SongMenu)
@@ -2092,10 +2203,9 @@ namespace beethoven3
                 //제스쳐2
                 if (gestureFlag == true)
                 {
-                    foreach (Skeleton data in Skeletons)
-                    {
-                        Skeleton2DDataExtract.ProcessData(data);
-                    }
+
+                        Skeleton2DDataExtract.ProcessData(skeleton);
+                    
                 }
             }
         }
@@ -2109,20 +2219,61 @@ namespace beethoven3
 
                 string s = _dtw.Recognize(_video);
                 kinectMessage = s;
+
+
                 //Trace.WriteLine(kinectMessage);
                 if (!s.Contains("__UNKNOWN"))
                 {
                     _video = new ArrayList();
+                    //message = "yes";
                 }
-                if (gestureFlag == false)
-                {
-                    Skeleton2DDataExtract.Skeleton2DdataCoordReady -= NuiSkeleton2DdataCoordReady;
-                }
-                if (s.Contains("@Left hand swipe left"))
-                {
-                    gestureFlag = false;
-                }
+                //if (charismaManager.IsCharismaTime == 2)
+                //{
+                    if (gestureFlag == false)
+                    {
+                        Skeleton2DDataExtract.Skeleton2DdataCoordReady -= NuiSkeleton2DdataCoordReady;
+                    }
+                    if (postureFlag)
+                    {
+                        if (!s.Contains("__UNKNOWN"))
+                        {
+                            postureCount++;
+                            message = "yes";
+                            if (postureCount > 5)
+                            {
+                                gestureFlag = false;
 
+                            }
+                        }
+                    }
+                    if (!postureFlag)
+                    {
+                        if (!s.Contains("__UNKNOWN"))
+                        {
+                            message = "yes";
+                            gestureFlag = false;
+                        }
+                    }
+
+                    if (s.Contains("__UNKNOWN"))
+                    {
+                        message = "no";
+                    }
+                //}
+
+                //if (charismaManager.IsCharismaTime == 0)
+                //{
+                //    if (!s.Contains("__UNKNOWN"))
+                //    {
+                //        postureCount++;
+                //        message = "yes";
+                //        if (postureCount > 10)
+                //        {
+                //            //여기에 뒤로가는 메뉴
+
+                //        }
+                //    }
+                //}
 
             }
 
@@ -5153,14 +5304,15 @@ namespace beethoven3
             //{
 
             //}
-             
-          //  try
-          //  {
-                var ImageParam = nui.DepthStream.OpenNextFrame(0);
-          //  }
-          //  catch(Exception e )
-          //  {
-          //  }
+            DepthImageFrame ImageParam;
+            try
+            {
+                 ImageParam= nui.DepthStream.OpenNextFrame(0);
+            }
+            catch(IndexOutOfRangeException e )
+            {
+                ImageParam = null;
+            }
                 if (ImageParam == null)
                 return;
 
@@ -5203,10 +5355,10 @@ namespace beethoven3
             int indexCount = 0;
             int[] depth = new int[tempHeight * tempWidth];
 
-            if (Skeletons != null)
+            if (skeleton != null)
             {
-                foreach (Skeleton s in Skeletons)
-                    if (s.TrackingState == SkeletonTrackingState.Tracked)
+
+                if (skeleton.TrackingState == SkeletonTrackingState.Tracked)
                     {
                         for (int j = handPoint.Y - tempHeight / 2; j < handPoint.Y + tempHeight / 2; j++)
                         {
@@ -5223,10 +5375,10 @@ namespace beethoven3
 
 
             }
-            if (Skeletons != null)
+            if (skeleton != null)
             {
-                foreach (Skeleton s in Skeletons)
-                    if (s.TrackingState == SkeletonTrackingState.Tracked)
+
+                if (skeleton.TrackingState == SkeletonTrackingState.Tracked)
                     {
                         bool[][] near = generateValidMatrix(tempWidth, tempHeight, depth);//에러
 
@@ -5257,10 +5409,10 @@ namespace beethoven3
             }
 
 
-            if (Skeletons != null)
+            if (skeleton != null)
             {
-                foreach (Skeleton s in Skeletons)
-                    if (s.TrackingState == SkeletonTrackingState.Tracked)
+
+                if (skeleton.TrackingState == SkeletonTrackingState.Tracked)
                     {
                         if (hands.Count > 0)
                         {
@@ -5335,44 +5487,43 @@ namespace beethoven3
             /////////////////////////////////
 
             //키재기
-            if (Skeletons != null)
+            if (skeleton != null)
             {
-                foreach (Skeleton sd in Skeletons)
+
+                if (skeleton.TrackingState == SkeletonTrackingState.Tracked)
                 {
-                    if (sd.TrackingState == SkeletonTrackingState.Tracked)
+                    Joint headJoint = skeleton.Joints[JointType.Head];
+                    DepthImagePoint depthPoint = ImageParam.MapFromSkeletonPoint(headJoint.Position);
+                    fy = (float)depthPoint.Y / (float)ImageParam.Height;
+
+
+
+                    foreach (Joint joint in skeleton.Joints)
                     {
-                        Joint headJoint = sd.Joints[JointType.Head];
-                        DepthImagePoint depthPoint = ImageParam.MapFromSkeletonPoint(headJoint.Position);
-                        fy = (float)depthPoint.Y / (float)ImageParam.Height;
-
-
-
-                        foreach (Joint joint in sd.Joints)
+                        DepthImagePoint depthP;
+                        depthP = ImageParam.MapFromSkeletonPoint(joint.Position);
+                        switch (joint.JointType)
                         {
-                            DepthImagePoint depthP;
-                            depthP = ImageParam.MapFromSkeletonPoint(joint.Position);
-                            switch (joint.JointType)
-                            {
-                                case JointType.Head:
-                                    fheadY = (float)depthP.Y / ImageParam.Height;
-                                    break;
-                                case JointType.ShoulderCenter:
-                                    fcenterZ = (float)joint.Position.Z;
-                                    break;
-                                case JointType.HipCenter:
-                                    fhipY = (float)depthP.Y / ImageParam.Height;
-                                    break;
+                            case JointType.Head:
+                                fheadY = (float)depthP.Y / ImageParam.Height;
+                                break;
+                            case JointType.ShoulderCenter:
+                                fcenterZ = (float)joint.Position.Z;
+                                break;
+                            case JointType.HipCenter:
+                                fhipY = (float)depthP.Y / ImageParam.Height;
+                                break;
 
-                            }
                         }
-                        double dbVal = (fhipY - fheadY) * 2;
-                        dbVal = dbVal * 1.25;
-                        factheight = (dbVal * (fcenterZ * 100) - fcenterZ * 2);
-                        //message = factheight.ToString();
-
-
                     }
-                }
+                    double dbVal = (fhipY - fheadY) * 2;
+                    dbVal = dbVal * 1.25;
+                    factheight = (dbVal * (fcenterZ * 100) - fcenterZ * 2);
+                    //message = factheight.ToString();
+
+
+                }    
+                
             }
         }
 #endif
@@ -5555,18 +5706,77 @@ namespace beethoven3
 
                 charismaManager.Draw(gameTime, spriteBatch);
 
+
+
+                
                 //Trace.WriteLine(charismaManager.IsCharismaTime);
                 if (charismaManager.IsCharismaTime == 2)
                 {
+                    //Skeleton2DDataExtract.Skeleton2DdataCoordReady -= NuiSkeleton2DdataCoordReady;
+                    if (charismaManager.Type == 1)
+                    {
+                        ////카리스마타임 제스쳐 시작부분
+                        postureCount = 0;
+                        postureFlag = true;
+                        gestureFlag = true;
+                        string fileName = "33.txt";
+                        LoadGesturesFromFile(fileName);
+                        Skeleton2DDataExtract.Skeleton2DdataCoordReady += NuiSkeleton2DdataCoordReady;
+                        
 
-                    ////카리스마타임 제스쳐 시작부분
-                    string fileName = "RecordedGestures2012-12-21_03-35.txt";
-                    LoadGesturesFromFile(fileName);
-                    Skeleton2DDataExtract.Skeleton2DdataCoordReady += NuiSkeleton2DdataCoordReady;
-                    gestureFlag = true;
+
+
+                        
+                    }
+                    else if (charismaManager.Type == 2)
+                    {
+                        ////카리스마타임 제스쳐 시작부분
+                        postureCount = 0;
+                        postureFlag = true;
+                        gestureFlag = true;
+                        string fileName = "22.txt";
+                        LoadGesturesFromFile(fileName);
+                        Skeleton2DDataExtract.Skeleton2DdataCoordReady += NuiSkeleton2DdataCoordReady;
+                        
+                    }
+                    else if (charismaManager.Type == 3)
+                    {
+                        ////카리스마타임 제스쳐 시작부분
+                        postureCount = 0;
+                        postureFlag = true;
+                        gestureFlag = true;
+                        string fileName = "33.txt";
+                        LoadGesturesFromFile(fileName);
+                        Skeleton2DDataExtract.Skeleton2DdataCoordReady += NuiSkeleton2DdataCoordReady;
+                        
+                    }
+                    else if (charismaManager.Type == 4)
+                    {
+                        ////카리스마타임 제스쳐 시작부분
+                        postureCount = 0;
+                        postureFlag = false;
+                        gestureFlag = true;
+                        string fileName = "44.txt";
+                        LoadGesturesFromFile(fileName);
+                        Skeleton2DDataExtract.Skeleton2DdataCoordReady += NuiSkeleton2DdataCoordReady;
+                        
+                    }
+               
+
 
                     charismaManager.IsCharismaTime = 1;
                 }
+
+                //if (charismaManager.IsCharismaTime == 0)
+                //{
+                //    postureCount = 0;
+                //    postureFlag = true;
+                //    gestureFlag = true;
+                //    string fileName = "55.txt";
+                //    LoadGesturesFromFile(fileName);
+                //    Skeleton2DDataExtract.Skeleton2DdataCoordReady += NuiSkeleton2DdataCoordReady;
+                    
+                //}
 
               //if (isCharisma1)
                 //{
@@ -5697,12 +5907,12 @@ namespace beethoven3
                 //setupKinect.draw();
 
             }
-            if (Skeletons != null)
+            if (skeleton != null)
             {
-                foreach (Skeleton s in Skeletons)
-                    if (s.TrackingState == SkeletonTrackingState.Tracked)
+
+                if (skeleton.TrackingState == SkeletonTrackingState.Tracked)
                     {
-                        drawpoint(s.Joints[JointType.HandRight], s.Joints[JointType.HandLeft]);
+                        drawpoint(skeleton.Joints[JointType.HandRight], skeleton.Joints[JointType.HandLeft]);
 
                     }
             }
