@@ -6,10 +6,10 @@ myPicture.jpg$0
 myPicture.jpg$0
 %%
 abc
+myPicture.jpg$130
 myPicture.jpg$90
 myPicture.jpg$60
 myPicture.jpg$50
-myPicture.jpg$40
 myPicture.jpg$40
 %%
 bond

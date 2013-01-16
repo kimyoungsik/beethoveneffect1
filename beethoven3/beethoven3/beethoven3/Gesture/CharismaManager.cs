@@ -178,7 +178,7 @@ namespace beethoven3
         #region update and draw
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-
+#if Kinect
           if(charismaFrames.Count > 0)
           {
 
@@ -202,7 +202,9 @@ namespace beethoven3
   
               }
           }
+#endif
         }
+  
         #endregion
 
 

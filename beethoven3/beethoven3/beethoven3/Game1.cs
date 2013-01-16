@@ -1,4 +1,4 @@
-﻿#define Kinect
+﻿//#define Kinect
 
 using System;
 using System.Collections;
@@ -33,7 +33,24 @@ namespace beethoven3
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        //화면에 띄우기
+        Texture2D KinectVideoTexture;
+        Rectangle VideoDisplayRectangle;
+        Texture2D idot1;
+        Texture2D idot2;
+        public static Rectangle drawrec1;
+        public static Rectangle drawrec2;
+        public static bool finalClick;
+        public static bool pastClick = false;
 
+        //스코어 보드에 쓰이는 사진
+        private String ScorePic;
+        private bool isScorePic = false;
+
+
+        private Queue playingPictures;
+        private int playPicturesCount = 0;
+        Texture2D[] showPictureTextures = new Texture2D[5];
 #if Kinect
 
         //키넥트
@@ -42,8 +59,7 @@ namespace beethoven3
         Skeleton skeleton = null;
         //스켈레톤 한명만
         int CurrentTrackingId = 0;
-        public static bool finalClick;
-        public static bool pastClick = false;
+ 
         //음성인식
         SpeechRecognitionEngine sre;
         RecognizerInfo ri;
@@ -106,13 +122,7 @@ namespace beethoven3
 
 
 
-        //화면에 띄우기
-        Texture2D KinectVideoTexture;
-        Rectangle VideoDisplayRectangle;
-        Texture2D idot1;
-        Texture2D idot2;
-        public static Rectangle drawrec1;
-        public static Rectangle drawrec2;
+
 
         //손
         DepthImagePoint handPoint;
@@ -136,14 +146,7 @@ namespace beethoven3
 
 
 
-        //스코어 보드에 쓰이는 사진
-        private String ScorePic;
-        private bool isScorePic = false;
-
-
-        private Queue playingPictures;
-        private int playPicturesCount = 0;
-        Texture2D[] showPictureTextures = new Texture2D[5];
+     
 
 #endif
         //기본 글꼴
@@ -378,14 +381,14 @@ namespace beethoven3
             //마우스 보이기
             this.IsMouseVisible = true;
 
-#if Kinect
+//#if Kinect
             
             //KINECT
             VideoDisplayRectangle = new Rectangle(0, 0, SCR_W, SCR_H);
 
             drawrec1 = new Rectangle(0, 0, GraphicsDevice.Viewport.Width / 20, GraphicsDevice.Viewport.Height / 20);
             drawrec2 = new Rectangle(0, 0, GraphicsDevice.Viewport.Width / 20, GraphicsDevice.Viewport.Height / 20);
-#endif
+//#endif
             base.Initialize();
 
         }
@@ -769,6 +772,10 @@ namespace beethoven3
             //ts4 = new ThreadStart(FaceDetect);
             //th4 = new Thread(ts4);
             //th4.Start();
+           
+
+         
+#endif
             playingPictures = new Queue();
             showPictureTextures = new Texture2D[5];
 
@@ -781,8 +788,6 @@ namespace beethoven3
             metronomes[5] = Content.Load<Texture2D>(@"metronome\metronome5");
             metronomes[6] = Content.Load<Texture2D>(@"metronome\metronome6");
             metronomes[7] = Content.Load<Texture2D>(@"metronome\metronome7");
-#endif
-
         }
 
 
@@ -2570,7 +2575,7 @@ namespace beethoven3
         //메트로놈
         private Texture2D GetMetroTexture(double tempo)
         {
-            Texture2D metoroTexture = metoroTexture = metronomes[4];
+            Texture2D metoroTexture = metronomes[4];
             if (tempo == 1.0f)
             {
                 metoroTexture = metronomes[4];
@@ -2717,6 +2722,8 @@ namespace beethoven3
         //카리스마 타임이맞는지 확인한다.
         public void JudgeCharisma()
         {
+
+#if Kinect
             if(charismaManager.IsCharismaTime == 1 && !charismaManager.IsJudgeCheck) 
             {
                 if(kinectMessage.Contains("__UNKNOWN"))
@@ -2733,6 +2740,7 @@ namespace beethoven3
                 }
             
             }
+#endif
         }
             
         protected override void Update(GameTime gameTime)
@@ -5708,7 +5716,7 @@ namespace beethoven3
 
 
 
-                
+#if Kinect
                 //Trace.WriteLine(charismaManager.IsCharismaTime);
                 if (charismaManager.IsCharismaTime == 2)
                 {
@@ -5784,7 +5792,7 @@ namespace beethoven3
                 //    spriteBatch.Draw(charisma1, new Rectangle(200, 200, 727, 278), Color.White);
 
                 //}
-  
+#endif
 
             }
             #endregion
