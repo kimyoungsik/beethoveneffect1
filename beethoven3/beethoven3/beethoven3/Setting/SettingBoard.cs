@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 //using Microsoft.Xna.Framework.GamerServices;
-
+using Microsoft.Kinect;
 // 기록판
 namespace beethoven3
 {
@@ -22,10 +22,12 @@ namespace beethoven3
         private Rectangle recNextButton;
 
         private SpriteFont pericles36Font;
-        public SettingBoard()
+
+        private Game1 game1;
+        public SettingBoard(Game1 game1)
         {
             clickNextButton = false;
-          
+            this.game1 = game1;
 
         }
 
@@ -52,11 +54,19 @@ namespace beethoven3
             //float fCurrentVolume = SoundFmod.GetVolume();
             //int iCurrentVolume = (int)(fCurrentVolume * 10);
 
+            float userParam = game1.UserParam;
 
+            KinectSensor nui = game1.Nui;
+            int elevationAngle  = nui.ElevationAngle;
 
-            //spriteBatch.DrawString(pericles36Font, "Volume", new Vector2(100, 100), Color.Black);
+            spriteBatch.DrawString(pericles36Font, "scaling", new Vector2(100, 100), Color.Black);
 
-            //spriteBatch.DrawString(pericles36Font, iCurrentVolume.ToString(), new Vector2(500, 100), Color.Black);
+            spriteBatch.DrawString(pericles36Font, userParam.ToString(), new Vector2(500, 100), Color.Black);
+
+            spriteBatch.DrawString(pericles36Font, "angle", new Vector2(100, 300), Color.Black);
+
+            spriteBatch.DrawString(pericles36Font, elevationAngle.ToString(), new Vector2(500, 300), Color.Black);
+
 
 
 

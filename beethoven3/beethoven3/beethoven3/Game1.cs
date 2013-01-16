@@ -60,7 +60,9 @@ namespace beethoven3
         public static Vector2 center = new Vector2(0, 0);
         //키넥트
         KinectSensor nui = null;
+        
         Skeleton[] Skeletons = null;
+        
         Skeleton skeleton = null;
         //스켈레톤 한명만
         int CurrentTrackingId = 0;
@@ -732,7 +734,7 @@ namespace beethoven3
             recordBoard = new RecordBoard();
             recordBoard.LoadContent(Content);
 
-            settingBoard = new SettingBoard();
+            settingBoard = new SettingBoard(this);
             settingBoard.LoadContent(Content);
 
 
@@ -1084,26 +1086,26 @@ namespace beethoven3
             }
 
 
-            //if (fy >= 180)
-            //{
-            //    userParam = 0.4f;
-            //}
-            //else if (fy < 180 && fy >= 170)
-            //{
-            //    userParam = 0.35f;
-            //}
-            //else if (fy < 170 && fy >= 160)
-            //{
-            //    userParam = 0.30f;
-            //}
-            //else if (fy < 160 && fy >= 150)
-            //{
-            //    userParam = 0.25f;
-            //}
-            //else
-            //{
-            //    userParam = 0.3f;
-            //}
+            if (fy >= 180)
+            {
+                userParam = 0.4f;
+            }
+            else if (fy < 180 && fy >= 170)
+            {
+                userParam = 0.35f;
+            }
+            else if (fy < 170 && fy >= 160)
+            {
+                userParam = 0.30f;
+            }
+            else if (fy < 160 && fy >= 150)
+            {
+                userParam = 0.25f;
+            }
+            else
+            {
+                userParam = 0.3f;
+            }
 
 
         }
@@ -1186,7 +1188,7 @@ namespace beethoven3
 
             if (nui != null)
             {
-
+                
                 //스켈레톤 스트림
                 nui.SkeletonStream.Enable(parameters);
                 //nui.SkeletonStream.Enable();
@@ -1214,7 +1216,7 @@ namespace beethoven3
 
                 setupAudio();
             }
-
+            
             return true;
         }
 
@@ -2435,7 +2437,22 @@ namespace beethoven3
             center = new Vector2(rec.X + rec.Width / 2, rec.Y + rec.Height / 2);
             
         }
-       
+
+        public float UserParam
+        {
+            get { return userParam; }
+            set { userParam = value; }
+
+        }
+
+
+
+        public KinectSensor Nui
+        {
+            get { return nui; }
+            set { nui = value; }
+
+        }
 
 
         //마우스 충돌 처리
