@@ -52,6 +52,8 @@ namespace beethoven3
 
         private CharismaManager charismaManager;
 
+        private PhotoManager photoManager;
+
         private bool endFile;
 
         private Double startTime;
@@ -97,7 +99,7 @@ namespace beethoven3
         
         #region constructor
 
-        public File(StartNoteManager startNoteManager, NoteFileManager noteFileManager, CollisionManager collisionManager, ScoreManager scoreManager, ItemManager itemManager, CurveManager curveManager, GuideLineManager guideLineManager, CharismaManager charismaManager)       
+        public File(StartNoteManager startNoteManager, NoteFileManager noteFileManager, CollisionManager collisionManager, ScoreManager scoreManager, ItemManager itemManager, CurveManager curveManager, GuideLineManager guideLineManager, CharismaManager charismaManager, PhotoManager photoManager)       
         {
 
              this.startNoteManager = startNoteManager;
@@ -116,6 +118,8 @@ namespace beethoven3
              this.guideLineManager = guideLineManager;
 
              this.charismaManager = charismaManager;
+
+             this.photoManager = photoManager;
              newNote = true;
         }
         
@@ -327,6 +331,17 @@ namespace beethoven3
                             arrayNotes.Add(new NoteInfo(isright,/*startTime*/Convert.ToDouble(lines[0]), /*카리스마종류*/Int32.Parse(lines[2]), /*type*/lines[1], /*not lastTime*/Convert.ToDouble(lines[3]), Vector2.Zero, Vector2.Zero, Vector2.Zero, Vector2.Zero));
 
                         }
+
+
+                        //포토타임
+
+                        
+                        else if (lines[1] == "H")
+                        {
+                            arrayNotes.Add(new NoteInfo(isright,/*startTime*/Convert.ToDouble(lines[0]), /*카리스마종류*/0, /*type*/lines[1], /*not lastTime*/0, Vector2.Zero, Vector2.Zero, Vector2.Zero, Vector2.Zero));
+
+                        }
+
                     }
                     catch (IndexOutOfRangeException ex)
                     {
@@ -701,10 +716,21 @@ namespace beethoven3
 
                             charismaManager.AddCharismaFrame(arrayNotes[0].StartTime, arrayNotes[0].LastTime, arrayNotes[0].MarkLocation, this.time);
 
+                        }
 
-                            
+                        //포토타임
+                        else if (arrayNotes[0].Type == "H")
+                        {
+                            //종류. 시작시간, 끝나는시간
+                            photoManager.AddPhotoFrame(arrayNotes[0].StartTime, this.time);
+                           // charismaManager.AddChasmaFrame(arrayNotes[0].StartTime, arrayNotes[0].LastTime, arrayNotes[0].MarkLocation, this.time);
 
                         }
+
+
+
+
+
 
                         arrayNotes.RemoveAt(0);
 

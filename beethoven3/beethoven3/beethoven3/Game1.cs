@@ -298,6 +298,8 @@ namespace beethoven3
 
         private CharismaManager charismaManager;
 
+
+        private PhotoManager photoManager;
         //드래그 라인 안의 마커점
 
         public static Texture2D drawLineMarker;
@@ -626,8 +628,12 @@ namespace beethoven3
             charismaManager = new CharismaManager();
             charismaManager.LoadContent(Content);
 
+            photoManager = new PhotoManager();
+            photoManager.LoadContent(Content);
+
+
             //노트파일 읽기 관리 생성
-            file = new File(startNoteManager, noteFileManager, collisionManager, scoreManager, itemManager, curveManager, guideLineManager, charismaManager);
+            file = new File(startNoteManager, noteFileManager, collisionManager, scoreManager, itemManager, curveManager, guideLineManager, charismaManager, photoManager);
 
             SoundFmod.initialize(file);
             //곡선택화면 곡 불러오는 폴더 
@@ -5805,11 +5811,15 @@ namespace beethoven3
                 spriteBatch.Draw(uiHeart, new Vector2(0, 6), new Rectangle(0, 0, gage, 50), Color.White);
 
 
-                charismaManager.Draw(gameTime, spriteBatch);
 
+                
+
+               
 
 
 #if Kinect
+                charismaManager.Draw(gameTime, spriteBatch);
+                photoManager.Draw(gameTime, spriteBatch);
                 //Trace.WriteLine(charismaManager.IsCharismaTime);
                 if (charismaManager.IsCharismaTime == 2)
                 {
@@ -5824,10 +5834,7 @@ namespace beethoven3
                         LoadGesturesFromFile(fileName);
                         Skeleton2DDataExtract.Skeleton2DdataCoordReady += NuiSkeleton2DdataCoordReady;
                         
-
-
-
-                        
+                                                
                     }
                     else if (charismaManager.Type == 2)
                     {

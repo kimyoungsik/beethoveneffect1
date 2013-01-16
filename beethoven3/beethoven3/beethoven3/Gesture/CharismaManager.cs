@@ -191,7 +191,9 @@ namespace beethoven3
               {
                   if (isCharismaTime == 0)
                   {
-                      Game1.PicFlag = true;
+                      //사진 찍는것
+
+                     // Game1.PicFlag = true;
                       isCharismaTime = 2;
                   }
                   spriteBatch.Draw(charismaFrame.Texture, picLocation, Color.White);
