@@ -299,7 +299,7 @@ namespace beethoven3
             //노래가 하나라도 있어야한다. 
 
 
-            if (scene_number != 0)
+            if (noteFileManager.noteFiles.Count > 0)
             {
                 String name = noteFileManager.noteFiles[scene_number].Name;
                 spriteBatch.DrawString(pericles36Font, name, new Vector2(512, 420), Color.White);
@@ -344,8 +344,10 @@ namespace beethoven3
                 }
                 else
                 {
-                    if (scene_number != 0 && scene_number != noteFileManager.noteFiles.Count-1)
-                        spriteBatch.Draw(leftright[1], new Rectangle(770, 310, 60, 60), new Color(fadeinout, fadeinout, fadeinout));
+                  //  if (scene_number != 0 && scene_number != noteFileManager.noteFiles.Count-1)
+                    if (noteFileManager.noteFiles.Count > 0 && scene_number != noteFileManager.noteFiles.Count - 1)
+                  
+                      spriteBatch.Draw(leftright[1], new Rectangle(770, 310, 60, 60), new Color(fadeinout, fadeinout, fadeinout));
                 }
             }
         }
