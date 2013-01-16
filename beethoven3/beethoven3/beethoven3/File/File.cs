@@ -60,7 +60,7 @@ namespace beethoven3
 
         private Double endTime;
 
-        private int bpm;
+       // private int bpm;
         //패턴이 바뀌는 중인지 체크
         private bool patternChanging = false;
 
@@ -192,27 +192,34 @@ namespace beethoven3
                         
                         if (line == "#################### [HEADER] ####################")
                         {
+                            String version = sr.ReadLine();
 
                             String name = sr.ReadLine();
 
                             String artist = sr.ReadLine();
 
+                            String level = sr.ReadLine();
+
                             String mp3 = sr.ReadLine();
 
                             String picture = sr.ReadLine();
+
+                            
 
                             double startTime = Convert.ToDouble(sr.ReadLine());
 
                             double endTime = Convert.ToDouble(sr.ReadLine());
 
+                            int bpm = Int32.Parse(sr.ReadLine());
+
                             //0: version , 1:name , 2: artist, 3: mp3, 4: picture
 
                             //노트정보관리에 다음 사항을 넣는다. //*** 버전 추가 
-                            noteFileManager.Add("1", 1,name, artist, mp3, picture, startTime, endTime);
+                            noteFileManager.Add(version, Int32.Parse(level), name, artist, mp3, picture, startTime, endTime, bpm);
 
                             
 
-                            bpm = Int32.Parse(sr.ReadLine());
+                            
                         }
                         else
                         {
@@ -244,6 +251,14 @@ namespace beethoven3
         {
             arrayNotes.Clear();
             
+            //템포설정
+
+            StartNoteManager.rightNoteManager.noteSpeed = noteFileManager.noteFiles[noteNumber].Bpm;
+            StartNoteManager.leftNoteManager.noteSpeed = noteFileManager.noteFiles[noteNumber].Bpm;
+            StartNoteManager.longNoteManager.noteSpeed = noteFileManager.noteFiles[noteNumber].Bpm;
+
+            Curve.dragNoteSpeed = GetDragNoteSpeed(noteFileManager.noteFiles[noteNumber].Bpm);
+
 
             String name = noteFileManager.noteFiles[noteNumber].Name;
             
@@ -694,6 +709,9 @@ namespace beethoven3
                         {
 
                          //   StartNoteManager.noteSpeed = arrayNotes[0].MarkLocation;
+
+                            //마커 위치가 아니라, 저기에 들어있는값이 템포이다.
+
                             StartNoteManager.rightNoteManager.noteSpeed = arrayNotes[0].MarkLocation;
                             StartNoteManager.leftNoteManager.noteSpeed = arrayNotes[0].MarkLocation;
                             StartNoteManager.longNoteManager.noteSpeed = arrayNotes[0].MarkLocation;
