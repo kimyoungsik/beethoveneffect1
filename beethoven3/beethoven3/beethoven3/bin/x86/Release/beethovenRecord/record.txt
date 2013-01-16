@@ -7,12 +7,13 @@ myPicture.jpg$0
 %%
 abc
 myPicture.jpg$130
+myPicture.jpg$100
 myPicture.jpg$90
+myPicture.jpg$70
 myPicture.jpg$60
-myPicture.jpg$50
-myPicture.jpg$50
 %%
 bond
+myPicture.jpg$500
 myPicture.jpg$369
 myPicture.jpg$367
 myPicture.jpg$40

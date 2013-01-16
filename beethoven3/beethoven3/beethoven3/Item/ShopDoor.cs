@@ -17,18 +17,21 @@ namespace beethoven3
         private Texture2D note;
         private Texture2D effect;
         private Texture2D background;
+        private Texture2D previousButton;
 
         private Texture2D hoverRightHand;
         private Texture2D hoverLeftHand;
         private Texture2D hoverNote;
         private Texture2D hoverEffect;
         private Texture2D hoverBackground;
+        private Texture2D hoverPreviousButton;
 
         private Rectangle recRightHand;
         private Rectangle recLeftHand;
         private Rectangle recNote;
         private Rectangle recEffect;
         private Rectangle recBackground;
+        private Rectangle recPreviousButton;
 
 
         private bool clickRightHand;
@@ -36,6 +39,9 @@ namespace beethoven3
         private bool clickNote;
         private bool clickEffect;
         private bool clickBackground;
+        private bool clickPreviousButton;
+
+
 
         private SpriteFont pericles36Font;
 
@@ -46,6 +52,7 @@ namespace beethoven3
              clickNote = false;
              clickEffect = false;
              clickBackground = false;
+             clickPreviousButton = false;
 
         }
 
@@ -56,12 +63,14 @@ namespace beethoven3
              note = cm.Load<Texture2D>(@"shopdoor\shopDoor3");
              effect= cm.Load<Texture2D>(@"shopdoor\shopDoor4");
              background = cm.Load<Texture2D>(@"shopdoor\shopDoor5");
+             previousButton = cm.Load<Texture2D>(@"result\nextButton");
 
              hoverRightHand = cm.Load<Texture2D>(@"shopdoor\changed1");
              hoverLeftHand = cm.Load<Texture2D>(@"shopdoor\changed2");
              hoverNote = cm.Load<Texture2D>(@"shopdoor\changed3");
              hoverEffect = cm.Load<Texture2D>(@"shopdoor\changed4");
              hoverBackground = cm.Load<Texture2D>(@"shopdoor\changed5");
+             hoverPreviousButton = cm.Load<Texture2D>(@"result\\hoverNextButton");
 
              pericles36Font = cm.Load<SpriteFont>(@"Fonts\Pericles36");
            
@@ -102,6 +111,10 @@ namespace beethoven3
                  recBackground,
                      Color.White);
 
+             recPreviousButton = new Rectangle(width - 400, height - 200, 356, 215);
+            spriteBatch.Draw(previousButton, recPreviousButton, Color.White);
+
+
 
             spriteBatch.DrawString(pericles36Font, "RightHand", new Vector2(width / 2 - (rightHand.Width / 2) - 200, height / 2 - (rightHand.Height / 2) - 100), Color.Black);
             
@@ -113,6 +126,14 @@ namespace beethoven3
 
             spriteBatch.DrawString(pericles36Font, "Background", new Vector2(width / 2 - (background.Width / 2) - 200, height / 2 - (background.Height / 2) + 170), Color.Black);
             
+
+            
+            if (clickPreviousButton)
+            {
+                spriteBatch.Draw(hoverPreviousButton, recPreviousButton, Color.White);
+            }
+
+
             if (clickRightHand)
             {
                 spriteBatch.Draw(hoverRightHand,
@@ -215,6 +236,17 @@ namespace beethoven3
         public Rectangle getRectBackground()
         {
             return this.recBackground;
+        }
+
+
+          public void setClickPreviousButton(bool value)
+        {
+            this.clickPreviousButton = value;
+        }
+
+        public Rectangle getRectPreviousButton()
+        {
+            return this.recPreviousButton;
         }
        
     }

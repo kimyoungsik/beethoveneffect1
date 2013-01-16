@@ -357,7 +357,7 @@ namespace beethoven3
         public void LoadContent(ContentManager cm)
         {
 
-            rightHandTexture[0] = cm.Load<Texture2D>(@"rightItem\s1");
+            rightHandTexture[0] = cm.Load<Texture2D>(@"rightItem\s3");
             rightHandTexture[1] = cm.Load<Texture2D>(@"rightItem\s2");
             rightHandTexture[2] = cm.Load<Texture2D>(@"rightItem\s3");
             rightHandTexture[3] = cm.Load<Texture2D>(@"rightItem\s4");

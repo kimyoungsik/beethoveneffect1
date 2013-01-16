@@ -91,6 +91,8 @@ namespace beethoven3
 
         public override void Draw(SpriteBatch spriteBatch, int width, int height)
         {
+            base.Draw(spriteBatch, width, height);
+
             int i;
 
 

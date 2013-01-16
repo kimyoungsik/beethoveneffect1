@@ -875,15 +875,25 @@ namespace beethoven3
                 }
             }
         }
-        public void CheckCollisions(int number,Vector2 mousePoint)
+        public void CheckMouseCollisions(int number,Vector2 mousePoint)
         {
             checkRightNoteToMarker(number, mousePoint);
             checkLeftNoteToMarker(number, mousePoint);
-       
             checkLongNoteToMarker(number, mousePoint);
             checkGold(mousePoint);
         }
-
+        public void CheckRightHandCollisions(int number, Vector2 mousePoint)
+        {
+            checkRightNoteToMarker(number, mousePoint);
+            checkLongNoteToMarker(number, mousePoint);
+            checkGold(mousePoint);
+        }
+        public void CheckLeftHandCollisions(int number, Vector2 mousePoint)
+        {
+            checkLeftNoteToMarker(number, mousePoint);
+            checkLongNoteToMarker(number, mousePoint);
+            checkGold(mousePoint);
+        }
 
         /// <summary>
         /// 오른 손 노트 사각형 범위 들어가면 삭제 , 반복문 돌 필요가 없는지 다시 검토

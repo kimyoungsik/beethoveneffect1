@@ -81,7 +81,22 @@ namespace beethoven3
 
         protected Rectangle recNoGoldButton;
         protected Rectangle recHandInButton;
-   
+
+
+
+
+        protected Texture2D previousButton;
+
+
+        protected Texture2D hoverPreviousButton;
+
+        protected Rectangle recPreviousButton;
+
+
+        protected bool clickPreviousButton;
+
+
+
         public ItemShop(ItemManager itemManager, ScoreManager scoreManager)
         {
             this.itemManager = itemManager;
@@ -126,6 +141,13 @@ namespace beethoven3
             handInItemButton = cm.Load<Texture2D>(@"shopdoor\handInItemButton");
 
             pericles36Font = cm.Load<SpriteFont>(@"Fonts\Pericles36");
+
+
+
+           
+            previousButton = cm.Load<Texture2D>(@"result\nextButton");
+
+            hoverPreviousButton = cm.Load<Texture2D>(@"result\\hoverNextButton");
 
         }
 
@@ -308,12 +330,32 @@ namespace beethoven3
             this.isHoverHandInItem = value;
         }
 
-        
 
+        public void setClickPreviousButton(bool value)
+        {
+            this.clickPreviousButton = value;
+        }
+
+        public Rectangle getRectPreviousButton()
+        {
+            return this.recPreviousButton;
+        }
+       
 
         public virtual void Draw(SpriteBatch spriteBatch, int width, int height)
         {
-          
+            recPreviousButton = new Rectangle(width - 400, height - 200, 356, 215);
+            spriteBatch.Draw(previousButton, recPreviousButton, Color.White);
+
+            if (clickPreviousButton)
+            {
+                spriteBatch.Draw(hoverPreviousButton, recPreviousButton, Color.White);
+            }
+
+            spriteBatch.DrawString(pericles36Font, "Gold : ", new Vector2(10, 200), Color.Black);
+
+
+
         }
     
     }

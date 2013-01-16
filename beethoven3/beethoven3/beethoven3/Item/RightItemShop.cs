@@ -96,6 +96,9 @@ namespace beethoven3
 
         public override void Draw(SpriteBatch spriteBatch, int width, int height)
         {
+
+            base.Draw(spriteBatch, width, height);
+
             spriteBatch.DrawString(pericles36Font, "Gold : ", new Vector2(10, 200), Color.Black);
 
 

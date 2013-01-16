@@ -100,7 +100,6 @@ namespace beethoven3
         int postureCount = 0;
         bool postureFlag = false;
 
-
         //머리찾기
         float fy;
         double bestFy = 1000;
@@ -116,13 +115,6 @@ namespace beethoven3
         //폰트
         SpriteFont messageFont;
         string message = "start";
-
-        
-//        Texture2D charisma1;
-
-
-
-
 
         //손
         DepthImagePoint handPoint;
@@ -143,11 +135,7 @@ namespace beethoven3
         bool clickJudge = false;
         List<DepthImagePoint> handList = new List<DepthImagePoint>();
         List<bool> clickList = new List<bool>();
-
-
-
-     
-
+        
 #endif
         //기본 글꼴
         //basic font
@@ -250,9 +238,7 @@ namespace beethoven3
 
         //점수위치
         Vector2 scorePosition = new Vector2(705, 5);
-  
-
-      
+        
         //마우스 상태 
         MouseState mouseStateCurrent, mouseStatePrevious;
 
@@ -2422,17 +2408,17 @@ namespace beethoven3
 
             collisionManager.checkDragNote(new Vector2(mouseStateCurrent.X, mouseStateCurrent.Y));
 
-            collisionManager.CheckCollisions(0, new Vector2(mouseStateCurrent.X, mouseStateCurrent.Y));
+            collisionManager.CheckMouseCollisions(0, new Vector2(mouseStateCurrent.X, mouseStateCurrent.Y));
 
-            collisionManager.CheckCollisions(1, new Vector2(mouseStateCurrent.X, mouseStateCurrent.Y));
+            collisionManager.CheckMouseCollisions(1, new Vector2(mouseStateCurrent.X, mouseStateCurrent.Y));
 
-            collisionManager.CheckCollisions(2, new Vector2(mouseStateCurrent.X, mouseStateCurrent.Y));
+            collisionManager.CheckMouseCollisions(2, new Vector2(mouseStateCurrent.X, mouseStateCurrent.Y));
 
-            collisionManager.CheckCollisions(3, new Vector2(mouseStateCurrent.X, mouseStateCurrent.Y));
+            collisionManager.CheckMouseCollisions(3, new Vector2(mouseStateCurrent.X, mouseStateCurrent.Y));
 
-            collisionManager.CheckCollisions(4, new Vector2(mouseStateCurrent.X, mouseStateCurrent.Y));
+            collisionManager.CheckMouseCollisions(4, new Vector2(mouseStateCurrent.X, mouseStateCurrent.Y));
 
-            collisionManager.CheckCollisions(5, new Vector2(mouseStateCurrent.X, mouseStateCurrent.Y));
+            collisionManager.CheckMouseCollisions(5, new Vector2(mouseStateCurrent.X, mouseStateCurrent.Y));
 
         }
 
@@ -2440,21 +2426,36 @@ namespace beethoven3
         //키넥트 충돌 처리
         private void HandleInput()
         {
+            //오른손 /
+           collisionManager.checkDragNote(new Vector2(drawrec1.X, drawrec1.Y));
 
-           // Trace.WriteLine("P1:" + drawrec1.X + " ," + drawrec1.Y + "M" + mouseStateCurrent.X + "," + mouseStateCurrent.Y);
-            collisionManager.checkDragNote(new Vector2(drawrec1.X, drawrec1.Y));
+            collisionManager.CheckRightHandCollisions(0, new Vector2(drawrec1.X, drawrec1.Y));
 
-            collisionManager.CheckCollisions(0, new Vector2(drawrec1.X, drawrec1.Y));
+            collisionManager.CheckRightHandCollisions(1, new Vector2(drawrec1.X, drawrec1.Y));
 
-            collisionManager.CheckCollisions(1, new Vector2(drawrec1.X, drawrec1.Y));
+            collisionManager.CheckRightHandCollisions(2, new Vector2(drawrec1.X, drawrec1.Y));
 
-            collisionManager.CheckCollisions(2, new Vector2(drawrec1.X, drawrec1.Y));
+            collisionManager.CheckRightHandCollisions(3, new Vector2(drawrec1.X, drawrec1.Y));
 
-            collisionManager.CheckCollisions(3, new Vector2(drawrec1.X, drawrec1.Y));
+            collisionManager.CheckRightHandCollisions(4, new Vector2(drawrec1.X, drawrec1.Y));
 
-            collisionManager.CheckCollisions(4, new Vector2(drawrec1.X, drawrec1.Y));
+            collisionManager.CheckRightHandCollisions(5, new Vector2(drawrec1.X, drawrec1.Y));
 
-            collisionManager.CheckCollisions(5, new Vector2(drawrec1.X, drawrec1.Y));
+
+            //왼손
+            collisionManager.checkDragNote(new Vector2(drawrec2.X, drawrec2.Y));
+
+            collisionManager.CheckLeftHandCollisions(0, new Vector2(drawrec2.X, drawrec2.Y));
+
+            collisionManager.CheckLeftHandCollisions(1, new Vector2(drawrec2.X, drawrec2.Y));
+
+            collisionManager.CheckLeftHandCollisions(2, new Vector2(drawrec2.X, drawrec2.Y));
+
+            collisionManager.CheckLeftHandCollisions(3, new Vector2(drawrec2.X, drawrec2.Y));
+
+            collisionManager.CheckLeftHandCollisions(4, new Vector2(drawrec2.X, drawrec2.Y));
+
+            collisionManager.CheckLeftHandCollisions(5, new Vector2(drawrec2.X, drawrec2.Y));
 
         }
 #endif
@@ -2870,6 +2871,20 @@ namespace beethoven3
                        shopDoor.setClickBackground(false);
                    }
 
+
+                   if (rect.Intersects(shopDoor.getRectPreviousButton()) || drawrec1.Intersects(shopDoor.getRectPreviousButton()))
+                   {
+                       shopDoor.setClickPreviousButton(true);
+                       //click the right hand item section
+                       if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (finalClick && !pastClick))
+                       {
+                           gameState = GameStates.Menu;
+                       }
+                   }
+                   else
+                   {
+                       shopDoor.setClickPreviousButton(false);
+                   }
                    pastClick = finalClick;
                     break;
 
@@ -3299,6 +3314,21 @@ namespace beethoven3
                        }
 
                    }
+
+
+                   if (mouseRect.Intersects(rightItemShop.getRectPreviousButton()) || drawrec1.Intersects(rightItemShop.getRectPreviousButton()))
+                   {
+                       rightItemShop.setClickPreviousButton(true);
+                       //click the right hand item section
+                       if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (finalClick && !pastClick))
+                       {
+                           gameState = GameStates.ShopDoor;
+                       }
+                   }
+                   else
+                   {
+                       rightItemShop.setClickPreviousButton(false);
+                   }
                    
                    break;
 
@@ -3690,7 +3720,23 @@ namespace beethoven3
 
                         }
                     }
-                   
+
+
+                    if (mouseRectinleft.Intersects(leftItemShop.getRectPreviousButton()) || drawrec1.Intersects(leftItemShop.getRectPreviousButton()))
+                    {
+                        leftItemShop.setClickPreviousButton(true);
+                        //click the right hand item section
+                        if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (finalClick && !pastClick))
+                        {
+                            gameState = GameStates.ShopDoor;
+                        }
+                    }
+                    else
+                    {
+                        leftItemShop.setClickPreviousButton(false);
+                    }
+
+
                    break;
 
                #endregion 
@@ -4071,6 +4117,21 @@ namespace beethoven3
                            }
 
                        }
+                   }
+
+
+                   if (mouseRectinNote.Intersects(noteItemShop.getRectPreviousButton()) || drawrec1.Intersects(noteItemShop.getRectPreviousButton()))
+                   {
+                       noteItemShop.setClickPreviousButton(true);
+                       //click the right hand item section
+                       if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (finalClick && !pastClick))
+                       {
+                           gameState = GameStates.ShopDoor;
+                       }
+                   }
+                   else
+                   {
+                       noteItemShop.setClickPreviousButton(false);
                    }
                    break;
                #endregion
@@ -4455,7 +4516,19 @@ namespace beethoven3
 
                        }
                    }
-
+                   if (mouseRectinEffect.Intersects(effectItemShop.getRectPreviousButton()) || drawrec1.Intersects(effectItemShop.getRectPreviousButton()))
+                   {
+                       effectItemShop.setClickPreviousButton(true);
+                       //click the right hand item section
+                       if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (finalClick && !pastClick))
+                       {
+                           gameState = GameStates.ShopDoor;
+                       }
+                   }
+                   else
+                   {
+                       effectItemShop.setClickPreviousButton(false);
+                   }
                    break;
                #endregion
 
@@ -4855,6 +4928,20 @@ namespace beethoven3
 
                        }
                    }
+
+                   if (mouseRectinBackground.Intersects(backgroundItemShop.getRectPreviousButton()) || drawrec1.Intersects(backgroundItemShop.getRectPreviousButton()))
+                   {
+                       backgroundItemShop.setClickPreviousButton(true);
+                       //click the right hand item section
+                       if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (finalClick && !pastClick))
+                       {
+                           gameState = GameStates.ShopDoor;
+                       }
+                   }
+                   else
+                   {
+                       backgroundItemShop.setClickPreviousButton(false);
+                   }
                    break;
 
                #endregion
@@ -4967,20 +5054,20 @@ namespace beethoven3
                     //mousecursor on nextButton item section
 
 
-                if (rectMouseSettingBoard.Intersects(settingBoard.getRectNextButton()) || drawrec1.Intersects(settingBoard.getRectNextButton()))
+                    if (rectMouseSettingBoard.Intersects(settingBoard.getRectNextButton()) || drawrec1.Intersects(settingBoard.getRectNextButton()))
+                {
+                    recordBoard.setClickNextButton(true);
+                    //click the right hand item section
+                    if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (finalClick && !pastClick))
                     {
-                        recordBoard.setClickNextButton(true);
-                        //click the right hand item section
-                        if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (finalClick && !pastClick))
-                        {
-                            gameState = GameStates.Menu;
-                        }
+                        gameState = GameStates.Menu;
                     }
-                    else
-                    {
-                        settingBoard.setClickNextButton(false);
-                    }
-                    pastClick = finalClick;
+                }
+                else
+                {
+                    settingBoard.setClickNextButton(false);
+                }
+                pastClick = finalClick;
 
                    break;
 
