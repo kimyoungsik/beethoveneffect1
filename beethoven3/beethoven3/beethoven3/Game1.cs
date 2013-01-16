@@ -51,8 +51,13 @@ namespace beethoven3
         private Queue playingPictures;
         private int playPicturesCount = 0;
         Texture2D[] showPictureTextures = new Texture2D[5];
-#if Kinect
 
+
+#if Kinect
+        public static Joint j1r;
+
+        public static int buttonIndex = 0;
+        public static Vector2 center = new Vector2(0, 0);
         //키넥트
         KinectSensor nui = null;
         Skeleton[] Skeletons = null;
@@ -1415,7 +1420,7 @@ namespace beethoven3
                                     {
                                         gameState = GameStates.RecordBoard;
                                     }
-                                    if (gameState == GameStates.ShowPictures)
+                                    if (gameState == GameStates.RecordBoard)
                                     {
                                         gameState = GameStates.SongMenu;
                                     }
@@ -2202,11 +2207,18 @@ namespace beethoven3
                     this.activeRecognizer.Recognize(sender, frame, Skeletons);
                 }
                 //제스쳐2
-                if (gestureFlag == true)
+                if (skeleton != null)
                 {
 
-                        Skeleton2DDataExtract.ProcessData(skeleton);
-                    
+                    if (skeleton.TrackingState == SkeletonTrackingState.Tracked)
+                    {
+                        if (gestureFlag == true)
+                        {
+
+                            Skeleton2DDataExtract.ProcessData(skeleton);
+
+                        }
+                    }
                 }
             }
         }
@@ -2232,7 +2244,7 @@ namespace beethoven3
                 //{
                     if (gestureFlag == false)
                     {
-                        Skeleton2DDataExtract.Skeleton2DdataCoordReady -= NuiSkeleton2DdataCoordReady;
+                       // Skeleton2DDataExtract.Skeleton2DdataCoordReady -= NuiSkeleton2DdataCoordReady;
                     }
                     if (postureFlag)
                     {
@@ -2240,6 +2252,11 @@ namespace beethoven3
                         {
                             postureCount++;
                             message = "yes";
+
+                            perfectBannerManager.AddBanners(new Vector2(this.Window.ClientBounds.Width / 2 - 1380 / 4, this.Window.ClientBounds.Height / 2 - 428 / 4));
+                            scoreManager.Perfomance = scoreManager.Perfomance + 1;
+
+
                             if (postureCount > 5)
                             {
                                 gestureFlag = false;
@@ -2408,6 +2425,19 @@ namespace beethoven3
         }
 
 #endif
+        //입력 타입
+        //출력 센터
+
+
+        public static void GetCenterOfButton(Rectangle rec)
+        {
+            
+            center = new Vector2(rec.X + rec.Width / 2, rec.Y + rec.Height / 2);
+            
+        }
+       
+
+
         //마우스 충돌 처리
         private void HandleMouseInput(MouseState mouseState)
         {
@@ -2739,7 +2769,7 @@ namespace beethoven3
 #if Kinect
             if(charismaManager.IsCharismaTime == 1 && !charismaManager.IsJudgeCheck) 
             {
-                if(kinectMessage.Contains("__UNKNOWN"))
+                if(!kinectMessage.Contains("__UNKNOWN"))
                 {
 
                 }
@@ -2747,8 +2777,8 @@ namespace beethoven3
                 //else if(charismaManager.Type == 0 && kinectMessage.Contains("@xxxxxx");
                 else
                 {
-                    perfectBannerManager.AddBanners(new Vector2(this.Window.ClientBounds.Width / 2 - 1380 / 4, this.Window.ClientBounds.Height / 2 - 428 / 4));
-                    scoreManager.Perfomance = scoreManager.Perfomance + 1;
+                    //perfectBannerManager.AddBanners(new Vector2(this.Window.ClientBounds.Width / 2 - 1380 / 4, this.Window.ClientBounds.Height / 2 - 428 / 4));
+                    //scoreManager.Perfomance = scoreManager.Perfomance + 1;
                     charismaManager.IsJudgeCheck = true;
                 }
             
@@ -2876,15 +2906,16 @@ namespace beethoven3
                    {
                        shopDoor.setClickBackground(false);
                    }
+                   Rectangle rec = new Rectangle((int)j1r.Position.X, (int)j1r.Position.Y, 5, 5);
 
-
-                   if (rect.Intersects(shopDoor.getRectPreviousButton()) || drawrec1.Intersects(shopDoor.getRectPreviousButton()))
+                   if (rect.Intersects(shopDoor.getRectPreviousButton()) || rec.Intersects(shopDoor.getRectPreviousButton()))
                    {
                        shopDoor.setClickPreviousButton(true);
                        //click the right hand item section
                        if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (finalClick && !pastClick))
                        {
                            gameState = GameStates.Menu;
+                           buttonIndex = 0;
                        }
                    }
                    else
@@ -5040,7 +5071,7 @@ namespace beethoven3
                     collisionManager.CheckRightNoteInCenterArea();
                     collisionManager.CheckLeftNoteInCenterArea();
 
-                    JudgeCharisma();
+                  //JudgeCharisma();
 
 #endif
                     //3초만에 원상복귀
@@ -5875,6 +5906,14 @@ namespace beethoven3
                     charismaManager.IsCharismaTime = 1;
                 }
 
+                if (charismaManager.IsJudgeCheck && charismaManager.IsCharismaTime == 0)
+                {
+
+                    charismaManager.IsJudgeCheck = false;
+                    Skeleton2DDataExtract.Skeleton2DdataCoordReady -= NuiSkeleton2DdataCoordReady;
+
+                }
+
                 //if (charismaManager.IsCharismaTime == 0)
                 //{
                 //    postureCount = 0;
@@ -6029,15 +6068,31 @@ namespace beethoven3
             
             base.Draw(gameTime);
         }
+
+
+        
 #if Kinect
         void drawpoint(Joint j1, Joint j2)
         {
+       
+            
             ////실질적인 스케일 변환
-            Joint j1r = j1.ScaleTo(SCR_W, SCR_H, userParam, userParam);
+            j1r = j1.ScaleTo(SCR_W, SCR_H, userParam, userParam);
          //   Vector2 rec = new Vector2(0,100,100);
             //그리기
-            drawrec1.X = (int)j1r.Position.X;
-            drawrec1.Y = (int)j1r.Position.Y ;
+
+            if (buttonIndex == 0)
+            {
+                drawrec1.X = (int)j1r.Position.X;
+                drawrec1.Y = (int)j1r.Position.Y;
+            }
+            else
+            {
+                  drawrec1.X = (int)center.X;
+                  drawrec1.Y = (int)center.Y;
+
+            }
+               
          //   spriteBatch.Draw(rightHandTextures[itemManager.getRightHandIndex()], drawrec1, new Rectangle(0,0,100,100), Color.White,0f,Vector2.Zero, 1.0f , SpriteEffects.None , 1.0f);
             spriteBatch.Draw(
               rightHandTextures[itemManager.getRightHandIndex()],

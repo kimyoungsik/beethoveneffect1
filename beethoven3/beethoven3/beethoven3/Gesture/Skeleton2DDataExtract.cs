@@ -25,7 +25,7 @@ namespace beethoven3
                 {
                     case JointType.HandLeft:
                         p[0] = new PointT(j.Position.X, j.Position.Y);
-                        
+
                         break;
                     case JointType.WristLeft:
                         p[1] = new PointT(j.Position.X, j.Position.Y);
@@ -49,6 +49,8 @@ namespace beethoven3
                         shoulderRight = new PointT(j.Position.X, j.Position.Y);
                         break;
                 }
+
+
             }
 
             var center = new PointT((shoulderLeft.X + shoulderRight.X) / 2, (shoulderLeft.Y + shoulderRight.Y) / 2);

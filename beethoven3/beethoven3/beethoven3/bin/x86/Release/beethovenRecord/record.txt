@@ -6,11 +6,11 @@ myPicture.jpg$0
 myPicture.jpg$0
 %%
 abc
-myPicture.jpg$130
-myPicture.jpg$100
-myPicture.jpg$90
-myPicture.jpg$70
-myPicture.jpg$60
+myPicture.jpg$1200
+myPicture.jpg$1200
+myPicture.jpg$1200
+gesture_17_1_26_21.jpg$350
+gesture_17_1_26_21.jpg$350
 %%
 bond
 myPicture.jpg$500

@@ -202,6 +202,7 @@ namespace beethoven3
               { 
                   isCharismaTime = 0;
                   charismaFrames.Dequeue();
+
   
               }
           }

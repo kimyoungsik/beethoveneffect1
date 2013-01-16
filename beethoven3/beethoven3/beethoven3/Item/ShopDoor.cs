@@ -125,12 +125,20 @@ namespace beethoven3
             spriteBatch.DrawString(pericles36Font, "Effect", new Vector2(width / 2 - (effect.Width / 2) + 90, height / 2 - (effect.Height / 2) + 225), Color.Black);
 
             spriteBatch.DrawString(pericles36Font, "Background", new Vector2(width / 2 - (background.Width / 2) - 200, height / 2 - (background.Height / 2) + 170), Color.Black);
-            
 
-            
+
+
             if (clickPreviousButton)
             {
+
+                Game1.buttonIndex = 1;
+                Game1.GetCenterOfButton(recPreviousButton);
                 spriteBatch.Draw(hoverPreviousButton, recPreviousButton, Color.White);
+            }
+            else
+            {
+
+                Game1.buttonIndex = 0;
             }
 
 
