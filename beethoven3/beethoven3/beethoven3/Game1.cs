@@ -1,4 +1,4 @@
-﻿//#define Kinect
+﻿#define Kinect
 
 using System;
 using System.Collections;
@@ -386,8 +386,12 @@ namespace beethoven3
             //KINECT
             VideoDisplayRectangle = new Rectangle(0, 0, SCR_W, SCR_H);
 
-            drawrec1 = new Rectangle(0, 0, GraphicsDevice.Viewport.Width / 20, GraphicsDevice.Viewport.Height / 20);
-            drawrec2 = new Rectangle(0, 0, GraphicsDevice.Viewport.Width / 20, GraphicsDevice.Viewport.Height / 20);
+            //drawrec1 = new Rectangle(0, 0, GraphicsDevice.Viewport.Width / 20, GraphicsDevice.Viewport.Height / 20);
+            //drawrec2 = new Rectangle(0, 0, GraphicsDevice.Viewport.Width / 20, GraphicsDevice.Viewport.Height / 20);
+            drawrec1 = new Rectangle(0, 0, 5, 5);
+            drawrec2 = new Rectangle(0, 0, 5, 5);
+
+
 //#endif
             base.Initialize();
 
@@ -712,7 +716,7 @@ namespace beethoven3
                 gold,
                 new Rectangle(0, 0, 200, 200),
                 1,
-                15,
+                50,
                 0,
                 0.3f);
             
@@ -2436,6 +2440,8 @@ namespace beethoven3
         //키넥트 충돌 처리
         private void HandleInput()
         {
+
+           // Trace.WriteLine("P1:" + drawrec1.X + " ," + drawrec1.Y + "M" + mouseStateCurrent.X + "," + mouseStateCurrent.Y);
             collisionManager.checkDragNote(new Vector2(drawrec1.X, drawrec1.Y));
 
             collisionManager.CheckCollisions(0, new Vector2(drawrec1.X, drawrec1.Y));
@@ -2697,7 +2703,7 @@ namespace beethoven3
             {
 
                 float fCurrentVolume = SoundFmod.GetVolume();
-                Trace.WriteLine(fCurrentVolume);
+                //Trace.WriteLine(fCurrentVolume);
             }
 
             //스트로크 3
@@ -5936,8 +5942,8 @@ namespace beethoven3
             Joint j1r = j1.ScaleTo(SCR_W, SCR_H, userParam, userParam);
          //   Vector2 rec = new Vector2(0,100,100);
             //그리기
-            drawrec1.X = (int)j1r.Position.X - drawrec1.Width / 2;
-            drawrec1.Y = (int)j1r.Position.Y - drawrec1.Height / 2;
+            drawrec1.X = (int)j1r.Position.X;
+            drawrec1.Y = (int)j1r.Position.Y ;
          //   spriteBatch.Draw(rightHandTextures[itemManager.getRightHandIndex()], drawrec1, new Rectangle(0,0,100,100), Color.White,0f,Vector2.Zero, 1.0f , SpriteEffects.None , 1.0f);
             spriteBatch.Draw(
               rightHandTextures[itemManager.getRightHandIndex()],
@@ -5956,8 +5962,10 @@ namespace beethoven3
 
             Joint j2r = j2.ScaleTo(SCR_W, SCR_H, userParam, userParam);
 
-            drawrec2.X = (int)j2r.Position.X - drawrec2.Width / 2;
-            drawrec2.Y = (int)j2r.Position.Y - drawrec2.Height / 2;
+            //drawrec2.X = (int)j2r.Position.X - drawrec2.Width / 2;
+            //drawrec2.Y = (int)j2r.Position.Y - drawrec2.Height / 2;
+            drawrec2.X = (int)j2r.Position.X ;
+            drawrec2.Y = (int)j2r.Position.Y ;
 
             spriteBatch.Draw(leftHandTextures[itemManager.getLeftHandIndex()], drawrec2, Color.White);
         }
