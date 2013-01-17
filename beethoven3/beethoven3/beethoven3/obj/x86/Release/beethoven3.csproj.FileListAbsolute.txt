@@ -145,3 +145,10 @@ D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\settingBoa
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\settingBoard\downHover.xnb
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\settingBoard\up.xnb
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\settingBoard\upHover.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopButton\sellorwearPanel.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopButton\sWearButton.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopButton\hoverSWearButton.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopButton\sCancelButton.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopButton\sSellButton.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopButton\hoverSSellButton.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopButton\hoverSCancelButton.xnb

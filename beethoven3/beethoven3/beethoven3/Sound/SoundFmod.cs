@@ -101,9 +101,6 @@ namespace beethoven3
 
             }
 
-
-
-
             //바뀐 템포 => 나중에 file note들을 다시 재정비 할 때 필요
             changedTempo = changedT;
 
@@ -121,10 +118,7 @@ namespace beethoven3
             //***다시확인
             //현재 설정된 두번째 가이드라인이 있으면 지움
            // guideLineManager.DeleteAllSecondGuideLine();
-
-
         }
-
         //public static float GetTempo()
         //{
 

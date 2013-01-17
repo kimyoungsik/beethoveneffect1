@@ -1228,6 +1228,69 @@
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\settingBoard\upHover.xnb</Output>
       <Time>2013-01-17T17:04:10.8499584+09:00</Time>
     </Item>
+    <Item>
+      <Source>shopButton\sellorwearPanel.png</Source>
+      <Name>shopButton\sellorwearPanel</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopButton\sellorwearPanel.xnb</Output>
+      <Time>2013-01-18T01:28:27.5265413+09:00</Time>
+    </Item>
+    <Item>
+      <Source>shopButton\sWearButton.png</Source>
+      <Name>shopButton\sWearButton</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopButton\sWearButton.xnb</Output>
+      <Time>2013-01-18T01:37:35.366876+09:00</Time>
+    </Item>
+    <Item>
+      <Source>shopButton\hoverSWearButton.png</Source>
+      <Name>shopButton\hoverSWearButton</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopButton\hoverSWearButton.xnb</Output>
+      <Time>2013-01-18T01:37:35.3678761+09:00</Time>
+    </Item>
+    <Item>
+      <Source>shopButton\sCancelButton.png</Source>
+      <Name>shopButton\sCancelButton</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopButton\sCancelButton.xnb</Output>
+      <Time>2013-01-18T01:37:35.3708762+09:00</Time>
+    </Item>
+    <Item>
+      <Source>shopButton\sSellButton.png</Source>
+      <Name>shopButton\sSellButton</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopButton\sSellButton.xnb</Output>
+      <Time>2013-01-18T01:37:35.3728763+09:00</Time>
+    </Item>
+    <Item>
+      <Source>shopButton\hoverSSellButton.png</Source>
+      <Name>shopButton\hoverSSellButton</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopButton\hoverSSellButton.xnb</Output>
+      <Time>2013-01-18T01:37:35.3638758+09:00</Time>
+    </Item>
+    <Item>
+      <Source>shopButton\hoverSCancelButton.png</Source>
+      <Name>shopButton\hoverSCancelButton</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopButton\hoverSCancelButton.xnb</Output>
+      <Time>2013-01-18T01:37:35.3718763+09:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

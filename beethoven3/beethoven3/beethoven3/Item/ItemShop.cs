@@ -132,16 +132,16 @@ namespace beethoven3
             noGoldButton = cm.Load<Texture2D>(@"shopdoor\nogold");
             hoverNoGoldButton = cm.Load<Texture2D>(@"shopdoor\nogoldhover");
 
-            sellorwearPanel = cm.Load<Texture2D>(@"shopdoor\sellorwearPanel");
+            sellorwearPanel = cm.Load<Texture2D>(@"shopButton\sellorwearPanel");
 
-            sWearButton = cm.Load<Texture2D>(@"shopdoor\sWearButton");
-            sSellButton = cm.Load<Texture2D>(@"shopdoor\sSellButton");
-            sCancelButton = cm.Load<Texture2D>(@"shopdoor\sCancelButton");
+            sWearButton = cm.Load<Texture2D>(@"shopButton\sWearButton");
+            sSellButton = cm.Load<Texture2D>(@"shopButton\sSellButton");
+            sCancelButton = cm.Load<Texture2D>(@"shopButton\sCancelButton");
 
 
-            hoverSWearButton = cm.Load<Texture2D>(@"shopdoor\hoverSWearButton");
-            hoverSSellButton = cm.Load<Texture2D>(@"shopdoor\hoverSSellButton");
-            hoverSCancelButton = cm.Load<Texture2D>(@"shopdoor\hoverSCancelButton");
+            hoverSWearButton = cm.Load<Texture2D>(@"shopButton\hoverSWearButton");
+            hoverSSellButton = cm.Load<Texture2D>(@"shopButton\hoverSSellButton");
+            hoverSCancelButton = cm.Load<Texture2D>(@"shopButton\hoverSCancelButton");
 
             hoverHandInItemButton = cm.Load<Texture2D>(@"shopdoor\hoverHandInItemButton");
             handInItemButton = cm.Load<Texture2D>(@"shopdoor\handInItemButton");

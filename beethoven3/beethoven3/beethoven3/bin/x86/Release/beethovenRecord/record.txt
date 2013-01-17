@@ -24,4 +24,8 @@ gesture_16_2_24_12.jpg$200
 gesture_16_1_56_13.jpg$100
 gesture_16_1_56_53.jpg$100
 gesture_16_2_20_23.jpg$100
+%%
+4 Seasons - Spring
+myPicture.jpg$0
+myPicture.jpg$0
 **

@@ -176,57 +176,57 @@ namespace beethoven3
 
                 if (sellOrWearOne)
                 {
-                    spriteBatch.Draw(sellorwearPanel, middle, null, Color.White, 0f, new Vector2(310, 150), 1.5f, SpriteEffects.None, 1f);
+                    spriteBatch.Draw(sellorwearPanel, new Vector2(0, 0), null, Color.White, 0f, new Vector2(0, 0), 1f, SpriteEffects.None, 1f);
 
                     //장착 버튼 
-                    Vector2 wearButtonLocation = new Vector2(width / 2 - 270, height / 2 - 70);
+                    Vector2 wearButtonLocation = new Vector2(width / 2 - 270, height / 2 + 40);
 
                     // mouse cursor on YES button
                     if (!isHoverWearButton)
                     {
 
-                        spriteBatch.Draw(sWearButton, wearButtonLocation, null, Color.White, 0f, new Vector2(100, 60), 1.5f, SpriteEffects.None, 1f);
+                        spriteBatch.Draw(sWearButton, wearButtonLocation, null, Color.White, 0f, new Vector2(100, 60), 1f, SpriteEffects.None, 1f);
 
                     }
                     else
                     {
 
-                        spriteBatch.Draw(hoverSWearButton, wearButtonLocation, null, Color.White, 0f, new Vector2(100, 60), 1.5f, SpriteEffects.None, 1f);
+                        spriteBatch.Draw(hoverSWearButton, wearButtonLocation, null, Color.White, 0f, new Vector2(100, 60), 1f, SpriteEffects.None, 1f);
 
                     }
 
                     //팔기버튼
-                    Vector2 sellButtonLocation = new Vector2(width / 2, height / 2 - 70);
+                    Vector2 sellButtonLocation = new Vector2(width / 2, height / 2 +40);
 
                     // mouse cursor on YES button
                     if (!isHoverSellButton)
                     {
 
-                        spriteBatch.Draw(sSellButton, sellButtonLocation, null, Color.White, 0f, new Vector2(100, 60), 1.5f, SpriteEffects.None, 1f);
+                        spriteBatch.Draw(sSellButton, sellButtonLocation, null, Color.White, 0f, new Vector2(100, 60), 1f, SpriteEffects.None, 1f);
 
                     }
                     else
                     {
 
-                        spriteBatch.Draw(hoverSSellButton, sellButtonLocation, null, Color.White, 0f, new Vector2(100, 60), 1.5f, SpriteEffects.None, 1f);
+                        spriteBatch.Draw(hoverSSellButton, sellButtonLocation, null, Color.White, 0f, new Vector2(100, 60), 1f, SpriteEffects.None, 1f);
 
                     }
 
 
                     //취소
-                    Vector2 cancelButtonLocation = new Vector2(width / 2 + 270, height / 2 - 70);
+                    Vector2 cancelButtonLocation = new Vector2(width / 2 + 270, height / 2 + 40);
 
                     // mouse cursor on YES button
                     if (!isHoverCancelButton)
                     {
 
-                        spriteBatch.Draw(sCancelButton, cancelButtonLocation, null, Color.White, 0f, new Vector2(100, 60), 1.5f, SpriteEffects.None, 1f);
+                        spriteBatch.Draw(sCancelButton, cancelButtonLocation, null, Color.White, 0f, new Vector2(100, 60), 1f, SpriteEffects.None, 1f);
 
                     }
                     else
                     {
 
-                        spriteBatch.Draw(hoverSCancelButton, cancelButtonLocation, null, Color.White, 0f, new Vector2(100, 60), 1.5f, SpriteEffects.None, 1f);
+                        spriteBatch.Draw(hoverSCancelButton, cancelButtonLocation, null, Color.White, 0f, new Vector2(100, 60), 1f, SpriteEffects.None, 1f);
 
                     }
 

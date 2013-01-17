@@ -134,6 +134,13 @@ Content\settingBoard\down.xnb
 Content\settingBoard\downHover.xnb
 Content\settingBoard\up.xnb
 Content\settingBoard\upHover.xnb
+Content\shopButton\sellorwearPanel.xnb
+Content\shopButton\sWearButton.xnb
+Content\shopButton\hoverSWearButton.xnb
+Content\shopButton\sCancelButton.xnb
+Content\shopButton\sSellButton.xnb
+Content\shopButton\hoverSSellButton.xnb
+Content\shopButton\hoverSCancelButton.xnb
 Content\snd\ka.wma
 Content\snd\jo.wma
 Content\snd\maid.wma
