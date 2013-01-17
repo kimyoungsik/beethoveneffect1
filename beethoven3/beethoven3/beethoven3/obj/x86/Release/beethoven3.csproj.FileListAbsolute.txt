@@ -140,3 +140,4 @@ D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\plan
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\planetNote2.xnb
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\planetNote3.xnb
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\planetNote4.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopdoor\wearItem.xnb

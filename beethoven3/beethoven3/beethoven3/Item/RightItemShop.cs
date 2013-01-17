@@ -140,6 +140,15 @@ namespace beethoven3
           //  myColor.A = 50;
             spriteBatch.Draw(usedItemBackground, usedItemRect, Color.White);
 
+
+            if (itemManager.getRightHandIndex() != null)
+            {
+                setWearItemLocation(itemManager.getRightHandIndex());
+                spriteBatch.Draw(wearItemMark, new Rectangle((int)wearItemLocation.X, (int)wearItemLocation.Y, wearItemMark.Width, wearItemMark.Height), Color.White);
+            }
+
+
+
             //장착아이템 텍스쳐
             //리스트에서 인덱스만 가져와서 표시
             spriteBatch.Draw(rightItems[itemManager.getRightHandIndex()].ItemSprite.Texture, usedItemRect, Color.White);

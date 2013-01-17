@@ -131,14 +131,15 @@ namespace beethoven3
             if (clickPreviousButton)
             {
 
-                Game1.buttonIndex = 1;
+                //버튼이 주변에 있다고 감지
+                Game1.nearButton = true;
                 Game1.GetCenterOfButton(recPreviousButton);
                 spriteBatch.Draw(hoverPreviousButton, recPreviousButton, Color.White);
             }
             else
             {
 
-                Game1.buttonIndex = 0;
+                Game1.nearButton = false;
             }
 
 

@@ -95,6 +95,12 @@ namespace beethoven3
 
         protected bool clickPreviousButton;
 
+        protected Texture2D wearItemMark;
+
+        protected Vector2 wearItemLocation;
+
+
+
 
 
         public ItemShop(ItemManager itemManager, ScoreManager scoreManager)
@@ -147,7 +153,9 @@ namespace beethoven3
            
             previousButton = cm.Load<Texture2D>(@"result\nextButton");
 
-            hoverPreviousButton = cm.Load<Texture2D>(@"result\\hoverNextButton");
+            hoverPreviousButton = cm.Load<Texture2D>(@"result\hoverNextButton");
+
+            wearItemMark = cm.Load<Texture2D>(@"shopdoor\wearItem");
 
         }
 
@@ -341,9 +349,31 @@ namespace beethoven3
             return this.recPreviousButton;
         }
        
+        public void setWearItemLocation(int index)
+        {
+            switch (index)
+            {
+                case 1:
+
+                    this.wearItemLocation = new Vector2(100, 100);
+                    break;
+
+                case 0:
+
+                     this.wearItemLocation = new Vector2(200,100);
+                    break;
+               
+        
+            }
+        }
+
 
         public virtual void Draw(SpriteBatch spriteBatch, int width, int height)
         {
+
+
+
+
             recPreviousButton = new Rectangle(width - 400, height - 200, 356, 215);
             spriteBatch.Draw(previousButton, recPreviousButton, Color.White);
 
@@ -353,7 +383,6 @@ namespace beethoven3
             }
 
             spriteBatch.DrawString(pericles36Font, "Gold : ", new Vector2(10, 200), Color.Black);
-
 
 
         }

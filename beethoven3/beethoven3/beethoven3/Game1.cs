@@ -54,9 +54,13 @@ namespace beethoven3
 
 
 #if Kinect
+        //손 좌표
         public static Joint j1r;
 
-        public static int buttonIndex = 0;
+
+        public static bool nearButton = false;
+        //버튼 센터 
+
         public static Vector2 center = new Vector2(0, 0);
         //키넥트
         KinectSensor nui = null;
@@ -2932,7 +2936,7 @@ namespace beethoven3
                        if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (finalClick && !pastClick))
                        {
                            gameState = GameStates.Menu;
-                           buttonIndex = 0;
+                           nearButton = false;
                        }
                    }
                    else
@@ -6098,7 +6102,7 @@ namespace beethoven3
          //   Vector2 rec = new Vector2(0,100,100);
             //그리기
 
-            if (buttonIndex == 0)
+            if (nearButton)
             {
                 drawrec1.X = (int)j1r.Position.X;
                 drawrec1.Y = (int)j1r.Position.Y;

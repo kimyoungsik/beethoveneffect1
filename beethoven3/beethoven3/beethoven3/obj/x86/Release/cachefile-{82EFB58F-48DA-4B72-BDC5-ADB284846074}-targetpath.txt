@@ -132,3 +132,4 @@ Content\notes\planetNote1.xnb
 Content\notes\planetNote2.xnb
 Content\notes\planetNote3.xnb
 Content\notes\planetNote4.xnb
+Content\shopdoor\wearItem.xnb
