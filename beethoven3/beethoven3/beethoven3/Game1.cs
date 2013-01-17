@@ -1413,7 +1413,7 @@ namespace beethoven3
                     {
                         if (source.SoundSourceAngle < skeletonAngle + 10 && source.SoundSourceAngle > skeletonAngle - 10)
                         {
-                            message = e.Result.Text + " " + e.Result.Confidence.ToString();
+                            //message = e.Result.Text + " " + e.Result.Confidence.ToString();
                             switch (e.Result.Text)
                             {
 
@@ -1746,11 +1746,11 @@ namespace beethoven3
             //클릭여부
             if (finalClick == true)
             {
-                message = "click";
+                //message = "click";
             }
             else
             {
-                message = "No click";
+                //message = "No click";
             }
 
             /////////////////////////////////
@@ -2250,14 +2250,14 @@ namespace beethoven3
                 //{
                     if (gestureFlag == false)
                     {
-                       // Skeleton2DDataExtract.Skeleton2DdataCoordReady -= NuiSkeleton2DdataCoordReady;
+                      //  Skeleton2DDataExtract.Skeleton2DdataCoordReady -= NuiSkeleton2DdataCoordReady;
                     }
                     if (postureFlag)
                     {
                         if (!s.Contains("__UNKNOWN"))
                         {
                             postureCount++;
-                            message = "yes";
+                            //message = "yes";
 
                             perfectBannerManager.AddBanners(new Vector2(this.Window.ClientBounds.Width / 2 - 1380 / 4, this.Window.ClientBounds.Height / 2 - 428 / 4));
                             scoreManager.Perfomance = scoreManager.Perfomance + 1;
@@ -2265,23 +2265,27 @@ namespace beethoven3
 
                             if (postureCount > 5)
                             {
-                                gestureFlag = false;
-
+                                postureFlag = false;
                             }
+
                         }
                     }
                     if (!postureFlag)
                     {
+                        message = s;
                         if (!s.Contains("__UNKNOWN"))
                         {
-                            message = "yes";
+                           
+                            perfectBannerManager.AddBanners(new Vector2(this.Window.ClientBounds.Width / 2 - 1380 / 4, this.Window.ClientBounds.Height / 2 - 428 / 4));
+                            scoreManager.Perfomance = scoreManager.Perfomance + 1;
+
                             gestureFlag = false;
                         }
                     }
 
                     if (s.Contains("__UNKNOWN"))
                     {
-                        message = "no";
+                        //message = "no";
                     }
                 //}
 
@@ -2784,28 +2788,28 @@ namespace beethoven3
 
 
         //카리스마 타임이맞는지 확인한다.
-        public void JudgeCharisma()
-        {
+//        public void JudgeCharisma()
+//        {
 
-#if Kinect
-            if(charismaManager.IsCharismaTime == 1 && !charismaManager.IsJudgeCheck) 
-            {
-                if(!kinectMessage.Contains("__UNKNOWN"))
-                {
+//#if Kinect
+//            if(charismaManager.IsCharismaTime == 1 && !charismaManager.IsJudgeCheck) 
+//            {
+//                if(!kinectMessage.Contains("__UNKNOWN"))
+//                {
 
-                }
-                //나중에는 타입마다 이렇게 설정
-                //else if(charismaManager.Type == 0 && kinectMessage.Contains("@xxxxxx");
-                else
-                {
-                    //perfectBannerManager.AddBanners(new Vector2(this.Window.ClientBounds.Width / 2 - 1380 / 4, this.Window.ClientBounds.Height / 2 - 428 / 4));
-                    //scoreManager.Perfomance = scoreManager.Perfomance + 1;
-                    charismaManager.IsJudgeCheck = true;
-                }
+//                }
+//                //나중에는 타입마다 이렇게 설정
+//                //else if(charismaManager.Type == 0 && kinectMessage.Contains("@xxxxxx");
+//                else
+//                {
+//                    //perfectBannerManager.AddBanners(new Vector2(this.Window.ClientBounds.Width / 2 - 1380 / 4, this.Window.ClientBounds.Height / 2 - 428 / 4));
+//                    //scoreManager.Perfomance = scoreManager.Perfomance + 1;
+//                    charismaManager.IsJudgeCheck = true;
+//                }
             
-            }
-#endif
-        }
+//            }
+//#endif
+//        }
             
         protected override void Update(GameTime gameTime)
         {
@@ -2840,6 +2844,10 @@ namespace beethoven3
                #region 상점대문
                 //상점대문
                case GameStates.ShopDoor:
+
+                    Rectangle rightHandPosition = new Rectangle((int)j1r.Position.X, (int)j1r.Position.Y, 5, 5);
+
+
                     //타이틀화면으로 돌아가는 키보드처리
                     HandleKeyboardInputGoToMenu(Keyboard.GetState());
 
@@ -2847,7 +2855,7 @@ namespace beethoven3
 
                    //mousecursor on right hand item section
                    //오른쪽지휘봉 아이템
-                   if (rect.Intersects(shopDoor.getRectRightHand()) || drawrec1.Intersects(shopDoor.getRectRightHand()))
+                   if (rect.Intersects(shopDoor.getRectRightHand()) || rightHandPosition.Intersects(shopDoor.getRectRightHand()))
                    {
                        //hover on
                        shopDoor.setClickRightHand(true);
@@ -2855,6 +2863,8 @@ namespace beethoven3
                        if ( (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || finalClick && !pastClick )
                        {
                            gameState = GameStates.RightItemShop;
+                           //가운데로 고정된거 풀기 
+                           nearButton = false;
                        }
                    }
                    else
@@ -2872,6 +2882,8 @@ namespace beethoven3
                        if (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released || finalClick && !pastClick)
                        {
                            gameState = GameStates.LeftItemShop;
+                           //가운데로 고정된거 풀기 
+                           nearButton = false;
                        }
                    }
                    else
@@ -2888,6 +2900,8 @@ namespace beethoven3
                        if (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released || finalClick && !pastClick)
                        {
                            gameState = GameStates.NoteItemShop;
+                           //가운데로 고정된거 풀기 
+                           nearButton = false;
                        }
 
                    }
@@ -2904,6 +2918,8 @@ namespace beethoven3
                        if (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released || finalClick && !pastClick)
                        {
                            gameState = GameStates.EffectItemShop;
+                           //가운데로 고정된거 풀기 
+                           nearButton = false;
                        }
 
                    }
@@ -2920,6 +2936,8 @@ namespace beethoven3
                        if (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released || finalClick && !pastClick)
                        {
                            gameState = GameStates.BackgroundItemShop;
+                           //가운데로 고정된거 풀기 
+                           nearButton = false;
                        }
 
                    }
@@ -2927,15 +2945,16 @@ namespace beethoven3
                    {
                        shopDoor.setClickBackground(false);
                    }
-                   Rectangle rec = new Rectangle((int)j1r.Position.X, (int)j1r.Position.Y, 5, 5);
 
-                   if (rect.Intersects(shopDoor.getRectPreviousButton()) || rec.Intersects(shopDoor.getRectPreviousButton()))
+                   if (rect.Intersects(shopDoor.getRectPreviousButton()) || rightHandPosition.Intersects(shopDoor.getRectPreviousButton()))
                    {
                        shopDoor.setClickPreviousButton(true);
                        //click the right hand item section
                        if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (finalClick && !pastClick))
                        {
                            gameState = GameStates.Menu;
+
+                           //가운데로 고정된거 풀기 
                            nearButton = false;
                        }
                    }
@@ -5134,7 +5153,15 @@ namespace beethoven3
                     //click the right hand item section
                     if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (finalClick && !pastClick))
                     {
-                        this.userParam+=0.1f;
+                        if (this.userParam < 1)
+                        {
+                            this.userParam += 0.05f;
+                        }
+                        else
+                        {
+                            this.userParam = 1;
+                        }
+
 
                     }
                 }
@@ -5153,8 +5180,14 @@ namespace beethoven3
                     if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (finalClick && !pastClick))
                     {
 
-                        this.userParam-=0.1f;
-
+                        if (this.userParam > 0.05)
+                        {
+                            this.userParam -= 0.05f;
+                        }
+                        else
+                        {
+                            this.userParam = 0.05f;
+                        }
 
                     }
                 }
@@ -5173,7 +5206,20 @@ namespace beethoven3
                     //click the right hand item section
                     if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (finalClick && !pastClick))
                     {
-                      //  nui.ElevationAngle++;
+                        if (nui.ElevationAngle < nui.MaxElevationAngle - 3)
+                        {
+                            while (true)
+                            {
+                                try
+                                {
+                                    nui.ElevationAngle += 3;
+                                    break;
+                                }
+                                catch (Exception ex)
+                                {
+                                }
+                            }
+                        }
                        
                     }
                 }
@@ -5191,8 +5237,20 @@ namespace beethoven3
                     //click the right hand item section
                     if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (finalClick && !pastClick))
                     {
-
-                      //  nui.ElevationAngle--;
+                        if (nui.ElevationAngle > nui.MinElevationAngle + 3)
+                        {
+                            while (true)
+                            {
+                                try
+                                {
+                                    nui.ElevationAngle -= 3;
+                                    break;
+                                }
+                                catch (Exception ex)
+                                {
+                                }
+                            }
+                        }
 
 
                     }
@@ -5266,7 +5324,7 @@ namespace beethoven3
                             //골드 초기화 
                             GoldManager.DeleteAll();
                             //카리스마
-                            charismaManager.IsCharismaTime = 0;
+                          //  charismaManager.IsCharismaTime = 0;
 
                             //froze 방지
                             MarkManager.initialize(
@@ -5720,11 +5778,11 @@ namespace beethoven3
             //클릭여부
             if (finalClick == true)
             {
-                message = "click";
+                //message = "click";
             }
             else
             {
-                message = "No click";
+                //message = "No click";
             }
 
             /////////////////////////////////
@@ -5958,106 +6016,107 @@ namespace beethoven3
 
 
 
-                
 
+                if (message.Length > 0)
+                {
+                    spriteBatch.DrawString(messageFont, message, Vector2.Zero, Color.Red);
+                }
                
 
 
 #if Kinect
                 charismaManager.Draw(gameTime, spriteBatch);
+               
+                if (charismaManager.charismaFrames.Count > 0)
+                {
+
+                    charismaManager.currentTime += gameTime.ElapsedGameTime.TotalSeconds;
+                    CharisimaFrame charismaFrame = (CharisimaFrame)charismaManager.charismaFrames.Peek();
+
+                    if (charismaManager.currentTime > charismaFrame.StartTime)
+                    {
+                        spriteBatch.Draw(charismaFrame.Texture, charismaManager.picLocation, Color.White);
+                        if (charismaManager.IsCharismaTime)
+                        {
+                            if (charismaManager.Type == 1)
+                            {
+                                ////카리스마타임 제스쳐 시작부분
+                                postureCount = 0;
+                                postureFlag = true;
+                                gestureFlag = true;
+                                string fileName = "33.txt";
+                                LoadGesturesFromFile(fileName);
+                                Skeleton2DDataExtract.Skeleton2DdataCoordReady += NuiSkeleton2DdataCoordReady;
+
+
+                            }
+                            else if (charismaManager.Type == 2)
+                            {
+                                ////카리스마타임 제스쳐 시작부분
+                                postureCount = 0;
+                                postureFlag = true;
+                                gestureFlag = true;
+                                string fileName = "33.txt";
+                                LoadGesturesFromFile(fileName);
+                                Skeleton2DDataExtract.Skeleton2DdataCoordReady += NuiSkeleton2DdataCoordReady;
+
+                            }
+                            else if (charismaManager.Type == 3)
+                            {
+                                ////카리스마타임 제스쳐 시작부분
+                                postureCount = 0;
+                                postureFlag = true;
+                                gestureFlag = true;
+                                string fileName = "33.txt";
+                                LoadGesturesFromFile(fileName);
+                                Skeleton2DDataExtract.Skeleton2DdataCoordReady += NuiSkeleton2DdataCoordReady;
+
+                            }
+                            else if (charismaManager.Type == 4)
+                            {
+                                ////카리스마타임 제스쳐 시작부분
+                                postureCount = 0;
+                                postureFlag = false;
+                                gestureFlag = true;
+                                string fileName = "66.txt";
+                                LoadGesturesFromFile(fileName);
+                                Skeleton2DDataExtract.Skeleton2DdataCoordReady += NuiSkeleton2DdataCoordReady;
+
+                            }
+
+                                //중립
+                            else if (charismaManager.Type == 6)
+                            {
+                                ////카리스마타임 제스쳐 시작부분
+                                postureCount = 0;
+                                postureFlag = true;
+                                gestureFlag = true;
+                                string fileName = "33.txt";
+                                LoadGesturesFromFile(fileName);
+                                Skeleton2DDataExtract.Skeleton2DdataCoordReady += NuiSkeleton2DdataCoordReady;
+
+                            }
+                            charismaManager.IsCharismaTime = false;
+                        }
+                    }
+                    if (!gestureFlag)
+                    {
+                        Skeleton2DDataExtract.Skeleton2DdataCoordReady -= NuiSkeleton2DdataCoordReady;
+                    }
+                    if (charismaManager.currentTime > charismaFrame.EndTime)
+                    {
+                        charismaManager.charismaFrames.Dequeue();
+                        gestureFlag = false;
+                        
+                            
+                    }
+                }
+
                 photoManager.Draw(gameTime, spriteBatch);
-                //Trace.WriteLine(charismaManager.IsCharismaTime);
-                if (charismaManager.IsCharismaTime == 2)
-                {
-                    //Skeleton2DDataExtract.Skeleton2DdataCoordReady -= NuiSkeleton2DdataCoordReady;
-                    if (charismaManager.Type == 1)
-                    {
-                        ////카리스마타임 제스쳐 시작부분
-                        postureCount = 0;
-                        postureFlag = true;
-                        gestureFlag = true;
-                        string fileName = "33.txt";
-                        LoadGesturesFromFile(fileName);
-                        Skeleton2DDataExtract.Skeleton2DdataCoordReady += NuiSkeleton2DdataCoordReady;
-                        
-                                                
-                    }
-                    else if (charismaManager.Type == 2)
-                    {
-                        ////카리스마타임 제스쳐 시작부분
-                        postureCount = 0;
-                        postureFlag = true;
-                        gestureFlag = true;
-                        string fileName = "33.txt";
-                        LoadGesturesFromFile(fileName);
-                        Skeleton2DDataExtract.Skeleton2DdataCoordReady += NuiSkeleton2DdataCoordReady;
-                        
-                    }
-                    else if (charismaManager.Type == 3)
-                    {
-                        ////카리스마타임 제스쳐 시작부분
-                        postureCount = 0;
-                        postureFlag = true;
-                        gestureFlag = true;
-                        string fileName = "33.txt";
-                        LoadGesturesFromFile(fileName);
-                        Skeleton2DDataExtract.Skeleton2DdataCoordReady += NuiSkeleton2DdataCoordReady;
-                        
-                    }
-                    else if (charismaManager.Type == 4)
-                    {
-                        ////카리스마타임 제스쳐 시작부분
-                        postureCount = 0;
-                        postureFlag = false;
-                        gestureFlag = true;
-                        string fileName = "44.txt";
-                        LoadGesturesFromFile(fileName);
-                        Skeleton2DDataExtract.Skeleton2DdataCoordReady += NuiSkeleton2DdataCoordReady;
-                        
-                    }
-
-                        //중립
-                    else if (charismaManager.Type == 6)
-                    {
-                        ////카리스마타임 제스쳐 시작부분
-                        postureCount = 0;
-                        postureFlag = false;
-                        gestureFlag = true;
-                        string fileName = "33.txt";
-                        LoadGesturesFromFile(fileName);
-                        Skeleton2DDataExtract.Skeleton2DdataCoordReady += NuiSkeleton2DdataCoordReady;
-
-                    }
 
 
-                    charismaManager.IsCharismaTime = 1;
-                }
 
-                if (charismaManager.IsJudgeCheck && charismaManager.IsCharismaTime == 0)
-                {
-
-                    charismaManager.IsJudgeCheck = false;
-                    Skeleton2DDataExtract.Skeleton2DdataCoordReady -= NuiSkeleton2DdataCoordReady;
-
-                }
-
-                //if (charismaManager.IsCharismaTime == 0)
-                //{
-                //    postureCount = 0;
-                //    postureFlag = true;
-                //    gestureFlag = true;
-                //    string fileName = "55.txt";
-                //    LoadGesturesFromFile(fileName);
-                //    Skeleton2DDataExtract.Skeleton2DdataCoordReady += NuiSkeleton2DdataCoordReady;
-                    
-                //}
-
-              //if (isCharisma1)
-                //{
-
-                //    spriteBatch.Draw(charisma1, new Rectangle(200, 200, 727, 278), Color.White);
-
-                //}
+                
 #endif
 
             }

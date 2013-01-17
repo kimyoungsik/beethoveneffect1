@@ -138,17 +138,25 @@ namespace beethoven3
             }
             else
             {
-
+                //다른곳으로 이동
                 Game1.nearButton = false;
             }
 
 
             if (clickRightHand)
             {
-                spriteBatch.Draw(hoverRightHand,
-                new Rectangle(width / 2 - (hoverRightHand.Width / 2) - 100, height / 2 - (hoverRightHand.Height / 2) - 100, 208,
-                    233),
-                    Color.White);
+
+                Rectangle rectangleRightHand = new Rectangle(width / 2 - (hoverRightHand.Width / 2) - 100, height / 2 - (hoverRightHand.Height / 2) - 100, 208, 233);
+
+                Game1.nearButton = true;
+                Game1.GetCenterOfButton(rectangleRightHand);
+
+                spriteBatch.Draw(hoverRightHand, rectangleRightHand, Color.White);
+            }
+            else
+            {
+                  Game1.nearButton = false;
+            
             }
 
             if (clickLeftHand)

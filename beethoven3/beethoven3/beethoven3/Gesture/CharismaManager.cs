@@ -69,24 +69,24 @@ namespace beethoven3
         #region declarations
     
         //카리스마 프레임을 가지고 있는 큐
-        private Queue charismaFrames = new Queue();
+        public Queue charismaFrames = new Queue();
        
         //file에서 가져오는 현재 게임의 흐름
-        private double currentTime;
+        public double currentTime;
        
         private Texture2D charisma1;
         private Texture2D charisma2;
 
         //카리스마 위치
-        private Rectangle picLocation = new Rectangle(100,100,150,150);
+        public Rectangle picLocation = new Rectangle(100, 100, 150, 150);
 
         //현재 카리스마 타입.
         private int type;
 
         //0 false ,가장 초기화 1 false , 현재 실행중 2, true  
-        private int isCharismaTime = 0;
+        private bool isCharismaTime = false;
 
-        private bool isJudgeCheck = false;
+        //private bool isJudgeCheck = false;
 
        
         #endregion
@@ -120,17 +120,17 @@ namespace beethoven3
         }
 
 
-        public int IsCharismaTime
+        public bool IsCharismaTime
         {
             get { return isCharismaTime; }
             set { isCharismaTime = value; }
         }
 
-        public bool IsJudgeCheck
-        {
-            get { return isJudgeCheck; }
-            set { isJudgeCheck = value; }
-        }
+        //public bool IsJudgeCheck
+        //{
+        //    get { return isJudgeCheck; }
+        //    set { isJudgeCheck = value; }
+        //}
 
 
 
@@ -141,8 +141,8 @@ namespace beethoven3
 
             CharisimaFrame charismaFrame = new CharisimaFrame(texture,startTime,endTime);
 
-            isCharismaTime = 0;
-            isJudgeCheck = false;
+            isCharismaTime = true;
+            //isJudgeCheck = false;
 
 
             charismaFrames.Enqueue(charismaFrame);
@@ -194,31 +194,21 @@ namespace beethoven3
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
 #if Kinect
-          if(charismaFrames.Count > 0)
-          {
+          //if(charismaFrames.Count > 0)
+          //{
 
-              currentTime += gameTime.ElapsedGameTime.TotalSeconds;
-              CharisimaFrame charismaFrame  = (CharisimaFrame)charismaFrames.Peek();
+          //    currentTime += gameTime.ElapsedGameTime.TotalSeconds;
+          //    CharisimaFrame charismaFrame  = (CharisimaFrame)charismaFrames.Peek();
 
-              if (currentTime > charismaFrame.StartTime )
-             
-              {
-                  //이벤트 죽이는 용도로 쓰임
-                  if (isCharismaTime == 0)
-                  {
-                    
-                      isCharismaTime = 2;
-                  }
-                  spriteBatch.Draw(charismaFrame.Texture, picLocation, Color.White);
-              }
-              if (currentTime > charismaFrame.EndTime)
-              { 
-                  isCharismaTime = 0;
-                  charismaFrames.Dequeue();
-
-  
-              }
-          }
+          //    if (currentTime > charismaFrame.StartTime )
+          //    {
+          //        spriteBatch.Draw(charismaFrame.Texture, picLocation, Color.White);
+          //    }
+          //    if (currentTime > charismaFrame.EndTime)
+          //    { 
+          //        charismaFrames.Dequeue();
+          //    }
+          //}
 #endif
         }
   

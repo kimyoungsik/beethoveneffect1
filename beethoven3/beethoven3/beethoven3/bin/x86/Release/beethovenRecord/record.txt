@@ -10,7 +10,7 @@ myPicture.jpg$1200
 myPicture.jpg$1200
 myPicture.jpg$1200
 myPicture.jpg$1200
-myPicture.jpg$600
+myPicture.jpg$700
 %%
 bond
 myPicture.jpg$500
