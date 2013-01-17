@@ -1636,7 +1636,7 @@ namespace beethoven3
                                 //손만
                                 ColorImagePoint point = depthLocation[ImageParam.Width * j + i];
                                 depth[indexCount] = ImageBits[ImageParam.Width * j + i] >> DepthImageFrame.PlayerIndexBitmaskWidth;//인덱스 오류
-                                Trace.WriteLine(indexCount);
+                                //Trace.WriteLine(indexCount);
                                 indexCount++;
                             }
                         }
@@ -5251,8 +5251,6 @@ namespace beethoven3
                                 }
                             }
                         }
-
-
                     }
                 }
                 else
@@ -5264,7 +5262,7 @@ namespace beethoven3
 
                 pastClick = finalClick;
 
-                   break;
+                break;
 
                
                

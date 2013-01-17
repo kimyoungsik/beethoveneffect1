@@ -256,7 +256,8 @@ namespace beethoven3
             StartNoteManager.rightNoteManager.noteSpeed = noteFileManager.noteFiles[noteNumber].Bpm;
             StartNoteManager.leftNoteManager.noteSpeed = noteFileManager.noteFiles[noteNumber].Bpm;
             StartNoteManager.longNoteManager.noteSpeed = noteFileManager.noteFiles[noteNumber].Bpm;
-
+            StartNoteManager.noteSpeed = noteFileManager.noteFiles[noteNumber].Bpm;
+            
             Curve.dragNoteSpeed = GetDragNoteSpeed(noteFileManager.noteFiles[noteNumber].Bpm);
 
 
@@ -569,9 +570,16 @@ namespace beethoven3
                 {
 
                     //시간에 맞추어서 노트가 날아갈 수 있게 생성 시간을 정한다. 
-                    noteTime = GetNoteStartTime(arrayNotes[0].StartTime);
-                 
 
+                    if (arrayNotes[0].Type != "D")
+                    {
+                        noteTime = GetNoteStartTime(arrayNotes[0].StartTime);
+                    }
+                    else
+                    {
+                        //드래그노트일 때는 이걸 할 필요가 없다.
+                        noteTime = arrayNotes[0].StartTime;
+                    }
                     if (noteTime <= processTime )
                     {
                         //PlayNote(타입,날아가는 마커 위치)
@@ -723,7 +731,7 @@ namespace beethoven3
                             StartNoteManager.rightNoteManager.noteSpeed = arrayNotes[0].MarkLocation;
                             StartNoteManager.leftNoteManager.noteSpeed = arrayNotes[0].MarkLocation;
                             StartNoteManager.longNoteManager.noteSpeed = arrayNotes[0].MarkLocation;
-                            
+                            StartNoteManager.noteSpeed = arrayNotes[0].MarkLocation;
 
                             //마커속도 변화
 
@@ -1047,14 +1055,82 @@ namespace beethoven3
         {
             double startTime= 0.0f;
 
+            //입력 : bpm
+            //출력 속력
+
+            //기준 120
+
+
+
+            double velocity = GetVelocity(StartNoteManager.noteSpeed);
+
             //거리/속력 
 
-            double time = (MarkManager.distance) / (StartNoteManager.noteSpeed);
+            double time = (MarkManager.distance) / velocity;
 
+         
             startTime = noteTime - time;
 
             return startTime;
             
+        }
+
+
+        public double GetVelocity(double bpm)
+        {
+
+            double minB = 60.0f;
+            double minV = 85.0f;
+
+            double midB = 120.0f;
+            double midV = 190.0f;
+
+            double maxB = 240.0f;
+            double maxV = 700.0f;
+
+
+            double velocity = 0.0f;
+
+
+
+            //위 보간
+            if (bpm > midB && bpm < maxB)
+            {
+
+
+               velocity = ((((bpm - midB) / (maxB - midB)) * (maxV - midV)) + midV);
+
+
+
+            }
+
+                //아래 보간
+            else if (bpm < midB && bpm >= minB)
+            {
+
+                velocity = ((((bpm - minB) / (midB - minB)) * (midV - minV)) + minV);
+
+
+            }
+            else if (bpm == midB)
+            {
+                velocity = midV;
+            }
+            else if (bpm == maxB)
+            {
+                velocity = maxV;
+            }  
+
+            else
+            {
+                velocity = midV;
+                //bpm 오류
+            }
+
+            return velocity;
+
+
+
         }
        
 
@@ -1065,6 +1141,7 @@ namespace beethoven3
          //   CheckRightNoteInCenterArea();
          //   CheckLeftNoteInCenterArea();
             this.time += gameTime.ElapsedGameTime.TotalSeconds;
+            Trace.WriteLine(this.time);
 
             
             FindNote(this.time, changedTempo, optionalTime);
