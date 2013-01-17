@@ -5285,6 +5285,11 @@ namespace beethoven3
                
                #region 곡선택메뉴
                 case GameStates.SongMenu:
+
+
+
+
+
                 resultSongMenu = songMenu.Update();
                    
 #if Kinect
@@ -5757,6 +5762,16 @@ namespace beethoven3
             if (gameState == GameStates.SongMenu)
             {
                 songMenu.Draw(spriteBatch);
+
+
+                spriteBatch.Draw(rightHandTextures[itemManager.getRightHandIndex()], new Vector2(600, 40), null, Color.White, 0f,new Vector2(0, 0), 1f,   SpriteEffects.None, 0.0f);
+                spriteBatch.Draw(leftHandTextures[itemManager.getLeftHandIndex()], new Vector2(700, 40), null, Color.White, 0f, new Vector2(0, 0), 1f, SpriteEffects.None, 0.0f);
+               // spriteBatch.Draw(rightHandTextures[itemManager.getRightHandIndex()], new Vector2(600, 40), null, Color.White, 0f, new Vector2(0, 0), 1f, SpriteEffects.None, 0.0f);
+               // spriteBatch.Draw(rightHandTextures[itemManager.getRightHandIndex()], new Vector2(600, 40), null, Color.White, 0f, new Vector2(0, 0), 1f, SpriteEffects.None, 0.0f);
+               // spriteBatch.Draw(rightHandTextures[itemManager.getRightHandIndex()], new Vector2(600, 40), null, Color.White, 0f, new Vector2(0, 0), 1f, SpriteEffects.None, 0.0f);
+              
+
+
 
 #if Kinect
                 if (message.Length > 0)
