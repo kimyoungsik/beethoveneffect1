@@ -260,9 +260,19 @@ namespace beethoven3
             {
                 textbutton = true;
             }
-            else if (mouseRectangle.Intersects(startrect) && mouse.LeftButton == ButtonState.Pressed && pastmouse.LeftButton == ButtonState.Released || Game1.drawrec1.Intersects(startrect) && Game1.finalClick && !Game1.pastClick)
+            else if ((mouseRectangle.Intersects(startrect) && mouse.LeftButton == ButtonState.Pressed && pastmouse.LeftButton == ButtonState.Released) || (Game1.drawrec1.Intersects(startrect) && Game1.finalClick && !Game1.pastClick) || Game1.soundRecogStartIndex != -1)
             {
-                return scene_number;
+                int ret;
+                if (Game1.soundRecogStartIndex != -1)
+                {
+                    ret = Game1.soundRecogStartIndex;
+                }
+
+                Game1.soundRecogStartIndex = -1;
+
+                ret = scene_number;
+                return ret;
+
             }
           
             else

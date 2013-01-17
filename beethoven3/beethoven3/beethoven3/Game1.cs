@@ -172,6 +172,10 @@ namespace beethoven3
         //선택된 곡
         private int resultSongMenu;
 
+        //음성인식 시작위치
+        public static int soundRecogStartIndex = -1;
+
+
         //마지막 순위 리스트 보여주는 화면 
         private RecordBoard recordBoard;
 
@@ -1256,7 +1260,6 @@ namespace beethoven3
             //choices.Add("Yes");
           
             choices.Add("next");
-            choices.Add("stop");
             choices.Add("previous");
             choices.Add("start");
             choices.Add("tutorial");
@@ -1421,12 +1424,10 @@ namespace beethoven3
                                     if (gameState == GameStates.ResultManager)
                                     {
                                         gameState = GameStates.ShowPictures;
-                                    }
-                                    if (gameState == GameStates.ShowPictures)
+                                    }else if (gameState == GameStates.ShowPictures)
                                     {
                                         gameState = GameStates.RecordBoard;
-                                    }
-                                    if (gameState == GameStates.RecordBoard)
+                                    }else if (gameState == GameStates.RecordBoard)
                                     {
                                         gameState = GameStates.SongMenu;
                                     }
@@ -1452,10 +1453,9 @@ namespace beethoven3
                                     if (gameState == GameStates.Menu)
                                     {
                                         gameState = GameStates.SongMenu;
-                                    }
-                                    if (gameState == GameStates.SongMenu)
+                                    }else if (gameState == GameStates.SongMenu)
                                     {
-                                        resultSongMenu = songMenu.Scene_number;
+                                        soundRecogStartIndex = songMenu.Scene_number;;
                                     }
 
 
@@ -6117,7 +6117,7 @@ namespace beethoven3
          //   Vector2 rec = new Vector2(0,100,100);
             //그리기
 
-            if (nearButton)
+            if (!nearButton)
             {
                 drawrec1.X = (int)j1r.Position.X;
                 drawrec1.Y = (int)j1r.Position.Y;

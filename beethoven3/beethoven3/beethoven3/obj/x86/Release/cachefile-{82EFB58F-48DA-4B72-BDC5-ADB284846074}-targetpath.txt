@@ -79,7 +79,6 @@ Content\shopdoor\hoverHandInItemButton.xnb
 Content\character\horn1.xnb
 Content\character\horn2.xnb
 Content\character\horn3.xnb
-Content\markers\whiteMarker.xnb
 Content\Textures\heart.xnb
 Content\judgement\bad.xnb
 Content\judgement\good.xnb
@@ -118,6 +117,12 @@ Content\comboNumbers\good6.xnb
 Content\comboNumbers\good7.xnb
 Content\comboNumbers\good8.xnb
 Content\comboNumbers\good9.xnb
+Content\markers\whiteMarker.xnb
+Content\notes\planetNote1.xnb
+Content\notes\planetNote2.xnb
+Content\notes\planetNote3.xnb
+Content\notes\planetNote4.xnb
+Content\shopdoor\wearItem.xnb
 Content\snd\ka.xnb
 Content\snd\ka.wma
 Content\snd\jo.xnb
@@ -128,8 +133,3 @@ Content\Fonts\damagefont.xnb
 Content\Fonts\Pericles36.xnb
 Content\MessageFont.xnb
 Content\Fonts\PerpetuaFont.xnb
-Content\notes\planetNote1.xnb
-Content\notes\planetNote2.xnb
-Content\notes\planetNote3.xnb
-Content\notes\planetNote4.xnb
-Content\shopdoor\wearItem.xnb

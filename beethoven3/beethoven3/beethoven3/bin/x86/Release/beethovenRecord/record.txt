@@ -9,8 +9,8 @@ abc
 myPicture.jpg$1200
 myPicture.jpg$1200
 myPicture.jpg$1200
-gesture_17_1_26_21.jpg$350
-gesture_17_1_26_21.jpg$350
+myPicture.jpg$1200
+myPicture.jpg$600
 %%
 bond
 myPicture.jpg$500

@@ -731,15 +731,6 @@
       <Time>2013-01-09T20:05:10.426675+09:00</Time>
     </Item>
     <Item>
-      <Source>markers\whiteMarker.png</Source>
-      <Name>markers\whiteMarker</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\markers\whiteMarker.xnb</Output>
-      <Time>2013-01-14T13:52:33.276087+09:00</Time>
-    </Item>
-    <Item>
       <Source>Textures\heart.png</Source>
       <Name>Textures\heart</Name>
       <Importer>TextureImporter</Importer>
@@ -1082,6 +1073,60 @@
       <Time>2013-01-13T17:25:56.1512653+09:00</Time>
     </Item>
     <Item>
+      <Source>markers\whiteMarker.png</Source>
+      <Name>markers\whiteMarker</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\markers\whiteMarker.xnb</Output>
+      <Time>2013-01-14T13:52:33.276087+09:00</Time>
+    </Item>
+    <Item>
+      <Source>notes\planetNote1.png</Source>
+      <Name>notes\planetNote1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\planetNote1.xnb</Output>
+      <Time>2013-01-14T14:02:38.5147047+09:00</Time>
+    </Item>
+    <Item>
+      <Source>notes\planetNote2.png</Source>
+      <Name>notes\planetNote2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\planetNote2.xnb</Output>
+      <Time>2013-01-14T14:02:38.5297055+09:00</Time>
+    </Item>
+    <Item>
+      <Source>notes\planetNote3.png</Source>
+      <Name>notes\planetNote3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\planetNote3.xnb</Output>
+      <Time>2013-01-14T14:02:38.5317057+09:00</Time>
+    </Item>
+    <Item>
+      <Source>notes\planetNote4.png</Source>
+      <Name>notes\planetNote4</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\planetNote4.xnb</Output>
+      <Time>2013-01-14T14:02:38.5327057+09:00</Time>
+    </Item>
+    <Item>
+      <Source>shopdoor\wearItem.png</Source>
+      <Name>shopdoor\wearItem</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopdoor\wearItem.xnb</Output>
+      <Time>2013-01-17T09:20:31.9678963+09:00</Time>
+    </Item>
+    <Item>
       <Source>snd\ka.mp3</Source>
       <Name>snd\ka</Name>
       <Importer>Mp3Importer</Importer>
@@ -1146,51 +1191,6 @@
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Fonts\PerpetuaFont.xnb</Output>
       <Time>2013-01-08T22:57:38.3099716+09:00</Time>
-    </Item>
-    <Item>
-      <Source>notes\planetNote1.png</Source>
-      <Name>notes\planetNote1</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\planetNote1.xnb</Output>
-      <Time>2013-01-14T14:02:38.5147047+09:00</Time>
-    </Item>
-    <Item>
-      <Source>notes\planetNote2.png</Source>
-      <Name>notes\planetNote2</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\planetNote2.xnb</Output>
-      <Time>2013-01-14T14:02:38.5297055+09:00</Time>
-    </Item>
-    <Item>
-      <Source>notes\planetNote3.png</Source>
-      <Name>notes\planetNote3</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\planetNote3.xnb</Output>
-      <Time>2013-01-14T14:02:38.5317057+09:00</Time>
-    </Item>
-    <Item>
-      <Source>notes\planetNote4.png</Source>
-      <Name>notes\planetNote4</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\planetNote4.xnb</Output>
-      <Time>2013-01-14T14:02:38.5327057+09:00</Time>
-    </Item>
-    <Item>
-      <Source>shopdoor\wearItem.png</Source>
-      <Name>shopdoor\wearItem</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopdoor\wearItem.xnb</Output>
-      <Time>2013-01-17T09:20:31.9678963+09:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

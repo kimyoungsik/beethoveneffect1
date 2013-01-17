@@ -1,3 +1,5 @@
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\beethoven3.exe
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Microsoft.Samples.Kinect.SwipeGestureRecognizer.dll
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Textures\red.xnb
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Textures\SpriteSheet8.xnb
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Textures\menu.xnb
@@ -79,7 +81,6 @@ D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopdoor\h
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\character\horn1.xnb
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\character\horn2.xnb
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\character\horn3.xnb
-D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\markers\whiteMarker.xnb
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Textures\heart.xnb
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\judgement\bad.xnb
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\judgement\good.xnb
@@ -118,6 +119,12 @@ D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\comboNumbe
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\comboNumbers\good7.xnb
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\comboNumbers\good8.xnb
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\comboNumbers\good9.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\markers\whiteMarker.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\planetNote1.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\planetNote2.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\planetNote3.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\planetNote4.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopdoor\wearItem.xnb
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\snd\ka.xnb
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\snd\jo.xnb
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\snd\maid.xnb
@@ -129,15 +136,8 @@ D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\snd\ka.wma
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\snd\jo.wma
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\snd\maid.wma
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\beethoven3.exe.config
-D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\beethoven3.exe
-D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\beethoven3.pdb
-D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Microsoft.Samples.Kinect.SwipeGestureRecognizer.dll
 D:\beethoven\beethoven3\beethoven3\beethoven3\obj\x86\Release\ResolveAssemblyReference.cache
 D:\beethoven\beethoven3\beethoven3\beethoven3\obj\x86\Release\Microsoft.Xna.Framework.RuntimeProfile.txt
 D:\beethoven\beethoven3\beethoven3\beethoven3\obj\x86\Release\beethoven3.exe
 D:\beethoven\beethoven3\beethoven3\beethoven3\obj\x86\Release\beethoven3.pdb
-D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\planetNote1.xnb
-D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\planetNote2.xnb
-D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\planetNote3.xnb
-D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\planetNote4.xnb
-D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopdoor\wearItem.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\beethoven3.pdb
