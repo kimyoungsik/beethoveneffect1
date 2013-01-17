@@ -268,6 +268,7 @@ namespace beethoven3
                     ret = Game1.soundRecogStartIndex;
                 }
 
+                //보통때는 -1 이다가 start가 인식하면 곡의 인덱스 값을 받음
                 Game1.soundRecogStartIndex = -1;
 
                 ret = scene_number;

@@ -1192,6 +1192,42 @@
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Fonts\PerpetuaFont.xnb</Output>
       <Time>2013-01-08T22:57:38.3099716+09:00</Time>
     </Item>
+    <Item>
+      <Source>settingBoard\down.png</Source>
+      <Name>settingBoard\down</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\settingBoard\down.xnb</Output>
+      <Time>2013-01-17T17:04:10.8519585+09:00</Time>
+    </Item>
+    <Item>
+      <Source>settingBoard\downHover.png</Source>
+      <Name>settingBoard\downHover</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\settingBoard\downHover.xnb</Output>
+      <Time>2013-01-17T17:04:10.8529586+09:00</Time>
+    </Item>
+    <Item>
+      <Source>settingBoard\up.png</Source>
+      <Name>settingBoard\up</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\settingBoard\up.xnb</Output>
+      <Time>2013-01-17T17:04:10.8549587+09:00</Time>
+    </Item>
+    <Item>
+      <Source>settingBoard\upHover.png</Source>
+      <Name>settingBoard\upHover</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\settingBoard\upHover.xnb</Output>
+      <Time>2013-01-17T17:04:10.8499584+09:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

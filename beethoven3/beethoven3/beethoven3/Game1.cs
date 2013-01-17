@@ -5111,10 +5111,10 @@ namespace beethoven3
                    //nextButton 위에 마우스를 올려놨을 때
                     //mousecursor on nextButton item section
 
-
-                    if (rectMouseSettingBoard.Intersects(settingBoard.getRectNextButton()) || drawrec1.Intersects(settingBoard.getRectNextButton()))
+                   //뒤로 버튼
+                if (rectMouseSettingBoard.Intersects(settingBoard.RectNextButton) || drawrec1.Intersects(settingBoard.RectNextButton))
                 {
-                    recordBoard.setClickNextButton(true);
+                    settingBoard.ClickNextButton = true;
                     //click the right hand item section
                     if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (finalClick && !pastClick))
                     {
@@ -5123,8 +5123,87 @@ namespace beethoven3
                 }
                 else
                 {
-                    settingBoard.setClickNextButton(false);
+                    settingBoard.ClickNextButton = false;
                 }
+
+
+                //스케일 증가 
+                if (rectMouseSettingBoard.Intersects(settingBoard.RecScaleUpButton) || drawrec1.Intersects(settingBoard.RecScaleUpButton))
+                {
+                    settingBoard.ClickScaleUpButton = true;
+                    //click the right hand item section
+                    if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (finalClick && !pastClick))
+                    {
+                        this.userParam+=0.1f;
+
+                    }
+                }
+                else
+                {
+                    settingBoard.ClickScaleUpButton = false;
+                }
+
+
+
+                //스케일 감소
+                if (rectMouseSettingBoard.Intersects(settingBoard.RecScaleDownButton) || drawrec1.Intersects(settingBoard.RecScaleDownButton))
+                {
+                    settingBoard.ClickScaleDownButton = true;
+                    //click the right hand item section
+                    if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (finalClick && !pastClick))
+                    {
+
+                        this.userParam-=0.1f;
+
+
+                    }
+                }
+                else
+                {
+                    settingBoard.ClickScaleDownButton = false;
+                }
+
+
+
+
+            //각도 증가 
+                if (rectMouseSettingBoard.Intersects(settingBoard.RecAngleUpButton) || drawrec1.Intersects(settingBoard.RecAngleUpButton))
+                {
+                    settingBoard.ClickAngleUpButton = true;
+                    //click the right hand item section
+                    if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (finalClick && !pastClick))
+                    {
+                      //  nui.ElevationAngle++;
+                       
+                    }
+                }
+                else
+                {
+                    settingBoard.ClickAngleUpButton = false;
+                }
+
+
+
+                //각도 감소
+                if (rectMouseSettingBoard.Intersects(settingBoard.RecAngleDownButton) || drawrec1.Intersects(settingBoard.RecAngleDownButton))
+                {
+                    settingBoard.ClickAngleDownButton = true;
+                    //click the right hand item section
+                    if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (finalClick && !pastClick))
+                    {
+
+                      //  nui.ElevationAngle--;
+
+
+                    }
+                }
+                else
+                {
+                    settingBoard.ClickAngleDownButton = false;
+                }
+
+
+
                 pastClick = finalClick;
 
                    break;

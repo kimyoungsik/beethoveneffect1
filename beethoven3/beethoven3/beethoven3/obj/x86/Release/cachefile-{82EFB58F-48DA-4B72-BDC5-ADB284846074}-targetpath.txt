@@ -133,3 +133,7 @@ Content\Fonts\damagefont.xnb
 Content\Fonts\Pericles36.xnb
 Content\MessageFont.xnb
 Content\Fonts\PerpetuaFont.xnb
+Content\settingBoard\down.xnb
+Content\settingBoard\downHover.xnb
+Content\settingBoard\up.xnb
+Content\settingBoard\upHover.xnb

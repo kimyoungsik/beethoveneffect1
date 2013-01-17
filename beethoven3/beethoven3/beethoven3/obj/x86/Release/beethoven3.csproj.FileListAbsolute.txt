@@ -141,3 +141,7 @@ D:\beethoven\beethoven3\beethoven3\beethoven3\obj\x86\Release\Microsoft.Xna.Fram
 D:\beethoven\beethoven3\beethoven3\beethoven3\obj\x86\Release\beethoven3.exe
 D:\beethoven\beethoven3\beethoven3\beethoven3\obj\x86\Release\beethoven3.pdb
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\beethoven3.pdb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\settingBoard\down.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\settingBoard\downHover.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\settingBoard\up.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\settingBoard\upHover.xnb

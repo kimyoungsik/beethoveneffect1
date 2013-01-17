@@ -17,7 +17,27 @@ namespace beethoven3
         private Texture2D background;
         private Texture2D nextButton;
         private Texture2D hoverNextButton;
+        
+        private Texture2D UpButton;
+        private Texture2D hoverUpButton;
+      
+        private Texture2D DownButton;
+        private Texture2D hoverDownButton;
+       
+        private Rectangle recScaleUpButton;
+        private Rectangle recScaleDownButton;
+        private Rectangle recAngleUpButton;
+        private Rectangle recAngleDownButton;
+
         private bool clickNextButton;
+        private bool clickScaleUpButton;
+        private bool clickScaleDownButton;
+        private bool clickAngleUpButton;
+        private bool clickAngleDownButton;
+
+
+
+
         private Rectangle recBackground;
         private Rectangle recNextButton;
 
@@ -27,6 +47,10 @@ namespace beethoven3
         public SettingBoard(Game1 game1)
         {
             clickNextButton = false;
+            clickScaleUpButton = false;
+            clickScaleDownButton = false;
+            clickAngleUpButton = false;
+            clickAngleDownButton = false;
             this.game1 = game1;
 
         }
@@ -36,9 +60,15 @@ namespace beethoven3
             //   background = cm.Load<Texture2D>(@"result\background");
             nextButton = cm.Load<Texture2D>(@"result\nextButton");
             hoverNextButton = cm.Load<Texture2D>(@"result\hoverNextButton");
+            
+            UpButton = cm.Load<Texture2D>(@"settingBoard\up");
+            hoverUpButton = cm.Load<Texture2D>(@"settingBoard\upHover");
+            
+            DownButton = cm.Load<Texture2D>(@"settingBoard\down");
+            hoverDownButton = cm.Load<Texture2D>(@"settingBoard\downHover");
+                        
             pericles36Font = cm.Load<SpriteFont>(@"Fonts\Pericles36");
-
-           
+                       
         }
 
         
@@ -51,8 +81,17 @@ namespace beethoven3
             recNextButton = new Rectangle(width - 400, height - 200, 356, 215);
             spriteBatch.Draw(nextButton, recNextButton, Color.White);
 
-            //float fCurrentVolume = SoundFmod.GetVolume();
-            //int iCurrentVolume = (int)(fCurrentVolume * 10);
+            recScaleUpButton = new Rectangle(800, 100, 101, 66);
+            spriteBatch.Draw(UpButton, recScaleUpButton, Color.White);
+
+            recScaleDownButton = new Rectangle(800, 200, 101, 66);
+            spriteBatch.Draw(DownButton, recScaleDownButton, Color.White);
+
+            recAngleUpButton = new Rectangle(800, 400, 101, 66);
+            spriteBatch.Draw(UpButton, recAngleUpButton, Color.White);
+
+            recAngleDownButton = new Rectangle(800, 500, 101, 66);
+            spriteBatch.Draw(DownButton, recAngleDownButton, Color.White);
 
             float userParam = game1.UserParam;
 
@@ -75,16 +114,93 @@ namespace beethoven3
                 spriteBatch.Draw(hoverNextButton, recNextButton, Color.White);
             }
 
+
+
+            if (clickScaleUpButton)
+            {
+                spriteBatch.Draw(hoverUpButton, recScaleUpButton, Color.White);
+            }
+
+
+            if (clickScaleDownButton)
+            {
+                spriteBatch.Draw(hoverDownButton, recScaleDownButton, Color.White);
+            }
+
+            if (clickAngleUpButton)
+            {
+                spriteBatch.Draw(hoverUpButton, recAngleUpButton, Color.White);
+            }
+
+
+            if (clickAngleDownButton)
+            {
+                spriteBatch.Draw(hoverDownButton, recAngleDownButton, Color.White);
+            }
+
         }
 
-        public void setClickNextButton(bool value)
+        //public void setClickNextButton(bool value)
+        //{
+        //    this.clickNextButton = value;
+        //}
+
+
+
+        public Rectangle RectNextButton
         {
-            this.clickNextButton = value;
+            get { return recNextButton; }
         }
 
-        public Rectangle getRectNextButton()
+        public Rectangle RecScaleUpButton
         {
-            return this.recNextButton;
+            get { return recScaleUpButton; }
         }
+
+        public Rectangle RecScaleDownButton
+        {
+            get { return recScaleDownButton; }
+        }
+
+        public Rectangle RecAngleUpButton
+        {
+            get { return recAngleUpButton; }
+        }
+
+        public Rectangle RecAngleDownButton
+        {
+            get { return recAngleDownButton; }
+        }
+
+        public bool ClickNextButton
+        {
+            set { clickNextButton = value; }
+        }
+
+
+        public bool ClickScaleUpButton
+        {
+            set { clickScaleUpButton = value; }
+        }
+
+
+        public bool ClickScaleDownButton
+        {
+            set { clickScaleDownButton = value; }
+        }
+
+
+        public bool ClickAngleUpButton
+        {
+            set { clickAngleUpButton = value; }
+        }
+
+
+        public bool ClickAngleDownButton
+        {
+            set { clickAngleDownButton = value; }
+        }
+
+     
     }
 }
