@@ -166,6 +166,20 @@ namespace beethoven3
                 case 2:
                      texture = charisma2;
                     break;
+                case 3:
+                    texture = charisma1;
+                    break;
+
+                case 4:
+                    texture = charisma2;
+                    break;
+                case 5:
+                    texture = charisma1;
+                    break;
+
+                case 6:
+                    texture = charisma2;
+                    break;
             }
 
             return texture;
@@ -189,11 +203,10 @@ namespace beethoven3
               if (currentTime > charismaFrame.StartTime )
              
               {
+                  //이벤트 죽이는 용도로 쓰임
                   if (isCharismaTime == 0)
                   {
-                      //사진 찍는것
-
-                     // Game1.PicFlag = true;
+                    
                       isCharismaTime = 2;
                   }
                   spriteBatch.Draw(charismaFrame.Texture, picLocation, Color.White);

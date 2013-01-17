@@ -5988,7 +5988,7 @@ namespace beethoven3
                         postureCount = 0;
                         postureFlag = true;
                         gestureFlag = true;
-                        string fileName = "22.txt";
+                        string fileName = "33.txt";
                         LoadGesturesFromFile(fileName);
                         Skeleton2DDataExtract.Skeleton2DdataCoordReady += NuiSkeleton2DdataCoordReady;
                         
@@ -6015,7 +6015,19 @@ namespace beethoven3
                         Skeleton2DDataExtract.Skeleton2DdataCoordReady += NuiSkeleton2DdataCoordReady;
                         
                     }
-               
+
+                        //중립
+                    else if (charismaManager.Type == 6)
+                    {
+                        ////카리스마타임 제스쳐 시작부분
+                        postureCount = 0;
+                        postureFlag = false;
+                        gestureFlag = true;
+                        string fileName = "33.txt";
+                        LoadGesturesFromFile(fileName);
+                        Skeleton2DDataExtract.Skeleton2DdataCoordReady += NuiSkeleton2DdataCoordReady;
+
+                    }
 
 
                     charismaManager.IsCharismaTime = 1;

@@ -346,6 +346,14 @@ namespace beethoven3
                             arrayNotes.Add(new NoteInfo(isright,/*startTime*/Convert.ToDouble(lines[0]), /*카리스마종류*/Int32.Parse(lines[2]), /*type*/lines[1], /*not lastTime*/Convert.ToDouble(lines[3]), Vector2.Zero, Vector2.Zero, Vector2.Zero, Vector2.Zero));
 
                         }
+                        //중립
+                        
+                        else if (lines[1] == "N")
+                        {
+                            arrayNotes.Add(new NoteInfo(isright,/*startTime*/Convert.ToDouble(lines[0]), /*카리스마종류*/6, /*type*/lines[1], /*not lastTime*/Convert.ToDouble(lines[3]), Vector2.Zero, Vector2.Zero, Vector2.Zero, Vector2.Zero));
+
+                        }
+
 
 
                         //포토타임
@@ -729,6 +737,15 @@ namespace beethoven3
 
 
                         else if (arrayNotes[0].Type == "C")
+                        {
+                            //종류. 시작시간, 끝나는시간
+
+                            charismaManager.AddCharismaFrame(arrayNotes[0].StartTime, arrayNotes[0].LastTime, arrayNotes[0].MarkLocation, this.time);
+
+                        }
+
+
+                        else if (arrayNotes[0].Type == "N")
                         {
                             //종류. 시작시간, 끝나는시간
 
