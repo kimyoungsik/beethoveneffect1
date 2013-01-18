@@ -88,6 +88,8 @@ namespace beethoven3
 
         //private bool isJudgeCheck = false;
 
+        //카리스마 중에 게이지 감소 안되게 하기 위해서 
+        private bool playCharisma = false;
        
         #endregion
 
@@ -124,6 +126,13 @@ namespace beethoven3
         {
             get { return isCharismaTime; }
             set { isCharismaTime = value; }
+        }
+
+
+        public bool PlayCharisma
+        {
+            get { return playCharisma; }
+            set { playCharisma = value; }
         }
 
         //public bool IsJudgeCheck

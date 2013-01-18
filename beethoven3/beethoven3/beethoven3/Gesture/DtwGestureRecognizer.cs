@@ -16,6 +16,14 @@ namespace beethoven3
         private readonly ArrayList _labels;
         private readonly int _maxSlope;
         private readonly ArrayList _sequences;
+        double minDist = double.PositiveInfinity;
+
+        public double MinDist
+        {
+            get { return minDist; }
+            set { minDist = value; }
+
+        }
 
         public DtwGestureRecognizer(int dim, double threshold, double firstThreshold, double minLen)
         {
@@ -63,7 +71,7 @@ namespace beethoven3
 
         public string Recognize(ArrayList seq)
         {
-            double minDist = double.PositiveInfinity;
+            minDist = double.PositiveInfinity;
             string classification = "__UNKNOWN";
             for (int i = 0; i < _sequences.Count; i++)
             {

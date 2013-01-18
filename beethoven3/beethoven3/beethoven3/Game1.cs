@@ -105,17 +105,24 @@ namespace beethoven3
         //일반 제스쳐
         private const int MinimumFrames = 6;
         private const int BufferSize = 32;
-        private DtwGestureRecognizer _dtw;
         private int _flipFlop;
         private ArrayList _video;
-        int postureCount = 0;
-        bool postureFlag = false;
+        
+        
 
+        private DtwGestureRecognizer _dtw1;
+        private DtwGestureRecognizer _dtw2;
+        private DtwGestureRecognizer _dtw3;
+
+        int postureCount = 0;
+        bool gestureFlag = true;//제스쳐 동작이 수행됐는지 안됐는지
+        int gestureType = 1;//정지 포스쳐인지 일반 포스쳐인지 제스쳐인지 (1 : 정지 포스쳐, 2 : 일반 포스쳐, 3 : 제스쳐)
+        bool isGesture = true;
         //머리찾기
         float fy;
         double bestFy = 1000;
         int bestAngle = 0;
-        bool gestureFlag = false;
+        
 
         //키재기
         float fheadY;
@@ -644,7 +651,7 @@ namespace beethoven3
            
 
             //충돌관리 생성
-            collisionManager = new CollisionManager(perfectManager, goodManager, badManager, goldGetManager, scoreManager, memberManager,/*effect크기*/itemManager,perfectBannerManager,goodBannerManager,badBannerManager,missBannerManager,new Vector2(this.Window.ClientBounds.Width,this.Window.ClientBounds.Height),comboNumberManager);
+            collisionManager = new CollisionManager(perfectManager, goodManager, badManager, goldGetManager, scoreManager, memberManager,/*effect크기*/itemManager,perfectBannerManager,goodBannerManager,badBannerManager,missBannerManager,new Vector2(this.Window.ClientBounds.Width,this.Window.ClientBounds.Height),comboNumberManager,charismaManager);
             
             //노트정보 관리 생성
             noteFileManager = new NoteFileManager();
@@ -1234,10 +1241,17 @@ namespace beethoven3
                 hands = new List<Hand>();
 
                 //제스쳐2
-                _dtw = new DtwGestureRecognizer(12, 0.6, 2, 2, 10);
-                _video = new ArrayList();
-                //Skeleton2DDataExtract.Skeleton2DdataCoordReady += NuiSkeleton2DdataCoordReady;
+                _dtw1 = new DtwGestureRecognizer(12, 0.6, 2, 2, 2);//정지포스쳐
+                _dtw2 = new DtwGestureRecognizer(12, 1.0, 2, 2, 2);//일반포스쳐
+                _dtw3 = new DtwGestureRecognizer(12, 1.2, 2, 2, 10);//제스쳐
 
+                _video = new ArrayList();
+                gestureType = 1;
+                postureCount = 0;
+                gestureFlag = true;
+                string fileName = "111.txt";
+                LoadGesturesFromFile(fileName);
+                Skeleton2DDataExtract.Skeleton2DdataCoordReady += NuiSkeleton2DdataCoordReadyStop;
                 setupAudio();
             }
             
@@ -2231,95 +2245,53 @@ namespace beethoven3
                 //제스쳐2
                 if (skeleton != null)
                 {
-
                     if (skeleton.TrackingState == SkeletonTrackingState.Tracked)
                     {
-                        if (gestureFlag == true)
-                        {
-
                             Skeleton2DDataExtract.ProcessData(skeleton);
-
-                        }
                     }
                 }
             }
         }
 
-        private void NuiSkeleton2DdataCoordReady(object sender, Skeleton2DdataCoordEventArgs a)
+        //정지 포스쳐
+        private void NuiSkeleton2DdataCoordReadyStop(object sender, Skeleton2DdataCoordEventArgs a)
         {
-
-
             if (_video.Count > MinimumFrames)
             {
+                string s = _dtw1.Recognize(_video);
 
-                string s = _dtw.Recognize(_video);
-                kinectMessage = s;
-
-
-                //Trace.WriteLine(kinectMessage);
                 if (!s.Contains("__UNKNOWN"))
                 {
                     _video = new ArrayList();
-                    //message = "yes";
                 }
-                //if (charismaManager.IsCharismaTime == 2)
-                //{
-                    if (gestureFlag == false)
+
+                //////////////////////////////////////////
+                if (!s.Contains("__UNKNOWN"))
+                {
+                    postureCount++;
+                    message = "yes";
+                    if (postureCount > 9)
                     {
-                      //  Skeleton2DDataExtract.Skeleton2DdataCoordReady -= NuiSkeleton2DdataCoordReady;
+                        //여기에 정지했을 때 동작 넣기
+                        file.SetEndFile(true);
+                        postureCount = 0;
+                        message = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+
                     }
-                    if (postureFlag)
-                    {
-                        if (!s.Contains("__UNKNOWN"))
-                        {
-                            postureCount++;
-                            //message = "yes";
+                }
 
-                            perfectBannerManager.AddBanners(new Vector2(this.Window.ClientBounds.Width / 2 - 1380 / 4, this.Window.ClientBounds.Height / 2 - 428 / 4));
-                            scoreManager.Perfomance = scoreManager.Perfomance + 1;
+                if (s.Contains("__UNKNOWN"))
+                {
+                    postureCount = 0;
+                    message = "no";
+                }
 
-
-                            if (postureCount > 5)
-                            {
-                                postureFlag = false;
-                            }
-
-                        }
-                    }
-                    if (!postureFlag)
-                    {
-                        message = s;
-                        if (!s.Contains("__UNKNOWN"))
-                        {
-                           
-                            perfectBannerManager.AddBanners(new Vector2(this.Window.ClientBounds.Width / 2 - 1380 / 4, this.Window.ClientBounds.Height / 2 - 428 / 4));
-                            scoreManager.Perfomance = scoreManager.Perfomance + 1;
-
-                            gestureFlag = false;
-                        }
-                    }
-
-                    if (s.Contains("__UNKNOWN"))
-                    {
-                        //message = "no";
-                    }
-                //}
-
-                //if (charismaManager.IsCharismaTime == 0)
-                //{
-                //    if (!s.Contains("__UNKNOWN"))
-                //    {
-                //        postureCount++;
-                //        message = "yes";
-                //        if (postureCount > 10)
-                //        {
-                //            //여기에 뒤로가는 메뉴
-
-                //        }
-                //    }
-                //}
 
             }
+
+            //////////////////////////////////////////
+
+
 
             if (_video.Count > BufferSize)
             {
@@ -2337,6 +2309,129 @@ namespace beethoven3
             }
 
 
+        }
+
+        //일반 포스쳐
+        private void NuiSkeleton2DdataCoordReadyPosture(object sender, Skeleton2DdataCoordEventArgs a)
+        {
+
+
+            if (_video.Count > MinimumFrames)
+            {
+
+                string s = _dtw2.Recognize(_video);
+                if (!s.Contains("__UNKNOWN"))
+                {
+                    _video = new ArrayList();
+                }
+
+                if (!gestureFlag)
+                {
+                    //Skeleton2DDataExtract.Skeleton2DdataCoordReady -= NuiSkeleton2DdataCoordReadyPosture;
+                    //gestureType = 1;
+                    //postureCount = 0;
+                    //gestureFlag = true;
+                    //string fileName = "111.txt";
+                    //LoadGesturesFromFile(fileName);
+                    //Skeleton2DDataExtract.Skeleton2DdataCoordReady += NuiSkeleton2DdataCoordReadyStop;
+                }
+                if (gestureFlag)
+                {
+                    if (!s.Contains("__UNKNOWN"))
+                    {
+                        postureCount++;
+                        message = "yes";
+                        perfectBannerManager.AddBanners(new Vector2(this.Window.ClientBounds.Width / 2 - 1380 / 4, this.Window.ClientBounds.Height / 2 - 428 / 4));
+                        scoreManager.Perfomance = scoreManager.Perfomance + 1;
+                            
+                        if (postureCount > 100)
+                        {
+                            
+                            gestureFlag = false;
+                        }
+                    }
+
+                    if (s.Contains("__UNKNOWN"))
+                    {
+                        message = "no";
+                    }
+                }
+            }
+
+            if (_video.Count > BufferSize)
+            {
+                _video.RemoveAt(0);
+            }
+
+            if (!double.IsNaN(a.GetPoint(0).X))
+            {
+
+                _flipFlop = (_flipFlop + 1) % 2;
+                if (_flipFlop == 0)
+                {
+                    _video.Add(a.GetCoords());
+                }
+            }
+        }
+
+        //제스쳐
+        private void NuiSkeleton2DdataCoordReadyGesture(object sender, Skeleton2DdataCoordEventArgs a)
+        {
+            Trace.WriteLine(gestureFlag);
+            if (_video.Count > MinimumFrames)
+            {
+
+                string s = _dtw3.Recognize(_video);
+                double score = _dtw3.MinDist;//점수
+
+                if (!s.Contains("__UNKNOWN"))
+                {
+                    _video = new ArrayList();
+                }
+
+                if (!gestureFlag)
+                {
+                    //Skeleton2DDataExtract.Skeleton2DdataCoordReady -= NuiSkeleton2DdataCoordReadyGesture;
+                    //gestureType = 1;
+                    //postureCount = 0;
+                    //gestureFlag = true;
+                    //string fileName = "111.txt";
+                    //LoadGesturesFromFile(fileName);
+                    //Skeleton2DDataExtract.Skeleton2DdataCoordReady += NuiSkeleton2DdataCoordReadyStop;
+                }
+                if (gestureFlag)
+                {
+                    if (!s.Contains("__UNKNOWN"))
+                    {
+                        perfectBannerManager.AddBanners(new Vector2(this.Window.ClientBounds.Width / 2 - 1380 / 4, this.Window.ClientBounds.Height / 2 - 428 / 4));
+                        scoreManager.Perfomance = scoreManager.Perfomance + 1;
+
+
+                        message = "yes" + score.ToString();
+                        gestureFlag = false;
+                    }
+
+                    if (s.Contains("__UNKNOWN"))
+                    {
+                        message = "no";
+                    }
+                }
+            }
+
+            if (_video.Count > BufferSize)
+            {
+                _video.RemoveAt(0);
+            }
+
+            if (!double.IsNaN(a.GetPoint(0).X))
+            {
+
+                _flipFlop = (_flipFlop + 1) % 2;
+                if (_flipFlop == 0)
+                {
+                    _video.Add(a.GetCoords());
+                }
+            }
         }
 
         private void LoadGesturesFromFile(string fileName)
@@ -2375,7 +2470,18 @@ namespace beethoven3
 
                 if (line.StartsWith("----"))
                 {
-                    _dtw.AddOrUpdate(frames, gestureName);
+                    if (gestureType == 1)
+                    {
+                        _dtw1.AddOrUpdate(frames, gestureName);
+                    }
+                    if (gestureType == 2)
+                    {
+                        _dtw2.AddOrUpdate(frames, gestureName);
+                    }
+                    if (gestureType == 3)
+                    {
+                        _dtw3.AddOrUpdate(frames, gestureName);
+                    }
                     frames = new ArrayList();
                     gestureName = String.Empty;
                     itemCount = 0;
@@ -5579,7 +5685,7 @@ namespace beethoven3
                         //goldGetManager = new ExplosionManager();
                         //goldGetManager.ExplosionInit(itemManager.GetMissEffectTexture()[effectIndex], itemManager.GetEffectInitFrame()[effectIndex], itemManager.GetEffectFrameCount()[effectIndex], itemManager.GetEffectScale()[effectIndex], itemManager.GetEffectDulation()[effectIndex]);
 
-                        collisionManager = new CollisionManager(perfectManager, goodManager, badManager, goldGetManager, scoreManager, memberManager, itemManager, perfectBannerManager, goodBannerManager, badBannerManager, missBannerManager, new Vector2(this.Window.ClientBounds.Width, this.Window.ClientBounds.Height),comboNumberManager);
+                        collisionManager = new CollisionManager(perfectManager, goodManager, badManager, goldGetManager, scoreManager, memberManager, itemManager, perfectBannerManager, goodBannerManager, badBannerManager, missBannerManager, new Vector2(this.Window.ClientBounds.Width, this.Window.ClientBounds.Height), comboNumberManager, charismaManager);
             
                         /////이펙트 생성 -END
                         
@@ -6015,7 +6121,7 @@ namespace beethoven3
             //    spriteBatch.Draw(idot, removeAreaRec, Color.Red);
                 
                 //콤보 글씨
-                spriteBatch.DrawString(pericles36Font, scoreManager.Combo.ToString(), new Vector2(512, 420), Color.Black);
+                spriteBatch.DrawString(pericles36Font, scoreManager.Perfomance.ToString(), new Vector2(512, 420), Color.Black);
                 //골드 글씨
                 spriteBatch.DrawString(pericles36Font, scoreManager.Gold.ToString(), new Vector2(scorePosition.X + 120, scorePosition.Y), Color.Black);
                 //최대 max
@@ -6038,7 +6144,7 @@ namespace beethoven3
                 int gageWidth = 300 / 100 *  scoreManager.Gage;
 
                 spriteBatch.Draw(uiHeart, new Vector2(0, 6), new Rectangle(0, 0, gageWidth, 50), Color.White);
-                Trace.WriteLine(scoreManager.Gage);
+                //Trace.WriteLine(scoreManager.Gage);
 
 
 
@@ -6055,58 +6161,66 @@ namespace beethoven3
                
                 if (charismaManager.charismaFrames.Count > 0)
                 {
-
+                    string fileName;
                     charismaManager.currentTime += gameTime.ElapsedGameTime.TotalSeconds;
                     CharisimaFrame charismaFrame = (CharisimaFrame)charismaManager.charismaFrames.Peek();
+                    
 
                     if (charismaManager.currentTime > charismaFrame.StartTime)
                     {
+
                         spriteBatch.Draw(charismaFrame.Texture, charismaManager.picLocation, Color.White);
                         if (charismaManager.IsCharismaTime)
                         {
+                            charismaManager.PlayCharisma = true;
+
                             if (charismaManager.Type == 1)
                             {
                                 ////카리스마타임 제스쳐 시작부분
+                                Skeleton2DDataExtract.Skeleton2DdataCoordReady -= NuiSkeleton2DdataCoordReadyStop;
+                                gestureType = 2;
                                 postureCount = 0;
-                                postureFlag = true;
                                 gestureFlag = true;
-                                string fileName = "33.txt";
+                                fileName = "22.txt";
                                 LoadGesturesFromFile(fileName);
-                                Skeleton2DDataExtract.Skeleton2DdataCoordReady += NuiSkeleton2DdataCoordReady;
+                                Skeleton2DDataExtract.Skeleton2DdataCoordReady += NuiSkeleton2DdataCoordReadyPosture;
+                                
 
 
                             }
                             else if (charismaManager.Type == 2)
                             {
                                 ////카리스마타임 제스쳐 시작부분
+                                Skeleton2DDataExtract.Skeleton2DdataCoordReady -= NuiSkeleton2DdataCoordReadyStop;
+                                gestureType = 2;
                                 postureCount = 0;
-                                postureFlag = true;
                                 gestureFlag = true;
-                                string fileName = "33.txt";
+                                fileName = "22.txt";
                                 LoadGesturesFromFile(fileName);
-                                Skeleton2DDataExtract.Skeleton2DdataCoordReady += NuiSkeleton2DdataCoordReady;
+                                Skeleton2DDataExtract.Skeleton2DdataCoordReady += NuiSkeleton2DdataCoordReadyPosture;
 
                             }
                             else if (charismaManager.Type == 3)
                             {
                                 ////카리스마타임 제스쳐 시작부분
+                                Skeleton2DDataExtract.Skeleton2DdataCoordReady -= NuiSkeleton2DdataCoordReadyStop;
+                                gestureType = 2;
                                 postureCount = 0;
-                                postureFlag = true;
                                 gestureFlag = true;
-                                string fileName = "33.txt";
+                                fileName = "22.txt";
                                 LoadGesturesFromFile(fileName);
-                                Skeleton2DDataExtract.Skeleton2DdataCoordReady += NuiSkeleton2DdataCoordReady;
+                                Skeleton2DDataExtract.Skeleton2DdataCoordReady += NuiSkeleton2DdataCoordReadyPosture;
 
                             }
                             else if (charismaManager.Type == 4)
                             {
                                 ////카리스마타임 제스쳐 시작부분
-                                postureCount = 0;
-                                postureFlag = false;
+                                Skeleton2DDataExtract.Skeleton2DdataCoordReady -= NuiSkeleton2DdataCoordReadyStop;
+                                gestureType = 3;
                                 gestureFlag = true;
-                                string fileName = "66.txt";
+                                fileName = "66.txt";
                                 LoadGesturesFromFile(fileName);
-                                Skeleton2DDataExtract.Skeleton2DdataCoordReady += NuiSkeleton2DdataCoordReady;
+                                Skeleton2DDataExtract.Skeleton2DdataCoordReady += NuiSkeleton2DdataCoordReadyGesture;
 
                             }
 
@@ -6114,28 +6228,52 @@ namespace beethoven3
                             else if (charismaManager.Type == 6)
                             {
                                 ////카리스마타임 제스쳐 시작부분
+                                Skeleton2DDataExtract.Skeleton2DdataCoordReady -= NuiSkeleton2DdataCoordReadyStop;
+                                gestureType = 2;
                                 postureCount = 0;
-                                postureFlag = true;
                                 gestureFlag = true;
-                                string fileName = "33.txt";
+                                fileName = "33.txt";
                                 LoadGesturesFromFile(fileName);
-                                Skeleton2DDataExtract.Skeleton2DdataCoordReady += NuiSkeleton2DdataCoordReady;
+                                Skeleton2DDataExtract.Skeleton2DdataCoordReady += NuiSkeleton2DdataCoordReadyPosture;
 
                             }
                             charismaManager.IsCharismaTime = false;
                         }
                     }
-                    if (!gestureFlag)
+
+
+                    if (!isGesture)
                     {
-                        Skeleton2DDataExtract.Skeleton2DdataCoordReady -= NuiSkeleton2DdataCoordReady;
+
+                        if (gestureType == 2)
+                        {
+                            Skeleton2DDataExtract.Skeleton2DdataCoordReady -= NuiSkeleton2DdataCoordReadyPosture;
+                        }
+                        if (gestureType == 3)
+                        {
+                            Skeleton2DDataExtract.Skeleton2DdataCoordReady -= NuiSkeleton2DdataCoordReadyGesture;
+                        }
+                        gestureType = 1;
+                        postureCount = 0;
+                        gestureFlag = true;
+                        fileName = "111.txt";
+                        LoadGesturesFromFile(fileName);
+                        Skeleton2DDataExtract.Skeleton2DdataCoordReady += NuiSkeleton2DdataCoordReadyStop;
+                        isGesture = true;
+                        charismaManager.charismaFrames.Dequeue();
                     }
+
+
                     if (charismaManager.currentTime > charismaFrame.EndTime)
                     {
-                        charismaManager.charismaFrames.Dequeue();
-                        gestureFlag = false;
-                        
+                       
+                        isGesture = false;
+                        charismaManager.PlayCharisma = false;
                             
                     }
+
+
+
                 }
 
                 photoManager.Draw(gameTime, spriteBatch);

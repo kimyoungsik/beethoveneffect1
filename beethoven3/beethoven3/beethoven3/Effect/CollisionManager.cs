@@ -41,6 +41,8 @@ namespace beethoven3
         private Vector2 missLocation;
 
         private Vector2 comboLocation;
+
+        private CharismaManager charismaManager;
        // private bool isEarlyOne = true;
         #endregion 
 
@@ -48,7 +50,7 @@ namespace beethoven3
         public CollisionManager(PerfectExplosionManager perfectManager, GoodExplosionManager goodManager, BadExplosionManager badManager, ExplosionManager goldGetManager,
             ScoreManager scoreManager, MemberManager memberManager, ItemManager itemManager,
             PerfectBannerManager perfectBannerManager, GoodBannerManager goodBannerManager, BadBannerManager badBannerManager, MissBannerManager missBannerManager, Vector2 sizeScreen,
-            ComboNumberManager comboNumberManager)
+            ComboNumberManager comboNumberManager, CharismaManager charismaManager)
         {
             this.perfectManager = perfectManager;
             this.goodManager = goodManager;
@@ -64,10 +66,14 @@ namespace beethoven3
 
             this.scoreManager = scoreManager;
 
+            this.charismaManager = charismaManager;
+
             //화면사이즈
             this.sizeScreen = sizeScreen;
             this.memberManager = memberManager;
             this.itemManager = itemManager;
+
+
 
             this.perfectLocation = new Vector2(sizeScreen.X / 2 - 1380 / 4, sizeScreen.Y / 2 - 428 / 4);
             this.goodLocation = new Vector2(sizeScreen.X / 2 - 1020 / 4, sizeScreen.Y / 2 - 368 / 4);
@@ -1315,10 +1321,13 @@ namespace beethoven3
                         scoreManager.Max = scoreManager.Combo;
                     }
 
-
+                    
                     scoreManager.Combo = 0;
-                    scoreManager.Gage = scoreManager.Gage - 10;
 
+                    if (!charismaManager.PlayCharisma)
+                    {
+                        scoreManager.Gage = scoreManager.Gage - 10;
+                    }
                 }
 
             }
@@ -1348,7 +1357,10 @@ namespace beethoven3
                         scoreManager.Max = scoreManager.Combo;
                     }
                     scoreManager.Combo = 0;
-                    scoreManager.Gage = scoreManager.Gage - 10;
+                    if (!charismaManager.PlayCharisma)
+                    {
+                        scoreManager.Gage = scoreManager.Gage - 10;
+                    }
                 }
             }
         }
@@ -1380,7 +1392,10 @@ namespace beethoven3
                       }
 
                       scoreManager.Combo = 0;
-                      scoreManager.Gage -= 1;
+                      if (!charismaManager.PlayCharisma)
+                      {
+                          scoreManager.Gage = scoreManager.Gage - 1;
+                      }
                   }
               }
         }
