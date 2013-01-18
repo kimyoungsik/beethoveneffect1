@@ -152,3 +152,7 @@ D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopButton
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopButton\sSellButton.xnb
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopButton\hoverSSellButton.xnb
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopButton\hoverSCancelButton.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\gold\getGold.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\moonNote1.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\moonNote.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\planetNote.xnb

@@ -298,6 +298,8 @@ namespace beethoven3
         //gold
         private Texture2D gold;
 
+        private Texture2D getGold;
+
         //오른손 텍스쳐들
 
         private Texture2D[] rightHandTextures;
@@ -470,7 +472,9 @@ namespace beethoven3
             //진행상황
             uiBackground = Content.Load<Texture2D>(@"ui\background");
             uiHeart = Content.Load<Texture2D>(@"ui\heart");
-            
+
+            //골드 업어
+            getGold = Content.Load<Texture2D>(@"gold\getGold");
             //폰트
             pericles36Font = Content.Load<SpriteFont>(@"Fonts\Pericles36");
 
@@ -588,7 +592,7 @@ namespace beethoven3
 
             //일단은 miss effect로
             goldGetManager = new ExplosionManager();
-            goldGetManager.ExplosionInit(itemManager.GetMissEffectTexture()[effectIndex], itemManager.GetEffectInitFrame()[effectIndex], itemManager.GetEffectFrameCount()[effectIndex], itemManager.GetEffectScale()[effectIndex], itemManager.GetEffectDulation()[effectIndex]);
+            goldGetManager.ExplosionInit(getGold,new Rectangle(0,0,200,200), 5, 1.0f, 40);
 
             ///////이펙트 생성 -END
        
@@ -5556,10 +5560,12 @@ namespace beethoven3
                         //missManager = new ExplosionManager();
                         //missManager.ExplosionInit(missEffectTextures[effectIndex], new Rectangle(0, 0, 166, 162), 9, 1f, 45);
 
-
-                        //일단은 miss effect로
                         goldGetManager = new ExplosionManager();
-                        goldGetManager.ExplosionInit(itemManager.GetMissEffectTexture()[effectIndex], itemManager.GetEffectInitFrame()[effectIndex], itemManager.GetEffectFrameCount()[effectIndex], itemManager.GetEffectScale()[effectIndex], itemManager.GetEffectDulation()[effectIndex]);
+                        goldGetManager.ExplosionInit(getGold, new Rectangle(0, 0, 200, 200), 5, 0.7f, 30);
+
+                        ////일단은 miss effect로
+                        //goldGetManager = new ExplosionManager();
+                        //goldGetManager.ExplosionInit(itemManager.GetMissEffectTexture()[effectIndex], itemManager.GetEffectInitFrame()[effectIndex], itemManager.GetEffectFrameCount()[effectIndex], itemManager.GetEffectScale()[effectIndex], itemManager.GetEffectDulation()[effectIndex]);
 
                         collisionManager = new CollisionManager(perfectManager, goodManager, badManager, goldGetManager, scoreManager, memberManager, itemManager, perfectBannerManager, goodBannerManager, badBannerManager, missBannerManager, new Vector2(this.Window.ClientBounds.Width, this.Window.ClientBounds.Height),comboNumberManager);
             

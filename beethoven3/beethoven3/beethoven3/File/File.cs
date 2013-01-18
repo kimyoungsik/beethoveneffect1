@@ -258,8 +258,10 @@ namespace beethoven3
             StartNoteManager.longNoteManager.noteSpeed = noteFileManager.noteFiles[noteNumber].Bpm;
             StartNoteManager.noteSpeed = noteFileManager.noteFiles[noteNumber].Bpm;
             
-            Curve.dragNoteSpeed = GetDragNoteSpeed(noteFileManager.noteFiles[noteNumber].Bpm);
+         //   Curve.dragNoteSpeed = GetDragNoteSpeed(noteFileManager.noteFiles[noteNumber].Bpm);
 
+            //노트 크기 그대로
+            Curve.dragNoteSpeed = noteFileManager.noteFiles[noteNumber].Bpm;
 
 
             scoreManager.Gage = 50;
@@ -764,7 +766,11 @@ namespace beethoven3
                            //70이면 100
                            // 70보다 크면 +100
 
-                            Curve.dragNoteSpeed = GetDragNoteSpeed(arrayNotes[0].MarkLocation);
+                         //   Curve.dragNoteSpeed = GetDragNoteSpeed(arrayNotes[0].MarkLocation);
+
+                            //bpm 그대로 
+                            Curve.dragNoteSpeed = arrayNotes[0].MarkLocation;
+                        
                         }
 
 
@@ -836,25 +842,25 @@ namespace beethoven3
         }
 
 
-        public int GetDragNoteSpeed(int beforeSpeed)
-        {
-            int noteSpeed = 100;
+        //public int GetDragNoteSpeed(int beforeSpeed)
+        //{
+        //    int noteSpeed = 100;
 
-            if (beforeSpeed < 70)
-            {
+        //    if (beforeSpeed < 70)
+        //    {
 
-                noteSpeed = 30;
-            }
-            else if (beforeSpeed > 70)
-            {
+        //        noteSpeed = 30;
+        //    }
+        //    else if (beforeSpeed > 70)
+        //    {
 
-                noteSpeed = beforeSpeed ;
-            }
+        //        noteSpeed = beforeSpeed ;
+        //    }
 
-            return noteSpeed;
+        //    return noteSpeed;
 
 
-        }
+        //}
         
         public Vector2 GetMarkerLocation(int markerNumber)
         {

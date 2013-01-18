@@ -41,7 +41,7 @@ namespace beethoven3
         private Vector2 endVector = Vector2.Zero;
             
 
-        public static int dragNoteSpeed= 100;
+        public static int dragNoteSpeed= 120;
 
         #endregion
 
@@ -92,6 +92,135 @@ namespace beethoven3
             return new Vector2(resX, resY);
         }
 
+        private double GetNormalTime()
+        {
+
+
+
+
+
+            double nomalTime = 0.0f;
+            if (time <= 1000)
+            {
+                nomalTime = 60.0f;
+
+            }
+            else if (time <= 2000)
+            {
+                nomalTime = 120.0f;
+
+            }
+            else if (time <= 3000)
+            {
+                nomalTime = 150.0f;
+
+            }
+            else if (time <= 4000)
+            {
+                nomalTime = 210.0f;
+
+            }
+            else if (time <= 5000)
+            {
+
+                nomalTime = 270.0f;
+            }
+            else if (time <= 6000)
+            {
+                nomalTime = 330.0f;
+
+            }
+            else if (time <= 7000)
+            {
+                nomalTime = 330.0f;
+
+            }
+            else if (time <= 8000)
+            {
+                nomalTime = 400.0f;
+
+            }
+            else if (time <= 9000)
+            {
+                nomalTime = 400.0f;
+
+            }
+            else if (time <= 10000)
+            {
+                nomalTime = 400.0f;
+
+            }
+            else
+            {
+                nomalTime = 450.0f;
+
+            }
+            return nomalTime;
+
+
+        }
+
+
+        public double ChangeSpeed()
+        {
+
+            double minB = 60.0f;
+            //double minV = 85.0f;
+            double minV = 60;
+
+
+            double midB = 120.0f;
+            double midV = 0;
+
+            double maxB = 240.0f;
+            double maxV = -60f;
+
+
+            double speed = 0.0f;
+
+            
+
+            //위 보간
+            if (dragNoteSpeed > midB && dragNoteSpeed < maxB)
+            {
+
+
+                speed = ((((dragNoteSpeed - midB) / (maxB - midB)) * (maxV - midV)) + midV);
+
+
+
+            }
+
+                //아래 보간
+            else if (dragNoteSpeed < midB && dragNoteSpeed >= minB)
+            {
+
+                speed = ((((dragNoteSpeed - minB) / (midB - minB)) * (midV - minV)) + minV);
+
+
+            }
+            else if (dragNoteSpeed == midB)
+            {
+                speed = midV;
+            }
+            else if (dragNoteSpeed == maxB)
+            {
+                speed = maxV;
+            }
+
+            else
+            {
+                speed = midV;
+                //bpm 오류
+            }
+
+            return speed;
+
+
+
+        }
+       
+
         /// <summary>
         /// 
         /// </summary>
@@ -127,30 +256,58 @@ namespace beethoven3
             //        PointsQueue.Enqueue(PlotPoint);
             //    }
             //}
+            //이것을 초과하면 안됨
+            //1초 60
+            //2초 120
+            //3초 150적당
+            //4초 210
+            //5초 270
+            //6초 330
+
+
+            //적당한 포인트 수를 가져온다. 
+
+
+            double nomalTime = GetNormalTime();
+
+
+            //dragNoteSpeed 가 120보다 얼마나 더 크냐에 따라서 normalTime을 더 낮춘다. 낮출수록 빨라지고 높일수록 느려진다. 
+
+            double speedChagneTime = ChangeSpeed();
+
+
+            //bpm에 따라서 달라지는 속도, 이것은 2초 이상일때만
+
+            if (time > 2000)
+            {
+                          nomalTime += speedChagneTime;
+            }
+
             int i;
 
             //큐와 배열에 
-            for (i = 0;  i <= 120; i ++)
+            for (i = 0; i <= nomalTime; i++)
             {
-                t = i / 120.0f;
+                t = i / (float)nomalTime;
                 PlotPoint = GetPoint(t, p0, p1, p2, p3);
                 Points.Add(PlotPoint);
                  
                // 전부다 넣을 필요가 없고
              //   if (i % 2 == 0)
              //   {
-
                     PointsQueue.Enqueue(PlotPoint);
               //  }
             }
+
+
+
+
             //나누어주는 count에 더하는 수를 크게하면 드래그노트 안을 지나가는 공이 빨라진다. 
             //이것이 드래그 노트 속도에 영향을 줌
-
-
-     //       dotTime = time / (PointsQueue.Count + dragNoteSpeed);
-
-
+            //dotTime = time / (PointsQueue.Count + dragNoteSpeed);
             //총시간을 포인트의 카운트 수만큼 나눈수 즉 하의 큐를 표현하는데 필요한 시간 
+                 
+            
             dotTime = time / (PointsQueue.Count );
             end = false;
         }
@@ -230,9 +387,9 @@ namespace beethoven3
 
                 if (startVector != Vector2.Zero && endVector != Vector2.Zero)
                 {
-                    spriteBatch.Draw(DragNoteManager.Texture, startVector, Color.White);
+                    //spriteBatch.Draw(DragNoteManager.Texture, startVector, Color.White);
 
-                    //dragLineMarkerRenderer.DrawLine(DragNoteManager.Texture, DragNoteManager.InitialFrame, spriteBatch.GraphicsDevice, spriteBatch, startVector, endVector, Color.White);
+                    dragLineMarkerRenderer.DrawLine(DragNoteManager.Texture, DragNoteManager.InitialFrame, spriteBatch.GraphicsDevice, spriteBatch, startVector, endVector, Color.White);
 
                 }
 

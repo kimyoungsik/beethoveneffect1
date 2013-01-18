@@ -1291,6 +1291,42 @@
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopButton\hoverSCancelButton.xnb</Output>
       <Time>2013-01-18T01:37:35.3718763+09:00</Time>
     </Item>
+    <Item>
+      <Source>gold\getGold.png</Source>
+      <Name>gold\getGold</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\gold\getGold.xnb</Output>
+      <Time>2013-01-18T21:25:52.8924376+09:00</Time>
+    </Item>
+    <Item>
+      <Source>notes\moonNote1.png</Source>
+      <Name>notes\moonNote1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\moonNote1.xnb</Output>
+      <Time>2013-01-18T21:30:20.746758+09:00</Time>
+    </Item>
+    <Item>
+      <Source>notes\moonNote.png</Source>
+      <Name>notes\moonNote</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\moonNote.xnb</Output>
+      <Time>2013-01-18T21:36:19.0052492+09:00</Time>
+    </Item>
+    <Item>
+      <Source>notes\planetNote.png</Source>
+      <Name>notes\planetNote</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\planetNote.xnb</Output>
+      <Time>2013-01-18T21:36:19.0082494+09:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

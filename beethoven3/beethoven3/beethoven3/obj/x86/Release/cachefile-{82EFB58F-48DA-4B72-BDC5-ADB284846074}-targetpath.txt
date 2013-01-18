@@ -144,3 +144,7 @@ Content\shopButton\sCancelButton.xnb
 Content\shopButton\sSellButton.xnb
 Content\shopButton\hoverSSellButton.xnb
 Content\shopButton\hoverSCancelButton.xnb
+Content\gold\getGold.xnb
+Content\notes\moonNote1.xnb
+Content\notes\moonNote.xnb
+Content\notes\planetNote.xnb
