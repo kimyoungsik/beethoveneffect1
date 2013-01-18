@@ -258,7 +258,7 @@ namespace beethoven3
 
                             scoreManager.Perfect = scoreManager.Perfect + 1;
                             scoreManager.Combo = scoreManager.Combo + 1;
-                            scoreManager.Gage = scoreManager.Gage + 10;
+                            scoreManager.Gage += 10;
                        
                             //콤보 글자 띄우기
                             //perfect라서 두번쨰 매개변수가 0
@@ -310,7 +310,7 @@ namespace beethoven3
                             scoreManager.Good = scoreManager.Good + 1;
 
                             scoreManager.Combo = scoreManager.Combo + 1;
-                            scoreManager.Gage = scoreManager.Gage + 10;
+                            scoreManager.Gage += 5;
 
                             memberManager.SetMemberState(1, 1);
 
@@ -447,13 +447,15 @@ namespace beethoven3
                     else if (judgment == -1)
                     {
 
-                        //Trace.WriteLine(SoundFmod.isChangedTempo);
-                        //빨리 맞은거 
+                       //빨리 맞은거 
                         if (littleNote.IsEarlyOne)
                         {
                             int mouseJudgment = MarkManager.Marks[number].MarkSprite.JudgedNote(mousePoint);
                             if (mouseJudgment != 0)
                             {
+
+                                scoreManager.Gage -= 10;
+                       
                                 //효과와 내용
                                 //이펙트 및 템포 빨라지기
                                 badManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
@@ -504,6 +506,9 @@ namespace beethoven3
 
                                     if (SoundFmod.fastBadCount >= 2)
                                     {
+                                        //추가적으로
+                                        scoreManager.Gage -= 5;
+
                                         SoundFmod.SetOptionalTime();
 
 
@@ -530,6 +535,9 @@ namespace beethoven3
 
                                     if (SoundFmod.fastBadCount >= 2)
                                     {
+                                        //추가적으로
+                                        scoreManager.Gage -= 10;
+
                                         SoundFmod.SetOptionalTime();
 
                                         SoundFmod.tempoChange(1.3f);
@@ -602,6 +610,9 @@ namespace beethoven3
 
                                     if (SoundFmod.slowBadCount >= 2)
                                     {
+                                        //추가적으로
+                                        scoreManager.Gage -= 5;
+
                                         SoundFmod.SetOptionalTime();
 
                                         //그 양만큼 템포 조절됨
@@ -630,6 +641,9 @@ namespace beethoven3
 
                                     if (SoundFmod.slowBadCount >= 2)
                                     {
+                                        //추가적으로
+                                        scoreManager.Gage -=10;
+
                                         SoundFmod.SetOptionalTime();
 
                                         //그 양만큼 템포 조절됨
@@ -701,7 +715,7 @@ namespace beethoven3
 
                             scoreManager.Perfect = scoreManager.Perfect + 1;
                             scoreManager.Combo = scoreManager.Combo + 1;
-                            scoreManager.Gage = scoreManager.Gage + 10;
+                            scoreManager.Gage += 10;
 
                             SoundFmod.slowBadCount = 0;
                             SoundFmod.fastBadCount = 0;
@@ -746,7 +760,7 @@ namespace beethoven3
 
                             scoreManager.Good = scoreManager.Good + 1;
                             scoreManager.Combo = scoreManager.Combo + 1;
-                            scoreManager.Gage = scoreManager.Gage + 10;
+                            scoreManager.Gage += 5;
                             SoundFmod.slowBadCount = 0;
                             SoundFmod.fastBadCount = 0;
 
@@ -872,25 +886,23 @@ namespace beethoven3
                                                 //bad 
                     else if (judgment == -1)
                     {
-                        //빨리 맞은거 
+                       //빨리 맞은거 
                         if (littleNote.IsEarlyOne)
                         {
+
                             int mouseJudgment = MarkManager.Marks[number].MarkSprite.JudgedNote(mousePoint);
                             if (mouseJudgment != 0)
                             {
+                                scoreManager.Gage -= 10;
                                 //효과와 내용
                                 //이펙트 및 템포 빨라지기
                                 badManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
-
                                 //배드 글자 띄우기
                                 badBannerManager.AddBanners(badLocation);
 
-
                                 StartNoteManager.rightNoteManager.LittleNotes.RemoveAt(x);
                                 int i;
-
                                 //false
-
                                 //느린 상태 일 때나 0일때 
                                 if (SoundFmod.isChangedTempo <= 0)
                                 {
@@ -923,11 +935,17 @@ namespace beethoven3
                                 }
                                 else if (SoundFmod.isChangedTempo == 1)
                                 {
+                                   
+
                                     SoundFmod.fastBadCount++;
                                     SoundFmod.slowBadCount = 0;
 
                                     if (SoundFmod.fastBadCount >= 2)
                                     {
+                                        //추가적으로
+                                        scoreManager.Gage -= 5;
+
+
                                         SoundFmod.SetOptionalTime();
 
 
@@ -949,11 +967,15 @@ namespace beethoven3
                                 }
                                 else if (SoundFmod.isChangedTempo == 2)
                                 {
+
                                     SoundFmod.fastBadCount++;
                                     SoundFmod.slowBadCount = 0;
 
                                     if (SoundFmod.fastBadCount >= 2)
                                     {
+                                        //추가적으로
+                                        scoreManager.Gage -= 10;
+
                                         SoundFmod.SetOptionalTime();
 
                                         SoundFmod.tempoChange(1.3f);
@@ -998,6 +1020,9 @@ namespace beethoven3
 
                                     if (SoundFmod.slowBadCount >= 2)
                                     {
+                                        //추가적으로
+                                        scoreManager.Gage -= 5;
+
                                         //빨라졌다 갑자기 느려졌을 때
                                         if (SoundFmod.isChangedTempo != 0)
                                         {
@@ -1026,6 +1051,9 @@ namespace beethoven3
 
                                     if (SoundFmod.slowBadCount >= 2)
                                     {
+                                        //추가적으로
+                                        scoreManager.Gage -= 10;
+
                                         SoundFmod.SetOptionalTime();
 
                                         //그 양만큼 템포 조절됨
@@ -1145,6 +1173,7 @@ namespace beethoven3
 
                             scoreManager.LongNoteScore = scoreManager.LongNoteScore + 1;
                             scoreManager.Combo = scoreManager.Combo + 1;
+                            scoreManager.Gage += 1;
 
                             SoundFmod.slowBadCount = 0;
                             SoundFmod.fastBadCount = 0;
@@ -1186,7 +1215,7 @@ namespace beethoven3
 
                             scoreManager.LongNoteScore = scoreManager.LongNoteScore + 1;
                             scoreManager.Combo = scoreManager.Combo + 1;
-
+                            scoreManager.Gage += 1;
 
                             AddComboNumber(scoreManager.Combo, 1 ,5);
 
@@ -1288,7 +1317,7 @@ namespace beethoven3
 
 
                     scoreManager.Combo = 0;
-                    scoreManager.Gage = scoreManager.Gage - 1;
+                    scoreManager.Gage = scoreManager.Gage - 10;
 
                 }
 
@@ -1319,7 +1348,7 @@ namespace beethoven3
                         scoreManager.Max = scoreManager.Combo;
                     }
                     scoreManager.Combo = 0;
-
+                    scoreManager.Gage = scoreManager.Gage - 10;
                 }
             }
         }
@@ -1351,6 +1380,7 @@ namespace beethoven3
                       }
 
                       scoreManager.Combo = 0;
+                      scoreManager.Gage -= 1;
                   }
               }
         }

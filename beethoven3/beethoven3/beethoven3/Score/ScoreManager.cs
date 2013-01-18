@@ -94,7 +94,17 @@ namespace beethoven3
         public int Gage
         {
             get { return gage; }
-            set { gage = value; }
+            set {
+                if (value > 100)
+                {
+                    value = 100;
+                }
+                else if (value < 0)
+                {
+                    value = 0;
+                }
+                
+                gage = value; }
         }
 
         public String SongName

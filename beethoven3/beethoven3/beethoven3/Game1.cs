@@ -5026,6 +5026,10 @@ namespace beethoven3
 
                #region 플레이화면
                case GameStates.Playing:
+                   if (scoreManager.Gage < 1)
+                   {
+                       file.SetEndFile(true);
+                   }
 
                    //곡이 끝내게 되면 결과 화면으로
                    //go to result scene right after finishing a piece
@@ -6006,11 +6010,17 @@ namespace beethoven3
 
                 spriteBatch.Draw(uiBackground, new Vector2(0, 0), Color.White);
                 
-                int gage = scoreManager.Gage;
-                //0이하이거나 넘어가지 않게 
 
+                
                 //하트. gage양 만큼 하트가 나타남.
-                spriteBatch.Draw(uiHeart, new Vector2(0, 6), new Rectangle(0, 0, gage, 50), Color.White);
+
+                //300은 현재 최대 width, 이건 그림이 바뀌면 바뀜
+                //100은 gage의 최대값. 
+
+                int gageWidth = 300 / 100 *  scoreManager.Gage;
+
+                spriteBatch.Draw(uiHeart, new Vector2(0, 6), new Rectangle(0, 0, gageWidth, 50), Color.White);
+                Trace.WriteLine(scoreManager.Gage);
 
 
 

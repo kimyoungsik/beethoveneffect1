@@ -261,6 +261,8 @@ namespace beethoven3
             Curve.dragNoteSpeed = GetDragNoteSpeed(noteFileManager.noteFiles[noteNumber].Bpm);
 
 
+
+            scoreManager.Gage = 50;
             String name = noteFileManager.noteFiles[noteNumber].Name;
             
             //시작 시간 설정
@@ -1165,7 +1167,7 @@ namespace beethoven3
          //   CheckRightNoteInCenterArea();
          //   CheckLeftNoteInCenterArea();
             this.time += gameTime.ElapsedGameTime.TotalSeconds;
-            Trace.WriteLine(this.time);
+            //Trace.WriteLine(this.time);
 
             
             FindNote(this.time, changedTempo, optionalTime);
