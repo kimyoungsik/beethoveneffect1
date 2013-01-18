@@ -29,7 +29,9 @@ namespace beethoven3
 
         private double dotTime = 0.0f;
         private double dotChangedTime = 0.0f;
-        
+
+
+        private double startTime = 0.0f;
         private Vector2 currentPosition;
         private int count = 0;
 
@@ -39,7 +41,8 @@ namespace beethoven3
         private LineRenderer dragLineMarkerRenderer;
         private Vector2 startVector = Vector2.Zero;
         private Vector2 endVector = Vector2.Zero;
-            
+
+       
 
         public static int dragNoteSpeed= 120;
 
@@ -95,10 +98,6 @@ namespace beethoven3
         private double GetNormalTime()
         {
 
-
-
-
-
             double nomalTime = 0.0f;
             if (time <= 1000)
             {
@@ -127,7 +126,7 @@ namespace beethoven3
             }
             else if (time <= 6000)
             {
-                nomalTime = 330.0f;
+                nomalTime = 300.0f;
 
             }
             else if (time <= 7000)
@@ -326,18 +325,15 @@ namespace beethoven3
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             int i, j;
-              
+             
+
+
             if (Points.Count > 0 && !end)
             {
+                startTime += gameTime.ElapsedGameTime.TotalMilliseconds;
 
-                //게임이 진행하는 전체 시간
-                
-                changedTime += gameTime.ElapsedGameTime.TotalMilliseconds;
-                
-                
-                dotChangedTime += gameTime.ElapsedGameTime.TotalMilliseconds;
-                
-                
+
+
                 //전체 라인을 그리는 것
                 //시간을 앞당겨서 미리 보여주는것도 이것
                 for (i = 0; i < Points.Count - 1; i++)
@@ -347,70 +343,101 @@ namespace beethoven3
                     //라인 그리기
                     lineRenderer.DrawLine(Game1.drawLineNote1, new Rectangle(0, 0, 100, 100), spriteBatch.GraphicsDevice, spriteBatch, (Vector2)Points[i], (Vector2)Points[j], Color.White);
 
-                    
-                }
-
-              //하나의 점이 /
-           //     if (dotChangedTime >= dotTime && PointsQueue.Count > 1)
-                if (PointsQueue.Count > 1)
-                {
-                    
-                    if (count == 0)
-                    {
-                        currentPosition = (Vector2)PointsQueue.Peek();
-                        //판별하는 마크를 만든다.
-
-                        DragNoteManager.MakeDragNote(currentPosition, new Vector2(0,0));
-                    }
-                    count++;
-                    if (count == 5)
-                    {
-                        DragNoteManager.DeleteDragNotes();
-                    }
-                    if (count == 10)
-                    {
-                        count = 0;
-                        //드래그 노트 실패 띄우기 1
-                        //맨 앞의 것만 지우게 되어있는데 문제 있으면 전부다 지우는것으로 .
-                    }
-
-                    //따라다니면서 마크 찍는 것
-                    //공굴러가거나 움직이는 스프라이트로 너무 깜빡인다 싶으면 20을 좀 줄이면 됨
-                    
-                    startVector = (Vector2)PointsQueue.Dequeue();
-                    endVector = (Vector2)PointsQueue.Peek();
-                    
-                    
-                    dotChangedTime = 0.0f;
 
                 }
-
-                if (startVector != Vector2.Zero && endVector != Vector2.Zero)
+                if (startTime > 20 && startTime < 1000)
                 {
-                    //spriteBatch.Draw(DragNoteManager.Texture, startVector, Color.White);
+                    spriteBatch.Draw(Game1.three, new Rectangle(0, 0, 275, 376), Color.White);
 
-                    dragLineMarkerRenderer.DrawLine(DragNoteManager.Texture, DragNoteManager.InitialFrame, spriteBatch.GraphicsDevice, spriteBatch, startVector, endVector, Color.White);
+                    
+                }
+                else if (startTime > 1000 && startTime < 2000)
+                {
+                    spriteBatch.Draw(Game1.two, new Rectangle(0, 0, 275, 376), Color.White);
+
 
                 }
-
-
-
-                if (changedTime > time)
+                else if (startTime > 2000 && startTime < 3000)
                 {
-                
-                    if (Points.Count > 0)
-                    {
-                        //지워지기 시작 
-                        DeleteAllPoints();
-                        
-                        //지워지기 시작하면 true -> 화면에서 안보이게 함
-                        end = true;
-                        
-                        //마지막남은 것 지우기
 
-                        //드래그 노트 실패 띄우기 2
-                        DragNoteManager.DeleteDragNotes();
+                    spriteBatch.Draw(Game1.one, new Rectangle(0, 0, 275, 376), Color.White);
+
+                }
+               
+
+                if (startTime > 3000)
+                {
+                    //게임이 진행하는 전체 시간
+
+                    changedTime += gameTime.ElapsedGameTime.TotalMilliseconds;
+
+                    dotChangedTime += gameTime.ElapsedGameTime.TotalMilliseconds;
+
+
+
+                    //하나의 점이 /
+                    //     if (dotChangedTime >= dotTime && PointsQueue.Count > 1)
+                    if (PointsQueue.Count > 1)
+                    {
+
+                        if (count == 0)
+                        {
+                            currentPosition = (Vector2)PointsQueue.Peek();
+                            //판별하는 마크를 만든다.
+
+                            DragNoteManager.MakeDragNote(currentPosition, new Vector2(0, 0));
+                        }
+                        count++;
+                        if (count == 10)
+                        {
+                            DragNoteManager.DeleteDragNotes();
+                        }
+                        if (count == 20)
+                        {
+                            count = 0;
+                            //드래그 노트 실패 띄우기 1
+                            //맨 앞의 것만 지우게 되어있는데 문제 있으면 전부다 지우는것으로 .
+                        }
+
+                        //따라다니면서 마크 찍는 것
+                        //공굴러가거나 움직이는 스프라이트로 너무 깜빡인다 싶으면 20을 좀 줄이면 됨
+
+                        startVector = (Vector2)PointsQueue.Dequeue();
+                        endVector = (Vector2)PointsQueue.Peek();
+
+
+                        dotChangedTime = 0.0f;
+
                     }
+
+                    if (startVector != Vector2.Zero && endVector != Vector2.Zero)
+                    {
+                        //spriteBatch.Draw(DragNoteManager.Texture, startVector, Color.White);
+
+                        dragLineMarkerRenderer.DrawLine(DragNoteManager.Texture, DragNoteManager.InitialFrame, spriteBatch.GraphicsDevice, spriteBatch, startVector, endVector, Color.White);
+
+                    }
+
+
+
+                    if (changedTime > time)
+                    {
+
+                        if (Points.Count > 0)
+                        {
+                            //지워지기 시작 
+                            DeleteAllPoints();
+
+                            //지워지기 시작하면 true -> 화면에서 안보이게 함
+                            end = true;
+
+                            //마지막남은 것 지우기
+
+                            //드래그 노트 실패 띄우기 2
+                            DragNoteManager.DeleteDragNotes();
+                        }
+                    }
+
                 }
             }
         }

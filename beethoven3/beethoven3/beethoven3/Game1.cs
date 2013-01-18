@@ -321,7 +321,12 @@ namespace beethoven3
 
         public static Texture2D drawLineMarker;
 
-        
+
+
+        public static Texture2D one;
+        public static Texture2D two;
+        public static Texture2D three;
+
 
         //드래그 라인의 렌더링
         LineRenderer dragLineRenderer;
@@ -495,6 +500,13 @@ namespace beethoven3
 
             rightHandTextures = itemManager.GetRightHandTexture();
             leftHandTextures = itemManager.GetLeftHandTexture();
+            
+            //드래그 노트 셀떄
+
+            one = Content.Load<Texture2D>(@"comboNumbers\good1");
+            two = Content.Load<Texture2D>(@"comboNumbers\good2");
+            three = Content.Load<Texture2D>(@"comboNumbers\good3");
+            
             //   charisma1 = Content.Load<Texture2D>(@"shopdoor\nogold");
             /////텍스쳐 로드 -END
 

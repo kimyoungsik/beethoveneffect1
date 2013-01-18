@@ -604,7 +604,7 @@ namespace beethoven3
                     else
                     {
                         //드래그노트일 때는 이걸 할 필요가 없다.
-                        noteTime = arrayNotes[0].StartTime;
+                        noteTime = arrayNotes[0].StartTime - 3;
                     }
                     if (noteTime <= processTime )
                     {
