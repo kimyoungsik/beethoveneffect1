@@ -848,7 +848,7 @@ namespace beethoven3
             else if (beforeSpeed > 70)
             {
 
-                noteSpeed = beforeSpeed + 100;
+                noteSpeed = beforeSpeed ;
             }
 
             return noteSpeed;

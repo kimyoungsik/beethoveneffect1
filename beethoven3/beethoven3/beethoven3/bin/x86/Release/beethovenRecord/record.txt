@@ -26,9 +26,9 @@ gesture_16_1_56_53.jpg$100
 gesture_16_2_20_23.jpg$100
 %%
 4 Seasons - Spring
+myPicture.jpg$180
+myPicture.jpg$140
+myPicture.jpg$120
 gesture_18_14_0_56.jpg$113
-gesture_18_13_51_11.jpg$100
-myPicture.jpg$78
-gesture_18_14_0_56.jpg$69
-gesture_18_13_41_56.jpg$50
+myPicture.jpg$110
 **

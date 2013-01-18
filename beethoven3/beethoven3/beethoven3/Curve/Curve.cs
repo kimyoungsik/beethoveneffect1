@@ -37,7 +37,9 @@ namespace beethoven3
 
         private LineRenderer lineRenderer;
         private LineRenderer dragLineMarkerRenderer;
-
+        private Vector2 startVector = Vector2.Zero;
+        private Vector2 endVector = Vector2.Zero;
+            
 
         public static int dragNoteSpeed= 100;
 
@@ -104,20 +106,52 @@ namespace beethoven3
             
             this.changedTime = 0.0;
             this.dotChangedTime = 0.0;
+
+            //총시간
             this.time = time;
 
             float t;
-            for (t = 0;  t <= 1.0f; t += 0.01f)
+
+            //각 포인트를 넣어둔다. 
+
+            ////큐와 배열에 
+            //for (t = 0;  t <= 1.0f; t += 0.01f)
+            //{
+            //    PlotPoint = GetPoint(t, p0, p1, p2, p3);
+            //    Points.Add(PlotPoint);
+
+            //    //전부다 넣을 필요가 없고
+            //    if (t % 0.1 == 0)
+            //    {
+
+            //        PointsQueue.Enqueue(PlotPoint);
+            //    }
+            //}
+            int i;
+
+            //큐와 배열에 
+            for (i = 0;  i <= 120; i ++)
             {
+                t = i / 120.0f;
                 PlotPoint = GetPoint(t, p0, p1, p2, p3);
                 Points.Add(PlotPoint);
-                PointsQueue.Enqueue(PlotPoint);
+                 
+               // 전부다 넣을 필요가 없고
+             //   if (i % 2 == 0)
+             //   {
+
+                    PointsQueue.Enqueue(PlotPoint);
+              //  }
             }
-            
-            
             //나누어주는 count에 더하는 수를 크게하면 드래그노트 안을 지나가는 공이 빨라진다. 
             //이것이 드래그 노트 속도에 영향을 줌
-            dotTime = time / (PointsQueue.Count + dragNoteSpeed);
+
+
+     //       dotTime = time / (PointsQueue.Count + dragNoteSpeed);
+
+
+            //총시간을 포인트의 카운트 수만큼 나눈수 즉 하의 큐를 표현하는데 필요한 시간 
+            dotTime = time / (PointsQueue.Count );
             end = false;
         }
 
@@ -134,16 +168,21 @@ namespace beethoven3
         #region update and draw
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            int i, j; 
-          
+            int i, j;
+              
             if (Points.Count > 0 && !end)
             {
 
-
+                //게임이 진행하는 전체 시간
+                
                 changedTime += gameTime.ElapsedGameTime.TotalMilliseconds;
                 
                 
                 dotChangedTime += gameTime.ElapsedGameTime.TotalMilliseconds;
+                
+                
+                //전체 라인을 그리는 것
+                //시간을 앞당겨서 미리 보여주는것도 이것
                 for (i = 0; i < Points.Count - 1; i++)
                 {
                     j = i + 1;
@@ -154,7 +193,9 @@ namespace beethoven3
                     
                 }
 
-                if (dotChangedTime >= dotTime && PointsQueue.Count > 1)
+              //하나의 점이 /
+           //     if (dotChangedTime >= dotTime && PointsQueue.Count > 1)
+                if (PointsQueue.Count > 1)
                 {
                     
                     if (count == 0)
@@ -165,11 +206,11 @@ namespace beethoven3
                         DragNoteManager.MakeDragNote(currentPosition, new Vector2(0,0));
                     }
                     count++;
-                    if (count == 10)
+                    if (count == 5)
                     {
                         DragNoteManager.DeleteDragNotes();
                     }
-                    if (count == 20)
+                    if (count == 10)
                     {
                         count = 0;
                         //드래그 노트 실패 띄우기 1
@@ -178,10 +219,25 @@ namespace beethoven3
 
                     //따라다니면서 마크 찍는 것
                     //공굴러가거나 움직이는 스프라이트로 너무 깜빡인다 싶으면 20을 좀 줄이면 됨
-                    dragLineMarkerRenderer.DrawLine(DragNoteManager.Texture, DragNoteManager.InitialFrame, spriteBatch.GraphicsDevice, spriteBatch, (Vector2)PointsQueue.Dequeue(), (Vector2)PointsQueue.Peek(), Color.White);
+                    
+                    startVector = (Vector2)PointsQueue.Dequeue();
+                    endVector = (Vector2)PointsQueue.Peek();
+                    
+                    
                     dotChangedTime = 0.0f;
 
                 }
+
+                if (startVector != Vector2.Zero && endVector != Vector2.Zero)
+                {
+                    spriteBatch.Draw(DragNoteManager.Texture, startVector, Color.White);
+
+                    //dragLineMarkerRenderer.DrawLine(DragNoteManager.Texture, DragNoteManager.InitialFrame, spriteBatch.GraphicsDevice, spriteBatch, startVector, endVector, Color.White);
+
+                }
+
+
+
                 if (changedTime > time)
                 {
                 
