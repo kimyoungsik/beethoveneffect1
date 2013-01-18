@@ -449,7 +449,29 @@ namespace beethoven3
 
         }
 
+        //public void ChangeArrayNoteTempo(int type)
+        //{
+        //    double changedTempo = 1.0f;
+        //    if (type == 1)
+        //    {
 
+        //        changedTempo = 1.1f;
+        //    }
+        //    int i;
+        //    for (i = 0; i < this.arrayNotes.Count; i++)
+        //    {
+
+        //        arrayNotes[i].StartTime = arrayNotes[i].StartTime / changedTempo;
+
+        //        if (!(arrayNotes[i].Type == "1") && !(arrayNotes[i].Type == "B") && !(arrayNotes[i].Type == "2"))
+        //        {
+        //            arrayNotes[i].LastTime = arrayNotes[i].LastTime / changedTempo;
+
+        //        }
+        //        //끝나는시간
+        //    }
+
+        //}
         //템포 다시 원상복귀
         public void ChangeArrayNoteTempoBack(double changedTempo)
         {
@@ -1080,13 +1102,15 @@ namespace beethoven3
         {
 
             double minB = 60.0f;
-            double minV = 85.0f;
+            //double minV = 85.0f;
+            double minV = 95.0f;
+
 
             double midB = 120.0f;
-            double midV = 190.0f;
+            double midV = 220.0f;
 
             double maxB = 240.0f;
-            double maxV = 700.0f;
+            double maxV = 800.0f;
 
 
             double velocity = 0.0f;

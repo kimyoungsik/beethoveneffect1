@@ -27,7 +27,8 @@ namespace beethoven3
         // private FMOD.DSPConnection dspconnectiontemp = null;
         /////FMOD 선언 - END
 
-
+        public static int fastBadCount = 0;
+        public static int slowBadCount = 0;
 
         /////템포 관련 -START
         //템포 변경 여부 -TRUE면 템포 변경된 상태

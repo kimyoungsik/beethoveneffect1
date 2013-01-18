@@ -265,19 +265,25 @@ namespace beethoven3
                             //good은 1
                             AddComboNumber(scoreManager.Combo, 0);
 
-                            //템포 원상 복귀
+                            SoundFmod.slowBadCount = 0;
+                            SoundFmod.fastBadCount = 0;
+
+                            //템포 원상 복귀 //퍼펙트는 한번에 복귀 
                             if (SoundFmod.isChangedTempo != 0)
                             {
-                                
-                                SoundFmod.SetOptionalTime();
-                                //움직이는 속도 정상
-                                memberManager.SetMembersFrameTime(0.1f);
-                                //멤버 스크로크 효과 없어지게함
-                                int i;
-                                for (i = 0; i < 6; i++)
-                                {
-                                    memberManager.SetMemberState(i, 0);
-                                }
+                              
+                                    SoundFmod.SetOptionalTime();
+                                    //움직이는 속도 정상
+                                    memberManager.SetMembersFrameTime(0.1f);
+                                    //멤버 스크로크 효과 없어지게함
+                                    int i;
+                                    for (i = 0; i < 6; i++)
+                                    {
+                                        memberManager.SetMemberState(i, 0);
+                                    }
+                                    SoundFmod.isChangedTempo = 0;
+                              
+
                             }
                         }
                         
@@ -317,21 +323,123 @@ namespace beethoven3
                             AddComboNumber(scoreManager.Combo, 1);
 
 
+                            SoundFmod.slowBadCount = 0;
+                            SoundFmod.fastBadCount = 0;
+
                             //템포 원상 복귀
-                            //true
                             if (SoundFmod.isChangedTempo != 0)
                             {
-                              
-                                SoundFmod.SetOptionalTime();
-                                //움직이는 속도 정상
-                                memberManager.SetMembersFrameTime(0.1f);
-                                //멤버 스크로크 효과 없어지게함
-                                int i;
-                                for (i = 0; i < 6; i++)
+                                //1에서 0으로
+                                if (SoundFmod.isChangedTempo == 1 || SoundFmod.isChangedTempo == -1)
                                 {
-                                    memberManager.SetMemberState(i, 0);
+
+                                    SoundFmod.SetOptionalTime();
+                                    //움직이는 속도 정상
+                                    memberManager.SetMembersFrameTime(0.1f);
+                                    //멤버 스크로크 효과 없어지게함
+                                    int i;
+                                    for (i = 0; i < 6; i++)
+                                    {
+                                        memberManager.SetMemberState(i, 0);
+                                    }
+                                    SoundFmod.isChangedTempo = 0;
                                 }
-                                
+
+                                //2에서 1로
+                                else if (SoundFmod.isChangedTempo == 2)
+                                {
+
+                                    int i;
+                                    SoundFmod.SetOptionalTime();
+
+                                    SoundFmod.tempoChange(1.1f);
+
+                                    //스트로크
+
+                                    for (i = 0; i < 6; i++)
+                                    {
+
+                                        memberManager.SetMemberState(i, 1);
+
+                                    }
+                                    //움직이는 속도 빨라짐
+                                    memberManager.SetMembersFrameTime(0.07f);
+
+                                    SoundFmod.isChangedTempo = 1;
+                                }
+
+
+                                //3에서 2로
+                                else if (SoundFmod.isChangedTempo == 3)
+                                {
+
+                                    int i;
+                                    SoundFmod.SetOptionalTime();
+
+                                    SoundFmod.tempoChange(1.2f);
+
+                                    //스트로크
+
+                                    for (i = 0; i < 6; i++)
+                                    {
+
+                                        memberManager.SetMemberState(i, 2);
+
+                                    }
+                                    //움직이는 속도 빨라짐
+                                    memberManager.SetMembersFrameTime(0.04f);
+
+                                    SoundFmod.isChangedTempo = 2;
+                                }
+
+
+
+                                //-2에서 -1로
+                                else if (SoundFmod.isChangedTempo == -2)
+                                {
+
+                                    int i;
+                                    SoundFmod.SetOptionalTime();
+
+                                    SoundFmod.tempoChange(0.9f);
+
+                                    //스트로크
+
+                                    for (i = 0; i < 6; i++)
+                                    {
+
+                                        memberManager.SetMemberState(i, 1);
+
+                                    }
+                                    //움직이는 속도 빨라짐
+                                    memberManager.SetMembersFrameTime(0.13f);
+
+                                    SoundFmod.isChangedTempo = -1;
+                                }
+
+                                             //-3에서 -2로
+                                else if (SoundFmod.isChangedTempo == -3)
+                                {
+
+                                    int i;
+                                    SoundFmod.SetOptionalTime();
+
+                                    SoundFmod.tempoChange(0.8f);
+
+                                    //스트로크
+
+                                    for (i = 0; i < 6; i++)
+                                    {
+
+                                        memberManager.SetMemberState(i, 2);
+
+                                    }
+                                    //움직이는 속도 빨라짐
+                                    memberManager.SetMembersFrameTime(0.16f);
+
+                                    SoundFmod.isChangedTempo = -2;
+                                }
+
                             }
                         }
                     }
@@ -362,53 +470,83 @@ namespace beethoven3
                                 //느린상태 일 때
                                 if (SoundFmod.isChangedTempo <= 0)
                                 {
-                                    SoundFmod.tempoChange(1.1f);
-                                    //스트로크
-                                    
-                                    for (i = 0; i < 6; i++)
-                                    {
+                                    SoundFmod.fastBadCount++;
+                                    //빠른 배드는 초기화
+                                    SoundFmod.slowBadCount = 0;
 
-                                        memberManager.SetMemberState(i, 1);
-                                       
-                                    }
+                                    if (SoundFmod.fastBadCount >= 2)
+                                    {
+                                        if (SoundFmod.isChangedTempo != 0)
+                                        {
+                                            SoundFmod.SetOptionalTime();
+
+                                        }
+
+                                        SoundFmod.tempoChange(1.1f);
+
+                                        //스트로크
+
+                                        for (i = 0; i < 6; i++)
+                                        {
+
+                                            memberManager.SetMemberState(i, 1);
+
+                                        }
                                         //움직이는 속도 빨라짐
-                                    memberManager.SetMembersFrameTime(0.07f);
-                                }
+                                        memberManager.SetMembersFrameTime(0.07f);
+                                        SoundFmod.fastBadCount = 0;
+                                    }
+                                 }
                                 else if (SoundFmod.isChangedTempo == 1)
                                 {
-                                    SoundFmod.SetOptionalTime();
+                                    SoundFmod.fastBadCount++;
+                                    SoundFmod.slowBadCount = 0;
 
-                                    SoundFmod.tempoChange(1.2f);
-                                    //스트로크
-                                    //memberManager.SetMemberState(4, 2);
-                                    
-                                    for (i = 0; i < 6; i++)
+                                    if (SoundFmod.fastBadCount >= 2)
                                     {
+                                        SoundFmod.SetOptionalTime();
 
-                                        memberManager.SetMemberState(i, 2);
-                                       
+
+                                        SoundFmod.tempoChange(1.2f);
+                                        //스트로크
+                                        //memberManager.SetMemberState(4, 2);
+
+                                        for (i = 0; i < 6; i++)
+                                        {
+
+                                            memberManager.SetMemberState(i, 2);
+
+                                        }
+                                        //움직이는 속도 빨라짐
+                                        memberManager.SetMembersFrameTime(0.04f);
+                                        SoundFmod.fastBadCount = 0;
                                     }
-                                    //움직이는 속도 빨라짐
-                                    memberManager.SetMembersFrameTime(0.04f);
+
                                 }
                                 else if (SoundFmod.isChangedTempo == 2)
                                 {
+                                    SoundFmod.fastBadCount++;
+                                    SoundFmod.slowBadCount = 0;
 
-                                    SoundFmod.SetOptionalTime();
-
-                                    SoundFmod.tempoChange(1.3f);
-                                    //스트로크
-                                  //  memberManager.SetMemberState(4, 3);
-
-                                    for (i = 0; i < 6; i++)
+                                    if (SoundFmod.fastBadCount >= 2)
                                     {
+                                        SoundFmod.SetOptionalTime();
 
-                                        memberManager.SetMemberState(i,3);
-                                       
+                                        SoundFmod.tempoChange(1.3f);
+                                        //스트로크
+                                        //  memberManager.SetMemberState(4, 3);
+
+                                        for (i = 0; i < 6; i++)
+                                        {
+
+                                            memberManager.SetMemberState(i, 3);
+
+                                        }
+
+                                        //움직이는 속도 빨라짐
+                                        memberManager.SetMembersFrameTime(0.01f);
+                                        SoundFmod.fastBadCount = 0;
                                     }
-
-                                    //움직이는 속도 빨라짐
-                                    memberManager.SetMembersFrameTime(0.01f);
                                 }
                             }
                         }
@@ -431,62 +569,84 @@ namespace beethoven3
                                 //빠른 상태일 때
                                 if (SoundFmod.isChangedTempo >= 0)
                                 {
-                                   
-                                    //그 양만큼 템포 조절됨
-                                    SoundFmod.tempoChange(0.9f);
-                                    
-                                    //멤버들 느려짐
-                                    memberManager.SetMembersFrameTime(0.13f);
+                                     SoundFmod.fastBadCount = 0;
+                                     SoundFmod.slowBadCount++;
 
-                                    //스트로크
-                                    for (i = 0; i < 6; i++)
+                                    if (SoundFmod.slowBadCount >= 2)
                                     {
+                                         //빨라졌다 갑자기 느려졌을 때
+                                        if (SoundFmod.isChangedTempo != 0)
+                                        {
+                                            SoundFmod.SetOptionalTime();
 
-                                        memberManager.SetMemberState(i, 1);
-                                       
+                                        }
+                                        //그 양만큼 템포 조절됨
+                                        SoundFmod.tempoChange(0.9f);
+
+                                        //멤버들 느려짐
+                                        memberManager.SetMembersFrameTime(0.13f);
+
+                                        //스트로크
+                                        for (i = 0; i < 6; i++)
+                                        {
+                                            memberManager.SetMemberState(i, 1);
+                                        }
+                                        SoundFmod.slowBadCount = 0;
                                     }
                                 }
 
                                 else if (SoundFmod.isChangedTempo == -1)
                                 {
+                                    SoundFmod.fastBadCount = 0;
+                                    SoundFmod.slowBadCount++;
 
-                                    SoundFmod.SetOptionalTime();
-
-                                    //그 양만큼 템포 조절됨
-                                    SoundFmod.tempoChange(0.8f);
-
-                                    //멤버들 느려짐
-                                    memberManager.SetMembersFrameTime(0.16f);
-
-                                    //스트로크
-                                    //memberManager.SetMemberState(4, 2);
-                                    for (i = 0; i < 6; i++)
+                                    if (SoundFmod.slowBadCount >= 2)
                                     {
+                                        SoundFmod.SetOptionalTime();
 
-                                        memberManager.SetMemberState(i, 2);
-                                        
+                                        //그 양만큼 템포 조절됨
+                                        SoundFmod.tempoChange(0.8f);
+
+                                        //멤버들 느려짐
+                                        memberManager.SetMembersFrameTime(0.16f);
+
+                                        //스트로크
+                                        //memberManager.SetMemberState(4, 2);
+                                        for (i = 0; i < 6; i++)
+                                        {
+
+                                            memberManager.SetMemberState(i, 2);
+
+                                        }
+                                        SoundFmod.slowBadCount = 0;
                                     }
 
                                 }
 
                                 else if (SoundFmod.isChangedTempo == -2)
                                 {
+                                    SoundFmod.fastBadCount = 0;
+                                    SoundFmod.slowBadCount++;
 
-                                    SoundFmod.SetOptionalTime();
-
-                                    //그 양만큼 템포 조절됨
-                                    SoundFmod.tempoChange(0.7f);
-
-                                    //멤버들 느려짐
-                                    memberManager.SetMembersFrameTime(0.19f);
-
-                                    //스트로크
-                                    //memberManager.SetMemberState(4, 3);
-                                    for (i = 0; i < 6; i++)
+                                    if (SoundFmod.slowBadCount >= 2)
                                     {
+                                        SoundFmod.SetOptionalTime();
 
-                                        memberManager.SetMemberState(i, 3);
-                                        
+                                        //그 양만큼 템포 조절됨
+                                        SoundFmod.tempoChange(0.7f);
+
+                                        //멤버들 느려짐
+                                        memberManager.SetMembersFrameTime(0.19f);
+
+                                        //스트로크
+                                        //memberManager.SetMemberState(4, 3);
+                                        for (i = 0; i < 6; i++)
+                                        {
+
+                                            memberManager.SetMemberState(i, 3);
+
+                                        }
+                                        SoundFmod.slowBadCount = 0;
                                     }
 
                                 }
