@@ -3096,14 +3096,54 @@ namespace beethoven3
 
                    Rectangle mouseRect = new Rectangle(mouseStateCurrent.X, mouseStateCurrent.Y, 5, 5);
                    int i;
-
                    //아이템 rect
                    List<Rectangle> rectRightItems = rightItemShop.getRectRightItem();
                    
                    //아이템/
                    List<Item> shopRightItems = rightItemShop.getShopRightItem();
 
-                
+                   //다이얼로그를 띄웠을 때 이것이 중복실행되지 않도록 
+                   if (!rightItemShop.getSellOrWearOne() && !rightItemShop.getBuyOne() && !rightItemShop.getNoGold() && !rightItemShop.getHandInItem())
+                   {
+                       for (i = 0; i < rectRightItems.Count; i++)
+                       {
+                           //Trace.WriteLine(finalClick + " - " + pastClick);
+                           //아이템을 선택 했을때
+                           if ((mouseRect.Intersects(rectRightItems[i]) && mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) ||
+                               (drawrec1.Intersects(rectRightItems[i]) && finalClick && !pastClick))
+                           {
+                               //어두어짐
+                               rightItemShop.setDarkBackground(true);
+
+                               selectedItem = shopRightItems[i];
+
+                               //이미 산거이면 true
+                               if (rightItemShop.haveOne(shopRightItems[i]))
+                               {
+                                   //장착 메시지 or 팔기 메시지 박스 띄우기 
+                                   rightItemShop.setSellOrWearOne(true);
+                                   //반복 없애기
+                                   i = rectRightItems.Count;
+                               }
+                               else
+                               {
+                                   //구입 메시지 박스 띄우기 
+                                   rightItemShop.setBuyOne(true);
+                                   //반복 없애기
+                                   i = rectRightItems.Count;
+                               }
+
+                               //이게 있어야 중복해서 안된다.
+                               //중복 구입 막음
+
+                               mouseStatePrevious = mouseStateCurrent;
+                               pastClick = finalClick;
+                           }
+
+                       }
+
+                   }
+
 
                    //돈 부족 메시지 띄우기
                    if (rightItemShop.getNoGold())
@@ -3134,266 +3174,183 @@ namespace beethoven3
 
                    
 
-                       //장착한 아이템 팔 수없게 
-                       if (rightItemShop.getHandInItem())
-                       {
-                           //버튼 Hover
-                           if (mouseRect.Intersects(rightItemShop.getRectHandInItemButton()) || drawrec1.Intersects(rightItemShop.getRectHandInItemButton()))
-                           {
-                               //눌린모양
-                               rightItemShop.setHoverHandInItemButton(true);
-                               //버튼 누르면
-                               if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (finalClick && !pastClick))
-                               {
-                                   //다시 밝게
-                                   rightItemShop.setDarkBackground(false);
-                                   //메시지 없애기
-                                   rightItemShop.setHandInItem(false);
+                    //장착한 아이템 팔 수없게 
+                    if (rightItemShop.getHandInItem())
+                    {
+                        //버튼 Hover
+                        if (mouseRect.Intersects(rightItemShop.getRectHandInItemButton()) || drawrec1.Intersects(rightItemShop.getRectHandInItemButton()))
+                        {
+                            //눌린모양
+                            rightItemShop.setHoverHandInItemButton(true);
+                            //버튼 누르면
+                            if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (finalClick && !pastClick))
+                            {
+                                //다시 밝게
+                                rightItemShop.setDarkBackground(false);
+                                //메시지 없애기
+                                rightItemShop.setHandInItem(false);
 
 
-                               }
-                           }
-                           //버튼 not hover
-                           else
-                           {
-                               rightItemShop.setHoverHandInItemButton(false);
-                           }
-
-                       }
-
-                   
-
-                 //  Trace.WriteLine(mouseStateCurrent.LeftButton + "-" + mouseStatePrevious.LeftButton);
-
-
+                            }
+                        }
+                        //버튼 not hover
+                        else
+                        {
+                            rightItemShop.setHoverHandInItemButton(false);
+                        }
+                        //mouseStatePrevious = mouseStateCurrent;
+                        //pastClick = finalClick;
+                    }
 
                    //장착할것인지 팔것인지 묻는 메시지
-                      
-                           if (rightItemShop.getSellOrWearOne())
-                           {
-                               //마우스가 장착 버튼에 올려졌을 때
-                               if (mouseRect.Intersects(rightItemShop.getRectWearButton()) || drawrec1.Intersects(rightItemShop.getRectWearButton()))
-                               {
-                                   rightItemShop.setHoverWearButton(true);
+
+                if (rightItemShop.getSellOrWearOne())
+                {
+                    //마우스가 장착 버튼에 올려졌을 때
+                    if (mouseRect.Intersects(rightItemShop.getRectWearButton()) || drawrec1.Intersects(rightItemShop.getRectWearButton()))
+                    {
+                        rightItemShop.setHoverWearButton(true);
 
 
-                                   if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (finalClick && !pastClick))
-                                   {
-                                       //장착 메시지 박스 띄우기 
-                                       rightItemShop.setWearOne(true);
-                                   }
-                               }
-                               else
-                               {
-                                   rightItemShop.setHoverWearButton(false);
-                               }
+                        if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (finalClick && !pastClick))
+                        {
+                            //장착 메시지 박스 띄우기 
+                            // rightItemShop.setWearOne(true);
+                            //선택된 아이템이 있으면
+                            if (selectedItem != null)
+                            {
+                                //find the index of item in myrightitem list
+                                //아이템 찾기
+                                int index = itemManager.getIndexOfAllRightItem(selectedItem);
+
+                                //아이템을 찾았으면
+                                if (index != -1)
+                                {
+                                    //change index
+                                    //장착
+                                    itemManager.setRightHandIndex(index);
+
+                                    //return to normal , remove message box
+                                    //메시지 박스 지우기
+                                   // rightItemShop.setWearOne(false);
+                                    //밝게 하기
+                                    rightItemShop.setDarkBackground(false);
+                                    rightItemShop.setSellOrWearOne(false);
+                                }
+                                //아이템을 찾지 못했으면
+                                else
+                                {
+                                    Trace.WriteLine("get wrong index( no item in list)");
+                                }
+                            }
+                            //선택된 아이템이 없으면
+                            else
+                            {
+                                Trace.WriteLine("nothing is selected");
+                            }
+                        }
+                    }
+                    else
+                    {
+                        rightItemShop.setHoverWearButton(false);
+                    }
 
 
-                               //마우스가 팔기 버튼에 눌러졌을 때
-                               if (mouseRect.Intersects(rightItemShop.getRectSellButton()) || drawrec1.Intersects(rightItemShop.getRectSellButton()))
-                               {
+                    //마우스가 팔기 버튼에 눌러졌을 때
+                    if (mouseRect.Intersects(rightItemShop.getRectSellButton()) || drawrec1.Intersects(rightItemShop.getRectSellButton()))
+                    {
 
-                                   rightItemShop.setHoverSellButton(true);
+                        rightItemShop.setHoverSellButton(true);
 
-                                   if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (finalClick && !pastClick))
-                                   {
-                                       //장착 메시지 박스 띄우기 
-                                       rightItemShop.setSellOne(true);
-                                   }
-                               }
-                               else
-                               {
-                                   rightItemShop.setHoverSellButton(false);
-                               }
+                        if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (finalClick && !pastClick))
+                        {
+                            //팔기 메시지 박스 띄우기 
+                            // rightItemShop.setSellOne(true);
+                            //선택된 아이템이 있으면
+                            if (selectedItem != null)
+                            {
+                                //find the index of item in myrightitem list
+                                //아이템 찾기
+                                int index = itemManager.getIndexOfAllRightItem(selectedItem);
 
+                                //찾은 아이템이 장착하고 있는 아이템이면 팔 수 없다.
+                                if (index != itemManager.getRightHandIndex())
+                                {
+                                    //아이템을 찾았으면
+                                    if (index != -1)
+                                    {
 
-                               //취소버튼 눌렀을 때
-                               if (mouseRect.Intersects(rightItemShop.getRectCancelButton()) || drawrec1.Intersects(rightItemShop.getRectCancelButton()))
-                               {
-                                   rightItemShop.setHoverCancelButton(true);
-                                   if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (finalClick && !pastClick))
-                                   {
-                                       //return to normal , remove message box
-                                       rightItemShop.setSellOrWearOne(false);
-                                       rightItemShop.setDarkBackground(false);
-                                   }
-                               }
-                               else
-                               {
-                                   rightItemShop.setHoverCancelButton(false);
-                               }
+                                        //전체 돈에서 판 비용 더해줌
+                                        scoreManager.TotalGold += selectedItem.GetCost() / 2;
 
-                           }
-
-                       
-
-                    //장착 메시지 띄우기
-                   //message box about wearing item 
-                   if (rightItemShop.getWearOne())
-                   {
-                       //mouse cursor on yes button
-                       if (mouseRect.Intersects(rightItemShop.getRectYesButton()) || drawrec1.Intersects(rightItemShop.getRectYesButton()))
-                       {
-                           rightItemShop.setHoverYesButton(true);
-
-                           if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (finalClick && !pastClick))
-                           {
-                               //선택된 아이템이 있으면
-                               if (selectedItem != null)
-                               {
-                                   //find the index of item in myrightitem list
-                                   //아이템 찾기
-                                   int index = itemManager.getIndexOfAllRightItem(selectedItem);
-
-                                   //아이템을 찾았으면
-                                   if (index != -1)
-                                   {
-                                       //change index
-                                       //장착
-                                       itemManager.setRightHandIndex(index);
-
-                                       //return to normal , remove message box
-                                       //메시지 박스 지우기
-                                       rightItemShop.setWearOne(false);
-                                       //밝게 하기
-                                       rightItemShop.setDarkBackground(false);
-                                   }
-                                   //아이템을 찾지 못했으면
-                                   else
-                                   {
-                                       Trace.WriteLine("get wrong index( no item in list)");
-                                   }
-                               }
-                               //선택된 아이템이 없으면
-                               else
-                               {
-                                   Trace.WriteLine("nothing is selected");
-                               }
-                           }
-                       }
-                       else
-                       {
-                           rightItemShop.setHoverYesButton(false);
-                       }
-                       //mouse cursor on no button
-                       //노버튼 눌렀을 때
-                       if (mouseRect.Intersects(rightItemShop.getRectNoButton()) || drawrec1.Intersects(rightItemShop.getRectNoButton()))
-                       {
-                           rightItemShop.setHoverNoButton(true);
-                           if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (finalClick && !pastClick))
-                           {
-                               //return to normal , remove message box
-                               rightItemShop.setWearOne(false);
-                               rightItemShop.setDarkBackground(false);
-
-                               //추가적으로 sellorwear 버튼도 false로 해야 한다.
-                               rightItemShop.setSellOrWearOne(false);
-                           }
-                       }
-                       else
-                       {
-                           rightItemShop.setHoverNoButton(false);
-                       }
-
-                      
-
-                   }
+                                        //자신의 인벤토리에서 빼기
+                                        rightItemShop.removeItemtoMyItem(selectedItem);
 
 
-                   //팔기 메시지 띄우기
-                   //message box about wearing item 
-                   if (rightItemShop.getSellOne())
-                   {
-                       //mouse cursor on yes button
-                       if (mouseRect.Intersects(rightItemShop.getRectYesButton()) || drawrec1.Intersects(rightItemShop.getRectYesButton()))
-                       {
-                           rightItemShop.setHoverSellYesButton(true);
+                                      //  rightItemShop.setSellOne(false);
 
-                           if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (finalClick && !pastClick))
-                           {
-                               //선택된 아이템이 있으면
-                               if (selectedItem != null)
-                               {
-                                   //find the index of item in myrightitem list
-                                   //아이템 찾기
-                                   int index = itemManager.getIndexOfAllRightItem(selectedItem);
-                                   
-                                   //찾은 아이템이 장착하고 있는 아이템이면 팔 수 없다.
-                                   if (index != itemManager.getRightHandIndex())
-                                   {
-                                       //아이템을 찾았으면
-                                       if (index != -1)
-                                       {
+                                        rightItemShop.setDarkBackground(false);
 
-                                           //전체 돈에서 판 비용 더해줌
-                                           scoreManager.TotalGold += selectedItem.GetCost() / 2;
+                                        //돈을 파일에 저장
+                                        reportManager.SaveGoldToFile();
 
-                                           //자신의 인벤토리에서 빼기
-                                           rightItemShop.removeItemtoMyItem(selectedItem);
+                                        //추가적으로 sellorwear 버튼도 false로 해야 한다.
+                                        rightItemShop.setSellOrWearOne(false);
+                                        
 
 
-                                           rightItemShop.setSellOne(false);
+                                    }
+                                    //아이템을 찾지 못했으면
+                                    else
+                                    {
+                                        Trace.WriteLine("get wrong index( no item in list)");
+                                    }
+                                }
+                                else
+                                {
+                                    rightItemShop.setHandInItem(true);
 
-                                           rightItemShop.setDarkBackground(false);
-
-                                           //돈을 파일에 저장
-                                           reportManager.SaveGoldToFile();
-
-                                           //추가적으로 sellorwear 버튼도 false로 해야 한다.
-                                           rightItemShop.setSellOrWearOne(false);
-
-
-                                       }
-                                       //아이템을 찾지 못했으면
-                                       else
-                                       {
-                                           Trace.WriteLine("get wrong index( no item in list)");
-                                       }
-                                   }
-                                   else
-                                   {
-                                       rightItemShop.setHandInItem(true);
-
-                                       rightItemShop.setSellOrWearOne(false);
-                                       rightItemShop.setSellOne(false);
+                                    rightItemShop.setSellOrWearOne(false);
+                                    rightItemShop.setSellOne(false);
 
 
-                                     
-                                   }
+
+                                }
 
 
-                               }
-                               //선택된 아이템이 없으면
-                               else
-                               {
-                                   Trace.WriteLine("nothing is selected");
-                               }
-                           }
-                       }
-                       else
-                       {
-                           rightItemShop.setHoverSellYesButton(false);
-                       }
-                       //mouse cursor on no button
-                       //노버튼 눌렀을 때
-                       if (mouseRect.Intersects(rightItemShop.getRectNoButton()) || drawrec1.Intersects(rightItemShop.getRectNoButton()))
-                       {
-                           rightItemShop.setHoverSellNoButton(true);
-                           if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (finalClick && !pastClick))
-                           {
-                               //return to normal , remove message box
-                               rightItemShop.setSellOne(false);
-                               rightItemShop.setDarkBackground(false);
-                           }
-                       }
-                       else
-                       {
-                           rightItemShop.setHoverSellNoButton(false);
-                       }
-                      
+                            }
+                            //선택된 아이템이 없으면
+                            else
+                            {
+                                Trace.WriteLine("nothing is selected");
+                            }
+                        }
+                    }
+                    else
+                    {
+                        rightItemShop.setHoverSellButton(false);
+                    }
 
-                   }
 
+                    //취소버튼 눌렀을 때
+                    if (mouseRect.Intersects(rightItemShop.getRectCancelButton()) || drawrec1.Intersects(rightItemShop.getRectCancelButton()))
+                    {
+                        rightItemShop.setHoverCancelButton(true);
+                        if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (finalClick && !pastClick))
+                        {
+                            //return to normal , remove message box
+                            rightItemShop.setSellOrWearOne(false);
+                            rightItemShop.setDarkBackground(false);
+                            //mouseStatePrevious = mouseStateCurrent;
+                            //pastClick = finalClick;
+                        }
+                    }
+                    else
+                    {
+                        rightItemShop.setHoverCancelButton(false);
+                    }
+                   
+                }
 
                   
                    //구입 메시지
@@ -3428,24 +3385,16 @@ namespace beethoven3
                                    //돈이 없다.
                                    else
                                    {
-
                                        rightItemShop.setBuyOne(false);
                                        //"돈 부족" 메시지 띄운다.
                                        rightItemShop.setNoGold(true);
-
-                                       
                                    }
-
-                                 
-                                  
                                }
                                else
                                {
                                    Trace.WriteLine("nothing is selected");
-                                 
                                }
                            }
-                           
                        }
                        else
                        {
@@ -3466,50 +3415,11 @@ namespace beethoven3
                        {
                            rightItemShop.setHoverNoButton(false);
                        }
-
-                  //     pastClick = finalClick;
+                       //mouseStatePrevious = mouseStateCurrent;
+                       //pastClick = finalClick;
                    }
 
 
-                   //다이얼로그를 띄웠을 때 이것이 중복실행되지 않도록 
-                   if (!rightItemShop.getWearOne() && !rightItemShop.getBuyOne() && !rightItemShop.getNoGold() && !rightItemShop.getHandInItem())
-                   {
-                       for (i = 0; i < rectRightItems.Count; i++)
-                       {
-                           //Trace.WriteLine(finalClick + " - " + pastClick);
-                           //아이템을 선택 했을때
-                           if ((mouseRect.Intersects(rectRightItems[i]) && mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) ||
-                               (drawrec1.Intersects(rectRightItems[i]) && finalClick && !pastClick))
-                           {
-                               //어두어짐
-                               rightItemShop.setDarkBackground(true);
-
-                               selectedItem = shopRightItems[i];
-
-                               //이미 산거이면 true
-                               if (rightItemShop.haveOne(shopRightItems[i]))
-                               {
-                                   //장착 메시지 or 팔기 메시지 박스 띄우기 
-                                   rightItemShop.setSellOrWearOne(true);
-                                   //반복 없애기
-                                   i = rectRightItems.Count;
-                               }
-                               else
-                               {
-                                   //구입 메시지 박스 띄우기 
-                                   rightItemShop.setBuyOne(true);
-                                   //반복 없애기
-                                   i = rectRightItems.Count;
-                               }
-
-                               //이게 있어야 중복해서 안된다.
-                               mouseStatePrevious = mouseStateCurrent;
-                               pastClick = finalClick;
-                           }
-
-                       }
-
-                   }
 
 
                    if (mouseRect.Intersects(rightItemShop.getRectPreviousButton()) || drawrec1.Intersects(rightItemShop.getRectPreviousButton()))

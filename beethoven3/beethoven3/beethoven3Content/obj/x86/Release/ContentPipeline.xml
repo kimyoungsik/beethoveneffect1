@@ -1327,6 +1327,51 @@
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\planetNote.xnb</Output>
       <Time>2013-01-18T21:36:19.0082494+09:00</Time>
     </Item>
+    <Item>
+      <Source>shopButton\buyPanel.png</Source>
+      <Name>shopButton\buyPanel</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopButton\buyPanel.xnb</Output>
+      <Time>2013-01-19T14:44:26.9659073+09:00</Time>
+    </Item>
+    <Item>
+      <Source>shopButton\noButton.png</Source>
+      <Name>shopButton\noButton</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopButton\noButton.xnb</Output>
+      <Time>2013-01-19T14:44:37.3204996+09:00</Time>
+    </Item>
+    <Item>
+      <Source>shopButton\hoverNoButton.png</Source>
+      <Name>shopButton\hoverNoButton</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopButton\hoverNoButton.xnb</Output>
+      <Time>2013-01-19T14:44:37.3214996+09:00</Time>
+    </Item>
+    <Item>
+      <Source>shopButton\yesButton.png</Source>
+      <Name>shopButton\yesButton</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopButton\yesButton.xnb</Output>
+      <Time>2013-01-19T14:44:37.3154993+09:00</Time>
+    </Item>
+    <Item>
+      <Source>shopButton\hoverYesButton.png</Source>
+      <Name>shopButton\hoverYesButton</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopButton\hoverYesButton.xnb</Output>
+      <Time>2013-01-19T14:44:37.3174994+09:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

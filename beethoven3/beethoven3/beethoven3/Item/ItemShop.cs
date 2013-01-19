@@ -117,14 +117,14 @@ namespace beethoven3
         {
             darkBackgroundImage = cm.Load<Texture2D>(@"Textures\darkBackground");
 
-            yesButton = cm.Load<Texture2D>(@"shopdoor\yesButton");
-            noButton = cm.Load<Texture2D>(@"shopdoor\noButton");
+            yesButton = cm.Load<Texture2D>(@"shopButton\yesButton");
+            noButton = cm.Load<Texture2D>(@"shopButton\noButton");
             putPanel = cm.Load<Texture2D>(@"shopdoor\putPanel");
-            buyPanel = cm.Load<Texture2D>(@"shopdoor\buyPanel");
+            buyPanel = cm.Load<Texture2D>(@"shopButton\buyPanel");
             sellPanel = cm.Load<Texture2D>(@"shopdoor\sellPanel");
 
-            hoverYesButton = cm.Load<Texture2D>(@"shopdoor\hoverYesButton");
-            hoverNoButton = cm.Load<Texture2D>(@"shopdoor\hoverNoButton");
+            hoverYesButton = cm.Load<Texture2D>(@"shopButton\hoverYesButton");
+            hoverNoButton = cm.Load<Texture2D>(@"shopButton\hoverNoButton");
 
             usedItemBackground = cm.Load<Texture2D>(@"background\itemBackground");
             ItemBackground = cm.Load<Texture2D>(@"background\itemBackground2");

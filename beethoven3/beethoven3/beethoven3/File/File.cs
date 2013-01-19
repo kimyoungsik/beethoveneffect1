@@ -409,7 +409,7 @@ namespace beethoven3
             //double startRatio = 0.2;
             float firstAngle = 30;
             float secondAngle = 90;
-            Vector2 line;
+         //   Vector2 line;
             Vector2 start;
             Vector2 end;
             Vector2 angle;
@@ -683,16 +683,16 @@ namespace beethoven3
                                 //적어도 노트가 2개 이상
                                 if (arrayNotes.Count > 2)
                                 {
-                                    if (arrayNotes[1].IsRight && arrayNotes[2].IsRight)
-                                    // if (rightNoteMarks[currentRightNoteIndex + 1].IsRight && rightNoteMarks[currentRightNoteIndex + 2].IsRight)
-                                    {
-                                        DrawGuideLineInfo drawGuideLineInfo = new DrawGuideLineInfo(arrayNotes[1].MarkLocation - 1, arrayNotes[2].MarkLocation - 1, false, arrayNotes[0].StartTime, arrayNotes[1].StartTime);
-                                        drawGuideLineQueue.Enqueue(drawGuideLineInfo);
+                                    //if (arrayNotes[1].IsRight && arrayNotes[2].IsRight)
+                                    //// if (rightNoteMarks[currentRightNoteIndex + 1].IsRight && rightNoteMarks[currentRightNoteIndex + 2].IsRight)
+                                    //{
+                                    //    DrawGuideLineInfo drawGuideLineInfo = new DrawGuideLineInfo(arrayNotes[1].MarkLocation - 1, arrayNotes[2].MarkLocation - 1, false, arrayNotes[0].StartTime, arrayNotes[1].StartTime);
+                                    //    drawGuideLineQueue.Enqueue(drawGuideLineInfo);
                                        
-                                        //일반 가이드라인
-                                        // DrawGuidLine(rightNoteMarks[currentRightNoteIndex + 1].MarkLocation, rightNoteMarks[currentRightNoteIndex + 2].MarkLocation, false);               
-                                     //   DrawGuidLine(arrayNotes[1].MarkLocation - 1, arrayNotes[2].MarkLocation - 1, false, arrayNotes[0].StartTime, arrayNotes[1].StartTime);
-                                    }
+                                    //    //일반 가이드라인
+                                    //    // DrawGuidLine(rightNoteMarks[currentRightNoteIndex + 1].MarkLocation, rightNoteMarks[currentRightNoteIndex + 2].MarkLocation, false);               
+                                    // //   DrawGuidLine(arrayNotes[1].MarkLocation - 1, arrayNotes[2].MarkLocation - 1, false, arrayNotes[0].StartTime, arrayNotes[1].StartTime);
+                                    //}
                                 }
                             }
                             catch (IndexOutOfRangeException)

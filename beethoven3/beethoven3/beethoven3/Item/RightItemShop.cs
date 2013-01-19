@@ -205,61 +205,61 @@ namespace beethoven3
                     spriteBatch.Draw(sellorwearPanel, new Vector2(0, 0), null, Color.White, 0f, new Vector2(0, 0), 1f, SpriteEffects.None, 1f);
 
                     //장착 버튼 
-                    Vector2 wearButtonLocation = new Vector2(width / 2 - 270, height / 2 + 40);
+                    Vector2 wearButtonLocation = new Vector2(width / 2 - 270, height / 2 + 90);
                     
                      // mouse cursor on YES button
                     if (!isHoverWearButton)
-                    {                                                
-                    
-                        spriteBatch.Draw(sWearButton, wearButtonLocation, null, Color.White, 0f, new Vector2(100, 60), 1f, SpriteEffects.None, 1f);
+                    {
+
+                        spriteBatch.Draw(sWearButton, wearButtonLocation, null, Color.White, 0f, new Vector2(sWearButton.Width / 2, sWearButton.Height/2), 1f, SpriteEffects.None, 1f);
                     
                     }
                     else
                     {
 
-                        spriteBatch.Draw(hoverSWearButton, wearButtonLocation, null, Color.White, 0f, new Vector2(100, 60), 1f, SpriteEffects.None, 1f);
+                        spriteBatch.Draw(hoverSWearButton, wearButtonLocation, null, Color.White, 0f, new Vector2(hoverSWearButton.Width / 2, hoverSWearButton.Height/2), 1f, SpriteEffects.None, 1f);
                         
                     }
 
                     //팔기버튼
-                    Vector2 sellButtonLocation = new Vector2(width / 2, height / 2 + 40);
+                    Vector2 sellButtonLocation = new Vector2(width / 2, height / 2 +90);
                      // mouse cursor on YES button
                     if (!isHoverSellButton)
-                    {                                                
-                    
-                        spriteBatch.Draw(sSellButton, sellButtonLocation, null, Color.White, 0f, new Vector2(100, 60), 1f, SpriteEffects.None, 1f);
+                    {
+
+                        spriteBatch.Draw(sSellButton, sellButtonLocation, null, Color.White, 0f, new Vector2(sSellButton.Width / 2, sSellButton.Height / 2), 1f, SpriteEffects.None, 1f);
                     
                     }
                     else
                     {
 
-                        spriteBatch.Draw(hoverSSellButton, sellButtonLocation, null, Color.White, 0f, new Vector2(100, 60), 1f, SpriteEffects.None, 1f);
+                        spriteBatch.Draw(hoverSSellButton, sellButtonLocation, null, Color.White, 0f, new Vector2(hoverSSellButton.Width / 2, hoverSSellButton.Height/2), 1f, SpriteEffects.None, 1f);
                         
                     }
 
                     
                     //취소
-                    Vector2 cancelButtonLocation = new Vector2(width / 2 + 270, height / 2 + 40);
+                    Vector2 cancelButtonLocation = new Vector2(width / 2 + 270, height / 2 + 90);
                     
                      // mouse cursor on YES button
                     if (!isHoverCancelButton)
                     {
 
-                        spriteBatch.Draw(sCancelButton, cancelButtonLocation, null, Color.White, 0f, new Vector2(100, 60), 1f, SpriteEffects.None, 1f);
+                        spriteBatch.Draw(sCancelButton, cancelButtonLocation, null, Color.White, 0f, new Vector2(sCancelButton.Width / 2, sCancelButton.Height/2), 1f, SpriteEffects.None, 1f);
                     
                     }
                     else
                     {
 
-                        spriteBatch.Draw(hoverSCancelButton, cancelButtonLocation, null, Color.White, 0f, new Vector2(100, 60), 1f, SpriteEffects.None, 1f);
+                        spriteBatch.Draw(hoverSCancelButton, cancelButtonLocation, null, Color.White, 0f, new Vector2(hoverSCancelButton.Width / 2, hoverSCancelButton.Height/2), 1f, SpriteEffects.None, 1f);
                         
                     }
 
-                
 
-                    recWearButton = new Rectangle((int)wearButtonLocation.X - 100, (int)wearButtonLocation.Y - 60, 200, 120);
-                    recSellButton = new Rectangle((int)sellButtonLocation.X - 100, (int)sellButtonLocation.Y - 60, 200, 120);
-                    recCancelButton = new Rectangle((int)cancelButtonLocation.X - 100, (int)cancelButtonLocation.Y - 60, 200, 120);
+
+                    recWearButton = new Rectangle((int)wearButtonLocation.X - sWearButton.Width / 2, (int)wearButtonLocation.Y - sWearButton.Height / 2, sWearButton.Width, sWearButton.Height);
+                    recSellButton = new Rectangle((int)sellButtonLocation.X - sSellButton.Width / 2, (int)sellButtonLocation.Y - sSellButton.Height / 2, sSellButton.Width, sSellButton.Height);
+                    recCancelButton = new Rectangle((int)cancelButtonLocation.X - sCancelButton.Width / 2, (int)cancelButtonLocation.Y - sCancelButton.Height / 2, sCancelButton.Width, sCancelButton.Height);
                 
                 
                 }
@@ -267,45 +267,44 @@ namespace beethoven3
                 //to BUY item
                 if (buyOne)
                 {
-                 //   Vector2 middle = new Vector2(width / 2, height / 2);
-                    spriteBatch.Draw(buyPanel, middle, null, Color.White, 0f, new Vector2(310, 150), 1.5f, SpriteEffects.None, 1f);
+                    spriteBatch.Draw(buyPanel, new Vector2(0, 0), null, Color.White, 0f, new Vector2(0, 0), 1f, SpriteEffects.None, 1f);
 
-                    Vector2 yesButtonLocation = new Vector2(width / 2 - 180, height / 2 + 50);
+                    Vector2 yesButtonLocation = new Vector2(width / 2 -190 , height / 2 + 100 );
                     
                     // mouse cursor on YES button
                     if (!isHoverYesButton)
-                    {                                                
-                    
-                        spriteBatch.Draw(yesButton, yesButtonLocation, null, Color.White, 0f, new Vector2(100, 60), 1.5f, SpriteEffects.None, 1f);
+                    {
+
+                        spriteBatch.Draw(yesButton, yesButtonLocation, null, Color.White, 0f, new Vector2(yesButton.Width/2, yesButton.Height/2), 1f, SpriteEffects.None, 1f);
                     
                     }
                     else
                     {
 
-                        spriteBatch.Draw(hoverYesButton, yesButtonLocation, null, Color.White, 0f, new Vector2(100, 60), 1.5f, SpriteEffects.None, 1f);
+                        spriteBatch.Draw(hoverYesButton, yesButtonLocation, null, Color.White, 0f, new Vector2(hoverYesButton.Width/2, hoverYesButton.Height/2), 1f, SpriteEffects.None, 1f);
                         
                     }
 
 
-                    Vector2 noButtonLocation = new Vector2(width / 2 + 180, height / 2 + 50);
+                    Vector2 noButtonLocation = new Vector2(width / 2 + 190, height / 2 + 100);
                  
 
                     // mouse cursor on NO bUTTON
                     if (!isHoverNoButton)
                     {
-                         spriteBatch.Draw(noButton, noButtonLocation, null, Color.White, 0f, new Vector2(100, 60), 1.5f, SpriteEffects.None, 1f);
+                        spriteBatch.Draw(noButton, noButtonLocation, null, Color.White, 0f, new Vector2(noButton.Width / 2,noButton.Height / 2), 1f, SpriteEffects.None, 1f);
 
                     }
 
                     else
                     {
-                        spriteBatch.Draw(hoverNoButton, noButtonLocation, null, Color.White, 0f, new Vector2(100, 60), 1.5f, SpriteEffects.None, 1f);
+                        spriteBatch.Draw(hoverNoButton, noButtonLocation, null, Color.White, 0f, new Vector2(hoverNoButton.Width / 2,hoverNoButton.Height / 2), 1f, SpriteEffects.None, 1f);
 
                     }
 
-                    recYesButton = new Rectangle((int)yesButtonLocation.X - 100, (int)yesButtonLocation.Y - 60, 200, 120);
+                    recYesButton = new Rectangle((int)yesButtonLocation.X - yesButton.Width / 2, (int)yesButtonLocation.Y - yesButton.Height / 2, yesButton.Width, yesButton.Height);
 
-                    recNoButton = new Rectangle((int)noButtonLocation.X - 100, (int)noButtonLocation.Y - 60, 200, 120);
+                    recNoButton = new Rectangle((int)noButtonLocation.X - noButton.Width / 2, (int)noButtonLocation.Y - noButton.Height / 2, noButton.Width, noButton.Height);
                 
                 }
                 

@@ -148,3 +148,8 @@ Content\gold\getGold.xnb
 Content\notes\moonNote1.xnb
 Content\notes\moonNote.xnb
 Content\notes\planetNote.xnb
+Content\shopButton\buyPanel.xnb
+Content\shopButton\noButton.xnb
+Content\shopButton\hoverNoButton.xnb
+Content\shopButton\yesButton.xnb
+Content\shopButton\hoverYesButton.xnb

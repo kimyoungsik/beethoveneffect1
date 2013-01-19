@@ -1,9 +1,6 @@
 **
 rightHand
 0
-3
-2
-1
 **
 leftHand
 0

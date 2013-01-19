@@ -156,3 +156,8 @@ D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\gold\getGo
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\moonNote1.xnb
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\moonNote.xnb
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\planetNote.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopButton\buyPanel.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopButton\noButton.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopButton\hoverNoButton.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopButton\yesButton.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopButton\hoverYesButton.xnb

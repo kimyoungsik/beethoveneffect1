@@ -242,7 +242,8 @@ namespace beethoven3
                 if (buyOne)
                 {
 
-                    spriteBatch.Draw(buyPanel, middle, null, Color.White, 0f, new Vector2(310, 150), 1.5f, SpriteEffects.None, 1f);
+                   // spriteBatch.Draw(buyPanel, middle, null, Color.White, 0f, new Vector2(0, 150), 1.5f, SpriteEffects.None, 1f);
+                    spriteBatch.Draw(buyPanel, new Vector2(0, 0), null, Color.White, 0f, new Vector2(0, 0), 1f, SpriteEffects.None, 1f);
 
 
                     Vector2 yesButtonLocation = new Vector2(width / 2 - 180, height / 2 + 50);
