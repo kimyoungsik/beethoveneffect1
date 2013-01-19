@@ -2252,7 +2252,7 @@ namespace beethoven3
                 {
                     if (skeleton.TrackingState == SkeletonTrackingState.Tracked)
                     {
-                            Skeleton2DDataExtract.ProcessData(skeleton);
+                        Skeleton2DDataExtract.ProcessData(skeleton);
                     }
                 }
             }
