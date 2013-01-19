@@ -33,11 +33,15 @@ namespace beethoven3
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+
+
         //화면에 띄우기
         Texture2D KinectVideoTexture;
         Rectangle VideoDisplayRectangle;
-        Texture2D idot1;
-        Texture2D idot2;
+
+
+        //Texture2D idot1;
+        //Texture2D idot2;
         public static Rectangle drawrec1;
         public static Rectangle drawrec2;
         public static bool finalClick;
@@ -795,8 +799,8 @@ namespace beethoven3
 
            // itemManager.LoadFileItem();
 #if Kinect
-            idot1 = Content.Load<Texture2D>("Bitmap1");
-            idot2 = Content.Load<Texture2D>("Bitmap2");
+            //idot1 = Content.Load<Texture2D>("Bitmap1");
+            //idot2 = Content.Load<Texture2D>("Bitmap2");
             messageFont = Content.Load<SpriteFont>("MessageFont");
             setupKinect();
 
@@ -5288,14 +5292,19 @@ namespace beethoven3
                 Rectangle rectMouseSettingBoard = new Rectangle(mouseStateCurrent.X, mouseStateCurrent.Y, 5, 5);
                    //nextButton 위에 마우스를 올려놨을 때
                     //mousecursor on nextButton item section
-
+                   
                    //뒤로 버튼
-                if (rectMouseSettingBoard.Intersects(settingBoard.RectNextButton) || drawrec1.Intersects(settingBoard.RectNextButton))
+                if (rectMouseSettingBoard.Intersects(settingBoard.RectNextButton) || rightHandPosition.Intersects(settingBoard.RectNextButton))
                 {
+
+                    nearButton = true;
+                    GetCenterOfButton(settingBoard.RectNextButton);
+
                     settingBoard.ClickNextButton = true;
                     //click the right hand item section
                     if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (finalClick && !pastClick))
                     {
+                        nearButton = false;
                         gameState = GameStates.Menu;
                     }
                 }
@@ -5306,12 +5315,17 @@ namespace beethoven3
 
 
                 //스케일 증가 
-                if (rectMouseSettingBoard.Intersects(settingBoard.RecScaleUpButton) || drawrec1.Intersects(settingBoard.RecScaleUpButton))
+                if (rectMouseSettingBoard.Intersects(settingBoard.RecScaleUpButton) || rightHandPosition.Intersects(settingBoard.RecScaleUpButton))
                 {
+                    nearButton = true;
+                    GetCenterOfButton(settingBoard.RecScaleUpButton);
+
                     settingBoard.ClickScaleUpButton = true;
                     //click the right hand item section
                     if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (finalClick && !pastClick))
                     {
+
+                        nearButton = false;
                         if (this.userParam < 1)
                         {
                             this.userParam += 0.05f;
@@ -5332,13 +5346,16 @@ namespace beethoven3
 
 
                 //스케일 감소
-                if (rectMouseSettingBoard.Intersects(settingBoard.RecScaleDownButton) || drawrec1.Intersects(settingBoard.RecScaleDownButton))
+                if (rectMouseSettingBoard.Intersects(settingBoard.RecScaleDownButton) || rightHandPosition.Intersects(settingBoard.RecScaleDownButton))
                 {
+                    nearButton = true;
+                    GetCenterOfButton(settingBoard.RecScaleDownButton);
+
                     settingBoard.ClickScaleDownButton = true;
                     //click the right hand item section
                     if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (finalClick && !pastClick))
                     {
-
+                        nearButton = false;
                         if (this.userParam > 0.05)
                         {
                             this.userParam -= 0.05f;
@@ -5359,12 +5376,17 @@ namespace beethoven3
 
 
             //각도 증가 
-                if (rectMouseSettingBoard.Intersects(settingBoard.RecAngleUpButton) || drawrec1.Intersects(settingBoard.RecAngleUpButton))
+                if (rectMouseSettingBoard.Intersects(settingBoard.RecAngleUpButton) || rightHandPosition.Intersects(settingBoard.RecAngleUpButton))
                 {
+                    nearButton = true;
+                    GetCenterOfButton(settingBoard.RecAngleUpButton);
+
                     settingBoard.ClickAngleUpButton = true;
                     //click the right hand item section
                     if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (finalClick && !pastClick))
                     {
+
+                        nearButton = false;
                         if (nui.ElevationAngle < nui.MaxElevationAngle - 3)
                         {
                             while (true)
@@ -5390,12 +5412,17 @@ namespace beethoven3
 
 
                 //각도 감소
-                if (rectMouseSettingBoard.Intersects(settingBoard.RecAngleDownButton) || drawrec1.Intersects(settingBoard.RecAngleDownButton))
+                if (rectMouseSettingBoard.Intersects(settingBoard.RecAngleDownButton) || rightHandPosition.Intersects(settingBoard.RecAngleDownButton))
                 {
+                    nearButton = true;
+                    GetCenterOfButton(settingBoard.RecAngleDownButton);
+
                     settingBoard.ClickAngleDownButton = true;
                     //click the right hand item section
                     if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (finalClick && !pastClick))
                     {
+
+                        nearButton = false;
                         if (nui.ElevationAngle > nui.MinElevationAngle + 3)
                         {
                             while (true)
@@ -5418,6 +5445,18 @@ namespace beethoven3
                 }
 
 
+                if(
+                !(rectMouseSettingBoard.Intersects(settingBoard.RectNextButton) || rightHandPosition.Intersects(settingBoard.RectNextButton))
+                &&!(rectMouseSettingBoard.Intersects(settingBoard.RecScaleUpButton) || rightHandPosition.Intersects(settingBoard.RecScaleUpButton))
+                &&!(rectMouseSettingBoard.Intersects(settingBoard.RecScaleDownButton) || rightHandPosition.Intersects(settingBoard.RecScaleDownButton))
+                &&!(rectMouseSettingBoard.Intersects(settingBoard.RecAngleUpButton) || rightHandPosition.Intersects(settingBoard.RecAngleUpButton))
+                &&!(rectMouseSettingBoard.Intersects(settingBoard.RecAngleDownButton) || rightHandPosition.Intersects(settingBoard.RecAngleDownButton))
+                )
+                   {
+
+                       nearButton = false;
+                   }
+
 
                 pastClick = finalClick;
 
@@ -5438,14 +5477,19 @@ namespace beethoven3
                     
                     //nextButton 위에 마우스를 올려놨을 때
                     //mousecursor on nextButton item section
-                    if (rectMouse.Intersects(resultManager.getRectNextButton()) || drawrec1.Intersects(resultManager.getRectNextButton()))
+                    if (rectMouse.Intersects(resultManager.getRectNextButton()) || rightHandPosition.Intersects(resultManager.getRectNextButton()))
                     {
+                        nearButton = true;
+                        GetCenterOfButton(resultManager.getRectNextButton());
+
+
+
                         resultManager.setClickNextButton(true);
                         //click the right hand item section
                         if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released )|| (finalClick &&!pastClick))
                         {
                             gameState = GameStates.ShowPictures;
-
+                            nearButton = false;
                            
                             //현재 마커 위치 저장
                             //Vector2 mark1Location = MarkManager.Marks[0].MarkSprite.Location;
@@ -5523,6 +5567,7 @@ namespace beethoven3
                     }
                     else
                     {
+                        nearButton = false;
                         resultManager.setClickNextButton(false);
                     }
 
@@ -5533,17 +5578,25 @@ namespace beethoven3
                 #region 사진들
                 case GameStates.ShowPictures:
                 Rectangle rectMouseShowPictures = new Rectangle(mouseStateCurrent.X, mouseStateCurrent.Y, 5, 5);
-                if (rectMouseShowPictures.Intersects(showPictureScene.getRectNextButton()) || drawrec1.Intersects(showPictureScene.getRectNextButton()))
+
+                if (rectMouseShowPictures.Intersects(showPictureScene.getRectNextButton()) || rightHandPosition.Intersects(showPictureScene.getRectNextButton()))
                     {
+
+                        nearButton = true;
+                        GetCenterOfButton(showPictureScene.getRectNextButton());
+
                         showPictureScene.setClickNextButton(true);
                         //click the right hand item section
                         if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (finalClick && !pastClick))
                         {
+                            nearButton = false;
                             gameState = GameStates.RecordBoard;
                         }
                     }
                     else
                     {
+                        nearButton = false;
+
                         showPictureScene.setClickNextButton(false);
                     }
                     pastClick = finalClick;
@@ -5558,17 +5611,24 @@ namespace beethoven3
                     //mousecursor on nextButton item section
 
 
-                    if (rectMouseRecordBoard.Intersects(recordBoard.getRectNextButton()) || drawrec1.Intersects(recordBoard.getRectNextButton()))
+                    if (rectMouseRecordBoard.Intersects(recordBoard.getRectNextButton()) || rightHandPosition.Intersects(recordBoard.getRectNextButton()))
                     {
+                        nearButton = true;
+                        GetCenterOfButton(recordBoard.getRectNextButton());
+
                         recordBoard.setClickNextButton(true);
                         //click the right hand item section
                         if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (finalClick && !pastClick))
                         {
+                            nearButton = false;
+
                             gameState = GameStates.SongMenu;
                         }
                     }
                     else
                     {
+                        nearButton = false;
+
                         recordBoard.setClickNextButton(false);
                     }
                     pastClick = finalClick;
