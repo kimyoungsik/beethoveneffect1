@@ -14,7 +14,7 @@ namespace beethoven3
         private List<Item> rightItems;
         private List<Item> myRightItems;
         private List<Rectangle> rectRightItems = new List<Rectangle>();
-
+        private Texture2D rightItemBackground;
 
 
         public RightItemShop(ItemManager itemManager,ScoreManager scoreManager)
@@ -28,6 +28,7 @@ namespace beethoven3
             base.LoadContent(cm);
             rightItems = itemManager.getShopRightHandItem();
             myRightItems = itemManager.getMyRightHandItem();
+            rightItemBackground = cm.Load<Texture2D>(@"rightItem\rightItemBackground");
             setLocationItems();
         }
 
@@ -86,19 +87,44 @@ namespace beethoven3
         public void setLocationItems()
         {
             int i;
-            for (i = 0; i < rightItems.Count; i++)
+            int j = 0;
+            if (rightItems.Count < 4)
             {
-                Rectangle rectRightHand = new Rectangle(300, i * 150, 100, 100);
-                rectRightItems.Add(rectRightHand);
+                for (i = 0; i < rightItems.Count; i++)
+                {
+                    Rectangle rectRightHand = new Rectangle(i * 255 + 160, 200, 240, 240);
+                    rectRightItems.Add(rectRightHand);
+                }
+            }
+            else
+            {
+                for (i = 0; i < 3; i++)
+                {
+                    Rectangle rectRightHand = new Rectangle(i * 255+160, 200, 240, 240);
+                    rectRightItems.Add(rectRightHand);
+                }
+                
+                for (i = 3; i < rightItems.Count; i++)
+                {
+                    
+                    Rectangle rectRightHand = new Rectangle(j * 255+160, 480, 240, 240);
+                    rectRightItems.Add(rectRightHand);
+                    j++;
+                }
+
+
             }
 
         }
 
         public override void Draw(SpriteBatch spriteBatch, int width, int height)
         {
+            
+            //배경
+            spriteBatch.Draw(rightItemBackground, new Vector2(0, 0), null, Color.White, 0f, new Vector2(0, 0), 1f, SpriteEffects.None, 1f);
 
             base.Draw(spriteBatch, width, height);
-
+           
             spriteBatch.DrawString(pericles36Font, "Gold : ", new Vector2(10, 200), Color.Black);
 
 
@@ -111,9 +137,7 @@ namespace beethoven3
             //보유아이템
             for (i = 0; i < rightItems.Count; i++)
             {
-                //Rectangle rectRightHand = new Rectangle(300, i * 150, 100, 100);
-                
-               // bool isHave = false;
+              
                 spriteBatch.Draw(ItemBackground, rectRightItems[i], Color.White);
                 //Item I already have
                 if (haveOne(rightItems[i]))
@@ -127,23 +151,21 @@ namespace beethoven3
                 }
 
                 //아이템 가격 표시 
-                spriteBatch.DrawString(pericles36Font, rightItems[i].GetCost().ToString(), new Vector2(rectRightItems[i].X+(rectRightItems[i].Width/2), rectRightItems[i].Y + rectRightItems[i].Height), Color.Black);
+                spriteBatch.DrawString(pericles36Font, rightItems[i].GetCost().ToString(), new Vector2(rectRightItems[i].X+(rectRightItems[i].Width/2), rectRightItems[i].Y + rectRightItems[i].Height - rectRightItems[i].Height/10), Color.Black);
            
                 //rectRightItem.Add(rectRightHand);
             }
 
-            //장착아이템
-            Rectangle usedItemRect = new Rectangle(50,50,100,100);
+            ////장착아이템
+            //Rectangle usedItemRect = new Rectangle(50,50,100,100);
 
+            //spriteBatch.Draw(usedItemBackground, usedItemRect, Color.White);
 
-          // Color myColor = Color.White;
-          //  myColor.A = 50;
-            spriteBatch.Draw(usedItemBackground, usedItemRect, Color.White);
-
-
-            if (itemManager.getRightHandIndex() != null)
+           
+            if (itemManager.getRightHandIndex()  !=  -1)
             {
-                setWearItemLocation(itemManager.getRightHandIndex());
+
+                wearItemLocation = new Vector2(rectRightItems[itemManager.getRightHandIndex()].X , rectRightItems[itemManager.getRightHandIndex()].Y);
                 spriteBatch.Draw(wearItemMark, new Rectangle((int)wearItemLocation.X, (int)wearItemLocation.Y, wearItemMark.Width, wearItemMark.Height), Color.White);
             }
 
@@ -151,7 +173,7 @@ namespace beethoven3
 
             //장착아이템 텍스쳐
             //리스트에서 인덱스만 가져와서 표시
-            spriteBatch.Draw(rightItems[itemManager.getRightHandIndex()].ItemSprite.Texture, usedItemRect, Color.White);
+            //spriteBatch.Draw(rightItems[itemManager.getRightHandIndex()].ItemSprite.Texture, usedItemRect, Color.White);
 
             
             if (darkBackground)

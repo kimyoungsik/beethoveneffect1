@@ -348,6 +348,7 @@ namespace beethoven3
                         //패턴 체인지
                         else if (lines[1] == "P")
                         {
+
                             arrayNotes.Add(new NoteInfo(isright,/*startTime*/Convert.ToDouble(lines[0]), /*not markLocation but change type */Int32.Parse(lines[2]), /*type*/lines[1], /*not lastTime but Lasting time(지속시간)*/Convert.ToDouble(lines[3]), Vector2.Zero, Vector2.Zero, Vector2.Zero, Vector2.Zero));
 
                         }

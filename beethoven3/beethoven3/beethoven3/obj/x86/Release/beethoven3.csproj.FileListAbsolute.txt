@@ -124,7 +124,6 @@ D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\plan
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\planetNote2.xnb
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\planetNote3.xnb
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\planetNote4.xnb
-D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopdoor\wearItem.xnb
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\snd\ka.xnb
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\snd\jo.xnb
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\snd\maid.xnb
@@ -161,3 +160,14 @@ D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopButton
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopButton\hoverNoButton.xnb
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopButton\yesButton.xnb
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopButton\hoverYesButton.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\rightItem\rightItemBackground.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\rightItem\wearItem.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Explosion\colorPencil1.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Explosion\colorPencil2.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Explosion\colorPencil3.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Explosion\fire1.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Explosion\fire2.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Explosion\fire3.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Explosion\elec1.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Explosion\elec2.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Explosion\elec3.xnb

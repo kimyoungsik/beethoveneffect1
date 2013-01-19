@@ -100,9 +100,7 @@ namespace beethoven3
         protected Vector2 wearItemLocation;
 
 
-
-
-
+        
         public ItemShop(ItemManager itemManager, ScoreManager scoreManager)
         {
             this.itemManager = itemManager;
@@ -155,7 +153,7 @@ namespace beethoven3
 
             hoverPreviousButton = cm.Load<Texture2D>(@"result\hoverNextButton");
 
-            wearItemMark = cm.Load<Texture2D>(@"shopdoor\wearItem");
+            wearItemMark = cm.Load<Texture2D>(@"rightItem\wearItem");
 
         }
 
@@ -349,30 +347,27 @@ namespace beethoven3
             return this.recPreviousButton;
         }
        
-        public void setWearItemLocation(int index)
-        {
-            switch (index)
-            {
-                case 1:
+        //public void setWearItemLocation(int index)
+        //{
+        //    switch (index)
+        //    {
+        //        case 1:
 
-                    this.wearItemLocation = new Vector2(100, 100);
-                    break;
+        //            this.wearItemLocation = new Vector2(100, 100);
+        //            break;
 
-                case 0:
+        //        case 0:
 
-                     this.wearItemLocation = new Vector2(200,100);
-                    break;
+        //             this.wearItemLocation = new Vector2(200,100);
+        //            break;
                
         
-            }
-        }
+        //    }
+        //}
 
 
         public virtual void Draw(SpriteBatch spriteBatch, int width, int height)
         {
-
-
-
 
             recPreviousButton = new Rectangle(width - 400, height - 200, 356, 215);
             spriteBatch.Draw(previousButton, recPreviousButton, Color.White);

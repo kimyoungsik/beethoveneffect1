@@ -62,11 +62,11 @@ namespace beethoven3
         //내가 착용한 아이템-착용함수 제작
         //이걸 베이스를 자기가 산 아이템만 해당하는 것이 아니라 전체를 베이스로 
 
-        private int rightHandIndex = 0;
-        private int leftHandIndex = 0;
-        private int effectIndex = 0;
-        private int noteIndex =0;
-        private int backgroundIndex = 0;
+        private int rightHandIndex = -1;
+        private int leftHandIndex = -1;
+        private int effectIndex = -1;
+        private int noteIndex =-1;
+        private int backgroundIndex = -1;
 
 
 
@@ -146,11 +146,13 @@ namespace beethoven3
             
             effectInitFrams[0] = new Rectangle(0, 0, 166, 162);
             effectInitFrams[1] = new Rectangle(0, 0, 130, 122);
-            effectInitFrams[2] = new Rectangle(0, 0, 156, 152);
+
+
+            effectInitFrams[2] = new Rectangle(0, 0, 166, 162);
 
             effectFrameCount[0] = 9;
             effectFrameCount[1] = 8;
-            effectFrameCount[2] = 6;
+            effectFrameCount[2] = 9;
            
             
            
@@ -205,38 +207,49 @@ namespace beethoven3
                 index = getIndexOfAllRightItem(myRightHandItem[i]);
                 tw.WriteLine(index.ToString());
             }
+            tw.WriteLine("$$");
+            tw.WriteLine(getRightHandIndex());
 
-            tw.WriteLine("**");
+
+         //   tw.WriteLine("**");
             tw.WriteLine("leftHand");
             for (i = 0; i < myLeftHandItem.Count; i++)
             {
                 index = getIndexOfAllLeftItem(myLeftHandItem[i]);
                 tw.WriteLine(index.ToString());
             }
+            tw.WriteLine("$$");
+            tw.WriteLine(getLeftHandIndex());
 
-            tw.WriteLine("**");
+        //    tw.WriteLine("**");
             tw.WriteLine("effect");
             for (i = 0; i < myLeftHandItem.Count; i++)
             {
                 index = getIndexOfAllEffectItem(myEffectItem[i]);
                 tw.WriteLine(index.ToString());
             }
-            tw.WriteLine("**");
+            tw.WriteLine("$$");
+            tw.WriteLine(getEffectIndex());
+
+        //    tw.WriteLine("**");
             tw.WriteLine("note");
             for (i = 0; i < myLeftHandItem.Count; i++)
             {
                 index = getIndexOfAllNoteItem(myNoteItem[i]);
                 tw.WriteLine(index.ToString());
             }
-
-            tw.WriteLine("**");
+            tw.WriteLine("$$");
+            tw.WriteLine(getNoteIndex());
+        //    tw.WriteLine("**");
             tw.WriteLine("background");
             for (i = 0; i < myLeftHandItem.Count; i++)
             {
                 index = getIndexOfAllBackgroundItem(myBackgroundItem[i]);
                 tw.WriteLine(index.ToString());
             }
-            tw.WriteLine("**");
+            tw.WriteLine("$$");
+            tw.WriteLine(getBackgroundIndex());
+         //   tw.WriteLine("**");
             tw.WriteLine("!!");
             tw.Close();
         }
@@ -245,7 +258,7 @@ namespace beethoven3
         public void LoadFileItem()
         {
           
-
+            
 
             String dir = System.Environment.CurrentDirectory + "\\beethovenRecord\\itemManager.txt";
             if (!System.IO.File.Exists(dir))
@@ -257,6 +270,12 @@ namespace beethoven3
                 buyItem(myEffectItem, effectItem[0]);
                 buyItem(myNoteItem, rightNoteItem[0]);
                 buyItem(myBackgroundItem, backgroundItem[0]);
+                setRightHandIndex(0);
+                setLeftHandIndex(0);
+                setEffectIndex(0);
+                setNoteIndex(0);
+                setBackgroundIndex(0);
+
             }
             else
             {
@@ -273,26 +292,31 @@ namespace beethoven3
                         {
 
                             line = sr.ReadLine();
-                            while (line != "**")
+                            while (line != "$$")
                             {
 
                                 buyItem(myRightHandItem, rightHandItem[Int32.Parse(line)]);
                                 line = sr.ReadLine();
 
                             }
+                            line = sr.ReadLine();
+                            setRightHandIndex(Int32.Parse(line));
+
                         }
 
                         if (line == "leftHand")
                         {
 
                             line = sr.ReadLine();
-                            while (line != "**")
+                            while (line != "$$")
                             {
 
                                 buyItem(myLeftHandItem, leftHandItem[Int32.Parse(line)]);
                                 line = sr.ReadLine();
 
                             }
+                            line = sr.ReadLine();
+                            setLeftHandIndex(Int32.Parse(line));
                         }
 
 
@@ -300,7 +324,7 @@ namespace beethoven3
                         {
 
                             line = sr.ReadLine();
-                            while (line != "**")
+                            while (line != "$$")
                             {
 
                                 buyItem(myEffectItem, effectItem[Int32.Parse(line)]);
@@ -308,6 +332,8 @@ namespace beethoven3
                                 line = sr.ReadLine();
 
                             }
+                            line = sr.ReadLine();
+                            setEffectIndex(Int32.Parse(line));
                         }
 
 
@@ -315,13 +341,15 @@ namespace beethoven3
                         {
 
                             line = sr.ReadLine();
-                            while (line != "**")
+                            while (line != "$$")
                             {
 
                                 buyItem(myNoteItem, rightNoteItem[Int32.Parse(line)]);
                                 line = sr.ReadLine();
 
                             }
+                            line = sr.ReadLine();
+                            setNoteIndex(Int32.Parse(line));
                         }
 
 
@@ -329,13 +357,15 @@ namespace beethoven3
                         {
 
                             line = sr.ReadLine();
-                            while (line != "**")
+                            while (line != "$$")
                             {
 
                                 buyItem(myBackgroundItem, backgroundItem[Int32.Parse(line)]);
                                 line = sr.ReadLine();
 
                             }
+                            line = sr.ReadLine();
+                            setBackgroundIndex(Int32.Parse(line));
                         }
 
 
@@ -345,6 +375,8 @@ namespace beethoven3
                     sr.Close();
                 }
             }
+
+           
 
         }
 
@@ -368,17 +400,17 @@ namespace beethoven3
 
             //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             //have to additem, effect, node , background
-            effectTexture[0] = cm.Load<Texture2D>(@"Explosion\starExplosion2");
+            effectTexture[0] = cm.Load<Texture2D>(@"Explosion\starExplosion");
             effectTexture[1] = cm.Load<Texture2D>(@"Explosion\needleExplosion2");
-            effectTexture[2] = cm.Load<Texture2D>(@"Explosion\windExplosion2");
+            effectTexture[2] = cm.Load<Texture2D>(@"Explosion\fire1");
 
             goodEffectTexture[0] = cm.Load<Texture2D>(@"Explosion\starExplosion2");
             goodEffectTexture[1] = cm.Load<Texture2D>(@"Explosion\needleExplosion2");
-            goodEffectTexture[2] = cm.Load<Texture2D>(@"Explosion\windExplosion2");
+            goodEffectTexture[2] = cm.Load<Texture2D>(@"Explosion\fire2");
 
             badEffectTexture[0] = cm.Load<Texture2D>(@"Explosion\starExplosion");
             badEffectTexture[1] = cm.Load<Texture2D>(@"Explosion\needleExplosion2");
-            badEffectTexture[2] = cm.Load<Texture2D>(@"Explosion\windExplosion2");
+            badEffectTexture[2] = cm.Load<Texture2D>(@"Explosion\colorPencil3");
 
             missEffectTexture[0] = cm.Load<Texture2D>(@"Explosion\starExplosion");
             missEffectTexture[1] = cm.Load<Texture2D>(@"Explosion\needleExplosion2");

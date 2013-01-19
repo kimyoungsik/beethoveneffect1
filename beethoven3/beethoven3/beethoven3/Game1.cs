@@ -533,6 +533,11 @@ namespace beethoven3
 
             gold = Content.Load<Texture2D>(@"gold\gold");
 
+
+            //로드하고, 기본적으로 넣어줌
+            itemManager.LoadFileItem();
+
+
             //현재 장착한 이펙트의 인덱스를 전체 베이스에 찾음
             int effectIndex = itemManager.getEffectIndex();
 
@@ -575,7 +580,7 @@ namespace beethoven3
 
             //텍스쳐 크기
             ///////이펙트 생성 -START
-
+            
 
             //폭발 효과
             perfectManager = new PerfectExplosionManager();
@@ -788,7 +793,7 @@ namespace beethoven3
             currentSongName = "";
             idot = Content.Load<Texture2D>("Bitmap2");
 
-            itemManager.LoadFileItem();
+           // itemManager.LoadFileItem();
 #if Kinect
             idot1 = Content.Load<Texture2D>("Bitmap1");
             idot2 = Content.Load<Texture2D>("Bitmap2");
@@ -2937,7 +2942,8 @@ namespace beethoven3
                 this.Exit();
       
             mouseStateCurrent = Mouse.GetState();
-            
+            Rectangle rightHandPosition = new Rectangle((int)j1r.Position.X, (int)j1r.Position.Y, 5, 5);
+
            switch (gameState)
            {
                #region 타이틀
@@ -2964,8 +2970,7 @@ namespace beethoven3
                 //상점대문
                case GameStates.ShopDoor:
 
-                    Rectangle rightHandPosition = new Rectangle((int)j1r.Position.X, (int)j1r.Position.Y, 5, 5);
-
+                   
 
                     //타이틀화면으로 돌아가는 키보드처리
                     HandleKeyboardInputGoToMenu(Keyboard.GetState());
@@ -3092,6 +3097,9 @@ namespace beethoven3
                #region 오른쪽상점
                case GameStates.RightItemShop:
                    //상점대문으로 돌아가는 키보드처리
+
+                 
+                   
                    HandleKeyboardInputinItemShop(Keyboard.GetState());
 
                    Rectangle mouseRect = new Rectangle(mouseStateCurrent.X, mouseStateCurrent.Y, 5, 5);
@@ -3109,36 +3117,48 @@ namespace beethoven3
                        {
                            //Trace.WriteLine(finalClick + " - " + pastClick);
                            //아이템을 선택 했을때
-                           if ((mouseRect.Intersects(rectRightItems[i]) && mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) ||
-                               (drawrec1.Intersects(rectRightItems[i]) && finalClick && !pastClick))
-                           {
-                               //어두어짐
-                               rightItemShop.setDarkBackground(true);
+                           if (mouseRect.Intersects(rectRightItems[i]) || rightHandPosition.Intersects(rectRightItems[i]))
+                          {
 
-                               selectedItem = shopRightItems[i];
+                              Game1.nearButton = true;
+                              Game1.GetCenterOfButton(rectRightItems[i]);
 
-                               //이미 산거이면 true
-                               if (rightItemShop.haveOne(shopRightItems[i]))
+                               //if ((mouseRect.Intersects(rectRightItems[i]) && mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) ||
+                               //    (drawrec1.Intersects(rectRightItems[i]) && finalClick && !pastClick))
+
+                              if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) ||(finalClick && !pastClick))
+                                  
                                {
-                                   //장착 메시지 or 팔기 메시지 박스 띄우기 
-                                   rightItemShop.setSellOrWearOne(true);
-                                   //반복 없애기
-                                   i = rectRightItems.Count;
-                               }
-                               else
-                               {
-                                   //구입 메시지 박스 띄우기 
-                                   rightItemShop.setBuyOne(true);
-                                   //반복 없애기
-                                   i = rectRightItems.Count;
-                               }
+                                   
 
-                               //이게 있어야 중복해서 안된다.
-                               //중복 구입 막음
+                                   //어두어짐
+                                   rightItemShop.setDarkBackground(true);
 
-                               mouseStatePrevious = mouseStateCurrent;
-                               pastClick = finalClick;
-                           }
+                                   selectedItem = shopRightItems[i];
+
+                                   //이미 산거이면 true
+                                   if (rightItemShop.haveOne(shopRightItems[i]))
+                                   {
+                                       //장착 메시지 or 팔기 메시지 박스 띄우기 
+                                       rightItemShop.setSellOrWearOne(true);
+                                       //반복 없애기
+                                       i = rectRightItems.Count;
+                                   }
+                                   else
+                                   {
+                                       //구입 메시지 박스 띄우기 
+                                       rightItemShop.setBuyOne(true);
+                                       //반복 없애기
+                                       i = rectRightItems.Count;
+                                   }
+
+                                   //이게 있어야 중복해서 안된다.
+                                   //중복 구입 막음
+
+                                   mouseStatePrevious = mouseStateCurrent;
+                                   pastClick = finalClick;
+                               }
+                          }
 
                        }
 
@@ -3297,6 +3317,8 @@ namespace beethoven3
                                         //추가적으로 sellorwear 버튼도 false로 해야 한다.
                                         rightItemShop.setSellOrWearOne(false);
                                         
+                                        //파일로저장
+                                        itemManager.SaveFileItem();
 
 
                                     }
@@ -3312,7 +3334,6 @@ namespace beethoven3
 
                                     rightItemShop.setSellOrWearOne(false);
                                     rightItemShop.setSellOne(false);
-
 
 
                                 }
@@ -3381,6 +3402,9 @@ namespace beethoven3
                                        rightItemShop.setDarkBackground(false);
                                        //돈을 파일에 저장
                                        reportManager.SaveGoldToFile();
+
+                                       //파일로저장
+                                       itemManager.SaveFileItem();
                                    }
                                    //돈이 없다.
                                    else
@@ -3401,7 +3425,7 @@ namespace beethoven3
                            rightItemShop.setHoverYesButton(false);
                        }
 
-                       if (mouseRect.Intersects(rightItemShop.getRectNoButton()))
+                       if (mouseRect.Intersects(rightItemShop.getRectNoButton()) || drawrec1.Intersects(rightItemShop.getRectNoButton()))
                        {
                            rightItemShop.setHoverNoButton(true);
                            if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (finalClick && !pastClick))

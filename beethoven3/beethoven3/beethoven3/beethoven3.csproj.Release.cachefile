@@ -122,7 +122,6 @@ Content\notes\planetNote1.xnb
 Content\notes\planetNote2.xnb
 Content\notes\planetNote3.xnb
 Content\notes\planetNote4.xnb
-Content\shopdoor\wearItem.xnb
 Content\snd\ka.xnb
 Content\snd\jo.xnb
 Content\snd\maid.xnb
@@ -150,6 +149,17 @@ Content\shopButton\noButton.xnb
 Content\shopButton\hoverNoButton.xnb
 Content\shopButton\yesButton.xnb
 Content\shopButton\hoverYesButton.xnb
+Content\rightItem\rightItemBackground.xnb
+Content\rightItem\wearItem.xnb
+Content\Explosion\colorPencil1.xnb
+Content\Explosion\colorPencil2.xnb
+Content\Explosion\colorPencil3.xnb
+Content\Explosion\fire1.xnb
+Content\Explosion\fire2.xnb
+Content\Explosion\fire3.xnb
+Content\Explosion\elec1.xnb
+Content\Explosion\elec2.xnb
+Content\Explosion\elec3.xnb
 Content\snd\ka.wma
 Content\snd\jo.wma
 Content\snd\maid.wma
