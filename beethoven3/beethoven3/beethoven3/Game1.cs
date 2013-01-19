@@ -3113,24 +3113,23 @@ namespace beethoven3
                    //다이얼로그를 띄웠을 때 이것이 중복실행되지 않도록 
                    if (!rightItemShop.getSellOrWearOne() && !rightItemShop.getBuyOne() && !rightItemShop.getNoGold() && !rightItemShop.getHandInItem())
                    {
+                       int count = 0;
                        for (i = 0; i < rectRightItems.Count; i++)
                        {
                            //Trace.WriteLine(finalClick + " - " + pastClick);
                            //아이템을 선택 했을때
                            if (mouseRect.Intersects(rectRightItems[i]) || rightHandPosition.Intersects(rectRightItems[i]))
-                          {
+                           {
 
-                              Game1.nearButton = true;
-                              Game1.GetCenterOfButton(rectRightItems[i]);
-
+                               nearButton = true;
+                               GetCenterOfButton(rectRightItems[i]);
                                //if ((mouseRect.Intersects(rectRightItems[i]) && mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) ||
                                //    (drawrec1.Intersects(rectRightItems[i]) && finalClick && !pastClick))
 
-                              if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) ||(finalClick && !pastClick))
-                                  
+                               if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (finalClick && !pastClick))
                                {
-                                   
 
+                                   //nearButton = false;
                                    //어두어짐
                                    rightItemShop.setDarkBackground(true);
 
@@ -3158,10 +3157,21 @@ namespace beethoven3
                                    mouseStatePrevious = mouseStateCurrent;
                                    pastClick = finalClick;
                                }
-                          }
-
+                           }
+                           else
+                           {
+                               count++;
+                           }
+                           
+                           
+                          
                        }
 
+                       if (count == rectRightItems.Count)
+                       {
+                           nearButton = false;
+                       }
+                       
                    }
 
 
@@ -3169,13 +3179,16 @@ namespace beethoven3
                    if (rightItemShop.getNoGold())
                    {
                        //버튼 Hover
-                       if (mouseRect.Intersects(rightItemShop.getRectNoGoldButton()) || drawrec1.Intersects(rightItemShop.getRectNoGoldButton()))
+                       if (mouseRect.Intersects(rightItemShop.getRectNoGoldButton()) || rightHandPosition.Intersects(rightItemShop.getRectNoGoldButton()))
                        {
                            //눌린모양
                            rightItemShop.setHoverNoGoldButton(true);
+                           nearButton = true;
+                           GetCenterOfButton(rightItemShop.getRectNoGoldButton());
                            //버튼 누르면
                            if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (finalClick && !pastClick))
                            {
+                               nearButton = false;
                                 //다시 밝게
                                rightItemShop.setDarkBackground(false);
                                //메시지 없애기
@@ -3187,6 +3200,7 @@ namespace beethoven3
                        //버튼 not hover
                        else
                        {
+                           nearButton = false;
                            rightItemShop.setHoverNoGoldButton(false);
                        }
                    }
@@ -3198,13 +3212,17 @@ namespace beethoven3
                     if (rightItemShop.getHandInItem())
                     {
                         //버튼 Hover
-                        if (mouseRect.Intersects(rightItemShop.getRectHandInItemButton()) || drawrec1.Intersects(rightItemShop.getRectHandInItemButton()))
+                        if (mouseRect.Intersects(rightItemShop.getRectHandInItemButton()) || rightHandPosition.Intersects(rightItemShop.getRectHandInItemButton()))
                         {
                             //눌린모양
+                            nearButton = true;
+                            GetCenterOfButton(rightItemShop.getRectHandInItemButton());
+
                             rightItemShop.setHoverHandInItemButton(true);
                             //버튼 누르면
                             if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (finalClick && !pastClick))
                             {
+                                nearButton = false;
                                 //다시 밝게
                                 rightItemShop.setDarkBackground(false);
                                 //메시지 없애기
@@ -3216,6 +3234,7 @@ namespace beethoven3
                         //버튼 not hover
                         else
                         {
+                            nearButton = false;
                             rightItemShop.setHoverHandInItemButton(false);
                         }
                         //mouseStatePrevious = mouseStateCurrent;
@@ -3227,10 +3246,11 @@ namespace beethoven3
                 if (rightItemShop.getSellOrWearOne())
                 {
                     //마우스가 장착 버튼에 올려졌을 때
-                    if (mouseRect.Intersects(rightItemShop.getRectWearButton()) || drawrec1.Intersects(rightItemShop.getRectWearButton()))
+                    if (mouseRect.Intersects(rightItemShop.getRectWearButton()) || rightHandPosition.Intersects(rightItemShop.getRectWearButton()))
                     {
                         rightItemShop.setHoverWearButton(true);
-
+                        nearButton = true;
+                        GetCenterOfButton(rightItemShop.getRectWearButton());
 
                         if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (finalClick && !pastClick))
                         {
@@ -3256,6 +3276,7 @@ namespace beethoven3
                                     //밝게 하기
                                     rightItemShop.setDarkBackground(false);
                                     rightItemShop.setSellOrWearOne(false);
+                                    nearButton = false;
                                 }
                                 //아이템을 찾지 못했으면
                                 else
@@ -3272,15 +3293,21 @@ namespace beethoven3
                     }
                     else
                     {
+
+                        
+                        
                         rightItemShop.setHoverWearButton(false);
+                        
                     }
 
 
                     //마우스가 팔기 버튼에 눌러졌을 때
-                    if (mouseRect.Intersects(rightItemShop.getRectSellButton()) || drawrec1.Intersects(rightItemShop.getRectSellButton()))
+                    if (mouseRect.Intersects(rightItemShop.getRectSellButton()) || rightHandPosition.Intersects(rightItemShop.getRectSellButton()))
                     {
 
                         rightItemShop.setHoverSellButton(true);
+                        nearButton = true;
+                        GetCenterOfButton(rightItemShop.getRectSellButton());
 
                         if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (finalClick && !pastClick))
                         {
@@ -3299,7 +3326,7 @@ namespace beethoven3
                                     //아이템을 찾았으면
                                     if (index != -1)
                                     {
-
+                                        nearButton = true;
                                         //전체 돈에서 판 비용 더해줌
                                         scoreManager.TotalGold += selectedItem.GetCost() / 2;
 
@@ -3349,38 +3376,56 @@ namespace beethoven3
                     }
                     else
                     {
+                        //nearButton = true;
                         rightItemShop.setHoverSellButton(false);
                     }
 
 
                     //취소버튼 눌렀을 때
-                    if (mouseRect.Intersects(rightItemShop.getRectCancelButton()) || drawrec1.Intersects(rightItemShop.getRectCancelButton()))
+                    if (mouseRect.Intersects(rightItemShop.getRectCancelButton()) || rightHandPosition.Intersects(rightItemShop.getRectCancelButton()))
                     {
                         rightItemShop.setHoverCancelButton(true);
+                        nearButton = true;
+                        GetCenterOfButton(rightItemShop.getRectCancelButton());
+
                         if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (finalClick && !pastClick))
                         {
                             //return to normal , remove message box
                             rightItemShop.setSellOrWearOne(false);
                             rightItemShop.setDarkBackground(false);
+                            nearButton = false;
                             //mouseStatePrevious = mouseStateCurrent;
                             //pastClick = finalClick;
                         }
                     }
                     else
                     {
+                       // nearButton = false;
                         rightItemShop.setHoverCancelButton(false);
                     }
                    
+                    if(
+                     !(mouseRect.Intersects(rightItemShop.getRectWearButton()) || rightHandPosition.Intersects(rightItemShop.getRectWearButton()))
+                     &&!(mouseRect.Intersects(rightItemShop.getRectCancelButton()) || rightHandPosition.Intersects(rightItemShop.getRectCancelButton()))
+                     &&!(mouseRect.Intersects(rightItemShop.getRectSellButton()) || rightHandPosition.Intersects(rightItemShop.getRectSellButton()))
+                    )
+                    {
+                        nearButton = false;
+                    }
+
                 }
 
+                  
                   
                    //구입 메시지
                    //message box about buying item
                    if (rightItemShop.getBuyOne())
                    {
                        //mouse cursor on right button
-                       if (mouseRect.Intersects(rightItemShop.getRectYesButton()) || drawrec1.Intersects(rightItemShop.getRectYesButton()))
+                       if (mouseRect.Intersects(rightItemShop.getRectYesButton()) || rightHandPosition.Intersects(rightItemShop.getRectYesButton()))
                        {
+                           nearButton = true;
+                           GetCenterOfButton(rightItemShop.getRectYesButton());
                            rightItemShop.setHoverYesButton(true);
                            if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (finalClick && !pastClick))
                            {
@@ -3390,11 +3435,10 @@ namespace beethoven3
                                    //돈으로 물건사기 
                                    //buy item with money
 
-
+                                   nearButton = false;
                                    //돈이 충분히 있다.
                                    if (scoreManager.TotalGold >= selectedItem.GetCost())
                                    {
-
                                        //전체 돈에서 구입비용 차감
                                        scoreManager.TotalGold -= selectedItem.GetCost();
                                        rightItemShop.addItemtoMyItem(selectedItem);
@@ -3425,41 +3469,62 @@ namespace beethoven3
                            rightItemShop.setHoverYesButton(false);
                        }
 
-                       if (mouseRect.Intersects(rightItemShop.getRectNoButton()) || drawrec1.Intersects(rightItemShop.getRectNoButton()))
+                       if (mouseRect.Intersects(rightItemShop.getRectNoButton()) || rightHandPosition.Intersects(rightItemShop.getRectNoButton()))
                        {
+                           nearButton = true;
+                           GetCenterOfButton(rightItemShop.getRectNoButton());
                            rightItemShop.setHoverNoButton(true);
                            if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (finalClick && !pastClick))
                            {
                                //return to normal , remove message box
                                rightItemShop.setBuyOne(false);
                                rightItemShop.setDarkBackground(false);
+                               nearButton = false;
                            }
                        }
                        else
                        {
                            rightItemShop.setHoverNoButton(false);
                        }
-                       //mouseStatePrevious = mouseStateCurrent;
-                       //pastClick = finalClick;
+
+                       if (
+                       !(mouseRect.Intersects(rightItemShop.getRectYesButton()) || rightHandPosition.Intersects(rightItemShop.getRectYesButton()))
+                       && !(mouseRect.Intersects(rightItemShop.getRectNoButton()) || rightHandPosition.Intersects(rightItemShop.getRectNoButton()))
+                       )
+                       {
+
+                           nearButton = false;
+                       }
+                       
+
                    }
 
 
 
 
-                   if (mouseRect.Intersects(rightItemShop.getRectPreviousButton()) || drawrec1.Intersects(rightItemShop.getRectPreviousButton()))
+                   //다른메시지 창이 안떳을 때
+
+                   if (!(rightItemShop.getBuyOne()) && !(rightItemShop.getSellOrWearOne()) && !rightItemShop.getHandInItem() && !rightItemShop.getNoGold() )
+
                    {
-                       rightItemShop.setClickPreviousButton(true);
-                       //click the right hand item section
-                       if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (finalClick && !pastClick))
+                       if (mouseRect.Intersects(rightItemShop.getRectPreviousButton()) || rightHandPosition.Intersects(rightItemShop.getRectPreviousButton()))
                        {
-                           gameState = GameStates.ShopDoor;
+                           nearButton = true;
+                           GetCenterOfButton(rightItemShop.getRectPreviousButton());
+                           rightItemShop.setClickPreviousButton(true);
+                           //click the right hand item section
+                           if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (finalClick && !pastClick))
+                           {
+                               nearButton = false;
+                               gameState = GameStates.ShopDoor;
+                           }
+                       }
+                       else
+                       {
+                           //nearButton = false;
+                           rightItemShop.setClickPreviousButton(false);
                        }
                    }
-                   else
-                   {
-                       rightItemShop.setClickPreviousButton(false);
-                   }
-                   
                    break;
 
                #endregion
