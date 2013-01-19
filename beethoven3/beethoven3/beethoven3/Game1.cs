@@ -737,9 +737,7 @@ namespace beethoven3
               
 
             }
-
-
-
+            
 
             //곡을 불러오기
             file.FileLoading(dir, "*.mnf");
@@ -2956,176 +2954,22 @@ namespace beethoven3
                #region 타이틀
                //타이틀 화면
                 case GameStates.Menu:
-                    ////곡선택화면으로
-                    //if ((Keyboard.GetState().IsKeyDown(Keys.Space))                    )
-                    //{
-                    //    gameState = GameStates.SongMenu;
 
-                    //}
-                    
-                    ////상점 대문으로
-                    //if ((Keyboard.GetState().IsKeyDown(Keys.S)))
-                    //{
-                    //    gameState = GameStates.ShopDoor;
-                    //}
+                    menuScene.Update(gameTime, rightHandPosition);
 
-                   menuScene.Update(gameTime);
-                    break;
+                break;
                #endregion
 
                #region 상점대문
                 //상점대문
                case GameStates.ShopDoor:
 
-                   
-
                     //타이틀화면으로 돌아가는 키보드처리
                     HandleKeyboardInputGoToMenu(Keyboard.GetState());
+                    shopDoor.Update(gameTime, rightHandPosition);
+                   // pastClick = finalClick;
 
-                   Rectangle rect = new Rectangle(mouseStateCurrent.X, mouseStateCurrent.Y, 5, 5);
-
-                   //mousecursor on right hand item section
-                   //오른쪽지휘봉 아이템
-                   if (rect.Intersects(shopDoor.getRectRightHand()) || rightHandPosition.Intersects(shopDoor.getRectRightHand()))
-                   {
-                       //hover on
-                       shopDoor.setClickRightHand(true);
-                       nearButton = true;
-                       GetCenterOfButton(shopDoor.getRectRightHand());
-                       //click the right hand item section
-                       if ( (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || finalClick && !pastClick )
-                       {
-                           gameState = GameStates.RightItemShop;
-                           //가운데로 고정된거 풀기 
-                           nearButton = false;
-                       }
-                   }
-                   else
-                   {
-                       //hover off
-                   //    nearButton = false;
-                       shopDoor.setClickRightHand(false);
-                   }
-
-
-                   //mouse cursor on left hadn item section
-                   if (rect.Intersects(shopDoor.getRectLeftHand()) || rightHandPosition.Intersects(shopDoor.getRectLeftHand()))
-                   {
-                       shopDoor.setClickLeftHand(true);
-                       nearButton = true;
-                       GetCenterOfButton(shopDoor.getRectLeftHand());
-                       if (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released || finalClick && !pastClick)
-                       {
-                           gameState = GameStates.LeftItemShop;
-                           //가운데로 고정된거 풀기 
-                           nearButton = false;
-                       }
-                   }
-                   else
-                   {
-                   //    nearButton = false;
-                       shopDoor.setClickLeftHand(false);
-                   }
-
-
-                   //note
-                   if (rect.Intersects(shopDoor.getRectNote()) || rightHandPosition.Intersects(shopDoor.getRectNote()))
-                   {
-                       nearButton = true;
-                       GetCenterOfButton(shopDoor.getRectNote());
-                     
-                       shopDoor.setClickNote(true);
-                       if (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released || finalClick && !pastClick)
-                       {
-                           gameState = GameStates.NoteItemShop;
-                           //가운데로 고정된거 풀기 
-                           nearButton = false;
-                       }
-
-                   }
-                   else
-                   {
-                       shopDoor.setClickNote(false);
-                   }
-
-
-                   if (rect.Intersects(shopDoor.getRectEffect()) || rightHandPosition.Intersects(shopDoor.getRectEffect()))
-                   {
-                       nearButton = true;
-                       GetCenterOfButton(shopDoor.getRectEffect());
-                     
-                       shopDoor.setClickEffect(true);
-                       if (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released || finalClick && !pastClick)
-                       {
-                           gameState = GameStates.EffectItemShop;
-                           //가운데로 고정된거 풀기 
-                           nearButton = false;
-                       }
-
-                   }
-                   else
-                   {
-                       shopDoor.setClickEffect(false);
-                   }
-
-
-                   if (rect.Intersects(shopDoor.getRectBackground()) || rightHandPosition.Intersects(shopDoor.getRectBackground()))
-                   {
-                       nearButton = true;
-                       GetCenterOfButton(shopDoor.getRectBackground());
-                     
-                       shopDoor.setClickBackground(true);
-                       if (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released || finalClick && !pastClick)
-                       {
-                           gameState = GameStates.BackgroundItemShop;
-                           //가운데로 고정된거 풀기 
-                           nearButton = false;
-                       }
-
-                   }
-                   else
-                   {
-                       shopDoor.setClickBackground(false);
-                   }
-
-                   if (rect.Intersects(shopDoor.getRectPreviousButton()) || rightHandPosition.Intersects(shopDoor.getRectPreviousButton()))
-                   {
-
-                       nearButton = true;
-                       GetCenterOfButton(shopDoor.getRectPreviousButton());
-                     
-                       shopDoor.setClickPreviousButton(true);
-                       //click the right hand item section
-                       if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (finalClick && !pastClick))
-                       {
-                           gameState = GameStates.Menu;
-
-                           //가운데로 고정된거 풀기 
-                           nearButton = false;
-                       }
-                   }
-                   else
-                   {
-                       shopDoor.setClickPreviousButton(false);
-                   }
-
-
-                   
-                   if(
-                   !  (  rect.Intersects(shopDoor.getRectRightHand()) || rightHandPosition.Intersects(shopDoor.getRectRightHand())   )
-                   &&!(  rect.Intersects(shopDoor.getRectLeftHand()) || rightHandPosition.Intersects(shopDoor.getRectLeftHand()) )
-                   &&!(  rect.Intersects(shopDoor.getRectNote())    || rightHandPosition.Intersects(shopDoor.getRectNote()))
-                   &&!(  rect.Intersects(shopDoor.getRectEffect()) || rightHandPosition.Intersects(shopDoor.getRectEffect()))
-                   &&!(  rect.Intersects(shopDoor.getRectBackground()) || rightHandPosition.Intersects(shopDoor.getRectBackground()))
-                   &&!(  rect.Intersects(shopDoor.getRectPreviousButton()) || rightHandPosition.Intersects(shopDoor.getRectPreviousButton()))
-                   )
-                   {
-                       nearButton = false;
-                   }
-
-
-                   pastClick = finalClick;
-                    break;
+                break;
 
                 #endregion
 
@@ -6068,7 +5912,7 @@ namespace beethoven3
             #region 타이틀화면
             if (gameState == GameStates.Menu)
             {      
-                menuScene.Draw(spriteBatch, this.Window.ClientBounds.Width, this.Window.ClientBounds.Height);
+                menuScene.Draw(spriteBatch);
                 if (isNoPerson)
                 {
                     spriteBatch.Draw(noPerson, new Rectangle(200, 200, 727, 278), Color.White);

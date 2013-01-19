@@ -6,11 +6,13 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 //using Microsoft.Xna.Framework.GamerServices;
-
+using Microsoft.Xna.Framework.Input;
 namespace beethoven3
 {
     class ShopDoor
     {
+        MouseState pastmouse;
+        KeyboardState pastkey;
 
         private Texture2D rightHand;
         private Texture2D leftHand;
@@ -76,10 +78,154 @@ namespace beethoven3
            
         }
 
-        public void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, Rectangle rightHandPosition)
         {
+            MouseState mouse = Mouse.GetState();
+            KeyboardState key = Keyboard.GetState();
+
+            Rectangle rect = new Rectangle(mouse.X, mouse.Y, 5, 5);
 
 
+            //mousecursor on right hand item section
+            //오른쪽지휘봉 아이템
+            if (rect.Intersects(recRightHand) || rightHandPosition.Intersects(recRightHand))
+            {
+                //hover on
+                setClickRightHand(true);
+                Game1.nearButton = true;
+                Game1.GetCenterOfButton(getRectRightHand());
+                //click the right hand item section
+                if ((mouse.LeftButton == ButtonState.Pressed && pastmouse.LeftButton == ButtonState.Released) || Game1.finalClick && !Game1.pastClick)
+                {
+                    Game1.gameState = Game1.GameStates.RightItemShop;
+                    //가운데로 고정된거 풀기 
+                    Game1.nearButton = false;
+                }
+            }
+            else
+            {
+                //hover off
+                //    nearButton = false;
+                setClickRightHand(false);
+            }
+
+
+            //mouse cursor on left hadn item section
+            if (rect.Intersects(getRectLeftHand()) || rightHandPosition.Intersects(getRectLeftHand()))
+            {
+                setClickLeftHand(true);
+                Game1.nearButton = true;
+                Game1.GetCenterOfButton(getRectLeftHand());
+                if (mouse.LeftButton == ButtonState.Pressed && pastmouse.LeftButton == ButtonState.Released || Game1.finalClick && !Game1.pastClick)
+                {
+                    Game1.gameState = Game1.GameStates.LeftItemShop;
+                    //가운데로 고정된거 풀기 
+                    Game1.nearButton = false;
+                }
+            }
+            else
+            {
+                //    nearButton = false;
+                setClickLeftHand(false);
+            }
+
+
+            //note
+            if (rect.Intersects(getRectNote()) || rightHandPosition.Intersects(getRectNote()))
+            {
+                Game1.nearButton = true;
+                Game1.GetCenterOfButton(getRectNote());
+
+                setClickNote(true);
+                if (mouse.LeftButton == ButtonState.Pressed && pastmouse.LeftButton == ButtonState.Released || Game1.finalClick && !Game1.pastClick)
+                {
+                    Game1.gameState = Game1.GameStates.NoteItemShop;
+                    //가운데로 고정된거 풀기 
+                    Game1.nearButton = false;
+                }
+
+            }
+            else
+            {
+                setClickNote(false);
+            }
+
+            if (rect.Intersects(getRectEffect()) || rightHandPosition.Intersects(getRectEffect()))
+            {
+                Game1.nearButton = true;
+                Game1.GetCenterOfButton(getRectEffect());
+
+                setClickEffect(true);
+                if (mouse.LeftButton == ButtonState.Pressed && pastmouse.LeftButton == ButtonState.Released || Game1.finalClick && !Game1.pastClick)
+                {
+                    Game1.gameState = Game1.GameStates.EffectItemShop;
+                    //가운데로 고정된거 풀기 
+                    Game1.nearButton = false;
+                }
+
+            }
+            else
+            {
+                setClickEffect(false);
+            }
+
+            if (rect.Intersects(getRectBackground()) || rightHandPosition.Intersects(getRectBackground()))
+            {
+                Game1.nearButton = true;
+                Game1.GetCenterOfButton(getRectBackground());
+
+                setClickBackground(true);
+                if (mouse.LeftButton == ButtonState.Pressed && pastmouse.LeftButton == ButtonState.Released || Game1.finalClick && !Game1.pastClick)
+                {
+                    Game1.gameState = Game1.GameStates.BackgroundItemShop;
+                    //가운데로 고정된거 풀기 
+                    Game1.nearButton = false;
+                }
+
+            }
+            else
+            {
+                setClickBackground(false);
+            }
+
+            if (rect.Intersects(getRectPreviousButton()) || rightHandPosition.Intersects(getRectPreviousButton()))
+            {
+
+                Game1.nearButton = true;
+                Game1.GetCenterOfButton(getRectPreviousButton());
+
+                setClickPreviousButton(true);
+                //click the right hand item section
+                if ((mouse.LeftButton == ButtonState.Pressed && pastmouse.LeftButton == ButtonState.Released) || (Game1.finalClick && !Game1.pastClick))
+                {
+                    Game1.gameState = Game1.GameStates.Menu;
+
+                    //가운데로 고정된거 풀기 
+                    Game1.nearButton = false;
+                }
+            }
+            else
+            {
+                setClickPreviousButton(false);
+            }
+
+
+            if (
+            !(rect.Intersects(getRectRightHand()) || rightHandPosition.Intersects(getRectRightHand()))
+            && !(rect.Intersects(getRectLeftHand()) || rightHandPosition.Intersects(getRectLeftHand()))
+            && !(rect.Intersects(getRectNote()) || rightHandPosition.Intersects(getRectNote()))
+            && !(rect.Intersects(getRectEffect()) || rightHandPosition.Intersects(getRectEffect()))
+            && !(rect.Intersects(getRectBackground()) || rightHandPosition.Intersects(getRectBackground()))
+            && !(rect.Intersects(getRectPreviousButton()) || rightHandPosition.Intersects(getRectPreviousButton()))
+            )
+            {
+                Game1.nearButton = false;
+            }
+
+            pastmouse = mouse;
+            pastkey = key;
+         
+            
         }
 
         public void Draw(SpriteBatch spriteBatch,int width,int height)

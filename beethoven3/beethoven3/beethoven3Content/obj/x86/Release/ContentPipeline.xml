@@ -578,15 +578,6 @@
       <Time>2013-01-08T22:57:38.3029712+09:00</Time>
     </Item>
     <Item>
-      <Source>Menu\firstMenuBackground.png</Source>
-      <Name>Menu\firstMenuBackground</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Menu\firstMenuBackground.xnb</Output>
-      <Time>2013-01-12T21:50:58.2422252+09:00</Time>
-    </Item>
-    <Item>
       <Source>DrawLine\drawLineMark.png</Source>
       <Name>DrawLine\drawLineMark</Name>
       <Importer>TextureImporter</Importer>
@@ -1100,72 +1091,6 @@
       <Time>2013-01-14T14:02:38.5327057+09:00</Time>
     </Item>
     <Item>
-      <Source>snd\ka.mp3</Source>
-      <Name>snd\ka</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\snd\ka.xnb</Output>
-      <Extra>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\snd\ka.wma</Extra>
-      <Time>2013-01-08T22:57:38.4889819+09:00</Time>
-    </Item>
-    <Item>
-      <Source>snd\jo.MP3</Source>
-      <Name>snd\jo</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\snd\jo.xnb</Output>
-      <Extra>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\snd\jo.wma</Extra>
-      <Time>2013-01-08T22:57:38.4129775+09:00</Time>
-    </Item>
-    <Item>
-      <Source>snd\maid.mp3</Source>
-      <Name>snd\maid</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\snd\maid.xnb</Output>
-      <Extra>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\snd\maid.wma</Extra>
-      <Time>2013-01-08T22:57:38.5269841+09:00</Time>
-    </Item>
-    <Item>
-      <Source>Fonts\damagefont.spritefont</Source>
-      <Name>Fonts\damagefont</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Fonts\damagefont.xnb</Output>
-      <Time>2013-01-08T22:57:38.3099716+09:00</Time>
-    </Item>
-    <Item>
-      <Source>Fonts\Pericles36.spritefont</Source>
-      <Name>Fonts\Pericles36</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Fonts\Pericles36.xnb</Output>
-      <Time>2013-01-19T16:16:04.6533571+09:00</Time>
-    </Item>
-    <Item>
-      <Source>MessageFont.spritefont</Source>
-      <Name>MessageFont</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\MessageFont.xnb</Output>
-      <Time>2013-01-08T22:57:38.315972+09:00</Time>
-    </Item>
-    <Item>
-      <Source>Fonts\PerpetuaFont.spritefont</Source>
-      <Name>Fonts\PerpetuaFont</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Fonts\PerpetuaFont.xnb</Output>
-      <Time>2013-01-08T22:57:38.3099716+09:00</Time>
-    </Item>
-    <Item>
       <Source>settingBoard\down.png</Source>
       <Name>settingBoard\down</Name>
       <Importer>TextureImporter</Importer>
@@ -1238,6 +1163,15 @@
       <Time>2013-01-18T01:37:35.3708762+09:00</Time>
     </Item>
     <Item>
+      <Source>shopButton\hoverSCancelButton.png</Source>
+      <Name>shopButton\hoverSCancelButton</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopButton\hoverSCancelButton.xnb</Output>
+      <Time>2013-01-18T01:37:35.3718763+09:00</Time>
+    </Item>
+    <Item>
       <Source>shopButton\sSellButton.png</Source>
       <Name>shopButton\sSellButton</Name>
       <Importer>TextureImporter</Importer>
@@ -1254,15 +1188,6 @@
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopButton\hoverSSellButton.xnb</Output>
       <Time>2013-01-18T01:37:35.3638758+09:00</Time>
-    </Item>
-    <Item>
-      <Source>shopButton\hoverSCancelButton.png</Source>
-      <Name>shopButton\hoverSCancelButton</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopButton\hoverSCancelButton.xnb</Output>
-      <Time>2013-01-18T01:37:35.3718763+09:00</Time>
     </Item>
     <Item>
       <Source>gold\getGold.png</Source>
@@ -1443,6 +1368,135 @@
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Explosion\elec3.xnb</Output>
       <Time>2013-01-19T18:07:36.2740959+09:00</Time>
+    </Item>
+    <Item>
+      <Source>Menu\firstMenuBackground.png</Source>
+      <Name>Menu\firstMenuBackground</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Menu\firstMenuBackground.xnb</Output>
+      <Time>2013-01-20T02:23:10.0707718+09:00</Time>
+    </Item>
+    <Item>
+      <Source>Menu\mainPicture.png</Source>
+      <Name>Menu\mainPicture</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Menu\mainPicture.xnb</Output>
+      <Time>2013-01-20T02:29:32.4986454+09:00</Time>
+    </Item>
+    <Item>
+      <Source>Menu\title.png</Source>
+      <Name>Menu\title</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Menu\title.xnb</Output>
+      <Time>2013-01-20T02:30:06.2775774+09:00</Time>
+    </Item>
+    <Item>
+      <Source>Menu\setting.png</Source>
+      <Name>Menu\setting</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Menu\setting.xnb</Output>
+      <Time>2013-01-20T02:30:38.6704302+09:00</Time>
+    </Item>
+    <Item>
+      <Source>Menu\shop.png</Source>
+      <Name>Menu\shop</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Menu\shop.xnb</Output>
+      <Time>2013-01-20T02:30:38.6714302+09:00</Time>
+    </Item>
+    <Item>
+      <Source>Menu\start.png</Source>
+      <Name>Menu\start</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Menu\start.xnb</Output>
+      <Time>2013-01-20T02:30:38.6724303+09:00</Time>
+    </Item>
+    <Item>
+      <Source>Menu\tutorial.png</Source>
+      <Name>Menu\tutorial</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Menu\tutorial.xnb</Output>
+      <Time>2013-01-20T02:59:32.612606+09:00</Time>
+    </Item>
+    <Item>
+      <Source>snd\ka.mp3</Source>
+      <Name>snd\ka</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\snd\ka.xnb</Output>
+      <Extra>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\snd\ka.wma</Extra>
+      <Time>2013-01-08T22:57:38.4889819+09:00</Time>
+    </Item>
+    <Item>
+      <Source>snd\jo.MP3</Source>
+      <Name>snd\jo</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\snd\jo.xnb</Output>
+      <Extra>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\snd\jo.wma</Extra>
+      <Time>2013-01-08T22:57:38.4129775+09:00</Time>
+    </Item>
+    <Item>
+      <Source>snd\maid.mp3</Source>
+      <Name>snd\maid</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\snd\maid.xnb</Output>
+      <Extra>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\snd\maid.wma</Extra>
+      <Time>2013-01-08T22:57:38.5269841+09:00</Time>
+    </Item>
+    <Item>
+      <Source>Fonts\damagefont.spritefont</Source>
+      <Name>Fonts\damagefont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Fonts\damagefont.xnb</Output>
+      <Time>2013-01-08T22:57:38.3099716+09:00</Time>
+    </Item>
+    <Item>
+      <Source>Fonts\Pericles36.spritefont</Source>
+      <Name>Fonts\Pericles36</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Fonts\Pericles36.xnb</Output>
+      <Time>2013-01-19T16:16:04.6533571+09:00</Time>
+    </Item>
+    <Item>
+      <Source>MessageFont.spritefont</Source>
+      <Name>MessageFont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\MessageFont.xnb</Output>
+      <Time>2013-01-08T22:57:38.315972+09:00</Time>
+    </Item>
+    <Item>
+      <Source>Fonts\PerpetuaFont.spritefont</Source>
+      <Name>Fonts\PerpetuaFont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Fonts\PerpetuaFont.xnb</Output>
+      <Time>2013-01-08T22:57:38.3099716+09:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

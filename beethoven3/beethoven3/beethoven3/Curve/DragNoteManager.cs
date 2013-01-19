@@ -21,7 +21,7 @@ namespace beethoven3
         //노트 스피드로서 역할을 제대로 하지 않는다.
         public static float NoteSpeed;
         private static int CollisionRadius;
-        private static BadExplosionManager BadManager;
+      
         private static ScoreManager ScoreManager;
         private static MissBannerManager MissBanner;
         #endregion
@@ -96,36 +96,23 @@ namespace beethoven3
             int i;
             for (i = 0; i < DragNotes.Count; i++ )
             {
-               // try
-               // {
-                 //   BadManager.AddExplosion(DragNotes[i].Center, Vector2.Zero);
-
-                    //missM.AddExplosion(DragNotes[i].Center);
-              
+             
                 //미스 띄워주기 
-
-
                 MissBanner.AddBanners(new Vector2(1024 / 2 - 975 / 4, 769 / 2 - 412 / 4));
 
-                    DragNotes.RemoveAt(i);
-                    ScoreManager.DragNoteScore = ScoreManager.DragNoteScore + 1;
-                    if (ScoreManager.Combo > ScoreManager.Max)
-                    {
-                        ScoreManager.Max = ScoreManager.Combo;
-                    }
-    
-
-                    ScoreManager.Combo = 0;
-
-                    ScoreManager.Gage = ScoreManager.Gage - 1;
-                    
-
-
-               // }
-               // catch (ArgumentOutOfRangeException)
-              //  {
-
-               // }
+                DragNotes.RemoveAt(i);
+                //***이거 잘못된듯 
+                //드래그 노트실패하면 깍아야 할듯  
+               // ScoreManager.DragNoteScore = ScoreManager.DragNoteScore + 1;
+                
+                
+                if (ScoreManager.Combo > ScoreManager.Max)
+                {
+                    ScoreManager.Max = ScoreManager.Combo;
+                }
+                ScoreManager.Combo = 0;
+                ScoreManager.Gage = ScoreManager.Gage - 1;
+   
             }
         }
 
