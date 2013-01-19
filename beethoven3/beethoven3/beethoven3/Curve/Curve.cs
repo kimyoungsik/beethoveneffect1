@@ -319,6 +319,14 @@ namespace beethoven3
                 Points.RemoveAt(i);
             }
         }
+
+
+        public bool End
+        {
+            get { return end; }
+            set { end = value; }
+        }
+
         #endregion
 
         #region update and draw

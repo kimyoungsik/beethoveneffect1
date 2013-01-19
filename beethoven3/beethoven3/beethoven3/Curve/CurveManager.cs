@@ -40,6 +40,16 @@ namespace beethoven3
             Curves.Add(curve);    
         }
 
+        public void DeleteAllCurve()
+        {
+            foreach (Curve curve in Curves)
+            {
+                curve.DeleteAllPoints();
+                curve.End = true;
+            }
+
+        }
+
 
     //public static void addGuideLine(Vector2 p0, Vector2 p1, Vector2 p2, Vector2 p3, double time)
     //{

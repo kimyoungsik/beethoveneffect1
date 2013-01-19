@@ -517,6 +517,22 @@ namespace beethoven3
 
         }
 
+        //public void deleteAllSecondGuideLine()
+        //{
+        //    int i;
+        //    for (i = 0; i < drawGuideLineQueue.Count; i++)
+        //    {
+
+        //        drawGuideLineQueue[i]
+
+
+        //    }
+
+
+
+
+        //}
+
         //안쓰임
         public double ChangeTimeOfNote(double inputTime, double changedTempo)
         {

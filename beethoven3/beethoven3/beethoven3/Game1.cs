@@ -5185,9 +5185,14 @@ namespace beethoven3
                        //gold 파일에  저장
                        scoreManager.TotalGold += scoreManager.Gold;
                        reportManager.SaveGoldToFile();
-                       
 
+                       //도중에 꺼져도 모든 드래그모양 지우기 
 
+                       curveManager.DeleteAllCurve();
+
+                       //도중에 꺼져도 두번째 가이드라인 지우기 
+
+                       guideLineManager.DeleteAllSecondGuideLine();
 
                        //기록판에 보여줄 유저 사진 찾기
                        //Fine user pictures which will be seen in score board
