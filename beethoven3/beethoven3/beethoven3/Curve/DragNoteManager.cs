@@ -23,7 +23,7 @@ namespace beethoven3
         private static int CollisionRadius;
         private static BadExplosionManager BadManager;
         private static ScoreManager ScoreManager;
-        
+        private static MissBannerManager MissBanner;
         #endregion
 
 
@@ -36,7 +36,7 @@ namespace beethoven3
             int frameCount,
             int collisionRadius,
             float noteSpeed,
-            BadExplosionManager badManager,
+            MissBannerManager missBanner,
             ScoreManager scoreManager
             )
         {
@@ -45,7 +45,7 @@ namespace beethoven3
             FrameCount = frameCount;
             CollisionRadius = collisionRadius;
             NoteSpeed = noteSpeed;
-            BadManager = badManager;
+             MissBanner = missBanner;
             ScoreManager = scoreManager;
         }
         #endregion
@@ -104,6 +104,8 @@ namespace beethoven3
               
                 //미스 띄워주기 
 
+
+                MissBanner.AddBanners(new Vector2(1024 / 2 - 975 / 4, 769 / 2 - 412 / 4));
 
                     DragNotes.RemoveAt(i);
                     ScoreManager.DragNoteScore = ScoreManager.DragNoteScore + 1;

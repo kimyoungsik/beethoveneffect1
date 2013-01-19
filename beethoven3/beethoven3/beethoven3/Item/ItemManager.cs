@@ -395,8 +395,8 @@ namespace beethoven3
             rightHandTexture[3] = cm.Load<Texture2D>(@"rightItem\s4");
             rightHandTexture[4] = cm.Load<Texture2D>(@"rightItem\s5");
 
-            leftHandTexture[0] = cm.Load<Texture2D>(@"Bitmap1");
-            leftHandTexture[1] = cm.Load<Texture2D>(@"Bitmap2");
+            leftHandTexture[0] = cm.Load<Texture2D>(@"rightItem\s3");
+            leftHandTexture[1] = cm.Load<Texture2D>(@"rightItem\s2");
 
             //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             //have to additem, effect, node , background

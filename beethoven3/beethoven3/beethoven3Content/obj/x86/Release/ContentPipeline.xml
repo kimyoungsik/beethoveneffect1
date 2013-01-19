@@ -92,24 +92,6 @@
       <Time>2013-01-08T22:57:38.5289842+09:00</Time>
     </Item>
     <Item>
-      <Source>Bitmap1.bmp</Source>
-      <Name>Bitmap1</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Bitmap1.xnb</Output>
-      <Time>2013-01-08T22:57:38.2949708+09:00</Time>
-    </Item>
-    <Item>
-      <Source>Bitmap2.bmp</Source>
-      <Name>Bitmap2</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Bitmap2.xnb</Output>
-      <Time>2013-01-08T22:57:38.2949708+09:00</Time>
-    </Item>
-    <Item>
       <Source>shopdoor\changed1.png</Source>
       <Name>shopdoor\changed1</Name>
       <Importer>TextureImporter</Importer>

@@ -125,11 +125,11 @@ namespace beethoven3
 
             base.Draw(spriteBatch, width, height);
            
-            spriteBatch.DrawString(pericles36Font, "Gold : ", new Vector2(10, 200), Color.Black);
+            spriteBatch.DrawString(Game1.pericles36Font, "Gold : ", new Vector2(10, 200), Color.Black);
 
 
             //전체 돈 표시
-            spriteBatch.DrawString(pericles36Font, scoreManager.TotalGold.ToString(),new Vector2(190,200), Color.Black);
+            spriteBatch.DrawString(Game1.pericles36Font, scoreManager.TotalGold.ToString(),new Vector2(190,200), Color.Black);
 
             int i;
            
@@ -151,7 +151,7 @@ namespace beethoven3
                 }
 
                 //아이템 가격 표시 
-                spriteBatch.DrawString(pericles36Font, rightItems[i].GetCost().ToString(), new Vector2(rectRightItems[i].X+(rectRightItems[i].Width/2), rectRightItems[i].Y + rectRightItems[i].Height - rectRightItems[i].Height/10), Color.Black);
+                spriteBatch.DrawString(Game1.pericles36Font, rightItems[i].GetCost().ToString(), new Vector2(rectRightItems[i].X+(rectRightItems[i].Width/2), rectRightItems[i].Y + rectRightItems[i].Height - rectRightItems[i].Height/10), Color.Black);
            
                 //rectRightItem.Add(rectRightHand);
             }

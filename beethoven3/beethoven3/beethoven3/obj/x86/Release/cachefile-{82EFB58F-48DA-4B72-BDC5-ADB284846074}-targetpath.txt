@@ -8,8 +8,6 @@ Content\SongMenu\arrow2.xnb
 Content\SongMenu\background.xnb
 Content\ui\background.xnb
 Content\ui\heart.xnb
-Content\Bitmap1.xnb
-Content\Bitmap2.xnb
 Content\shopdoor\changed1.xnb
 Content\shopdoor\changed2.xnb
 Content\shopdoor\changed3.xnb

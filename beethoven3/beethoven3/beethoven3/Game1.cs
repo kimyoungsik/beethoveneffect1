@@ -34,18 +34,7 @@ namespace beethoven3
         SpriteBatch spriteBatch;
 
 
-
-        //화면에 띄우기
-        Texture2D KinectVideoTexture;
-        Rectangle VideoDisplayRectangle;
-
-
-        //Texture2D idot1;
-        //Texture2D idot2;
-        public static Rectangle drawrec1;
-        public static Rectangle drawrec2;
-        public static bool finalClick;
-        public static bool pastClick = false;
+     
 
         //스코어 보드에 쓰이는 사진
         private String ScorePic;
@@ -58,14 +47,30 @@ namespace beethoven3
 
 
 #if Kinect
-        //손 좌표
+        //화면에 띄우기
+        Texture2D KinectVideoTexture;
+        Rectangle VideoDisplayRectangle;
+
+
+        //오른손 좌표
+        
         public static Joint j1r;
+        public static Joint j2r;
 
 
+        public static Rectangle drawrec1;
+        public static Rectangle drawrec2;
+        public static bool finalClick;
+        public static bool pastClick = false;
+
+
+        //주변 버튼 여부
         public static bool nearButton = false;
+        
         //버튼 센터 
 
         public static Vector2 center = new Vector2(0, 0);
+        
         //키넥트
         KinectSensor nui = null;
         
@@ -161,12 +166,13 @@ namespace beethoven3
 #endif
         //기본 글꼴
         //basic font
-        private SpriteFont pericles36Font;
+        public static SpriteFont pericles36Font;
 
 
         public enum GameStates { Menu, Playing, SongMenu, ShopDoor,
                           RightItemShop, LeftItemShop, EffectItemShop, NoteItemShop, BackgroundItemShop,
                           ResultManager, RecordBoard, ShowPictures, SettingBoard };
+
 
         //게임 씬, 처음시작은 메뉴
         public static GameStates gameState = GameStates.Menu;
@@ -183,12 +189,12 @@ namespace beethoven3
         //선택된 곡
         private int resultSongMenu;
 
-        //음성인식 시작위치
+        //곡을 음성인식으로 선택했을때 리턴받는 값을 저장하는 변수
         public static int soundRecogStartIndex = -1;
-
-
+        
         //마지막 순위 리스트 보여주는 화면 
         private RecordBoard recordBoard;
+
 
         private ShowPictureScene showPictureScene;
 
@@ -219,13 +225,13 @@ namespace beethoven3
         private BadBannerManager badBannerManager;
         private MissBannerManager missBannerManager;
 
+
         //콤보 숫자
         ComboNumberManager comboNumberManager;
 
         //결과화면 숫자
         ResultNumberManager resultNumberManager;
-
-
+        
         //아이템 관리
         private ItemManager itemManager;
 
@@ -746,7 +752,7 @@ namespace beethoven3
                  1,
                  15,
                  0,
-                 badManager,
+                 missBannerManager,
                  scoreManager);
 
             //골드 초기화
@@ -795,12 +801,10 @@ namespace beethoven3
             reportManager.LoadGoldFromFile();
 
             currentSongName = "";
-            idot = Content.Load<Texture2D>("Bitmap2");
-
+           
            // itemManager.LoadFileItem();
 #if Kinect
-            //idot1 = Content.Load<Texture2D>("Bitmap1");
-            //idot2 = Content.Load<Texture2D>("Bitmap2");
+          
             messageFont = Content.Load<SpriteFont>("MessageFont");
             setupKinect();
 
@@ -809,7 +813,6 @@ namespace beethoven3
              *이것이 다른것에 영향을 줄 수도 있다. 
              */
             activeRecognizer = CreateRecognizer();
-
 
             //!!! 페이스 인식, 디버깅 시에 잠시 
             //ts4 = new ThreadStart(FaceDetect);
@@ -6552,7 +6555,7 @@ namespace beethoven3
               SpriteEffects.None,
               0.0f);   
 
-            Joint j2r = j2.ScaleTo(SCR_W, SCR_H, userParam, userParam);
+            j2r = j2.ScaleTo(SCR_W, SCR_H, userParam, userParam);
 
             //drawrec2.X = (int)j2r.Position.X - drawrec2.Width / 2;
             //drawrec2.Y = (int)j2r.Position.Y - drawrec2.Height / 2;

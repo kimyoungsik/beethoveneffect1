@@ -23,7 +23,7 @@ namespace beethoven3
         protected bool sellOrWearOne;
         protected bool sellOne;
 
-        protected SpriteFont pericles36Font;
+        //protected SpriteFont pericles36Font;
 
         protected Texture2D darkBackgroundImage;
         protected Texture2D yesButton;
@@ -144,7 +144,7 @@ namespace beethoven3
             hoverHandInItemButton = cm.Load<Texture2D>(@"shopdoor\hoverHandInItemButton");
             handInItemButton = cm.Load<Texture2D>(@"shopdoor\handInItemButton");
 
-            pericles36Font = cm.Load<SpriteFont>(@"Fonts\Pericles36");
+            //pericles36Font = cm.Load<SpriteFont>(@"Fonts\Pericles36");
 
 
 
@@ -377,7 +377,7 @@ namespace beethoven3
                 spriteBatch.Draw(hoverPreviousButton, recPreviousButton, Color.White);
             }
 
-            spriteBatch.DrawString(pericles36Font, "Gold : ", new Vector2(10, 200), Color.Black);
+            spriteBatch.DrawString(Game1.pericles36Font, "Gold : ", new Vector2(10, 200), Color.Black);
 
 
         }
