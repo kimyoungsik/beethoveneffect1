@@ -195,6 +195,12 @@ namespace beethoven3
                     if (line == "")
                     {
                         //헤더임을 표시하는 라인
+
+                        String fileName = files[i].ToString();
+                        String[] allDir = fileName.Split('\\');
+                        fileName  = allDir[allDir.Count()-1];
+                        
+                     
                         
                         line = sr.ReadLine();
                         
@@ -223,7 +229,7 @@ namespace beethoven3
                             //0: version , 1:name , 2: artist, 3: mp3, 4: picture
 
                             //노트정보관리에 다음 사항을 넣는다. //*** 버전 추가 
-                            noteFileManager.Add(version, Int32.Parse(level), name, artist, mp3, picture, startTime, endTime, bpm);
+                            noteFileManager.Add(fileName,version, Int32.Parse(level), name, artist, mp3, picture, startTime, endTime, bpm);
 
                             
 
@@ -272,6 +278,8 @@ namespace beethoven3
 
 
             scoreManager.Gage = 50;
+
+            String fileName = noteFileManager.noteFiles[noteNumber].FileName;
             String name = noteFileManager.noteFiles[noteNumber].Name;
             
             //시작 시간 설정
@@ -280,7 +288,7 @@ namespace beethoven3
             //끝나는 시간 설정
             endTime = noteFileManager.noteFiles[noteNumber].EndTime;
 
-            StreamReader sr = new StreamReader(System.Environment.CurrentDirectory+"\\beethovenSong\\" + name + ".mnf", Encoding.Unicode);
+            StreamReader sr = new StreamReader(System.Environment.CurrentDirectory + "\\beethovenSong\\" + fileName, Encoding.Unicode);
             scoreManager.SongName = name;
          
             //첫줄은 헤더

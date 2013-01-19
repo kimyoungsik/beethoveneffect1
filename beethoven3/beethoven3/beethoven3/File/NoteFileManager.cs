@@ -13,12 +13,15 @@ namespace beethoven3
         private String artist;
         private String mp3;
         private String picture;
+        private String fileName;
+        
         private int level;
         private double startTime;
         private double endTime;
         private int bpm;
+        
 
-        public NoteFile(String version,
+        public NoteFile(String fileName, String version,
             int level,
         String name,
         String artist,
@@ -39,7 +42,14 @@ namespace beethoven3
             this.startTime = startTime;
             this.endTime = endTime;
             this.bpm = bpm;
+            this.fileName = fileName;
         }
+        public String FileName
+        {
+            get { return fileName; }
+            set { fileName = value; }
+        }
+
         public String Version
         {
             get { return version; }
@@ -98,6 +108,7 @@ namespace beethoven3
         }
 
         public void Add(
+            String fileName,
         String version,
             int level,
         String name,
@@ -109,7 +120,7 @@ namespace beethoven3
         int bpm)
         
         {
-            NoteFile noteFile = new NoteFile(version, level, name, artist, mp3, picture, startTime, endTime, bpm);
+            NoteFile noteFile = new NoteFile(fileName,version, level, name, artist, mp3, picture, startTime, endTime, bpm);
             noteFiles.Add(noteFile);  
         }
 

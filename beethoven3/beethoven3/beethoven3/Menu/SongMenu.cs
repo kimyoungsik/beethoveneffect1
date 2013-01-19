@@ -93,11 +93,22 @@ namespace beethoven3
 
             for (int i = 0; i < noteFileManager.noteFiles.Count; i++)
             {
-                String a = noteFileManager.noteFiles[i].Mp3;
-                FileStream fileStream = new FileStream(System.Environment.CurrentDirectory+"\\beethovenSong\\" + noteFileManager.noteFiles[i].Picture, FileMode.Open);
-                
+                //String a = noteFileManager.noteFiles[i].Mp3;
+
+                int dupicateIndex = FindDuplicatePicture(i, noteFileManager.noteFiles[i].Picture);
+
+                if (dupicateIndex == -1)
+                {
+                    FileStream fileStream = new FileStream(System.Environment.CurrentDirectory + "\\beethovenSong\\" + noteFileManager.noteFiles[i].Picture, FileMode.Open);
+
                     pictures[i] = Texture2D.FromStream(graphicsdevice, fileStream);
-                
+                }
+                else
+                {
+                    pictures[i] = pictures[dupicateIndex];
+
+                }
+
                
             }
             //for (int i = 0; i < 7; i++)
@@ -105,7 +116,32 @@ namespace beethoven3
             //    top[i] = content.Load<Texture2D>("Tutorial/top" + (i + 1));
             //}
             font = content.Load<SpriteFont>("Fonts/damagefont");
-        } 
+        }
+
+
+        //중복된 사진이 있을 경우에
+        public int FindDuplicatePicture(int currentIndex, String PicName)
+        {
+            int ret = -1;
+            int i;
+
+            for (i = 0; i < currentIndex; i++)
+            {
+                if (PicName == noteFileManager.noteFiles[i].Picture)
+                {
+
+                    ret = i;
+                    i = currentIndex;
+
+                }
+
+            }
+                
+            
+            return ret;
+
+
+        }
 
 
         //결과 화면에서 쓰일 그림
