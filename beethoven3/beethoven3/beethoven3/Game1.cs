@@ -1485,7 +1485,7 @@ namespace beethoven3
                                         gameState = GameStates.SongMenu;
                                     }else if (gameState == GameStates.SongMenu)
                                     {
-                                        soundRecogStartIndex = songMenu.Scene_number;;
+                                        soundRecogStartIndex = songMenu.Scene_number;
                                     }
 
 
@@ -2836,23 +2836,20 @@ namespace beethoven3
 
               
             }
-            //if (keyState.IsKeyDown(Keys.P))
-            //{
-              
-            //    //임시
-            //    //BOOL 은 일단 임시로
+            if (keyState.IsKeyDown(Keys.P))
+            {
+             //   file.IsStop = true;
 
-            //    //템포가 바뀐 상태가 아니어야 한다.
-            //    //템포가 바뀐상태라면 다시 기본템포로 돌리고 변경 
-            //    SoundFmod.oneTime = true;
-            //    if (!SoundFmod.isChangedTempo)
-            //    {
-            //        SoundFmod.tempoChange(1.2f);
 
-            //        //2의 템포가 2초동안 빨라지는 ㅔ
-            //    }
+            }
 
-            //}
+            if (keyState.IsKeyDown(Keys.O))
+            {
+               // file.IsStop = false;
+
+
+            }
+
 
             if (keyState.IsKeyDown(Keys.Escape))
             {
@@ -5191,7 +5188,7 @@ namespace beethoven3
                        curveManager.DeleteAllCurve();
 
                        //도중에 꺼져도 두번째 가이드라인 지우기 
-
+                       
                        guideLineManager.DeleteAllSecondGuideLine();
 
                        //기록판에 보여줄 유저 사진 찾기

@@ -60,6 +60,8 @@ namespace beethoven3
 
         private Double endTime;
 
+      //  private bool isStop = false;
+
        // private int bpm;
         //패턴이 바뀌는 중인지 체크
         private bool patternChanging = false;
@@ -160,7 +162,13 @@ namespace beethoven3
         {
             this.drawLine = value;
         }
-        
+
+
+        //public bool IsStop
+        //{
+        //    get { return isStop; }
+        //    set { isStop = value; }
+        //}
         
         public void FileLoading(String dir, String file)
         {
@@ -239,8 +247,7 @@ namespace beethoven3
             }
             
         }
-
-
+    
         /// <summary>
         /// 파일의 내용을 읽어 allNotes 큐에 넣는다.
         /// </summary>
@@ -250,7 +257,7 @@ namespace beethoven3
         public void Loading(int noteNumber)
         {
             arrayNotes.Clear();
-            
+            drawGuideLineQueue.Clear();
             //템포설정
 
             StartNoteManager.rightNoteManager.noteSpeed = noteFileManager.noteFiles[noteNumber].Bpm;
@@ -835,7 +842,7 @@ namespace beethoven3
                     //if (arrayNotes.Count == 0)
 
                     //{
-                    //    endFile = true;
+                    //    endFile = true ;
                     //}
                 }
             }
@@ -1188,12 +1195,16 @@ namespace beethoven3
             //오른노트가 사각형 범위로 가면 지워지도록
          //   CheckRightNoteInCenterArea();
          //   CheckLeftNoteInCenterArea();
-            this.time += gameTime.ElapsedGameTime.TotalSeconds;
             //Trace.WriteLine(this.time);
 
-            
-            FindNote(this.time, changedTempo, optionalTime);
-        
+
+        //    if (!isStop)
+         //   {
+                this.time += gameTime.ElapsedGameTime.TotalSeconds;
+
+
+                FindNote(this.time, changedTempo, optionalTime);
+         //   }
         }
 
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
