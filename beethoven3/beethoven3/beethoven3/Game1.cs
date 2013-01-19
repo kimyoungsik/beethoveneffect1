@@ -2983,6 +2983,8 @@ namespace beethoven3
                    {
                        //hover on
                        shopDoor.setClickRightHand(true);
+                       nearButton = true;
+                       GetCenterOfButton(shopDoor.getRectRightHand());
                        //click the right hand item section
                        if ( (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || finalClick && !pastClick )
                        {
@@ -2994,15 +2996,17 @@ namespace beethoven3
                    else
                    {
                        //hover off
+                   //    nearButton = false;
                        shopDoor.setClickRightHand(false);
                    }
 
 
                    //mouse cursor on left hadn item section
-                   if (rect.Intersects(shopDoor.getRectLeftHand()) || drawrec1.Intersects(shopDoor.getRectLeftHand()))
+                   if (rect.Intersects(shopDoor.getRectLeftHand()) || rightHandPosition.Intersects(shopDoor.getRectLeftHand()))
                    {
                        shopDoor.setClickLeftHand(true);
-
+                       nearButton = true;
+                       GetCenterOfButton(shopDoor.getRectLeftHand());
                        if (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released || finalClick && !pastClick)
                        {
                            gameState = GameStates.LeftItemShop;
@@ -3012,14 +3016,17 @@ namespace beethoven3
                    }
                    else
                    {
+                   //    nearButton = false;
                        shopDoor.setClickLeftHand(false);
                    }
 
 
                    //note
-                   if (rect.Intersects(shopDoor.getRectNote()) || drawrec1.Intersects(shopDoor.getRectNote()))
+                   if (rect.Intersects(shopDoor.getRectNote()) || rightHandPosition.Intersects(shopDoor.getRectNote()))
                    {
-
+                       nearButton = true;
+                       GetCenterOfButton(shopDoor.getRectNote());
+                     
                        shopDoor.setClickNote(true);
                        if (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released || finalClick && !pastClick)
                        {
@@ -3035,9 +3042,11 @@ namespace beethoven3
                    }
 
 
-                   if (rect.Intersects(shopDoor.getRectEffect()) || drawrec1.Intersects(shopDoor.getRectEffect()))
+                   if (rect.Intersects(shopDoor.getRectEffect()) || rightHandPosition.Intersects(shopDoor.getRectEffect()))
                    {
-
+                       nearButton = true;
+                       GetCenterOfButton(shopDoor.getRectEffect());
+                     
                        shopDoor.setClickEffect(true);
                        if (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released || finalClick && !pastClick)
                        {
@@ -3053,9 +3062,11 @@ namespace beethoven3
                    }
 
 
-                   if (rect.Intersects(shopDoor.getRectBackground()) || drawrec1.Intersects(shopDoor.getRectBackground()))
+                   if (rect.Intersects(shopDoor.getRectBackground()) || rightHandPosition.Intersects(shopDoor.getRectBackground()))
                    {
-
+                       nearButton = true;
+                       GetCenterOfButton(shopDoor.getRectBackground());
+                     
                        shopDoor.setClickBackground(true);
                        if (mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released || finalClick && !pastClick)
                        {
@@ -3072,6 +3083,10 @@ namespace beethoven3
 
                    if (rect.Intersects(shopDoor.getRectPreviousButton()) || rightHandPosition.Intersects(shopDoor.getRectPreviousButton()))
                    {
+
+                       nearButton = true;
+                       GetCenterOfButton(shopDoor.getRectPreviousButton());
+                     
                        shopDoor.setClickPreviousButton(true);
                        //click the right hand item section
                        if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (finalClick && !pastClick))
@@ -3086,6 +3101,22 @@ namespace beethoven3
                    {
                        shopDoor.setClickPreviousButton(false);
                    }
+
+
+                   
+                   if(
+                   !  (  rect.Intersects(shopDoor.getRectRightHand()) || rightHandPosition.Intersects(shopDoor.getRectRightHand())   )
+                   &&!(  rect.Intersects(shopDoor.getRectLeftHand()) || rightHandPosition.Intersects(shopDoor.getRectLeftHand()) )
+                   &&!(  rect.Intersects(shopDoor.getRectNote())    || rightHandPosition.Intersects(shopDoor.getRectNote()))
+                   &&!(  rect.Intersects(shopDoor.getRectEffect()) || rightHandPosition.Intersects(shopDoor.getRectEffect()))
+                   &&!(  rect.Intersects(shopDoor.getRectBackground()) || rightHandPosition.Intersects(shopDoor.getRectBackground()))
+                   &&!(  rect.Intersects(shopDoor.getRectPreviousButton()) || rightHandPosition.Intersects(shopDoor.getRectPreviousButton()))
+                   )
+                   {
+                       nearButton = false;
+                   }
+
+
                    pastClick = finalClick;
                     break;
 
@@ -3277,6 +3308,9 @@ namespace beethoven3
                                     rightItemShop.setDarkBackground(false);
                                     rightItemShop.setSellOrWearOne(false);
                                     nearButton = false;
+
+                                    //파일로저장
+                                    itemManager.SaveFileItem();
                                 }
                                 //아이템을 찾지 못했으면
                                 else
@@ -3333,8 +3367,6 @@ namespace beethoven3
                                         //자신의 인벤토리에서 빼기
                                         rightItemShop.removeItemtoMyItem(selectedItem);
 
-
-                                      //  rightItemShop.setSellOne(false);
 
                                         rightItemShop.setDarkBackground(false);
 

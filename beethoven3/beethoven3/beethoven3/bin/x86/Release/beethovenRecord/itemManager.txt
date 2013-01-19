@@ -5,7 +5,7 @@ rightHand
 1
 2
 $$
-1
+0
 leftHand
 0
 $$

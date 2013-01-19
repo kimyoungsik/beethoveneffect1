@@ -171,6 +171,9 @@ namespace beethoven3
 
         public int Update()
         {
+            Rectangle rightHandPosition = new Rectangle((int)Game1.j1r.Position.X, (int)Game1.j1r.Position.Y, 5, 5);
+
+
             MouseState mouse = Mouse.GetState();
             KeyboardState key = Keyboard.GetState();
 
@@ -178,53 +181,95 @@ namespace beethoven3
 
             Rectangle mouseRectangle = new Rectangle(mouse.X, mouse.Y, 1, 1);
 
-            //검은색 버튼 눌렀을 때,
-            //if ((mouseRectangle.Intersects(new Rectangle(0, 0, 100, 40)) && mouse.LeftButton == ButtonState.Pressed && pastmouse.LeftButton == ButtonState.Released))
-            //{
-            //    scene_number = 0;
-            //}
-            //if ((mouseRectangle.Intersects(new Rectangle(100, 0, 100, 40)) && mouse.LeftButton == ButtonState.Pressed && pastmouse.LeftButton == ButtonState.Released))
-            //{
-            //    scene_number = 1;
-            //}
-            //if ((mouseRectangle.Intersects(new Rectangle(200, 0, 100, 40)) && mouse.LeftButton == ButtonState.Pressed && pastmouse.LeftButton == ButtonState.Released))
-            //{
-            //    scene_number = 3;
-            //}
-            //if ((mouseRectangle.Intersects(new Rectangle(300, 0, 100, 40)) && mouse.LeftButton == ButtonState.Pressed && pastmouse.LeftButton == ButtonState.Released))
-            //{
-            //    scene_number = 4;
-            //}
-            //if ((mouseRectangle.Intersects(new Rectangle(400, 0, 100, 40)) && mouse.LeftButton == ButtonState.Pressed && pastmouse.LeftButton == ButtonState.Released))
-            //{
-            //    scene_number = 5;
-            //}
-            //if ((mouseRectangle.Intersects(new Rectangle(500, 0, 100, 40)) && mouse.LeftButton == ButtonState.Pressed && pastmouse.LeftButton == ButtonState.Released))
-            //{
-            //    scene_number = 6;
-            //}
+            Rectangle recRightArrow = new Rectangle(770, 310, 60, 60);
+            Rectangle recLeftArrow = new Rectangle(170, 310, 60, 60);
 
+            
 
-            //left 버튼 누를 때
-            if ((mouseRectangle.Intersects(new Rectangle(170, 310, 60, 60)) && mouse.LeftButton == ButtonState.Pressed && pastmouse.LeftButton == ButtonState.Released)
-                || (key.IsKeyDown(Keys.Left) && !pastkey.IsKeyDown(Keys.Left)) || Game1.drawrec1.Intersects(new Rectangle(170, 310, 60, 60)) && Game1.finalClick && !Game1.pastClick)
+            //left
+            if (mouseRectangle.Intersects(recLeftArrow) || rightHandPosition.Intersects(recLeftArrow))
             {
-                if (scene_number > 0)
-                {
-                    scene_number--;
-                    leftrightmove = -1;
-                    frame = 0;
-                }
-            }
-            else if (mouseRectangle.Intersects(new Rectangle(170, 310, 60, 60)) && mouse.LeftButton == ButtonState.Released || Game1.drawrec1.Intersects(new Rectangle(170, 310, 60, 60)))
-            {
+                Game1.nearButton = true;
+                Game1.GetCenterOfButton(recLeftArrow);
+                 
+
                 arrawframebutton[0] = true;
+
+
+                if ((mouse.LeftButton == ButtonState.Pressed && pastmouse.LeftButton == ButtonState.Released) || (Game1.finalClick && !Game1.pastClick) || ((key.IsKeyDown(Keys.Left) && !pastkey.IsKeyDown(Keys.Left))))
+                {
+
+                    if (scene_number > 0)
+                    {
+                        Game1.nearButton = false;
+                        scene_number--;
+                        leftrightmove = -1;
+                        frame = 0;
+                    }
+                }
             }
             else
             {
+               
                 arrawframebutton[0] = false;
                 arrawframe[0] = 0;
             }
+
+
+
+            if (mouseRectangle.Intersects(recRightArrow) || rightHandPosition.Intersects(recRightArrow))
+            {
+
+
+
+                Game1.nearButton = true;
+                Game1.GetCenterOfButton(recRightArrow);
+                           
+                arrawframebutton[1] = true;
+
+                if ( (mouse.LeftButton == ButtonState.Pressed && pastmouse.LeftButton == ButtonState.Released)|| ( key.IsKeyDown(Keys.Right) && !pastkey.IsKeyDown(Keys.Right) ) || ( Game1.finalClick && !Game1.pastClick) )
+                
+                {
+
+                    if (scene_number < noteFileManager.noteFiles.Count - 1)
+                    {
+
+                        Game1.nearButton = false;
+                        leftrightmove = 1;
+                        scene_number++;
+                        frame = 0;
+
+
+                    }
+                }
+
+
+
+            }
+            else
+            {
+
+
+                
+                arrawframebutton[1] = false;
+                arrawframe[1] = 0;
+            }
+
+
+
+            if (!(mouseRectangle.Intersects(recRightArrow) || rightHandPosition.Intersects(recRightArrow))
+                &&!(mouseRectangle.Intersects(recLeftArrow) || rightHandPosition.Intersects(recLeftArrow))
+                &&!(mouseRectangle.Intersects(backrect) || rightHandPosition.Intersects(backrect))
+                &&!(  mouseRectangle.Intersects(startrect) || rightHandPosition.Intersects(startrect)))
+
+            
+            {
+
+                Game1.nearButton = false;
+
+            }
+
+
 
             //키넥트로 왼=> 오 왼쪽 이동
             if (isKinectLeft)
@@ -242,45 +287,19 @@ namespace beethoven3
 
 
             //키넥트로 오->왼 => 오른쪽 이동 
-            if(isKinectRight)
-
+            if (isKinectRight)
             {
-                 if (scene_number < noteFileManager.noteFiles.Count-1)
+                if (scene_number < noteFileManager.noteFiles.Count - 1)
                 {
                     leftrightmove = 1;
                     scene_number++;
                     frame = 0;
                 }
 
-                 isKinectRight = false;
+                isKinectRight = false;
 
 
             }
-
-
-
-
-            //right
-            if ((mouseRectangle.Intersects(new Rectangle(770, 310, 60, 60)) && mouse.LeftButton == ButtonState.Pressed && pastmouse.LeftButton == ButtonState.Released)
-                || (key.IsKeyDown(Keys.Right) && !pastkey.IsKeyDown(Keys.Right)) || Game1.drawrec1.Intersects(new Rectangle(770, 310, 60, 60)) && Game1.finalClick && !Game1.pastClick)
-            {
-                if (scene_number < noteFileManager.noteFiles.Count-1)
-                {
-                    leftrightmove = 1;
-                    scene_number++;
-                    frame = 0;
-                }
-            }
-            else if (mouseRectangle.Intersects(new Rectangle(770, 310, 60, 60)) && mouse.LeftButton == ButtonState.Released || Game1.drawrec1.Intersects(new Rectangle(770, 310, 60, 60)))
-            {
-                arrawframebutton[1] = true;
-            }
-            else
-            {
-                arrawframebutton[1] = false;
-                arrawframe[1] = 0;
-            }
-
             //if (mouseRectangle.Intersects(backrect) && mouse.LeftButton == ButtonState.Pressed && pastmouse.LeftButton == ButtonState.Released)
             //{
             //    return 1;
@@ -288,35 +307,53 @@ namespace beethoven3
 
 
 
-            if (mouseRectangle.Intersects(backrect) && mouse.LeftButton == ButtonState.Pressed && pastmouse.LeftButton == ButtonState.Released || Game1.drawrec1.Intersects(backrect) && Game1.finalClick && !Game1.pastClick)
+            if (mouseRectangle.Intersects(backrect) || rightHandPosition.Intersects(backrect))
             {
-                return -1;
-            }
-            else if (mouseRectangle.Intersects(backrect) && mouse.LeftButton == ButtonState.Released)
-            {
-                textbutton = true;
-            }
-            else if ((mouseRectangle.Intersects(startrect) && mouse.LeftButton == ButtonState.Pressed && pastmouse.LeftButton == ButtonState.Released) || (Game1.drawrec1.Intersects(startrect) && Game1.finalClick && !Game1.pastClick) || Game1.soundRecogStartIndex != -1)
-            {
-                int ret;
-                if (Game1.soundRecogStartIndex != -1)
+                //버튼 변하는 부분
+                Game1.nearButton = true;
+                Game1.GetCenterOfButton(backrect);
+                if( (Game1.finalClick && !Game1.pastClick) || (mouse.LeftButton == ButtonState.Pressed && pastmouse.LeftButton == ButtonState.Released))
                 {
-                    ret = Game1.soundRecogStartIndex;
+                    Game1.nearButton = false;
+                    return -1;
                 }
-
-                //보통때는 -1 이다가 start가 인식하면 곡의 인덱스 값을 받음
-                Game1.soundRecogStartIndex = -1;
-
-                ret = scene_number;
-                return ret;
-
             }
-          
+           
+
+
+           if(  mouseRectangle.Intersects(startrect) || rightHandPosition.Intersects(startrect))
+           {
+      
+            //else if ((mouseRectangle.Intersects(startrect) && mouse.LeftButton == ButtonState.Pressed && pastmouse.LeftButton == ButtonState.Released) || (Game1.drawrec1.Intersects(startrect) && Game1.finalClick && !Game1.pastClick) || Game1.soundRecogStartIndex != -1)
+            //{
+               //버튼 변하는 부분
+               Game1.nearButton = true;
+               Game1.GetCenterOfButton(startrect);
+               if ((Game1.finalClick && !Game1.pastClick) || (mouse.LeftButton == ButtonState.Pressed && pastmouse.LeftButton == ButtonState.Released))
+               {
+                   Game1.nearButton = false;
+                    int ret;
+                    if (Game1.soundRecogStartIndex != -1)
+                    {
+                        ret = Game1.soundRecogStartIndex;
+                    }
+
+                    //보통때는 -1 이다가 start가 인식하면 곡의 인덱스 값을 받음
+                    Game1.soundRecogStartIndex = -1;
+
+                    ret = scene_number;
+                    return ret;
+               }
+            }
+
+
             else
             {
                 textbutton = false;
                 textanitime = 30;
             }
+
+
             fadeinout += 5;
             fadeinout = Math.Min(fadeinout, 255);
 

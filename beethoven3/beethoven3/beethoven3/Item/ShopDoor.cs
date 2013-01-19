@@ -84,6 +84,7 @@ namespace beethoven3
 
         public void Draw(SpriteBatch spriteBatch,int width,int height)
         {
+            
 
             recRightHand = new Rectangle(width / 2 - (rightHand.Width / 2) - 100, height / 2 - (rightHand.Height / 2) - 100, 208, 233);
             spriteBatch.Draw(rightHand, recRightHand, Color.White);
@@ -132,14 +133,14 @@ namespace beethoven3
             {
 
                 //버튼이 주변에 있다고 감지
-                Game1.nearButton = true;
-                Game1.GetCenterOfButton(recPreviousButton);
+               // Game1.nearButton = true;
+              //  Game1.GetCenterOfButton(recPreviousButton);
                 spriteBatch.Draw(hoverPreviousButton, recPreviousButton, Color.White);
             }
             else
             {
                 //다른곳으로 이동
-                Game1.nearButton = false;
+               // Game1.nearButton = false;
             }
 
 
@@ -148,25 +149,37 @@ namespace beethoven3
 
                 Rectangle rectangleRightHand = new Rectangle(width / 2 - (hoverRightHand.Width / 2) - 100, height / 2 - (hoverRightHand.Height / 2) - 100, 208, 233);
 
-                Game1.nearButton = true;
-                Game1.GetCenterOfButton(rectangleRightHand);
+                //Game1.nearButton = true;
+                //Game1.GetCenterOfButton(rectangleRightHand);
 
                 spriteBatch.Draw(hoverRightHand, rectangleRightHand, Color.White);
             }
-            else
-            {
-                  Game1.nearButton = false;
+            //else
+            //{
+            //      Game1.nearButton = false;
             
-            }
+            //}
 
             if (clickLeftHand)
             {
 
-                spriteBatch.Draw(hoverLeftHand,
-                 new Rectangle(width / 2 - (hoverLeftHand.Width / 2) + 100, height / 2 - (hoverLeftHand.Height / 2) - 150, 273,
-                     172),
-                     Color.White);
+                Rectangle rectangleLeftHand = new Rectangle(width / 2 - (hoverLeftHand.Width / 2) + 100, height / 2 - (hoverLeftHand.Height / 2) - 150, 273, 172);
+
+                //Game1.nearButton = true;
+                //Game1.GetCenterOfButton(rectangleLeftHand);
+
+                spriteBatch.Draw(hoverLeftHand, rectangleLeftHand, Color.White);
+
+
             }
+            //else
+            //{
+            //    Game1.nearButton = false;
+
+            //}
+
+
+
             if (clickNote)
             {
                 spriteBatch.Draw(hoverNote,
