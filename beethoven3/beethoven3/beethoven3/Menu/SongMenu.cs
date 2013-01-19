@@ -102,7 +102,7 @@ namespace beethoven3
                     FileStream fileStream = new FileStream(System.Environment.CurrentDirectory + "\\beethovenSong\\" + noteFileManager.noteFiles[i].Picture, FileMode.Open);
 
                     pictures[i] = Texture2D.FromStream(graphicsdevice, fileStream);
-                }
+                } 
                 else
                 {
                     pictures[i] = pictures[dupicateIndex];

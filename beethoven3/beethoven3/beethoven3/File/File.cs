@@ -417,9 +417,9 @@ namespace beethoven3
             Vector2 firstMid;
             Vector2 secondMid;
             double length;
-           
-            line = MarkManager.Marks[startMarkLocation].MarkSprite.Location - MarkManager.Marks[endMarkLocation].MarkSprite.Location;
-            line.Normalize();
+
+           // line = MarkManager.Marks[startMarkLocation].MarkSprite.Center - MarkManager.Marks[endMarkLocation].MarkSprite.Center;
+           // line.Normalize();
 
             start = GetMarkerLocation(startMarkLocation);
             end = GetMarkerLocation(endMarkLocation);
@@ -900,23 +900,23 @@ namespace beethoven3
             {
                 case 0:
                     
-                    location = MarkManager.Marks[0].MarkSprite.Location;
+                    location = MarkManager.Marks[0].MarkSprite.Center;
                     break;
 
                 case 1:
-                    location = MarkManager.Marks[1].MarkSprite.Location;
+                    location = MarkManager.Marks[1].MarkSprite.Center;
                     break;
                 case 2:
-                    location = MarkManager.Marks[2].MarkSprite.Location;
+                    location = MarkManager.Marks[2].MarkSprite.Center;
                     break;
                 case 3:
-                    location = MarkManager.Marks[3].MarkSprite.Location;
+                    location = MarkManager.Marks[3].MarkSprite.Center;
                     break;
                 case 4:
-                    location = MarkManager.Marks[4].MarkSprite.Location;
+                    location = MarkManager.Marks[4].MarkSprite.Center;
                     break;
                 case 5:
-                    location = MarkManager.Marks[5].MarkSprite.Location;
+                    location = MarkManager.Marks[5].MarkSprite.Center;
                     break;
          
             }
