@@ -16,7 +16,8 @@ namespace beethoven3
     class SongMenu
     {
         private NoteFileManager noteFileManager;
-
+        private ReportManager reportManager;
+        
      //   private SpriteFont pericles36Font;
       //  bool pastClick;
         MouseState pastmouse;
@@ -25,22 +26,23 @@ namespace beethoven3
         Texture2D background;
         Texture2D[] pictures;
         Texture2D[] leftright;
-        Texture2D box;//
-        Texture2D backtext;//back
+
+       //시작
         Texture2D starttext;//back
-
-    //    SpriteFont font;
-        Rectangle backrect;
-        Rectangle backtextrect;
-        Rectangle startrect;
-        Rectangle starttextrect;
-        Texture2D[] top;
+        Texture2D hoverStarttext;
+   
+        private Rectangle backrect = new Rectangle(36, 35, 110, 85);
+        private bool clickPreviousButton;
 
 
+
+        private bool clickStartButton;
+
+        private Rectangle startrect = new Rectangle(812, 34, 193, 79);
 
         Texture2D songBackground;
 
-        private Texture2D levelTexture;
+      //  private Texture2D levelTexture;
 
 
         public bool isKinectRight = false;
@@ -52,27 +54,23 @@ namespace beethoven3
         int frame;
         int margin;
         int leftrightmove;
-        bool textbutton;
-        int textanitime;
+       // bool textbutton;
+       // int textanitime;
         // tutorial
-        public SongMenu(NoteFileManager noteFileManager)
+        public SongMenu(NoteFileManager noteFileManager,ReportManager reportManager)
         {
 
             this.noteFileManager = noteFileManager;
-
+            this.reportManager = reportManager;
 
             pictures = new Texture2D[10];
             leftright = new Texture2D[2];
             arrawframe = new int[2];
             arrawframebutton = new bool[2];
-            backrect = new Rectangle(50,  655, 180, 45);
-            backtextrect = new Rectangle(110, 660, 60, 30);
 
-            startrect = new Rectangle(800, 655, 180, 45);
-            starttextrect = new Rectangle(860, 660, 60, 30);
-            top = new Texture2D[7];
-
-
+       
+            clickPreviousButton = false;
+            clickStartButton = false;
         }
         
 
@@ -80,18 +78,21 @@ namespace beethoven3
         public void Load(ContentManager content,GraphicsDevice graphicsdevice)
         {
             songBackground = content.Load<Texture2D>(@"recordBoard\songBackground");
-            levelTexture = content.Load<Texture2D>(@"ui\heart");
+        //    levelTexture = content.Load<Texture2D>(@"ui\heart");
 
 
             background = content.Load<Texture2D>("SongMenu/background");
             leftright[0] = content.Load<Texture2D>("SongMenu/leftArrow");
             leftright[1] = content.Load<Texture2D>("SongMenu/rightArrow");
-            box = content.Load<Texture2D>("Title/box");
-            //starox = content.Load<Texture2D>("Title/box");
-            
-            backtext = content.Load<Texture2D>("Status/backtext");
-            starttext = content.Load<Texture2D>("Status/backtext");
 
+         
+            starttext = content.Load<Texture2D>("SongMenu/startButton");
+
+            hoverStarttext = content.Load<Texture2D>("SongMenu/hoverStartButton");
+
+
+            
+           
 
 
             for (int i = 0; i < noteFileManager.noteFiles.Count; i++)
@@ -174,6 +175,8 @@ namespace beethoven3
 
         public int Update()
         {
+         
+            
             Rectangle rightHandPosition = new Rectangle((int)Game1.j1r.Position.X, (int)Game1.j1r.Position.Y, 5, 5);
 
 
@@ -303,11 +306,6 @@ namespace beethoven3
 
 
             }
-            //if (mouseRectangle.Intersects(backrect) && mouse.LeftButton == ButtonState.Pressed && pastmouse.LeftButton == ButtonState.Released)
-            //{
-            //    return 1;
-            //}
-
 
 
             if (mouseRectangle.Intersects(backrect) || rightHandPosition.Intersects(backrect))
@@ -315,26 +313,33 @@ namespace beethoven3
                 //버튼 변하는 부분
                 Game1.nearButton = true;
                 Game1.GetCenterOfButton(backrect);
-                if( (Game1.finalClick && !Game1.pastClick) || (mouse.LeftButton == ButtonState.Pressed && pastmouse.LeftButton == ButtonState.Released))
+                clickPreviousButton = true;
+
+                if ((Game1.finalClick && !Game1.pastClick) || (mouse.LeftButton == ButtonState.Pressed && pastmouse.LeftButton == ButtonState.Released))
                 {
+                    clickPreviousButton = false;
                     Game1.nearButton = false;
                     return -1;
                 }
             }
-           
+            else
+            {
+                clickPreviousButton = false;
+            }
 
 
-           if(  mouseRectangle.Intersects(startrect) || rightHandPosition.Intersects(startrect))
-           {
-      
-            //else if ((mouseRectangle.Intersects(startrect) && mouse.LeftButton == ButtonState.Pressed && pastmouse.LeftButton == ButtonState.Released) || (Game1.drawrec1.Intersects(startrect) && Game1.finalClick && !Game1.pastClick) || Game1.soundRecogStartIndex != -1)
-            //{
-               //버튼 변하는 부분
-               Game1.nearButton = true;
-               Game1.GetCenterOfButton(startrect);
-               if ((Game1.finalClick && !Game1.pastClick) || (mouse.LeftButton == ButtonState.Pressed && pastmouse.LeftButton == ButtonState.Released))
-               {
-                   Game1.nearButton = false;
+
+
+            if (mouseRectangle.Intersects(startrect) || rightHandPosition.Intersects(startrect))
+            {
+
+                Game1.nearButton = true;
+                Game1.GetCenterOfButton(startrect);
+                clickStartButton = true;
+                if ((Game1.finalClick && !Game1.pastClick) || (mouse.LeftButton == ButtonState.Pressed && pastmouse.LeftButton == ButtonState.Released))
+                {
+                    Game1.nearButton = false;
+                    clickStartButton = false;
                     int ret;
                     if (Game1.soundRecogStartIndex != -1)
                     {
@@ -346,15 +351,14 @@ namespace beethoven3
 
                     ret = scene_number;
                     return ret;
-               }
+                }
             }
-
-
             else
             {
-                textbutton = false;
-                textanitime = 30;
+                clickStartButton = false;
             }
+
+
 
 
             fadeinout += 5;
@@ -376,26 +380,46 @@ namespace beethoven3
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(background, Vector2.Zero, new Color(fadeinout, fadeinout, fadeinout));
-            spriteBatch.Draw(songBackground, new Vector2(100,100), new Color(fadeinout, fadeinout, fadeinout));
+          //  spriteBatch.Draw(songBackground, new Vector2(270,100), new Color(fadeinout, fadeinout, fadeinout));
 
-            //spriteBatch.Draw(songBackground, recPreviousButton, Color.White);
-            
-
+            //사진
 
             drawText(spriteBatch);
+            
+            
             drawArrow(spriteBatch);
-           // drawNumber(spriteBatch);
-            drawBack(spriteBatch);
-            drawStart(spriteBatch);
-            TextAnimation1(spriteBatch);
-
+       
             //노래가 하나라도 있어야한다. 
 
+            spriteBatch.Draw(Game1.previousButton, new Vector2(backrect.X, backrect.Y), null, Color.White, 0f, new Vector2(0, 0), 1f, SpriteEffects.None, 1f);
+
+            if (clickPreviousButton)
+            {
+
+                spriteBatch.Draw(Game1.hoverPreviousButton, new Vector2(backrect.X, backrect.Y), null, Color.White, 0f, new Vector2(0, 0), 1f, SpriteEffects.None, 1f);
+            }
+
+
+            spriteBatch.Draw(starttext, new Vector2(startrect.X, startrect.Y), null, Color.White, 0f, new Vector2(0, 0), 1f, SpriteEffects.None, 1f);
+
+            if (clickStartButton)
+            {
+
+                spriteBatch.Draw(hoverStarttext, new Vector2(startrect.X, startrect.Y), null, Color.White, 0f, new Vector2(0, 0), 1f, SpriteEffects.None, 1f);
+            }
 
             if (noteFileManager.noteFiles.Count > 0)
             {
                 String name = noteFileManager.noteFiles[scene_number].Name;
-                spriteBatch.DrawString(Game1.georgia, name, new Vector2(512, 420), Color.White);
+            //    spriteBatch.DrawString(Game1.georgia, name, new Vector2(512, 420), Color.White);
+                spriteBatch.DrawString(Game1.georgia, name, new Vector2(422, 590), Color.DimGray, 0f, Vector2.Zero, 0.5f, SpriteEffects.None, 0f);
+
+                String artist = noteFileManager.noteFiles[scene_number].Artist;
+                spriteBatch.DrawString(Game1.georgia, artist, new Vector2(422, 560), Color.DimGray, 0f, Vector2.Zero, 0.5f, SpriteEffects.None, 0f);
+
+
+                int bestScore = reportManager.GetHighestScore(name);
+                spriteBatch.DrawString(Game1.georgia, bestScore.ToString(), new Vector2(552, 50), Color.Brown, 0f, Vector2.Zero, 0.8f, SpriteEffects.None, 0f);
 
 
                 //     spriteBatch.Draw(uiBackground, new Vector2(0, 0), Color.White);
@@ -403,10 +427,11 @@ namespace beethoven3
                 int level = noteFileManager.noteFiles[scene_number].Level;
                 //0이하이거나 넘어가지 않게 
 
-                Rectangle rec = new Rectangle(0, 0, level * 40/*하나의 그림의 width*/, 50);
+                Rectangle rec = new Rectangle(0, 0, level * 26/*하나의 그림의 width*/, 22);
                 //하트. gage양 만큼 하트가 나타남.
-                spriteBatch.Draw(levelTexture, new Vector2(300, 700), rec, Color.White);
+                spriteBatch.Draw(Game1.levelTexture, new Vector2(380, 630), rec, Color.White);
             }
+
 
           //  drawTop(spriteBatch);
         }
@@ -446,6 +471,13 @@ namespace beethoven3
         }
         public void drawText(SpriteBatch spriteBatch)
         {
+            int size = 430;
+            int backgroundSizeWidth = 475;
+            int backgroundSizeHeight = 600;
+            int backgroundHeight = 100;
+            int backgroundWidth = 20;
+            int height = 120;
+            int width = 40;
             if (leftrightmove == 1)
             {
                 frame += 3;
@@ -466,77 +498,76 @@ namespace beethoven3
             if (scene_number - 1 >= 0 && leftrightmove == 1)
             {
                 if (scene_number - 1 == 0)
-                    spriteBatch.Draw(pictures[scene_number - 1], new Rectangle(margin - 1024, 100, 500, 500), new Color(fadeinout, fadeinout, fadeinout));
+                {
+                    spriteBatch.Draw(songBackground, new Rectangle(margin - 1024 + backgroundWidth, backgroundHeight, backgroundSizeWidth, backgroundSizeHeight), new Color(fadeinout, fadeinout, fadeinout));
+            
+                  //  spriteBatch.Draw(, new Vector2(270, 100), new Color(fadeinout, fadeinout, fadeinout));
+                    spriteBatch.Draw(pictures[scene_number - 1], new Rectangle(margin - 1024 + width, height, size, size), new Color(fadeinout, fadeinout, fadeinout));
+                }
                 else if (scene_number - 1 == 8)
-                    spriteBatch.Draw(pictures[scene_number - 1], new Rectangle(margin - 1024, 100, 500, 500), new Color(fadeinout, fadeinout, fadeinout));
+                {
+                    spriteBatch.Draw(songBackground, new Rectangle(margin - 1024 + backgroundWidth, backgroundHeight, backgroundSizeWidth, backgroundSizeHeight), new Color(fadeinout, fadeinout, fadeinout));
+              
+                    spriteBatch.Draw(pictures[scene_number - 1], new Rectangle(margin - 1024 + width, height, size, size), new Color(fadeinout, fadeinout, fadeinout));
+                 }
                 else
-                    spriteBatch.Draw(pictures[scene_number - 1], new Rectangle(margin - 1024, 100, 500, 500), new Color(fadeinout, fadeinout, fadeinout));
+                {
+                    spriteBatch.Draw(songBackground, new Rectangle(margin - 1024 + backgroundWidth, backgroundHeight, backgroundSizeWidth, backgroundSizeHeight), new Color(fadeinout, fadeinout, fadeinout));
+
+                    spriteBatch.Draw(pictures[scene_number - 1], new Rectangle(margin - 1024 + width, height, size, size), new Color(fadeinout, fadeinout, fadeinout));
+                }   
             }
             if (scene_number < noteFileManager.noteFiles.Count)
             {
                 if (scene_number == 0)
-                    spriteBatch.Draw(pictures[scene_number], new Rectangle(margin + 250, 100, 500, 500), new Color(fadeinout, fadeinout, fadeinout));
+                {
+                    spriteBatch.Draw(songBackground, new Rectangle(margin + 250 + backgroundWidth, backgroundHeight, backgroundSizeWidth, backgroundSizeHeight), new Color(fadeinout, fadeinout, fadeinout));
+             
+                    spriteBatch.Draw(pictures[scene_number], new Rectangle(margin + 250 + width, height, size, size), new Color(fadeinout, fadeinout, fadeinout));
+                  
+                }
                 else if (scene_number == noteFileManager.noteFiles.Count)
-                    spriteBatch.Draw(pictures[scene_number], new Rectangle(margin + 250, 100, 500, 500), new Color(fadeinout, fadeinout, fadeinout));
+                {
+                    spriteBatch.Draw(songBackground, new Rectangle(margin + 250 + backgroundWidth, backgroundHeight, backgroundSizeWidth, backgroundSizeHeight), new Color(fadeinout, fadeinout, fadeinout));
+            
+                    spriteBatch.Draw(pictures[scene_number], new Rectangle(margin + 250 + width, height, size, size), new Color(fadeinout, fadeinout, fadeinout));
+                   
+                }
                 else
-                    spriteBatch.Draw(pictures[scene_number], new Rectangle(margin + 250, 100, 500, 500), new Color(fadeinout, fadeinout, fadeinout));
+                {
+                    spriteBatch.Draw(songBackground, new Rectangle(margin + 250 + backgroundWidth, backgroundHeight, backgroundSizeWidth, backgroundSizeHeight), new Color(fadeinout, fadeinout, fadeinout));
+           
+                    spriteBatch.Draw(pictures[scene_number], new Rectangle(margin + 250 + width, height, size, size), new Color(fadeinout, fadeinout, fadeinout));
+                  
+                }
             }
             if (scene_number + 1 < noteFileManager.noteFiles.Count && leftrightmove == -1)
             {
                 if (scene_number + 1 == 0)
-                    spriteBatch.Draw(pictures[scene_number + 1], new Rectangle(margin + 1024, 0, 500, 500), new Color(fadeinout, fadeinout, fadeinout));
-                else if (scene_number + 1 == 8)
-                    spriteBatch.Draw(pictures[scene_number + 1], new Rectangle(margin + 1024, 100, 500, 500), new Color(fadeinout, fadeinout, fadeinout));
-                else
-                    spriteBatch.Draw(pictures[scene_number + 1], new Rectangle(margin + 1024, 100, 500, 500), new Color(fadeinout, fadeinout, fadeinout));
-            }
-        }
-        //public void drawNumber(SpriteBatch spriteBatch)
-        //{
-        //    spriteBatch.DrawString(font, (scene_number + 1) + "/3", new Vector2(350, 510), Color.Black);
-        //}
-        public void drawBack(SpriteBatch spriteBatch)
-        {
-            spriteBatch.Draw(box, backrect, new Color(fadeinout, fadeinout, fadeinout));
-            spriteBatch.Draw(backtext, backtextrect, new Color(fadeinout, fadeinout, fadeinout));
-        }
-
-        public void drawStart(SpriteBatch spriteBatch)
-        {
-            spriteBatch.Draw(box, startrect, new Color(fadeinout, fadeinout, fadeinout));
-          //  spriteBatch.Draw(starttext, starttextrect, new Color(fadeinout, fadeinout, fadeinout));
-        }
-        public void drawTop(SpriteBatch spriteBatch)
-        {
-            if (scene_number == 0)
-                spriteBatch.Draw(top[1], new Rectangle(0, 0, 600, 40), Color.White);
-            if (scene_number >= 1 && scene_number < 3)
-                spriteBatch.Draw(top[2], new Rectangle(0, 0, 600, 40), Color.White);
-            if (scene_number == 3)
-                spriteBatch.Draw(top[3], new Rectangle(0, 0, 600, 40), Color.White);
-            if (scene_number == 4)
-                spriteBatch.Draw(top[4], new Rectangle(0, 0, 600, 40), Color.White);
-            if (scene_number == 5)
-                spriteBatch.Draw(top[5], new Rectangle(0, 0, 600, 40), Color.White);
-            if (scene_number > 5)
-                spriteBatch.Draw(top[6], new Rectangle(0, 0, 600, 40), Color.White);
-        }
-
-        public void TextAnimation1(SpriteBatch spriteBatch)
-        {
-            if (textbutton)
-            {
-                int x, width;
-                textanitime--;
-                textanitime = Math.Max(0, textanitime);
-                if (textanitime != 0)
                 {
-                    x = backtextrect.X - 65 - backtextrect.Width * (30 - textanitime) / 130;
-                    width = backrect.Width + 20 + backtextrect.Width * (30 - textanitime) / 65;
-                    spriteBatch.Draw(backtext, new Rectangle(x, backtextrect.Y, width, backtextrect.Height), new Color(200, 200, 200, 180 - 6 * (30 - textanitime)));
+                    spriteBatch.Draw(songBackground, new Rectangle(margin + 1024 + backgroundWidth, 0, backgroundSizeWidth, backgroundSizeHeight), new Color(fadeinout, fadeinout, fadeinout));
+                
+                    spriteBatch.Draw(pictures[scene_number + 1], new Rectangle(margin + 1024 + width, 0, size, size), new Color(fadeinout, fadeinout, fadeinout));
+                  
+                }
+                else if (scene_number + 1 == 8)
+                {
+                    spriteBatch.Draw(songBackground, new Rectangle(margin + 1024 + backgroundWidth, backgroundHeight, backgroundSizeWidth, backgroundSizeHeight), new Color(fadeinout, fadeinout, fadeinout));
+              
+                    spriteBatch.Draw(pictures[scene_number + 1], new Rectangle(margin + 1024 + width, height, size, size), new Color(fadeinout, fadeinout, fadeinout));
+                   
+                }
+                else
+                {
+                    spriteBatch.Draw(songBackground, new Rectangle(margin + 1024 + backgroundWidth, backgroundHeight, backgroundSizeWidth, backgroundSizeHeight), new Color(fadeinout, fadeinout, fadeinout));
+                   
+                    spriteBatch.Draw(pictures[scene_number + 1], new Rectangle(margin + 1024 + width, height, size, size), new Color(fadeinout, fadeinout, fadeinout));
+                   
+                
                 }
             }
         }
+       
 
         public void choGiWha()
         {

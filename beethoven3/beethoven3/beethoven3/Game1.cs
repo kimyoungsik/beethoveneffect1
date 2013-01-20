@@ -320,6 +320,14 @@ namespace beethoven3
 
         public static Texture2D menuGold;
         public static Texture2D menuGoldCha;
+
+
+        //level
+
+        public static Texture2D levelTexture;
+
+
+
         //오른손 텍스쳐들
 
         private Texture2D[] rightHandTextures;
@@ -560,12 +568,15 @@ namespace beethoven3
 
             //드래그 라인 마커점
             drawLineMarker = Content.Load<Texture2D>(@"DrawLine\drawLineMark");
-
-
+            
 
             gold = Content.Load<Texture2D>(@"gold\gold");
             menuGold = Content.Load<Texture2D>(@"game1\menuGold");
             menuGoldCha = Content.Load<Texture2D>(@"game1\menuGoldCha");
+
+            levelTexture = Content.Load<Texture2D>(@"game1\level");
+
+
             //로드하고, 기본적으로 넣어줌
             itemManager.LoadFileItem();
 
@@ -789,8 +800,7 @@ namespace beethoven3
             
             
             //***
-            songMenu = new SongMenu(noteFileManager);
-            songMenu.Load(Content,graphics.GraphicsDevice);
+           
 
             
             resultManager = new ResultManager(scoreManager);
@@ -811,8 +821,9 @@ namespace beethoven3
 
             //점수 기록 (TO FILE)
             reportManager = new ReportManager(scoreManager);
-            
-           
+
+            songMenu = new SongMenu(noteFileManager, reportManager);
+            songMenu.Load(Content, graphics.GraphicsDevice);
 
             //LOAD REPORT SCORE FILE
             //점수기록판을 로드해서 게임에 올린다. 
@@ -5909,16 +5920,7 @@ namespace beethoven3
             if (gameState == GameStates.SongMenu)
             {
                 songMenu.Draw(spriteBatch);
-
-
-               // spriteBatch.Draw(rightHandTextures[itemManager.getRightHandIndex()], new Vector2(600, 40), null, Color.White, 0f,new Vector2(0, 0), 1f,   SpriteEffects.None, 0.0f);
-               // spriteBatch.Draw(leftHandTextures[itemManager.getLeftHandIndex()], new Vector2(700, 40), null, Color.White, 0f, new Vector2(0, 0), 1f, SpriteEffects.None, 0.0f);
-               //// spriteBatch.Draw(rightHandTextures[itemManager.getRightHandIndex()], new Vector2(600, 40), null, Color.White, 0f, new Vector2(0, 0), 1f, SpriteEffects.None, 0.0f);
-               // spriteBatch.Draw(rightHandTextures[itemManager.getRightHandIndex()], new Vector2(600, 40), null, Color.White, 0f, new Vector2(0, 0), 1f, SpriteEffects.None, 0.0f);
-               // spriteBatch.Draw(rightHandTextures[itemManager.getRightHandIndex()], new Vector2(600, 40), null, Color.White, 0f, new Vector2(0, 0), 1f, SpriteEffects.None, 0.0f);
-              
-
-
+               
 
 #if Kinect
                 if (message.Length > 0)
@@ -5928,15 +5930,6 @@ namespace beethoven3
 
 
 #endif
-                //if (isReady  == 1)
-                //{
-
-                //    spriteBatch.Draw(perfectBanner, new Rectangle(70, 70, 100, 100), Color.White);
-             
-                //}
-                //String name = noteFileManager.noteFiles[songMenu.Scene_number].Name;
-
-
             }
 
             #endregion 

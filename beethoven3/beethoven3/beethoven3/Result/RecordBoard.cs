@@ -17,7 +17,6 @@ namespace beethoven3
         private Texture2D nextButton;
         private bool clickNextButton;
         private Rectangle recBackground = new Rectangle(0, 0, 1024, 769);
-        
         private Rectangle recNextButton = new Rectangle(784, 5, 220, 170);
 
         public RecordBoard()

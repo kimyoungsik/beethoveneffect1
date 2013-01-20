@@ -117,6 +117,14 @@ namespace beethoven3
             return retList;
         }
 
+        //탑스코어 
+        public ScoreInfo GetTopScore()
+        {
+            Order();
+          
+            return scoreInfos[0];
+
+        }
 
 
 

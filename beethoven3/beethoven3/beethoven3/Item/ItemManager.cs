@@ -401,15 +401,15 @@ namespace beethoven3
 
             //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             //have to additem, effect, node , background
-            effectTexture[0] = cm.Load<Texture2D>(@"Explosion\Effect_Plas_1");
+            effectTexture[0] = cm.Load<Texture2D>(@"Explosion\Effect_Guilty_1");
             effectTexture[1] = cm.Load<Texture2D>(@"Explosion\needleExplosion2");
-            effectTexture[2] = cm.Load<Texture2D>(@"Explosion\fire1");
+            effectTexture[2] = cm.Load<Texture2D>(@"Explosion\Effect_Guilty_3");
 
-            goodEffectTexture[0] = cm.Load<Texture2D>(@"Explosion\Effect_Guilty_1");
+            goodEffectTexture[0] = cm.Load<Texture2D>(@"Explosion\Effect_Guilty_2");
             goodEffectTexture[1] = cm.Load<Texture2D>(@"Explosion\needleExplosion2");
-            goodEffectTexture[2] = cm.Load<Texture2D>(@"Explosion\fire2");
+            goodEffectTexture[2] = cm.Load<Texture2D>(@"Explosion\Effect_Guilty_3");
 
-            badEffectTexture[0] = cm.Load<Texture2D>(@"Explosion\starExplosion");
+            badEffectTexture[0] = cm.Load<Texture2D>(@"Explosion\Effect_Guilty_3");
             badEffectTexture[1] = cm.Load<Texture2D>(@"Explosion\needleExplosion2");
             badEffectTexture[2] = cm.Load<Texture2D>(@"Explosion\colorPencil3");
 

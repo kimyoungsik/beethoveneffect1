@@ -167,6 +167,27 @@ namespace beethoven3
         }
 
 
+
+        public int GetHighestScore(String songName)
+        {
+            int ret  = 0;
+            ScoreInfo highScore;
+            int i;
+            for (i = 0; i < scoreInfoManagers.Count; i++)
+            {
+                if (scoreInfoManagers[i].SongName == songName)
+                {
+                    highScore = scoreInfoManagers[i].GetTopScore();
+                    ret = highScore.Score;
+                }
+            }
+
+            
+            return ret;
+        }
+
+
+
         //곡이름에 따라 새로 등록된 것인지 체크
         public bool IsHighScore(String songName, int score)
         {

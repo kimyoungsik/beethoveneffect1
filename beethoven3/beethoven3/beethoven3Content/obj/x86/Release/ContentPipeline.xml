@@ -47,24 +47,6 @@
       <Time>2013-01-08T22:57:38.3189722+09:00</Time>
     </Item>
     <Item>
-      <Source>SongMenu\arrow1.png</Source>
-      <Name>SongMenu\arrow1</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\SongMenu\arrow1.xnb</Output>
-      <Time>2013-01-08T22:57:38.316972+09:00</Time>
-    </Item>
-    <Item>
-      <Source>SongMenu\arrow2.png</Source>
-      <Name>SongMenu\arrow2</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\SongMenu\arrow2.xnb</Output>
-      <Time>2013-01-08T22:57:38.316972+09:00</Time>
-    </Item>
-    <Item>
       <Source>ui\background.png</Source>
       <Name>ui\background</Name>
       <Importer>TextureImporter</Importer>
@@ -1757,7 +1739,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Explosion\Effect_Guilty_1.xnb</Output>
-      <Time>2013-01-20T16:23:06.430352+09:00</Time>
+      <Time>2013-01-20T17:11:33.2106104+09:00</Time>
     </Item>
     <Item>
       <Source>SongMenu\background.png</Source>
@@ -1794,6 +1776,51 @@
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\recordBoard\songBackground.xnb</Output>
       <Time>2013-01-20T16:30:33.1009001+09:00</Time>
+    </Item>
+    <Item>
+      <Source>Explosion\Effect_Guilty_2.png</Source>
+      <Name>Explosion\Effect_Guilty_2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Explosion\Effect_Guilty_2.xnb</Output>
+      <Time>2013-01-20T16:32:50.7787749+09:00</Time>
+    </Item>
+    <Item>
+      <Source>Explosion\Effect_Guilty_3.png</Source>
+      <Name>Explosion\Effect_Guilty_3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Explosion\Effect_Guilty_3.xnb</Output>
+      <Time>2013-01-20T16:32:50.7797749+09:00</Time>
+    </Item>
+    <Item>
+      <Source>SongMenu\hoverStartButton.png</Source>
+      <Name>SongMenu\hoverStartButton</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\SongMenu\hoverStartButton.xnb</Output>
+      <Time>2013-01-20T16:57:57.3699469+09:00</Time>
+    </Item>
+    <Item>
+      <Source>SongMenu\startButton.png</Source>
+      <Name>SongMenu\startButton</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\SongMenu\startButton.xnb</Output>
+      <Time>2013-01-20T16:57:57.3719471+09:00</Time>
+    </Item>
+    <Item>
+      <Source>game1\level.png</Source>
+      <Name>game1\level</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\game1\level.xnb</Output>
+      <Time>2013-01-20T18:05:32.1818689+09:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

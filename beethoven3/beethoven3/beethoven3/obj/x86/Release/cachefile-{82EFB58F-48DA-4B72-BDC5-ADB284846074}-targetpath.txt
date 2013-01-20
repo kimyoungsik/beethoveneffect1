@@ -3,8 +3,6 @@ Content\Textures\SpriteSheet8.xnb
 Content\Textures\menu.xnb
 Content\Title\box.xnb
 Content\Status\backtext.xnb
-Content\SongMenu\arrow1.xnb
-Content\SongMenu\arrow2.xnb
 Content\ui\background.xnb
 Content\ui\heart.xnb
 Content\shopdoor\changed1.xnb
@@ -200,3 +198,8 @@ Content\SongMenu\background.xnb
 Content\SongMenu\leftArrow.xnb
 Content\SongMenu\rightArrow.xnb
 Content\recordBoard\songBackground.xnb
+Content\Explosion\Effect_Guilty_2.xnb
+Content\Explosion\Effect_Guilty_3.xnb
+Content\SongMenu\hoverStartButton.xnb
+Content\SongMenu\startButton.xnb
+Content\game1\level.xnb

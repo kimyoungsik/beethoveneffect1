@@ -111,18 +111,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SongMenu\arrow1.png">
-      <Name>arrow1</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="SongMenu\arrow2.png">
-      <Name>arrow2</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="ui\background.png">
       <Name>background</Name>
       <Importer>TextureImporter</Importer>
@@ -1225,13 +1213,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Explosion\Effect_Guilty_1.png">
-      <Name>Effect_Guilty_1</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="SongMenu\background.png">
       <Name>background</Name>
       <Importer>TextureImporter</Importer>
@@ -1253,6 +1234,44 @@
   <ItemGroup>
     <Compile Include="recordBoard\songBackground.png">
       <Name>songBackground</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Explosion\Effect_Guilty_2.png">
+      <Name>Effect_Guilty_2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Explosion\Effect_Guilty_3.png">
+      <Name>Effect_Guilty_3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="SongMenu\hoverStartButton.png">
+      <Name>hoverStartButton</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="SongMenu\startButton.png">
+      <Name>startButton</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Explosion\Effect_Guilty_1.png">
+      <Name>Effect_Guilty_1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="game1\level.png">
+      <Name>level</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
