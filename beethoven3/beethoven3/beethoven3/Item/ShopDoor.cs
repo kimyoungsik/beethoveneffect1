@@ -18,9 +18,16 @@ namespace beethoven3
         private Rectangle recMenuBackground = new Rectangle(0, 0, 1024, 769);
 
         
-        private Texture2D mainPicture;
-        private Rectangle recMainPicture = new Rectangle(250, 200, 568, 413);
+        //private Texture2D mainPicture;
+        //private Rectangle recMainPicture = new Rectangle(250, 200, 568, 413);
 
+        //private Texture2D goldBackground;
+        //private Rectangle recGoldBackground = new Rectangle(680, 25, 261, 43);
+
+
+        //private Rectangle recMenuGold = new Rectangle(700, 30, 25, 31);
+
+        private Vector2 locMoney = new Vector2(870, 55);
 
 
         private Texture2D rightHand;
@@ -35,14 +42,14 @@ namespace beethoven3
         private Texture2D hoverEffect;
         private Texture2D hoverBackground;
      
-        private Rectangle recRightHand = new Rectangle(750,360,191,58);
-        private Rectangle recLeftHand = new Rectangle(50, 360, 287, 72);
-        private Rectangle recNote = new Rectangle(274, 166, 147, 50);
-        private Rectangle recEffect = new Rectangle(615, 166, 179, 72);
-        private Rectangle recBackground = new Rectangle(326, 584, 395, 72);
+        private Rectangle recRightHand = new Rectangle(738,345,219,86);
+        private Rectangle recLeftHand = new Rectangle(40, 338, 315, 100);
+        private Rectangle recNote = new Rectangle(261, 141, 175, 78);
+        private Rectangle recEffect = new Rectangle(592, 134, 207, 100);
+        private Rectangle recBackground = new Rectangle(308, 568, 423, 100);
 
 
-        private Rectangle recPreviousButton = new Rectangle(25, 25, 164, 112);
+        private Rectangle recPreviousButton = new Rectangle(36, 35, 220, 170);
 
 
         private bool clickRightHand;
@@ -52,9 +59,9 @@ namespace beethoven3
         private bool clickBackground;
         private bool clickPreviousButton;
 
+        private ScoreManager scoreManager;
 
-
-        public ShopDoor()
+        public ShopDoor(ScoreManager scoreManager)
         {
              clickRightHand=false;
              clickLeftHand = false;
@@ -62,31 +69,27 @@ namespace beethoven3
              clickEffect = false;
              clickBackground = false;
              clickPreviousButton = false;
-
+             this.scoreManager = scoreManager;
         }
 
         public void LoadContent(ContentManager cm)
         {
             shopDoorBackground = cm.Load<Texture2D>(@"shopDoorItems\shopBackground");
 
-
-            mainPicture = cm.Load<Texture2D>(@"shopDoorItems\mainPic");
-
-
-             rightHand= cm.Load<Texture2D>(@"shopDoorItems\rightBaton");
-             leftHand = cm.Load<Texture2D>(@"shopDoorItems\leftHand");
-             note = cm.Load<Texture2D>(@"shopDoorItems\note");
-             effect = cm.Load<Texture2D>(@"shopDoorItems\effect");
-             background = cm.Load<Texture2D>(@"shopDoorItems\background");
+            
+            rightHand= cm.Load<Texture2D>(@"shopDoorItems\baton");
+            leftHand = cm.Load<Texture2D>(@"shopDoorItems\leftHand");
+            note = cm.Load<Texture2D>(@"shopDoorItems\note");
+            effect = cm.Load<Texture2D>(@"shopDoorItems\effect");
+            background = cm.Load<Texture2D>(@"shopDoorItems\background");
 
 
-             hoverRightHand = cm.Load<Texture2D>(@"shopDoorItems\rightBaton");
-             hoverLeftHand = cm.Load<Texture2D>(@"shopDoorItems\leftHand");
-             hoverNote = cm.Load<Texture2D>(@"shopDoorItems\note");
-             hoverEffect = cm.Load<Texture2D>(@"shopDoorItems\effect");
-             hoverBackground = cm.Load<Texture2D>(@"shopDoorItems\background");
-
-      
+            hoverRightHand = cm.Load<Texture2D>(@"shopDoorItems\hoverBaton");
+            hoverLeftHand = cm.Load<Texture2D>(@"shopDoorItems\hoverLeftHand");
+            hoverNote = cm.Load<Texture2D>(@"shopDoorItems\hoverNote");
+            hoverEffect = cm.Load<Texture2D>(@"shopDoorItems\hoverEffect");
+            hoverBackground = cm.Load<Texture2D>(@"shopDoorItems\hoverBackground");
+                  
            
         }
 
@@ -243,9 +246,16 @@ namespace beethoven3
 
             spriteBatch.Draw(shopDoorBackground, recMenuBackground, Color.White);
 
-       
-            spriteBatch.Draw(mainPicture, recMainPicture, Color.White);
+            //spriteBatch.Draw(goldBackground, new Vector2(recGoldBackground.X, recGoldBackground.Y), null, Color.White, 0f, new Vector2(0, 0), 1.2f, SpriteEffects.None, 1f);
 
+            //spriteBatch.Draw(mainPicture, recMainPicture, Color.White);
+
+           
+            //spriteBatch.Draw(Game1.menuGold, new Vector2(recMenuGold.X, recMenuGold.Y), null, Color.White, 0f, new Vector2(0, 0), 1.5f, SpriteEffects.None, 1f);
+
+
+
+            spriteBatch.DrawString(Game1.georgia, scoreManager.TotalGold.ToString(), locMoney, Color.White, 0f, Vector2.Zero, 0.5f, SpriteEffects.None, 0f);
 
             spriteBatch.Draw(rightHand, recRightHand, Color.White);
                

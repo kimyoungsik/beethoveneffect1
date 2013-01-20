@@ -17,7 +17,7 @@ namespace beethoven3
     {
         private NoteFileManager noteFileManager;
 
-        private SpriteFont pericles36Font;
+     //   private SpriteFont pericles36Font;
       //  bool pastClick;
         MouseState pastmouse;
         KeyboardState pastkey;
@@ -29,12 +29,16 @@ namespace beethoven3
         Texture2D backtext;//back
         Texture2D starttext;//back
 
-        SpriteFont font;
+    //    SpriteFont font;
         Rectangle backrect;
         Rectangle backtextrect;
         Rectangle startrect;
         Rectangle starttextrect;
         Texture2D[] top;
+
+
+
+        Texture2D songBackground;
 
         private Texture2D levelTexture;
 
@@ -75,14 +79,13 @@ namespace beethoven3
         //컨텐츠 로드
         public void Load(ContentManager content,GraphicsDevice graphicsdevice)
         {
-            pericles36Font = content.Load<SpriteFont>(@"Fonts\Pericles36");
+            songBackground = content.Load<Texture2D>(@"recordBoard\songBackground");
             levelTexture = content.Load<Texture2D>(@"ui\heart");
 
 
-
             background = content.Load<Texture2D>("SongMenu/background");
-            leftright[0] = content.Load<Texture2D>("SongMenu/arrow1");
-            leftright[1] = content.Load<Texture2D>("SongMenu/arrow2");
+            leftright[0] = content.Load<Texture2D>("SongMenu/leftArrow");
+            leftright[1] = content.Load<Texture2D>("SongMenu/rightArrow");
             box = content.Load<Texture2D>("Title/box");
             //starox = content.Load<Texture2D>("Title/box");
             
@@ -115,7 +118,7 @@ namespace beethoven3
             //{
             //    top[i] = content.Load<Texture2D>("Tutorial/top" + (i + 1));
             //}
-            font = content.Load<SpriteFont>("Fonts/damagefont");
+         //   font = content.Load<SpriteFont>("Fonts/damagefont");
         }
 
 
@@ -373,6 +376,12 @@ namespace beethoven3
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(background, Vector2.Zero, new Color(fadeinout, fadeinout, fadeinout));
+            spriteBatch.Draw(songBackground, new Vector2(100,100), new Color(fadeinout, fadeinout, fadeinout));
+
+            //spriteBatch.Draw(songBackground, recPreviousButton, Color.White);
+            
+
+
             drawText(spriteBatch);
             drawArrow(spriteBatch);
            // drawNumber(spriteBatch);
@@ -386,7 +395,7 @@ namespace beethoven3
             if (noteFileManager.noteFiles.Count > 0)
             {
                 String name = noteFileManager.noteFiles[scene_number].Name;
-                spriteBatch.DrawString(pericles36Font, name, new Vector2(512, 420), Color.White);
+                spriteBatch.DrawString(Game1.georgia, name, new Vector2(512, 420), Color.White);
 
 
                 //     spriteBatch.Draw(uiBackground, new Vector2(0, 0), Color.White);

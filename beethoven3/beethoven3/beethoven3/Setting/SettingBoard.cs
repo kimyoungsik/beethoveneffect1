@@ -67,7 +67,7 @@ namespace beethoven3
             DownButton = cm.Load<Texture2D>(@"settingBoard\down");
             hoverDownButton = cm.Load<Texture2D>(@"settingBoard\downHover");
                         
-            pericles36Font = cm.Load<SpriteFont>(@"Fonts\Pericles36");
+       //     pericles36Font = cm.Load<SpriteFont>(@"Fonts\Pericles36");
                        
         }
 

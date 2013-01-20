@@ -166,8 +166,8 @@ namespace beethoven3
 #endif
         //기본 글꼴
         //basic font
-        public static SpriteFont pericles36Font;
-
+       // public static SpriteFont pericles36Font;
+        public static SpriteFont georgia;
 
         public enum GameStates { Menu, Playing, SongMenu, ShopDoor,
                           RightItemShop, LeftItemShop, EffectItemShop, NoteItemShop, BackgroundItemShop,
@@ -317,6 +317,9 @@ namespace beethoven3
 
         private Texture2D getGold;
 
+
+        public static Texture2D menuGold;
+        public static Texture2D menuGoldCha;
         //오른손 텍스쳐들
 
         private Texture2D[] rightHandTextures;
@@ -330,6 +333,11 @@ namespace beethoven3
 
         public static Texture2D previousButton;
         public static Texture2D hoverPreviousButton;
+
+          public static Texture2D nextButton;
+        public static Texture2D hoverNextButton;
+
+        
         //float volume = 0;
 
         /////Texture end 
@@ -449,9 +457,7 @@ namespace beethoven3
             menuScene = new MenuScene();
             menuScene.LoadContent(Content);
 
-            //상점 대문
-            shopDoor = new ShopDoor();
-            shopDoor.LoadContent(Content);
+         
 
             //아이템관리
             //startnotemanager 생성보다 앞에 있어야 한다.
@@ -460,7 +466,11 @@ namespace beethoven3
             itemManager.Init();
 
             //게임중 점수관리
-            scoreManager = new ScoreManager(); 
+            scoreManager = new ScoreManager();
+
+            //상점 대문
+            shopDoor = new ShopDoor(scoreManager);
+            shopDoor.LoadContent(Content);
 
             /////아이템 상점 -START
             rightItemShop = new RightItemShop(itemManager,  scoreManager);
@@ -486,7 +496,7 @@ namespace beethoven3
 
             /////텍스쳐 로드 -START
             //배경
-            playBackgroud1 = Content.Load<Texture2D>(@"background\park");
+            playBackgroud1 = Content.Load<Texture2D>(@"background\ConcertHall_3");
             playBackgroud2 = Content.Load<Texture2D>(@"background\crosswalk3");
             
             //노트,마커
@@ -502,7 +512,7 @@ namespace beethoven3
             //골드 업어
             getGold = Content.Load<Texture2D>(@"gold\getGold");
             //폰트
-            pericles36Font = Content.Load<SpriteFont>(@"Fonts\Pericles36");
+            georgia = Content.Load<SpriteFont>(@"Fonts\Georgia");
 
             
             //perfect,good,bad,miss 판정 배너 
@@ -530,8 +540,12 @@ namespace beethoven3
 
 
             previousButton = Content.Load<Texture2D>(@"game1\previousButton");
-            hoverPreviousButton = Content.Load<Texture2D>(@"game1\previousButton");
+            hoverPreviousButton = Content.Load<Texture2D>(@"game1\hoverPrevious");
+
+            nextButton = Content.Load<Texture2D>(@"game1\nextButton");
+            hoverNextButton = Content.Load<Texture2D>(@"game1\hoverNextButton");
             
+
             //   charisma1 = Content.Load<Texture2D>(@"shopdoor\nogold");
             /////텍스쳐 로드 -END
 
@@ -550,11 +564,13 @@ namespace beethoven3
 
 
             gold = Content.Load<Texture2D>(@"gold\gold");
-
-
+            menuGold = Content.Load<Texture2D>(@"game1\menuGold");
+            menuGoldCha = Content.Load<Texture2D>(@"game1\menuGoldCha");
             //로드하고, 기본적으로 넣어줌
             itemManager.LoadFileItem();
 
+            
+        
 
             //현재 장착한 이펙트의 인덱스를 전체 베이스에 찾음
             int effectIndex = itemManager.getEffectIndex();
@@ -777,7 +793,7 @@ namespace beethoven3
             songMenu.Load(Content,graphics.GraphicsDevice);
 
             
-            resultManager = new ResultManager();
+            resultManager = new ResultManager(scoreManager);
             resultManager.LoadContent(Content);
 
 
@@ -1339,100 +1355,6 @@ namespace beethoven3
 
         }
 
-        //void sre_SpeechHypothesized(object sender, SpeechHypothesizedEventArgs e)
-        //{
-        //    if (e.Result.Confidence < 0.5) return;//신뢰도 0.5미만일땐 리턴
-        //    if (Skeletons != null)
-        //    {
-        //        foreach (Skeleton s in Skeletons)
-        //            if (s.TrackingState == SkeletonTrackingState.Tracked)
-        //            {
-        //                if (source.SoundSourceAngle < skeletonAngle + 10 && source.SoundSourceAngle > skeletonAngle - 10)
-        //                {
-        //                    message = e.Result.Text + " " + e.Result.Confidence.ToString();
-        //                    switch (e.Result.Text)
-        //                    {
-
-
-
-        //                        case "next":
-
-        //                            if (gameState == GameStates.ResultManager)
-        //                            {
-        //                                gameState = GameStates.ShowPictures;
-        //                            }
-        //                            if (gameState == GameStates.ShowPictures)
-        //                            {
-        //                                gameState = GameStates.RecordBoard;
-        //                            }
-        //                            if (gameState == GameStates.ShowPictures)
-        //                            {
-        //                                gameState = GameStates.SongMenu;
-        //                            }
-
-        //                            break;
-
-        //                        case "previous":
-
-        //                            if (gameState == GameStates.SongMenu || gameState == GameStates.ShopDoor || gameState == GameStates.SettingBoard)
-        //                            {
-        //                                gameState = GameStates.Menu;
-        //                            }
-
-        //                            if (gameState == GameStates.BackgroundItemShop || gameState == GameStates.EffectItemShop || gameState == GameStates.LeftItemShop || gameState == GameStates.RightItemShop || gameState == GameStates.NoteItemShop)
-        //                            {
-        //                                gameState = GameStates.ShopDoor;
-        //                            }
-        //                            break;
-
-
-        //                        case "start":
-
-        //                            if (gameState == GameStates.Menu)
-        //                            {
-        //                                gameState = GameStates.SongMenu;
-        //                            }
-        //                            if (gameState == GameStates.SongMenu)
-        //                            {
-        //                                resultSongMenu = songMenu.Scene_number;
-        //                            }
-
-
-        //                            break;
-
-
-        //                        case "shop":
-
-        //                            if (gameState == GameStates.Menu)
-        //                            {
-        //                                gameState = GameStates.ShopDoor;
-        //                            }
-        //                            break;
-
-        //                        case "setting":
-
-        //                            if (gameState == GameStates.Menu)
-        //                            {
-        //                                gameState = GameStates.SettingBoard;
-        //                            }
-        //                            break;
-
-        //                        case "tutorial":
-
-        //                            if (gameState == GameStates.Menu)
-        //                            {
-        //                                //    gameState = GameStates;
-        //                            }
-        //                            break;
-        //                    }
-        //                }
-        //            }
-
-
-        //    }
-        //}
-
-    
 
 
 
@@ -5989,9 +5911,9 @@ namespace beethoven3
                 songMenu.Draw(spriteBatch);
 
 
-                spriteBatch.Draw(rightHandTextures[itemManager.getRightHandIndex()], new Vector2(600, 40), null, Color.White, 0f,new Vector2(0, 0), 1f,   SpriteEffects.None, 0.0f);
-                spriteBatch.Draw(leftHandTextures[itemManager.getLeftHandIndex()], new Vector2(700, 40), null, Color.White, 0f, new Vector2(0, 0), 1f, SpriteEffects.None, 0.0f);
-               // spriteBatch.Draw(rightHandTextures[itemManager.getRightHandIndex()], new Vector2(600, 40), null, Color.White, 0f, new Vector2(0, 0), 1f, SpriteEffects.None, 0.0f);
+               // spriteBatch.Draw(rightHandTextures[itemManager.getRightHandIndex()], new Vector2(600, 40), null, Color.White, 0f,new Vector2(0, 0), 1f,   SpriteEffects.None, 0.0f);
+               // spriteBatch.Draw(leftHandTextures[itemManager.getLeftHandIndex()], new Vector2(700, 40), null, Color.White, 0f, new Vector2(0, 0), 1f, SpriteEffects.None, 0.0f);
+               //// spriteBatch.Draw(rightHandTextures[itemManager.getRightHandIndex()], new Vector2(600, 40), null, Color.White, 0f, new Vector2(0, 0), 1f, SpriteEffects.None, 0.0f);
                // spriteBatch.Draw(rightHandTextures[itemManager.getRightHandIndex()], new Vector2(600, 40), null, Color.White, 0f, new Vector2(0, 0), 1f, SpriteEffects.None, 0.0f);
                // spriteBatch.Draw(rightHandTextures[itemManager.getRightHandIndex()], new Vector2(600, 40), null, Color.White, 0f, new Vector2(0, 0), 1f, SpriteEffects.None, 0.0f);
               
@@ -6083,11 +6005,11 @@ namespace beethoven3
             //    spriteBatch.Draw(idot, removeAreaRec, Color.Red);
                 
                 //콤보 글씨
-                spriteBatch.DrawString(pericles36Font, scoreManager.Perfomance.ToString(), new Vector2(512, 420), Color.Black);
+                spriteBatch.DrawString(georgia, scoreManager.Perfomance.ToString(), new Vector2(512, 420), Color.Black);
                 //골드 글씨
-                spriteBatch.DrawString(pericles36Font, scoreManager.Gold.ToString(), new Vector2(scorePosition.X + 120, scorePosition.Y), Color.Black);
+                spriteBatch.DrawString(georgia, scoreManager.Gold.ToString(), new Vector2(scorePosition.X + 120, scorePosition.Y), Color.Black);
                 //최대 max
-                spriteBatch.DrawString(pericles36Font, scoreManager.Max.ToString(), new Vector2(scorePosition.X + 240, scorePosition.Y), Color.Black);
+                spriteBatch.DrawString(georgia, scoreManager.Max.ToString(), new Vector2(scorePosition.X + 240, scorePosition.Y), Color.Black);
 
                 //기본 템포 설정( 템포가 바뀐상태이면 안변함)
                 SoundFmod.SetBasicTempo();
@@ -6251,7 +6173,7 @@ namespace beethoven3
             if (gameState == GameStates.ResultManager)
             {
                 //class resultManager 에 draw실행
-                resultManager.Draw(spriteBatch, this.Window.ClientBounds.Width, this.Window.ClientBounds.Height,reportManager.IsHighScore(currentSongName,scoreManager.TotalScore));
+                resultManager.Draw(spriteBatch,reportManager.IsHighScore(currentSongName,scoreManager.TotalScore));
 
                 //노래제목
                 String songFile = scoreManager.SongName;
@@ -6259,27 +6181,16 @@ namespace beethoven3
                 NoteFile noteFile = noteFileManager.FindNoteFile(songFile);
                 
                 //노트파일로 사진 가져오기
-                spriteBatch.Draw(songMenu.FindPicture(noteFile), new Rectangle(70, 70, 100, 100), Color.White);
+                spriteBatch.Draw(songMenu.FindPicture(noteFile), new Rectangle(130, 210, 140, 140), Color.White);
                 
                 //노트파일로 노래 제목가져오기
-                spriteBatch.DrawString(pericles36Font, noteFile.Name, new Vector2(200,80), Color.White);
+                spriteBatch.DrawString(georgia, noteFile.Name, new Vector2(320, 200), Color.Gray);
                 //노트파일로 가수 가져오기
-                spriteBatch.DrawString(pericles36Font, noteFile.Artist, new Vector2(200,130), Color.White);
+                spriteBatch.DrawString(georgia, noteFile.Artist, new Vector2(320, 260), Color.Gray);
                 //***//난이도//spriteBatch.DrawString(pericles36Font, , new Vector2(200,80), Color.White);
 
 
-                resultNumberManager.Draw(spriteBatch);
-
-                //진짜 화면에 나타나는것은 update,플레이에 있음.
-                //이것은 지울 예정임/
-                spriteBatch.DrawString(pericles36Font, scoreManager.Perfect.ToString(), new Vector2(300, 300), Color.White);
-                spriteBatch.DrawString(pericles36Font, scoreManager.Good.ToString(), new Vector2(300, 350), Color.White);
-                spriteBatch.DrawString(pericles36Font, scoreManager.Bad.ToString(), new Vector2(300, 400), Color.White);
-                spriteBatch.DrawString(pericles36Font, scoreManager.Perfomance.ToString(), new Vector2(700, 300), Color.White);
-                spriteBatch.DrawString(pericles36Font, scoreManager.Max.ToString(), new Vector2(700, 350), Color.White);
-                spriteBatch.DrawString(pericles36Font, scoreManager.Combo.ToString(), new Vector2(700, 400), Color.White);
-                spriteBatch.DrawString(pericles36Font, scoreManager.Gold.ToString(), new Vector2(700, 450), Color.White);
-                spriteBatch.DrawString(pericles36Font, scoreManager.TotalScore.ToString(), new Vector2(700, 500), Color.White);
+         
             }
 
             #endregion
@@ -6337,22 +6248,67 @@ namespace beethoven3
 
             if (gameState == GameStates.RecordBoard)
             {
-                recordBoard.Draw(spriteBatch, this. Window.ClientBounds.Width, this.Window.ClientBounds.Height);
+                recordBoard.Draw(spriteBatch);
 
                 //현재 노래 제목으로 5개 높은 노래 가져오기
                 List<ScoreInfo> highScores = reportManager.GetHighScore(currentSongName);
 
+                //노래제목
+             //   String songFile = scoreManager.SongName;
+                //제목으로 노트파일에서 찾기
+                NoteFile noteFile = noteFileManager.FindNoteFile(currentSongName);
 
-               
+                //노트파일로 사진 가져오기
+                spriteBatch.Draw(songMenu.FindPicture(noteFile), new Rectangle(98, 182, 121, 121), Color.White);
 
+                //노트파일로 노래 제목가져오기
+                spriteBatch.DrawString(georgia, noteFile.Name, new Vector2(270, 172), Color.Gray);
+                //노트파일로 가수 가져오기
+                spriteBatch.DrawString(georgia, noteFile.Artist, new Vector2(270, 232), Color.Gray);
+                //***//난이도//spriteBatch.DrawString(pericles36Font, , new Vector2(200,80), Color.White);
 
                 int i;
                 for (i = 0; i < highScores.Count; i++)
                 {
                     //노래 사진
-                    spriteBatch.Draw(reportManager.FindPicture(highScores[i].UserPicture), new Rectangle(200, (i + 1) * 100, 100, 100), Color.White);
-                    
-                    spriteBatch.DrawString(pericles36Font, highScores[i].Score.ToString(), new Vector2(300, (i+1)*100), Color.Black);
+                    if (i == 0)
+                    {
+                        spriteBatch.Draw(reportManager.FindPicture(highScores[i].UserPicture), new Rectangle(163, 347, 113, 113), Color.White);
+
+                        spriteBatch.DrawString(georgia, highScores[i].Score.ToString(), new Vector2(283, 347), Color.DarkRed);
+                    }
+                    else if (i == 1)
+                    {
+                        spriteBatch.Draw(reportManager.FindPicture(highScores[i].UserPicture), new Rectangle(163, 469, 113, 113), Color.White);
+                        spriteBatch.DrawString(georgia, highScores[i].Score.ToString(), new Vector2(283, 469), Color.DarkRed);
+                    }
+                    else if (i == 2)
+                    {
+                        spriteBatch.Draw(reportManager.FindPicture(highScores[i].UserPicture), new Rectangle(163, 590, 113, 113), Color.White);
+                        spriteBatch.DrawString(georgia, highScores[i].Score.ToString(), new Vector2(283, 590), Color.DarkRed);
+                    }
+                    else if (i == 3)
+                    {
+                        spriteBatch.Draw(reportManager.FindPicture(highScores[i].UserPicture), new Rectangle(585, 347, 80, 80), Color.White);
+                        spriteBatch.DrawString(georgia, highScores[i].Score.ToString(), new Vector2(685, 347), Color.Gray);
+                    }
+                    else if (i == 4)
+                    {
+                        spriteBatch.Draw(reportManager.FindPicture(highScores[i].UserPicture), new Rectangle(585, 439, 80, 80), Color.White);
+                        spriteBatch.DrawString(georgia, highScores[i].Score.ToString(), new Vector2(685, 439), Color.Gray);
+                    }
+                    else if (i == 5)
+                    {
+                        spriteBatch.Draw(reportManager.FindPicture(highScores[i].UserPicture), new Rectangle(585, 530, 80, 80), Color.White);
+                        spriteBatch.DrawString(georgia, highScores[i].Score.ToString(), new Vector2(685, 530), Color.Gray);
+                    }
+                    else if (i == 6)
+                    {
+                        spriteBatch.Draw(reportManager.FindPicture(highScores[i].UserPicture), new Rectangle(585, 622, 80, 80), Color.White);
+                        spriteBatch.DrawString(georgia, highScores[i].Score.ToString(), new Vector2(685, 622), Color.Gray);
+                    }
+                
+
                 }
 
             }

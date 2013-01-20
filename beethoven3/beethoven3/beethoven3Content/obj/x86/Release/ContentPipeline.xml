@@ -65,15 +65,6 @@
       <Time>2013-01-08T22:57:38.316972+09:00</Time>
     </Item>
     <Item>
-      <Source>SongMenu\background.jpg</Source>
-      <Name>SongMenu\background</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\SongMenu\background.xnb</Output>
-      <Time>2013-01-08T22:57:38.3179721+09:00</Time>
-    </Item>
-    <Item>
       <Source>ui\background.png</Source>
       <Name>ui\background</Name>
       <Importer>TextureImporter</Importer>
@@ -251,7 +242,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\result\newRecord.xnb</Output>
-      <Time>2013-01-08T22:57:38.3639747+09:00</Time>
+      <Time>2013-01-20T15:38:45.8511756+09:00</Time>
     </Item>
     <Item>
       <Source>result\hoverNextButton.png</Source>
@@ -269,7 +260,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\result\rankA.xnb</Output>
-      <Time>2013-01-08T22:57:38.3649748+09:00</Time>
+      <Time>2013-01-20T15:30:41.9824999+09:00</Time>
     </Item>
     <Item>
       <Source>result\background.png</Source>
@@ -278,7 +269,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\result\background.xnb</Output>
-      <Time>2013-01-08T22:57:38.3629747+09:00</Time>
+      <Time>2013-01-20T14:53:45.7667396+09:00</Time>
     </Item>
     <Item>
       <Source>result\nextButton.png</Source>
@@ -1376,16 +1367,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Menu\firstMenuBackground.xnb</Output>
-      <Time>2013-01-20T02:23:10.0707718+09:00</Time>
-    </Item>
-    <Item>
-      <Source>Menu\mainPicture.png</Source>
-      <Name>Menu\mainPicture</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Menu\mainPicture.xnb</Output>
-      <Time>2013-01-20T02:29:32.4986454+09:00</Time>
+      <Time>2013-01-20T14:23:29.1688362+09:00</Time>
     </Item>
     <Item>
       <Source>Menu\title.png</Source>
@@ -1403,7 +1385,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Menu\setting.xnb</Output>
-      <Time>2013-01-20T02:30:38.6704302+09:00</Time>
+      <Time>2013-01-20T14:25:27.844624+09:00</Time>
     </Item>
     <Item>
       <Source>Menu\shop.png</Source>
@@ -1412,7 +1394,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Menu\shop.xnb</Output>
-      <Time>2013-01-20T02:30:38.6714302+09:00</Time>
+      <Time>2013-01-20T14:25:27.8466241+09:00</Time>
     </Item>
     <Item>
       <Source>Menu\start.png</Source>
@@ -1421,7 +1403,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Menu\start.xnb</Output>
-      <Time>2013-01-20T02:30:38.6724303+09:00</Time>
+      <Time>2013-01-20T14:25:27.8476242+09:00</Time>
     </Item>
     <Item>
       <Source>Menu\tutorial.png</Source>
@@ -1430,7 +1412,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Menu\tutorial.xnb</Output>
-      <Time>2013-01-20T02:59:32.612606+09:00</Time>
+      <Time>2013-01-20T14:25:27.8486243+09:00</Time>
     </Item>
     <Item>
       <Source>snd\ka.mp3</Source>
@@ -1463,24 +1445,6 @@
       <Time>2013-01-08T22:57:38.5269841+09:00</Time>
     </Item>
     <Item>
-      <Source>Fonts\damagefont.spritefont</Source>
-      <Name>Fonts\damagefont</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Fonts\damagefont.xnb</Output>
-      <Time>2013-01-08T22:57:38.3099716+09:00</Time>
-    </Item>
-    <Item>
-      <Source>Fonts\Pericles36.spritefont</Source>
-      <Name>Fonts\Pericles36</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Fonts\Pericles36.xnb</Output>
-      <Time>2013-01-19T16:16:04.6533571+09:00</Time>
-    </Item>
-    <Item>
       <Source>MessageFont.spritefont</Source>
       <Name>MessageFont</Name>
       <Importer>FontDescriptionImporter</Importer>
@@ -1490,31 +1454,13 @@
       <Time>2013-01-08T22:57:38.315972+09:00</Time>
     </Item>
     <Item>
-      <Source>Fonts\PerpetuaFont.spritefont</Source>
-      <Name>Fonts\PerpetuaFont</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Fonts\PerpetuaFont.xnb</Output>
-      <Time>2013-01-08T22:57:38.3099716+09:00</Time>
-    </Item>
-    <Item>
       <Source>game1\previousButton.png</Source>
       <Name>game1\previousButton</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\game1\previousButton.xnb</Output>
-      <Time>2013-01-20T11:51:01.9376445+09:00</Time>
-    </Item>
-    <Item>
-      <Source>shopDoorItems\rightBaton.png</Source>
-      <Name>shopDoorItems\rightBaton</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopDoorItems\rightBaton.xnb</Output>
-      <Time>2013-01-20T11:45:00.3219612+09:00</Time>
+      <Time>2013-01-20T14:43:27.3003654+09:00</Time>
     </Item>
     <Item>
       <Source>shopDoorItems\leftHand.png</Source>
@@ -1523,7 +1469,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopDoorItems\leftHand.xnb</Output>
-      <Time>2013-01-20T11:46:18.1474126+09:00</Time>
+      <Time>2013-01-20T14:33:20.3556501+09:00</Time>
     </Item>
     <Item>
       <Source>shopDoorItems\note.png</Source>
@@ -1532,7 +1478,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopDoorItems\note.xnb</Output>
-      <Time>2013-01-20T11:46:47.107069+09:00</Time>
+      <Time>2013-01-20T14:33:20.3286486+09:00</Time>
     </Item>
     <Item>
       <Source>shopDoorItems\effect.png</Source>
@@ -1541,7 +1487,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopDoorItems\effect.xnb</Output>
-      <Time>2013-01-20T11:47:25.1222433+09:00</Time>
+      <Time>2013-01-20T14:33:20.3476497+09:00</Time>
     </Item>
     <Item>
       <Source>shopDoorItems\background.png</Source>
@@ -1550,16 +1496,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopDoorItems\background.xnb</Output>
-      <Time>2013-01-20T11:47:51.6977634+09:00</Time>
-    </Item>
-    <Item>
-      <Source>shopDoorItems\mainPic.png</Source>
-      <Name>shopDoorItems\mainPic</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopDoorItems\mainPic.xnb</Output>
-      <Time>2013-01-20T12:12:20.6717839+09:00</Time>
+      <Time>2013-01-20T14:33:20.3306487+09:00</Time>
     </Item>
     <Item>
       <Source>shopDoorItems\shopBackground.png</Source>
@@ -1568,7 +1505,295 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopDoorItems\shopBackground.xnb</Output>
-      <Time>2013-01-20T13:27:45.5575925+09:00</Time>
+      <Time>2013-01-20T14:30:40.7275199+09:00</Time>
+    </Item>
+    <Item>
+      <Source>game1\menuGold.png</Source>
+      <Name>game1\menuGold</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\game1\menuGold.xnb</Output>
+      <Time>2013-01-20T13:57:24.2433275+09:00</Time>
+    </Item>
+    <Item>
+      <Source>game1\menuGoldCha.png</Source>
+      <Name>game1\menuGoldCha</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\game1\menuGoldCha.xnb</Output>
+      <Time>2013-01-20T14:14:54.9724258+09:00</Time>
+    </Item>
+    <Item>
+      <Source>Menu\hoverSetting.png</Source>
+      <Name>Menu\hoverSetting</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Menu\hoverSetting.xnb</Output>
+      <Time>2013-01-20T14:25:27.8496243+09:00</Time>
+    </Item>
+    <Item>
+      <Source>Menu\hoverShop.png</Source>
+      <Name>Menu\hoverShop</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Menu\hoverShop.xnb</Output>
+      <Time>2013-01-20T14:25:27.8506244+09:00</Time>
+    </Item>
+    <Item>
+      <Source>Menu\hoverStart.png</Source>
+      <Name>Menu\hoverStart</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Menu\hoverStart.xnb</Output>
+      <Time>2013-01-20T14:25:27.8706255+09:00</Time>
+    </Item>
+    <Item>
+      <Source>Menu\hoverTutorial.png</Source>
+      <Name>Menu\hoverTutorial</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Menu\hoverTutorial.xnb</Output>
+      <Time>2013-01-20T14:25:25.7235027+09:00</Time>
+    </Item>
+    <Item>
+      <Source>shopDoorItems\baton.png</Source>
+      <Name>shopDoorItems\baton</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopDoorItems\baton.xnb</Output>
+      <Time>2013-01-20T14:36:03.7509958+09:00</Time>
+    </Item>
+    <Item>
+      <Source>shopDoorItems\hoverBackground.png</Source>
+      <Name>shopDoorItems\hoverBackground</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopDoorItems\hoverBackground.xnb</Output>
+      <Time>2013-01-20T14:33:20.3496498+09:00</Time>
+    </Item>
+    <Item>
+      <Source>shopDoorItems\hoverBaton.png</Source>
+      <Name>shopDoorItems\hoverBaton</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopDoorItems\hoverBaton.xnb</Output>
+      <Time>2013-01-20T14:36:03.0879579+09:00</Time>
+    </Item>
+    <Item>
+      <Source>shopDoorItems\hoverEffect.png</Source>
+      <Name>shopDoorItems\hoverEffect</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopDoorItems\hoverEffect.xnb</Output>
+      <Time>2013-01-20T14:33:20.3516499+09:00</Time>
+    </Item>
+    <Item>
+      <Source>shopDoorItems\hoverLefthand.png</Source>
+      <Name>shopDoorItems\hoverLefthand</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopDoorItems\hoverLefthand.xnb</Output>
+      <Time>2013-01-20T14:33:20.35365+09:00</Time>
+    </Item>
+    <Item>
+      <Source>shopDoorItems\hoverNote.png</Source>
+      <Name>shopDoorItems\hoverNote</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopDoorItems\hoverNote.xnb</Output>
+      <Time>2013-01-20T14:33:20.3546501+09:00</Time>
+    </Item>
+    <Item>
+      <Source>game1\hoverPrevious.png</Source>
+      <Name>game1\hoverPrevious</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\game1\hoverPrevious.xnb</Output>
+      <Time>2013-01-20T14:43:27.2993653+09:00</Time>
+    </Item>
+    <Item>
+      <Source>game1\hoverNextButton.png</Source>
+      <Name>game1\hoverNextButton</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\game1\hoverNextButton.xnb</Output>
+      <Time>2013-01-20T14:49:11.475051+09:00</Time>
+    </Item>
+    <Item>
+      <Source>game1\nextButton.png</Source>
+      <Name>game1\nextButton</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\game1\nextButton.xnb</Output>
+      <Time>2013-01-20T14:49:11.474051+09:00</Time>
+    </Item>
+    <Item>
+      <Source>result\rankB.png</Source>
+      <Name>result\rankB</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\result\rankB.xnb</Output>
+      <Time>2013-01-20T15:30:41.9845+09:00</Time>
+    </Item>
+    <Item>
+      <Source>result\rankC.png</Source>
+      <Name>result\rankC</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\result\rankC.xnb</Output>
+      <Time>2013-01-20T15:30:41.9855001+09:00</Time>
+    </Item>
+    <Item>
+      <Source>result\rankD.png</Source>
+      <Name>result\rankD</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\result\rankD.xnb</Output>
+      <Time>2013-01-20T15:30:41.9875002+09:00</Time>
+    </Item>
+    <Item>
+      <Source>result\rankE.png</Source>
+      <Name>result\rankE</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\result\rankE.xnb</Output>
+      <Time>2013-01-20T15:30:41.9915004+09:00</Time>
+    </Item>
+    <Item>
+      <Source>result\rankF.png</Source>
+      <Name>result\rankF</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\result\rankF.xnb</Output>
+      <Time>2013-01-20T15:30:41.9814999+09:00</Time>
+    </Item>
+    <Item>
+      <Source>background\ConcertHall.png</Source>
+      <Name>background\ConcertHall</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\background\ConcertHall.xnb</Output>
+      <Time>2013-01-20T15:36:26.2851929+09:00</Time>
+    </Item>
+    <Item>
+      <Source>background\ConcertHall_1.png</Source>
+      <Name>background\ConcertHall_1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\background\ConcertHall_1.xnb</Output>
+      <Time>2013-01-20T15:46:55.5441845+09:00</Time>
+    </Item>
+    <Item>
+      <Source>background\ConcertHall_2.png</Source>
+      <Name>background\ConcertHall_2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\background\ConcertHall_2.xnb</Output>
+      <Time>2013-01-20T15:46:55.5461846+09:00</Time>
+    </Item>
+    <Item>
+      <Source>background\ConcertHall_3.png</Source>
+      <Name>background\ConcertHall_3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\background\ConcertHall_3.xnb</Output>
+      <Time>2013-01-20T15:46:55.5421843+09:00</Time>
+    </Item>
+    <Item>
+      <Source>recordBoard\background.png</Source>
+      <Name>recordBoard\background</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\recordBoard\background.xnb</Output>
+      <Time>2013-01-20T15:54:49.3422842+09:00</Time>
+    </Item>
+    <Item>
+      <Source>Explosion\Effect_Plas_1.png</Source>
+      <Name>Explosion\Effect_Plas_1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Explosion\Effect_Plas_1.xnb</Output>
+      <Time>2013-01-20T15:57:22.7640594+09:00</Time>
+    </Item>
+    <Item>
+      <Source>Fonts\Georgia.spritefont</Source>
+      <Name>Fonts\Georgia</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Fonts\Georgia.xnb</Output>
+      <Time>2013-01-20T15:59:42.64306+09:00</Time>
+    </Item>
+    <Item>
+      <Source>Explosion\Effect_Guilty_1.png</Source>
+      <Name>Explosion\Effect_Guilty_1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Explosion\Effect_Guilty_1.xnb</Output>
+      <Time>2013-01-20T16:23:06.430352+09:00</Time>
+    </Item>
+    <Item>
+      <Source>SongMenu\background.png</Source>
+      <Name>SongMenu\background</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\SongMenu\background.xnb</Output>
+      <Time>2013-01-20T16:25:04.5361073+09:00</Time>
+    </Item>
+    <Item>
+      <Source>SongMenu\leftArrow.png</Source>
+      <Name>SongMenu\leftArrow</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\SongMenu\leftArrow.xnb</Output>
+      <Time>2013-01-20T16:27:31.6765233+09:00</Time>
+    </Item>
+    <Item>
+      <Source>SongMenu\rightArrow.png</Source>
+      <Name>SongMenu\rightArrow</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\SongMenu\rightArrow.xnb</Output>
+      <Time>2013-01-20T16:27:31.6775233+09:00</Time>
+    </Item>
+    <Item>
+      <Source>recordBoard\songBackground.png</Source>
+      <Name>recordBoard\songBackground</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\recordBoard\songBackground.xnb</Output>
+      <Time>2013-01-20T16:30:33.1009001+09:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

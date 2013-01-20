@@ -20,6 +20,7 @@ namespace beethoven3
         private  int perfect;
         private  int good;
         private  int bad;
+        private  int  miss;
 
         private int gold;
         
@@ -58,6 +59,7 @@ namespace beethoven3
             longNoteScore = 0;
             dragNoteScore = 0;
             gage = 0;
+            miss = 0;
 
             rank = "";
         }
@@ -80,7 +82,7 @@ namespace beethoven3
             longNoteScore = 0;
             dragNoteScore = 0;
             gage = 0;
-            
+            miss = 0;
 
             rank = "";
 
@@ -89,6 +91,12 @@ namespace beethoven3
         {
             get { return totalGold; }
             set { totalGold = value; }
+        }
+
+        public int Miss
+        {
+            get { return miss; }
+            set { miss = value; }
         }
 
         public int Gage

@@ -82,8 +82,7 @@ namespace beethoven3
         protected Rectangle recNoGoldButton;
         protected Rectangle recHandInButton;
 
-
-
+        
 
         protected Texture2D previousButton;
 
@@ -98,6 +97,10 @@ namespace beethoven3
         protected Texture2D wearItemMark;
 
         protected Vector2 wearItemLocation;
+
+
+
+        protected Texture2D ItemShopBackground;
 
 
         
@@ -377,7 +380,7 @@ namespace beethoven3
                 spriteBatch.Draw(hoverPreviousButton, recPreviousButton, Color.White);
             }
 
-            spriteBatch.DrawString(Game1.pericles36Font, "Gold : ", new Vector2(10, 200), Color.Black);
+            spriteBatch.DrawString(Game1.georgia, "Gold : ", new Vector2(10, 200), Color.Black);
 
 
         }

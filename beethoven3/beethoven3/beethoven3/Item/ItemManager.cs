@@ -19,10 +19,7 @@ namespace beethoven3
         private List<Item> leftNoteItem = new List<Item>();
         private List<Item> dragNoteItem = new List<Item>();
         private List<Item> longNoteItem = new List<Item>();
-        
-        
-        
-        
+                
         private List<Item> backgroundItem = new List<Item>();
 
 
@@ -275,6 +272,10 @@ namespace beethoven3
                 setEffectIndex(0);
                 setNoteIndex(0);
                 setBackgroundIndex(0);
+                
+                //변화가 있으니깐 저장
+                SaveFileItem();
+
 
             }
             else
@@ -400,11 +401,11 @@ namespace beethoven3
 
             //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             //have to additem, effect, node , background
-            effectTexture[0] = cm.Load<Texture2D>(@"Explosion\starExplosion");
+            effectTexture[0] = cm.Load<Texture2D>(@"Explosion\Effect_Plas_1");
             effectTexture[1] = cm.Load<Texture2D>(@"Explosion\needleExplosion2");
             effectTexture[2] = cm.Load<Texture2D>(@"Explosion\fire1");
 
-            goodEffectTexture[0] = cm.Load<Texture2D>(@"Explosion\starExplosion2");
+            goodEffectTexture[0] = cm.Load<Texture2D>(@"Explosion\Effect_Guilty_1");
             goodEffectTexture[1] = cm.Load<Texture2D>(@"Explosion\needleExplosion2");
             goodEffectTexture[2] = cm.Load<Texture2D>(@"Explosion\fire2");
 
