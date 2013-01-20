@@ -195,3 +195,9 @@ Content\rightItem\Baton_4.xnb
 Content\rightItem\Baton_5.xnb
 Content\rightItem\Baton_6.xnb
 Content\rightItem\rightItemBackground.xnb
+Content\leftItem\leftItemBackground.xnb
+Content\effectItem\effectItemBackground.xnb
+Content\backgroundItem\backgroundItemBackground.xnb
+Content\noteItem\noteItemBackground.xnb
+Content\background\Back_ssum_2.xnb
+Content\background\Back_ssum_3.xnb

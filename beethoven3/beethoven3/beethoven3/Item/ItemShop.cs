@@ -14,7 +14,7 @@ namespace beethoven3
     {
         protected ItemManager itemManager;
         protected ScoreManager scoreManager;
-
+        protected ReportManager reportManager;
         protected bool darkBackground;
         
         //버튼띄울때 장착or구입 여부 확인하기위해서.
@@ -98,10 +98,11 @@ namespace beethoven3
         private Vector2 locMoney = new Vector2(870, 55);
 
         
-        public ItemShop(ItemManager itemManager, ScoreManager scoreManager)
+        public ItemShop(ItemManager itemManager, ScoreManager scoreManager, ReportManager reportManager)
         {
             this.itemManager = itemManager;
             this.scoreManager = scoreManager;
+            this.reportManager = reportManager;
             darkBackground = false;
             wearOne = false;
             buyOne = false;

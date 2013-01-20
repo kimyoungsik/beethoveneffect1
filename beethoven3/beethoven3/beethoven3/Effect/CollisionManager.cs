@@ -1403,6 +1403,8 @@ namespace beethoven3
                       }
 
                       scoreManager.Combo = 0;
+
+                      //에러
                       if (!charismaManager.PlayCharisma)
                       {
                           scoreManager.Gage = scoreManager.Gage - 1;

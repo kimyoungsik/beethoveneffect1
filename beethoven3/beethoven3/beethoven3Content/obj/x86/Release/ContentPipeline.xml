@@ -1750,6 +1750,60 @@
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\rightItem\rightItemBackground.xnb</Output>
       <Time>2013-01-20T23:32:21.1184359+09:00</Time>
     </Item>
+    <Item>
+      <Source>leftItem\leftItemBackground.png</Source>
+      <Name>leftItem\leftItemBackground</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\leftItem\leftItemBackground.xnb</Output>
+      <Time>2013-01-21T00:54:52.0916154+09:00</Time>
+    </Item>
+    <Item>
+      <Source>effectItem\effectItemBackground.png</Source>
+      <Name>effectItem\effectItemBackground</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\effectItem\effectItemBackground.xnb</Output>
+      <Time>2013-01-21T00:55:10.091645+09:00</Time>
+    </Item>
+    <Item>
+      <Source>backgroundItem\backgroundItemBackground.png</Source>
+      <Name>backgroundItem\backgroundItemBackground</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\backgroundItem\backgroundItemBackground.xnb</Output>
+      <Time>2013-01-21T01:28:22.2595904+09:00</Time>
+    </Item>
+    <Item>
+      <Source>noteItem\noteItemBackground.png</Source>
+      <Name>noteItem\noteItemBackground</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\noteItem\noteItemBackground.xnb</Output>
+      <Time>2013-01-21T01:28:41.3386817+09:00</Time>
+    </Item>
+    <Item>
+      <Source>background\Back_ssum_2.png</Source>
+      <Name>background\Back_ssum_2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\background\Back_ssum_2.xnb</Output>
+      <Time>2013-01-21T03:07:09.8546295+09:00</Time>
+    </Item>
+    <Item>
+      <Source>background\Back_ssum_3.png</Source>
+      <Name>background\Back_ssum_3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\background\Back_ssum_3.xnb</Output>
+      <Time>2013-01-21T03:07:09.8586297+09:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

@@ -44,7 +44,7 @@ namespace beethoven3
         //섬네일
 
         private Texture2D[] effectThumnail = new Texture2D[5];
-       // private Texture2D[] backgroundTexture = new Texture2D[5];
+        private Texture2D[] backgroundThumnail = new Texture2D[5];
 
 
         //팔지는 않지만 텍스쳐만 가지고 있음
@@ -133,7 +133,7 @@ namespace beethoven3
             //배경아이템
             for (i = 0; i < 2; i++)
             {
-                addItem(backgroundItem, new Vector2(100, 100), backgroundTexture[i], new Rectangle(0, 0, backgroundTexture[i].Width, backgroundTexture[i].Height), 1,/*cost*/ 45);
+                addItem(backgroundItem, new Vector2(100, 100), backgroundTexture[i], new Rectangle(0, 0, backgroundTexture[i].Width, backgroundTexture[i].Height), 1,/*cost*/ 45,backgroundThumnail[i]);
             }
 
 
@@ -234,7 +234,7 @@ namespace beethoven3
 
         //    tw.WriteLine("**");
             tw.WriteLine("effect");
-            for (i = 0; i < myLeftHandItem.Count; i++)
+            for (i = 0; i < myEffectItem.Count; i++)
             {
                 index = getIndexOfAllEffectItem(myEffectItem[i]);
                 tw.WriteLine(index.ToString());
@@ -244,7 +244,7 @@ namespace beethoven3
 
         //    tw.WriteLine("**");
             tw.WriteLine("note");
-            for (i = 0; i < myLeftHandItem.Count; i++)
+            for (i = 0; i < myNoteItem.Count; i++)
             {
                 index = getIndexOfAllNoteItem(myNoteItem[i]);
                 tw.WriteLine(index.ToString());
@@ -253,7 +253,7 @@ namespace beethoven3
             tw.WriteLine(getNoteIndex());
         //    tw.WriteLine("**");
             tw.WriteLine("background");
-            for (i = 0; i < myLeftHandItem.Count; i++)
+            for (i = 0; i < myBackgroundItem.Count; i++)
             {
                 index = getIndexOfAllBackgroundItem(myBackgroundItem[i]);
                 tw.WriteLine(index.ToString());
@@ -497,6 +497,18 @@ namespace beethoven3
             backgroundTexture[0] = cm.Load<Texture2D>(@"background\ConcertHall_1");//기본
             backgroundTexture[1] = cm.Load<Texture2D>(@"background\ConcertHall_2");//우주
             backgroundTexture[1] = cm.Load<Texture2D>(@"background\ConcertHall_2");//숲
+
+
+            //배경 섬네일
+
+            //기본
+            backgroundThumnail[0] = cm.Load<Texture2D>(@"background\Back_ssum_2");
+
+            //우주느낌
+            backgroundThumnail[1] = cm.Load<Texture2D>(@"background\Back_ssum_3");
+
+            //초원느낌
+            backgroundThumnail[2] = cm.Load<Texture2D>(@"background\Back_ssum_2");
 
 
 

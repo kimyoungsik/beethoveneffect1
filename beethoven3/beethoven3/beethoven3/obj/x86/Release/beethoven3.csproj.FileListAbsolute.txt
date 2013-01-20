@@ -203,3 +203,9 @@ D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\rightItem\
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\rightItem\Baton_5.xnb
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\rightItem\Baton_6.xnb
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\rightItem\rightItemBackground.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\leftItem\leftItemBackground.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\effectItem\effectItemBackground.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\backgroundItem\backgroundItemBackground.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\noteItem\noteItemBackground.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\background\Back_ssum_2.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\background\Back_ssum_3.xnb
