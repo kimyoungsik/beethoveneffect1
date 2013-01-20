@@ -1561,6 +1561,15 @@
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopDoorItems\mainPic.xnb</Output>
       <Time>2013-01-20T12:12:20.6717839+09:00</Time>
     </Item>
+    <Item>
+      <Source>shopDoorItems\shopBackground.png</Source>
+      <Name>shopDoorItems\shopBackground</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopDoorItems\shopBackground.xnb</Output>
+      <Time>2013-01-20T13:27:45.5575925+09:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

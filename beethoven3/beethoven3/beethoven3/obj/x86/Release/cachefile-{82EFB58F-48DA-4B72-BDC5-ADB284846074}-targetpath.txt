@@ -174,3 +174,4 @@ Content\shopDoorItems\note.xnb
 Content\shopDoorItems\effect.xnb
 Content\shopDoorItems\background.xnb
 Content\shopDoorItems\mainPic.xnb
+Content\shopDoorItems\shopBackground.xnb

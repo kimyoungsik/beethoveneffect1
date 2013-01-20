@@ -531,6 +531,7 @@ namespace beethoven3
 
             previousButton = Content.Load<Texture2D>(@"game1\previousButton");
             hoverPreviousButton = Content.Load<Texture2D>(@"game1\previousButton");
+            
             //   charisma1 = Content.Load<Texture2D>(@"shopdoor\nogold");
             /////텍스쳐 로드 -END
 
@@ -5944,7 +5945,11 @@ namespace beethoven3
             //상전대문
             if (gameState == GameStates.ShopDoor)
             {
+
+
                 shopDoor.Draw(spriteBatch, this.Window.ClientBounds.Width, this.Window.ClientBounds.Height);
+
+
             }
 
             #endregion
