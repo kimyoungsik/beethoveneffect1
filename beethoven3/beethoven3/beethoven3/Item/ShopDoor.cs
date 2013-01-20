@@ -14,26 +14,35 @@ namespace beethoven3
         MouseState pastmouse;
         KeyboardState pastkey;
 
+        private Texture2D shopDoorBackground;
+        private Rectangle recMenuBackground = new Rectangle(0, 0, 1024, 769);
+
+        
+        private Texture2D mainPicture;
+        private Rectangle recMainPicture = new Rectangle(280, 200, 568, 413);
+
+
+
         private Texture2D rightHand;
         private Texture2D leftHand;
         private Texture2D note;
         private Texture2D effect;
         private Texture2D background;
-        private Texture2D previousButton;
+      //  private Texture2D previousButton;
 
         private Texture2D hoverRightHand;
         private Texture2D hoverLeftHand;
         private Texture2D hoverNote;
         private Texture2D hoverEffect;
         private Texture2D hoverBackground;
-        private Texture2D hoverPreviousButton;
+     //   private Texture2D hoverPreviousButton;
 
-        private Rectangle recRightHand;
-        private Rectangle recLeftHand;
-        private Rectangle recNote;
-        private Rectangle recEffect;
-        private Rectangle recBackground;
-        private Rectangle recPreviousButton;
+        private Rectangle recRightHand = new Rectangle(750,360,191,58);
+        private Rectangle recLeftHand = new Rectangle(50, 360, 287, 72);
+        private Rectangle recNote = new Rectangle(274, 166, 147, 50);
+        private Rectangle recEffect = new Rectangle(615, 166, 179, 72);
+        private Rectangle recBackground = new Rectangle(326, 584, 395, 72);
+    //    private Rectangle recPreviousButton;
 
 
         private bool clickRightHand;
@@ -60,21 +69,33 @@ namespace beethoven3
 
         public void LoadContent(ContentManager cm)
         {
-             rightHand= cm.Load<Texture2D>(@"shopdoor\shopDoor1");
-             leftHand= cm.Load<Texture2D>(@"shopdoor\shopDoor2");
-             note = cm.Load<Texture2D>(@"shopdoor\shopDoor3");
-             effect= cm.Load<Texture2D>(@"shopdoor\shopDoor4");
-             background = cm.Load<Texture2D>(@"shopdoor\shopDoor5");
-             previousButton = cm.Load<Texture2D>(@"result\nextButton");
+            shopDoorBackground = cm.Load<Texture2D>(@"shopDoorItems\background");
 
-             hoverRightHand = cm.Load<Texture2D>(@"shopdoor\changed1");
-             hoverLeftHand = cm.Load<Texture2D>(@"shopdoor\changed2");
-             hoverNote = cm.Load<Texture2D>(@"shopdoor\changed3");
-             hoverEffect = cm.Load<Texture2D>(@"shopdoor\changed4");
-             hoverBackground = cm.Load<Texture2D>(@"shopdoor\changed5");
-             hoverPreviousButton = cm.Load<Texture2D>(@"result\\hoverNextButton");
 
-             pericles36Font = cm.Load<SpriteFont>(@"Fonts\Pericles36");
+            mainPicture = cm.Load<Texture2D>(@"shopDoorItems\mainPic");
+
+
+             rightHand= cm.Load<Texture2D>(@"shopDoorItems\rightBaton");
+             leftHand = cm.Load<Texture2D>(@"shopDoorItems\leftHand");
+             note = cm.Load<Texture2D>(@"shopDoorItems\note");
+             effect = cm.Load<Texture2D>(@"shopDoorItems\effect");
+             background = cm.Load<Texture2D>(@"shopDoorItems\background");
+
+
+
+          //   previousButton = cm.Load<Texture2D>(@"result\nextButton");
+
+             hoverRightHand = cm.Load<Texture2D>(@"shopDoorItems\rightBaton");
+             hoverLeftHand = cm.Load<Texture2D>(@"shopDoorItems\leftHand");
+             hoverNote = cm.Load<Texture2D>(@"shopDoorItems\note");
+             hoverEffect = cm.Load<Texture2D>(@"shopDoorItems\effect");
+             hoverBackground = cm.Load<Texture2D>(@"shopDoorItems\background");
+
+
+
+            // hoverPreviousButton = cm.Load<Texture2D>(@"result\\hoverNextButton");
+
+          //   pericles36Font = cm.Load<SpriteFont>(@"Fonts\Pericles36");
            
         }
 
@@ -188,26 +209,26 @@ namespace beethoven3
                 setClickBackground(false);
             }
 
-            if (rect.Intersects(getRectPreviousButton()) || rightHandPosition.Intersects(getRectPreviousButton()))
-            {
+            //if (rect.Intersects(getRectPreviousButton()) || rightHandPosition.Intersects(getRectPreviousButton()))
+            //{
 
-                Game1.nearButton = true;
-                Game1.GetCenterOfButton(getRectPreviousButton());
+            //    Game1.nearButton = true;
+            //    Game1.GetCenterOfButton(getRectPreviousButton());
 
-                setClickPreviousButton(true);
-                //click the right hand item section
-                if ((mouse.LeftButton == ButtonState.Pressed && pastmouse.LeftButton == ButtonState.Released) || (Game1.finalClick && !Game1.pastClick))
-                {
-                    Game1.gameState = Game1.GameStates.Menu;
+            //    setClickPreviousButton(true);
+            //    //click the right hand item section
+            //    if ((mouse.LeftButton == ButtonState.Pressed && pastmouse.LeftButton == ButtonState.Released) || (Game1.finalClick && !Game1.pastClick))
+            //    {
+            //        Game1.gameState = Game1.GameStates.Menu;
 
-                    //가운데로 고정된거 풀기 
-                    Game1.nearButton = false;
-                }
-            }
-            else
-            {
-                setClickPreviousButton(false);
-            }
+            //        //가운데로 고정된거 풀기 
+            //        Game1.nearButton = false;
+            //    }
+            //}
+            //else
+            //{
+            //    setClickPreviousButton(false);
+            //}
 
 
             if (
@@ -216,7 +237,7 @@ namespace beethoven3
             && !(rect.Intersects(getRectNote()) || rightHandPosition.Intersects(getRectNote()))
             && !(rect.Intersects(getRectEffect()) || rightHandPosition.Intersects(getRectEffect()))
             && !(rect.Intersects(getRectBackground()) || rightHandPosition.Intersects(getRectBackground()))
-            && !(rect.Intersects(getRectPreviousButton()) || rightHandPosition.Intersects(getRectPreviousButton()))
+                /*   && !(rect.Intersects(getRectPreviousButton()) || rightHandPosition.Intersects(getRectPreviousButton()) )*/
             )
             {
                 Game1.nearButton = false;
@@ -230,48 +251,29 @@ namespace beethoven3
 
         public void Draw(SpriteBatch spriteBatch,int width,int height)
         {
-            
 
-            recRightHand = new Rectangle(width / 2 - (rightHand.Width / 2) - 100, height / 2 - (rightHand.Height / 2) - 100, 208, 233);
+            spriteBatch.Draw(shopDoorBackground, recMenuBackground, Color.White);
+
+       
+            spriteBatch.Draw(mainPicture, recMainPicture, Color.White);
+
+
             spriteBatch.Draw(rightHand, recRightHand, Color.White);
                
-
-
-            recLeftHand =  new Rectangle(width / 2 - (leftHand.Width / 2) + 100, height / 2 - (leftHand.Height / 2) - 150, 273,
-                     172);         
             spriteBatch.Draw(leftHand, recLeftHand, Color.White);
 
-
-            recNote = new Rectangle(width / 2 - (note.Width / 2) + 220, height / 2 - (note.Height / 2)+25, 172,
-                     344);
             spriteBatch.Draw(note, recNote, Color.White);
 
-            recEffect = new Rectangle(width / 2 - (effect.Width / 2) + 90, height / 2 - (effect.Height / 2) + 185, 237,
-                     161);
             spriteBatch.Draw(effect,
                  recEffect,
                      Color.White);
-
-            recBackground = new Rectangle(width / 2 - (background.Width / 2) - 100, height / 2 - (background.Height / 2) + 140, 213,
-                     229);
             spriteBatch.Draw(background,
                  recBackground,
                      Color.White);
 
-             recPreviousButton = new Rectangle(width - 400, height - 200, 356, 215);
-            spriteBatch.Draw(previousButton, recPreviousButton, Color.White);
+            // recPreviousButton = new Rectangle(width - 400, height - 200, 356, 215);
+            //spriteBatch.Draw(previousButton, recPreviousButton, Color.White);
 
-
-
-            spriteBatch.DrawString(pericles36Font, "RightHand", new Vector2(width / 2 - (rightHand.Width / 2) - 200, height / 2 - (rightHand.Height / 2) - 100), Color.Black);
-            
-            spriteBatch.DrawString(pericles36Font, "LeftHand", new Vector2(width / 2 - (leftHand.Width / 2) + 150, height / 2 - (leftHand.Height / 2) - 150), Color.Black);
-
-            spriteBatch.DrawString(pericles36Font, "Note", new Vector2(width / 2 - (note.Width / 2) + 270, height / 2 - (note.Height / 2) + 125), Color.Black);
-
-            spriteBatch.DrawString(pericles36Font, "Effect", new Vector2(width / 2 - (effect.Width / 2) + 90, height / 2 - (effect.Height / 2) + 225), Color.Black);
-
-            spriteBatch.DrawString(pericles36Font, "Background", new Vector2(width / 2 - (background.Width / 2) - 200, height / 2 - (background.Height / 2) + 170), Color.Black);
 
 
 
@@ -281,7 +283,7 @@ namespace beethoven3
                 //버튼이 주변에 있다고 감지
                // Game1.nearButton = true;
               //  Game1.GetCenterOfButton(recPreviousButton);
-                spriteBatch.Draw(hoverPreviousButton, recPreviousButton, Color.White);
+                //spriteBatch.Draw(hoverPreviousButton, recPreviousButton, Color.White);
             }
             else
             {
@@ -420,10 +422,10 @@ namespace beethoven3
             this.clickPreviousButton = value;
         }
 
-        public Rectangle getRectPreviousButton()
-        {
-            return this.recPreviousButton;
-        }
+        //public Rectangle getRectPreviousButton()
+        //{
+        //    return this.recPreviousButton;
+        //}
        
     }
 }

@@ -167,3 +167,10 @@ Content\Fonts\damagefont.xnb
 Content\Fonts\Pericles36.xnb
 Content\MessageFont.xnb
 Content\Fonts\PerpetuaFont.xnb
+Content\game1\previousButton.xnb
+Content\shopDoorItems\rightBaton.xnb
+Content\shopDoorItems\leftHand.xnb
+Content\shopDoorItems\note.xnb
+Content\shopDoorItems\effect.xnb
+Content\shopDoorItems\background.xnb
+Content\shopDoorItems\mainPic.xnb

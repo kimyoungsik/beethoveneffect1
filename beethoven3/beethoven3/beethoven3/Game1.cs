@@ -326,6 +326,10 @@ namespace beethoven3
         //사람 없음 나타내는 메시지 박스
 
         private Texture2D noPerson;
+
+
+        public static Texture2D previousButton;
+        public static Texture2D hoverPreviousButton;
         //float volume = 0;
 
         /////Texture end 
@@ -523,14 +527,17 @@ namespace beethoven3
             one = Content.Load<Texture2D>(@"comboNumbers\good1");
             two = Content.Load<Texture2D>(@"comboNumbers\good2");
             three = Content.Load<Texture2D>(@"comboNumbers\good3");
-            
+
+
+            previousButton = Content.Load<Texture2D>(@"game1\previousButton");
+            hoverPreviousButton = Content.Load<Texture2D>(@"game1\previousButton");
             //   charisma1 = Content.Load<Texture2D>(@"shopdoor\nogold");
             /////텍스쳐 로드 -END
 
          
             /////////////////드래그 라인 관련
 
-            
+           
             
 
             //드래그 라인
@@ -1273,8 +1280,10 @@ namespace beethoven3
 
             foreach (RecognizerInfo reinfo in SpeechRecognitionEngine.InstalledRecognizers())//인스톨된 모든 스피치 엔진 불러온다.
             {
-                if (reinfo.Id == "SR_MS_en-US_Kinect_11.0")
+                //if (reinfo.Id == "SR_MS_en-US_Kinect_11.0")
+                if (reinfo.Id.Contains("KR"))
                 {
+                    message = reinfo.Id;
                     ri = reinfo;
                     break;
                 }
@@ -1305,6 +1314,11 @@ namespace beethoven3
             choices.Add("tutorial");
             choices.Add("setting");
             choices.Add("shop");
+            choices.Add("이전");
+            choices.Add("시작");
+            choices.Add("중지");
+            
+            choices.Add("다음");
           
           
           
@@ -1460,7 +1474,7 @@ namespace beethoven3
 
 
                                 case "next":
-
+                                case "다음":
                                     if (gameState == GameStates.ResultManager)
                                     {
                                         gameState = GameStates.ShowPictures;
@@ -1475,6 +1489,7 @@ namespace beethoven3
                                     break;
 
                                 case "previous":
+                                case "이전":
 
                                     if (gameState == GameStates.SongMenu || gameState == GameStates.ShopDoor || gameState == GameStates.SettingBoard)
                                     {
@@ -1489,7 +1504,7 @@ namespace beethoven3
 
 
                                 case "start":
-
+                                case "시작":
                                     if (gameState == GameStates.Menu)
                                     {
                                         gameState = GameStates.SongMenu;
@@ -1525,6 +1540,8 @@ namespace beethoven3
                                         //    gameState = GameStates;
                                     }
                                     break;
+                                
+
                             }
                         }
                     }
@@ -2279,13 +2296,13 @@ namespace beethoven3
                 if (!s.Contains("__UNKNOWN"))
                 {
                     postureCount++;
-                    message = "yes";
+                    //message = "yes";
                     if (postureCount > 9)
                     {
                         //여기에 정지했을 때 동작 넣기
                         file.SetEndFile(true);
                         postureCount = 0;
-                        message = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+                        //message = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
 
                     }
                 }
@@ -2293,7 +2310,7 @@ namespace beethoven3
                 if (s.Contains("__UNKNOWN"))
                 {
                     postureCount = 0;
-                    message = "no";
+                    //message = "no";
                 }
 
 
@@ -2350,7 +2367,7 @@ namespace beethoven3
                     if (!s.Contains("__UNKNOWN"))
                     {
                         postureCount++;
-                        message = "yes";
+                        //message = "yes";
                         perfectBannerManager.AddBanners(new Vector2(this.Window.ClientBounds.Width / 2 - 1380 / 4, this.Window.ClientBounds.Height / 2 - 428 / 4));
                         scoreManager.Perfomance = scoreManager.Perfomance + 1;
                             
@@ -2363,7 +2380,7 @@ namespace beethoven3
 
                     if (s.Contains("__UNKNOWN"))
                     {
-                        message = "no";
+                        //message = "no";
                     }
                 }
             }
@@ -2417,13 +2434,13 @@ namespace beethoven3
                         scoreManager.Perfomance = scoreManager.Perfomance + 1;
 
 
-                        message = "yes" + score.ToString();
+                        //message = "yes" + score.ToString();
                         gestureFlag = false;
                     }
 
                     if (s.Contains("__UNKNOWN"))
                     {
-                        message = "no";
+                        //message = "no";
                     }
                 }
             }

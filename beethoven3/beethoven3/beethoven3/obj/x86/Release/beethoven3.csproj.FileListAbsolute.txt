@@ -175,3 +175,10 @@ D:\beethoven\beethoven3\beethoven3\beethoven3\obj\x86\Release\ResolveAssemblyRef
 D:\beethoven\beethoven3\beethoven3\beethoven3\obj\x86\Release\Microsoft.Xna.Framework.RuntimeProfile.txt
 D:\beethoven\beethoven3\beethoven3\beethoven3\obj\x86\Release\beethoven3.exe
 D:\beethoven\beethoven3\beethoven3\beethoven3\obj\x86\Release\beethoven3.pdb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\game1\previousButton.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopDoorItems\rightBaton.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopDoorItems\leftHand.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopDoorItems\note.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopDoorItems\effect.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopDoorItems\background.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopDoorItems\mainPic.xnb

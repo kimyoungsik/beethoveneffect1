@@ -1498,6 +1498,69 @@
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Fonts\PerpetuaFont.xnb</Output>
       <Time>2013-01-08T22:57:38.3099716+09:00</Time>
     </Item>
+    <Item>
+      <Source>game1\previousButton.png</Source>
+      <Name>game1\previousButton</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\game1\previousButton.xnb</Output>
+      <Time>2013-01-20T11:51:01.9376445+09:00</Time>
+    </Item>
+    <Item>
+      <Source>shopDoorItems\rightBaton.png</Source>
+      <Name>shopDoorItems\rightBaton</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopDoorItems\rightBaton.xnb</Output>
+      <Time>2013-01-20T11:45:00.3219612+09:00</Time>
+    </Item>
+    <Item>
+      <Source>shopDoorItems\leftHand.png</Source>
+      <Name>shopDoorItems\leftHand</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopDoorItems\leftHand.xnb</Output>
+      <Time>2013-01-20T11:46:18.1474126+09:00</Time>
+    </Item>
+    <Item>
+      <Source>shopDoorItems\note.png</Source>
+      <Name>shopDoorItems\note</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopDoorItems\note.xnb</Output>
+      <Time>2013-01-20T11:46:47.107069+09:00</Time>
+    </Item>
+    <Item>
+      <Source>shopDoorItems\effect.png</Source>
+      <Name>shopDoorItems\effect</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopDoorItems\effect.xnb</Output>
+      <Time>2013-01-20T11:47:25.1222433+09:00</Time>
+    </Item>
+    <Item>
+      <Source>shopDoorItems\background.png</Source>
+      <Name>shopDoorItems\background</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopDoorItems\background.xnb</Output>
+      <Time>2013-01-20T11:47:51.6977634+09:00</Time>
+    </Item>
+    <Item>
+      <Source>shopDoorItems\mainPic.png</Source>
+      <Name>shopDoorItems\mainPic</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopDoorItems\mainPic.xnb</Output>
+      <Time>2013-01-20T12:12:20.6717839+09:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>
