@@ -540,6 +540,7 @@ namespace beethoven3
             rightHandTextures = itemManager.GetRightHandTexture();
             leftHandTextures = itemManager.GetLeftHandTexture();
             
+            
             //드래그 노트 셀떄
 
             one = Content.Load<Texture2D>(@"comboNumbers\good1");
@@ -549,6 +550,7 @@ namespace beethoven3
 
             previousButton = Content.Load<Texture2D>(@"game1\previousButton");
             hoverPreviousButton = Content.Load<Texture2D>(@"game1\hoverPrevious");
+            
 
             nextButton = Content.Load<Texture2D>(@"game1\nextButton");
             hoverNextButton = Content.Load<Texture2D>(@"game1\hoverNextButton");
@@ -558,9 +560,8 @@ namespace beethoven3
             /////텍스쳐 로드 -END
 
          
-            /////////////////드래그 라인 관련
 
-           
+            /////////////////드래그 라인 관련
             
 
             //드래그 라인
@@ -597,7 +598,7 @@ namespace beethoven3
             comboNumberManager = new ComboNumberManager();
             comboNumberManager.LoadContent(Content);
 
-            //결과화면 숫자
+            //***결과화면 숫자
             resultNumberManager = new ResultNumberManager();
             resultNumberManager.LoadContent(Content);
 
@@ -2932,9 +2933,10 @@ namespace beethoven3
                    //상점대문으로 돌아가는 키보드처리
 
                  
-                   
                    HandleKeyboardInputinItemShop(Keyboard.GetState());
 
+                   
+                   
                    Rectangle mouseRect = new Rectangle(mouseStateCurrent.X, mouseStateCurrent.Y, 5, 5);
                    int i;
                    //아이템 rect
@@ -5572,6 +5574,9 @@ namespace beethoven3
                         goldGetManager = new ExplosionManager();
                         goldGetManager.ExplosionInit(getGold, new Rectangle(0, 0, 200, 200), 5, 0.7f, 30);
 
+                        
+
+
                         ////일단은 miss effect로
                         //goldGetManager = new ExplosionManager();
                         //goldGetManager.ExplosionInit(itemManager.GetMissEffectTexture()[effectIndex], itemManager.GetEffectInitFrame()[effectIndex], itemManager.GetEffectFrameCount()[effectIndex], itemManager.GetEffectScale()[effectIndex], itemManager.GetEffectDulation()[effectIndex]);
@@ -6174,7 +6179,7 @@ namespace beethoven3
                 NoteFile noteFile = noteFileManager.FindNoteFile(songFile);
                 
                 //노트파일로 사진 가져오기
-                spriteBatch.Draw(songMenu.FindPicture(noteFile), new Rectangle(130, 210, 140, 140), Color.White);
+                spriteBatch.Draw(songMenu.FindPicture(noteFile), new Rectangle(120, 200, 160, 160), Color.White);
                 
                 //노트파일로 노래 제목가져오기
                 spriteBatch.DrawString(georgia, noteFile.Name, new Vector2(320, 200), Color.Gray);
@@ -6252,7 +6257,7 @@ namespace beethoven3
                 NoteFile noteFile = noteFileManager.FindNoteFile(currentSongName);
 
                 //노트파일로 사진 가져오기
-                spriteBatch.Draw(songMenu.FindPicture(noteFile), new Rectangle(98, 182, 121, 121), Color.White);
+                spriteBatch.Draw(songMenu.FindPicture(noteFile), new Rectangle(98, 182, 121, 123), Color.White);
 
                 //노트파일로 노래 제목가져오기
                 spriteBatch.DrawString(georgia, noteFile.Name, new Vector2(270, 172), Color.Gray);
@@ -6366,7 +6371,7 @@ namespace beethoven3
                 //origin ->  new Vector2(frameWidth / 2, frameHeight / 2) ->  new Vector2(0,0) 으로 바꿈 (마커와 노트 매칭 떄문에 )
               new Vector2(0, 0),
               //오른쪽 마크 크기 
-              1.5f,
+              1f,
               SpriteEffects.None,
               0.0f);   
 

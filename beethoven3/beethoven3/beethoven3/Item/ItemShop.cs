@@ -62,7 +62,7 @@ namespace beethoven3
         protected bool isHoverSellButton;
         protected bool isHoverCancelButton;
 
-        protected Texture2D usedItemBackground;
+        protected Texture2D buyItemBackground;
         protected Texture2D ItemBackground;
 
         protected Texture2D hoverNoGoldButton;
@@ -82,16 +82,8 @@ namespace beethoven3
         protected Rectangle recNoGoldButton;
         protected Rectangle recHandInButton;
 
-        
-
-        protected Texture2D previousButton;
-
-
-        protected Texture2D hoverPreviousButton;
-
-        protected Rectangle recPreviousButton;
-
-
+    
+     
         protected bool clickPreviousButton;
 
         protected Texture2D wearItemMark;
@@ -100,8 +92,10 @@ namespace beethoven3
 
 
 
-        protected Texture2D ItemShopBackground;
 
+        protected Rectangle recPreviousButton = new Rectangle(36, 35, 220, 170);
+
+        private Vector2 locMoney = new Vector2(870, 55);
 
         
         public ItemShop(ItemManager itemManager, ScoreManager scoreManager)
@@ -116,6 +110,9 @@ namespace beethoven3
 
         public virtual void LoadContent(ContentManager cm)
         {
+
+           // ItemShopBackground = cm.Load<Texture2D>(@"shopButton\itemShopBackground");
+
             darkBackgroundImage = cm.Load<Texture2D>(@"Textures\darkBackground");
 
             yesButton = cm.Load<Texture2D>(@"shopButton\yesButton");
@@ -127,8 +124,9 @@ namespace beethoven3
             hoverYesButton = cm.Load<Texture2D>(@"shopButton\hoverYesButton");
             hoverNoButton = cm.Load<Texture2D>(@"shopButton\hoverNoButton");
 
-            usedItemBackground = cm.Load<Texture2D>(@"background\itemBackground");
-            ItemBackground = cm.Load<Texture2D>(@"background\itemBackground2");
+
+            buyItemBackground = cm.Load<Texture2D>(@"shopButton\itemBack");
+            ItemBackground = cm.Load<Texture2D>(@"shopButton\itemBack");
 
             noGoldButton = cm.Load<Texture2D>(@"shopdoor\nogold");
             hoverNoGoldButton = cm.Load<Texture2D>(@"shopdoor\nogoldhover");
@@ -146,15 +144,6 @@ namespace beethoven3
 
             hoverHandInItemButton = cm.Load<Texture2D>(@"shopdoor\hoverHandInItemButton");
             handInItemButton = cm.Load<Texture2D>(@"shopdoor\handInItemButton");
-
-            //pericles36Font = cm.Load<SpriteFont>(@"Fonts\Pericles36");
-
-
-
-           
-            previousButton = cm.Load<Texture2D>(@"result\nextButton");
-
-            hoverPreviousButton = cm.Load<Texture2D>(@"result\hoverNextButton");
 
             wearItemMark = cm.Load<Texture2D>(@"rightItem\wearItem");
 
@@ -350,37 +339,26 @@ namespace beethoven3
             return this.recPreviousButton;
         }
        
-        //public void setWearItemLocation(int index)
-        //{
-        //    switch (index)
-        //    {
-        //        case 1:
+  
 
-        //            this.wearItemLocation = new Vector2(100, 100);
-        //            break;
+        public virtual void Update(GameTime gameTime, Rectangle rightHandPosition)
+        {
 
-        //        case 0:
 
-        //             this.wearItemLocation = new Vector2(200,100);
-        //            break;
-               
-        
-        //    }
-        //}
-
+        }
 
         public virtual void Draw(SpriteBatch spriteBatch, int width, int height)
         {
 
-            recPreviousButton = new Rectangle(width - 400, height - 200, 356, 215);
-            spriteBatch.Draw(previousButton, recPreviousButton, Color.White);
+           
+            spriteBatch.Draw(Game1.previousButton, recPreviousButton, Color.White);
 
             if (clickPreviousButton)
             {
-                spriteBatch.Draw(hoverPreviousButton, recPreviousButton, Color.White);
+                spriteBatch.Draw(Game1.hoverPreviousButton, recPreviousButton, Color.White);
             }
 
-            spriteBatch.DrawString(Game1.georgia, "Gold : ", new Vector2(10, 200), Color.Black);
+             spriteBatch.DrawString(Game1.georgia, scoreManager.TotalGold.ToString(), locMoney, Color.White, 0f, Vector2.Zero, 0.5f, SpriteEffects.None, 0f);
 
 
         }

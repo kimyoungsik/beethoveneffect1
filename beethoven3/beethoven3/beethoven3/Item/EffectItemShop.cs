@@ -106,12 +106,14 @@ namespace beethoven3
                 //Item I already have
                 if (haveOne(effectItems[i]))
                 {
-                    spriteBatch.Draw(effectItems[i].ItemSprite.Texture, rectEffectItems[i], Color.White);
+                    spriteBatch.Draw(effectItems[i].Thumnail, rectEffectItems[i], Color.White);
+
+                    
                 }
 
                 else
                 {
-                    spriteBatch.Draw(effectItems[i].ItemSprite.Texture, rectEffectItems[i], Color.Black);
+                    spriteBatch.Draw(effectItems[i].Thumnail, rectEffectItems[i], Color.Black);
                 }
 
 

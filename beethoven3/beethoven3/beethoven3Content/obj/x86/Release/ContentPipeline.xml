@@ -65,96 +65,6 @@
       <Time>2013-01-08T22:57:38.5289842+09:00</Time>
     </Item>
     <Item>
-      <Source>shopdoor\changed1.png</Source>
-      <Name>shopdoor\changed1</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopdoor\changed1.xnb</Output>
-      <Time>2013-01-08T22:57:38.3669749+09:00</Time>
-    </Item>
-    <Item>
-      <Source>shopdoor\changed2.png</Source>
-      <Name>shopdoor\changed2</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopdoor\changed2.xnb</Output>
-      <Time>2013-01-08T22:57:38.367975+09:00</Time>
-    </Item>
-    <Item>
-      <Source>shopdoor\changed3.png</Source>
-      <Name>shopdoor\changed3</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopdoor\changed3.xnb</Output>
-      <Time>2013-01-08T22:57:38.367975+09:00</Time>
-    </Item>
-    <Item>
-      <Source>shopdoor\changed4.png</Source>
-      <Name>shopdoor\changed4</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopdoor\changed4.xnb</Output>
-      <Time>2013-01-08T22:57:38.367975+09:00</Time>
-    </Item>
-    <Item>
-      <Source>shopdoor\changed5.png</Source>
-      <Name>shopdoor\changed5</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopdoor\changed5.xnb</Output>
-      <Time>2013-01-08T22:57:38.367975+09:00</Time>
-    </Item>
-    <Item>
-      <Source>shopdoor\shopdoor1.png</Source>
-      <Name>shopdoor\shopdoor1</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopdoor\shopdoor1.xnb</Output>
-      <Time>2013-01-08T22:57:38.3709751+09:00</Time>
-    </Item>
-    <Item>
-      <Source>shopdoor\shopdoor2.png</Source>
-      <Name>shopdoor\shopdoor2</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopdoor\shopdoor2.xnb</Output>
-      <Time>2013-01-08T22:57:38.3719752+09:00</Time>
-    </Item>
-    <Item>
-      <Source>shopdoor\shopdoor3.png</Source>
-      <Name>shopdoor\shopdoor3</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopdoor\shopdoor3.xnb</Output>
-      <Time>2013-01-08T22:57:38.3719752+09:00</Time>
-    </Item>
-    <Item>
-      <Source>shopdoor\shopdoor4.png</Source>
-      <Name>shopdoor\shopdoor4</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopdoor\shopdoor4.xnb</Output>
-      <Time>2013-01-08T22:57:38.3719752+09:00</Time>
-    </Item>
-    <Item>
-      <Source>shopdoor\shopdoor5.png</Source>
-      <Name>shopdoor\shopdoor5</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopdoor\shopdoor5.xnb</Output>
-      <Time>2013-01-08T22:57:38.3719752+09:00</Time>
-    </Item>
-    <Item>
       <Source>Textures\darkBackground.png</Source>
       <Name>Textures\darkBackground</Name>
       <Importer>TextureImporter</Importer>
@@ -281,69 +191,6 @@
       <Time>2013-01-08T22:57:38.3349731+09:00</Time>
     </Item>
     <Item>
-      <Source>background\itemBackground.png</Source>
-      <Name>background\itemBackground</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\background\itemBackground.xnb</Output>
-      <Time>2013-01-08T22:57:38.3359731+09:00</Time>
-    </Item>
-    <Item>
-      <Source>background\itemBackground2.png</Source>
-      <Name>background\itemBackground2</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\background\itemBackground2.xnb</Output>
-      <Time>2013-01-08T22:57:38.3359731+09:00</Time>
-    </Item>
-    <Item>
-      <Source>rightItem\s1.png</Source>
-      <Name>rightItem\s1</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\rightItem\s1.xnb</Output>
-      <Time>2013-01-08T22:57:38.3649748+09:00</Time>
-    </Item>
-    <Item>
-      <Source>rightItem\s2.png</Source>
-      <Name>rightItem\s2</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\rightItem\s2.xnb</Output>
-      <Time>2013-01-08T22:57:38.3659748+09:00</Time>
-    </Item>
-    <Item>
-      <Source>rightItem\s3.png</Source>
-      <Name>rightItem\s3</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\rightItem\s3.xnb</Output>
-      <Time>2013-01-08T22:57:38.3659748+09:00</Time>
-    </Item>
-    <Item>
-      <Source>rightItem\s4.png</Source>
-      <Name>rightItem\s4</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\rightItem\s4.xnb</Output>
-      <Time>2013-01-08T22:57:38.3659748+09:00</Time>
-    </Item>
-    <Item>
-      <Source>rightItem\s5.png</Source>
-      <Name>rightItem\s5</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\rightItem\s5.xnb</Output>
-      <Time>2013-01-08T22:57:38.3659748+09:00</Time>
-    </Item>
-    <Item>
       <Source>character\cello.png</Source>
       <Name>character\cello</Name>
       <Importer>TextureImporter</Importer>
@@ -452,15 +299,6 @@
       <Time>2013-01-08T22:57:38.3559743+09:00</Time>
     </Item>
     <Item>
-      <Source>Explosion\windExplosion2.png</Source>
-      <Name>Explosion\windExplosion2</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Explosion\windExplosion2.xnb</Output>
-      <Time>2013-01-08T22:57:38.3089716+09:00</Time>
-    </Item>
-    <Item>
       <Source>Explosion\heartExplosion2.png</Source>
       <Name>Explosion\heartExplosion2</Name>
       <Importer>TextureImporter</Importer>
@@ -522,24 +360,6 @@
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Explosion\leafExplosion.xnb</Output>
       <Time>2013-01-08T22:57:38.3039713+09:00</Time>
-    </Item>
-    <Item>
-      <Source>Explosion\starExplosion.png</Source>
-      <Name>Explosion\starExplosion</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Explosion\starExplosion.xnb</Output>
-      <Time>2013-01-08T22:57:38.3079715+09:00</Time>
-    </Item>
-    <Item>
-      <Source>Explosion\starExplosion2.png</Source>
-      <Name>Explosion\starExplosion2</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Explosion\starExplosion2.xnb</Output>
-      <Time>2013-01-08T22:57:38.3079715+09:00</Time>
     </Item>
     <Item>
       <Source>DrawLine\drawLineNote1.png</Source>
@@ -1037,15 +857,6 @@
       <Time>2013-01-14T14:02:38.5147047+09:00</Time>
     </Item>
     <Item>
-      <Source>notes\planetNote2.png</Source>
-      <Name>notes\planetNote2</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\planetNote2.xnb</Output>
-      <Time>2013-01-14T14:02:38.5297055+09:00</Time>
-    </Item>
-    <Item>
       <Source>notes\planetNote3.png</Source>
       <Name>notes\planetNote3</Name>
       <Importer>TextureImporter</Importer>
@@ -1181,24 +992,6 @@
       <Time>2013-01-18T21:30:20.746758+09:00</Time>
     </Item>
     <Item>
-      <Source>notes\moonNote.png</Source>
-      <Name>notes\moonNote</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\moonNote.xnb</Output>
-      <Time>2013-01-18T21:36:19.0052492+09:00</Time>
-    </Item>
-    <Item>
-      <Source>notes\planetNote.png</Source>
-      <Name>notes\planetNote</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\planetNote.xnb</Output>
-      <Time>2013-01-18T21:36:19.0082494+09:00</Time>
-    </Item>
-    <Item>
       <Source>shopButton\buyPanel.png</Source>
       <Name>shopButton\buyPanel</Name>
       <Importer>TextureImporter</Importer>
@@ -1242,15 +1035,6 @@
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopButton\hoverYesButton.xnb</Output>
       <Time>2013-01-19T14:44:37.3174994+09:00</Time>
-    </Item>
-    <Item>
-      <Source>rightItem\rightItemBackground.png</Source>
-      <Name>rightItem\rightItemBackground</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\rightItem\rightItemBackground.xnb</Output>
-      <Time>2013-01-19T16:11:25.231375+09:00</Time>
     </Item>
     <Item>
       <Source>rightItem\wearItem.png</Source>
@@ -1821,6 +1605,150 @@
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\game1\level.xnb</Output>
       <Time>2013-01-20T18:05:32.1818689+09:00</Time>
+    </Item>
+    <Item>
+      <Source>shopButton\itemBack.png</Source>
+      <Name>shopButton\itemBack</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopButton\itemBack.xnb</Output>
+      <Time>2013-01-20T23:34:33.4480048+09:00</Time>
+    </Item>
+    <Item>
+      <Source>Explosion\starGoodEffect.png</Source>
+      <Name>Explosion\starGoodEffect</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Explosion\starGoodEffect.xnb</Output>
+      <Time>2013-01-08T22:57:38.3079715+09:00</Time>
+    </Item>
+    <Item>
+      <Source>Explosion\starPerfectEffect.png</Source>
+      <Name>Explosion\starPerfectEffect</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Explosion\starPerfectEffect.xnb</Output>
+      <Time>2013-01-08T22:57:38.3079715+09:00</Time>
+    </Item>
+    <Item>
+      <Source>Explosion\starLongEffect.png</Source>
+      <Name>Explosion\starLongEffect</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Explosion\starLongEffect.xnb</Output>
+      <Time>2013-01-20T22:01:55.4161035+09:00</Time>
+    </Item>
+    <Item>
+      <Source>Explosion\starLongEffect2.png</Source>
+      <Name>Explosion\starLongEffect2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Explosion\starLongEffect2.xnb</Output>
+      <Time>2013-01-20T22:01:55.4181036+09:00</Time>
+    </Item>
+    <Item>
+      <Source>Explosion\starThumnail.png</Source>
+      <Name>Explosion\starThumnail</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Explosion\starThumnail.xnb</Output>
+      <Time>2013-01-20T22:52:22.8452626+09:00</Time>
+    </Item>
+    <Item>
+      <Source>Explosion\treeThumnail.png</Source>
+      <Name>Explosion\treeThumnail</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Explosion\treeThumnail.xnb</Output>
+      <Time>2013-01-20T22:52:22.8482627+09:00</Time>
+    </Item>
+    <Item>
+      <Source>notes\starRightNote_yell.png</Source>
+      <Name>notes\starRightNote_yell</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\starRightNote_yell.xnb</Output>
+      <Time>2013-01-14T14:02:38.5297055+09:00</Time>
+    </Item>
+    <Item>
+      <Source>notes\starLeftNote_moon.png</Source>
+      <Name>notes\starLeftNote_moon</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\starLeftNote_moon.xnb</Output>
+      <Time>2013-01-20T23:05:05.746898+09:00</Time>
+    </Item>
+    <Item>
+      <Source>rightItem\Baton_1.png</Source>
+      <Name>rightItem\Baton_1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\rightItem\Baton_1.xnb</Output>
+      <Time>2013-01-20T23:19:45.4892164+09:00</Time>
+    </Item>
+    <Item>
+      <Source>rightItem\Baton_2.png</Source>
+      <Name>rightItem\Baton_2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\rightItem\Baton_2.xnb</Output>
+      <Time>2013-01-20T23:19:46.5452768+09:00</Time>
+    </Item>
+    <Item>
+      <Source>rightItem\Baton_3.png</Source>
+      <Name>rightItem\Baton_3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\rightItem\Baton_3.xnb</Output>
+      <Time>2013-01-20T23:19:46.5472769+09:00</Time>
+    </Item>
+    <Item>
+      <Source>rightItem\Baton_4.png</Source>
+      <Name>rightItem\Baton_4</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\rightItem\Baton_4.xnb</Output>
+      <Time>2013-01-20T23:19:46.5472769+09:00</Time>
+    </Item>
+    <Item>
+      <Source>rightItem\Baton_5.png</Source>
+      <Name>rightItem\Baton_5</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\rightItem\Baton_5.xnb</Output>
+      <Time>2013-01-20T23:19:46.548277+09:00</Time>
+    </Item>
+    <Item>
+      <Source>rightItem\Baton_6.png</Source>
+      <Name>rightItem\Baton_6</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\rightItem\Baton_6.xnb</Output>
+      <Time>2013-01-20T23:19:44.729173+09:00</Time>
+    </Item>
+    <Item>
+      <Source>rightItem\rightItemBackground.png</Source>
+      <Name>rightItem\rightItemBackground</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\rightItem\rightItemBackground.xnb</Output>
+      <Time>2013-01-20T23:32:21.1184359+09:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

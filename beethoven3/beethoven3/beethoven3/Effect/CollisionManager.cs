@@ -105,8 +105,8 @@ namespace beethoven3
                 //Trace.WriteLine(judgment);
                 if (judgment == 2)
                 {
-
-                    perfectManager.AddExplosions(new Vector2(dragNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, dragNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
+                    
+                    badManager.AddExplosions(new Vector2(dragNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, dragNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
                     //퍼펙트 글자 띄우기
                     perfectBannerManager.AddBanners(perfectLocation);
 
@@ -122,11 +122,13 @@ namespace beethoven3
                 else if (judgment == 1)
                 {
 
-                    goodManager.AddExplosions(new Vector2(dragNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, dragNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
+                    badManager.AddExplosions(new Vector2(dragNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, dragNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
 
                     //굿 글자 띄우기
                     goodBannerManager.AddBanners(goodLocation);
                     
+
+
                     DragNoteManager.DragNotes.RemoveAt(i);
                 //    ScoreManager.otherScore += 1;
                     scoreManager.DragNoteScore = scoreManager.DragNoteScore + 1;
@@ -464,7 +466,7 @@ namespace beethoven3
                        
                                 //효과와 내용
                                 //이펙트 및 템포 빨라지기
-                                badManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
+                             //   badManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
 
                                 //배드 글자 띄우기
                                 badBannerManager.AddBanners(badLocation);
@@ -570,7 +572,7 @@ namespace beethoven3
                             int mouseJudgment = MarkManager.Marks[number].MarkSprite.JudgedNote(mousePoint);
                             if (mouseJudgment != 0)
                             {
-                                badManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
+                                //badManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
 
                                 //배드 글자 띄우기
                                 badBannerManager.AddBanners(badLocation);
@@ -902,7 +904,7 @@ namespace beethoven3
                                 scoreManager.Gage -= 10;
                                 //효과와 내용
                                 //이펙트 및 템포 빨라지기
-                                badManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
+                                //badManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
                                 //배드 글자 띄우기
                                 badBannerManager.AddBanners(badLocation);
 
@@ -1008,7 +1010,7 @@ namespace beethoven3
                             int mouseJudgment = MarkManager.Marks[number].MarkSprite.JudgedNote(mousePoint);
                             if (mouseJudgment != 0)
                             {
-                                badManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
+                                //badManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
 
                                 //배드 글자 띄우기
                                 badBannerManager.AddBanners(badLocation);
@@ -1176,7 +1178,11 @@ namespace beethoven3
 
                             
                             StartNoteManager.longNoteManager.LittleNotes.RemoveAt(x);
+                            
+                            //effect -> bad가 long노트의 이펙트.
 
+                            badManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
+                
                             scoreManager.LongNoteScore = scoreManager.LongNoteScore + 1;
                             scoreManager.Combo = scoreManager.Combo + 1;
                             scoreManager.Gage += 1;
@@ -1215,9 +1221,14 @@ namespace beethoven3
                             // 글자 띄우기
                             missBannerManager.
                             DisappearAllMarks();
-                            perfectBannerManager.AddBanners(perfectLocation);
+                            goodBannerManager.AddBanners(perfectLocation);
+
+
+                            badManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
+                
 
                             StartNoteManager.longNoteManager.LittleNotes.RemoveAt(x);
+
 
                             scoreManager.LongNoteScore = scoreManager.LongNoteScore + 1;
                             scoreManager.Combo = scoreManager.Combo + 1;

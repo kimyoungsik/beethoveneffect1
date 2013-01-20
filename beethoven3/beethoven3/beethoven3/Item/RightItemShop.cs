@@ -14,9 +14,9 @@ namespace beethoven3
         private List<Item> rightItems;
         private List<Item> myRightItems;
         private List<Rectangle> rectRightItems = new List<Rectangle>();
-        private Texture2D rightItemBackground;
-
-
+      //  private Texture2D title;
+     //   private Vector2 locationTitle = new Vector2(352,123);
+        private Texture2D rightItemShopBackground;
         public RightItemShop(ItemManager itemManager,ScoreManager scoreManager)
             : base(itemManager, scoreManager)
         {
@@ -28,19 +28,20 @@ namespace beethoven3
             base.LoadContent(cm);
             rightItems = itemManager.getShopRightHandItem();
             myRightItems = itemManager.getMyRightHandItem();
-            rightItemBackground = cm.Load<Texture2D>(@"rightItem\rightItemBackground");
+            rightItemShopBackground = cm.Load<Texture2D>(@"rightItem\rightItemBackground");
             setLocationItems();
         }
+
 
 
         public void addItemtoMyItem(Item item)
         {
             itemManager.addMyRightHandItem(item);
-
             //더하고 다시 갱신
             myRightItems = itemManager.getMyRightHandItem();
-            
         }
+
+
 
 
 
@@ -84,6 +85,8 @@ namespace beethoven3
             return ret;
         }
 
+
+        //배치 위치
         public void setLocationItems()
         {
             int i;
@@ -107,31 +110,30 @@ namespace beethoven3
                 for (i = 3; i < rightItems.Count; i++)
                 {
                     
-                    Rectangle rectRightHand = new Rectangle(j * 255+160, 480, 240, 240);
+                    Rectangle rectRightHand = new Rectangle(j * 255+160, 450, 240, 240);
                     rectRightItems.Add(rectRightHand);
                     j++;
                 }
 
-
             }
 
         }
+        public override void Update(GameTime gameTime, Rectangle rightHandPosition)
+        {
+            
+            base.Update(gameTime, rightHandPosition);
 
+            
+        }
         public override void Draw(SpriteBatch spriteBatch, int width, int height)
         {
             
             //배경
-            spriteBatch.Draw(rightItemBackground, new Vector2(0, 0), null, Color.White, 0f, new Vector2(0, 0), 1f, SpriteEffects.None, 1f);
+            spriteBatch.Draw(rightItemShopBackground, new Rectangle(0, 0, 1024, 769), Color.White);
 
             base.Draw(spriteBatch, width, height);
 
-            spriteBatch.DrawString(Game1.georgia, "Gold : ", new Vector2(10, 200), Color.Black);
-
-
-            //전체 돈 표시
-            spriteBatch.DrawString(Game1.georgia, scoreManager.TotalGold.ToString(), new Vector2(190, 200), Color.Black);
-
-            int i;
+           int i;
            
 
             //보유아이템
@@ -142,26 +144,29 @@ namespace beethoven3
                 //Item I already have
                 if (haveOne(rightItems[i]))
                 {
-                    spriteBatch.Draw(rightItems[i].ItemSprite.Texture, rectRightItems[i], Color.White);
+
+                    spriteBatch.Draw(rightItems[i].ItemSprite.Texture, new Vector2(rectRightItems[i].Center.X, rectRightItems[i].Center.Y), new Rectangle(0, 0, rightItems[i].ItemSprite.Texture.Width, rightItems[i].ItemSprite.Texture.Height), Color.White, 0f, new Vector2( rightItems[i].ItemSprite.Texture.Width/2, rightItems[i].ItemSprite.Texture.Height/2), 0.7f, SpriteEffects.None, 1.0f);
+                 
                 }
 
                 else
                 {
-                    spriteBatch.Draw(rightItems[i].ItemSprite.Texture, rectRightItems[i], Color.Black);
+                    spriteBatch.Draw(rightItems[i].ItemSprite.Texture, new Vector2(rectRightItems[i].Center.X, rectRightItems[i].Center.Y), new Rectangle(0, 0, rightItems[i].ItemSprite.Texture.Width, rightItems[i].ItemSprite.Texture.Height), Color.Black, 0f, new Vector2(rightItems[i].ItemSprite.Texture.Width / 2, rightItems[i].ItemSprite.Texture.Height / 2), 0.7f, SpriteEffects.None, 1.0f);
+             
+                 
                 }
 
-                //아이템 가격 표시 
-                spriteBatch.DrawString(Game1.georgia, rightItems[i].GetCost().ToString(), new Vector2(rectRightItems[i].X + (rectRightItems[i].Width / 2), rectRightItems[i].Y + rectRightItems[i].Height - rectRightItems[i].Height / 10), Color.Black);
+
+               // spriteBatch.Draw(Game1.menuGold, new Vector2(rectRightItems[i].Center.X, rectRightItems[i].Center.Y), new Rectangle(0, 0, rightItems[i].ItemSprite.Texture.Width, rightItems[i].ItemSprite.Texture.Height), Color.Black, 0f, new Vector2(rightItems[i].ItemSprite.Texture.Width / 2, rightItems[i].ItemSprite.Texture.Height / 2), 0.7f, SpriteEffects.None, 1.0f);
+                spriteBatch.Draw(Game1.menuGold, new Vector2(rectRightItems[i].X + 5, rectRightItems[i].Y + rectRightItems[i].Height - rectRightItems[i].Height / 6), new Rectangle(0,0,25,31),Color.White,0f,Vector2.Zero,1f,SpriteEffects.None,0f);
            
-                //rectRightItem.Add(rectRightHand);
+                //아이템 가격 표시 
+                spriteBatch.DrawString(Game1.georgia, rightItems[i].GetCost().ToString(), new Vector2(rectRightItems[i].X + 40, rectRightItems[i].Y + rectRightItems[i].Height - rectRightItems[i].Height / 4), Color.White);
+           
+             
             }
 
-            ////장착아이템
-            //Rectangle usedItemRect = new Rectangle(50,50,100,100);
-
-            //spriteBatch.Draw(usedItemBackground, usedItemRect, Color.White);
-
-           
+                    
             if (itemManager.getRightHandIndex()  !=  -1)
             {
 

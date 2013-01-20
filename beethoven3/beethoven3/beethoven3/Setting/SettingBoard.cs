@@ -98,13 +98,13 @@ namespace beethoven3
             KinectSensor nui = game1.Nui;
             int elevationAngle  = nui.ElevationAngle;
 
-            spriteBatch.DrawString(pericles36Font, "scaling", new Vector2(100, 100), Color.Black);
+            spriteBatch.DrawString(Game1.georgia, "scaling", new Vector2(100, 100), Color.Black);
 
-            spriteBatch.DrawString(pericles36Font, userParam.ToString(), new Vector2(500, 100), Color.Black);
+            spriteBatch.DrawString(Game1.georgia, userParam.ToString(), new Vector2(500, 100), Color.Black);
 
-            spriteBatch.DrawString(pericles36Font, "angle", new Vector2(100, 300), Color.Black);
+            spriteBatch.DrawString(Game1.georgia, "angle", new Vector2(100, 300), Color.Black);
 
-            spriteBatch.DrawString(pericles36Font, elevationAngle.ToString(), new Vector2(500, 300), Color.Black);
+            spriteBatch.DrawString(Game1.georgia, elevationAngle.ToString(), new Vector2(500, 300), Color.Black);
 
 
 

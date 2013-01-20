@@ -26,6 +26,9 @@ namespace beethoven3
         private bool sold;
 
         private int cost;
+
+        private Texture2D thumnail = null;
+
         
         #endregion
 
@@ -35,7 +38,8 @@ namespace beethoven3
             Vector2 location,
             Rectangle initialFrame,
             int frameCount,
-            int cost
+            int cost,
+            Texture2D thumnail = null 
             )
         {
             ItemSprite = new Sprite(
@@ -57,6 +61,7 @@ namespace beethoven3
             this.sold = false;
             ItemSprite.CollisionRadius = itemRadius;
             this.cost = cost;
+            this.thumnail = thumnail;
         }
         #endregion
 
@@ -66,7 +71,12 @@ namespace beethoven3
         {
             return this.cost;
         }
+        public Texture2D Thumnail
+        {
+            get { return thumnail; }
+            set { thumnail = value; }
 
+        }
 
         public void buyItem()
         {

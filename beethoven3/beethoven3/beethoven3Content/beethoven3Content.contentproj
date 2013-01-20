@@ -132,58 +132,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="shopdoor\changed1.png">
-      <Name>changed1</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="shopdoor\changed2.png">
-      <Name>changed2</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="shopdoor\changed3.png">
-      <Name>changed3</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="shopdoor\changed4.png">
-      <Name>changed4</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="shopdoor\changed5.png">
-      <Name>changed5</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="shopdoor\shopdoor1.png">
-      <Name>shopdoor1</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="shopdoor\shopdoor2.png">
-      <Name>shopdoor2</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="shopdoor\shopdoor3.png">
-      <Name>shopdoor3</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="shopdoor\shopdoor4.png">
-      <Name>shopdoor4</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="shopdoor\shopdoor5.png">
-      <Name>shopdoor5</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Textures\darkBackground.png">
       <Name>darkBackground</Name>
       <Importer>TextureImporter</Importer>
@@ -282,45 +230,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="background\itemBackground.png">
-      <Name>itemBackground</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="background\itemBackground2.png">
-      <Name>itemBackground2</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="rightItem\s1.png">
-      <Name>s1</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="rightItem\s2.png">
-      <Name>s2</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="rightItem\s3.png">
-      <Name>s3</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="rightItem\s4.png">
-      <Name>s4</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="rightItem\s5.png">
-      <Name>s5</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="character\cello.png">
       <Name>cello</Name>
       <Importer>TextureImporter</Importer>
@@ -403,13 +312,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Explosion\windExplosion2.png">
-      <Name>windExplosion2</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Explosion\heartExplosion2.png">
       <Name>heartExplosion2</Name>
       <Importer>TextureImporter</Importer>
@@ -455,13 +357,13 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Explosion\starExplosion.png">
-      <Name>starExplosion</Name>
+    <Compile Include="Explosion\starGoodEffect.png">
+      <Name>starGoodEffect</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Explosion\starExplosion2.png">
-      <Name>starExplosion2</Name>
+    <Compile Include="Explosion\starPerfectEffect.png">
+      <Name>starPerfectEffect</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -776,8 +678,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="notes\planetNote2.png">
-      <Name>planetNote2</Name>
+    <Compile Include="notes\starRightNote_yell.png">
+      <Name>starRightNote_yell</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -868,18 +770,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="notes\moonNote.png">
-      <Name>moonNote</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="notes\planetNote.png">
-      <Name>planetNote</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="shopButton\buyPanel.png">
       <Name>buyPanel</Name>
       <Importer>TextureImporter</Importer>
@@ -904,13 +794,6 @@
     </Compile>
     <Compile Include="shopButton\hoverYesButton.png">
       <Name>hoverYesButton</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="rightItem\rightItemBackground.png">
-      <Name>rightItemBackground</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -1272,6 +1155,83 @@
   <ItemGroup>
     <Compile Include="game1\level.png">
       <Name>level</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Explosion\starLongEffect.png">
+      <Name>starLongEffect</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Explosion\starLongEffect2.png">
+      <Name>starLongEffect2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Explosion\starThumnail.png">
+      <Name>starThumnail</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Explosion\treeThumnail.png">
+      <Name>treeThumnail</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="notes\starLeftNote_moon.png">
+      <Name>starLeftNote_moon</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="rightItem\Baton_1.png">
+      <Name>Baton_1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="rightItem\Baton_2.png">
+      <Name>Baton_2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="rightItem\Baton_3.png">
+      <Name>Baton_3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="rightItem\Baton_4.png">
+      <Name>Baton_4</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="rightItem\Baton_5.png">
+      <Name>Baton_5</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="rightItem\Baton_6.png">
+      <Name>Baton_6</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="rightItem\rightItemBackground.png">
+      <Name>rightItemBackground</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="shopButton\itemBack.png">
+      <Name>itemBack</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
