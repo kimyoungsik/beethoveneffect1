@@ -83,8 +83,8 @@ namespace beethoven3
             violinMemberPlay = cm.Load<Texture2D>(@"character\violin");
             fluteMemberPlay = cm.Load<Texture2D>(@"character\flute");
             timpaniMemberPlay = cm.Load<Texture2D>(@"character\timpani");
-            hornMemberPlay = cm.Load<Texture2D>(@"character\horn");
-            contrabaseMemberPlay = cm.Load<Texture2D>(@"character\contrabase");
+            hornMemberPlay = cm.Load<Texture2D>(@"character\horn");//
+            contrabaseMemberPlay = cm.Load<Texture2D>(@"character\contrabase");//
             celloMemberPlay = cm.Load<Texture2D>(@"character\cello");
 
 

@@ -2065,6 +2065,33 @@
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\LeftHand\Left_4.xnb</Output>
       <Time>2013-01-22T00:23:19.0421544+09:00</Time>
     </Item>
+    <Item>
+      <Source>Explosion\Effect_MusicNote_1.png</Source>
+      <Name>Explosion\Effect_MusicNote_1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Explosion\Effect_MusicNote_1.xnb</Output>
+      <Time>2013-01-22T01:19:48.4387083+09:00</Time>
+    </Item>
+    <Item>
+      <Source>Explosion\Effect_MusicNote_2.png</Source>
+      <Name>Explosion\Effect_MusicNote_2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Explosion\Effect_MusicNote_2.xnb</Output>
+      <Time>2013-01-22T01:19:48.4397083+09:00</Time>
+    </Item>
+    <Item>
+      <Source>Explosion\Effect_MusicNote_3.png</Source>
+      <Name>Explosion\Effect_MusicNote_3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Explosion\Effect_MusicNote_3.xnb</Output>
+      <Time>2013-01-22T01:19:48.4367081+09:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

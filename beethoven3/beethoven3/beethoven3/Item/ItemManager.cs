@@ -457,20 +457,20 @@ namespace beethoven3
 
             //퍼펙트 이펙트 
 
-            effectTexture[0] = cm.Load<Texture2D>(@"Explosion\starPerfectEffect");//기본
+            effectTexture[0] = cm.Load<Texture2D>(@"Explosion\Effect_MusicNote_1");//기본
             effectTexture[1] = cm.Load<Texture2D>(@"Explosion\starPerfectEffect");//우주
             effectTexture[2] = cm.Load<Texture2D>(@"Explosion\Effect_Guilty_3");//숲
             effectTexture[3] = cm.Load<Texture2D>(@"Explosion\Effect_Sakura_1");//고스톱
-
+            
 
             //good
-            goodEffectTexture[0] = cm.Load<Texture2D>(@"Explosion\starGoodEffect");//기본
+            goodEffectTexture[0] = cm.Load<Texture2D>(@"Explosion\Effect_MusicNote_2");//기본
             goodEffectTexture[1] = cm.Load<Texture2D>(@"Explosion\starGoodEffect");//우주
             goodEffectTexture[2] = cm.Load<Texture2D>(@"Explosion\Effect_Guilty_3");//숲
             goodEffectTexture[3] = cm.Load<Texture2D>(@"Explosion\Effect_Sakura_2");//숲
 
             //롱노트 //드래그 ( 일단 똑같이)
-            badEffectTexture[0] = cm.Load<Texture2D>(@"Explosion\starLongEffect");//기본
+            badEffectTexture[0] = cm.Load<Texture2D>(@"Explosion\Effect_MusicNote_3");//기본
             badEffectTexture[1] = cm.Load<Texture2D>(@"Explosion\starLongEffect");//우주
             badEffectTexture[2] = cm.Load<Texture2D>(@"Explosion\colorPencil3");//숲
             badEffectTexture[3] = cm.Load<Texture2D>(@"Explosion\colorPencil2");//숲

@@ -230,3 +230,6 @@ Content\background\BackG_4.xnb
 Content\background\Back_ssum_5.xnb
 Content\background\Back_ssum_4.xnb
 Content\LeftHand\Left_4.xnb
+Content\Explosion\Effect_MusicNote_1.xnb
+Content\Explosion\Effect_MusicNote_2.xnb
+Content\Explosion\Effect_MusicNote_3.xnb

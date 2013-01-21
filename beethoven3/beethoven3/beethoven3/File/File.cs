@@ -775,7 +775,7 @@ namespace beethoven3
                             //Get some patterns which is alread stored according to the index
 
                            // Vector2 markerSize = MarkManager.GetMarkerSize();
-                            Endlocations = MarkManager.GetPattern(arrayNotes[0].MarkLocation);
+                            Endlocations = MarkManager.GetPattern(arrayNotes[0].MarkLocation-1);
 
                             
                             //패턴이 변하는 중이 아니라면 처음 마커위치를 가져온다. 

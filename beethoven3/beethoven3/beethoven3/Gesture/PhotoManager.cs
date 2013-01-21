@@ -110,11 +110,11 @@ namespace beethoven3
 
 
 
-        public int IsPhotoTime
-        {
-            get { return isPhotoTime; }
-            set { isPhotoTime = value; }
-        }
+        //public int IsPhotoTime
+        //{
+        //    get { return isPhotoTime; }
+        //    set { isPhotoTime = value; }
+        //}
 
         //public bool IsJudgeCheck
         //{
@@ -159,21 +159,22 @@ namespace beethoven3
 
                 if (currentTime > photoFrame.StartTime)
                 {
-                    if (isPhotoTime == 0)
-                    {
-                        //사진 찍는것
+                    //if (isPhotoTime == 0)
+                    //{
+                    //    //사진 찍는것
 
                         Game1.PicFlag = true;
-                        isPhotoTime = 2;
-                    }
-                    spriteBatch.Draw(photoFrame.Texture, picLocation, Color.White);
+                        photoFrames.Dequeue();
+                    //    isPhotoTime = 2;
+                    //}
+                  //  spriteBatch.Draw(photoFrame.Texture, picLocation, Color.White);
                 }
-                if (currentTime > photoFrame.EndTime)
-                {
-                    isPhotoTime = 0;
-                    photoFrames.Dequeue();
+                //if (currentTime > photoFrame.EndTime)
+                //{
+                //    isPhotoTime = 0;
+                //    photoFrames.Dequeue();
 
-                }
+                //}
             }
 #endif
         }
