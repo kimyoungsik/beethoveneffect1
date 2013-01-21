@@ -3372,12 +3372,12 @@ namespace beethoven3
                             //StartNoteManager.rightNoteManager.DeleteAllNote();
                             //StartNoteManager.leftNoteManager.DeleteAllNote();
                             //StartNoteManager.longNoteManager.DeleteAllNote();
-
-
-                            startNoteManager = new StartNoteManager(
-                                spriteSheet,
-                                new Rectangle(0, 200, 52, 55),
-                                1);
+                            
+                            //@@@이걸 지워서 무제가 될수도 있다. 패턴이 바뀌었는데도 다음번에 안바뀌어서 이걸 넣음
+                            //startNoteManager = new StartNoteManager(
+                            //    spriteSheet,
+                            //    new Rectangle(0, 200, 52, 55),
+                            //    1);
 
                             //드로우 라인
                             file.SetDrawLine(false);

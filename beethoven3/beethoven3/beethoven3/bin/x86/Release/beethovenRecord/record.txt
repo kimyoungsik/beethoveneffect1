@@ -1,15 +1,9 @@
 %%
-abc.mnf
-%%
-abc
-%%
 bond
 myPicture.jpg$500
 myPicture.jpg$369
 myPicture.jpg$367
 myPicture.jpg$40
-%%
-psy
 %%
 4 Seasons - Spring
 myPicture.jpg$10500
@@ -22,7 +16,7 @@ roy
 myPicture.jpg$180
 myPicture.jpg$130
 myPicture.jpg$90
-myPicture.jpg$0
+myPicture.jpg$10
 myPicture.jpg$0
 %%
 music
@@ -30,8 +24,9 @@ myPicture.jpg$480
 myPicture.jpg$460
 myPicture.jpg$450
 myPicture.jpg$430
-myPicture.jpg$400
+myPicture.jpg$417
 %%
 kim
+myPicture.jpg$30
 myPicture.jpg$0
 **

@@ -110,6 +110,7 @@ namespace beethoven3
             longNoteManager.DeleteAllNote();
             rightNoteManager.DeleteAllNote();
             leftNoteManager.DeleteAllNote();
+            StartNotes.Clear();
           
         }
 
