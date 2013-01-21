@@ -47,24 +47,6 @@
       <Time>2013-01-08T22:57:38.3189722+09:00</Time>
     </Item>
     <Item>
-      <Source>ui\background.png</Source>
-      <Name>ui\background</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\ui\background.xnb</Output>
-      <Time>2013-01-08T22:57:38.5279841+09:00</Time>
-    </Item>
-    <Item>
-      <Source>ui\heart.png</Source>
-      <Name>ui\heart</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\ui\heart.xnb</Output>
-      <Time>2013-01-08T22:57:38.5289842+09:00</Time>
-    </Item>
-    <Item>
       <Source>Textures\darkBackground.png</Source>
       <Name>Textures\darkBackground</Name>
       <Importer>TextureImporter</Importer>
@@ -1803,6 +1785,51 @@
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\background\Back_ssum_3.xnb</Output>
       <Time>2013-01-21T03:07:09.8586297+09:00</Time>
+    </Item>
+    <Item>
+      <Source>ui\uiEnergyBackground.png</Source>
+      <Name>ui\uiEnergyBackground</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\ui\uiEnergyBackground.xnb</Output>
+      <Time>2013-01-21T11:07:29.5805884+09:00</Time>
+    </Item>
+    <Item>
+      <Source>ui\energy.png</Source>
+      <Name>ui\energy</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\ui\energy.xnb</Output>
+      <Time>2013-01-21T11:14:22.7542206+09:00</Time>
+    </Item>
+    <Item>
+      <Source>ui\energyDarkBack.png</Source>
+      <Name>ui\energyDarkBack</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\ui\energyDarkBack.xnb</Output>
+      <Time>2013-01-21T11:21:01.5440301+09:00</Time>
+    </Item>
+    <Item>
+      <Source>ui\processBar.png</Source>
+      <Name>ui\processBar</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\ui\processBar.xnb</Output>
+      <Time>2013-01-21T11:23:36.4898925+09:00</Time>
+    </Item>
+    <Item>
+      <Source>ui\processMark.png</Source>
+      <Name>ui\processMark</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\ui\processMark.xnb</Output>
+      <Time>2013-01-21T11:23:36.4918926+09:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

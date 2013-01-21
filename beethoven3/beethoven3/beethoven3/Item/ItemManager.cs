@@ -496,16 +496,16 @@ namespace beethoven3
 
             backgroundTexture[0] = cm.Load<Texture2D>(@"background\ConcertHall_1");//기본
             backgroundTexture[1] = cm.Load<Texture2D>(@"background\ConcertHall_2");//우주
-            backgroundTexture[1] = cm.Load<Texture2D>(@"background\ConcertHall_2");//숲
+            backgroundTexture[2] = cm.Load<Texture2D>(@"background\ConcertHall_2");//숲
 
 
             //배경 섬네일
 
             //기본
-            backgroundThumnail[0] = cm.Load<Texture2D>(@"background\Back_ssum_2");
+            backgroundThumnail[0] = cm.Load<Texture2D>(@"background\Back_ssum_3");
 
             //우주느낌
-            backgroundThumnail[1] = cm.Load<Texture2D>(@"background\Back_ssum_3");
+            backgroundThumnail[1] = cm.Load<Texture2D>(@"background\Back_ssum_2");
 
             //초원느낌
             backgroundThumnail[2] = cm.Load<Texture2D>(@"background\Back_ssum_2");

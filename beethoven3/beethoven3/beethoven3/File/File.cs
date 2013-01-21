@@ -164,12 +164,29 @@ namespace beethoven3
         }
 
 
-        //public bool IsStop
-        //{
-        //    get { return isStop; }
-        //    set { isStop = value; }
-        //}
-        
+        //현재 진행 시간
+        public double ProcessTime
+        {
+            get { return time; }
+            set { time = value; }
+
+        }
+
+        public double EndTime
+        {
+            get { return endTime; }
+            set { endTime = value; }
+
+        }
+
+        public int ProcRate()
+        {
+
+            return (int) (time/endTime*100.0);
+
+        }
+
+
         public void FileLoading(String dir, String file)
         {
            
@@ -1207,13 +1224,11 @@ namespace beethoven3
             //Trace.WriteLine(this.time);
 
 
-        //    if (!isStop)
-         //   {
                 this.time += gameTime.ElapsedGameTime.TotalSeconds;
 
 
                 FindNote(this.time, changedTempo, optionalTime);
-         //   }
+         
         }
 
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime)

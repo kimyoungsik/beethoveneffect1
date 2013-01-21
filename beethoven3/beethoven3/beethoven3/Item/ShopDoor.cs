@@ -96,7 +96,8 @@ namespace beethoven3
         public void Update(GameTime gameTime, Rectangle rightHandPosition)
         {
             MouseState mouse = Mouse.GetState();
-            KeyboardState key = Keyboard.GetState();
+            pastmouse = Game1.mouseStatePrevious;
+        //    KeyboardState key = Keyboard.GetState();
 
             Rectangle rect = new Rectangle(mouse.X, mouse.Y, 5, 5);
 
@@ -236,8 +237,8 @@ namespace beethoven3
             }
 
             pastmouse = mouse;
-            pastkey = key;
-         
+       //     pastkey = key;
+       //  
             
         }
 

@@ -272,7 +272,7 @@ namespace beethoven3
         Vector2 scorePosition = new Vector2(705, 5);
         
         //마우스 상태 
-        MouseState mouseStateCurrent, mouseStatePrevious;
+        public static MouseState mouseStateCurrent, mouseStatePrevious;
 
         //노래들이 있는 경로
         String songsDir = System.Environment.CurrentDirectory+"\\beethovenSong\\";
@@ -288,10 +288,14 @@ namespace beethoven3
         public static Texture2D heart;
 
         //UI 배경
-        private Texture2D uiBackground;
-
+        private Texture2D energyDarkBack;
+        
         //UI 컨텐츠
-        private Texture2D uiHeart;
+        private Texture2D energy;
+
+        private Texture2D processBar;
+        private Texture2D processMark;
+
 
         //배경
         //whole background
@@ -326,7 +330,7 @@ namespace beethoven3
 
         public static Texture2D levelTexture;
 
-
+        private Texture2D uiEnergyBackground;
 
         //오른손 텍스쳐들
 
@@ -392,7 +396,11 @@ namespace beethoven3
 
         private bool isNoPerson;
 
+        private int uiProcessRate;
 
+        private double uiProcessTime;
+
+        private double uiEndTime;
       //  private bool isCharisma1;
 
         private Texture2D[] metronomes;
@@ -465,7 +473,11 @@ namespace beethoven3
             menuScene = new MenuScene();
             menuScene.LoadContent(Content);
 
-         
+            uiEnergyBackground = Content.Load<Texture2D>(@"ui\uiEnergyBackground");
+            energyDarkBack = Content.Load<Texture2D>(@"ui\energyDarkBack");
+
+            processBar = Content.Load<Texture2D>(@"ui\processBar");
+            processMark = Content.Load<Texture2D>(@"ui\processMark");
 
             //아이템관리
             //startnotemanager 생성보다 앞에 있어야 한다.
@@ -518,8 +530,8 @@ namespace beethoven3
            // heart = Content.Load<Texture2D>(@"Textures\heart");
            
             //진행상황
-            uiBackground = Content.Load<Texture2D>(@"ui\background");
-            uiHeart = Content.Load<Texture2D>(@"ui\heart");
+            //uiBackground = Content.Load<Texture2D>(@"ui\background");
+            energy = Content.Load<Texture2D>(@"ui\energy");
 
             //골드 업어
             getGold = Content.Load<Texture2D>(@"gold\getGold");
@@ -3485,15 +3497,30 @@ namespace beethoven3
                         ////롱노트 // 일단은 오른손노트랑 같이 함.
                         Texture2D[] longNoteTextures = itemManager.GetLongNoteTexture();
 
+
+                            
                         ////노트 - 달라야 될때도 있어서 나누어 놨다.
                         ////오른손노트
+
+
+                    //프로세스 타임 초기화
+                        uiProcessTime = 0;
+                        
+
 
                         //노트 맞는 scale 
                         float[] rightNoteScale = itemManager.GetRightNoteScale();
                         float[] leftNoteScale = itemManager.GetRightNoteScale();
                         float[] longNoteScale = itemManager.GetRightNoteScale();
                        
+                      
+
+                      Texture2D[] backgroudTextures  =itemManager.GetBackgroundTexture();
+
+
                        
+                         //배경 바꾸기
+                        playBackgroud1 = backgroudTextures[itemManager.getBackgroundIndex()];
                         
                         ////롱노트 //*** 임시로 오른손노트랑 똑같은걸로 해놓음
                         startNoteManager.changeLongNoteImage(longNoteTextures[itemManager.getNoteIndex()], new Rectangle(0, 0, longNoteTextures[itemManager.getNoteIndex()].Width, longNoteTextures[itemManager.getNoteIndex()].Height), longNoteScale[0]);
@@ -3599,7 +3626,9 @@ namespace beethoven3
                         gameState = GameStates.Playing;
                         
                         file.Loading(resultSongMenu);
-                        
+
+                        uiEndTime = file.EndTime;
+                    //    uiFullTime = 
                         //일반 0
                         //로딩중 1
                         //준비완료 2
@@ -3959,9 +3988,21 @@ namespace beethoven3
                     this.Window.ClientBounds.Height),
                     Color.White);
 
+             
 
                 double tempo =SoundFmod.changedTempo;
               //  Trace.write(tempo);
+
+                uiProcessTime = file.ProcessTime;
+    
+                uiProcessTime = (uiProcessTime / uiEndTime * 800);
+
+
+                //uiProcessTime = (int) (uiProcessTime / 100.0 * 800);
+                spriteBatch.Draw(processBar, new Vector2(0, 730), new Rectangle(0, 0, 1024, 38), Color.White);
+                spriteBatch.Draw(processMark, new Vector2((float)uiProcessTime+120, 704), new Rectangle(0, 0, 49, 59), Color.White);
+                
+
                 Texture2D metoroTex = GetMetroTexture(tempo);
                
                 
@@ -3969,7 +4010,7 @@ namespace beethoven3
                 spriteBatch.Draw(
                   metoroTex,
                     //위치: Center-> location 으로 바꿈 (마커와 노트 매칭 떄문에 )
-                  new Vector2(10, 580),
+                  new Vector2(-5, 600),
 
                   new Rectangle(0, 0, 150, 169),
                   Color.White,
@@ -3979,10 +4020,11 @@ namespace beethoven3
                     //오른쪽 마크 크기 
                   1f,
                   SpriteEffects.None,
-                  0.0f);   
+                  0.0f);
 
 
-
+                memberManager.Draw(spriteBatch);
+               
                 MarkManager.Draw(spriteBatch);
                 
                 //startnoteclass에 가야 보이고 안보이게 할 수 있음
@@ -3993,7 +4035,6 @@ namespace beethoven3
                 //이걸 주석하면 드래그노트 체크하는거 안보임 하지만 체크는 됨
                 //DragNoteManager.Draw(spriteBatch);
                 
-                memberManager.Draw(spriteBatch);
                 GoldManager.Draw(spriteBatch);
 
                 file.Draw(spriteBatch, gameTime);
@@ -4009,37 +4050,30 @@ namespace beethoven3
                 
                 comboNumberManager.Draw(spriteBatch);
 
-                
-                //가운데 빨간 사각형 주석하면 보이지않는다.
-            //    spriteBatch.Draw(idot, removeAreaRec, Color.Red);
-                
-                //콤보 글씨
-                spriteBatch.DrawString(georgia, scoreManager.Perfomance.ToString(), new Vector2(512, 420), Color.Black);
-                //골드 글씨
-                spriteBatch.DrawString(georgia, scoreManager.Gold.ToString(), new Vector2(scorePosition.X + 120, scorePosition.Y), Color.Black);
-                //최대 max
-                spriteBatch.DrawString(georgia, scoreManager.Max.ToString(), new Vector2(scorePosition.X + 240, scorePosition.Y), Color.Black);
-
+              
                 //기본 템포 설정( 템포가 바뀐상태이면 안변함)
                 SoundFmod.SetBasicTempo();
-                //512, 454 중심
-                ////test
-
-                spriteBatch.Draw(uiBackground, new Vector2(0, 0), Color.White);
-                
-
                 
                 //하트. gage양 만큼 하트가 나타남.
 
                 //300은 현재 최대 width, 이건 그림이 바뀌면 바뀜
                 //100은 gage의 최대값. 
 
-                int gageWidth = 300 / 100 *  scoreManager.Gage;
+                int gageWidth = 4 *  scoreManager.Gage;
 
-                spriteBatch.Draw(uiHeart, new Vector2(0, 6), new Rectangle(0, 0, gageWidth, 50), Color.White);
+                //spriteBatch.Draw(uiHeart, new Vector2(0, 6), new Rectangle(0, 0, gageWidth, 50), Color.White);
                 //Trace.WriteLine(scoreManager.Gage);
 
+                spriteBatch.Draw(energyDarkBack, new Vector2(0, 6), new Rectangle(0, 0, 372, 35), Color.White);
+                
+                spriteBatch.Draw(energy, new Vector2(0, 6), new Rectangle(0, 0, gageWidth, 35), Color.White);
+                spriteBatch.Draw(uiEnergyBackground, new Vector2(0, 0), Color.White);
 
+                spriteBatch.DrawString(georgia, scoreManager.TotalScore.ToString(), new Vector2(900, 2), Color.LightGray, 0f, Vector2.Zero, 0.7f, SpriteEffects.None, 0f);
+
+
+
+             
 
 
                 if (message.Length > 0)

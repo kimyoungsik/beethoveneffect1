@@ -120,8 +120,9 @@ namespace beethoven3
 
             base.Update(gameTime, rightHandPosition);
             MouseState mouseStateCurrent = Mouse.GetState();
-            Rectangle mouseRect = new Rectangle(mouseStateCurrent.X, mouseStateCurrent.Y, 5, 5);
+            mouseStatePrevious = Game1.mouseStatePrevious;
 
+            Rectangle mouseRect = new Rectangle(mouseStateCurrent.X, mouseStateCurrent.Y, 5, 5);
 
             int i;
             //아이템 rect

@@ -129,7 +129,7 @@ namespace beethoven3
         {
             MouseState mouse = Mouse.GetState();
             KeyboardState key = Keyboard.GetState();
-
+            pastmouse = Game1.mouseStatePrevious;
             Rectangle mouseRectangle = new Rectangle(mouse.X, mouse.Y, 5, 5);
 
 

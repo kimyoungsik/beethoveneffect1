@@ -3,8 +3,6 @@ Content\Textures\SpriteSheet8.xnb
 Content\Textures\menu.xnb
 Content\Title\box.xnb
 Content\Status\backtext.xnb
-Content\ui\background.xnb
-Content\ui\heart.xnb
 Content\Textures\darkBackground.xnb
 Content\shopdoor\buyPanel.xnb
 Content\shopdoor\noButton.xnb
@@ -198,6 +196,11 @@ Content\backgroundItem\backgroundItemBackground.xnb
 Content\noteItem\noteItemBackground.xnb
 Content\background\Back_ssum_2.xnb
 Content\background\Back_ssum_3.xnb
+Content\ui\uiEnergyBackground.xnb
+Content\ui\energy.xnb
+Content\ui\energyDarkBack.xnb
+Content\ui\processBar.xnb
+Content\ui\processMark.xnb
 Content\snd\ka.wma
 Content\snd\jo.wma
 Content\snd\maid.wma
