@@ -132,7 +132,7 @@ namespace beethoven3
 
 
             //왼손 아이템
-            for (i = 0; i < 3; i++)
+            for (i = 0; i < 4; i++)
             {
                 addItem(leftHandItem, new Vector2(100, 100), leftHandTexture[i], new Rectangle(0, 0, leftHandTexture[i].Width, leftHandTexture[i].Height), 1,/*cost*/ 7);
                 
@@ -141,7 +141,7 @@ namespace beethoven3
             }
 
             //배경아이템
-            for (i = 0; i < 2; i++)
+            for (i = 0; i < 4; i++)
             {
                 addItem(backgroundItem, new Vector2(100, 100), backgroundTexture[i], new Rectangle(0, 0, backgroundTexture[i].Width, backgroundTexture[i].Height), 1,/*cost*/ 45,backgroundThumnail[i]);
             }
@@ -434,7 +434,7 @@ namespace beethoven3
             leftHandTexture[0] = cm.Load<Texture2D>(@"LeftHand\Left_1");
             leftHandTexture[1] = cm.Load<Texture2D>(@"LeftHand\Left_2");
             leftHandTexture[2] = cm.Load<Texture2D>(@"LeftHand\Left_3");
-          
+            leftHandTexture[3] = cm.Load<Texture2D>(@"LeftHand\Left_4");
 
 
 
@@ -518,7 +518,10 @@ namespace beethoven3
             backgroundTexture[0] = cm.Load<Texture2D>(@"background\ConcertHall_2");//기본
             backgroundTexture[1] = cm.Load<Texture2D>(@"background\uniBackground");//우주
             backgroundTexture[2] = cm.Load<Texture2D>(@"background\ConcertHall_2");//숲
-
+            backgroundTexture[3] = cm.Load<Texture2D>(@"background\BackG_2");//기본
+            //backgroundTexture[0] = cm.Load<Texture2D>(@"background\BackG_2");//기본
+            //backgroundTexture[1] = cm.Load<Texture2D>(@"background\BackG_3");//우주
+            //backgroundTexture[2] = cm.Load<Texture2D>(@"background\BackG_4");//숲
 
             //배경 섬네일
 
@@ -526,11 +529,13 @@ namespace beethoven3
             backgroundThumnail[0] = cm.Load<Texture2D>(@"background\Back_ssum_2");
 
             //우주느낌
-            backgroundThumnail[1] = cm.Load<Texture2D>(@"background\moonThumnail");
+            backgroundThumnail[1] = cm.Load<Texture2D>(@"background\Back_ssum_4");
 
             //초원느낌
             backgroundThumnail[2] = cm.Load<Texture2D>(@"background\Back_ssum_2");
-
+            //고스톱
+        
+            backgroundThumnail[3] = cm.Load<Texture2D>(@"background\Back_ssum_5");
 
 
            

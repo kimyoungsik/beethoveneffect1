@@ -7,14 +7,18 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 //using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Kinect;
+using Microsoft.Xna.Framework.Input;
+
 // 기록판
 namespace beethoven3
 {
     class SettingBoard
     {
 
-  
+        MouseState mouseStatePrevious;
         private Texture2D background;
+
+        //ok 버튼
         private Texture2D nextButton;
         private Texture2D hoverNextButton;
         
@@ -34,14 +38,15 @@ namespace beethoven3
         private bool clickScaleDownButton;
         private bool clickAngleUpButton;
         private bool clickAngleDownButton;
+        private bool clickPreviousButton;
 
+        private Rectangle recPreviousButton = new Rectangle(36, 35, 220, 170);
 
+        private Rectangle recBackground = new Rectangle(0, 0, 1024, 769);
+     
 
-
-        private Rectangle recBackground;
         private Rectangle recNextButton;
 
-        private SpriteFont pericles36Font;
 
         private Game1 game1;
         public SettingBoard(Game1 game1)
@@ -51,15 +56,16 @@ namespace beethoven3
             clickScaleDownButton = false;
             clickAngleUpButton = false;
             clickAngleDownButton = false;
+            clickPreviousButton = false;
             this.game1 = game1;
 
         }
 
         public void LoadContent(ContentManager cm)
         {
-            //   background = cm.Load<Texture2D>(@"result\background");
-            nextButton = cm.Load<Texture2D>(@"result\nextButton");
-            hoverNextButton = cm.Load<Texture2D>(@"result\hoverNextButton");
+            background = cm.Load<Texture2D>(@"settingBoard\setBackground");
+            nextButton = cm.Load<Texture2D>(@"settingBoard\ok");
+            hoverNextButton = cm.Load<Texture2D>(@"settingBoard\okHover");
             
             UpButton = cm.Load<Texture2D>(@"settingBoard\up");
             hoverUpButton = cm.Load<Texture2D>(@"settingBoard\upHover");
@@ -67,45 +73,253 @@ namespace beethoven3
             DownButton = cm.Load<Texture2D>(@"settingBoard\down");
             hoverDownButton = cm.Load<Texture2D>(@"settingBoard\downHover");
                         
-       //     pericles36Font = cm.Load<SpriteFont>(@"Fonts\Pericles36");
+   
                        
         }
 
-        
-
-        public void Draw(SpriteBatch spriteBatch, int width, int height)
+        public void Update(GameTime gameTime, Rectangle rightHandPosition)
         {
-            //   recBackground = new Rectangle(0, 0, width, height);
-            //    spriteBatch.Draw(background, recBackground, Color.White);
+            MouseState mouseStateCurrent = Mouse.GetState();
+            mouseStatePrevious = Game1.mouseStatePrevious;
+            //    KeyboardState key = Keyboard.GetState();
 
-            recNextButton = new Rectangle(width - 400, height - 200, 356, 215);
+            Rectangle rectMouseSettingBoard = new Rectangle(mouseStateCurrent.X, mouseStateCurrent.Y, 5, 5);
+            //nextButton 위에 마우스를 올려놨을 때
+            //mousecursor on nextButton item section
+
+            //뒤로 버튼
+            if (rectMouseSettingBoard.Intersects(RectNextButton) || rightHandPosition.Intersects(RectNextButton))
+            {
+
+                Game1.nearButton = true;
+                Game1.GetCenterOfButton(RectNextButton);
+
+                ClickNextButton = true;
+                //click the right hand item section
+                if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (Game1.finalClick && !Game1.pastClick))
+                {
+                    Game1.nearButton = false;
+                    Game1.gameState = Game1.GameStates.Menu;
+                }
+            }
+            else
+            {
+                ClickNextButton = false;
+            }
+
+
+            //스케일 증가 
+            if (rectMouseSettingBoard.Intersects(RecScaleUpButton) || rightHandPosition.Intersects(RecScaleUpButton))
+            {
+                Game1.nearButton = true;
+                Game1.GetCenterOfButton(RecScaleUpButton);
+
+                ClickScaleUpButton = true;
+                //click the right hand item section
+                if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (Game1.finalClick && !Game1.pastClick))
+                {
+
+                    Game1.nearButton = false;
+                    if (game1.userParam < 1)
+                    {
+                        game1.userParam += 0.05f;
+                    }
+                    else
+                    {
+                        game1.userParam = 1;
+                    }
+
+
+                }
+            }
+            else
+            {
+                ClickScaleUpButton = false;
+            }
+
+
+
+            //스케일 감소
+            if (rectMouseSettingBoard.Intersects(RecScaleDownButton) || rightHandPosition.Intersects(RecScaleDownButton))
+            {
+                Game1.nearButton = true;
+                Game1.GetCenterOfButton(RecScaleDownButton);
+
+                ClickScaleDownButton = true;
+                //click the right hand item section
+                if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (Game1.finalClick && !Game1.pastClick))
+                {
+                    Game1.nearButton = false;
+                    if (game1.userParam > 0.05)
+                    {
+                        game1.userParam -= 0.05f;
+                    }
+                    else
+                    {
+                        game1.userParam = 0.05f;
+                    }
+
+                }
+            }
+            else
+            {
+                ClickScaleDownButton = false;
+            }
+
+
+
+
+            //각도 증가 
+            if (rectMouseSettingBoard.Intersects(RecAngleUpButton) || rightHandPosition.Intersects(RecAngleUpButton))
+            {
+                Game1.nearButton = true;
+                Game1.GetCenterOfButton(RecAngleUpButton);
+
+                ClickAngleUpButton = true;
+                //click the right hand item section
+                if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (Game1.finalClick && !Game1.pastClick))
+                {
+
+                    Game1.nearButton = false;
+                    if (game1.nui.ElevationAngle < game1.nui.MaxElevationAngle - 3)
+                    {
+                        while (true)
+                        {
+                            try
+                            {
+                                game1.nui.ElevationAngle += 3;
+                                break;
+                            }
+                            catch (Exception ex)
+                            {
+                            }
+                        }
+                    }
+
+                }
+            }
+            else
+            {
+                ClickAngleUpButton = false;
+            }
+
+
+
+            //각도 감소
+            if (rectMouseSettingBoard.Intersects(RecAngleDownButton) || rightHandPosition.Intersects(RecAngleDownButton))
+            {
+                Game1.nearButton = true;
+                Game1.GetCenterOfButton(RecAngleDownButton);
+
+                ClickAngleDownButton = true;
+                //click the right hand item section
+                if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (Game1.finalClick && !Game1.pastClick))
+                {
+
+                    Game1.nearButton = false;
+                    if (game1.nui.ElevationAngle > game1.nui.MinElevationAngle + 3)
+                    {
+                        while (true)
+                        {
+                            try
+                            {
+                                game1.nui.ElevationAngle -= 3;
+                                break;
+                            }
+                            catch (Exception ex)
+                            {
+                            }
+                        }
+                    }
+                }
+            }
+            else
+            {
+                ClickAngleDownButton = false;
+            }
+
+            if (rectMouseSettingBoard.Intersects(recPreviousButton) || rightHandPosition.Intersects(recPreviousButton))
+            {
+
+                Game1.nearButton = true;
+                Game1.GetCenterOfButton(recPreviousButton);
+
+                clickPreviousButton =true ;
+                //click the right hand item section
+                if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (Game1.finalClick && !Game1.pastClick))
+                {
+                    Game1.gameState = Game1.GameStates.Menu;
+
+                    //가운데로 고정된거 풀기 
+                    Game1.nearButton = false;
+                }
+            }
+            else
+            {
+                clickPreviousButton = false;
+            }
+
+
+            if (
+            !(rectMouseSettingBoard.Intersects(RectNextButton) || rightHandPosition.Intersects(RectNextButton))
+            && !(rectMouseSettingBoard.Intersects(RecScaleUpButton) || rightHandPosition.Intersects(RecScaleUpButton))
+            && !(rectMouseSettingBoard.Intersects(RecScaleDownButton) || rightHandPosition.Intersects(RecScaleDownButton))
+            && !(rectMouseSettingBoard.Intersects(RecAngleUpButton) || rightHandPosition.Intersects(RecAngleUpButton))
+            && !(rectMouseSettingBoard.Intersects(RecAngleDownButton) || rightHandPosition.Intersects(RecAngleDownButton))
+            && !(rectMouseSettingBoard.Intersects(recPreviousButton) || rightHandPosition.Intersects(recPreviousButton))
+            )
+            {
+
+                Game1.nearButton = false;
+            }
+
+
+
+
+
+            mouseStatePrevious = mouseStateCurrent;
+            //     pastkey = key;
+            //  
+
+        }
+
+        public void Draw(SpriteBatch spriteBatch)
+        {
+           
+            spriteBatch.Draw(background, recBackground, Color.White);
+
+            recNextButton = new Rectangle(800, 67, 123, 81);
             spriteBatch.Draw(nextButton, recNextButton, Color.White);
 
-            recScaleUpButton = new Rectangle(800, 100, 101, 66);
+            recScaleUpButton = new Rectangle(768, 200, 102, 70);
             spriteBatch.Draw(UpButton, recScaleUpButton, Color.White);
 
-            recScaleDownButton = new Rectangle(800, 200, 101, 66);
+            recScaleDownButton = new Rectangle(768, 306, 102, 70);
             spriteBatch.Draw(DownButton, recScaleDownButton, Color.White);
 
-            recAngleUpButton = new Rectangle(800, 400, 101, 66);
+            recAngleUpButton = new Rectangle(768, 431, 102, 70);
             spriteBatch.Draw(UpButton, recAngleUpButton, Color.White);
 
-            recAngleDownButton = new Rectangle(800, 500, 101, 66);
+            recAngleDownButton = new Rectangle(768, 538, 102, 70);
             spriteBatch.Draw(DownButton, recAngleDownButton, Color.White);
+
+            
 
             float userParam = game1.UserParam;
 
             KinectSensor nui = game1.Nui;
             int elevationAngle  = nui.ElevationAngle;
 
-            spriteBatch.DrawString(Game1.georgia, "scaling", new Vector2(100, 100), Color.Black);
+          //  spriteBatch.DrawString(Game1.georgia, "scaling", new Vector2(100, 100), Color.Black);
 
-            spriteBatch.DrawString(Game1.georgia, userParam.ToString(), new Vector2(500, 100), Color.Black);
+            spriteBatch.DrawString(Game1.georgia, userParam.ToString(), new Vector2(570, 250), Color.Yellow);
 
-            spriteBatch.DrawString(Game1.georgia, "angle", new Vector2(100, 300), Color.Black);
+          //  spriteBatch.DrawString(Game1.georgia, "angle", new Vector2(100, 300), Color.Black);
 
-            spriteBatch.DrawString(Game1.georgia, elevationAngle.ToString(), new Vector2(500, 300), Color.Black);
+            spriteBatch.DrawString(Game1.georgia, elevationAngle.ToString(), new Vector2(600, 490), Color.Yellow);
 
+
+            spriteBatch.Draw(Game1.previousButton, new Vector2(recPreviousButton.X, recPreviousButton.Y), null, Color.White, 0f, new Vector2(0, 0), 2f, SpriteEffects.None, 1f);
 
 
 
@@ -136,6 +350,13 @@ namespace beethoven3
             if (clickAngleDownButton)
             {
                 spriteBatch.Draw(hoverDownButton, recAngleDownButton, Color.White);
+            }
+
+
+            if (clickPreviousButton)
+            {
+
+                spriteBatch.Draw(Game1.hoverPreviousButton, new Vector2(recPreviousButton.X, recPreviousButton.Y), null, Color.White, 0f, new Vector2(0, 0), 2f, SpriteEffects.None, 1f);
             }
 
         }

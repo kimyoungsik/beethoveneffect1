@@ -15,11 +15,13 @@ namespace beethoven3
     {
 
         private Texture2D background;
-        private Texture2D nextButton;
-        private Texture2D hoverNextButton;
         private bool clickNextButton;
-        private Rectangle recBackground;
-        private Rectangle recNextButton;
+
+
+        private Rectangle recBackground = new Rectangle(0, 0, 1024, 769);
+        private Rectangle recNextButton = new Rectangle(784, 5, 220, 170);
+
+      
 
         public ShowPictureScene()
         {
@@ -28,22 +30,28 @@ namespace beethoven3
 
         public void LoadContent(ContentManager cm)
         {
-           
-            nextButton = cm.Load<Texture2D>(@"result\nextButton");
-            hoverNextButton = cm.Load<Texture2D>(@"result\hoverNextButton");
+            background = cm.Load<Texture2D>(@"Textures\photoTime");
+
+          
         }
 
 
-        public void Draw(SpriteBatch spriteBatch, int width, int height)
+        public void Draw(SpriteBatch spriteBatch)
         {
-            recNextButton = new Rectangle(width - 400, height - 200, 356, 215);
-            spriteBatch.Draw(nextButton, recNextButton, Color.White);
+
+            spriteBatch.Draw(background, recBackground, Color.White);
+
+       
+            spriteBatch.Draw(Game1.nextButton, new Vector2(recNextButton.X, recNextButton.Y), null, Color.White, 0f, new Vector2(0, 0), 2f, SpriteEffects.None, 1f);
 
 
             if (clickNextButton)
             {
-                spriteBatch.Draw(hoverNextButton, recNextButton, Color.White);
+                spriteBatch.Draw(Game1.hoverNextButton, new Vector2(recNextButton.X, recNextButton.Y), null, Color.White, 0f, new Vector2(0, 0), 2f, SpriteEffects.None, 1f);
+
+
             }
+
 
         }
 

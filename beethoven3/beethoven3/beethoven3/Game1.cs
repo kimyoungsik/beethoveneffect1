@@ -33,9 +33,6 @@ namespace beethoven3
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-
-     
-
         //스코어 보드에 쓰이는 사진
         private String ScorePic;
         private bool isScorePic = false;
@@ -72,7 +69,7 @@ namespace beethoven3
         public static Vector2 center = new Vector2(0, 0);
         
         //키넥트
-        KinectSensor nui = null;
+        public KinectSensor nui = null;
         
         Skeleton[] Skeletons = null;
         
@@ -149,7 +146,7 @@ namespace beethoven3
         ColorImagePoint[] depthLocation;
 
         //사람 키에 따른 미세조정 파라미터
-        float userParam = .3f;
+        public float userParam = .3f;
 
         //손가락 클릭
         private void skip() { }
@@ -1642,6 +1639,35 @@ namespace beethoven3
             }
 
 
+            //if (handPoint.X < tempWidth / 2)
+            //{
+            //    handPoint.X = 0;
+            //    handPoint.Y = 0;
+            //}
+            //if (handPoint.X > ImageParam.Width - tempWidth / 2)
+            //{
+            //    handPoint.X = 0;
+            //    handPoint.Y = 0;
+            //}
+            //if (handPoint.Y < tempHeight / 2)
+            //{
+            //    handPoint.X = 0;
+            //    handPoint.Y = 0;
+            //}
+            //if (handPoint.Y > ImageParam.Height - tempHeight / 2)
+            //{
+            //    handPoint.X = 0;
+            //    handPoint.Y = 0;
+            //}
+            //if (handPoint.X < 0)
+            //{
+            //    handPoint.X = 0;
+            //}
+            //if (handPoint.Y < 0)
+            //{
+            //    handPoint.Y = 0;
+            //}
+
 
             int indexCount = 0;
             int[] depth = new int[tempHeight * tempWidth];
@@ -2490,23 +2516,19 @@ namespace beethoven3
             String gesture = "gesture_" + dateTime.Day.ToString() + "_" + dateTime.Hour.ToString() + "_" + dateTime.Minute.ToString() + "_" + dateTime.Second.ToString()+".jpg";
             String dir = System.Environment.CurrentDirectory +  "\\beethovenRecord\\userPicture\\" + gesture;
 
-            if (!isScorePic)
-            {
+         //   if (!isScorePic)
+          //  {
                 //마지막 스코어 보드에 쓰이는 사진
                 ScorePic = gesture;
 
-                isScorePic = true;
+             //   isScorePic = true;
                 Stream str = System.IO.File.OpenWrite(dir);
                 CapturePic.SaveAsJpeg(str, SCR_W, SCR_H);
                 str.Dispose();
-            }
+          //  }
 
             playingPictures.Enqueue(CapturePic);
 
-            
-           
-
-            
            
             th1.Abort();
         }
@@ -3019,8 +3041,8 @@ namespace beethoven3
                #region 플레이화면
                case GameStates.Playing:
                    if (scoreManager.Gage < 1)
-                   {
-                       file.SetEndFile(true);
+                   {//$$$
+                    //   file.SetEndFile(true);
                    }
 
                    //곡이 끝내게 되면 결과 화면으로
@@ -3126,174 +3148,174 @@ namespace beethoven3
                case GameStates.SettingBoard:
 
                 HandleKeyboardInputGoToMenu(Keyboard.GetState());
-
-                Rectangle rectMouseSettingBoard = new Rectangle(mouseStateCurrent.X, mouseStateCurrent.Y, 5, 5);
-                   //nextButton 위에 마우스를 올려놨을 때
-                    //mousecursor on nextButton item section
+                settingBoard.Update(gameTime, rightHandPosition);
+            //    Rectangle rectMouseSettingBoard = new Rectangle(mouseStateCurrent.X, mouseStateCurrent.Y, 5, 5);
+            //       //nextButton 위에 마우스를 올려놨을 때
+            //        //mousecursor on nextButton item section
                    
-                   //뒤로 버튼
-                if (rectMouseSettingBoard.Intersects(settingBoard.RectNextButton) || rightHandPosition.Intersects(settingBoard.RectNextButton))
-                {
+            //       //뒤로 버튼
+            //    if (rectMouseSettingBoard.Intersects(settingBoard.RectNextButton) || rightHandPosition.Intersects(settingBoard.RectNextButton))
+            //    {
 
-                    nearButton = true;
-                    GetCenterOfButton(settingBoard.RectNextButton);
+            //        nearButton = true;
+            //        GetCenterOfButton(settingBoard.RectNextButton);
 
-                    settingBoard.ClickNextButton = true;
-                    //click the right hand item section
-                    if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (finalClick && !pastClick))
-                    {
-                        nearButton = false;
-                        gameState = GameStates.Menu;
-                    }
-                }
-                else
-                {
-                    settingBoard.ClickNextButton = false;
-                }
-
-
-                //스케일 증가 
-                if (rectMouseSettingBoard.Intersects(settingBoard.RecScaleUpButton) || rightHandPosition.Intersects(settingBoard.RecScaleUpButton))
-                {
-                    nearButton = true;
-                    GetCenterOfButton(settingBoard.RecScaleUpButton);
-
-                    settingBoard.ClickScaleUpButton = true;
-                    //click the right hand item section
-                    if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (finalClick && !pastClick))
-                    {
-
-                        nearButton = false;
-                        if (this.userParam < 1)
-                        {
-                            this.userParam += 0.05f;
-                        }
-                        else
-                        {
-                            this.userParam = 1;
-                        }
+            //        settingBoard.ClickNextButton = true;
+            //        //click the right hand item section
+            //        if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (finalClick && !pastClick))
+            //        {
+            //            nearButton = false;
+            //            gameState = GameStates.Menu;
+            //        }
+            //    }
+            //    else
+            //    {
+            //        settingBoard.ClickNextButton = false;
+            //    }
 
 
-                    }
-                }
-                else
-                {
-                    settingBoard.ClickScaleUpButton = false;
-                }
+            //    //스케일 증가 
+            //    if (rectMouseSettingBoard.Intersects(settingBoard.RecScaleUpButton) || rightHandPosition.Intersects(settingBoard.RecScaleUpButton))
+            //    {
+            //        nearButton = true;
+            //        GetCenterOfButton(settingBoard.RecScaleUpButton);
+
+            //        settingBoard.ClickScaleUpButton = true;
+            //        //click the right hand item section
+            //        if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (finalClick && !pastClick))
+            //        {
+
+            //            nearButton = false;
+            //            if (this.userParam < 1)
+            //            {
+            //                this.userParam += 0.05f;
+            //            }
+            //            else
+            //            {
+            //                this.userParam = 1;
+            //            }
 
 
-
-                //스케일 감소
-                if (rectMouseSettingBoard.Intersects(settingBoard.RecScaleDownButton) || rightHandPosition.Intersects(settingBoard.RecScaleDownButton))
-                {
-                    nearButton = true;
-                    GetCenterOfButton(settingBoard.RecScaleDownButton);
-
-                    settingBoard.ClickScaleDownButton = true;
-                    //click the right hand item section
-                    if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (finalClick && !pastClick))
-                    {
-                        nearButton = false;
-                        if (this.userParam > 0.05)
-                        {
-                            this.userParam -= 0.05f;
-                        }
-                        else
-                        {
-                            this.userParam = 0.05f;
-                        }
-
-                    }
-                }
-                else
-                {
-                    settingBoard.ClickScaleDownButton = false;
-                }
+            //        }
+            //    }
+            //    else
+            //    {
+            //        settingBoard.ClickScaleUpButton = false;
+            //    }
 
 
 
+            //    //스케일 감소
+            //    if (rectMouseSettingBoard.Intersects(settingBoard.RecScaleDownButton) || rightHandPosition.Intersects(settingBoard.RecScaleDownButton))
+            //    {
+            //        nearButton = true;
+            //        GetCenterOfButton(settingBoard.RecScaleDownButton);
 
-            //각도 증가 
-                if (rectMouseSettingBoard.Intersects(settingBoard.RecAngleUpButton) || rightHandPosition.Intersects(settingBoard.RecAngleUpButton))
-                {
-                    nearButton = true;
-                    GetCenterOfButton(settingBoard.RecAngleUpButton);
+            //        settingBoard.ClickScaleDownButton = true;
+            //        //click the right hand item section
+            //        if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (finalClick && !pastClick))
+            //        {
+            //            nearButton = false;
+            //            if (this.userParam > 0.05)
+            //            {
+            //                this.userParam -= 0.05f;
+            //            }
+            //            else
+            //            {
+            //                this.userParam = 0.05f;
+            //            }
 
-                    settingBoard.ClickAngleUpButton = true;
-                    //click the right hand item section
-                    if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (finalClick && !pastClick))
-                    {
+            //        }
+            //    }
+            //    else
+            //    {
+            //        settingBoard.ClickScaleDownButton = false;
+            //    }
 
-                        nearButton = false;
-                        if (nui.ElevationAngle < nui.MaxElevationAngle - 3)
-                        {
-                            while (true)
-                            {
-                                try
-                                {
-                                    nui.ElevationAngle += 3;
-                                    break;
-                                }
-                                catch (Exception ex)
-                                {
-                                }
-                            }
-                        }
+
+
+
+            ////각도 증가 
+            //    if (rectMouseSettingBoard.Intersects(settingBoard.RecAngleUpButton) || rightHandPosition.Intersects(settingBoard.RecAngleUpButton))
+            //    {
+            //        nearButton = true;
+            //        GetCenterOfButton(settingBoard.RecAngleUpButton);
+
+            //        settingBoard.ClickAngleUpButton = true;
+            //        //click the right hand item section
+            //        if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (finalClick && !pastClick))
+            //        {
+
+            //            nearButton = false;
+            //            if (nui.ElevationAngle < nui.MaxElevationAngle - 3)
+            //            {
+            //                while (true)
+            //                {
+            //                    try
+            //                    {
+            //                        nui.ElevationAngle += 3;
+            //                        break;
+            //                    }
+            //                    catch (Exception ex)
+            //                    {
+            //                    }
+            //                }
+            //            }
                        
-                    }
-                }
-                else
-                {
-                    settingBoard.ClickAngleUpButton = false;
-                }
+            //        }
+            //    }
+            //    else
+            //    {
+            //        settingBoard.ClickAngleUpButton = false;
+            //    }
 
 
 
-                //각도 감소
-                if (rectMouseSettingBoard.Intersects(settingBoard.RecAngleDownButton) || rightHandPosition.Intersects(settingBoard.RecAngleDownButton))
-                {
-                    nearButton = true;
-                    GetCenterOfButton(settingBoard.RecAngleDownButton);
+            //    //각도 감소
+            //    if (rectMouseSettingBoard.Intersects(settingBoard.RecAngleDownButton) || rightHandPosition.Intersects(settingBoard.RecAngleDownButton))
+            //    {
+            //        nearButton = true;
+            //        GetCenterOfButton(settingBoard.RecAngleDownButton);
 
-                    settingBoard.ClickAngleDownButton = true;
-                    //click the right hand item section
-                    if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (finalClick && !pastClick))
-                    {
+            //        settingBoard.ClickAngleDownButton = true;
+            //        //click the right hand item section
+            //        if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (finalClick && !pastClick))
+            //        {
 
-                        nearButton = false;
-                        if (nui.ElevationAngle > nui.MinElevationAngle + 3)
-                        {
-                            while (true)
-                            {
-                                try
-                                {
-                                    nui.ElevationAngle -= 3;
-                                    break;
-                                }
-                                catch (Exception ex)
-                                {
-                                }
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    settingBoard.ClickAngleDownButton = false;
-                }
+            //            nearButton = false;
+            //            if (nui.ElevationAngle > nui.MinElevationAngle + 3)
+            //            {
+            //                while (true)
+            //                {
+            //                    try
+            //                    {
+            //                        nui.ElevationAngle -= 3;
+            //                        break;
+            //                    }
+            //                    catch (Exception ex)
+            //                    {
+            //                    }
+            //                }
+            //            }
+            //        }
+            //    }
+            //    else
+            //    {
+            //        settingBoard.ClickAngleDownButton = false;
+            //    }
 
 
-                if(
-                !(rectMouseSettingBoard.Intersects(settingBoard.RectNextButton) || rightHandPosition.Intersects(settingBoard.RectNextButton))
-                &&!(rectMouseSettingBoard.Intersects(settingBoard.RecScaleUpButton) || rightHandPosition.Intersects(settingBoard.RecScaleUpButton))
-                &&!(rectMouseSettingBoard.Intersects(settingBoard.RecScaleDownButton) || rightHandPosition.Intersects(settingBoard.RecScaleDownButton))
-                &&!(rectMouseSettingBoard.Intersects(settingBoard.RecAngleUpButton) || rightHandPosition.Intersects(settingBoard.RecAngleUpButton))
-                &&!(rectMouseSettingBoard.Intersects(settingBoard.RecAngleDownButton) || rightHandPosition.Intersects(settingBoard.RecAngleDownButton))
-                )
-                   {
+            //    if(
+            //    !(rectMouseSettingBoard.Intersects(settingBoard.RectNextButton) || rightHandPosition.Intersects(settingBoard.RectNextButton))
+            //    &&!(rectMouseSettingBoard.Intersects(settingBoard.RecScaleUpButton) || rightHandPosition.Intersects(settingBoard.RecScaleUpButton))
+            //    &&!(rectMouseSettingBoard.Intersects(settingBoard.RecScaleDownButton) || rightHandPosition.Intersects(settingBoard.RecScaleDownButton))
+            //    &&!(rectMouseSettingBoard.Intersects(settingBoard.RecAngleUpButton) || rightHandPosition.Intersects(settingBoard.RecAngleUpButton))
+            //    &&!(rectMouseSettingBoard.Intersects(settingBoard.RecAngleDownButton) || rightHandPosition.Intersects(settingBoard.RecAngleDownButton))
+            //    )
+            //       {
 
-                       nearButton = false;
-                   }
+            //           nearButton = false;
+            //       }
 
 
                 pastClick = finalClick;
@@ -4294,10 +4316,8 @@ namespace beethoven3
 
             if (gameState == GameStates.ShowPictures)
             {
-                showPictureScene.Draw(spriteBatch, this.Window.ClientBounds.Width, this.Window.ClientBounds.Height);
-                
-                
-
+                showPictureScene.Draw(spriteBatch);
+              
                 if(playingPictures.Count > 0 )
                 {
                     //3개보다 많으면 3으로 
@@ -4306,9 +4326,7 @@ namespace beethoven3
 
                     for (i = 0; i < playPicturesCount; i++)
                     {
-
-                     //   FileStream fileStream = new FileStream(@"C:\\beethovenRecord\\userPicture\\" + playingPictures.Dequeue(), FileMode.Open);
-
+                                          
                         showPictureTextures[i] = (Texture2D)playingPictures.Dequeue();
 
 
@@ -4317,10 +4335,20 @@ namespace beethoven3
                 }
                 for (int i = 0; i < playPicturesCount; i++)
                     {
+                        if (i == 0)
+                        {
+                         //   spriteBatch.Draw(showPictureTextures[i], new Rectangle(200, (i + 1) * 100, 100, 100), Color.White);
+                            spriteBatch.Draw(showPictureTextures[i], new Vector2(42f, 358f), new Rectangle(showPictureTextures[i].Width / 2 - 126, showPictureTextures[i].Height/2 - 126, 252, 252), Color.White, -0.26f, Vector2.Zero, 1f, SpriteEffects.None, 1.0f);
+                        }
+                        else if (i == 1)
+                        {
+                            spriteBatch.Draw(showPictureTextures[i], new Vector2(396f, 261f), new Rectangle(showPictureTextures[i].Width / 2 - 126, showPictureTextures[i].Height / 2 - 126, 252, 252), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1.0f);
+                        }
+                        else if (i == 2)
+                        {
+                            spriteBatch.Draw(showPictureTextures[i], new Vector2(739f, 359f), new Rectangle(showPictureTextures[i].Width / 2 - 126, showPictureTextures[i].Height / 2 - 126, 252, 252), Color.White, 0.26f, Vector2.Zero, 1f, SpriteEffects.None, 1.0f);
 
-                        spriteBatch.Draw(showPictureTextures[i], new Rectangle(200, (i + 1) * 100, 100, 100), Color.White);
-                  
-
+                        }
                     }
 
             }
@@ -4330,9 +4358,7 @@ namespace beethoven3
             #region Setting
             if (gameState == GameStates.SettingBoard)
             {
-                settingBoard.Draw(spriteBatch, this.Window.ClientBounds.Width, this.Window.ClientBounds.Height);
-
-           
+                settingBoard.Draw(spriteBatch);
 
             }
             #endregion
@@ -4436,8 +4462,11 @@ namespace beethoven3
 #if Kinect
         void drawpoint(Joint j1, Joint j2)
         {
-       
+
+
             
+
+
             ////실질적인 스케일 변환
             j1r = j1.ScaleTo(SCR_W, SCR_H, userParam, userParam);
          //   Vector2 rec = new Vector2(0,100,100);
@@ -4454,19 +4483,20 @@ namespace beethoven3
                   drawrec1.Y = (int)center.Y;
 
             }
-               
+            message = nearButton.ToString();
+            //spriteBatch.Draw(rightHandTextures[itemManager.getLeftHandIndex()], drawrec1, Color.White);
          //   spriteBatch.Draw(rightHandTextures[itemManager.getRightHandIndex()], drawrec1, new Rectangle(0,0,100,100), Color.White,0f,Vector2.Zero, 1.0f , SpriteEffects.None , 1.0f);
             spriteBatch.Draw(
               rightHandTextures[itemManager.getRightHandIndex()],
                 //위치: Center-> location 으로 바꿈 (마커와 노트 매칭 떄문에 )
-              new Vector2(drawrec1.X,drawrec1.Y),
+              new Vector2(drawrec1.X, drawrec1.Y),
 
               null,
               Color.White,
               0f,
                 //origin ->  new Vector2(frameWidth / 2, frameHeight / 2) ->  new Vector2(0,0) 으로 바꿈 (마커와 노트 매칭 떄문에 )
               new Vector2(0, 0),
-              //오른쪽 마크 크기 
+                //오른쪽 마크 크기 
               1f,
               SpriteEffects.None,
               0.0f);   
@@ -4478,7 +4508,28 @@ namespace beethoven3
             drawrec2.X = (int)j2r.Position.X ;
             drawrec2.Y = (int)j2r.Position.Y ;
 
-            spriteBatch.Draw(leftHandTextures[itemManager.getLeftHandIndex()], drawrec2, Color.White);
+            Texture2D leftHandTexture = leftHandTextures[itemManager.getLeftHandIndex()];
+            
+
+
+            spriteBatch.Draw(
+             leftHandTexture,
+                //위치: Center-> location 으로 바꿈 (마커와 노트 매칭 떄문에 )
+             new Vector2((float)drawrec2.X - (float)(leftHandTexture.Width * 0.35), (float)drawrec2.Y - (float)(leftHandTexture.Height * 0.35)),
+
+             null,
+             Color.White,
+             0f,
+                //origin ->  new Vector2(frameWidth / 2, frameHeight / 2) ->  new Vector2(0,0) 으로 바꿈 (마커와 노트 매칭 떄문에 )
+              new Vector2(0, 0),
+                //오른쪽 마크 크기 
+             0.7f,
+             SpriteEffects.None,
+             0.0f);   
+
+
+
+          //  spriteBatch.Draw(leftHandTextures[itemManager.getLeftHandIndex()], drawrec2, Color.White);
         }
 #endif
 
