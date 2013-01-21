@@ -216,3 +216,15 @@ D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\leaf
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\leafRightNote.xnb
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\leafDragNote.xnb
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\starDragNote.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\background\uniBackground.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\background\moonThumnail.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\Note_Gostop_1.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\Note_Gostop_2.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\Note_Gostop_3.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\rightItem\Baton_7.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Explosion\Effect_Sakura_1.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Explosion\Effect_Sakura_2.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Explosion\sakuraThumnail.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\LeftHand\Left_1.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\LeftHand\Left_3.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\LeftHand\Left_2.xnb

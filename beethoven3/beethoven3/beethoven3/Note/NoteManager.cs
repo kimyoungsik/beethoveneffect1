@@ -47,7 +47,16 @@ namespace beethoven3
 
         #region properties
 
-        
+
+
+
+        public int ChangeFrameCount
+        {
+            get { return FrameCount; }
+            set { FrameCount = value; }
+        }
+
+
         public Texture2D TextureChange
         {
             get { return Texture; }

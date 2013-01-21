@@ -3541,10 +3541,38 @@ namespace beethoven3
                         startNoteManager.changeLongNoteImage(longNoteTextures[itemManager.getNoteIndex()], new Rectangle(0, 0, longNoteTextures[itemManager.getNoteIndex()].Width, longNoteTextures[itemManager.getNoteIndex()].Height), longNoteScale[0]);
 
                         ////왼손노트
-                        startNoteManager.changeLeftNoteImage(leftNoteTextures[itemManager.getNoteIndex()], new Rectangle(0, 0, leftNoteTextures[itemManager.getNoteIndex()].Width, leftNoteTextures[itemManager.getNoteIndex()].Height), leftNoteScale[0]);
+
+                        //고스톱이 아니면
+                        if (itemManager.getNoteIndex() != 3)
+                        {
+                            startNoteManager.changeLeftNoteImage(leftNoteTextures[itemManager.getNoteIndex()], new Rectangle(0, 0, leftNoteTextures[itemManager.getNoteIndex()].Width, leftNoteTextures[itemManager.getNoteIndex()].Height), leftNoteScale[0]);
+                        }
+                    // 고스톱이면 스프라이트 적용
+                        else if (itemManager.getNoteIndex() == 3)
+                        {
+                            startNoteManager.changeLeftNoteImage(leftNoteTextures[itemManager.getNoteIndex()], new Rectangle(0, 0, 120, leftNoteTextures[itemManager.getNoteIndex()].Height), leftNoteScale[0], 10);
+
+                        }
+
+
+
+
 
                         //오른손 노트 이미지 바꾸기
-                        startNoteManager.changeRightNoteImage(rightNoteTextures[itemManager.getNoteIndex()], new Rectangle(0, 0, rightNoteTextures[itemManager.getNoteIndex()].Width, rightNoteTextures[itemManager.getNoteIndex()].Height), rightNoteScale[0]);
+
+                        //고스톱이 아니면
+                        if (itemManager.getNoteIndex() != 3)
+                        {
+                            startNoteManager.changeRightNoteImage(rightNoteTextures[itemManager.getNoteIndex()], new Rectangle(0, 0, rightNoteTextures[itemManager.getNoteIndex()].Width, rightNoteTextures[itemManager.getNoteIndex()].Height), rightNoteScale[0]);
+                        }
+                        // 고스톱이면 스프라이트 적용
+                        else if (itemManager.getNoteIndex() == 3)
+                        {
+                            startNoteManager.changeRightNoteImage(rightNoteTextures[itemManager.getNoteIndex()], new Rectangle(0, 0, 120, rightNoteTextures[itemManager.getNoteIndex()].Height), rightNoteScale[0],10);
+                 
+                        }
+
+
 
                         Texture2D[] dragTextures = itemManager.GetDragNoteTexture();
                         

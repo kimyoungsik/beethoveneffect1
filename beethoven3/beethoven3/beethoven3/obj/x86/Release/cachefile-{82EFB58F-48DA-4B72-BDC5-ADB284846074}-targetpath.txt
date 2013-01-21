@@ -208,3 +208,15 @@ Content\notes\leafLeftNote.xnb
 Content\notes\leafRightNote.xnb
 Content\notes\leafDragNote.xnb
 Content\notes\starDragNote.xnb
+Content\background\uniBackground.xnb
+Content\background\moonThumnail.xnb
+Content\notes\Note_Gostop_1.xnb
+Content\notes\Note_Gostop_2.xnb
+Content\notes\Note_Gostop_3.xnb
+Content\rightItem\Baton_7.xnb
+Content\Explosion\Effect_Sakura_1.xnb
+Content\Explosion\Effect_Sakura_2.xnb
+Content\Explosion\sakuraThumnail.xnb
+Content\LeftHand\Left_1.xnb
+Content\LeftHand\Left_3.xnb
+Content\LeftHand\Left_2.xnb

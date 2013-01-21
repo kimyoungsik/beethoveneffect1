@@ -114,15 +114,25 @@ namespace beethoven3
             }
 
             //노트 아이템
-            for (i = 0; i < 3; i++)
+            for (i = 0; i < 4; i++)
             {
-                addItem(rightNoteItem, new Vector2(100, 100), rightNoteTexture[i], new Rectangle(0, 0, rightNoteTexture[i].Width, rightNoteTexture[i].Height), 1,/*cost*/ 25);
+                if (i != 3)
+                {
+                    addItem(rightNoteItem, new Vector2(100, 100), rightNoteTexture[i], new Rectangle(0, 0, rightNoteTexture[i].Width, rightNoteTexture[i].Height), 1,/*cost*/ 25);
+                }
+                //고스톱이면 보이는 텍스쳐 롱노트로 하려고
+
+                else if (i == 3)
+                {
+                    addItem(rightNoteItem, new Vector2(100, 100), longNoteTexture[i], new Rectangle(0, 0, longNoteTexture[i].Width, longNoteTexture[i].Height), 1,/*cost*/ 25);
+                }
+
             }
 
 
 
             //왼손 아이템
-            for (i = 0; i < 2; i++)
+            for (i = 0; i < 3; i++)
             {
                 addItem(leftHandItem, new Vector2(100, 100), leftHandTexture[i], new Rectangle(0, 0, leftHandTexture[i].Width, leftHandTexture[i].Height), 1,/*cost*/ 7);
                 
@@ -138,7 +148,7 @@ namespace beethoven3
 
 
             //이펙트 아이템
-            for (i = 0; i < 3; i++)
+            for (i = 0; i < 4; i++)
             {
                 addItem(effectItem, new Vector2(100, 100), effectTexture[i], new Rectangle(0, 0, effectTexture[i].Width, effectTexture[i].Height), 1,/*cost*/ 16, effectThumnail[i]);
               
@@ -157,24 +167,25 @@ namespace beethoven3
             
             effectInitFrams[2] = new Rectangle(0, 0, 166, 162);
 
-            
+            effectInitFrams[3] = new Rectangle(0, 0, 166, 162);
 
             effectFrameCount[0] = 9;//기본
             effectFrameCount[1] = 9;//우주 
             effectFrameCount[2] = 9;//숲
-           
+            effectFrameCount[3] = 9;//숲
             
            
             effecScale[0] = 1.0f;//기본
             effecScale[1] = 1.0f;//우주 
             effecScale[2] = 1.0f;//숲
-
+            effecScale[3] = 1.0f;//숲
 
 
             //지속시간
             effectDulation[0] =  45;
             effectDulation[1] =  45;//우주 
             effectDulation[2] =  45;//숲
+            effectDulation[3] = 45;//숲
            //이펙트 특성 -end
 
 
@@ -413,17 +424,17 @@ namespace beethoven3
             rightHandTexture[1] = cm.Load<Texture2D>(@"rightItem\Baton_2");
             rightHandTexture[2] = cm.Load<Texture2D>(@"rightItem\Baton_3");
             rightHandTexture[3] = cm.Load<Texture2D>(@"rightItem\Baton_4");
-            rightHandTexture[4] = cm.Load<Texture2D>(@"rightItem\Baton_5");
+            rightHandTexture[4] = cm.Load<Texture2D>(@"rightItem\Baton_7");
             rightHandTexture[5] = cm.Load<Texture2D>(@"rightItem\Baton_6");
 
 
 
             //왼손
             //가운데를 중점으로 맞추어야 함.
-            leftHandTexture[0] = cm.Load<Texture2D>(@"rightItem\Baton_1");
-            leftHandTexture[1] = cm.Load<Texture2D>(@"rightItem\Baton_1");
-
-
+            leftHandTexture[0] = cm.Load<Texture2D>(@"LeftHand\Left_1");
+            leftHandTexture[1] = cm.Load<Texture2D>(@"LeftHand\Left_2");
+            leftHandTexture[2] = cm.Load<Texture2D>(@"LeftHand\Left_3");
+          
 
 
 
@@ -441,26 +452,28 @@ namespace beethoven3
             //초원느낌
             effectThumnail[2] = cm.Load<Texture2D>(@"Explosion\treeThumnail");
 
-
+            //고스톱느낌
+            effectThumnail[3] = cm.Load<Texture2D>(@"Explosion\sakuraThumnail");
 
             //퍼펙트 이펙트 
 
             effectTexture[0] = cm.Load<Texture2D>(@"Explosion\starPerfectEffect");//기본
             effectTexture[1] = cm.Load<Texture2D>(@"Explosion\starPerfectEffect");//우주
             effectTexture[2] = cm.Load<Texture2D>(@"Explosion\Effect_Guilty_3");//숲
-
+            effectTexture[3] = cm.Load<Texture2D>(@"Explosion\Effect_Sakura_1");//고스톱
 
 
             //good
             goodEffectTexture[0] = cm.Load<Texture2D>(@"Explosion\starGoodEffect");//기본
             goodEffectTexture[1] = cm.Load<Texture2D>(@"Explosion\starGoodEffect");//우주
             goodEffectTexture[2] = cm.Load<Texture2D>(@"Explosion\Effect_Guilty_3");//숲
+            goodEffectTexture[3] = cm.Load<Texture2D>(@"Explosion\Effect_Sakura_2");//숲
 
             //롱노트 //드래그 ( 일단 똑같이)
             badEffectTexture[0] = cm.Load<Texture2D>(@"Explosion\starLongEffect");//기본
             badEffectTexture[1] = cm.Load<Texture2D>(@"Explosion\starLongEffect");//우주
             badEffectTexture[2] = cm.Load<Texture2D>(@"Explosion\colorPencil3");//숲
-
+            badEffectTexture[3] = cm.Load<Texture2D>(@"Explosion\colorPencil2");//숲
            
             //missEffectTexture[0] = cm.Load<Texture2D>(@"Explosion\starLongEffect2");
             //missEffectTexture[1] = cm.Load<Texture2D>(@"Explosion\starLongEffect2");
@@ -471,42 +484,49 @@ namespace beethoven3
             rightNoteTexture[0] = cm.Load<Texture2D>(@"notes\starRightNote_yell");//기본
             rightNoteTexture[1] = cm.Load<Texture2D>(@"notes\starRightNote_yell");//우주
             rightNoteTexture[2] = cm.Load<Texture2D>(@"notes\leafRightNote");//숲
-
+            rightNoteTexture[3] = cm.Load<Texture2D>(@"notes\Note_Gostop_1");//고스톱
 
 
             leftNoteTexture[0] = cm.Load<Texture2D>(@"notes\starLeftNote_moon");//기본
             leftNoteTexture[1] = cm.Load<Texture2D>(@"notes\starLeftNote_moon");//우주
             leftNoteTexture[2] = cm.Load<Texture2D>(@"notes\leafLeftNote");//숲
+            leftNoteTexture[3] = cm.Load<Texture2D>(@"notes\Note_Gostop_2");//고스톱
 
 
             dragNoteTexture[0] = cm.Load<Texture2D>(@"notes\starDragNote");//기본
             dragNoteTexture[1] = cm.Load<Texture2D>(@"notes\starDragNote");//우주
             dragNoteTexture[2] = cm.Load<Texture2D>(@"notes\leafDragNote");//숲
+            dragNoteTexture[3] = cm.Load<Texture2D>(@"notes\Note_Gostop_3");//고스톱
+
+            
 
 
             longNoteTexture[0] = cm.Load<Texture2D>(@"notes\planetNote4");//기본
             longNoteTexture[1] = cm.Load<Texture2D>(@"notes\planetNote4");//우주
             longNoteTexture[2] = cm.Load<Texture2D>(@"notes\leafLeftNote");//숲
-            
+            longNoteTexture[3] = cm.Load<Texture2D>(@"notes\Note_Gostop_3");//고스톱
+
+
 
             //노트랑 한쌍이다.//기본
             markTexture[0] = cm.Load<Texture2D>(@"markers\whiteMarker");//기본
             markTexture[1] = cm.Load<Texture2D>(@"markers\whiteMarker");//우주
             markTexture[2] = cm.Load<Texture2D>(@"markers\whiteMarker");//숲
+            markTexture[3] = cm.Load<Texture2D>(@"markers\whiteMarker");//고스톱
 
 
-            backgroundTexture[0] = cm.Load<Texture2D>(@"background\ConcertHall_1");//기본
-            backgroundTexture[1] = cm.Load<Texture2D>(@"background\ConcertHall_2");//우주
+            backgroundTexture[0] = cm.Load<Texture2D>(@"background\ConcertHall_2");//기본
+            backgroundTexture[1] = cm.Load<Texture2D>(@"background\uniBackground");//우주
             backgroundTexture[2] = cm.Load<Texture2D>(@"background\ConcertHall_2");//숲
 
 
             //배경 섬네일
 
             //기본
-            backgroundThumnail[0] = cm.Load<Texture2D>(@"background\Back_ssum_3");
+            backgroundThumnail[0] = cm.Load<Texture2D>(@"background\Back_ssum_2");
 
             //우주느낌
-            backgroundThumnail[1] = cm.Load<Texture2D>(@"background\Back_ssum_2");
+            backgroundThumnail[1] = cm.Load<Texture2D>(@"background\moonThumnail");
 
             //초원느낌
             backgroundThumnail[2] = cm.Load<Texture2D>(@"background\Back_ssum_2");
