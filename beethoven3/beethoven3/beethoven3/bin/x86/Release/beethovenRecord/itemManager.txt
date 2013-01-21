@@ -3,8 +3,10 @@ rightHand
 0
 3
 1
+4
+5
 $$
-3
+1
 leftHand
 0
 $$
@@ -18,11 +20,12 @@ $$
 note
 0
 1
+2
 $$
-0
+1
 background
 0
 1
 $$
-0
+1
 !!

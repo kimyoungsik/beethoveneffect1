@@ -11,7 +11,7 @@ namespace beethoven3
     {
         #region declarations
 
-        public Texture2D Texture;
+        protected Texture2D texture;
 
         //스프라이트에 정의된 각 애니메이션 프레임의 rectangle 객체
         //텍스쳐를 바꾸면 frams의 rec를 바꿔야 한다.
@@ -66,14 +66,14 @@ namespace beethoven3
              )
         {
             this.location = location;
-            Texture = texture;
+            this.texture = texture;
             this.velocity = velocity;
             this.scale = scale;
-            frames.Add(initialFrame);
-            frameWidth = initialFrame.Width;
-            frameHeight = initialFrame.Height;
-            isEarlyOne = true;
-            isShow = true;
+            this.frames.Add(initialFrame);
+            this.frameWidth = initialFrame.Width;
+            this.frameHeight = initialFrame.Height;
+            this.isEarlyOne = true;
+            this.isShow = true;
         }
         #endregion
 
@@ -150,7 +150,11 @@ namespace beethoven3
             set { frameTime = MathHelper.Max(0, value); }
         }
 
-        // currentframe rectangle
+        public Texture2D Texture
+        {
+            get { return texture; }
+            set { texture = value; }
+        }
         
         public Rectangle Source
         {
@@ -354,7 +358,7 @@ namespace beethoven3
         {
             
                 spriteBatch.Draw(
-                    Texture,
+                    texture,
                     //위치: Center-> location 으로 바꿈 (마커와 노트 매칭 떄문에 )
                     location,
                     Source,

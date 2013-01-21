@@ -201,6 +201,10 @@ Content\ui\energy.xnb
 Content\ui\energyDarkBack.xnb
 Content\ui\processBar.xnb
 Content\ui\processMark.xnb
+Content\notes\leafLeftNote.xnb
+Content\notes\leafRightNote.xnb
+Content\notes\leafDragNote.xnb
+Content\notes\starDragNote.xnb
 Content\snd\ka.wma
 Content\snd\jo.wma
 Content\snd\maid.wma

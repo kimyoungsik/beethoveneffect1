@@ -43,6 +43,7 @@ namespace beethoven3
         private Vector2 comboLocation;
 
         private CharismaManager charismaManager;
+        private DragNoteManager dragNoteManager;
        // private bool isEarlyOne = true;
         #endregion 
 
@@ -50,7 +51,7 @@ namespace beethoven3
         public CollisionManager(PerfectExplosionManager perfectManager, GoodExplosionManager goodManager, BadExplosionManager badManager, ExplosionManager goldGetManager,
             ScoreManager scoreManager, MemberManager memberManager, ItemManager itemManager,
             PerfectBannerManager perfectBannerManager, GoodBannerManager goodBannerManager, BadBannerManager badBannerManager, MissBannerManager missBannerManager, Vector2 sizeScreen,
-            ComboNumberManager comboNumberManager, CharismaManager charismaManager)
+            ComboNumberManager comboNumberManager, CharismaManager charismaManager, DragNoteManager dragNoteManager)
         {
             this.perfectManager = perfectManager;
             this.goodManager = goodManager;
@@ -73,7 +74,7 @@ namespace beethoven3
             this.memberManager = memberManager;
             this.itemManager = itemManager;
 
-
+            this.dragNoteManager = dragNoteManager;
 
             this.perfectLocation = new Vector2(sizeScreen.X / 2 - 1380 / 4, sizeScreen.Y / 2 - 428 / 4);
             this.goodLocation = new Vector2(sizeScreen.X / 2 - 1020 / 4, sizeScreen.Y / 2 - 368 / 4);
@@ -94,11 +95,11 @@ namespace beethoven3
         {
             //드래그 노트
             //Curve 클래스에 만든 dragnote를 검사해 간다.
-            
-            for (int i = 0; i < DragNoteManager.DragNotes.Count(); i++ )
+
+            for (int i = 0; i < dragNoteManager.dragNotes.Count(); i++)
             {
                 //DragNoteManager 의 텍스쳐 값.
-                Sprite dragNote = DragNoteManager.DragNotes[i];
+                Sprite dragNote = dragNoteManager.dragNotes[i];
                 
 
                 int judgment = dragNote.JudgedNote(mousePoint);
@@ -110,8 +111,8 @@ namespace beethoven3
                     //퍼펙트 글자 띄우기
                     perfectBannerManager.AddBanners(perfectLocation);
 
-                    
-                    DragNoteManager.DragNotes.RemoveAt(i);
+
+                    dragNoteManager.dragNotes.RemoveAt(i);
 
                     scoreManager.DragNoteScore = scoreManager.DragNoteScore + 1;
                     scoreManager.Combo = scoreManager.Combo + 1;
@@ -126,10 +127,10 @@ namespace beethoven3
 
                     //굿 글자 띄우기
                     goodBannerManager.AddBanners(goodLocation);
-                    
 
 
-                    DragNoteManager.DragNotes.RemoveAt(i);
+
+                    dragNoteManager.dragNotes.RemoveAt(i);
                 //    ScoreManager.otherScore += 1;
                     scoreManager.DragNoteScore = scoreManager.DragNoteScore + 1;
                     scoreManager.Combo = scoreManager.Combo + 1;

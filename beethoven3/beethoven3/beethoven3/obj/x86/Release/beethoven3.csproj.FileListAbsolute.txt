@@ -212,3 +212,7 @@ D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\ui\energy.
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\ui\energyDarkBack.xnb
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\ui\processBar.xnb
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\ui\processMark.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\leafLeftNote.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\leafRightNote.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\leafDragNote.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\starDragNote.xnb

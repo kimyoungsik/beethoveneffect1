@@ -9,27 +9,27 @@ using System.Diagnostics;
 namespace beethoven3
 {
     //충돌로 판별하는 마크르 만드는 것
-    static class DragNoteManager
+    class DragNoteManager
     {
         #region declarations
-        public static List<Sprite> DragNotes = new List<Sprite>();
+        public List<Sprite> dragNotes = new List<Sprite>();
 
-        public static Texture2D Texture;
-        public static Rectangle InitialFrame;
-        private static int FrameCount;
+        private Texture2D texture;
+        private Rectangle initialFrame;
+        private int frameCount;
 
         //노트 스피드로서 역할을 제대로 하지 않는다.
-        public static float NoteSpeed;
-        private static int CollisionRadius;
+        private float noteSpeed;
+        private int collisionRadius;
       
-        private static ScoreManager ScoreManager;
-        private static MissBannerManager MissBanner;
+        private ScoreManager scoreManager;
+        private MissBannerManager missBanner;
         #endregion
 
 
         #region initialize
 
-        public static void initialize(
+        public DragNoteManager(
         
             Texture2D texture,
             Rectangle initialFrame,
@@ -40,50 +40,62 @@ namespace beethoven3
             ScoreManager scoreManager
             )
         {
-            Texture = texture;
-            InitialFrame = initialFrame;
-            FrameCount = frameCount;
-            CollisionRadius = collisionRadius;
-            NoteSpeed = noteSpeed;
-             MissBanner = missBanner;
-            ScoreManager = scoreManager;
+            this.texture = texture;
+            this.initialFrame = initialFrame;
+            this.frameCount = frameCount;
+            this.collisionRadius = collisionRadius;
+            this.noteSpeed = noteSpeed;
+            this.missBanner = missBanner;
+            this.scoreManager = scoreManager;
         }
         #endregion
 
         #region method
-        public static void MakeDragNote(
+        public void MakeDragNote(
             Vector2 location,
             Vector2 velocity
             )
         {
             Sprite thisNote = new Sprite(
                 location,
-                Texture,
-                InitialFrame,
+                texture,
+                initialFrame,
                 velocity);
 
-            thisNote.Velocity *= NoteSpeed;
+            thisNote.Velocity *= noteSpeed;
 
-            for (int x = 1; x < FrameCount; x++)
+            for (int x = 1; x < frameCount; x++)
             {
                 thisNote.AddFrame(new Rectangle(
-                    InitialFrame.X + (InitialFrame.Width * x),
-                    InitialFrame.Y,
-                    InitialFrame.Width,
-                    InitialFrame.Height));
+                    initialFrame.X + (initialFrame.Width * x),
+                    initialFrame.Y,
+                    initialFrame.Width,
+                    initialFrame.Height));
             }
-            thisNote.CollisionRadius = CollisionRadius;
-            DragNotes.Add(thisNote);
+            thisNote.CollisionRadius = collisionRadius;
+            dragNotes.Add(thisNote);
         }
 
-        public static void DeleteDragNoteFromFront()
+        public Texture2D Texture
         {
-            if (DragNotes.Count > 0)
+            get { return texture; }
+            set { texture = value; }
+        }
+
+        public Rectangle InitialFrame
+        {
+            get { return initialFrame; }
+            set { initialFrame = value; }
+        }
+
+        public void DeleteDragNoteFromFront()
+        {
+            if (dragNotes.Count > 0)
             {
                 try
                 {
 
-                    DragNotes.RemoveAt(0);
+                    dragNotes.RemoveAt(0);
                 }
                 catch (ArgumentOutOfRangeException)
                 {
@@ -91,27 +103,27 @@ namespace beethoven3
                 }
             }
         }
-        public static void DeleteDragNotes()
+        public void DeleteDragNotes()
         {
             int i;
-            for (i = 0; i < DragNotes.Count; i++ )
+            for (i = 0; i < dragNotes.Count; i++)
             {
              
                 //미스 띄워주기 
-                MissBanner.AddBanners(new Vector2(1024 / 2 - 975 / 4, 769 / 2 - 412 / 4));
+                missBanner.AddBanners(new Vector2(1024 / 2 - 975 / 4, 769 / 2 - 412 / 4));
 
-                DragNotes.RemoveAt(i);
+                dragNotes.RemoveAt(i);
                 //***이거 잘못된듯 
                 //드래그 노트실패하면 깍아야 할듯  
                // ScoreManager.DragNoteScore = ScoreManager.DragNoteScore + 1;
-                
-                
-                if (ScoreManager.Combo > ScoreManager.Max)
+
+
+                if (scoreManager.Combo > scoreManager.Max)
                 {
-                    ScoreManager.Max = ScoreManager.Combo;
+                    scoreManager.Max = scoreManager.Combo;
                 }
-                ScoreManager.Combo = 0;
-                ScoreManager.Gage = ScoreManager.Gage - 1;
+                scoreManager.Combo = 0;
+                scoreManager.Gage = scoreManager.Gage - 1;
    
             }
         }
@@ -121,18 +133,20 @@ namespace beethoven3
 
         #region update and draw
         
-        public static void Update(GameTime gameTime)
+        public void Update(GameTime gameTime)
         {
-            for (int x = DragNotes.Count - 1; x >= 0; x--)
+            for (int x = dragNotes.Count - 1; x >= 0; x--)
             {
-                DragNotes[x].Update(gameTime);
+                dragNotes[x].Update(gameTime);
                 
             }
         }
 
-        public static void Draw(SpriteBatch spriteBatch)
+
+        //도중 마커점이니깐 안보여도 된다. 안쓰임
+        public void Draw(SpriteBatch spriteBatch)
         {
-            foreach (Sprite dragNote in DragNotes)
+            foreach (Sprite dragNote in dragNotes)
             {
                 dragNote.Draw(spriteBatch);
             }

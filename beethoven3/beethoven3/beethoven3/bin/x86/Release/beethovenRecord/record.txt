@@ -43,4 +43,6 @@ music
 myPicture.jpg$480
 myPicture.jpg$460
 myPicture.jpg$450
+myPicture.jpg$430
+myPicture.jpg$400
 **

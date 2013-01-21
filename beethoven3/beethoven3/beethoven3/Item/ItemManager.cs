@@ -32,28 +32,28 @@ namespace beethoven3
 
 
         //아이템 텍스쳐
-        private Texture2D[] rightHandTexture = new Texture2D[5];
-        private Texture2D[] leftHandTexture = new Texture2D[5];
-        private Texture2D[] effectTexture = new Texture2D[5];
-        private Texture2D[] rightNoteTexture = new Texture2D[5];
-        private Texture2D[] leftNoteTexture = new Texture2D[5];
-        private Texture2D[] dragNoteTexture = new Texture2D[5];
-        private Texture2D[] longNoteTexture = new Texture2D[5];
-        private Texture2D[] backgroundTexture = new Texture2D[5];
+        private Texture2D[] rightHandTexture = new Texture2D[6];
+        private Texture2D[] leftHandTexture = new Texture2D[6];
+        private Texture2D[] effectTexture = new Texture2D[6];
+        private Texture2D[] rightNoteTexture = new Texture2D[6];
+        private Texture2D[] leftNoteTexture = new Texture2D[6];
+        private Texture2D[] dragNoteTexture = new Texture2D[6];
+        private Texture2D[] longNoteTexture = new Texture2D[6];
+        private Texture2D[] backgroundTexture = new Texture2D[6];
         
         //섬네일
 
-        private Texture2D[] effectThumnail = new Texture2D[5];
-        private Texture2D[] backgroundThumnail = new Texture2D[5];
+        private Texture2D[] effectThumnail = new Texture2D[6];
+        private Texture2D[] backgroundThumnail = new Texture2D[6];
 
 
         //팔지는 않지만 텍스쳐만 가지고 있음
-        private Texture2D[] markTexture = new Texture2D[5];
+        private Texture2D[] markTexture = new Texture2D[6];
         
         //Great의 이펙트 말고 다른 이펙트는 숨겨서 표현
-        private Texture2D[] goodEffectTexture = new Texture2D[5];
-        private Texture2D[] badEffectTexture = new Texture2D[5];
-        private Texture2D[] missEffectTexture = new Texture2D[5];
+        private Texture2D[] goodEffectTexture = new Texture2D[6];
+        private Texture2D[] badEffectTexture = new Texture2D[6];
+        private Texture2D[] missEffectTexture = new Texture2D[6];
         
         
 
@@ -79,21 +79,21 @@ namespace beethoven3
         //이펙트 특성  -start
 
         //각 이펙트마다 rect init
-        private Rectangle[] effectInitFrams = new Rectangle[5];
+        private Rectangle[] effectInitFrams = new Rectangle[6];
         //각 이펙트 마다 frameCount
-        private int[] effectFrameCount = new int[5];
+        private int[] effectFrameCount = new int[6];
         //각 이펙트 마다 scale
-        private float[] effecScale = new float[5];
+        private float[] effecScale = new float[6];
         //지속기간
-        private int[] effectDulation = new int[5];
+        private int[] effectDulation = new int[6];
 
         //이펙트 특성  -end
 
         //노트 특성
-        float[] rightNoteScale = new float[5];
+        float[] rightNoteScale = new float[6];
 
         //마커특성
-        private float[] markersScale = new float[5];
+        private float[] markersScale = new float[6];
                 
 
         public ItemManager()
@@ -108,13 +108,13 @@ namespace beethoven3
             //아이템 상점에 올림
             
             //오른손 아이템 
-            for (i = 0; i < 4; i++)
+            for (i = 0; i < 6; i++)
             {
                 addItem(rightHandItem, new Vector2(100, 100), rightHandTexture[i], new Rectangle(0, 0, rightHandTexture[i].Width, rightHandTexture[i].Height), 1,/*cost*/ (i+1)*5);
             }
 
             //노트 아이템
-            for (i = 0; i < 2; i++)
+            for (i = 0; i < 3; i++)
             {
                 addItem(rightNoteItem, new Vector2(100, 100), rightNoteTexture[i], new Rectangle(0, 0, rightNoteTexture[i].Width, rightNoteTexture[i].Height), 1,/*cost*/ 25);
             }
@@ -414,6 +414,7 @@ namespace beethoven3
             rightHandTexture[2] = cm.Load<Texture2D>(@"rightItem\Baton_3");
             rightHandTexture[3] = cm.Load<Texture2D>(@"rightItem\Baton_4");
             rightHandTexture[4] = cm.Load<Texture2D>(@"rightItem\Baton_5");
+            rightHandTexture[5] = cm.Load<Texture2D>(@"rightItem\Baton_6");
 
 
 
@@ -469,29 +470,29 @@ namespace beethoven3
 
             rightNoteTexture[0] = cm.Load<Texture2D>(@"notes\starRightNote_yell");//기본
             rightNoteTexture[1] = cm.Load<Texture2D>(@"notes\starRightNote_yell");//우주
-            rightNoteTexture[2] = cm.Load<Texture2D>(@"notes\turnNote2");//숲
+            rightNoteTexture[2] = cm.Load<Texture2D>(@"notes\leafRightNote");//숲
 
 
 
             leftNoteTexture[0] = cm.Load<Texture2D>(@"notes\starLeftNote_moon");//기본
             leftNoteTexture[1] = cm.Load<Texture2D>(@"notes\starLeftNote_moon");//우주
-            leftNoteTexture[2] = cm.Load<Texture2D>(@"notes\turnNote2");//숲
+            leftNoteTexture[2] = cm.Load<Texture2D>(@"notes\leafLeftNote");//숲
 
 
-            dragNoteTexture[0] = cm.Load<Texture2D>(@"notes\planetNote3");//기본
-            dragNoteTexture[1] = cm.Load<Texture2D>(@"notes\turnNote2");//우주
-            dragNoteTexture[2] = cm.Load<Texture2D>(@"notes\turnNote2");//숲
+            dragNoteTexture[0] = cm.Load<Texture2D>(@"notes\starDragNote");//기본
+            dragNoteTexture[1] = cm.Load<Texture2D>(@"notes\starDragNote");//우주
+            dragNoteTexture[2] = cm.Load<Texture2D>(@"notes\leafDragNote");//숲
 
 
             longNoteTexture[0] = cm.Load<Texture2D>(@"notes\planetNote4");//기본
-            longNoteTexture[1] = cm.Load<Texture2D>(@"notes\turnNote2");//우주
-            longNoteTexture[2] = cm.Load<Texture2D>(@"notes\turnNote2");//숲
+            longNoteTexture[1] = cm.Load<Texture2D>(@"notes\planetNote4");//우주
+            longNoteTexture[2] = cm.Load<Texture2D>(@"notes\leafLeftNote");//숲
             
 
             //노트랑 한쌍이다.//기본
             markTexture[0] = cm.Load<Texture2D>(@"markers\whiteMarker");//기본
-            markTexture[1] = cm.Load<Texture2D>(@"markers\turnMarker");//우주
-            markTexture[2] = cm.Load<Texture2D>(@"markers\turnMarker");//숲
+            markTexture[1] = cm.Load<Texture2D>(@"markers\whiteMarker");//우주
+            markTexture[2] = cm.Load<Texture2D>(@"markers\whiteMarker");//숲
 
 
             backgroundTexture[0] = cm.Load<Texture2D>(@"background\ConcertHall_1");//기본

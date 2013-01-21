@@ -189,6 +189,7 @@ namespace beethoven3
         //선택된 곡
         private int resultSongMenu;
 
+
         //곡을 음성인식으로 선택했을때 리턴받는 값을 저장하는 변수
         public static int soundRecogStartIndex = -1;
         
@@ -210,6 +211,8 @@ namespace beethoven3
         
         //악보파일 관리(불러오기 등)
         private File file;
+
+        DragNoteManager dragNoteManager;
 
         /////이펙트 관리 - start
         private PerfectExplosionManager perfectManager;
@@ -631,7 +634,7 @@ namespace beethoven3
             dragLineMarkerRenderer = new LineRenderer();
 
             //드래그라인 
-            curveManager = new CurveManager(dragLineRenderer, dragLineMarkerRenderer);
+            curveManager = new CurveManager(dragLineRenderer, dragLineMarkerRenderer,dragNoteManager);
 
             //가이드 라인 렌더링
 
@@ -719,8 +722,20 @@ namespace beethoven3
             charismaManager = new CharismaManager();
             charismaManager.LoadContent(Content);
 
+
+            //드래그노트 초기화
+            //이것은 노트 안에서 움직이는 마커점
+            dragNoteManager = new DragNoteManager(
+                 drawLineMarker,
+                 new Rectangle(0, 0, 100, 100),
+                 1,
+                 15,
+                 0,
+                 missBannerManager,
+                 scoreManager);
+
             //충돌관리 생성
-            collisionManager = new CollisionManager(perfectManager, goodManager, badManager, goldGetManager, scoreManager, memberManager,/*effect크기*/itemManager,perfectBannerManager,goodBannerManager,badBannerManager,missBannerManager,new Vector2(this.Window.ClientBounds.Width,this.Window.ClientBounds.Height),comboNumberManager,charismaManager);
+            collisionManager = new CollisionManager(perfectManager, goodManager, badManager, goldGetManager, scoreManager, memberManager,/*effect크기*/itemManager,perfectBannerManager,goodBannerManager,badBannerManager,missBannerManager,new Vector2(this.Window.ClientBounds.Width,this.Window.ClientBounds.Height),comboNumberManager,charismaManager,dragNoteManager);
             
             //노트정보 관리 생성
             noteFileManager = new NoteFileManager();
@@ -729,7 +744,7 @@ namespace beethoven3
 
             dragLineMarkerRenderer = new LineRenderer();
             //드래그라인 
-            curveManager = new CurveManager(dragLineRenderer, dragLineMarkerRenderer);
+            curveManager = new CurveManager(dragLineRenderer, dragLineMarkerRenderer, dragNoteManager);
 
           
 
@@ -794,16 +809,16 @@ namespace beethoven3
             //곡을 불러오기
             file.FileLoading(dir, "*.mnf");
             
-            //드래그노트 초기화
-            //이것은 노트 안에서 움직이는 마커점
-            DragNoteManager.initialize(
-                 drawLineMarker,
-                 new Rectangle(0, 0, 100, 100),
-                 1,
-                 15,
-                 0,
-                 missBannerManager,
-                 scoreManager);
+            ////드래그노트 초기화
+            ////이것은 노트 안에서 움직이는 마커점
+            //dragNoteManager = new DragNoteManager(
+            //     drawLineMarker,
+            //     new Rectangle(0, 0, 100, 100),
+            //     1,
+            //     15,
+            //     0,
+            //     missBannerManager,
+            //     scoreManager);
 
             //골드 초기화
             //크기 0.3
@@ -3073,7 +3088,7 @@ namespace beethoven3
                     HandleMouseInput(Mouse.GetState());
                     file.Update(spriteBatch, gameTime, SoundFmod.changedTempo, SoundFmod.optionalTime);
                     //*** 어떻게 돼는건지 모르겠음 
-                    DragNoteManager.Update(gameTime);
+                    dragNoteManager.Update(gameTime);
                    ////
                     GoldManager.Update(gameTime);
                     perfectManager.Update(gameTime);
@@ -3531,6 +3546,13 @@ namespace beethoven3
                         //오른손 노트 이미지 바꾸기
                         startNoteManager.changeRightNoteImage(rightNoteTextures[itemManager.getNoteIndex()], new Rectangle(0, 0, rightNoteTextures[itemManager.getNoteIndex()].Width, rightNoteTextures[itemManager.getNoteIndex()].Height), rightNoteScale[0]);
 
+                        Texture2D[] dragTextures = itemManager.GetDragNoteTexture();
+                        
+
+                        //드래그노트 이미지 바꾸기
+                        dragNoteManager.Texture = dragTextures[itemManager.getNoteIndex()];
+
+
 
                         //마커리스트 텍스쳐 가져오기
                         Texture2D[] markersTextures = itemManager.GetMarkerTexture();
@@ -3612,14 +3634,13 @@ namespace beethoven3
                         goldGetManager = new ExplosionManager();
                         goldGetManager.ExplosionInit(getGold, new Rectangle(0, 0, 200, 200), 5, 0.7f, 30);
 
-                        
-
+                     
 
                         ////일단은 miss effect로
                         //goldGetManager = new ExplosionManager();
                         //goldGetManager.ExplosionInit(itemManager.GetMissEffectTexture()[effectIndex], itemManager.GetEffectInitFrame()[effectIndex], itemManager.GetEffectFrameCount()[effectIndex], itemManager.GetEffectScale()[effectIndex], itemManager.GetEffectDulation()[effectIndex]);
 
-                        collisionManager = new CollisionManager(perfectManager, goodManager, badManager, goldGetManager, scoreManager, memberManager, itemManager, perfectBannerManager, goodBannerManager, badBannerManager, missBannerManager, new Vector2(this.Window.ClientBounds.Width, this.Window.ClientBounds.Height), comboNumberManager, charismaManager);
+                        collisionManager = new CollisionManager(perfectManager, goodManager, badManager, goldGetManager, scoreManager, memberManager, itemManager, perfectBannerManager, goodBannerManager, badBannerManager, missBannerManager, new Vector2(this.Window.ClientBounds.Width, this.Window.ClientBounds.Height), comboNumberManager, charismaManager,dragNoteManager);
             
                         /////이펙트 생성 -END
                         
@@ -4042,7 +4063,9 @@ namespace beethoven3
                 goodManager.Draw(spriteBatch);
                 badManager.Draw(spriteBatch);
                 goldGetManager.Draw(spriteBatch);
-
+               
+                
+                //dragNoteManager.Draw(spriteBatch);
                 missBannerManager.Draw(spriteBatch);
                 badBannerManager.Draw(spriteBatch);
                 goodBannerManager.Draw(spriteBatch);

@@ -41,7 +41,7 @@ namespace beethoven3
         private LineRenderer dragLineMarkerRenderer;
         private Vector2 startVector = Vector2.Zero;
         private Vector2 endVector = Vector2.Zero;
-
+        private DragNoteManager dragNoteManager;
        
 
         public static int dragNoteSpeed= 120;
@@ -57,11 +57,12 @@ namespace beethoven3
         /// <param name="p2">제어점1</param>
         /// <param name="p3">끝나는점</param>
         /// <param name="time">지속시간</param>
-        public Curve(Vector2 p0, Vector2 p1, Vector2 p2, Vector2 p3, double time, LineRenderer lineRenderer, LineRenderer dragLineMarkerRenderer)
+        public Curve(Vector2 p0, Vector2 p1, Vector2 p2, Vector2 p3, double time, LineRenderer lineRenderer, LineRenderer dragLineMarkerRenderer, DragNoteManager dragNoteManager)
         {
             SetLine(p0, p1, p2, p3, time);
             this.lineRenderer = lineRenderer;
             this.dragLineMarkerRenderer = dragLineMarkerRenderer;
+            this.dragNoteManager = dragNoteManager;
         }
         #endregion
 
@@ -393,12 +394,12 @@ namespace beethoven3
                             currentPosition = (Vector2)PointsQueue.Peek();
                             //판별하는 마크를 만든다.
 
-                            DragNoteManager.MakeDragNote(currentPosition, new Vector2(0, 0));
+                            dragNoteManager.MakeDragNote(currentPosition, new Vector2(0, 0));
                         }
                         count++;
                         if (count == 10)
                         {
-                            DragNoteManager.DeleteDragNotes();
+                            dragNoteManager.DeleteDragNotes();
                         }
                         if (count == 20)
                         {
@@ -422,7 +423,7 @@ namespace beethoven3
                     {
                         //spriteBatch.Draw(DragNoteManager.Texture, startVector, Color.White);
 
-                        dragLineMarkerRenderer.DrawLine(DragNoteManager.Texture, DragNoteManager.InitialFrame, spriteBatch.GraphicsDevice, spriteBatch, startVector, endVector, Color.White);
+                        dragLineMarkerRenderer.DrawLine(dragNoteManager.Texture, dragNoteManager.InitialFrame, spriteBatch.GraphicsDevice, spriteBatch, startVector, endVector, Color.White);
 
                     }
 
@@ -442,7 +443,7 @@ namespace beethoven3
                             //마지막남은 것 지우기
 
                             //드래그 노트 실패 띄우기 2
-                            DragNoteManager.DeleteDragNotes();
+                            dragNoteManager.DeleteDragNotes();
                         }
                     }
 

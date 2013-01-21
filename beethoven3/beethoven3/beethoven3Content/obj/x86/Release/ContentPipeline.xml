@@ -1831,6 +1831,42 @@
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\ui\processMark.xnb</Output>
       <Time>2013-01-21T11:23:36.4918926+09:00</Time>
     </Item>
+    <Item>
+      <Source>notes\leafLeftNote.png</Source>
+      <Name>notes\leafLeftNote</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\leafLeftNote.xnb</Output>
+      <Time>2013-01-21T12:46:29.7433463+09:00</Time>
+    </Item>
+    <Item>
+      <Source>notes\leafRightNote.png</Source>
+      <Name>notes\leafRightNote</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\leafRightNote.xnb</Output>
+      <Time>2013-01-21T12:55:32.3463814+09:00</Time>
+    </Item>
+    <Item>
+      <Source>notes\leafDragNote.png</Source>
+      <Name>notes\leafDragNote</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\leafDragNote.xnb</Output>
+      <Time>2013-01-21T13:03:57.4692728+09:00</Time>
+    </Item>
+    <Item>
+      <Source>notes\starDragNote.png</Source>
+      <Name>notes\starDragNote</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\starDragNote.xnb</Output>
+      <Time>2013-01-21T13:09:47.8503134+09:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

@@ -76,6 +76,8 @@ namespace beethoven3
         
          public void Draw(Texture2D texture,Rectangle frame,GraphicsDevice device, SpriteBatch spriteBatch, Vector2 vStart, Vector2 vEnd)
         {
+
+             //이걸 꼭 넣을필요가 있을까?
             if (m_LineTexture == null)
                 CreateNewLineTexture(texture);
 
@@ -83,7 +85,7 @@ namespace beethoven3
          //   float angle = (float)Math.Atan2((double)(vEnd.Y - vStart.Y), (double)(vEnd.X - vStart.X));
      
           //  spriteBatch.Draw(m_LineTexture, vStart, null, m_LIneColor, angle, Vector2.Zero, new Vector2(distance, 1), SpriteEffects.None, 1.0f);
-            spriteBatch.Draw(m_LineTexture, vStart, frame, m_LIneColor);
+            spriteBatch.Draw(texture, vStart, frame, m_LIneColor);
         }
 
          public void DirectDraw(Texture2D texture,Rectangle frame,GraphicsDevice device, SpriteBatch spriteBatch, Vector2 vStart, Vector2 vEnd)
