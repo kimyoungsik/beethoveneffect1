@@ -28,7 +28,7 @@ namespace beethoven3
         protected Texture2D darkBackgroundImage;
         protected Texture2D yesButton;
         protected Texture2D noButton;
-        protected Texture2D putPanel;
+      
         protected Texture2D buyPanel;
         protected Texture2D sellPanel;
 
@@ -123,9 +123,9 @@ namespace beethoven3
 
             yesButton = cm.Load<Texture2D>(@"shopButton\yesButton");
             noButton = cm.Load<Texture2D>(@"shopButton\noButton");
-            putPanel = cm.Load<Texture2D>(@"shopdoor\putPanel");
+        
             buyPanel = cm.Load<Texture2D>(@"shopButton\buyPanel");
-            sellPanel = cm.Load<Texture2D>(@"shopdoor\sellPanel");
+          //  sellPanel = cm.Load<Texture2D>(@"shopdoor\sellPanel");
 
             hoverYesButton = cm.Load<Texture2D>(@"shopButton\hoverYesButton");
             hoverNoButton = cm.Load<Texture2D>(@"shopButton\hoverNoButton");

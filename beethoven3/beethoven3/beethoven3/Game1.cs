@@ -2218,9 +2218,9 @@ namespace beethoven3
                     {
                         skeleton =
                             (from s in Skeletons
-                             where s.TrackingState == SkeletonTrackingState.Tracked &&
-                                   s.Joints[JointType.Head].TrackingState == JointTrackingState.Tracked &&
-                                   s.TrackingId == CurrentTrackingId
+                             where s.TrackingState == SkeletonTrackingState.Tracked //&&
+                                   //s.Joints[JointType.Head].TrackingState == JointTrackingState.Tracked &&
+                                   //s.TrackingId == CurrentTrackingId
                              select s).FirstOrDefault();
 
                         if (skeleton == null)
@@ -2233,8 +2233,8 @@ namespace beethoven3
                     {
                         skeleton =
                             (from s in Skeletons
-                             where s.TrackingState == SkeletonTrackingState.Tracked &&
-                                   s.Joints[JointType.Head].TrackingState == JointTrackingState.Tracked
+                             where s.TrackingState == SkeletonTrackingState.Tracked //&&
+                                   //s.Joints[JointType.Head].TrackingState == JointTrackingState.Tracked
                              select s).FirstOrDefault();
 
                         if (skeleton != null)
@@ -4026,20 +4026,17 @@ namespace beethoven3
                 }
 
 
-             //   drawpoint(rightJoint, leftJoint);
-                if (Skeletons != null)
-                {
-                    foreach (Skeleton s in Skeletons)
-                    {
-                        if (s.TrackingState == SkeletonTrackingState.Tracked)
-                        {
-                            drawpoint(s.Joints[JointType.HandRight], s.Joints[JointType.HandLeft]);
+             ////   drawpoint(rightJoint, leftJoint);
+             //   if (skeleton != null)
+             //   {
 
-                        }
-                    }
+             //       if (skeleton.TrackingState == SkeletonTrackingState.Tracked)
+             //       {
+             //           drawpoint(skeleton.Joints[JointType.HandRight], skeleton.Joints[JointType.HandLeft]);
 
-                }
-                // else
+             //       }
+             //   }
+             //   // else
                 //    {
                 //    //스켈레톤
                 //        int j = 2;
@@ -4071,17 +4068,14 @@ namespace beethoven3
                     //setupKinect.draw();
 
                 }
-                if (Skeletons != null)
+                if (skeleton != null)
                 {
-                    foreach (Skeleton s in Skeletons)
+
+                    if (skeleton.TrackingState == SkeletonTrackingState.Tracked)
                     {
-                        if (s.TrackingState == SkeletonTrackingState.Tracked)
-                        {
-                            drawpoint(s.Joints[JointType.HandRight], s.Joints[JointType.HandLeft]);
+                        drawpoint(skeleton.Joints[JointType.HandRight], skeleton.Joints[JointType.HandLeft]);
 
-                        }
                     }
-
                 }
 #endif
 
@@ -4099,17 +4093,14 @@ namespace beethoven3
                     //setupKinect.draw();
 
                 }
-                if (Skeletons != null)
+                if (skeleton != null)
                 {
-                    foreach (Skeleton s in Skeletons)
+
+                    if (skeleton.TrackingState == SkeletonTrackingState.Tracked)
                     {
-                        if (s.TrackingState == SkeletonTrackingState.Tracked)
-                        {
-                            drawpoint(s.Joints[JointType.HandRight], s.Joints[JointType.HandLeft]);
+                        drawpoint(skeleton.Joints[JointType.HandRight], skeleton.Joints[JointType.HandLeft]);
 
-                        }
                     }
-
                 }
 #endif
             }
@@ -4124,18 +4115,7 @@ namespace beethoven3
                     //setupKinect.draw();
 
                 }
-                if (Skeletons != null)
-                {
-                    foreach (Skeleton s in Skeletons)
-                    {
-                        if (s.TrackingState == SkeletonTrackingState.Tracked)
-                        {
-                            drawpoint(s.Joints[JointType.HandRight], s.Joints[JointType.HandLeft]);
-
-                        }
-                    }
-
-                }
+          
 #endif
             }
 
@@ -4150,18 +4130,7 @@ namespace beethoven3
                     //setupKinect.draw();
 
                 }
-                if (Skeletons != null)
-                {
-                    foreach (Skeleton s in Skeletons)
-                    {
-                        if (s.TrackingState == SkeletonTrackingState.Tracked)
-                        {
-                            drawpoint(s.Joints[JointType.HandRight], s.Joints[JointType.HandLeft]);
-
-                        }
-                    }
-
-                }
+       
 #endif
             }
 
@@ -4175,18 +4144,7 @@ namespace beethoven3
                     //setupKinect.draw();
 
                 }
-                if (Skeletons != null)
-                {
-                    foreach (Skeleton s in Skeletons)
-                    {
-                        if (s.TrackingState == SkeletonTrackingState.Tracked)
-                        {
-                            drawpoint(s.Joints[JointType.HandRight], s.Joints[JointType.HandLeft]);
-
-                        }
-                    }
-
-                }
+           
 #endif
             }
 
@@ -4201,18 +4159,7 @@ namespace beethoven3
                     //setupKinect.draw();
 
                 }
-                if (Skeletons != null)
-                {
-                    foreach (Skeleton s in Skeletons)
-                    {
-                        if (s.TrackingState == SkeletonTrackingState.Tracked)
-                        {
-                            drawpoint(s.Joints[JointType.HandRight], s.Joints[JointType.HandLeft]);
-
-                        }
-                    }
-
-                }
+    
 #endif
             }
 
@@ -4238,18 +4185,7 @@ namespace beethoven3
                     //setupKinect.draw();
 
                 }
-                if (Skeletons != null)
-                {
-                    foreach (Skeleton s in Skeletons)
-                    {
-                        if (s.TrackingState == SkeletonTrackingState.Tracked)
-                        {
-                            drawpoint(s.Joints[JointType.HandRight], s.Joints[JointType.HandLeft]);
-
-                        }
-                    }
-
-                }
+              
 
 
 #endif
@@ -4547,18 +4483,7 @@ namespace beethoven3
                     //setupKinect.draw();
 
                 }
-                if (Skeletons != null)
-                {
-                    foreach (Skeleton s in Skeletons)
-                    {
-                        if (s.TrackingState == SkeletonTrackingState.Tracked)
-                        {
-                            drawpoint(s.Joints[JointType.HandRight], s.Joints[JointType.HandLeft]);
-
-                        }
-                    }
-
-                }
+            
                 #endif
          
             }
@@ -4612,18 +4537,7 @@ namespace beethoven3
                     //setupKinect.draw();
 
                 }
-                if (Skeletons != null)
-                {
-                    foreach (Skeleton s in Skeletons)
-                    {
-                        if (s.TrackingState == SkeletonTrackingState.Tracked)
-                        {
-                            drawpoint(s.Joints[JointType.HandRight], s.Joints[JointType.HandLeft]);
-
-                        }
-                    }
-
-                }
+           
 #endif
             }
 
@@ -4641,18 +4555,7 @@ namespace beethoven3
                     //setupKinect.draw();
 
                 }
-                if (Skeletons != null)
-                {
-                    foreach (Skeleton s in Skeletons)
-                    {
-                        if (s.TrackingState == SkeletonTrackingState.Tracked)
-                        {
-                            drawpoint(s.Joints[JointType.HandRight], s.Joints[JointType.HandLeft]);
-
-                        }
-                    }
-
-                }
+           
 #endif
             }
 
@@ -4735,23 +4638,28 @@ namespace beethoven3
                     //setupKinect.draw();
 
                 }
-                if (Skeletons != null)
-                {
-                    foreach (Skeleton s in Skeletons)
-                    {
-                        if (s.TrackingState == SkeletonTrackingState.Tracked)
-                        {
-                            drawpoint(s.Joints[JointType.HandRight], s.Joints[JointType.HandLeft]);
-
-                        }
-                    }
-
-                }
+            
 #endif
             }
 
 
             #endregion
+
+            if (gameState != GameStates.Playing)
+            {
+                if (skeleton != null)
+                {
+
+                    if (skeleton.TrackingState == SkeletonTrackingState.Tracked)
+                    {
+                        drawpoint(skeleton.Joints[JointType.HandRight], skeleton.Joints[JointType.HandLeft]);
+
+                    }
+                }
+            }
+
+
+
 //#if Kinect
 //            if (KinectVideoTexture != null)
 //            {

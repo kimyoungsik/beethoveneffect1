@@ -56,60 +56,6 @@
       <Time>2013-01-08T22:57:40+09:00</Time>
     </Item>
     <Item>
-      <Source>shopdoor\buyPanel.png</Source>
-      <Name>shopdoor\buyPanel</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopdoor\buyPanel.xnb</Output>
-      <Time>2013-01-08T22:57:40+09:00</Time>
-    </Item>
-    <Item>
-      <Source>shopdoor\noButton.png</Source>
-      <Name>shopdoor\noButton</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopdoor\noButton.xnb</Output>
-      <Time>2013-01-08T22:57:40+09:00</Time>
-    </Item>
-    <Item>
-      <Source>shopdoor\putPanel.png</Source>
-      <Name>shopdoor\putPanel</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopdoor\putPanel.xnb</Output>
-      <Time>2013-01-08T22:57:40+09:00</Time>
-    </Item>
-    <Item>
-      <Source>shopdoor\yesButton.png</Source>
-      <Name>shopdoor\yesButton</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopdoor\yesButton.xnb</Output>
-      <Time>2013-01-08T22:57:40+09:00</Time>
-    </Item>
-    <Item>
-      <Source>shopdoor\hoverNoButton.png</Source>
-      <Name>shopdoor\hoverNoButton</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopdoor\hoverNoButton.xnb</Output>
-      <Time>2013-01-08T22:57:40+09:00</Time>
-    </Item>
-    <Item>
-      <Source>shopdoor\hoverYesButton.png</Source>
-      <Name>shopdoor\hoverYesButton</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopdoor\hoverYesButton.xnb</Output>
-      <Time>2013-01-08T22:57:40+09:00</Time>
-    </Item>
-    <Item>
       <Source>result\newRecord.png</Source>
       <Name>result\newRecord</Name>
       <Importer>TextureImporter</Importer>
@@ -188,24 +134,6 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\character\horn.xnb</Output>
-      <Time>2013-01-08T22:57:40+09:00</Time>
-    </Item>
-    <Item>
-      <Source>shopdoor\nogold.png</Source>
-      <Name>shopdoor\nogold</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopdoor\nogold.xnb</Output>
-      <Time>2013-01-08T22:57:40+09:00</Time>
-    </Item>
-    <Item>
-      <Source>shopdoor\nogoldhover.png</Source>
-      <Name>shopdoor\nogoldhover</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopdoor\nogoldhover.xnb</Output>
       <Time>2013-01-08T22:57:40+09:00</Time>
     </Item>
     <Item>
@@ -360,96 +288,6 @@
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\DrawLine\drawLineMark.xnb</Output>
       <Time>2013-01-08T22:57:40+09:00</Time>
-    </Item>
-    <Item>
-      <Source>shopdoor\sCancelButton.png</Source>
-      <Name>shopdoor\sCancelButton</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopdoor\sCancelButton.xnb</Output>
-      <Time>2013-01-09T01:28:02+09:00</Time>
-    </Item>
-    <Item>
-      <Source>shopdoor\sellorwearPanel.png</Source>
-      <Name>shopdoor\sellorwearPanel</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopdoor\sellorwearPanel.xnb</Output>
-      <Time>2013-01-09T01:28:02+09:00</Time>
-    </Item>
-    <Item>
-      <Source>shopdoor\sSellButton.png</Source>
-      <Name>shopdoor\sSellButton</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopdoor\sSellButton.xnb</Output>
-      <Time>2013-01-09T01:28:02+09:00</Time>
-    </Item>
-    <Item>
-      <Source>shopdoor\sWearButton.png</Source>
-      <Name>shopdoor\sWearButton</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopdoor\sWearButton.xnb</Output>
-      <Time>2013-01-09T01:28:02+09:00</Time>
-    </Item>
-    <Item>
-      <Source>shopdoor\hoverSCancelButton.png</Source>
-      <Name>shopdoor\hoverSCancelButton</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopdoor\hoverSCancelButton.xnb</Output>
-      <Time>2013-01-09T01:33:48+09:00</Time>
-    </Item>
-    <Item>
-      <Source>shopdoor\hoverSSellButton.png</Source>
-      <Name>shopdoor\hoverSSellButton</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopdoor\hoverSSellButton.xnb</Output>
-      <Time>2013-01-09T01:33:48+09:00</Time>
-    </Item>
-    <Item>
-      <Source>shopdoor\hoverSWearButton.png</Source>
-      <Name>shopdoor\hoverSWearButton</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopdoor\hoverSWearButton.xnb</Output>
-      <Time>2013-01-09T01:33:48+09:00</Time>
-    </Item>
-    <Item>
-      <Source>shopdoor\sellPanel.png</Source>
-      <Name>shopdoor\sellPanel</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopdoor\sellPanel.xnb</Output>
-      <Time>2013-01-09T01:52:30+09:00</Time>
-    </Item>
-    <Item>
-      <Source>shopdoor\handInItemButton.png</Source>
-      <Name>shopdoor\handInItemButton</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopdoor\handInItemButton.xnb</Output>
-      <Time>2013-01-09T02:20:38+09:00</Time>
-    </Item>
-    <Item>
-      <Source>shopdoor\hoverHandInItemButton.png</Source>
-      <Name>shopdoor\hoverHandInItemButton</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopdoor\hoverHandInItemButton.xnb</Output>
-      <Time>2013-01-09T02:20:38+09:00</Time>
     </Item>
     <Item>
       <Source>character\horn1.png</Source>
