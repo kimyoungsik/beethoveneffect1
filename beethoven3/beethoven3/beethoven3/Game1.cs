@@ -2359,7 +2359,7 @@ namespace beethoven3
                     {
                         postureCount++;
                         //message = "yes";
-                        perfectBannerManager.AddBanners(new Vector2(this.Window.ClientBounds.Width / 2 - 1380 / 4, this.Window.ClientBounds.Height / 2 - 428 / 4));
+                        perfectBannerManager.AddBanners(new Vector2(this.Window.ClientBounds.Width / 2 - 1380 / 4, this.Window.ClientBounds.Height / 2 - 428 / 4), 0.7f);
                         scoreManager.Perfomance = scoreManager.Perfomance + 1;
                             
                         if (postureCount > 100)
@@ -2421,7 +2421,7 @@ namespace beethoven3
                 {
                     if (!s.Contains("__UNKNOWN"))
                     {
-                        perfectBannerManager.AddBanners(new Vector2(this.Window.ClientBounds.Width / 2 - 1380 / 4, this.Window.ClientBounds.Height / 2 - 428 / 4));
+                        perfectBannerManager.AddBanners(new Vector2(this.Window.ClientBounds.Width / 2 - 1380 / 4, this.Window.ClientBounds.Height / 2 - 428 / 4), 0.7f);
                         scoreManager.Perfomance = scoreManager.Perfomance + 1;
 
 
@@ -3986,6 +3986,28 @@ namespace beethoven3
 
 
                 }
+
+
+#if Kinect
+                if (KinectVideoTexture != null)
+                {
+                    spriteBatch.Draw(KinectVideoTexture, VideoDisplayRectangle, Color.White);
+                    //setupKinect.draw();
+
+                }
+                if (skeleton != null)
+                {
+
+                    if (skeleton.TrackingState == SkeletonTrackingState.Tracked)
+                    {
+                        drawpoint(skeleton.Joints[JointType.HandRight], skeleton.Joints[JointType.HandLeft]);
+
+                    }
+                }
+#endif
+
+
+
             }
 
             #endregion
@@ -3999,6 +4021,24 @@ namespace beethoven3
                 shopDoor.Draw(spriteBatch, this.Window.ClientBounds.Width, this.Window.ClientBounds.Height);
 
 
+#if Kinect
+                if (KinectVideoTexture != null)
+                {
+                    spriteBatch.Draw(KinectVideoTexture, VideoDisplayRectangle, Color.White);
+                    //setupKinect.draw();
+
+                }
+                if (skeleton != null)
+                {
+
+                    if (skeleton.TrackingState == SkeletonTrackingState.Tracked)
+                    {
+                        drawpoint(skeleton.Joints[JointType.HandRight], skeleton.Joints[JointType.HandLeft]);
+
+                    }
+                }
+#endif
+
             }
 
             #endregion
@@ -4006,29 +4046,116 @@ namespace beethoven3
             if (gameState == GameStates.RightItemShop)
             {
                 rightItemShop.Draw(spriteBatch, this.Window.ClientBounds.Width, this.Window.ClientBounds.Height);
+#if Kinect
+                if (KinectVideoTexture != null)
+                {
+                    spriteBatch.Draw(KinectVideoTexture, VideoDisplayRectangle, Color.White);
+                    //setupKinect.draw();
+
+                }
+                if (skeleton != null)
+                {
+
+                    if (skeleton.TrackingState == SkeletonTrackingState.Tracked)
+                    {
+                        drawpoint(skeleton.Joints[JointType.HandRight], skeleton.Joints[JointType.HandLeft]);
+
+                    }
+                }
+#endif
             }
 
             if (gameState == GameStates.LeftItemShop)
             {
                 leftItemShop.Draw(spriteBatch, this.Window.ClientBounds.Width, this.Window.ClientBounds.Height);
+#if Kinect
+                if (KinectVideoTexture != null)
+                {
+                    spriteBatch.Draw(KinectVideoTexture, VideoDisplayRectangle, Color.White);
+                    //setupKinect.draw();
+
+                }
+                if (skeleton != null)
+                {
+
+                    if (skeleton.TrackingState == SkeletonTrackingState.Tracked)
+                    {
+                        drawpoint(skeleton.Joints[JointType.HandRight], skeleton.Joints[JointType.HandLeft]);
+
+                    }
+                }
+#endif
             }
 
 
             if (gameState == GameStates.EffectItemShop)
             {
                 effectItemShop.Draw(spriteBatch, this.Window.ClientBounds.Width, this.Window.ClientBounds.Height);
+#if Kinect
+                if (KinectVideoTexture != null)
+                {
+                    spriteBatch.Draw(KinectVideoTexture, VideoDisplayRectangle, Color.White);
+                    //setupKinect.draw();
+
+                }
+                if (skeleton != null)
+                {
+
+                    if (skeleton.TrackingState == SkeletonTrackingState.Tracked)
+                    {
+                        drawpoint(skeleton.Joints[JointType.HandRight], skeleton.Joints[JointType.HandLeft]);
+
+                    }
+                }
+#endif
             }
 
             if (gameState == GameStates.NoteItemShop)
             {
                 noteItemShop.Draw(spriteBatch, this.Window.ClientBounds.Width, this.Window.ClientBounds.Height);
+#if Kinect
+                if (KinectVideoTexture != null)
+                {
+                    spriteBatch.Draw(KinectVideoTexture, VideoDisplayRectangle, Color.White);
+                    //setupKinect.draw();
+
+                }
+                if (skeleton != null)
+                {
+
+                    if (skeleton.TrackingState == SkeletonTrackingState.Tracked)
+                    {
+                        drawpoint(skeleton.Joints[JointType.HandRight], skeleton.Joints[JointType.HandLeft]);
+
+                    }
+                }
+#endif
             }
 
 
             if (gameState == GameStates.BackgroundItemShop)
             {
                 backgroundItemShop.Draw(spriteBatch, this.Window.ClientBounds.Width, this.Window.ClientBounds.Height);
+#if Kinect
+                if (KinectVideoTexture != null)
+                {
+                    spriteBatch.Draw(KinectVideoTexture, VideoDisplayRectangle, Color.White);
+                    //setupKinect.draw();
+
+                }
+                if (skeleton != null)
+                {
+
+                    if (skeleton.TrackingState == SkeletonTrackingState.Tracked)
+                    {
+                        drawpoint(skeleton.Joints[JointType.HandRight], skeleton.Joints[JointType.HandLeft]);
+
+                    }
+                }
+#endif
             }
+
+
             #endregion
 
 
@@ -4042,6 +4169,22 @@ namespace beethoven3
                 if (message.Length > 0)
                 {
                     spriteBatch.DrawString(messageFont, message, Vector2.Zero, Color.Red);
+                }
+
+                if (KinectVideoTexture != null)
+                {
+                    spriteBatch.Draw(KinectVideoTexture, VideoDisplayRectangle, Color.White);
+                    //setupKinect.draw();
+
+                }
+                if (skeleton != null)
+                {
+
+                    if (skeleton.TrackingState == SkeletonTrackingState.Tracked)
+                    {
+                        drawpoint(skeleton.Joints[JointType.HandRight], skeleton.Joints[JointType.HandLeft]);
+
+                    }
                 }
 
 
@@ -4100,6 +4243,7 @@ namespace beethoven3
                 
                 //startnoteclass에 가야 보이고 안보이게 할 수 있음
                 startNoteManager.Draw(spriteBatch);
+
                 curveManager.Draw(gameTime, spriteBatch);
                 guideLineManager.Draw(gameTime, spriteBatch);
                 
@@ -4109,62 +4253,39 @@ namespace beethoven3
                 GoldManager.Draw(spriteBatch);
 
                 file.Draw(spriteBatch, gameTime);
-                perfectManager.Draw(spriteBatch);
-                goodManager.Draw(spriteBatch);
-                badManager.Draw(spriteBatch);
-                goldGetManager.Draw(spriteBatch);
-               
-                
-                //dragNoteManager.Draw(spriteBatch);
-                missBannerManager.Draw(spriteBatch);
-                badBannerManager.Draw(spriteBatch);
-                goodBannerManager.Draw(spriteBatch);
-                perfectBannerManager.Draw(spriteBatch);
-                
-                comboNumberManager.Draw(spriteBatch);
 
-              
+
+
                 //기본 템포 설정( 템포가 바뀐상태이면 안변함)
                 SoundFmod.SetBasicTempo();
-                
+
                 //하트. gage양 만큼 하트가 나타남.
 
                 //300은 현재 최대 width, 이건 그림이 바뀌면 바뀜
                 //100은 gage의 최대값. 
 
-                int gageWidth = 4 *  scoreManager.Gage;
+                int gageWidth = 4 * scoreManager.Gage;
 
                 //spriteBatch.Draw(uiHeart, new Vector2(0, 6), new Rectangle(0, 0, gageWidth, 50), Color.White);
                 //Trace.WriteLine(scoreManager.Gage);
 
                 spriteBatch.Draw(energyDarkBack, new Vector2(0, 6), new Rectangle(0, 0, 372, 35), Color.White);
-                
+
                 spriteBatch.Draw(energy, new Vector2(0, 6), new Rectangle(0, 0, gageWidth, 35), Color.White);
                 spriteBatch.Draw(uiEnergyBackground, new Vector2(0, 0), Color.White);
 
                 spriteBatch.DrawString(georgia, scoreManager.TotalScore.ToString(), new Vector2(900, 2), Color.LightGray, 0f, Vector2.Zero, 0.7f, SpriteEffects.None, 0f);
 
 
-
-             
-
-
-                if (message.Length > 0)
-                {
-                    spriteBatch.DrawString(messageFont, message, Vector2.Zero, Color.Red);
-                }
-               
-
-
 #if Kinect
                 charismaManager.Draw(gameTime, spriteBatch);
-               
+
                 if (charismaManager.charismaFrames.Count > 0)
                 {
                     string fileName;
                     charismaManager.currentTime += gameTime.ElapsedGameTime.TotalSeconds;
                     CharisimaFrame charismaFrame = (CharisimaFrame)charismaManager.charismaFrames.Peek();
-                    
+
 
                     if (charismaManager.currentTime > charismaFrame.StartTime)
                     {
@@ -4184,7 +4305,7 @@ namespace beethoven3
                                 fileName = "22.txt";
                                 LoadGesturesFromFile(fileName);
                                 Skeleton2DDataExtract.Skeleton2DdataCoordReady += NuiSkeleton2DdataCoordReadyPosture;
-                                
+
 
 
                             }
@@ -4266,10 +4387,10 @@ namespace beethoven3
 
                     if (charismaManager.currentTime > charismaFrame.EndTime)
                     {
-                       
+
                         isGesture = false;
                         charismaManager.PlayCharisma = false;
-                            
+
                     }
 
 
@@ -4280,8 +4401,55 @@ namespace beethoven3
 
 
 
-                
+
+                if (KinectVideoTexture != null)
+                {
+                    spriteBatch.Draw(KinectVideoTexture, VideoDisplayRectangle, Color.White);
+                    //setupKinect.draw();
+
+                }
+                if (skeleton != null)
+                {
+
+                    if (skeleton.TrackingState == SkeletonTrackingState.Tracked)
+                    {
+                        drawpoint(skeleton.Joints[JointType.HandRight], skeleton.Joints[JointType.HandLeft]);
+
+                    }
+                }
 #endif
+
+
+
+
+                //dragNoteManager.Draw(spriteBatch);
+                missBannerManager.Draw(spriteBatch);
+                badBannerManager.Draw(spriteBatch);
+                goodBannerManager.Draw(spriteBatch);
+                perfectBannerManager.Draw(spriteBatch);
+                
+                comboNumberManager.Draw(spriteBatch);
+
+
+
+
+
+                perfectManager.Draw(spriteBatch);
+                goodManager.Draw(spriteBatch);
+                badManager.Draw(spriteBatch);
+                goldGetManager.Draw(spriteBatch);
+               
+
+
+             
+
+
+                if (message.Length > 0)
+                {
+                    spriteBatch.DrawString(messageFont, message, Vector2.Zero, Color.Red);
+                }
+               
+
 
             }
             #endregion
@@ -4305,7 +4473,23 @@ namespace beethoven3
                 spriteBatch.DrawString(georgia, noteFile.Artist, new Vector2(320, 260), Color.Gray);
                 //***//난이도//spriteBatch.DrawString(pericles36Font, , new Vector2(200,80), Color.White);
 
+                #if Kinect
+                                if (KinectVideoTexture != null)
+                                {
+                                    spriteBatch.Draw(KinectVideoTexture, VideoDisplayRectangle, Color.White);
+                                    //setupKinect.draw();
 
+                                }
+                                if (skeleton != null)
+                                {
+
+                                    if (skeleton.TrackingState == SkeletonTrackingState.Tracked)
+                                    {
+                                        drawpoint(skeleton.Joints[JointType.HandRight], skeleton.Joints[JointType.HandLeft]);
+
+                                    }
+                                }
+                #endif
          
             }
 
@@ -4351,6 +4535,23 @@ namespace beethoven3
                         }
                     }
 
+#if Kinect
+                if (KinectVideoTexture != null)
+                {
+                    spriteBatch.Draw(KinectVideoTexture, VideoDisplayRectangle, Color.White);
+                    //setupKinect.draw();
+
+                }
+                if (skeleton != null)
+                {
+
+                    if (skeleton.TrackingState == SkeletonTrackingState.Tracked)
+                    {
+                        drawpoint(skeleton.Joints[JointType.HandRight], skeleton.Joints[JointType.HandLeft]);
+
+                    }
+                }
+#endif
             }
 
             #endregion
@@ -4360,7 +4561,25 @@ namespace beethoven3
             {
                 settingBoard.Draw(spriteBatch);
 
+#if Kinect
+                if (KinectVideoTexture != null)
+                {
+                    spriteBatch.Draw(KinectVideoTexture, VideoDisplayRectangle, Color.White);
+                    //setupKinect.draw();
+
+                }
+                if (skeleton != null)
+                {
+
+                    if (skeleton.TrackingState == SkeletonTrackingState.Tracked)
+                    {
+                        drawpoint(skeleton.Joints[JointType.HandRight], skeleton.Joints[JointType.HandLeft]);
+
+                    }
+                }
+#endif
             }
+
             #endregion
 
 
@@ -4430,28 +4649,44 @@ namespace beethoven3
                 
 
                 }
-
-            }
-
-
-            #endregion
 #if Kinect
-            if (KinectVideoTexture != null)
-            {
-                spriteBatch.Draw(KinectVideoTexture, VideoDisplayRectangle, Color.White);
-                //setupKinect.draw();
+                if (KinectVideoTexture != null)
+                {
+                    spriteBatch.Draw(KinectVideoTexture, VideoDisplayRectangle, Color.White);
+                    //setupKinect.draw();
 
-            }
-            if (skeleton != null)
-            {
+                }
+                if (skeleton != null)
+                {
 
-                if (skeleton.TrackingState == SkeletonTrackingState.Tracked)
+                    if (skeleton.TrackingState == SkeletonTrackingState.Tracked)
                     {
                         drawpoint(skeleton.Joints[JointType.HandRight], skeleton.Joints[JointType.HandLeft]);
 
                     }
-            }
+                }
 #endif
+            }
+
+
+            #endregion
+//#if Kinect
+//            if (KinectVideoTexture != null)
+//            {
+//                spriteBatch.Draw(KinectVideoTexture, VideoDisplayRectangle, Color.White);
+//                //setupKinect.draw();
+
+//            }
+//            if (skeleton != null)
+//            {
+
+//                if (skeleton.TrackingState == SkeletonTrackingState.Tracked)
+//                    {
+//                        drawpoint(skeleton.Joints[JointType.HandRight], skeleton.Joints[JointType.HandLeft]);
+
+//                    }
+//            }
+//#endif
             spriteBatch.End();
             
             base.Draw(gameTime);

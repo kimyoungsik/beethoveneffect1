@@ -35,7 +35,7 @@ namespace beethoven3
             this.duration = duration;
 
         }
-        public void AddBanners(Vector2 location)
+        public void AddBanners(Vector2 location,float scale)
         {
             Banner thisBanner = new Banner(
                 texture,

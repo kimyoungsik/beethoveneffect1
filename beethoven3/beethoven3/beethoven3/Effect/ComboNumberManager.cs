@@ -39,7 +39,7 @@ namespace beethoven3
         private Texture2D gnine;
         
         private Rectangle initialFrame = new Rectangle(0, 0, 275, 376);
-        private float scale = 0.5f;
+        private float scale = 0.4f;
         private int frameCount = 1;
       //  private int duration = 40;
         private List<Number> ComboNumbers = new List<Number>();

@@ -24,6 +24,7 @@ namespace beethoven3
       
         private ScoreManager scoreManager;
         private MissBannerManager missBanner;
+        private Vector2 missSize = new Vector2(975.0f, 412.0f);
         #endregion
 
 
@@ -110,7 +111,7 @@ namespace beethoven3
             {
              
                 //미스 띄워주기 
-                missBanner.AddBanners(new Vector2(1024 / 2 - 975 / 4, 769 / 2 - 412 / 4));
+                missBanner.AddBanners(new Vector2(1024 / 2 - (missSize.X * 0.3f) / 2, 769 / 2 - (missSize.Y * 0.3f) / 2), 0.2f);
 
                 dragNotes.RemoveAt(i);
                 //***이거 잘못된듯 

@@ -175,9 +175,10 @@ namespace beethoven3
                     for (i = 0; i < Points.Count - 1; i++)
                     {
                         j = i + 1;
-
+                        Color color = Color.White;
+                        //color.A = 50;
                         //라인 그리기
-                        lineRenderer.DrawLine(Game1.spriteSheet, new Rectangle(0, 0, 20, 20), spriteBatch.GraphicsDevice, spriteBatch, (Vector2)Points[i], (Vector2)Points[j], Color.White);
+                        lineRenderer.DrawLine(Game1.spriteSheet, new Rectangle(0, 0, 20, 20), spriteBatch.GraphicsDevice, spriteBatch, (Vector2)Points[i], (Vector2)Points[j], color);
                     }
                 }
               

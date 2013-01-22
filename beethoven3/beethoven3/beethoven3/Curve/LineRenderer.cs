@@ -83,7 +83,8 @@ namespace beethoven3
 
          //   float distance = Vector2.Distance(vStart, vEnd);
          //   float angle = (float)Math.Atan2((double)(vEnd.Y - vStart.Y), (double)(vEnd.X - vStart.X));
-     
+
+            
           //  spriteBatch.Draw(m_LineTexture, vStart, null, m_LIneColor, angle, Vector2.Zero, new Vector2(distance, 1), SpriteEffects.None, 1.0f);
             spriteBatch.Draw(texture, vStart, frame, m_LIneColor);
         }
