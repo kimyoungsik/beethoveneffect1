@@ -241,3 +241,8 @@ D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\LeftHand\L
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Explosion\Effect_MusicNote_1.xnb
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Explosion\Effect_MusicNote_2.xnb
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Explosion\Effect_MusicNote_3.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\game1\noperson.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopButton\noGoldBackground.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopButton\noGoldButton.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopButton\hoverNoGoldButton.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopButton\handInItemBackground.xnb

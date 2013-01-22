@@ -132,9 +132,13 @@ namespace beethoven3
             {
                 //DragNoteManager 의 텍스쳐 값.
                 Sprite dragNote = dragNoteManager.dragNotes[i];
-                
 
-                int judgment = dragNote.JudgedNote(mousePoint);
+
+                int judgment = dragNote.JudgedNoteForDragNote(mousePoint);
+
+               
+
+
                 //Trace.WriteLine(judgment);
                 if (judgment == 2)
                 {
@@ -762,9 +766,15 @@ namespace beethoven3
                     //    mark.MarkSprite.CollisionRadius);
 
                     //마커의 반지름으로
+                    //int judgment = MarkManager.Marks[number].MarkSprite.JudgedNote(
+                    //    littleNote.Center
+                    //    );
+
+
                     int judgment = MarkManager.Marks[number].MarkSprite.JudgedNote(
-                        littleNote.Center
-                        );
+                       littleNote.Center, (littleNote.Texture.Width * littleNote.Scale) / 4
+                       );
+
                     //perfect
                     if (judgment == 2)
                     {
@@ -1359,7 +1369,7 @@ namespace beethoven3
         {
             checkLeftNoteToMarker(number, mousePoint);
             checkLongNoteToMarker(number, mousePoint);
-            checkGold(mousePoint);
+          //  checkGold(mousePoint);
         }
 
         /// <summary>

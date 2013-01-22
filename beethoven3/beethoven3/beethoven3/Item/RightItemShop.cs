@@ -630,38 +630,42 @@ namespace beethoven3
                 //show up message if there is not enough money
                 if (noGold)
                 {
-                    
-                    spriteBatch.Draw(noGoldButton, middle, null, Color.White, 0f, new Vector2(350, 200), 1f, SpriteEffects.None, 1f);
+                    spriteBatch.Draw(noGoldBackground, new Vector2(0, 0), null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
+
+                    spriteBatch.Draw(noGoldButton, new Vector2(middle.X - 369, middle.Y), null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
 
                     //마우스 커서가 버튼위에 올라가면
                     //mouse cursor on noGoldButton
-                    if(isHoverNoGoldButton)
+                    if (isHoverNoGoldButton)
                     {
-                        spriteBatch.Draw(hoverNoGoldButton, middle, null, Color.White, 0f, new Vector2(350, 200), 1f, SpriteEffects.None, 1f);
+                        spriteBatch.Draw(hoverNoGoldButton, new Vector2(middle.X - 369, middle.Y), null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
 
                     }
 
 
-                    recNoGoldButton = new Rectangle((int)middle.X-350, (int)middle.Y-200, 700, 300);
+                    recNoGoldButton = new Rectangle((int)(middle.X - 369), (int)middle.Y, 738, 241);
                 }
+
 
                 if (handInItem)
                 {
+                    //   spriteBatch.Draw(handInItemBackground, middle, null, Color.White, 0f, new Vector2(350, 200), 1f, SpriteEffects.None, 1f);
+                    spriteBatch.Draw(handInItemBackground, new Vector2(0, 0), null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
 
-                    spriteBatch.Draw(handInItemButton, middle, null, Color.White, 0f, new Vector2(350, 200), 1f, SpriteEffects.None, 1f);
+                    //텍스쳐만 가져옴
+                    spriteBatch.Draw(noGoldButton, new Vector2(middle.X - 369, middle.Y), null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
 
                     //마우스 커서가 버튼위에 올라가면
                     //mouse cursor on noGoldButton
                     if (isHoverHandInItem)
                     {
-                        spriteBatch.Draw(hoverHandInItemButton, middle, null, Color.White, 0f, new Vector2(350, 200), 1f, SpriteEffects.None, 1f);
+                        spriteBatch.Draw(hoverNoGoldButton, new Vector2(middle.X - 369, middle.Y), null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
 
                     }
 
 
-                    recHandInButton = new Rectangle((int)middle.X - 350, (int)middle.Y - 200, 700, 300);
+                    recHandInButton = new Rectangle((int)(middle.X - 369), (int)middle.Y, 738, 241);
                 }
-
 
                 if(sellOrWearOne)
                 {

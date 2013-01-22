@@ -230,6 +230,11 @@ Content\LeftHand\Left_4.xnb
 Content\Explosion\Effect_MusicNote_1.xnb
 Content\Explosion\Effect_MusicNote_2.xnb
 Content\Explosion\Effect_MusicNote_3.xnb
+Content\game1\noperson.xnb
+Content\shopButton\noGoldBackground.xnb
+Content\shopButton\noGoldButton.xnb
+Content\shopButton\hoverNoGoldButton.xnb
+Content\shopButton\handInItemBackground.xnb
 Content\snd\ka.wma
 Content\snd\jo.wma
 Content\snd\maid.wma

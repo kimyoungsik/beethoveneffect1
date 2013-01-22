@@ -2092,6 +2092,51 @@
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Explosion\Effect_MusicNote_3.xnb</Output>
       <Time>2013-01-22T01:19:50+09:00</Time>
     </Item>
+    <Item>
+      <Source>game1\noperson.png</Source>
+      <Name>game1\noperson</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\game1\noperson.xnb</Output>
+      <Time>2013-01-22T20:19:27.8248877+09:00</Time>
+    </Item>
+    <Item>
+      <Source>shopButton\noGoldBackground.png</Source>
+      <Name>shopButton\noGoldBackground</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopButton\noGoldBackground.xnb</Output>
+      <Time>2013-01-22T20:38:51.9564723+09:00</Time>
+    </Item>
+    <Item>
+      <Source>shopButton\noGoldButton.png</Source>
+      <Name>shopButton\noGoldButton</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopButton\noGoldButton.xnb</Output>
+      <Time>2013-01-22T20:39:14.0357351+09:00</Time>
+    </Item>
+    <Item>
+      <Source>shopButton\hoverNoGoldButton.png</Source>
+      <Name>shopButton\hoverNoGoldButton</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopButton\hoverNoGoldButton.xnb</Output>
+      <Time>2013-01-22T20:39:14.0277347+09:00</Time>
+    </Item>
+    <Item>
+      <Source>shopButton\handInItemBackground.png</Source>
+      <Name>shopButton\handInItemBackground</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\shopButton\handInItemBackground.xnb</Output>
+      <Time>2013-01-22T20:49:18.9273329+09:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

@@ -65,14 +65,19 @@ namespace beethoven3
         protected Texture2D buyItemBackground;
         protected Texture2D ItemBackground;
 
+
+        protected Texture2D noGoldBackground;
         protected Texture2D hoverNoGoldButton;
         protected Texture2D noGoldButton;
 
+
+        protected Texture2D handInItemBackground;
         protected Texture2D hoverHandInItemButton;
         protected Texture2D handInItemButton;
 
         protected bool noGold;
         protected bool isHoverNoGoldButton;
+
 
         protected bool handInItem;
         protected bool isHoverHandInItem;
@@ -129,8 +134,10 @@ namespace beethoven3
             buyItemBackground = cm.Load<Texture2D>(@"shopButton\itemBack");
             ItemBackground = cm.Load<Texture2D>(@"shopButton\itemBack");
 
-            noGoldButton = cm.Load<Texture2D>(@"shopdoor\nogold");
-            hoverNoGoldButton = cm.Load<Texture2D>(@"shopdoor\nogoldhover");
+
+            noGoldBackground = cm.Load<Texture2D>(@"shopButton\noGoldBackground");
+            noGoldButton = cm.Load<Texture2D>(@"shopButton\noGoldButton");
+            hoverNoGoldButton = cm.Load<Texture2D>(@"shopButton\hoverNoGoldButton");
 
             sellorwearPanel = cm.Load<Texture2D>(@"shopButton\sellorwearPanel");
 
@@ -143,8 +150,10 @@ namespace beethoven3
             hoverSSellButton = cm.Load<Texture2D>(@"shopButton\hoverSSellButton");
             hoverSCancelButton = cm.Load<Texture2D>(@"shopButton\hoverSCancelButton");
 
-            hoverHandInItemButton = cm.Load<Texture2D>(@"shopdoor\hoverHandInItemButton");
-            handInItemButton = cm.Load<Texture2D>(@"shopdoor\handInItemButton");
+
+            handInItemBackground = cm.Load<Texture2D>(@"shopButton\handInItemBackground");
+            hoverHandInItemButton = cm.Load<Texture2D>(@"shopButton\hoverNoGoldButton");
+            handInItemButton = cm.Load<Texture2D>(@"shopButton\noGoldButton");
 
             wearItemMark = cm.Load<Texture2D>(@"rightItem\wearItem");
 

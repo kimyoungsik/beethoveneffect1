@@ -41,6 +41,9 @@ namespace beethoven3
         private Queue playingPictures;
         private int playPicturesCount = 0;
         Texture2D[] showPictureTextures = new Texture2D[5];
+        //Joint rightJoint;
+        //Joint leftJoint;
+
 
 
 #if Kinect
@@ -443,7 +446,7 @@ namespace beethoven3
 
             //drawrec1 = new Rectangle(0, 0, GraphicsDevice.Viewport.Width / 20, GraphicsDevice.Viewport.Height / 20);
             //drawrec2 = new Rectangle(0, 0, GraphicsDevice.Viewport.Width / 20, GraphicsDevice.Viewport.Height / 20);
-            drawrec1 = new Rectangle(0, 0, 5, 5);
+            drawrec1 = new Rectangle(0, 0, 100, 100);
             drawrec2 = new Rectangle(0, 0, 5, 5);
 
 
@@ -549,7 +552,7 @@ namespace beethoven3
             missBanner = Content.Load<Texture2D>(@"judgement\miss");
 
 
-            noPerson = Content.Load<Texture2D>(@"shopdoor\nogold");
+            noPerson = Content.Load<Texture2D>(@"game1\noperson");
 
 
 
@@ -823,7 +826,7 @@ namespace beethoven3
                 gold,
                 new Rectangle(0, 0, 200, 200),
                 1,
-                50,
+                70,
                 0,
                 0.3f);
             
@@ -2953,6 +2956,31 @@ namespace beethoven3
             mouseStateCurrent = Mouse.GetState();
             Rectangle rightHandPosition = new Rectangle((int)j1r.Position.X, (int)j1r.Position.Y, 5, 5);
 
+
+
+
+            //if (Skeletons != null)
+            //{
+            //    foreach (Skeleton s in Skeletons)
+            //    {
+            //        if (s.TrackingState == SkeletonTrackingState.Tracked)
+            //        {
+            //            rightJoint = s.Joints[JointType.HandRight];
+            //            leftJoint = s.Joints[JointType.HandLeft];
+
+            //        }
+            //    }
+            //}
+            //else
+            //{
+            //    int j = 1;
+
+            //    j = 2;
+            //    j++;
+
+
+            //}
+            
            switch (gameState)
            {
                #region 타이틀
@@ -3982,10 +4010,11 @@ namespace beethoven3
                 menuScene.Draw(spriteBatch);
                 if (isNoPerson)
                 {
-                    spriteBatch.Draw(noPerson, new Rectangle(200, 200, 727, 278), Color.White);
+                    spriteBatch.Draw(noPerson, new Rectangle(0, 0, 1024 , 769), Color.White);
 
 
                 }
+             
 
 
 #if Kinect
@@ -3995,15 +4024,30 @@ namespace beethoven3
                     //setupKinect.draw();
 
                 }
-                if (skeleton != null)
+
+
+             //   drawpoint(rightJoint, leftJoint);
+                if (Skeletons != null)
                 {
-
-                    if (skeleton.TrackingState == SkeletonTrackingState.Tracked)
+                    foreach (Skeleton s in Skeletons)
                     {
-                        drawpoint(skeleton.Joints[JointType.HandRight], skeleton.Joints[JointType.HandLeft]);
+                        if (s.TrackingState == SkeletonTrackingState.Tracked)
+                        {
+                            drawpoint(s.Joints[JointType.HandRight], s.Joints[JointType.HandLeft]);
 
+                        }
                     }
+
                 }
+                // else
+                //    {
+                //    //스켈레톤
+                //        int j = 2;
+                //        j = 3;
+
+                //        j++;
+
+                //    }
 #endif
 
 
@@ -4020,7 +4064,6 @@ namespace beethoven3
 
                 shopDoor.Draw(spriteBatch, this.Window.ClientBounds.Width, this.Window.ClientBounds.Height);
 
-
 #if Kinect
                 if (KinectVideoTexture != null)
                 {
@@ -4028,14 +4071,17 @@ namespace beethoven3
                     //setupKinect.draw();
 
                 }
-                if (skeleton != null)
+                if (Skeletons != null)
                 {
-
-                    if (skeleton.TrackingState == SkeletonTrackingState.Tracked)
+                    foreach (Skeleton s in Skeletons)
                     {
-                        drawpoint(skeleton.Joints[JointType.HandRight], skeleton.Joints[JointType.HandLeft]);
+                        if (s.TrackingState == SkeletonTrackingState.Tracked)
+                        {
+                            drawpoint(s.Joints[JointType.HandRight], s.Joints[JointType.HandLeft]);
 
+                        }
                     }
+
                 }
 #endif
 
@@ -4053,14 +4099,17 @@ namespace beethoven3
                     //setupKinect.draw();
 
                 }
-                if (skeleton != null)
+                if (Skeletons != null)
                 {
-
-                    if (skeleton.TrackingState == SkeletonTrackingState.Tracked)
+                    foreach (Skeleton s in Skeletons)
                     {
-                        drawpoint(skeleton.Joints[JointType.HandRight], skeleton.Joints[JointType.HandLeft]);
+                        if (s.TrackingState == SkeletonTrackingState.Tracked)
+                        {
+                            drawpoint(s.Joints[JointType.HandRight], s.Joints[JointType.HandLeft]);
 
+                        }
                     }
+
                 }
 #endif
             }
@@ -4075,14 +4124,17 @@ namespace beethoven3
                     //setupKinect.draw();
 
                 }
-                if (skeleton != null)
+                if (Skeletons != null)
                 {
-
-                    if (skeleton.TrackingState == SkeletonTrackingState.Tracked)
+                    foreach (Skeleton s in Skeletons)
                     {
-                        drawpoint(skeleton.Joints[JointType.HandRight], skeleton.Joints[JointType.HandLeft]);
+                        if (s.TrackingState == SkeletonTrackingState.Tracked)
+                        {
+                            drawpoint(s.Joints[JointType.HandRight], s.Joints[JointType.HandLeft]);
 
+                        }
                     }
+
                 }
 #endif
             }
@@ -4098,14 +4150,17 @@ namespace beethoven3
                     //setupKinect.draw();
 
                 }
-                if (skeleton != null)
+                if (Skeletons != null)
                 {
-
-                    if (skeleton.TrackingState == SkeletonTrackingState.Tracked)
+                    foreach (Skeleton s in Skeletons)
                     {
-                        drawpoint(skeleton.Joints[JointType.HandRight], skeleton.Joints[JointType.HandLeft]);
+                        if (s.TrackingState == SkeletonTrackingState.Tracked)
+                        {
+                            drawpoint(s.Joints[JointType.HandRight], s.Joints[JointType.HandLeft]);
 
+                        }
                     }
+
                 }
 #endif
             }
@@ -4120,14 +4175,17 @@ namespace beethoven3
                     //setupKinect.draw();
 
                 }
-                if (skeleton != null)
+                if (Skeletons != null)
                 {
-
-                    if (skeleton.TrackingState == SkeletonTrackingState.Tracked)
+                    foreach (Skeleton s in Skeletons)
                     {
-                        drawpoint(skeleton.Joints[JointType.HandRight], skeleton.Joints[JointType.HandLeft]);
+                        if (s.TrackingState == SkeletonTrackingState.Tracked)
+                        {
+                            drawpoint(s.Joints[JointType.HandRight], s.Joints[JointType.HandLeft]);
 
+                        }
                     }
+
                 }
 #endif
             }
@@ -4143,14 +4201,17 @@ namespace beethoven3
                     //setupKinect.draw();
 
                 }
-                if (skeleton != null)
+                if (Skeletons != null)
                 {
-
-                    if (skeleton.TrackingState == SkeletonTrackingState.Tracked)
+                    foreach (Skeleton s in Skeletons)
                     {
-                        drawpoint(skeleton.Joints[JointType.HandRight], skeleton.Joints[JointType.HandLeft]);
+                        if (s.TrackingState == SkeletonTrackingState.Tracked)
+                        {
+                            drawpoint(s.Joints[JointType.HandRight], s.Joints[JointType.HandLeft]);
 
+                        }
                     }
+
                 }
 #endif
             }
@@ -4177,14 +4238,17 @@ namespace beethoven3
                     //setupKinect.draw();
 
                 }
-                if (skeleton != null)
+                if (Skeletons != null)
                 {
-
-                    if (skeleton.TrackingState == SkeletonTrackingState.Tracked)
+                    foreach (Skeleton s in Skeletons)
                     {
-                        drawpoint(skeleton.Joints[JointType.HandRight], skeleton.Joints[JointType.HandLeft]);
+                        if (s.TrackingState == SkeletonTrackingState.Tracked)
+                        {
+                            drawpoint(s.Joints[JointType.HandRight], s.Joints[JointType.HandLeft]);
 
+                        }
                     }
+
                 }
 
 
@@ -4408,14 +4472,17 @@ namespace beethoven3
                     //setupKinect.draw();
 
                 }
-                if (skeleton != null)
+                if (Skeletons != null)
                 {
-
-                    if (skeleton.TrackingState == SkeletonTrackingState.Tracked)
+                    foreach (Skeleton s in Skeletons)
                     {
-                        drawpoint(skeleton.Joints[JointType.HandRight], skeleton.Joints[JointType.HandLeft]);
+                        if (s.TrackingState == SkeletonTrackingState.Tracked)
+                        {
+                            drawpoint(s.Joints[JointType.HandRight], s.Joints[JointType.HandLeft]);
 
+                        }
                     }
+
                 }
 #endif
 
@@ -4474,21 +4541,24 @@ namespace beethoven3
                 //***//난이도//spriteBatch.DrawString(pericles36Font, , new Vector2(200,80), Color.White);
 
                 #if Kinect
-                                if (KinectVideoTexture != null)
-                                {
-                                    spriteBatch.Draw(KinectVideoTexture, VideoDisplayRectangle, Color.White);
-                                    //setupKinect.draw();
+                if (KinectVideoTexture != null)
+                {
+                    spriteBatch.Draw(KinectVideoTexture, VideoDisplayRectangle, Color.White);
+                    //setupKinect.draw();
 
-                                }
-                                if (skeleton != null)
-                                {
+                }
+                if (Skeletons != null)
+                {
+                    foreach (Skeleton s in Skeletons)
+                    {
+                        if (s.TrackingState == SkeletonTrackingState.Tracked)
+                        {
+                            drawpoint(s.Joints[JointType.HandRight], s.Joints[JointType.HandLeft]);
 
-                                    if (skeleton.TrackingState == SkeletonTrackingState.Tracked)
-                                    {
-                                        drawpoint(skeleton.Joints[JointType.HandRight], skeleton.Joints[JointType.HandLeft]);
+                        }
+                    }
 
-                                    }
-                                }
+                }
                 #endif
          
             }
@@ -4542,14 +4612,17 @@ namespace beethoven3
                     //setupKinect.draw();
 
                 }
-                if (skeleton != null)
+                if (Skeletons != null)
                 {
-
-                    if (skeleton.TrackingState == SkeletonTrackingState.Tracked)
+                    foreach (Skeleton s in Skeletons)
                     {
-                        drawpoint(skeleton.Joints[JointType.HandRight], skeleton.Joints[JointType.HandLeft]);
+                        if (s.TrackingState == SkeletonTrackingState.Tracked)
+                        {
+                            drawpoint(s.Joints[JointType.HandRight], s.Joints[JointType.HandLeft]);
 
+                        }
                     }
+
                 }
 #endif
             }
@@ -4568,14 +4641,17 @@ namespace beethoven3
                     //setupKinect.draw();
 
                 }
-                if (skeleton != null)
+                if (Skeletons != null)
                 {
-
-                    if (skeleton.TrackingState == SkeletonTrackingState.Tracked)
+                    foreach (Skeleton s in Skeletons)
                     {
-                        drawpoint(skeleton.Joints[JointType.HandRight], skeleton.Joints[JointType.HandLeft]);
+                        if (s.TrackingState == SkeletonTrackingState.Tracked)
+                        {
+                            drawpoint(s.Joints[JointType.HandRight], s.Joints[JointType.HandLeft]);
 
+                        }
                     }
+
                 }
 #endif
             }
@@ -4659,14 +4735,17 @@ namespace beethoven3
                     //setupKinect.draw();
 
                 }
-                if (skeleton != null)
+                if (Skeletons != null)
                 {
-
-                    if (skeleton.TrackingState == SkeletonTrackingState.Tracked)
+                    foreach (Skeleton s in Skeletons)
                     {
-                        drawpoint(skeleton.Joints[JointType.HandRight], skeleton.Joints[JointType.HandLeft]);
+                        if (s.TrackingState == SkeletonTrackingState.Tracked)
+                        {
+                            drawpoint(s.Joints[JointType.HandRight], s.Joints[JointType.HandLeft]);
 
+                        }
                     }
+
                 }
 #endif
             }
@@ -4702,14 +4781,9 @@ namespace beethoven3
         {
 
 
-            
-
-
             ////실질적인 스케일 변환
             j1r = j1.ScaleTo(SCR_W, SCR_H, userParam, userParam);
-         //   Vector2 rec = new Vector2(0,100,100);
-            //그리기
-
+     
             if (!nearButton)
             {
                 drawrec1.X = (int)j1r.Position.X;
@@ -4721,23 +4795,35 @@ namespace beethoven3
                   drawrec1.Y = (int)center.Y;
 
             }
-            message = nearButton.ToString();
-            //spriteBatch.Draw(rightHandTextures[itemManager.getLeftHandIndex()], drawrec1, Color.White);
-         //   spriteBatch.Draw(rightHandTextures[itemManager.getRightHandIndex()], drawrec1, new Rectangle(0,0,100,100), Color.White,0f,Vector2.Zero, 1.0f , SpriteEffects.None , 1.0f);
-            spriteBatch.Draw(
-              rightHandTextures[itemManager.getRightHandIndex()],
-                //위치: Center-> location 으로 바꿈 (마커와 노트 매칭 떄문에 )
-              new Vector2(drawrec1.X, drawrec1.Y),
 
-              null,
-              Color.White,
-              0f,
-                //origin ->  new Vector2(frameWidth / 2, frameHeight / 2) ->  new Vector2(0,0) 으로 바꿈 (마커와 노트 매칭 떄문에 )
-              new Vector2(0, 0),
-                //오른쪽 마크 크기 
-              1f,
-              SpriteEffects.None,
-              0.0f);   
+            //if (j1r.Position.X < 0 || j1r.Position.Y < 0)
+            //{
+
+            //    int j = 1;
+            //    j++;
+
+            //    j = 3;
+
+
+            //}
+
+
+            spriteBatch.Draw(rightHandTextures[itemManager.getRightHandIndex()],new Vector2(drawrec1.X, drawrec1.Y),Color.White);
+
+              //   spriteBatch.Draw(
+              //rightHandTextures[itemManager.getRightHandIndex()],
+              //  //위치: Center-> location 으로 바꿈 (마커와 노트 매칭 떄문에 )
+              //new Vector2(drawrec1.X, drawrec1.Y),
+
+              //null,
+              //Color.White,
+              //0f,
+              //  //origin ->  new Vector2(frameWidth / 2, frameHeight / 2) ->  new Vector2(0,0) 으로 바꿈 (마커와 노트 매칭 떄문에 )
+              //new Vector2(0, 0),
+              //  //오른쪽 마크 크기 
+              //1f,
+              //SpriteEffects.None,
+              //0.0f);   
 
             j2r = j2.ScaleTo(SCR_W, SCR_H, userParam, userParam);
 
@@ -4748,26 +4834,25 @@ namespace beethoven3
 
             Texture2D leftHandTexture = leftHandTextures[itemManager.getLeftHandIndex()];
             
+          //   spriteBatch.Draw(leftHandTexture,new Vector2((float)drawrec2.X - (float)(leftHandTexture.Width * 0.35), (float)drawrec2.Y - (float)(leftHandTexture.Height * 0.35)),Color.White);
+            spriteBatch.Draw(leftHandTexture, new Vector2((float)drawrec2.X - (float)(leftHandTexture.Width * 0.5), (float)drawrec2.Y - (float)(leftHandTexture.Height * 0.5)), Color.White);
 
 
-            spriteBatch.Draw(
-             leftHandTexture,
-                //위치: Center-> location 으로 바꿈 (마커와 노트 매칭 떄문에 )
-             new Vector2((float)drawrec2.X - (float)(leftHandTexture.Width * 0.35), (float)drawrec2.Y - (float)(leftHandTexture.Height * 0.35)),
+            //spriteBatch.Draw(
+            // leftHandTexture,
+            //    //위치: Center-> location 으로 바꿈 (마커와 노트 매칭 떄문에 )
+            // new Vector2((float)drawrec2.X - (float)(leftHandTexture.Width * 0.35), (float)drawrec2.Y - (float)(leftHandTexture.Height * 0.35)),
 
-             null,
-             Color.White,
-             0f,
-                //origin ->  new Vector2(frameWidth / 2, frameHeight / 2) ->  new Vector2(0,0) 으로 바꿈 (마커와 노트 매칭 떄문에 )
-              new Vector2(0, 0),
-                //오른쪽 마크 크기 
-             0.7f,
-             SpriteEffects.None,
-             0.0f);   
+            // null,
+            // Color.White,
+            // 0f,
+            //    //origin ->  new Vector2(frameWidth / 2, frameHeight / 2) ->  new Vector2(0,0) 으로 바꿈 (마커와 노트 매칭 떄문에 )
+            //  new Vector2(0, 0),
+            //    //오른쪽 마크 크기 
+            // 0.7f,
+            // SpriteEffects.None,
+            // 0.0f);   
 
-
-
-          //  spriteBatch.Draw(leftHandTextures[itemManager.getLeftHandIndex()], drawrec2, Color.White);
         }
 #endif
 
