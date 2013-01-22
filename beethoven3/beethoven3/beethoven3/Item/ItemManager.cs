@@ -74,7 +74,7 @@ namespace beethoven3
         private int backgroundIndex = -1;
 
 
-
+        private double stardPrice = 100.0f;
 
         //이펙트 특성  -start
 
@@ -101,6 +101,8 @@ namespace beethoven3
                       
         }
 
+
+
         public void Init()
         {
             int i;
@@ -108,51 +110,45 @@ namespace beethoven3
             //아이템 상점에 올림
             
             //오른손 아이템 
-            for (i = 0; i < 6; i++)
-            {
-                addItem(rightHandItem, new Vector2(100, 100), rightHandTexture[i], new Rectangle(0, 0, rightHandTexture[i].Width, rightHandTexture[i].Height), 1,/*cost*/ (i+1)*5);
-            }
 
-            //노트 아이템
-            for (i = 0; i < 4; i++)
-            {
-                if (i != 3)
-                {
-                    addItem(rightNoteItem, new Vector2(100, 100), rightNoteTexture[i], new Rectangle(0, 0, rightNoteTexture[i].Width, rightNoteTexture[i].Height), 1,/*cost*/ 25);
-                }
-                //고스톱이면 보이는 텍스쳐 롱노트로 하려고
+            addItem(rightHandItem, new Vector2(100, 100), rightHandTexture[0], new Rectangle(0, 0, rightHandTexture[0].Width, rightHandTexture[0].Height), 1,/*cost*/ (int)(stardPrice*0));//기본
+            addItem(rightHandItem, new Vector2(100, 100), rightHandTexture[1], new Rectangle(0, 0, rightHandTexture[1].Width, rightHandTexture[1].Height), 1,/*cost*/ (int)(stardPrice*0.8));//우주
+            addItem(rightHandItem, new Vector2(100, 100), rightHandTexture[2], new Rectangle(0, 0, rightHandTexture[2].Width, rightHandTexture[2].Height), 1,/*cost*/ (int)(stardPrice*16));//숲
+            addItem(rightHandItem, new Vector2(100, 100), rightHandTexture[3], new Rectangle(0, 0, rightHandTexture[3].Width, rightHandTexture[3].Height), 1,/*cost*/ (int)(stardPrice*50));//고스톱
+            addItem(rightHandItem, new Vector2(100, 100), rightHandTexture[4], new Rectangle(0, 0, rightHandTexture[4].Width, rightHandTexture[4].Height), 1,/*cost*/ (int)(stardPrice*0.1));//북어
+            addItem(rightHandItem, new Vector2(100, 100), rightHandTexture[5], new Rectangle(0, 0, rightHandTexture[5].Width, rightHandTexture[5].Height), 1,/*cost*/ (int)(stardPrice*10));//몽키
 
-                else if (i == 3)
-                {
-                    addItem(rightNoteItem, new Vector2(100, 100), longNoteTexture[i], new Rectangle(0, 0, longNoteTexture[i].Width, longNoteTexture[i].Height), 1,/*cost*/ 25);
-                }
+            //왼손
 
-            }
+            addItem(leftHandItem, new Vector2(100, 100), leftHandTexture[0], new Rectangle(0, 0, leftHandTexture[0].Width, leftHandTexture[0].Height), 1,/*cost*/ (int)(stardPrice * 0.6));//기본
+            addItem(leftHandItem, new Vector2(100, 100), leftHandTexture[1], new Rectangle(0, 0, leftHandTexture[1].Width, leftHandTexture[1].Height), 1,/*cost*/ (int)(stardPrice * 12));//우주
+            //숲 추가 해야 함
+            addItem(leftHandItem, new Vector2(100, 100), leftHandTexture[2], new Rectangle(0, 0, leftHandTexture[2].Width, leftHandTexture[2].Height), 1,/*cost*/ (int)(stardPrice * 1));//해골
+            addItem(leftHandItem, new Vector2(100, 100), leftHandTexture[3], new Rectangle(0, 0, leftHandTexture[3].Width, leftHandTexture[3].Height), 1,/*cost*/ (int)(stardPrice * 0.8));//좋아요
 
 
+            //노트아이템 
+            addItem(rightNoteItem, new Vector2(100, 100), rightNoteTexture[0], new Rectangle(0, 0, rightNoteTexture[0].Width, rightNoteTexture[0].Height), 1,/*cost*/ (int)(stardPrice * 0));//기본
+            addItem(rightNoteItem, new Vector2(100, 100), rightNoteTexture[1], new Rectangle(0, 0, rightNoteTexture[1].Width, rightNoteTexture[1].Height), 1,/*cost*/ (int)(stardPrice * 1));//우주
+            addItem(rightNoteItem, new Vector2(100, 100), rightNoteTexture[2], new Rectangle(0, 0, rightNoteTexture[2].Width, rightNoteTexture[2].Height), 1,/*cost*/ (int)(stardPrice * 20));//숲
+            addItem(rightNoteItem, new Vector2(100, 100), longNoteTexture[3], new Rectangle(0, 0, longNoteTexture[3].Width, longNoteTexture[3].Height), 1,/*cost*/ (int)(stardPrice * 100));//고스톱이면 보이는 텍스쳐 롱노트로 하려고
 
-            //왼손 아이템
-            for (i = 0; i < 4; i++)
-            {
-                addItem(leftHandItem, new Vector2(100, 100), leftHandTexture[i], new Rectangle(0, 0, leftHandTexture[i].Width, leftHandTexture[i].Height), 1,/*cost*/ 7);
-                
-                //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                //have to additem, effect, node , background
-            }
-
-            //배경아이템
-            for (i = 0; i < 4; i++)
-            {
-                addItem(backgroundItem, new Vector2(100, 100), backgroundTexture[i], new Rectangle(0, 0, backgroundTexture[i].Width, backgroundTexture[i].Height), 1,/*cost*/ 45,backgroundThumnail[i]);
-            }
 
 
             //이펙트 아이템
-            for (i = 0; i < 4; i++)
-            {
-                addItem(effectItem, new Vector2(100, 100), effectTexture[i], new Rectangle(0, 0, effectTexture[i].Width, effectTexture[i].Height), 1,/*cost*/ 16, effectThumnail[i]);
+            addItem(effectItem, new Vector2(100, 100), effectTexture[0], new Rectangle(0, 0, effectTexture[0].Width, effectTexture[0].Height), 1,/*cost*/ (int)(stardPrice * 0), effectThumnail[0]);//기본
+            addItem(effectItem, new Vector2(100, 100), effectTexture[1], new Rectangle(0, 0, effectTexture[1].Width, effectTexture[1].Height), 1,/*cost*/ (int)(stardPrice * 1.5), effectThumnail[1]);//우주
+            addItem(effectItem, new Vector2(100, 100), effectTexture[2], new Rectangle(0, 0, effectTexture[2].Width, effectTexture[2].Height), 1,/*cost*/ (int)(stardPrice * 30), effectThumnail[2]);//숲
+            addItem(effectItem, new Vector2(100, 100), effectTexture[3], new Rectangle(0, 0, effectTexture[3].Width, effectTexture[3].Height), 1,/*cost*/ (int)(stardPrice * 70), effectThumnail[3]);//고스톱//사쿠라
               
-            }
+
+            //배경아이템
+            addItem(backgroundItem, new Vector2(100, 100), backgroundTexture[0], new Rectangle(0, 0, backgroundTexture[0].Width, backgroundTexture[0].Height), 1,/*cost*/ (int)(stardPrice * 0), backgroundThumnail[0]);//기본
+            addItem(backgroundItem, new Vector2(100, 100), backgroundTexture[1], new Rectangle(0, 0, backgroundTexture[1].Width, backgroundTexture[1].Height), 1,/*cost*/ (int)(stardPrice * 1.5), backgroundThumnail[1]);//우주
+            addItem(backgroundItem, new Vector2(100, 100), backgroundTexture[2], new Rectangle(0, 0, backgroundTexture[2].Width, backgroundTexture[2].Height), 1,/*cost*/ (int)(stardPrice * 30), backgroundThumnail[2]);//숲
+            addItem(backgroundItem, new Vector2(100, 100), backgroundTexture[3], new Rectangle(0, 0, backgroundTexture[3].Width, backgroundTexture[3].Height), 1,/*cost*/ (int)(stardPrice * 100), backgroundThumnail[3]);//고스톱
+            addItem(backgroundItem, new Vector2(100, 100), backgroundTexture[4], new Rectangle(0, 0, backgroundTexture[4].Width, backgroundTexture[4].Height), 1,/*cost*/ (int)(stardPrice * 5), backgroundThumnail[4]);//기본
+
 
 
 
@@ -167,7 +163,7 @@ namespace beethoven3
             
             effectInitFrams[2] = new Rectangle(0, 0, 166, 163);//숲
 
-            effectInitFrams[3] = new Rectangle(0, 0, 166, 163);
+            effectInitFrams[3] = new Rectangle(0, 0, 166, 163);//사쿠라
 
             effectFrameCount[0] = 9;//기본
             effectFrameCount[1] = 9;//우주 
@@ -419,16 +415,16 @@ namespace beethoven3
 
             rightHandTexture[0] = cm.Load<Texture2D>(@"rightItem\Baton_1");
             rightHandTexture[1] = cm.Load<Texture2D>(@"rightItem\Baton_2");
-            rightHandTexture[2] = cm.Load<Texture2D>(@"rightItem\Baton_3");
-            rightHandTexture[3] = cm.Load<Texture2D>(@"rightItem\Baton_4");
-            rightHandTexture[4] = cm.Load<Texture2D>(@"rightItem\Baton_7");
+            rightHandTexture[2] = cm.Load<Texture2D>(@"rightItem\Baton_4");
+            rightHandTexture[3] = cm.Load<Texture2D>(@"rightItem\Baton_7");
+            rightHandTexture[4] = cm.Load<Texture2D>(@"rightItem\Baton_3");
             rightHandTexture[5] = cm.Load<Texture2D>(@"rightItem\Baton_6");
 
             //왼손
             //가운데를 중점으로 맞추어야 함.
             leftHandTexture[0] = cm.Load<Texture2D>(@"LeftHand\Left_1");
-            leftHandTexture[1] = cm.Load<Texture2D>(@"LeftHand\Left_2");
-            leftHandTexture[2] = cm.Load<Texture2D>(@"LeftHand\Left_3");
+            leftHandTexture[1] = cm.Load<Texture2D>(@"LeftHand\Left_3");
+            leftHandTexture[2] = cm.Load<Texture2D>(@"LeftHand\Left_2");
             leftHandTexture[3] = cm.Load<Texture2D>(@"LeftHand\Left_4");
 
 
@@ -514,7 +510,7 @@ namespace beethoven3
             backgroundTexture[1] = cm.Load<Texture2D>(@"background\uniBackground");//우주
             backgroundTexture[2] = cm.Load<Texture2D>(@"background\park");//숲
             backgroundTexture[3] = cm.Load<Texture2D>(@"background\BackG_2");//고스톱
-            backgroundTexture[3] = cm.Load<Texture2D>(@"background\ConcertHall_3");//기본다른모양
+            backgroundTexture[4] = cm.Load<Texture2D>(@"background\ConcertHall_3");//기본다른모양
 
             //배경 섬네일
 

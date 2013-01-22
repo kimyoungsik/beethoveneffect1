@@ -19,11 +19,6 @@ myPicture.jpg$90
 myPicture.jpg$10
 %%
 music
-gesture_23_5_58_49.jpg$8000
-gesture_23_6_4_40.jpg$2700
-gesture_23_6_13_59.jpg$1900
-gesture_22_23_35_1.jpg$1000
-gesture_23_0_2_50.jpg$653
 %%
 kim
 myPicture.jpg$30

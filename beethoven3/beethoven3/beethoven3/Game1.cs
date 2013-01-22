@@ -1320,8 +1320,8 @@ namespace beethoven3
                 hands = new List<Hand>();
 
                 //제스쳐2
-                _dtw1 = new DtwGestureRecognizer(12, 1.0, 2, 2, 2);//정지포스쳐
-                _dtw2 = new DtwGestureRecognizer(12, 1.5, 2, 2, 2);//일반포스쳐
+                _dtw1 = new DtwGestureRecognizer(12, 0.8, 2, 2, 2);//정지포스쳐
+                _dtw2 = new DtwGestureRecognizer(12, 1.2, 2, 2, 2);//일반포스쳐
                 _dtw3 = new DtwGestureRecognizer(12, 1.2, 2, 2, 10);//제스쳐
 
                 _video = new ArrayList();
