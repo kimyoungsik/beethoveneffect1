@@ -367,18 +367,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="charisma\charisma2.png">
-      <Name>charisma2</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="charisma\charisma1.png">
-      <Name>charisma1</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="background\park.png">
       <Name>park</Name>
       <Importer>TextureImporter</Importer>
@@ -1342,6 +1330,41 @@
   <ItemGroup>
     <Compile Include="Explosion\leafExplosion1.png">
       <Name>leafExplosion1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="charisma\Sitt_1.png">
+      <Name>Sitt_1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="charisma\Sitt_2.png">
+      <Name>Sitt_2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="charisma\Sitt_3.png">
+      <Name>Sitt_3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="charisma\Sitt_4.png">
+      <Name>Sitt_4</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="charisma\Sitt_Message.png">
+      <Name>Sitt_Message</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

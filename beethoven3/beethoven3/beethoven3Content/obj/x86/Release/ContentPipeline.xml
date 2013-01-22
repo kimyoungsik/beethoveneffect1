@@ -353,24 +353,6 @@
       <Time>2013-01-11T15:49:06+09:00</Time>
     </Item>
     <Item>
-      <Source>charisma\charisma2.png</Source>
-      <Name>charisma\charisma2</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\charisma\charisma2.xnb</Output>
-      <Time>2013-01-12T09:44:16+09:00</Time>
-    </Item>
-    <Item>
-      <Source>charisma\charisma1.png</Source>
-      <Name>charisma\charisma1</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\charisma\charisma1.xnb</Output>
-      <Time>2013-01-12T09:44:16+09:00</Time>
-    </Item>
-    <Item>
       <Source>background\park.png</Source>
       <Name>background\park</Name>
       <Importer>TextureImporter</Importer>
@@ -1875,6 +1857,51 @@
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Explosion\leafExplosion1.xnb</Output>
       <Time>2013-01-22T23:15:28.5569271+09:00</Time>
+    </Item>
+    <Item>
+      <Source>charisma\Sitt_1.png</Source>
+      <Name>charisma\Sitt_1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\charisma\Sitt_1.xnb</Output>
+      <Time>2013-01-23T05:34:20.3946069+09:00</Time>
+    </Item>
+    <Item>
+      <Source>charisma\Sitt_2.png</Source>
+      <Name>charisma\Sitt_2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\charisma\Sitt_2.xnb</Output>
+      <Time>2013-01-23T05:34:24.5938471+09:00</Time>
+    </Item>
+    <Item>
+      <Source>charisma\Sitt_3.png</Source>
+      <Name>charisma\Sitt_3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\charisma\Sitt_3.xnb</Output>
+      <Time>2013-01-23T05:34:26.8699773+09:00</Time>
+    </Item>
+    <Item>
+      <Source>charisma\Sitt_4.png</Source>
+      <Name>charisma\Sitt_4</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\charisma\Sitt_4.xnb</Output>
+      <Time>2013-01-23T05:34:29.4331239+09:00</Time>
+    </Item>
+    <Item>
+      <Source>charisma\Sitt_Message.png</Source>
+      <Name>charisma\Sitt_Message</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\charisma\Sitt_Message.xnb</Output>
+      <Time>2013-01-23T05:34:31.9212662+09:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

@@ -128,7 +128,7 @@ namespace beethoven3
         int postureCount = 0;
         bool gestureFlag = true;//제스쳐 동작이 수행됐는지 안됐는지
         int gestureType = 1;//정지 포스쳐인지 일반 포스쳐인지 제스쳐인지 (1 : 정지 포스쳐, 2 : 일반 포스쳐, 3 : 제스쳐)
-        bool isGesture = true;
+        public static bool isGesture = true;
         //머리찾기
         float fy;
         double bestFy = 1000;
@@ -1320,8 +1320,8 @@ namespace beethoven3
                 hands = new List<Hand>();
 
                 //제스쳐2
-                _dtw1 = new DtwGestureRecognizer(12, 0.6, 2, 2, 2);//정지포스쳐
-                _dtw2 = new DtwGestureRecognizer(12, 1.0, 2, 2, 2);//일반포스쳐
+                _dtw1 = new DtwGestureRecognizer(12, 1.0, 2, 2, 2);//정지포스쳐
+                _dtw2 = new DtwGestureRecognizer(12, 1.5, 2, 2, 2);//일반포스쳐
                 _dtw3 = new DtwGestureRecognizer(12, 1.2, 2, 2, 10);//제스쳐
 
                 _video = new ArrayList();
@@ -2293,13 +2293,13 @@ namespace beethoven3
                 if (!s.Contains("__UNKNOWN"))
                 {
                     postureCount++;
-                    //message = "yes";
-                    if (postureCount > 9)
+                    message = "stop yes";
+                    if (postureCount > 5)
                     {
                         //여기에 정지했을 때 동작 넣기
                         file.SetEndFile(true);
                         postureCount = 0;
-                        //message = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+                        message = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
 
                     }
                 }
@@ -2307,7 +2307,7 @@ namespace beethoven3
                 if (s.Contains("__UNKNOWN"))
                 {
                     postureCount = 0;
-                    //message = "no";
+                    message = "stop no";
                 }
 
 
@@ -2364,11 +2364,11 @@ namespace beethoven3
                     if (!s.Contains("__UNKNOWN"))
                     {
                         postureCount++;
-                        //message = "yes";
+                        message = "posture yes";
                         perfectBannerManager.AddBanners(new Vector2(this.Window.ClientBounds.Width / 2 - 1380 / 4, this.Window.ClientBounds.Height / 2 - 428 / 4), 0.7f);
                         scoreManager.Perfomance = scoreManager.Perfomance + 1;
                             
-                        if (postureCount > 100)
+                        if (postureCount > 5)
                         {
                             
                             gestureFlag = false;
@@ -2377,7 +2377,7 @@ namespace beethoven3
 
                     if (s.Contains("__UNKNOWN"))
                     {
-                        //message = "no";
+                        message = "posture no";
                     }
                 }
             }
@@ -2431,13 +2431,13 @@ namespace beethoven3
                         scoreManager.Perfomance = scoreManager.Perfomance + 1;
 
 
-                        //message = "yes" + score.ToString();
+                        message = "yes" + score.ToString();
                         gestureFlag = false;
                     }
 
                     if (s.Contains("__UNKNOWN"))
                     {
-                        //message = "no";
+                        message = "no";
                     }
                 }
             }
@@ -3151,6 +3151,8 @@ namespace beethoven3
                     scoreManager.Update(gameTime);
                     memberManager.Update(gameTime);            
                     SoundFmod.StartChangedTime(gameTime);
+                    photoManager.Update(gameTime);
+
 
                     perfectBannerManager.Update(gameTime);
                     goodBannerManager.Update(gameTime);
@@ -4305,7 +4307,15 @@ namespace beethoven3
                             charismaManager.IsCharismaTime = false;
                         }
                     }
+                    Trace.WriteLine(isGesture);
 
+                    if (charismaManager.currentTime >= charismaFrame.EndTime)
+                    {
+
+                        isGesture = false;
+                        charismaManager.PlayCharisma = false;
+                        charismaManager.charismaFrames.Dequeue();
+                    }
 
                     if (!isGesture)
                     {
@@ -4325,23 +4335,17 @@ namespace beethoven3
                         LoadGesturesFromFile(fileName);
                         Skeleton2DDataExtract.Skeleton2DdataCoordReady += NuiSkeleton2DdataCoordReadyStop;
                         isGesture = true;
-                        charismaManager.charismaFrames.Dequeue();
+                      //  charismaManager.charismaFrames.Dequeue();
                     }
 
 
-                    if (charismaManager.currentTime > charismaFrame.EndTime)
-                    {
-
-                        isGesture = false;
-                        charismaManager.PlayCharisma = false;
-
-                    }
+                 
 
 
 
                 }
 
-                photoManager.Draw(gameTime, spriteBatch);
+             //   photoManager.Draw(gameTime, spriteBatch);
 
 
 

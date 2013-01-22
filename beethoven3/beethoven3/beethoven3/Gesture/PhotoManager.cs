@@ -23,9 +23,9 @@ namespace beethoven3
         #endregion
 
         #region constructor
-        public PhotoFrame(Texture2D texture, double startTime, double endTime)
+        public PhotoFrame(double startTime, double endTime)
         {
-            this.texture = texture;
+            //this.texture = texture;
             this.startTime = startTime;
             this.endTime = endTime;
         }
@@ -37,12 +37,12 @@ namespace beethoven3
 
         #region method
 
-        public Texture2D Texture
-        {
-            get { return texture; }
-            set { texture = value; }
+        //public Texture2D Texture
+        //{
+        //    get { return texture; }
+        //    set { texture = value; }
 
-        }
+        //}
 
         public double StartTime
         {
@@ -73,7 +73,7 @@ namespace beethoven3
         //file에서 가져오는 현재 게임의 흐름
         private double currentTime;
 
-        private Texture2D cameraTexture;
+    //    private Texture2D cameraTexture;
        
         //카리스마 위치
         private Rectangle picLocation = new Rectangle(100, 100, 150, 150);
@@ -97,7 +97,7 @@ namespace beethoven3
         public void LoadContent(ContentManager cm)
         {
 
-            cameraTexture = cm.Load<Texture2D>(@"charisma\charisma1");
+         //   cameraTexture = cm.Load<Texture2D>(@"charisma\charisma1");
            
 
         }
@@ -128,7 +128,7 @@ namespace beethoven3
         public void AddPhotoFrame(double startTime, double currentTime)
         {
 
-            PhotoFrame photoFrame = new PhotoFrame(cameraTexture, startTime, startTime + 1);
+            PhotoFrame photoFrame = new PhotoFrame( startTime, startTime + 1);
 
          //   isPhotoTime = 0;
             //isJudgeCheck = false;
@@ -143,12 +143,7 @@ namespace beethoven3
 
 
         #endregion
-
-
-
-
-        #region update and draw
-        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public void Update(GameTime gameTime)
         {
 #if Kinect
             if (photoFrames.Count > 0)
@@ -159,14 +154,22 @@ namespace beethoven3
 
                 if (currentTime > photoFrame.StartTime)
                 {
-                  
-                        Game1.PicFlag = true;
-                        photoFrames.Dequeue();
-              
+
+                    Game1.PicFlag = true;
+                    photoFrames.Dequeue();
+
                 }
-          
+
             }
 #endif
+
+        }
+
+
+        #region update and draw
+        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        {
+
         }
 
         #endregion

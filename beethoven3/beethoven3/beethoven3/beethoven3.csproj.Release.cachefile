@@ -37,8 +37,6 @@ Content\judgement\miss.xnb
 Content\judgement\perfect.xnb
 Content\resultNumbers\one.xnb
 Content\gold\gold.xnb
-Content\charisma\charisma2.xnb
-Content\charisma\charisma1.xnb
 Content\background\park.xnb
 Content\metronome\metronome0.xnb
 Content\metronome\metronome1.xnb
@@ -206,6 +204,11 @@ Content\sit\Sitt_1.xnb
 Content\Explosion\MusicNote_Thumnail.xnb
 Content\Explosion\leafExplosion2.xnb
 Content\Explosion\leafExplosion1.xnb
+Content\charisma\Sitt_1.xnb
+Content\charisma\Sitt_2.xnb
+Content\charisma\Sitt_3.xnb
+Content\charisma\Sitt_4.xnb
+Content\charisma\Sitt_Message.xnb
 Content\snd\ka.wma
 Content\snd\jo.wma
 Content\snd\maid.wma

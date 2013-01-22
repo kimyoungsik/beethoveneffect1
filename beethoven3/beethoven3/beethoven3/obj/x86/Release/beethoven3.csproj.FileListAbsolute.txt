@@ -37,8 +37,6 @@ D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\judgement\
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\judgement\perfect.xnb
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\resultNumbers\one.xnb
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\gold\gold.xnb
-D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\charisma\charisma2.xnb
-D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\charisma\charisma1.xnb
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\background\park.xnb
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\metronome\metronome0.xnb
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\metronome\metronome1.xnb
@@ -217,3 +215,8 @@ D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\sit\Sitt_1
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Explosion\MusicNote_Thumnail.xnb
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Explosion\leafExplosion2.xnb
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Explosion\leafExplosion1.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\charisma\Sitt_1.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\charisma\Sitt_2.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\charisma\Sitt_3.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\charisma\Sitt_4.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\charisma\Sitt_Message.xnb

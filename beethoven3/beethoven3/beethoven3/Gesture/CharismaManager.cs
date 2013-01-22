@@ -69,16 +69,19 @@ namespace beethoven3
         #region declarations
     
         //카리스마 프레임을 가지고 있는 큐
-        public Queue charismaFrames = new Queue();
+        public Queue charismaFrames;
        
         //file에서 가져오는 현재 게임의 흐름
         public double currentTime;
        
         private Texture2D charisma1;
         private Texture2D charisma2;
-
+        private Texture2D charisma3;
+        private Texture2D charisma4;
+        private Texture2D charisma5;
+        private Texture2D charismaMessage;
         //카리스마 위치
-        public Rectangle picLocation = new Rectangle(100, 100, 150, 150);
+        public Rectangle picLocation = new Rectangle(0, 0, 1024, 769);
 
         //현재 카리스마 타입.
         private int type;
@@ -96,16 +99,18 @@ namespace beethoven3
         #region constructor
         public CharismaManager()
         {
-        
+            charismaFrames = new Queue();
         
         }
 
          public void LoadContent(ContentManager cm)
         {
-          
-            charisma1 = cm.Load<Texture2D>(@"charisma\charisma1");
-            charisma2 = cm.Load<Texture2D>(@"charisma\charisma2");
-     
+            charismaMessage = cm.Load<Texture2D>(@"charisma\Sitt_Message");
+            charisma1 = cm.Load<Texture2D>(@"charisma\Sitt_1");
+            charisma2 = cm.Load<Texture2D>(@"charisma\Sitt_2");
+            charisma3 = cm.Load<Texture2D>(@"charisma\Sitt_3");
+            charisma4 = cm.Load<Texture2D>(@"charisma\Sitt_4");
+            charisma5 = cm.Load<Texture2D>(@"charisma\Sitt_1");
 
         }
         #endregion
@@ -176,19 +181,17 @@ namespace beethoven3
                      texture = charisma2;
                     break;
                 case 3:
-                    texture = charisma1;
+                    texture = charisma3;
                     break;
 
                 case 4:
-                    texture = charisma2;
+                    texture = charisma4;
                     break;
                 case 5:
-                    texture = charisma1;
+                    texture = charisma5;
                     break;
 
-                case 6:
-                    texture = charisma2;
-                    break;
+          
             }
 
             return texture;
@@ -202,22 +205,29 @@ namespace beethoven3
         #region update and draw
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
+
+
+
 #if Kinect
-          //if(charismaFrames.Count > 0)
-          //{
+          if(charismaFrames.Count > 0)
+          {
 
-          //    currentTime += gameTime.ElapsedGameTime.TotalSeconds;
-          //    CharisimaFrame charismaFrame  = (CharisimaFrame)charismaFrames.Peek();
+              currentTime += gameTime.ElapsedGameTime.TotalSeconds;
+              CharisimaFrame charismaFrame  = (CharisimaFrame)charismaFrames.Peek();
 
-          //    if (currentTime > charismaFrame.StartTime )
-          //    {
-          //        spriteBatch.Draw(charismaFrame.Texture, picLocation, Color.White);
-          //    }
-          //    if (currentTime > charismaFrame.EndTime)
-          //    { 
-          //        charismaFrames.Dequeue();
-          //    }
-          //}
+              if (currentTime >= charismaFrame.StartTime )
+              {
+                  spriteBatch.Draw(charismaFrame.Texture, picLocation, Color.White);
+                  spriteBatch.Draw(charismaMessage, new Rectangle(0, 0, 1024, 769), Color.White);
+
+              }
+              //if (currentTime >= charismaFrame.EndTime)
+              //{
+              //    charismaFrames.Dequeue();
+              //    Game1.isGesture = false;
+              //    PlayCharisma = false;
+              //}
+          }
 #endif
         }
   
