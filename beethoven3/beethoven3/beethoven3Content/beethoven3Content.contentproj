@@ -257,20 +257,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Explosion\smallheart2.png">
-      <Name>smallheart2</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Explosion\needleExplosion2.png">
-      <Name>needleExplosion2</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="character\contrabase1.png">
       <Name>contrabase1</Name>
       <Importer>TextureImporter</Importer>
@@ -290,8 +276,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Explosion\leafExplosion.png">
-      <Name>leafExplosion</Name>
+    <Compile Include="Explosion\leafExplosion2.png">
+      <Name>leafExplosion2</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -703,40 +689,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Explosion\fire1.png">
-      <Name>fire1</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Explosion\fire2.png">
-      <Name>fire2</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Explosion\fire3.png">
-      <Name>fire3</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Explosion\elec1.png">
-      <Name>elec1</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Explosion\elec2.png">
-      <Name>elec2</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Explosion\elec3.png">
-      <Name>elec3</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Menu\title.png">
       <Name>title</Name>
       <Importer>TextureImporter</Importer>
@@ -938,18 +890,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="background\ConcertHall.png">
-      <Name>ConcertHall</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="background\ConcertHall_1.png">
-      <Name>ConcertHall_1</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
     <Compile Include="background\ConcertHall_2.png">
       <Name>ConcertHall_2</Name>
       <Importer>TextureImporter</Importer>
@@ -964,13 +904,6 @@
   <ItemGroup>
     <Compile Include="recordBoard\background.png">
       <Name>background</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Explosion\Effect_Plas_1.png">
-      <Name>Effect_Plas_1</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -1002,18 +935,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Explosion\Effect_Guilty_2.png">
-      <Name>Effect_Guilty_2</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Explosion\Effect_Guilty_3.png">
-      <Name>Effect_Guilty_3</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="SongMenu\hoverStartButton.png">
       <Name>hoverStartButton</Name>
       <Importer>TextureImporter</Importer>
@@ -1021,13 +942,6 @@
     </Compile>
     <Compile Include="SongMenu\startButton.png">
       <Name>startButton</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Explosion\Effect_Guilty_1.png">
-      <Name>Effect_Guilty_1</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -1414,6 +1328,20 @@
   <ItemGroup>
     <Compile Include="sit\Sitt_1.png">
       <Name>Sitt_1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Explosion\MusicNote_Thumnail.png">
+      <Name>MusicNote_Thumnail</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Explosion\leafExplosion1.png">
+      <Name>leafExplosion1</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

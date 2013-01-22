@@ -51,6 +51,7 @@ namespace beethoven3
                new Rectangle(0, 200, 50, 50),
                1,
                /*반지름 for 충돌*/
+
                initialFrame.Width/2,
                //notespeed 영향주는것 1
                noteSpeed

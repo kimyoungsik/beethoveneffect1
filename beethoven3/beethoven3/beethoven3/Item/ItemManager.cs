@@ -161,13 +161,13 @@ namespace beethoven3
             //이펙트 특성 -start
             
             
-            effectInitFrams[0] = new Rectangle(0, 0, 166, 162);//고쳐야 함 //기본
+            effectInitFrams[0] = new Rectangle(0, 0, 166, 166);//고쳐야 함 //기본
                         
-            effectInitFrams[1] = new Rectangle(0, 0, 166, 162);//우주 
+            effectInitFrams[1] = new Rectangle(0, 0, 166, 163);//우주 
             
-            effectInitFrams[2] = new Rectangle(0, 0, 166, 162);
+            effectInitFrams[2] = new Rectangle(0, 0, 166, 163);//숲
 
-            effectInitFrams[3] = new Rectangle(0, 0, 166, 162);
+            effectInitFrams[3] = new Rectangle(0, 0, 166, 163);
 
             effectFrameCount[0] = 9;//기본
             effectFrameCount[1] = 9;//우주 
@@ -185,7 +185,7 @@ namespace beethoven3
             effectDulation[0] =  45;
             effectDulation[1] =  45;//우주 
             effectDulation[2] =  45;//숲
-            effectDulation[3] = 45;//숲
+            effectDulation[3] =  45;//숲
            //이펙트 특성 -end
 
 
@@ -408,9 +408,6 @@ namespace beethoven3
 
 
 
-
-
-
         //각 아이템 텍스쳐 저장
         public void LoadContent(ContentManager cm)
         {
@@ -427,8 +424,6 @@ namespace beethoven3
             rightHandTexture[4] = cm.Load<Texture2D>(@"rightItem\Baton_7");
             rightHandTexture[5] = cm.Load<Texture2D>(@"rightItem\Baton_6");
 
-
-
             //왼손
             //가운데를 중점으로 맞추어야 함.
             leftHandTexture[0] = cm.Load<Texture2D>(@"LeftHand\Left_1");
@@ -444,7 +439,7 @@ namespace beethoven3
             //이펙트 섬네일
 
             //기본
-            effectThumnail[0] = cm.Load<Texture2D>(@"Explosion\starThumnail");
+            effectThumnail[0] = cm.Load<Texture2D>(@"Explosion\MusicNote_Thumnail");
             
             //우주느낌
             effectThumnail[1] = cm.Load<Texture2D>(@"Explosion\starThumnail");
@@ -459,14 +454,14 @@ namespace beethoven3
 
             effectTexture[0] = cm.Load<Texture2D>(@"Explosion\Effect_MusicNote_1");//기본
             effectTexture[1] = cm.Load<Texture2D>(@"Explosion\starPerfectEffect");//우주
-            effectTexture[2] = cm.Load<Texture2D>(@"Explosion\Effect_Guilty_3");//숲
+            effectTexture[2] = cm.Load<Texture2D>(@"Explosion\leafExplosion1");//숲
             effectTexture[3] = cm.Load<Texture2D>(@"Explosion\Effect_Sakura_1");//고스톱
             
 
             //good
             goodEffectTexture[0] = cm.Load<Texture2D>(@"Explosion\Effect_MusicNote_2");//기본
             goodEffectTexture[1] = cm.Load<Texture2D>(@"Explosion\starGoodEffect");//우주
-            goodEffectTexture[2] = cm.Load<Texture2D>(@"Explosion\Effect_Guilty_3");//숲
+            goodEffectTexture[2] = cm.Load<Texture2D>(@"Explosion\leafExplosion2");//숲
             goodEffectTexture[3] = cm.Load<Texture2D>(@"Explosion\Effect_Sakura_2");//숲
 
             //롱노트 //드래그 ( 일단 똑같이)
@@ -475,10 +470,10 @@ namespace beethoven3
             badEffectTexture[2] = cm.Load<Texture2D>(@"Explosion\colorPencil3");//숲
             badEffectTexture[3] = cm.Load<Texture2D>(@"Explosion\colorPencil2");//숲
            
+            
             //missEffectTexture[0] = cm.Load<Texture2D>(@"Explosion\starLongEffect2");
             //missEffectTexture[1] = cm.Load<Texture2D>(@"Explosion\starLongEffect2");
             //missEffectTexture[2] = cm.Load<Texture2D>(@"Explosion\windExplosion2");
-
 
 
             rightNoteTexture[0] = cm.Load<Texture2D>(@"notes\starRightNote_yell");//기본
@@ -517,11 +512,9 @@ namespace beethoven3
 
             backgroundTexture[0] = cm.Load<Texture2D>(@"background\ConcertHall_2");//기본
             backgroundTexture[1] = cm.Load<Texture2D>(@"background\uniBackground");//우주
-            backgroundTexture[2] = cm.Load<Texture2D>(@"background\ConcertHall_2");//숲
-            backgroundTexture[3] = cm.Load<Texture2D>(@"background\BackG_2");//기본
-            //backgroundTexture[0] = cm.Load<Texture2D>(@"background\BackG_2");//기본
-            //backgroundTexture[1] = cm.Load<Texture2D>(@"background\BackG_3");//우주
-            //backgroundTexture[2] = cm.Load<Texture2D>(@"background\BackG_4");//숲
+            backgroundTexture[2] = cm.Load<Texture2D>(@"background\park");//숲
+            backgroundTexture[3] = cm.Load<Texture2D>(@"background\BackG_2");//고스톱
+            backgroundTexture[3] = cm.Load<Texture2D>(@"background\ConcertHall_3");//기본다른모양
 
             //배경 섬네일
 
@@ -537,7 +530,8 @@ namespace beethoven3
         
             backgroundThumnail[3] = cm.Load<Texture2D>(@"background\Back_ssum_5");
 
-
+            //기본 다른모양
+            backgroundThumnail[4] = cm.Load<Texture2D>(@"background\Back_ssum_3");
            
         }
 
