@@ -3559,7 +3559,7 @@ namespace beethoven3
                     // 고스톱이면 스프라이트 적용
                         else if (itemManager.getNoteIndex() == 3)
                         {
-                            startNoteManager.changeLeftNoteImage(leftNoteTextures[itemManager.getNoteIndex()], new Rectangle(0, 0, 120, leftNoteTextures[itemManager.getNoteIndex()].Height), leftNoteScale[0], 10);
+                            startNoteManager.changeLeftNoteImage(leftNoteTextures[itemManager.getNoteIndex()], new Rectangle(0, 0, 120, leftNoteTextures[itemManager.getNoteIndex()].Height), leftNoteScale[0],15, 10);
 
                         }
 
@@ -3574,10 +3574,13 @@ namespace beethoven3
                         {
                             startNoteManager.changeRightNoteImage(rightNoteTextures[itemManager.getNoteIndex()], new Rectangle(0, 0, rightNoteTextures[itemManager.getNoteIndex()].Width, rightNoteTextures[itemManager.getNoteIndex()].Height), rightNoteScale[0]);
                         }
+
+
                         // 고스톱이면 스프라이트 적용
+                        //
                         else if (itemManager.getNoteIndex() == 3)
                         {
-                            startNoteManager.changeRightNoteImage(rightNoteTextures[itemManager.getNoteIndex()], new Rectangle(0, 0, 120, rightNoteTextures[itemManager.getNoteIndex()].Height), rightNoteScale[0],10);
+                            startNoteManager.changeRightNoteImage(rightNoteTextures[itemManager.getNoteIndex()], new Rectangle(0, 0, 120, rightNoteTextures[itemManager.getNoteIndex()].Height), rightNoteScale[0],15 ,10);
                  
                         }
 

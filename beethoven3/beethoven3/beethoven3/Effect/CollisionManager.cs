@@ -305,7 +305,7 @@ namespace beethoven3
 
                  
                     int judgment = MarkManager.Marks[number].MarkSprite.JudgedNote(
-                        littleNote.Center,(littleNote.Texture.Width*littleNote.Scale)/4
+                        littleNote.Center,littleNote.CollisionRadius
                         );
                     //perfect
                  
@@ -771,10 +771,12 @@ namespace beethoven3
                     //    );
 
 
+                    //int judgment = MarkManager.Marks[number].MarkSprite.JudgedNote(
+                    //   littleNote.Center, (littleNote.Texture.Width * littleNote.Scale) / 4
+                    //   );
                     int judgment = MarkManager.Marks[number].MarkSprite.JudgedNote(
-                       littleNote.Center, (littleNote.Texture.Width * littleNote.Scale) / 4
+                       littleNote.Center, littleNote.CollisionRadius
                        );
-
                     //perfect
                     if (judgment == 2)
                     {

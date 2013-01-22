@@ -293,14 +293,14 @@ namespace beethoven3
             //  Trace.WriteLine(Vector2.Distance(Center, otherCenter));
             //마커 센터에서 노트의 센터 사이의 거리가  마커의 radius/2 보다 작을 떄  
             if (Vector2.Distance(Center, noteCenter) <
-                (CollisionRadius))
+                (CollisionRadius*2))
             {
                 ret = 2;
             }
             //마커 센터에서 노트의 센터 사이의 거리가  마커의 radius 보다 작을 떄  
             //반들어왔을때 . good
             else if (Vector2.Distance(Center, noteCenter) <
-                (CollisionRadius *2))
+                (CollisionRadius *7))
             {
                 ret = 1;
             }

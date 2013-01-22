@@ -75,8 +75,13 @@ namespace beethoven3
             set { Scale = value; }
 
         }
- 
 
+        public int CollisionRadiusChange
+        {
+            get { return CollisionRadius; }
+            set { CollisionRadius = value; }
+
+        }
 
         #endregion
 
