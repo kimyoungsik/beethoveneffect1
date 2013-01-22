@@ -2516,16 +2516,16 @@ namespace beethoven3
             String gesture = "gesture_" + dateTime.Day.ToString() + "_" + dateTime.Hour.ToString() + "_" + dateTime.Minute.ToString() + "_" + dateTime.Second.ToString()+".jpg";
             String dir = System.Environment.CurrentDirectory +  "\\beethovenRecord\\userPicture\\" + gesture;
 
-         //   if (!isScorePic)
-          //  {
+            if (!isScorePic)
+            {
                 //마지막 스코어 보드에 쓰이는 사진
                 ScorePic = gesture;
 
-             //   isScorePic = true;
+                isScorePic = true;
                 Stream str = System.IO.File.OpenWrite(dir);
                 CapturePic.SaveAsJpeg(str, SCR_W, SCR_H);
                 str.Dispose();
-          //  }
+            }
 
             playingPictures.Enqueue(CapturePic);
 
@@ -4609,11 +4609,14 @@ namespace beethoven3
                 int i;
                 for (i = 0; i < highScores.Count; i++)
                 {
+                    Texture2D picture = reportManager.FindPicture(highScores[i].UserPicture);
+                    
                     //노래 사진
                     if (i == 0)
                     {
                         spriteBatch.Draw(reportManager.FindPicture(highScores[i].UserPicture), new Rectangle(163, 347, 113, 113), Color.White);
-
+                     //   spriteBatch.Draw(picture, new Vector2(163, 347), new Rectangle(picture.Width / 2 - 56, picture.Height / 2 - 56, 113, 113), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1.0f);
+              
                         spriteBatch.DrawString(georgia, highScores[i].Score.ToString(), new Vector2(283, 347), Color.DarkRed);
                     }
                     else if (i == 1)

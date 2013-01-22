@@ -98,9 +98,9 @@ namespace beethoven3
             List<ScoreInfo> retList = new List<ScoreInfo>();
             //max = scoreInfos.Count > 5 ? 5 : scoreInfos.Count;
             
-            if (scoreInfos.Count > 5)
+            if (scoreInfos.Count > 7)
             {
-                max = 5;
+                max = 7;
             }
             else
             {

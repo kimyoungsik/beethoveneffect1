@@ -130,7 +130,7 @@ namespace beethoven3
 
             PhotoFrame photoFrame = new PhotoFrame(cameraTexture, startTime, startTime + 1);
 
-            isPhotoTime = 0;
+         //   isPhotoTime = 0;
             //isJudgeCheck = false;
 
 
@@ -159,22 +159,12 @@ namespace beethoven3
 
                 if (currentTime > photoFrame.StartTime)
                 {
-                    //if (isPhotoTime == 0)
-                    //{
-                    //    //사진 찍는것
-
+                  
                         Game1.PicFlag = true;
                         photoFrames.Dequeue();
-                    //    isPhotoTime = 2;
-                    //}
-                  //  spriteBatch.Draw(photoFrame.Texture, picLocation, Color.White);
+              
                 }
-                //if (currentTime > photoFrame.EndTime)
-                //{
-                //    isPhotoTime = 0;
-                //    photoFrames.Dequeue();
-
-                //}
+          
             }
 #endif
         }
