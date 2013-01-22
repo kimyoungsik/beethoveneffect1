@@ -34,4 +34,5 @@ myPicture.jpg$0
 abc
 myPicture.jpg$10
 myPicture.jpg$0
+myPicture.jpg$0
 **

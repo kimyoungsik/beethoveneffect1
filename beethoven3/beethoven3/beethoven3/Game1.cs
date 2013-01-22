@@ -45,7 +45,9 @@ namespace beethoven3
         //Joint leftJoint;
 
 
+        //temp
 
+        Texture2D sit1;
 #if Kinect
         //화면에 띄우기
         Texture2D KinectVideoTexture;
@@ -471,7 +473,8 @@ namespace beethoven3
             //resultFmod = FMOD.Factory.System_Create(ref sndSystem);
             //sndSystem.init(1, FMOD.INITFLAG.NORMAL, (IntPtr)null);
             ////FMOD 세팅 -END
-           
+
+           sit1 = Content.Load<Texture2D>(@"sit\Sitt_1");
            //타이틀화면
             menuScene = new MenuScene();
             menuScene.LoadContent(Content);
@@ -3465,61 +3468,17 @@ namespace beethoven3
                    
                 #region 사진들
                 case GameStates.ShowPictures:
-                Rectangle rectMouseShowPictures = new Rectangle(mouseStateCurrent.X, mouseStateCurrent.Y, 5, 5);
+                //Rectangle rectMouseShowPictures = new Rectangle(mouseStateCurrent.X, mouseStateCurrent.Y, 5, 5);
 
-                if (rectMouseShowPictures.Intersects(showPictureScene.getRectNextButton()) || rightHandPosition.Intersects(showPictureScene.getRectNextButton()))
-                    {
-
-                        nearButton = true;
-                        GetCenterOfButton(showPictureScene.getRectNextButton());
-
-                        showPictureScene.setClickNextButton(true);
-                        //click the right hand item section
-                        if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (finalClick && !pastClick))
-                        {
-                            nearButton = false;
-                            gameState = GameStates.RecordBoard;
-                        }
-                    }
-                    else
-                    {
-                        nearButton = false;
-
-                        showPictureScene.setClickNextButton(false);
-                    }
-                    pastClick = finalClick;
+                showPictureScene.Update(gameTime, rightHandPosition);
 
                 break;
                 #endregion 
                 #region 순위판
                 case GameStates.RecordBoard:
 
-                    Rectangle rectMouseRecordBoard = new Rectangle(mouseStateCurrent.X, mouseStateCurrent.Y, 5, 5);
-                   //nextButton 위에 마우스를 올려놨을 때
-                    //mousecursor on nextButton item section
+                    recordBoard.Update(gameTime, rightHandPosition);
 
-
-                    if (rectMouseRecordBoard.Intersects(recordBoard.getRectNextButton()) || rightHandPosition.Intersects(recordBoard.getRectNextButton()))
-                    {
-                        nearButton = true;
-                        GetCenterOfButton(recordBoard.getRectNextButton());
-
-                        recordBoard.setClickNextButton(true);
-                        //click the right hand item section
-                        if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (finalClick && !pastClick))
-                        {
-                            nearButton = false;
-
-                            gameState = GameStates.SongMenu;
-                        }
-                    }
-                    else
-                    {
-                        nearButton = false;
-
-                        recordBoard.setClickNextButton(false);
-                    }
-                    pastClick = finalClick;
                 break;
 
                 
@@ -4025,26 +3984,6 @@ namespace beethoven3
 
                 }
 
-
-             ////   drawpoint(rightJoint, leftJoint);
-             //   if (skeleton != null)
-             //   {
-
-             //       if (skeleton.TrackingState == SkeletonTrackingState.Tracked)
-             //       {
-             //           drawpoint(skeleton.Joints[JointType.HandRight], skeleton.Joints[JointType.HandLeft]);
-
-             //       }
-             //   }
-             //   // else
-                //    {
-                //    //스켈레톤
-                //        int j = 2;
-                //        j = 3;
-
-                //        j++;
-
-                //    }
 #endif
 
 
@@ -4196,6 +4135,8 @@ namespace beethoven3
             #region 플레이화면
             if ((gameState == GameStates.Playing))
             {
+       
+
                 //배경
                 spriteBatch.Draw(playBackgroud1,
                 new Rectangle(0, 0, this.Window.ClientBounds.Width,
@@ -4451,7 +4392,11 @@ namespace beethoven3
                 {
                     spriteBatch.DrawString(messageFont, message, Vector2.Zero, Color.Red);
                 }
-               
+
+      //          spriteBatch.Draw(sit1,
+      //new Rectangle(0, 0, this.Window.ClientBounds.Width,
+      //    this.Window.ClientBounds.Height),
+      //    Color.White);
 
 
             }
@@ -4475,6 +4420,13 @@ namespace beethoven3
                 //노트파일로 가수 가져오기
                 spriteBatch.DrawString(georgia, noteFile.Artist, new Vector2(320, 260), Color.Gray);
                 //***//난이도//spriteBatch.DrawString(pericles36Font, , new Vector2(200,80), Color.White);
+
+
+
+                Rectangle rec = new Rectangle(0, 0, noteFile.Level * 26/*하나의 그림의 width*/, 22);
+                //하트. gage양 만큼 하트가 나타남.
+                spriteBatch.Draw(Game1.levelTexture, new Vector2(320, 320), rec, Color.White);
+
 
                 #if Kinect
                 if (KinectVideoTexture != null)
@@ -4580,10 +4532,16 @@ namespace beethoven3
                 spriteBatch.Draw(songMenu.FindPicture(noteFile), new Rectangle(98, 182, 121, 123), Color.White);
 
                 //노트파일로 노래 제목가져오기
-                spriteBatch.DrawString(georgia, noteFile.Name, new Vector2(270, 172), Color.Gray);
+                spriteBatch.DrawString(georgia, noteFile.Name, new Vector2(270, 162), Color.Gray);
                 //노트파일로 가수 가져오기
-                spriteBatch.DrawString(georgia, noteFile.Artist, new Vector2(270, 232), Color.Gray);
+                spriteBatch.DrawString(georgia, noteFile.Artist, new Vector2(270, 222), Color.Gray);
                 //***//난이도//spriteBatch.DrawString(pericles36Font, , new Vector2(200,80), Color.White);
+
+
+                Rectangle rec = new Rectangle(0, 0, noteFile.Level * 26/*하나의 그림의 width*/, 22);
+                //하트. gage양 만큼 하트가 나타남.
+                spriteBatch.Draw(Game1.levelTexture, new Vector2(270, 282), rec, Color.White);
+
 
                 int i;
                 for (i = 0; i < highScores.Count; i++)

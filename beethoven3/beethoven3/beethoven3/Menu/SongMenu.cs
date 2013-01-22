@@ -63,7 +63,7 @@ namespace beethoven3
             this.noteFileManager = noteFileManager;
             this.reportManager = reportManager;
 
-            pictures = new Texture2D[10];
+            pictures = new Texture2D[30];
             leftright = new Texture2D[2];
             arrawframe = new int[2];
             arrawframebutton = new bool[2];
@@ -187,8 +187,8 @@ namespace beethoven3
 
             Rectangle mouseRectangle = new Rectangle(mouse.X, mouse.Y, 1, 1);
 
-            Rectangle recRightArrow = new Rectangle(770, 310, 60, 60);
-            Rectangle recLeftArrow = new Rectangle(170, 310, 60, 60);
+            Rectangle recRightArrow = new Rectangle(770, 310, 120, 120);
+            Rectangle recLeftArrow = new Rectangle(110, 310, 120, 120);
 
             
 
@@ -443,29 +443,44 @@ namespace beethoven3
                 {
                     arrawframe[0] += 4;
                     arrawframe[0] = Math.Min(arrawframe[0], 45);
-                    float arrawddiyong1 = 30 * (float)Math.Tan(MathHelper.ToRadians(arrawframe[0]));
+
+                    //이거변함
+                    float arrawddiyong1 = 80 * (float)Math.Tan(MathHelper.ToRadians(arrawframe[0]));
                     if (scene_number != 0)
-                        spriteBatch.Draw(leftright[0], new Rectangle(200 - (int)arrawddiyong1, 310, 30 + (int)arrawddiyong1, 60), new Color(fadeinout, fadeinout, fadeinout));
+                      {
+
+                        //크기조정
+                          spriteBatch.Draw(leftright[0], new Rectangle(200 - (int)arrawddiyong1, 310, 30 + (int)arrawddiyong1, 120), new Color(fadeinout, fadeinout, fadeinout));
+                  
+                       // spriteBatch.Draw(leftright[0], new Vector2(200 - (int)arrawddiyong1, 310), new Rectangle(0, 0, 30 + (int)arrawddiyong1, 60), new Color(fadeinout, fadeinout, fadeinout), 0f, Vector2.Zero, 1f, SpriteEffects.None, 1.0f);
+                    }
                 }
                 else
                 {
                     if (scene_number != 0)
-                        spriteBatch.Draw(leftright[0], new Rectangle(170, 310, 60, 60), new Color(fadeinout, fadeinout, fadeinout));
+                    {
+                        // spriteBatch.Draw(leftright[0], new Rectangle(170, 310, 60, 60), new Color(fadeinout, fadeinout, fadeinout));
+                        spriteBatch.Draw(leftright[0], new Rectangle(110, 310, 120, 120), new Color(fadeinout, fadeinout, fadeinout));
+       
+                    }
+                      
                 }
                 if (arrawframebutton[1])
                 {
                     arrawframe[1] += 4;
                     arrawframe[1] = Math.Min(arrawframe[1], 45);
-                    float arrawddiyong2 = 30 * (float)Math.Tan(MathHelper.ToRadians(arrawframe[1]));
-                    if (scene_number != noteFileManager.noteFiles.Count-1)
-                        spriteBatch.Draw(leftright[1], new Rectangle(770, 310, 30 + (int)arrawddiyong2, 60), new Color(fadeinout, fadeinout, fadeinout));
+                    float arrawddiyong2 = 80 * (float)Math.Tan(MathHelper.ToRadians(arrawframe[1]));
+                    if (scene_number != noteFileManager.noteFiles.Count - 1)
+                    {
+                        spriteBatch.Draw(leftright[1], new Rectangle(770, 310, 30 + (int)arrawddiyong2, 120), new Color(fadeinout, fadeinout, fadeinout));
+                    }
                 }
                 else
                 {
                   //  if (scene_number != 0 && scene_number != noteFileManager.noteFiles.Count-1)
                     if (noteFileManager.noteFiles.Count > 0 && scene_number != noteFileManager.noteFiles.Count - 1)
                   
-                      spriteBatch.Draw(leftright[1], new Rectangle(770, 310, 60, 60), new Color(fadeinout, fadeinout, fadeinout));
+                      spriteBatch.Draw(leftright[1], new Rectangle(770, 310, 120, 120), new Color(fadeinout, fadeinout, fadeinout));
                 }
             }
         }
