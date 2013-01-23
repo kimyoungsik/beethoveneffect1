@@ -63,6 +63,7 @@ namespace beethoven3
             file = fileManager;
 
             //FMOD 세팅 -START
+            
             resultFmod = FMOD.Factory.System_Create(ref sndSystem);
             sndSystem.init(1, FMOD.INITFLAGS.NORMAL, (IntPtr)null);
             //FMOD 세팅 -END
@@ -141,10 +142,12 @@ namespace beethoven3
         public static void StopSound()
         {
             sndSystem.close();
-
-            //다시 셋팅
+       //     sndSystem.release();
+            ////다시 셋팅
             resultFmod = FMOD.Factory.System_Create(ref sndSystem);
-            sndSystem.init(1, FMOD.INITFLAGS    .NORMAL, (IntPtr)null);
+            sndSystem.init(1, FMOD.INITFLAGS.NORMAL, (IntPtr)null);
+
+            
         }
 
 

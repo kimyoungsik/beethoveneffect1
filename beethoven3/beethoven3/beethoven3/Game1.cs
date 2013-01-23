@@ -281,7 +281,7 @@ namespace beethoven3
         public static MouseState mouseStateCurrent, mouseStatePrevious;
 
         //노래들이 있는 경로
-        String songsDir = System.Environment.CurrentDirectory+"\\beethovenSong\\";
+        public static String songsDir = System.Environment.CurrentDirectory+"\\beethovenSong\\";
         
         /////Texture start
 
@@ -2876,8 +2876,8 @@ namespace beethoven3
         {
             if (keyState.IsKeyDown(Keys.B))
             {
-                SoundFmod.sndSystem.createSound("C:\\beethoven\\" + noteFileManager, FMOD.MODE.HARDWARE, ref SoundFmod.sndSound);
-                SoundFmod.sndSystem.playSound(CHANNELINDEX.FREE, SoundFmod.sndSound, false, ref SoundFmod.sndChannel);
+                //SoundFmod.sndSystem.createSound("C:\\beethoven\\" + noteFileManager, FMOD.MODE.HARDWARE, ref SoundFmod.sndSound);
+                //SoundFmod.sndSystem.playSound(CHANNELINDEX.FREE, SoundFmod.sndSound, false, ref SoundFmod.sndChannel);
 
               
             }
@@ -3516,6 +3516,9 @@ namespace beethoven3
 
 
                 resultSongMenu = songMenu.Update();
+
+
+                
                    
 #if Kinect
 
@@ -3713,18 +3716,9 @@ namespace beethoven3
                         file.Loading(resultSongMenu);
 
                         uiEndTime = file.EndTime;
-                    //    uiFullTime = 
-                        //일반 0
-                        //로딩중 1
-                        //준비완료 2
-                        //isReady = 1;
-
-                        //노래 재생
-
-                       // isReady = SoundFmod.PlaySound(songsDir + noteFileManager.noteFiles[resultSongMenu].Mp3);
-
+          
                         SoundFmod.PlaySound(songsDir + noteFileManager.noteFiles[resultSongMenu].Mp3);
-                       
+                      
                     }
 
                     break;

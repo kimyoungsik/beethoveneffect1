@@ -17,7 +17,8 @@ namespace beethoven3
     {
         private NoteFileManager noteFileManager;
         private ReportManager reportManager;
-        
+        public static bool songChanged;
+        public static bool opening;
      //   private SpriteFont pericles36Font;
       //  bool pastClick;
         MouseState pastmouse;
@@ -67,7 +68,7 @@ namespace beethoven3
             leftright = new Texture2D[2];
             arrawframe = new int[2];
             arrawframebutton = new bool[2];
-
+            scene_number = 0;
        
             clickPreviousButton = false;
             clickStartButton = false;
@@ -175,8 +176,9 @@ namespace beethoven3
 
         public int Update()
         {
-         
-            
+
+          
+
             Rectangle rightHandPosition = new Rectangle((int)Game1.j1r.Position.X, (int)Game1.j1r.Position.Y, 5, 5);
 
 
@@ -211,6 +213,7 @@ namespace beethoven3
                         scene_number--;
                         leftrightmove = -1;
                         frame = 0;
+                        songChanged = true;
                     }
                 }
             }
@@ -244,6 +247,7 @@ namespace beethoven3
                         leftrightmove = 1;
                         scene_number++;
                         frame = 0;
+                        songChanged = true;
 
 
                     }
@@ -285,6 +289,8 @@ namespace beethoven3
                     scene_number--;
                     leftrightmove = -1;
                     frame = 0;
+                    songChanged = true;
+                   
                 }
                 isKinectLeft = false;
 
@@ -300,6 +306,8 @@ namespace beethoven3
                     leftrightmove = 1;
                     scene_number++;
                     frame = 0;
+                    songChanged = true;
+                
                 }
 
                 isKinectRight = false;
@@ -319,6 +327,7 @@ namespace beethoven3
                 {
                     clickPreviousButton = false;
                     Game1.nearButton = false;
+                    SoundFmod.StopSound();
                     return -1;
                 }
             }
@@ -336,6 +345,9 @@ namespace beethoven3
                 Game1.nearButton = true;
                 Game1.GetCenterOfButton(startrect);
                 clickStartButton = true;
+
+               
+
                 if ((Game1.finalClick && !Game1.pastClick) || (mouse.LeftButton == ButtonState.Pressed && pastmouse.LeftButton == ButtonState.Released))
                 {
                     Game1.nearButton = false;
@@ -367,6 +379,9 @@ namespace beethoven3
             pastmouse = mouse;
             pastkey = key;
             Game1.pastClick = Game1.finalClick;
+
+       
+
 
             return -2;
 
@@ -431,7 +446,13 @@ namespace beethoven3
                 //하트. gage양 만큼 하트가 나타남.
                 spriteBatch.Draw(Game1.levelTexture, new Vector2(380, 630), rec, Color.White);
             }
-
+            if (opening)
+            {
+                //SoundFmod.StopSound();
+                //SoundFmod.PlaySound(Game1.songsDir + noteFileManager.noteFiles[scene_number].Mp3);
+                //// songChanged = false;
+                //opening = false;
+            }
 
           //  drawTop(spriteBatch);
         }
@@ -498,6 +519,14 @@ namespace beethoven3
                 frame += 3;
                 frame = Math.Min(90, frame);
                 margin = 800 - (int)(800 * Math.Sin(MathHelper.ToRadians(frame)));
+
+                //곡 바꿀시 노래재생
+                if (frame == 90 && songChanged)
+                {
+                    //SoundFmod.StopSound();
+                    SoundFmod.PlaySound(Game1.songsDir + noteFileManager.noteFiles[scene_number].Mp3);
+                    songChanged = false;
+                }
                 if (frame == 0)
                     leftrightmove = 0;
             }
@@ -506,6 +535,16 @@ namespace beethoven3
                 frame += 3;
                 frame = Math.Min(90, frame);
                 margin = (int)(800 * Math.Sin(MathHelper.ToRadians(frame))) - 800;
+
+                //곡 바꿀시 노래재생
+                if (frame == 90 && songChanged)
+                {
+                    //SoundFmod.StopSound();
+                    //SoundFmod.PlaySound(Game1.songsDir + noteFileManager.noteFiles[scene_number].Mp3);
+                    songChanged = false;
+
+
+                }
                 if (frame == 0)
                     leftrightmove = 0;
             }
