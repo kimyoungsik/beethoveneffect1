@@ -138,8 +138,7 @@ namespace beethoven3
 
                
 
-
-                //Trace.WriteLine(judgment);
+                //퍼펙트
                 if (judgment == 2)
                 {
                     
@@ -150,9 +149,8 @@ namespace beethoven3
 
                     dragNoteManager.dragNotes.RemoveAt(i);
 
-                    scoreManager.DragNoteScore = scoreManager.DragNoteScore + 1;
-                    scoreManager.Combo = scoreManager.Combo + 1;
-
+                    scoreManager.DragPerfect ++;
+                    scoreManager.Combo ++;
                     AddComboNumber(scoreManager.Combo, 0);
                 }
                 //good
@@ -168,8 +166,9 @@ namespace beethoven3
 
                     dragNoteManager.dragNotes.RemoveAt(i);
                 //    ScoreManager.otherScore += 1;
-                    scoreManager.DragNoteScore = scoreManager.DragNoteScore + 1;
-                    scoreManager.Combo = scoreManager.Combo + 1;
+                    scoreManager.DragGood++;
+
+                    scoreManager.Combo++;
                     AddComboNumber(scoreManager.Combo, 1);
                 }
                 else
@@ -326,8 +325,9 @@ namespace beethoven3
                             perfectBannerManager.AddBanners(perfectLocation, perfectBannerScale);
 
 
-                            scoreManager.Perfect = scoreManager.Perfect + 1;
-                            scoreManager.Combo = scoreManager.Combo + 1;
+                            scoreManager.OneHandPerfect++;
+
+                            scoreManager.Combo ++;
                             scoreManager.Gage += 10;
                        
                             //콤보 글자 띄우기
@@ -377,9 +377,9 @@ namespace beethoven3
 
                             StartNoteManager.rightNoteManager.LittleNotes.RemoveAt(x);
 
-                            scoreManager.Good = scoreManager.Good + 1;
+                            scoreManager.OneHandGood++;
 
-                            scoreManager.Combo = scoreManager.Combo + 1;
+                            scoreManager.Combo++;
                             scoreManager.Gage += 5;
 
                             memberManager.SetMemberState(1, 1);
@@ -791,8 +791,8 @@ namespace beethoven3
 
                             StartNoteManager.leftNoteManager.LittleNotes.RemoveAt(x);
 
-                            scoreManager.Perfect = scoreManager.Perfect + 1;
-                            scoreManager.Combo = scoreManager.Combo + 1;
+                            scoreManager.OneHandPerfect++;
+                            scoreManager.Combo++;
                             scoreManager.Gage += 10;
 
                             SoundFmod.slowBadCount = 0;
@@ -836,8 +836,8 @@ namespace beethoven3
 
                             StartNoteManager.leftNoteManager.LittleNotes.RemoveAt(x);
 
-                            scoreManager.Good = scoreManager.Good + 1;
-                            scoreManager.Combo = scoreManager.Combo + 1;
+                            scoreManager.OneHandGood++;
+                            scoreManager.Combo++;
                             scoreManager.Gage += 5;
                             SoundFmod.slowBadCount = 0;
                             SoundFmod.fastBadCount = 0;
@@ -978,7 +978,9 @@ namespace beethoven3
                                 //배드 글자 띄우기
                                 badBannerManager.AddBanners(badLocation, badBannerScale);
 
-                                StartNoteManager.rightNoteManager.LittleNotes.RemoveAt(x);
+
+
+                                StartNoteManager.leftNoteManager.LittleNotes.RemoveAt(x);
                                 int i;
                                 //false
                                 //느린 상태 일 때나 0일때 
@@ -1085,7 +1087,7 @@ namespace beethoven3
                                 //배드 글자 띄우기
                                 badBannerManager.AddBanners(badLocation, badBannerScale);
 
-                                StartNoteManager.rightNoteManager.LittleNotes.RemoveAt(x);
+                                StartNoteManager.leftNoteManager.LittleNotes.RemoveAt(x);
                                 int i;
 
                                 //효과와 내용
@@ -1236,7 +1238,7 @@ namespace beethoven3
                         littleNote.Center
                         );
                     //perfect
-                    if (judgment == 2)
+                    if (judgment == 2 || judgment == 1)
                     {
                         int mouseJudgment = MarkManager.Marks[number].MarkSprite.JudgedNote(mousePoint);
                         if (mouseJudgment != 0)
@@ -1252,9 +1254,10 @@ namespace beethoven3
                             //effect -> bad가 long노트의 이펙트.
 
                             badManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
-                
-                            scoreManager.LongNoteScore = scoreManager.LongNoteScore + 1;
-                            scoreManager.Combo = scoreManager.Combo + 1;
+
+                            scoreManager.LongPerfect++;
+                            scoreManager.Combo++;
+
                             scoreManager.Gage += 1;
 
                             SoundFmod.slowBadCount = 0;
@@ -1279,55 +1282,55 @@ namespace beethoven3
                             }
                         }
                     }
-                    //good
-                    else if (judgment == 1)
-                    {
-                        int mouseJudgment = MarkManager.Marks[number].MarkSprite.JudgedNote(mousePoint);
-                        if (mouseJudgment != 0)
-                        {
-                            //롱노트 효과를 바꾸던지 아니면 하나의 효과만 나오게 하던지
-                      //      goodManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
+                    ////good
+                    //else if (judgment == 1)
+                    //{
+                    //    int mouseJudgment = MarkManager.Marks[number].MarkSprite.JudgedNote(mousePoint);
+                    //    if (mouseJudgment != 0)
+                    //    {
+                    //        //롱노트 효과를 바꾸던지 아니면 하나의 효과만 나오게 하던지
+                    //  //      goodManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
 
-                            // 글자 띄우기
-                            missBannerManager.
-                            DisappearAllMarks();
-                            goodBannerManager.AddBanners(goodLocation,goodBannerScale);
+                    //        // 글자 띄우기
+                    //        //missBannerManager.
+                    //        //DisappearAllMarks();
+                    //        perfectBannerManager.AddBanners(perfectLocation, perfectBannerScale);
 
 
-                            badManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
+                    //        badManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
                 
 
-                            StartNoteManager.longNoteManager.LittleNotes.RemoveAt(x);
+                    //        StartNoteManager.longNoteManager.LittleNotes.RemoveAt(x);
 
 
-                            scoreManager.LongNoteScore = scoreManager.LongNoteScore + 1;
-                            scoreManager.Combo = scoreManager.Combo + 1;
-                            scoreManager.Gage += 1;
+                    //        scoreManager.LongNoteScore = scoreManager.LongNoteScore + 1;
+                    //        scoreManager.Combo = scoreManager.Combo + 1;
+                    //        scoreManager.Gage += 1;
 
-                            AddComboNumber(scoreManager.Combo, 1 ,5);
+                    //        AddComboNumber(scoreManager.Combo, 1 ,5);
 
-                            SoundFmod.slowBadCount = 0;
-                            SoundFmod.fastBadCount = 0;
+                    //        SoundFmod.slowBadCount = 0;
+                    //        SoundFmod.fastBadCount = 0;
 
-                            //템포 원상 복귀 //퍼펙트는 한번에 복귀 
-                            if (SoundFmod.isChangedTempo != 0)
-                            {
+                    //        //템포 원상 복귀 //퍼펙트는 한번에 복귀 
+                    //        if (SoundFmod.isChangedTempo != 0)
+                    //        {
 
-                                SoundFmod.SetOptionalTime();
-                                //움직이는 속도 정상
-                                memberManager.SetMembersFrameTime(0.1f);
-                                //멤버 스크로크 효과 없어지게함
-                                int i;
-                                for (i = 0; i < 6; i++)
-                                {
-                                    memberManager.SetMemberState(i, 0);
-                                }
-                                SoundFmod.isChangedTempo = 0;
+                    //            SoundFmod.SetOptionalTime();
+                    //            //움직이는 속도 정상
+                    //            memberManager.SetMembersFrameTime(0.1f);
+                    //            //멤버 스크로크 효과 없어지게함
+                    //            int i;
+                    //            for (i = 0; i < 6; i++)
+                    //            {
+                    //                memberManager.SetMemberState(i, 0);
+                    //            }
+                    //            SoundFmod.isChangedTempo = 0;
 
 
-                            }
-                        }
-                    }
+                    //        }
+                    //    }
+                    //}
                     else
                     {
 
@@ -1396,13 +1399,13 @@ namespace beethoven3
 
 
                     StartNoteManager.rightNoteManager.LittleNotes.RemoveAt(i);
-                    scoreManager.Bad = scoreManager.Bad + 1;
+                    scoreManager.OneHandMiss++;
                     if (scoreManager.Combo > scoreManager.Max)
                     {
                         scoreManager.Max = scoreManager.Combo;
                     }
 
-                    
+                        
                     scoreManager.Combo = 0;
 
                     if (!charismaManager.PlayCharisma)
@@ -1432,7 +1435,7 @@ namespace beethoven3
                     missBannerManager.AddBanners(missLocation, missBannerScale);
 
                     StartNoteManager.leftNoteManager.LittleNotes.RemoveAt(i);
-                    scoreManager.Bad = scoreManager.Bad + 1;
+                    scoreManager.OneHandMiss++;
                     if (scoreManager.Combo > scoreManager.Max)
                     {
                         scoreManager.Max = scoreManager.Combo;
@@ -1466,7 +1469,7 @@ namespace beethoven3
                       missBannerManager.AddBanners(missLocation, missBannerScale);
                       
                       StartNoteManager.longNoteManager.LittleNotes.RemoveAt(i);
-                      scoreManager.Bad = scoreManager.Bad + 1;
+                      scoreManager.LongMiss++;
                       if (scoreManager.Combo > scoreManager.Max)
                       {
                           scoreManager.Max = scoreManager.Combo;

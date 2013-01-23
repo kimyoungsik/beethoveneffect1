@@ -111,10 +111,15 @@ namespace beethoven3
               
             }
 
-            spriteBatch.DrawString(Game1.georgia, scoreManager.Perfect.ToString(), new Vector2(330, 370), Color.Gray);
-            spriteBatch.DrawString(Game1.georgia, scoreManager.Good.ToString(), new Vector2(330, 430), Color.Gray);
-            spriteBatch.DrawString(Game1.georgia, scoreManager.Bad.ToString(), new Vector2(330, 490), Color.Gray);
-            spriteBatch.DrawString(Game1.georgia, scoreManager.Miss.ToString(), new Vector2(330, 550), Color.Gray);
+
+            int totalPerfect = scoreManager.OneHandPerfect + scoreManager.LongPerfect + scoreManager.DragPerfect + scoreManager.PosturePerfect + scoreManager.JesturePerfect;
+            int totalGood = scoreManager.OneHandGood + scoreManager.DragGood + scoreManager.JestureGood;
+            int totalMiss = scoreManager.OneHandMiss + scoreManager.LongMiss + scoreManager.DragMiss + scoreManager.PostureMiss + scoreManager.JestureMiss;
+
+            spriteBatch.DrawString(Game1.georgia, totalPerfect.ToString(), new Vector2(330, 370), Color.Gray);
+            spriteBatch.DrawString(Game1.georgia, totalGood.ToString(), new Vector2(330, 430), Color.Gray);
+            spriteBatch.DrawString(Game1.georgia, scoreManager.OneHandBad.ToString(), new Vector2(330, 490), Color.Gray);
+            spriteBatch.DrawString(Game1.georgia, totalMiss.ToString(), new Vector2(330, 550), Color.Gray);
 
             spriteBatch.DrawString(Game1.georgia, scoreManager.Perfomance.ToString(), new Vector2(800, 370), Color.Gray);
             spriteBatch.DrawString(Game1.georgia, scoreManager.Max.ToString(), new Vector2(800, 430), Color.Gray);

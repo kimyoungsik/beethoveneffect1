@@ -18,8 +18,6 @@ myPicture.jpg$130
 myPicture.jpg$90
 myPicture.jpg$10
 %%
-music
-%%
 kim
 myPicture.jpg$30
 myPicture.jpg$0
@@ -29,4 +27,11 @@ abc
 myPicture.jpg$10
 myPicture.jpg$0
 myPicture.jpg$0
+%%
+child
+myPicture.jpg$115
+myPicture.jpg$95
+myPicture.jpg$85
+myPicture.jpg$85
+myPicture.jpg$75
 **
