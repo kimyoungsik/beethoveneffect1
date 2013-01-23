@@ -100,7 +100,7 @@ namespace beethoven3
                 }
                 catch (ArgumentOutOfRangeException)
                 {
-                    //Trace.WriteLine("out of range in dragnote");
+                   
                 }
             }
         }
@@ -112,7 +112,7 @@ namespace beethoven3
              
                 //미스 띄워주기 
                 missBanner.AddBanners(new Vector2(1024 / 2 - (missSize.X * 0.2f) / 2, 769 / 2 - (missSize.Y * 0.2f) / 2), 0.2f);
-
+               
                 dragNotes.RemoveAt(i);
                 //***이거 잘못된듯 
                 //드래그 노트실패하면 깍아야 할듯  

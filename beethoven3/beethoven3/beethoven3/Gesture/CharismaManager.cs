@@ -80,6 +80,7 @@ namespace beethoven3
         private Texture2D charisma4;
         private Texture2D charisma5;
         private Texture2D charismaMessage;
+        private Texture2D neutralMessage;
         //카리스마 위치
         public Rectangle picLocation = new Rectangle(0, 0, 1024, 769);
 
@@ -106,11 +107,12 @@ namespace beethoven3
          public void LoadContent(ContentManager cm)
         {
             charismaMessage = cm.Load<Texture2D>(@"charisma\Sitt_Message");
+            neutralMessage = cm.Load<Texture2D>(@"charisma\Sitt_N_Message");
             charisma1 = cm.Load<Texture2D>(@"charisma\Sitt_1");
             charisma2 = cm.Load<Texture2D>(@"charisma\Sitt_2");
             charisma3 = cm.Load<Texture2D>(@"charisma\Sitt_3");
             charisma4 = cm.Load<Texture2D>(@"charisma\Sitt_4");
-            charisma5 = cm.Load<Texture2D>(@"charisma\Sitt_1");
+            charisma5 = cm.Load<Texture2D>(@"charisma\Sitt_5");
 
         }
         #endregion
@@ -219,9 +221,18 @@ namespace beethoven3
 
               if (currentTime >= charismaFrame.StartTime )
               {
-                  spriteBatch.Draw(charismaFrame.Texture, picLocation, Color.White);
-                  spriteBatch.Draw(charismaMessage, new Rectangle(0, 0, 1024, 769), Color.White);
+                 
 
+                  if (type != 6)
+                  {
+                      spriteBatch.Draw(charismaMessage, new Rectangle(0, 0, 1024, 769), Color.White);
+                  }
+                  else
+                  {
+                      spriteBatch.Draw(neutralMessage, new Rectangle(0, 0, 1024, 769), Color.White);
+                  }
+
+                  spriteBatch.Draw(charismaFrame.Texture, picLocation, Color.White);
               }
               //if (currentTime >= charismaFrame.EndTime)
               //{

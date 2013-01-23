@@ -402,7 +402,7 @@ namespace beethoven3
                         {
                             dragNoteManager.DeleteDragNotes();
                         }
-                        if (count == 20)
+                        if (count == 30)
                         {
                             count = 0;
                             //드래그 노트 실패 띄우기 1

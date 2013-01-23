@@ -155,6 +155,7 @@
     <Compile Include="Item\EffectItemShop.cs" />
     <Compile Include="Effect\ExplosionManager.cs" />
     <Compile Include="File\File.cs" />
+    <Compile Include="Menu\BackJestureManager.cs" />
     <Compile Include="Menu\ShowPictureScene.cs" />
     <Compile Include="Note\RightNoteInfo.cs" />
     <Compile Include="Curve\GoldManager.cs" />

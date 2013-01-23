@@ -43,7 +43,7 @@ namespace beethoven3
         Texture2D[] showPictureTextures = new Texture2D[5];
         //Joint rightJoint;
         //Joint leftJoint;
-
+        Texture2D backJesture;
 
         //temp
 
@@ -252,6 +252,7 @@ namespace beethoven3
         //곡 중간에 점수,골드 관리
         private ScoreManager scoreManager;
 
+        private BackJestureManager backJestureManager;
 
         //악기연주자 관리
         private MemberManager memberManager;
@@ -473,6 +474,8 @@ namespace beethoven3
             //resultFmod = FMOD.Factory.System_Create(ref sndSystem);
             //sndSystem.init(1, FMOD.INITFLAG.NORMAL, (IntPtr)null);
             ////FMOD 세팅 -END
+            backJesture = Content.Load<Texture2D>(@"game1\backJesture");
+            backJestureManager = new BackJestureManager(backJesture, new Rectangle(0, 0, 204, 204), 10, new Vector2(800, 500));
 
            sit1 = Content.Load<Texture2D>(@"sit\Sitt_1");
            //타이틀화면
@@ -1690,7 +1693,7 @@ namespace beethoven3
                                 //손만
                                 ColorImagePoint point = depthLocation[ImageParam.Width * j + i];
                                 depth[indexCount] = ImageBits[ImageParam.Width * j + i] >> DepthImageFrame.PlayerIndexBitmaskWidth;//인덱스 오류
-                                //Trace.WriteLine(indexCount);
+                               
                                 indexCount++;
                             }
                         }
@@ -2293,21 +2296,34 @@ namespace beethoven3
                 if (!s.Contains("__UNKNOWN"))
                 {
                     postureCount++;
-                    message = "stop yes";
+                   // message = "stop yes";
+                    backJestureManager.ShowJestureMark = true;
                     if (postureCount > 5)
                     {
                         //여기에 정지했을 때 동작 넣기
-                        file.SetEndFile(true);
-                        postureCount = 0;
-                        message = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
 
+
+                        if (gameState == GameStates.Playing)
+                        {
+
+                            file.SetEndFile(true);
+                        }
+
+
+                        
+                        
+                        postureCount = 0;
+                  
+
+                        backJestureManager.ShowJestureMark = false;
                     }
                 }
 
                 if (s.Contains("__UNKNOWN"))
                 {
                     postureCount = 0;
-                    message = "stop no";
+                 //   message = "stop no";
+                    backJestureManager.ShowJestureMark = false;
                 }
 
 
@@ -2349,25 +2365,25 @@ namespace beethoven3
                     _video = new ArrayList();
                 }
 
-                if (!gestureFlag)
-                {
-                    //Skeleton2DDataExtract.Skeleton2DdataCoordReady -= NuiSkeleton2DdataCoordReadyPosture;
-                    //gestureType = 1;
-                    //postureCount = 0;
-                    //gestureFlag = true;
-                    //string fileName = "111.txt";
-                    //LoadGesturesFromFile(fileName);
-                    //Skeleton2DDataExtract.Skeleton2DdataCoordReady += NuiSkeleton2DdataCoordReadyStop;
-                }
                 if (gestureFlag)
                 {
                     if (!s.Contains("__UNKNOWN"))
                     {
                         postureCount++;
-                        message = "posture yes";
-                        perfectBannerManager.AddBanners(new Vector2(this.Window.ClientBounds.Width / 2 - 1380 / 4, this.Window.ClientBounds.Height / 2 - 428 / 4), 0.7f);
-                        scoreManager.Perfomance = scoreManager.Perfomance + 1;
-                            
+                        //message = "posture yes";
+                        perfectBannerManager.AddBanners(collisionManager.perfectLocation,collisionManager.perfectBannerScale);
+                       // scoreManager.Perfomance = scoreManager.Perfomance + 1;
+                        scoreManager.PosturePerfect+=10;
+                        scoreManager.Combo++;
+
+                        collisionManager.AddComboNumber((int)scoreManager.Combo, 0);
+
+
+
+
+                        scoreManager.Gage++;
+
+
                         if (postureCount > 5)
                         {
                             
@@ -2377,7 +2393,7 @@ namespace beethoven3
 
                     if (s.Contains("__UNKNOWN"))
                     {
-                        message = "posture no";
+                        //message = "posture no";
                     }
                 }
             }
@@ -2401,7 +2417,7 @@ namespace beethoven3
         //제스쳐
         private void NuiSkeleton2DdataCoordReadyGesture(object sender, Skeleton2DdataCoordEventArgs a)
         {
-            Trace.WriteLine(gestureFlag);
+          
             if (_video.Count > MinimumFrames)
             {
 
@@ -2413,31 +2429,40 @@ namespace beethoven3
                     _video = new ArrayList();
                 }
 
-                if (!gestureFlag)
-                {
-                    //Skeleton2DDataExtract.Skeleton2DdataCoordReady -= NuiSkeleton2DdataCoordReadyGesture;
-                    //gestureType = 1;
-                    //postureCount = 0;
-                    //gestureFlag = true;
-                    //string fileName = "111.txt";
-                    //LoadGesturesFromFile(fileName);
-                    //Skeleton2DDataExtract.Skeleton2DdataCoordReady += NuiSkeleton2DdataCoordReadyStop;
-                }
+
                 if (gestureFlag)
                 {
                     if (!s.Contains("__UNKNOWN"))
                     {
-                        perfectBannerManager.AddBanners(new Vector2(this.Window.ClientBounds.Width / 2 - 1380 / 4, this.Window.ClientBounds.Height / 2 - 428 / 4), 0.7f);
-                        scoreManager.Perfomance = scoreManager.Perfomance + 1;
+                       scoreManager.Perfomance = scoreManager.Perfomance + 1;
+                        if (score < 1.2 && score>=0.8)//굳
+                        {
+                           
+                            goodBannerManager.AddBanners(collisionManager.goodLocation, collisionManager.goodBannerScale);
+                            scoreManager.JestureGood ++ ;
+                            scoreManager.Combo++;
+                            collisionManager.AddComboNumber((int)scoreManager.Combo, 1);
 
+
+                        }
+                        else if (score < 0.8)//퍼펙트
+                        {
+                            perfectBannerManager.AddBanners(collisionManager.perfectLocation, collisionManager.perfectBannerScale);
+                            scoreManager.JesturePerfect ++;
+                            scoreManager.Combo++;
+                            collisionManager.AddComboNumber((int)scoreManager.Combo, 0);
+
+
+                        }
 
                         message = "yes" + score.ToString();
                         gestureFlag = false;
+                        postureCount++;
                     }
 
                     if (s.Contains("__UNKNOWN"))
                     {
-                        message = "no";
+                        //message = "no";
                     }
                 }
             }
@@ -2497,6 +2522,7 @@ namespace beethoven3
                     if (gestureType == 1)
                     {
                         _dtw1.AddOrUpdate(frames, gestureName);
+                        
                     }
                     if (gestureType == 2)
                     {
@@ -2720,8 +2746,7 @@ namespace beethoven3
         ////    {              
         ////        //처음시작 
         ////        chagneLimitedTime += gameTime.ElapsedGameTime.TotalMilliseconds;
-        ////        //Trace.WriteLine(chagneLimitedTime.ToString());
-                
+    
                 
         ////        if (chagneLimitedTime >= 3000 && oneTime)
         ////        {
@@ -2904,7 +2929,7 @@ namespace beethoven3
             {
 
                 float fCurrentVolume = SoundFmod.GetVolume();
-                //Trace.WriteLine(fCurrentVolume);
+              
             }
 
             //스트로크 3
@@ -2914,7 +2939,7 @@ namespace beethoven3
 
              //   RESULT a = SoundFmod.sndChannel.setVolume(0.5f);
              ////   SoundFmod.sndChannel.setPaused(true);
-             //   Trace.WriteLine(volume);
+            
             }
            
         }
@@ -3707,6 +3732,8 @@ namespace beethoven3
            }
            mouseStatePrevious = mouseStateCurrent;
            pastClick = finalClick;
+
+           backJestureManager.Update(gameTime);
            base.Update(gameTime);
         }
 
@@ -4132,7 +4159,7 @@ namespace beethoven3
              
 
                 double tempo =SoundFmod.changedTempo;
-              //  Trace.write(tempo);
+             
 
                 uiProcessTime = file.ProcessTime;
     
@@ -4269,6 +4296,7 @@ namespace beethoven3
                                 ////카리스마타임 제스쳐 시작부분
                                 Skeleton2DDataExtract.Skeleton2DdataCoordReady -= NuiSkeleton2DdataCoordReadyStop;
                                 gestureType = 3;
+                                postureCount = 0;
                                 gestureFlag = true;
                                 fileName = "66.txt";
                                 LoadGesturesFromFile(fileName);
@@ -4304,14 +4332,47 @@ namespace beethoven3
 
                     if (!isGesture)
                     {
-
+                        //포스쳐 
                         if (gestureType == 2)
                         {
                             Skeleton2DDataExtract.Skeleton2DdataCoordReady -= NuiSkeleton2DdataCoordReadyPosture;
+
+                            if (postureCount == 0)
+                            {
+                                missBannerManager.AddBanners(collisionManager.missLocation ,collisionManager.missBannerScale);
+                                scoreManager.Gage -= 20;
+
+
+                                if (scoreManager.Combo > scoreManager.Max)
+                                {
+                                    scoreManager.Max = scoreManager.Combo;
+                                }
+                                scoreManager.Combo = 0;
+                            
+                            }
+
+
                         }
+
+                        //제스쳐
                         if (gestureType == 3)
                         {
                             Skeleton2DDataExtract.Skeleton2DdataCoordReady -= NuiSkeleton2DdataCoordReadyGesture;
+                            if (postureCount == 0)
+                            {
+                                missBannerManager.AddBanners(collisionManager.missLocation, collisionManager.missBannerScale);
+
+                                scoreManager.Gage -= 20;
+
+
+                                if (scoreManager.Combo > scoreManager.Max)
+                                {
+                                    scoreManager.Max = scoreManager.Combo;
+                                }
+                                scoreManager.Combo = 0;
+                            }
+
+
                         }
                         gestureType = 1;
                         postureCount = 0;
@@ -4320,7 +4381,8 @@ namespace beethoven3
                         LoadGesturesFromFile(fileName);
                         Skeleton2DDataExtract.Skeleton2DdataCoordReady += NuiSkeleton2DdataCoordReadyStop;
                         isGesture = true;
-                      //  charismaManager.charismaFrames.Dequeue();
+                      
+
                     }
 
 
@@ -4634,6 +4696,9 @@ namespace beethoven3
 //                    }
 //            }
 //#endif
+
+
+            backJestureManager.Draw(spriteBatch);
             spriteBatch.End();
             
             base.Draw(gameTime);
@@ -4661,34 +4726,24 @@ namespace beethoven3
 
             }
 
-            //if (j1r.Position.X < 0 || j1r.Position.Y < 0)
-            //{
 
-            //    int j = 1;
-            //    j++;
+            //스케일 없을떄는.,
+            //spriteBatch.Draw(rightHandTextures[itemManager.getRightHandIndex()],new Vector2(drawrec1.X, drawrec1.Y),Color.White);
 
-            //    j = 3;
+            spriteBatch.Draw(
+             rightHandTextures[itemManager.getRightHandIndex()],
+                    //위치: Center-> location 으로 바꿈 (마커와 노트 매칭 떄문에 )
+             new Vector2(drawrec1.X, drawrec1.Y),
 
-
-            //}
-
-
-            spriteBatch.Draw(rightHandTextures[itemManager.getRightHandIndex()],new Vector2(drawrec1.X, drawrec1.Y),Color.White);
-
-              //   spriteBatch.Draw(
-              //rightHandTextures[itemManager.getRightHandIndex()],
-              //  //위치: Center-> location 으로 바꿈 (마커와 노트 매칭 떄문에 )
-              //new Vector2(drawrec1.X, drawrec1.Y),
-
-              //null,
-              //Color.White,
-              //0f,
-              //  //origin ->  new Vector2(frameWidth / 2, frameHeight / 2) ->  new Vector2(0,0) 으로 바꿈 (마커와 노트 매칭 떄문에 )
-              //new Vector2(0, 0),
-              //  //오른쪽 마크 크기 
-              //1f,
-              //SpriteEffects.None,
-              //0.0f);   
+             null,
+             Color.White,
+             0f,
+                    //origin ->  new Vector2(frameWidth / 2, frameHeight / 2) ->  new Vector2(0,0) 으로 바꿈 (마커와 노트 매칭 떄문에 )
+             new Vector2(0, 0),
+                    //오른쪽 마크 크기 
+             0.8f,
+             SpriteEffects.None,
+             0.0f);   
 
             j2r = j2.ScaleTo(SCR_W, SCR_H, userParam, userParam);
 
@@ -4699,24 +4754,24 @@ namespace beethoven3
 
             Texture2D leftHandTexture = leftHandTextures[itemManager.getLeftHandIndex()];
             
-          //   spriteBatch.Draw(leftHandTexture,new Vector2((float)drawrec2.X - (float)(leftHandTexture.Width * 0.35), (float)drawrec2.Y - (float)(leftHandTexture.Height * 0.35)),Color.White);
-            spriteBatch.Draw(leftHandTexture, new Vector2((float)drawrec2.X - (float)(leftHandTexture.Width * 0.5), (float)drawrec2.Y - (float)(leftHandTexture.Height * 0.5)), Color.White);
+            //스케이 ㄹ없을 때는
+             //spriteBatch.Draw(leftHandTexture, new Vector2((float)drawrec2.X - (float)(leftHandTexture.Width * 0.5), (float)drawrec2.Y - (float)(leftHandTexture.Height * 0.5)), Color.White);
 
 
-            //spriteBatch.Draw(
-            // leftHandTexture,
-            //    //위치: Center-> location 으로 바꿈 (마커와 노트 매칭 떄문에 )
-            // new Vector2((float)drawrec2.X - (float)(leftHandTexture.Width * 0.35), (float)drawrec2.Y - (float)(leftHandTexture.Height * 0.35)),
+            spriteBatch.Draw(
+             leftHandTexture,
+                //위치: Center-> location 으로 바꿈 (마커와 노트 매칭 떄문에 )
+             new Vector2((float)drawrec2.X - (float)(leftHandTexture.Width * 0.5), (float)drawrec2.Y - (float)(leftHandTexture.Height * 0.5)),
 
-            // null,
-            // Color.White,
-            // 0f,
-            //    //origin ->  new Vector2(frameWidth / 2, frameHeight / 2) ->  new Vector2(0,0) 으로 바꿈 (마커와 노트 매칭 떄문에 )
-            //  new Vector2(0, 0),
-            //    //오른쪽 마크 크기 
-            // 0.7f,
-            // SpriteEffects.None,
-            // 0.0f);   
+             null,
+             Color.White,
+             0f,
+                //origin ->  new Vector2(frameWidth / 2, frameHeight / 2) ->  new Vector2(0,0) 으로 바꿈 (마커와 노트 매칭 떄문에 )
+              new Vector2(0, 0),
+                //오른쪽 마크 크기 
+             0.5f,
+             SpriteEffects.None,
+             0.0f);   
 
         }
 #endif

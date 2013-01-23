@@ -29,16 +29,16 @@ myPicture.jpg$0
 myPicture.jpg$0
 %%
 child
+myPicture.jpg$327
+myPicture.jpg$327
+myPicture.jpg$285
+myPicture.jpg$260
 myPicture.jpg$225
-myPicture.jpg$164
-myPicture.jpg$163
-myPicture.jpg$115
-myPicture.jpg$95
 %%
 Beethoven Virus
+gesture_23_18_18_51.jpg$1099
+gesture_23_18_14_2.jpg$982
 gesture_23_10_5_19.jpg$399
-myPicture.jpg$0
-myPicture.jpg$0
-myPicture.jpg$0
-myPicture.jpg$0
+gesture_23_18_45_35.jpg$313
+gesture_23_18_22_40.jpg$278
 **

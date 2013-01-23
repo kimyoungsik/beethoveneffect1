@@ -1583,7 +1583,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\LeftHand\Left_3.xnb</Output>
-      <Time>2013-01-21T20:57:08+09:00</Time>
+      <Time>2013-01-23T20:28:11.8952213+09:00</Time>
     </Item>
     <Item>
       <Source>LeftHand\Left_2.png</Source>
@@ -1902,6 +1902,60 @@
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\charisma\Sitt_Message.xnb</Output>
       <Time>2013-01-23T05:34:31.9212662+09:00</Time>
+    </Item>
+    <Item>
+      <Source>charisma\Sitt_N_Message.png</Source>
+      <Name>charisma\Sitt_N_Message</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\charisma\Sitt_N_Message.xnb</Output>
+      <Time>2013-01-23T17:19:52.0429068+09:00</Time>
+    </Item>
+    <Item>
+      <Source>charisma\Sitt_5.png</Source>
+      <Name>charisma\Sitt_5</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\charisma\Sitt_5.xnb</Output>
+      <Time>2013-01-23T17:19:58.7142883+09:00</Time>
+    </Item>
+    <Item>
+      <Source>LeftHand\Left_5.png</Source>
+      <Name>LeftHand\Left_5</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\LeftHand\Left_5.xnb</Output>
+      <Time>2013-01-23T17:35:40.7281685+09:00</Time>
+    </Item>
+    <Item>
+      <Source>game1\backJesture.png</Source>
+      <Name>game1\backJesture</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\game1\backJesture.xnb</Output>
+      <Time>2013-01-23T18:01:36.997182+09:00</Time>
+    </Item>
+    <Item>
+      <Source>background\Back_ssum_park.png</Source>
+      <Name>background\Back_ssum_park</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\background\Back_ssum_park.xnb</Output>
+      <Time>2013-01-23T20:25:50.8411535+09:00</Time>
+    </Item>
+    <Item>
+      <Source>LeftHand\Left_6.png</Source>
+      <Name>LeftHand\Left_6</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\LeftHand\Left_6.xnb</Output>
+      <Time>2013-01-23T20:27:52.5381142+09:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

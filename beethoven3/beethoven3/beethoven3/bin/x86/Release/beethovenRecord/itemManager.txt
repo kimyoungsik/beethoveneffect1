@@ -1,12 +1,14 @@
 **
 rightHand
 1
+2
 4
-2
 $$
-2
+4
 leftHand
 0
+1
+2
 $$
 0
 effect
@@ -15,7 +17,7 @@ effect
 3
 2
 $$
-0
+2
 note
 0
 2

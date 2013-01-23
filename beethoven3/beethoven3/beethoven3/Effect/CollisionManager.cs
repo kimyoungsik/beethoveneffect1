@@ -53,11 +53,13 @@ namespace beethoven3
         private float missBannerScale = 0.2f;
 
 
-        private Vector2 perfectSize = new Vector2(1380.0f, 428.0f);
-        private Vector2 goodSize = new Vector2(1020.0f, 368.0f);
-        private Vector2 badSize = new Vector2(782.0f, 400.0f);
-        private Vector2 missSize = new Vector2(975.0f, 412.0f);
+        public Vector2 perfectSize = new Vector2(1380.0f, 428.0f);
+        public Vector2 goodSize = new Vector2(1020.0f, 368.0f);
+        public Vector2 badSize = new Vector2(782.0f, 400.0f);
+        public Vector2 missSize = new Vector2(975.0f, 412.0f);
        // private bool isEarlyOne = true;
+
+        private int timerForLongNote = 0;
         #endregion 
 
         #region constructor
@@ -278,6 +280,12 @@ namespace beethoven3
 
         //}
 
+        public int TimerForLongNote
+        {
+            get { return timerForLongNote; }
+            set { timerForLongNote = value; }
+        }
+
 
         private void checkRightNoteToMarker(int number,Vector2 mousePoint)
         {
@@ -306,7 +314,7 @@ namespace beethoven3
                     //0번 스타트 노트에서 출발한것은 알 수가 있는가?
 
                     //노트와 마커의 센터 위치 파악 하기 위한 것.
-                 //   Trace.WriteLine("noteCenter:"+littleNote.Center+" markcndter:"+MarkManager.Marks[number].MarkSprite.Center);
+                 
                  //   Vector2 notecenter = littleNote.Center;
                  //   Vector2 markcenter = MarkManager.Marks[number].MarkSprite.Center;
 
@@ -1301,10 +1309,20 @@ namespace beethoven3
 
                             
                             StartNoteManager.longNoteManager.LittleNotes.RemoveAt(x);
-                            
+                            timerForLongNote++;
+                            Trace.WriteLine(timerForLongNote);
                             //effect -> bad가 long노트의 이펙트.
+                            if (timerForLongNote == 1)
+                            {
+                                badManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
+                               
 
-                            badManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
+                            }
+                            else if (timerForLongNote == 50)
+                            {
+
+                                timerForLongNote = 0;
+                            }
 
                             scoreManager.LongPerfect++;
                             scoreManager.Combo+=0.1f;
@@ -1426,7 +1444,7 @@ namespace beethoven3
         public void CheckLeftHandCollisions(int number, Vector2 mousePoint)
         {
             checkLeftNoteToMarker(number, mousePoint);
-            checkLongNoteToMarker(number, mousePoint);
+           // checkLongNoteToMarker(number, mousePoint);
           //  checkGold(mousePoint);
         }
 

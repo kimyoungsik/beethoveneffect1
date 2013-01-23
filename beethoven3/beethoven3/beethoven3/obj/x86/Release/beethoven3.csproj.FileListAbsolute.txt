@@ -220,3 +220,9 @@ D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\charisma\S
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\charisma\Sitt_3.xnb
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\charisma\Sitt_4.xnb
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\charisma\Sitt_Message.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\charisma\Sitt_N_Message.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\charisma\Sitt_5.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\LeftHand\Left_5.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\game1\backJesture.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\background\Back_ssum_park.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\LeftHand\Left_6.xnb

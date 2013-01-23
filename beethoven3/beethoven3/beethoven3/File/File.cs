@@ -255,17 +255,17 @@ namespace beethoven3
                         else
                         {
 
-                            Trace.WriteLine("can not read file");
+                         
                         }
                     }
                     else
                     {
-                        Trace.WriteLine("can not read file");
+                    
                     }
                 }
                 else
                 {
-                    Trace.WriteLine("can not read file");
+                  
                 }
             }
             
@@ -406,7 +406,7 @@ namespace beethoven3
                     }
                     catch (IndexOutOfRangeException ex)
                     {
-                        Trace.WriteLine(ex);
+                      
                     }
                 }
             
@@ -637,7 +637,7 @@ namespace beethoven3
                     if (guideline.FirstStartTime <= processTime)
                     {
                         DrawGuideLineInfo guideline2 = (DrawGuideLineInfo)drawGuideLineQueue.Dequeue();
-                     //   Trace.WriteLine(guideline.StartMarkLocation +"-"+ guideline.EndMarkLocation);
+                     
                         DrawGuidLine(guideline2.StartMarkLocation, guideline2.EndMarkLocation, guideline2.Gold, guideline2.FirstStartTime, guideline2.SecondStartTime);
                     }
                 }
@@ -659,9 +659,9 @@ namespace beethoven3
                     {
                         //PlayNote(타입,날아가는 마커 위치)
                         //타입 0-오른손 1-왼손 2-양손 3-롱노트 4-드래그노트 
-                        //Trace.WriteLine(processTime);
+                       
 
-                        //Trace.WriteLine(arrayNotes[0].Type);
+                       
                         //오른손 노트
 
                         if (arrayNotes[0].Type == "1")
@@ -742,6 +742,7 @@ namespace beethoven3
                              필요하다면 만들 수 도 있다.
                              */
 
+                            collisionManager.TimerForLongNote = 0;
                             //첫롱노트 
                             startNoteManager.MakeLongNote(arrayNotes[0].MarkLocation,1.0f,false);
                             
@@ -998,7 +999,7 @@ namespace beethoven3
                         }
                         catch (ArgumentOutOfRangeException)
                         {
-                            Trace.WriteLine("outofrange in longnote");
+                           
                         }
 
                     }
@@ -1221,7 +1222,7 @@ namespace beethoven3
             //오른노트가 사각형 범위로 가면 지워지도록
          //   CheckRightNoteInCenterArea();
          //   CheckLeftNoteInCenterArea();
-            //Trace.WriteLine(this.time);
+        
 
 
                 this.time += gameTime.ElapsedGameTime.TotalSeconds;

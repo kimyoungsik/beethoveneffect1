@@ -234,7 +234,7 @@ namespace beethoven3
 
             //반/2 보다 가까울때  , perfect
 
-          //  Trace.WriteLine(Vector2.Distance(Center, otherCenter));
+        
             //마커 센터에서 노트의 센터 사이의 거리가  마커의 radius/2 보다 작을 떄  
             if (Vector2.Distance(Center, noteCenter) <
                 (CollisionRadius/2))
@@ -266,7 +266,7 @@ namespace beethoven3
 
             //반/2 보다 가까울때  , perfect
 
-            //  Trace.WriteLine(Vector2.Distance(Center, otherCenter));
+          
             //마커 센터에서 노트의 센터 사이의 거리가  마커의 radius/2 보다 작을 떄  
             if (Vector2.Distance(Center, noteCenter) <
                 (CollisionRadius / 2))
@@ -290,7 +290,7 @@ namespace beethoven3
 
             //반/2 보다 가까울때  , perfect
 
-            //  Trace.WriteLine(Vector2.Distance(Center, otherCenter));
+           
             //마커 센터에서 노트의 센터 사이의 거리가  마커의 radius/2 보다 작을 떄  
             if (Vector2.Distance(Center, noteCenter) <
                 (CollisionRadius*2))
@@ -315,7 +315,7 @@ namespace beethoven3
 
             //반/2 보다 가까울때  , perfect
 
-            //  Trace.WriteLine(Vector2.Distance(Center, otherCenter));
+           
             //마커 센터에서 노트의 센터 사이의 거리가  마커의 radius/2 보다 작을 떄  
             if (Vector2.Distance(Center, noteCenter) <
                 (CollisionRadius / 2))

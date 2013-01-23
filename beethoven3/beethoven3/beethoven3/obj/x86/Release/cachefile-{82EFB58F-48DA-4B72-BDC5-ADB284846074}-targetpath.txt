@@ -212,3 +212,9 @@ Content\charisma\Sitt_2.xnb
 Content\charisma\Sitt_3.xnb
 Content\charisma\Sitt_4.xnb
 Content\charisma\Sitt_Message.xnb
+Content\charisma\Sitt_N_Message.xnb
+Content\charisma\Sitt_5.xnb
+Content\LeftHand\Left_5.xnb
+Content\game1\backJesture.xnb
+Content\background\Back_ssum_park.xnb
+Content\LeftHand\Left_6.xnb

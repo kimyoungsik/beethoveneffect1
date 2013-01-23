@@ -138,7 +138,7 @@ namespace beethoven3
                 int count = 0;
                 for (i = 0; i < rectBackgroundItems.Count; i++)
                 {
-                    //Trace.WriteLine(finalClick + " - " + pastClick);
+                
                     //아이템을 선택 했을때
                     if (mouseRect.Intersects(rectBackgroundItems[i]) || rightHandPosition.Intersects(rectBackgroundItems[i]))
                     {
@@ -300,13 +300,13 @@ namespace beethoven3
                             //아이템을 찾지 못했으면
                             else
                             {
-                                //Trace.WriteLine("get wrong index( no item in list)");
+                             
                             }
                         }
                         //선택된 아이템이 없으면
                         else
                         {
-                            // Trace.WriteLine("nothing is selected");
+                          
                         }
                     }
                 }
@@ -369,7 +369,7 @@ namespace beethoven3
                                 //아이템을 찾지 못했으면
                                 else
                                 {
-                                    //  Trace.WriteLine("get wrong index( no item in list)");
+                                   
                                 }
                             }
                             else
