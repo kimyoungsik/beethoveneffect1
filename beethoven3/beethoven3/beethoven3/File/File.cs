@@ -27,8 +27,6 @@ namespace beethoven3
         
         public List<NoteInfo> arrayNotes = new List<NoteInfo>(); 
 
-
-
         private double noteTime;
         private bool newNote = true;
         private bool drawLine = false;

@@ -63,12 +63,10 @@ namespace beethoven3
         #region update and draw
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-       
             foreach (GuideLine guideLine in GuideLines)
             {
                 guideLine.Draw(gameTime, spriteBatch);
-            }
-            
+            }   
         }
 
         #endregion

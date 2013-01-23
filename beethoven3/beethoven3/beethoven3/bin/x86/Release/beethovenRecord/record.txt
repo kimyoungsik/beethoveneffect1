@@ -43,9 +43,9 @@ gesture_23_18_45_35.jpg$313
 gesture_23_18_22_40.jpg$278
 %%
 Untitled
-myPicture.jpg$0
-myPicture.jpg$0
-myPicture.jpg$0
-myPicture.jpg$0
+gesture_24_1_50_27.jpg$330
+gesture_24_1_47_34.jpg$174
+myPicture.jpg$27
+myPicture.jpg$13
 myPicture.jpg$0
 **

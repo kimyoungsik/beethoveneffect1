@@ -1323,7 +1323,7 @@ namespace beethoven3
                 hands = new List<Hand>();
 
                 //제스쳐2
-                _dtw1 = new DtwGestureRecognizer(12, 0.8, 2, 2, 2);//정지포스쳐
+                _dtw1 = new DtwGestureRecognizer(12, 0.6, 1.2, 2, 2);//정지포스쳐
                 _dtw2 = new DtwGestureRecognizer(12, 1.2, 2, 2, 2);//일반포스쳐
                 _dtw3 = new DtwGestureRecognizer(12, 1.2, 2, 2, 10);//제스쳐
 
@@ -2297,8 +2297,12 @@ namespace beethoven3
                 {
                     postureCount++;
                    // message = "stop yes";
-                    backJestureManager.ShowJestureMark = true;
-                    if (postureCount > 5)
+                   // backJestureManager.ShowJestureMark = true;
+                    if (postureCount > 2 && postureCount <= 7)
+                    {
+                        backJestureManager.ShowJestureMark = true;
+                    }
+                    if (postureCount > 7)
                     {
                         //여기에 정지했을 때 동작 넣기
 

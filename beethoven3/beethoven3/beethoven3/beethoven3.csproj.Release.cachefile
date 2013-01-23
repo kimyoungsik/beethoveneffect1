@@ -23,6 +23,7 @@ Content\Explosion\heartExplosion2.xnb
 Content\character\contrabase1.xnb
 Content\character\contrabase3.xnb
 Content\character\contrabase2.xnb
+Content\Explosion\leafExplosion2.xnb
 Content\Explosion\starGoodEffect.xnb
 Content\Explosion\starPerfectEffect.xnb
 Content\DrawLine\drawLineNote1.xnb
@@ -180,11 +181,6 @@ Content\Textures\photoTime.xnb
 Content\settingBoard\setBackground.xnb
 Content\settingBoard\ok.xnb
 Content\settingBoard\okHover.xnb
-Content\snd\ka.xnb
-Content\snd\jo.xnb
-Content\snd\maid.xnb
-Content\MessageFont.xnb
-Content\Fonts\Georgia.xnb
 Content\background\BackG_1.xnb
 Content\background\BackG_2.xnb
 Content\background\BackG_3.xnb
@@ -202,7 +198,6 @@ Content\shopButton\hoverNoGoldButton.xnb
 Content\shopButton\handInItemBackground.xnb
 Content\sit\Sitt_1.xnb
 Content\Explosion\MusicNote_Thumnail.xnb
-Content\Explosion\leafExplosion2.xnb
 Content\Explosion\leafExplosion1.xnb
 Content\charisma\Sitt_1.xnb
 Content\charisma\Sitt_2.xnb
@@ -215,6 +210,11 @@ Content\LeftHand\Left_5.xnb
 Content\game1\backJesture.xnb
 Content\background\Back_ssum_park.xnb
 Content\LeftHand\Left_6.xnb
+Content\snd\ka.xnb
+Content\snd\jo.xnb
+Content\snd\maid.xnb
+Content\MessageFont.xnb
+Content\Fonts\Georgia.xnb
 Content\snd\ka.wma
 Content\snd\jo.wma
 Content\snd\maid.wma
