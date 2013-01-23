@@ -3490,9 +3490,6 @@ namespace beethoven3
                 case GameStates.SongMenu:
 
 
-
-
-
                 resultSongMenu = songMenu.Update();
                    
 #if Kinect
@@ -4012,15 +4009,7 @@ namespace beethoven3
                     //setupKinect.draw();
 
                 }
-                //if (skeleton != null)
-                //{
-
-                //    if (skeleton.TrackingState == SkeletonTrackingState.Tracked)
-                //    {
-                //        drawpoint(skeleton.Joints[JointType.HandRight], skeleton.Joints[JointType.HandLeft]);
-
-                //    }
-                //}
+    
 #endif
 
             }
@@ -4037,15 +4026,7 @@ namespace beethoven3
                     //setupKinect.draw();
 
                 }
-                //if (skeleton != null)
-                //{
-
-                //    if (skeleton.TrackingState == SkeletonTrackingState.Tracked)
-                //    {
-                //        drawpoint(skeleton.Joints[JointType.HandRight], skeleton.Joints[JointType.HandLeft]);
-
-                //    }
-                //}
+          
 #endif
             }
 
@@ -4207,15 +4188,23 @@ namespace beethoven3
 
                 //하트. gage양 만큼 하트가 나타남.
 
-                //300은 현재 최대 width, 이건 그림이 바뀌면 바뀜
+                //330은 현재 최대 width, 이건 그림이 바뀌면 바뀜
                 //100은 gage의 최대값. 
 
-                int gageWidth = 4 * scoreManager.Gage;
 
-                //spriteBatch.Draw(uiHeart, new Vector2(0, 6), new Rectangle(0, 0, gageWidth, 50), Color.White);
-                //Trace.WriteLine(scoreManager.Gage);
+             
 
-                spriteBatch.Draw(energyDarkBack, new Vector2(0, 6), new Rectangle(0, 0, 372, 35), Color.White);
+
+                int gageWidth = (int)(3.3 * scoreManager.Gage);
+
+                if (gageWidth > 330)
+                {
+                    gageWidth = 330;
+                }
+              
+
+                spriteBatch.Draw(energyDarkBack, new Vector2(0, 6), new Rectangle(0, 0, 330, 35), Color.White);
+
 
                 spriteBatch.Draw(energy, new Vector2(0, 6), new Rectangle(0, 0, gageWidth, 35), Color.White);
                 spriteBatch.Draw(uiEnergyBackground, new Vector2(0, 0), Color.White);
@@ -4251,9 +4240,6 @@ namespace beethoven3
                                 fileName = "22.txt";
                                 LoadGesturesFromFile(fileName);
                                 Skeleton2DDataExtract.Skeleton2DdataCoordReady += NuiSkeleton2DdataCoordReadyPosture;
-
-
-
                             }
                             else if (charismaManager.Type == 2)
                             {
@@ -4265,7 +4251,6 @@ namespace beethoven3
                                 fileName = "22.txt";
                                 LoadGesturesFromFile(fileName);
                                 Skeleton2DDataExtract.Skeleton2DdataCoordReady += NuiSkeleton2DdataCoordReadyPosture;
-
                             }
                             else if (charismaManager.Type == 3)
                             {

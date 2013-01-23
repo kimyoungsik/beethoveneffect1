@@ -343,13 +343,13 @@ namespace beethoven3
 
 
 
-                //전체 라인을 그리는 것
-                //시간을 앞당겨서 미리 보여주는것도 이것
+                ////전체 라인을 그리는 것
+                ////시간을 앞당겨서 미리 보여주는것도 이것
                 for (i = 0; i < Points.Count - 1; i++)
                 {
                     j = i + 1;
                     Color color = Color.White;
-                   // color.A = 1;
+                    // color.A = 1;
                     //라인 그리기
                     lineRenderer.DrawLine(Game1.drawLineNote1, new Rectangle(0, 0, 100, 100), spriteBatch.GraphicsDevice, spriteBatch, (Vector2)Points[i], (Vector2)Points[j], color);
 
@@ -359,7 +359,7 @@ namespace beethoven3
                 {
                     spriteBatch.Draw(Game1.three, new Rectangle(0, 0, 275, 376), Color.White);
 
-                    
+
                 }
                 else if (startTime > 1000 && startTime < 2000)
                 {
@@ -375,7 +375,7 @@ namespace beethoven3
                 }
                
 
-                if (startTime > 3000)
+                if (startTime >= 3000)
                 {
                     //게임이 진행하는 전체 시간
 
@@ -384,7 +384,7 @@ namespace beethoven3
                     dotChangedTime += gameTime.ElapsedGameTime.TotalMilliseconds;
 
 
-
+                    double ti1 = time; 
                     //하나의 점이 /
                     //     if (dotChangedTime >= dotTime && PointsQueue.Count > 1)
                     if (PointsQueue.Count > 1)
@@ -397,7 +397,7 @@ namespace beethoven3
 
                             dragNoteManager.MakeDragNote(currentPosition, new Vector2(0, 0));
                         }
-                        count++;
+                        count++; 
                         if (count == 10)
                         {
                             dragNoteManager.DeleteDragNotes();
@@ -448,7 +448,7 @@ namespace beethoven3
                         }
                     }
 
-                }
+                }//
             }
         }
         #endregion

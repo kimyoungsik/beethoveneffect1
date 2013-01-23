@@ -47,16 +47,16 @@ namespace beethoven3
 
         private int gold;
 
-        private int combo;
-        
-        private int max;
+        private double combo;
+
+        private double max;
 
 
         private  int perfomance;
         
         private  int totalScore;
 
-        private int gage;
+        private double gage;
 
         private int totalGold;
 
@@ -279,18 +279,18 @@ namespace beethoven3
             set { jestureMiss = value; }
         }
 
-        public int Gage
+        public double Gage
         {
             get { return gage; }
             set {
-                if (value > 100)
-                {
-                    value = 100;
-                }
-                else if (value < 0)
-                {
-                    value = 0;
-                }
+                //if (value > 100)
+                //{
+                //    value = 100;
+                //}
+                //else if (value < 0)
+                //{
+                //    value = 0;
+                //}
                 
                 gage = value; }
         }
@@ -310,14 +310,14 @@ namespace beethoven3
             set { totalGold = value; }
         }
      
-        public int Max
+        public double Max
         {
             get { return max; }
             set { max = value; }
         }
 
-    
-        public int Combo
+
+        public double Combo
         {
             get { return combo; }
             set { combo = value; }

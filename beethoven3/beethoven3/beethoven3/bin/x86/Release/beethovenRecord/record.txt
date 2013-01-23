@@ -29,9 +29,16 @@ myPicture.jpg$0
 myPicture.jpg$0
 %%
 child
+myPicture.jpg$225
+myPicture.jpg$164
+myPicture.jpg$163
 myPicture.jpg$115
 myPicture.jpg$95
-myPicture.jpg$85
-myPicture.jpg$85
-myPicture.jpg$75
+%%
+Beethoven Virus
+gesture_23_10_5_19.jpg$399
+myPicture.jpg$0
+myPicture.jpg$0
+myPicture.jpg$0
+myPicture.jpg$0
 **

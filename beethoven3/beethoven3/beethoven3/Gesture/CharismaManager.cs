@@ -190,7 +190,9 @@ namespace beethoven3
                 case 5:
                     texture = charisma5;
                     break;
-
+                case 6:
+                    texture = charisma5;
+                    break;
           
             }
 
