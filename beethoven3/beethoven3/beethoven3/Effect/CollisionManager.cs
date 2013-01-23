@@ -35,10 +35,10 @@ namespace beethoven3
         private float roundPoint = 15.0f;
 
         private Vector2 sizeScreen;
-        private Vector2 perfectLocation;
-        private Vector2 goodLocation;
-        private Vector2 badLocation;
-        private Vector2 missLocation;
+        public Vector2 perfectLocation;
+        public Vector2 goodLocation;
+        public Vector2 badLocation;
+        public Vector2 missLocation;
 
         private Vector2 comboLocation;
        // private Vector2 goodComboLocation;
@@ -47,10 +47,10 @@ namespace beethoven3
 
 
 
-        private float perfectBannerScale = 0.2f;
-        private float goodBannerScale = 0.2f;
-        private float badBannerScale = 0.2f;
-        private float missBannerScale = 0.2f;
+        public float perfectBannerScale = 0.2f;
+        public float goodBannerScale = 0.2f;
+        public float badBannerScale = 0.2f;
+        public float missBannerScale = 0.2f;
 
 
         public Vector2 perfectSize = new Vector2(1380.0f, 428.0f);

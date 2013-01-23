@@ -50,10 +50,10 @@ namespace beethoven3
         {
             this.lineRenderer = lineRenderer;
             //다른 골드라인을 만들기 전에 , 지워주기
-             if(showGold)
-             {
+            if (showGold)
+            {
                 GoldManager.DeleteAll();
-             } 
+            } 
             this.showGold = showGold;
             SetLine(p0, p1, p2, p3, time);
             
@@ -136,8 +136,6 @@ namespace beethoven3
 
                     i++;
                     j++;
-
-
 
                 }
 

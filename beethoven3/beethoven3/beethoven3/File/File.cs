@@ -423,9 +423,9 @@ namespace beethoven3
 
         public void DrawGuidLine(int startMarkLocation, int endMarkLocation, bool gold, double firstStartTime, double secondStartTime)
         {
-            double ratio = 0.6;
+            double ratio = 0.5;
             //double startRatio = 0.2;
-            float firstAngle = 30;
+            float firstAngle = 60;
             float secondAngle = 90;
          //   Vector2 line;
             Vector2 start;
@@ -450,11 +450,17 @@ namespace beethoven3
             firstMid.X = start.X + (float)((angle.X * (length * ratio)));
             firstMid.Y = start.Y + (float)(angle.Y * (length * ratio));
 
+
+
             //두번쨰 각
             angle2 = new Vector2((float)Math.Cos((float)Math.Atan2(start.Y, start.X) - MathHelper.ToRadians(secondAngle)), (float)Math.Sin((float)Math.Atan2(start.Y, start.X) - MathHelper.ToRadians(secondAngle)));
             //두번째 제어점
             secondMid.X = start.X + (float)(angle2.X * (length * ratio));
             secondMid.Y = start.Y + (float)(angle2.Y * (length * ratio));
+
+
+
+
 
             guideLineManager.AddGuideLine(start, firstMid, secondMid, end, (secondStartTime - firstStartTime) * 1000, gold);
 
@@ -686,7 +692,7 @@ namespace beethoven3
                                     //현재 노트로 오른손노트이고 다음 노트도 오른손 노트일때
                                     if (arrayNotes[0].IsRight && arrayNotes[1].IsRight)
                                     {
-                                        DrawGuideLineInfo drawGuideLineInfo = new DrawGuideLineInfo(arrayNotes[0].MarkLocation - 1, arrayNotes[1].MarkLocation - 1, true, arrayNotes[0].StartTime, arrayNotes[1].StartTime);
+                                        DrawGuideLineInfo drawGuideLineInfo = new DrawGuideLineInfo(arrayNotes[0].MarkLocation - 1, arrayNotes[1].MarkLocation - 1, true, arrayNotes[0].StartTime+1.5/* 조금느리게 지워지게 하기 위해서  */, arrayNotes[1].StartTime);
                                     
                                         drawGuideLineQueue.Enqueue(drawGuideLineInfo);
                                       

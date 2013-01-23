@@ -20,7 +20,6 @@ namespace beethoven3
         //public => private // 삭제 영역에 들어가면 삭제 되는 곳에서 발견 // 내 생각엔 특별히 public으로 할 이유가 없다. 
         private List<Banner> Banners = new List<Banner>();
 
-
         #endregion
 
 
