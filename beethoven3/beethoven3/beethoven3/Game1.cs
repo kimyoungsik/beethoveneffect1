@@ -3716,7 +3716,8 @@ namespace beethoven3
                         file.Loading(resultSongMenu);
 
                         uiEndTime = file.EndTime;
-          
+
+                        SoundFmod.StopSound();
                         SoundFmod.PlaySound(songsDir + noteFileManager.noteFiles[resultSongMenu].Mp3);
                       
                     }

@@ -448,10 +448,10 @@ namespace beethoven3
             }
             if (opening)
             {
-                //SoundFmod.StopSound();
-                //SoundFmod.PlaySound(Game1.songsDir + noteFileManager.noteFiles[scene_number].Mp3);
-                //// songChanged = false;
-                //opening = false;
+               
+                SoundFmod.PlaySound(Game1.songsDir + noteFileManager.noteFiles[scene_number].Mp3);
+                // songChanged = false;
+                opening = false;
             }
 
           //  drawTop(spriteBatch);
@@ -523,7 +523,7 @@ namespace beethoven3
                 //곡 바꿀시 노래재생
                 if (frame == 90 && songChanged)
                 {
-                    //SoundFmod.StopSound();
+                    SoundFmod.StopSound();
                     SoundFmod.PlaySound(Game1.songsDir + noteFileManager.noteFiles[scene_number].Mp3);
                     songChanged = false;
                 }
@@ -539,8 +539,8 @@ namespace beethoven3
                 //곡 바꿀시 노래재생
                 if (frame == 90 && songChanged)
                 {
-                    //SoundFmod.StopSound();
-                    //SoundFmod.PlaySound(Game1.songsDir + noteFileManager.noteFiles[scene_number].Mp3);
+                    SoundFmod.StopSound();
+                    SoundFmod.PlaySound(Game1.songsDir + noteFileManager.noteFiles[scene_number].Mp3);
                     songChanged = false;
 
 

@@ -141,9 +141,15 @@ namespace beethoven3
         }
         public static void StopSound()
         {
+
+            sndSound.release();
+
+            sndSystem.release();
+       
             sndSystem.close();
-       //     sndSystem.release();
             ////다시 셋팅
+
+
             resultFmod = FMOD.Factory.System_Create(ref sndSystem);
             sndSystem.init(1, FMOD.INITFLAGS.NORMAL, (IntPtr)null);
 

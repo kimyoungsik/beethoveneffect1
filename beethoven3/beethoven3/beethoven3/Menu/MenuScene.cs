@@ -147,7 +147,7 @@ namespace beethoven3
                     Game1.nearButton = false;
                     
                     Game1.gameState = Game1.GameStates.SongMenu;
-                 //   SongMenu.opening = true;
+                    SongMenu.opening = true;
 
                 }
             }
