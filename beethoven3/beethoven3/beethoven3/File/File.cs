@@ -478,11 +478,11 @@ namespace beethoven3
             for (i = 0; i < this.arrayNotes.Count; i++)
             {
 
-                arrayNotes[i].StartTime = arrayNotes[i].StartTime / changedTempo;
+                arrayNotes[i].StartTime = arrayNotes[i].StartTime / 1.1f;
 
                 if (!(arrayNotes[i].Type == "1") && !(arrayNotes[i].Type == "B") && !(arrayNotes[i].Type == "2"))
                 {
-                    arrayNotes[i].LastTime = arrayNotes[i].LastTime / changedTempo;
+                    arrayNotes[i].LastTime = arrayNotes[i].LastTime / 1.1f;
 
                 }
                 //끝나는시간
@@ -1154,8 +1154,8 @@ namespace beethoven3
 
             //거리/속력 
 
-            double time = (MarkManager.distance) /120.0f;
-
+        //     velocity;
+            double time = (MarkManager.distance) / StartNoteManager.noteSpeed;
          
             startTime = noteTime - time;
 
@@ -1169,14 +1169,14 @@ namespace beethoven3
 
             double minB = 60.0f;
             //double minV = 85.0f;
-            double minV = 95.0f;
+            double minV = 60.0f;
 
 
             double midB = 120.0f;
-            double midV = 220.0f;
+            double midV = 120.0f;
 
             double maxB = 240.0f;
-            double maxV = 800.0f;
+            double maxV = 240.0f;
 
 
             double velocity = 0.0f;

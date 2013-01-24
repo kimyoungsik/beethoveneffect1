@@ -49,7 +49,9 @@ namespace beethoven3
         private bool isPlayingSong = false;
         private uint songLength;
         //temp
-
+        bool isonetime = true;
+        //istwoTime
+             bool istwoTime = true;
         Texture2D sit1;
 #if Kinect
         //화면에 띄우기
@@ -2902,14 +2904,24 @@ namespace beethoven3
             if (keyState.IsKeyDown(Keys.P))
             {
              //   file.IsStop = true;
-
-
+                //%%%%
+                if (isonetime)
+                {
+                    SoundFmod.tempoChange(0.9f);
+                    isonetime = false;
+                }
             }
 
             if (keyState.IsKeyDown(Keys.O))
             {
                // file.IsStop = false;
+                if (istwoTime)
+                {
+                    SoundFmod.SetOptionalTime();
 
+                    SoundFmod.tempoChange(0.8f);
+                    istwoTime = false;
+                }
 
             }
 

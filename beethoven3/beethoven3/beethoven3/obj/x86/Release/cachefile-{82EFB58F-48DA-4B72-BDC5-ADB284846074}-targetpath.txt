@@ -210,6 +210,7 @@ Content\LeftHand\Left_5.xnb
 Content\game1\backJesture.xnb
 Content\background\Back_ssum_park.xnb
 Content\LeftHand\Left_6.xnb
+Content\SongMenu\No_Image.xnb
 Content\snd\ka.xnb
 Content\snd\ka.wma
 Content\snd\jo.xnb
@@ -218,4 +219,3 @@ Content\snd\maid.xnb
 Content\snd\maid.wma
 Content\MessageFont.xnb
 Content\Fonts\Georgia.xnb
-Content\SongMenu\No_Image.xnb

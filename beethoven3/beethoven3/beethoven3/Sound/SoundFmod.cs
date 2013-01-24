@@ -115,7 +115,8 @@ namespace beethoven3
             sndChannel.setFrequency(frequency * (float)changedT);
 
             //템포를 다른 노트 모두에 적용
-            file.ChangeArrayNoteTempo(changedT);
+            //곡에 따라가는것이기 때문에 템포를 적용할 필요가 없다.
+           // file.ChangeArrayNoteTempo(changedT);
 
             //***다시확인
             //현재 설정된 두번째 가이드라인이 있으면 지움
@@ -265,30 +266,30 @@ namespace beethoven3
                 //템포 다시 원상복귀
                 //현재는 시작시간만, 지속시간(끝시간도 바꿀예정)
 
-                file.ChangeArrayNoteTempoBack(changedTempo);
+               // file.ChangeArrayNoteTempoBack(changedTempo);
 
-                double time = 0;
+               // double time = 0;
 
-                //옵션 계산
-                //chagneLimitedTime : 템포가 변하고 나서 얼마나 시간이 흘렀나 millisecond로 나타냄
-                //옵션 : 
-                time = ((chagneLimitedTime / 1000) - ((chagneLimitedTime / changedTempo) / 1000)) * -1;
-                // time = 템포 변하고 지나간 일반적인 시간  -  템포가 변하고 지나간 변화된 시간. => 차이, 그 차이를 빼주면 된다.
-                //빨라졌을 떄는 음수가 나오고 (전체적으로 떙기고), 느려졌을 때는 양수가 나온다. 
+               // //옵션 계산
+               // //chagneLimitedTime : 템포가 변하고 나서 얼마나 시간이 흘렀나 millisecond로 나타냄
+               // //옵션 : 
+               // time = ((chagneLimitedTime / 1000) - ((chagneLimitedTime / changedTempo) / 1000)) * -1;
+               // // time = 템포 변하고 지나간 일반적인 시간  -  템포가 변하고 지나간 변화된 시간. => 차이, 그 차이를 빼주면 된다.
+               // //빨라졌을 떄는 음수가 나오고 (전체적으로 떙기고), 느려졌을 때는 양수가 나온다. 
                
-                //***이거 왜 축척?
-               optionalTime = time;
+               // //***이거 왜 축척?
+               //optionalTime = time;
               
-                //각 노트 시작에 옵션을 더함
-                //옵션이 지속시간(끝시간)에도 영향을 줘야 할듯. 
-                file.OptionalArrayNote(optionalTime);
+               // //각 노트 시작에 옵션을 더함
+               // //옵션이 지속시간(끝시간)에도 영향을 줘야 할듯. 
+               // file.OptionalArrayNote(optionalTime);
 
 
 
-                //템포가 0.9배가 된상태에서 1초동안 지속이 된다면 모두 4-  4/4   3초씩 줄여야 한다ㅣ
+               // //템포가 0.9배가 된상태에서 1초동안 지속이 된다면 모두 4-  4/4   3초씩 줄여야 한다ㅣ
 
-                //oneTime = false;
-                chagneLimitedTime = 0;
+               // //oneTime = false;
+               // chagneLimitedTime = 0;
 
 
                 //원래 템포로 돌아감
