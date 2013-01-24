@@ -518,6 +518,7 @@ namespace beethoven3
             foreach (Mark mark in Marks)
             {
                 mark.Update(gameTime);
+               
             }
 
            

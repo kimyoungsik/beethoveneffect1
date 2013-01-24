@@ -218,3 +218,4 @@ Content\snd\maid.xnb
 Content\snd\maid.wma
 Content\MessageFont.xnb
 Content\Fonts\Georgia.xnb
+Content\SongMenu\beethoven.xnb

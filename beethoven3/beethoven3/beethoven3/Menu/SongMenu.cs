@@ -35,7 +35,7 @@ namespace beethoven3
         private Rectangle backrect = new Rectangle(36, 35, 110, 85);
         private bool clickPreviousButton;
 
-
+        private Texture2D basicSongPicture;
 
         private bool clickStartButton;
 
@@ -91,7 +91,7 @@ namespace beethoven3
 
             hoverStarttext = content.Load<Texture2D>("SongMenu/hoverStartButton");
 
-
+            basicSongPicture = content.Load<Texture2D>("SongMenu/beethoven");
             
            
 
@@ -104,9 +104,19 @@ namespace beethoven3
 
                 if (dupicateIndex == -1)
                 {
-                    FileStream fileStream = new FileStream(System.Environment.CurrentDirectory + "\\beethovenSong\\" + noteFileManager.noteFiles[i].Picture, FileMode.Open);
 
-                    pictures[i] = Texture2D.FromStream(graphicsdevice, fileStream);
+                    //그림파일이 있을경우 
+                    if (noteFileManager.noteFiles[i].Picture != "")
+                    {
+                        FileStream fileStream = new FileStream(System.Environment.CurrentDirectory + "\\beethovenSong\\" + noteFileManager.noteFiles[i].Picture, FileMode.Open);
+                        pictures[i] = Texture2D.FromStream(graphicsdevice, fileStream);
+                    }
+                    //없을경우 기본으로 설정
+                    else
+                    {
+                        pictures[i] = basicSongPicture;
+                    }
+                    
                 } 
                 else
                 {
@@ -314,7 +324,7 @@ namespace beethoven3
 
 
             }
-
+            
 
             if (mouseRectangle.Intersects(backrect) || rightHandPosition.Intersects(backrect))
             {
@@ -337,7 +347,14 @@ namespace beethoven3
             }
 
 
+            if (Game1.soundRecogStartIndex != -1)
+            {
+                int ret  = Game1.soundRecogStartIndex;
+                Game1.soundRecogStartIndex = -1;
 
+                return ret;
+
+            }
 
             if (mouseRectangle.Intersects(startrect) || rightHandPosition.Intersects(startrect))
             {
@@ -353,13 +370,13 @@ namespace beethoven3
                     Game1.nearButton = false;
                     clickStartButton = false;
                     int ret;
-                    if (Game1.soundRecogStartIndex != -1)
-                    {
-                        ret = Game1.soundRecogStartIndex;
-                    }
+                    //if (Game1.soundRecogStartIndex != -1)
+                    //{
+                    //    ret = Game1.soundRecogStartIndex;
+                    //}
 
-                    //보통때는 -1 이다가 start가 인식하면 곡의 인덱스 값을 받음
-                    Game1.soundRecogStartIndex = -1;
+                    ////보통때는 -1 이다가 start가 인식하면 곡의 인덱스 값을 받음
+                    //Game1.soundRecogStartIndex = -1;
 
                     ret = scene_number;
                     return ret;

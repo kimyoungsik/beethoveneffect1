@@ -1376,12 +1376,12 @@ namespace beethoven3
             var choices = new Choices();
             //choices.Add("Yes");
           
-            choices.Add("next");
-            choices.Add("previous");
-            choices.Add("start");
-            choices.Add("tutorial");
-            choices.Add("setting");
-            choices.Add("shop");
+            //choices.Add("next");
+            //choices.Add("previous");
+            //choices.Add("start");
+            //choices.Add("tutorial");
+            //choices.Add("setting");
+            //choices.Add("shop");
             choices.Add("이전");
             choices.Add("시작");
             choices.Add("중지");
@@ -1447,7 +1447,7 @@ namespace beethoven3
 
 
 
-                                case "next":
+                                //case "next":
                                 case "다음":
                                     if (gameState == GameStates.ResultManager)
                                     {
@@ -1462,10 +1462,10 @@ namespace beethoven3
 
                                     break;
 
-                                case "previous":
+                                //case "previous":
                                 case "이전":
 
-                                    if (gameState == GameStates.SongMenu || gameState == GameStates.ShopDoor || gameState == GameStates.SettingBoard)
+                                    if (gameState == GameStates.SongMenu || gameState == GameStates.ShopDoor || gameState == GameStates.SettingBoard /***도움말*/)
                                     {
                                         gameState = GameStates.Menu;
                                     }
@@ -1474,10 +1474,15 @@ namespace beethoven3
                                     {
                                         gameState = GameStates.ShopDoor;
                                     }
+
+                                    if (gameState == GameStates.RecordBoard)
+                                    {
+                                        gameState = GameStates.ShowPictures;
+                                    }
                                     break;
 
 
-                                case "start":
+                                //case "start":
                                 case "시작":
                                     if (gameState == GameStates.Menu)
                                     {
@@ -1491,7 +1496,7 @@ namespace beethoven3
                                     break;
 
 
-                                case "shop":
+                                case "상점":
 
                                     if (gameState == GameStates.Menu)
                                     {
@@ -1499,7 +1504,7 @@ namespace beethoven3
                                     }
                                     break;
 
-                                case "setting":
+                                case "설정":
 
                                     if (gameState == GameStates.Menu)
                                     {
@@ -1507,7 +1512,7 @@ namespace beethoven3
                                     }
                                     break;
 
-                                case "tutorial":
+                                case "도움말":
 
                                     if (gameState == GameStates.Menu)
                                     {
@@ -3173,9 +3178,9 @@ namespace beethoven3
 
                        
                        SoundFmod.sndChannel.getPosition(ref songLength, TIMEUNIT.MS);
-                       Trace.WriteLine("Time" + (songLength / 1000 / 60) + ":" + (songLength / 1000 % 60) + ":" + (songLength / 10 % 100));
+          //             Trace.WriteLine("Time" + (songLength / 1000 / 60) + ":" + (songLength / 1000 % 60) + ":" + (songLength / 10 % 100));
                        playTime = (songLength / 1000 / 60) * 60 + (songLength / 1000 % 60) + ((songLength / 10 % 100) * 0.01 );
-
+                       //Trace.WriteLine(playTime);
                    }
                    //마크 업데이트
                     MarkManager.Update(gameTime);

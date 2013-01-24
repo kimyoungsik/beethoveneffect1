@@ -589,47 +589,47 @@ namespace beethoven3
             //템포가 1.5배가 된상태에서 2초동안 지속이 된다면 모두 2-2/1.5 0.6666초
             
         }
-        public void FindNote(double processTime, double changedTempo, double optionalTime)
+        public void FindNote(TimeSpan processTime, double changedTempo, double optionalTime)
         {
             int i;
 
-            if (patternChanging)
-            {
-                //진행시간이 끝나는 시간보다 적을 때
-                if (processTime < endPatternChangeTime && processTime > startPatternChangeTime)
-                {
-                    patternChanging = true;
+            //if (patternChanging)
+            //{
+            //    //진행시간이 끝나는 시간보다 적을 때
+            //    if (processTime < endPatternChangeTime && processTime > startPatternChangeTime)
+            //    {
+            //        patternChanging = true;
                     
 
-                    //현재 진행 상황, 진행이 많이 될수록 값이 적게 나온다.
-                    double diffrence = endPatternChangeTime - processTime;
+            //        //현재 진행 상황, 진행이 많이 될수록 값이 적게 나온다.
+            //        double diffrence = endPatternChangeTime - processTime;
 
-                    for (i = 0; i < 6; i++)
-                    {
-                        changedMarks[i].X = GetLocation(initMarkersLocation[i].X, Endlocations[i].X, lastingTime - diffrence, lastingTime);
-                        changedMarks[i].Y = GetLocation(initMarkersLocation[i].Y, Endlocations[i].Y,  lastingTime - diffrence, lastingTime);
-                    }
-                    MarkManager.changeMarkPattern(changedMarks[0], changedMarks[1], changedMarks[2], changedMarks[3], changedMarks[4], changedMarks[5]);
+            //        for (i = 0; i < 6; i++)
+            //        {
+            //            changedMarks[i].X = GetLocation(initMarkersLocation[i].X, Endlocations[i].X, lastingTime - diffrence, lastingTime);
+            //            changedMarks[i].Y = GetLocation(initMarkersLocation[i].Y, Endlocations[i].Y,  lastingTime - diffrence, lastingTime);
+            //        }
+            //        MarkManager.changeMarkPattern(changedMarks[0], changedMarks[1], changedMarks[2], changedMarks[3], changedMarks[4], changedMarks[5]);
 
-                    Vector2 markerSize = MarkManager.GetMarkerSize();
-                    MarkManager.SetRemoveArea(changedMarks[0], changedMarks[5], (int)markerSize.X, (int)markerSize.Y);
+            //        Vector2 markerSize = MarkManager.GetMarkerSize();
+            //        MarkManager.SetRemoveArea(changedMarks[0], changedMarks[5], (int)markerSize.X, (int)markerSize.Y);
             
                            
-                }
-                else if (processTime <= startPatternChangeTime)
-                {
-                    patternChanging = true;
+            //    }
+            //    else if (processTime <= startPatternChangeTime)
+            //    {
+            //        patternChanging = true;
                     
                    
-                }
-                else
-                {
-                    patternChanging = false;
-                    //isFirstGettingMarker = false;
-                }
-            }
+            //    }
+            //    else
+            //    {
+            //        patternChanging = false;
+            //        //isFirstGettingMarker = false;
+            //    }
+            //}
             //////////////////////////////////////////////////////////////////
-            if (processTime < endTime)
+            if (processTime < TimeSpan.FromSeconds(endTime))
             {
                 //노트가 아무것도 없으면 실행되지 않는다.
                 //it doesn't work if there is no note.
@@ -638,7 +638,7 @@ namespace beethoven3
                     DrawGuideLineInfo guideline = (DrawGuideLineInfo)drawGuideLineQueue.Peek();
                     
 
-                    if (guideline.FirstStartTime <= processTime)
+                    if (TimeSpan.FromSeconds(guideline.FirstStartTime) <= processTime)
                     {
                         DrawGuideLineInfo guideline2 = (DrawGuideLineInfo)drawGuideLineQueue.Dequeue();
                      
@@ -653,13 +653,18 @@ namespace beethoven3
                     if (arrayNotes[0].Type != "D")
                     {
                         noteTime = GetNoteStartTime(arrayNotes[0].StartTime);
+                      //  noteTime = arrayNotes[0].StartTime;
+
                     }
                     else
                     {
                         //드래그노트일 때는 이걸 할 필요가 없다.
                         noteTime = arrayNotes[0].StartTime - 3;
+                       // noteTime = arrayNotes[0].StartTime;
                     }
-                    if (noteTime <= processTime )
+                    Trace.WriteLine("note : " +noteTime + " pro :" + processTime);
+
+                    if (TimeSpan.FromSeconds(noteTime) <= processTime )
                     {
                         //PlayNote(타입,날아가는 마커 위치)
                         //타입 0-오른손 1-왼손 2-양손 3-롱노트 4-드래그노트 
@@ -1148,7 +1153,7 @@ namespace beethoven3
 
             //거리/속력 
 
-            double time = (MarkManager.distance) / 160.0f;
+            double time = (MarkManager.distance) /120.0f;
 
          
             startTime = noteTime - time;
@@ -1228,9 +1233,9 @@ namespace beethoven3
 
 
                 //this.time += gameTime.ElapsedGameTime.TotalSeconds;
+            TimeSpan playTimeSpan = TimeSpan.FromSeconds(playTime);
 
-
-            FindNote(playTime, changedTempo, optionalTime);
+            FindNote(playTimeSpan, changedTempo, optionalTime);
          
         }
 
