@@ -268,7 +268,26 @@ namespace beethoven3
 
           
             //마커 센터에서 노트의 센터 사이의 거리가  마커의 radius/2 보다 작을 떄  
-            if (Vector2.Distance(Center, noteCenter) <
+            if (Vector2.Distance(Center, noteCenter) ==
+                0)
+            {
+                ret = 2;
+                uint time = 0;
+                string coltime = "";
+                SoundFmod.sndChannel.getPosition(ref time, FMOD.TIMEUNIT.MS);
+                Trace.WriteLine("COLTIME" + (time / 1000 / 60) + ":" + (time / 1000 % 60) + ":" + (time / 10 % 100));
+                coltime = "COLTIME" + (time / 1000 / 60) + ":" + (time / 1000 % 60) + ":" + (time / 10 % 100);
+
+                int j = 0;
+                j = 3;
+                j++;
+
+
+            }
+            
+            
+            
+            else if (Vector2.Distance(Center, noteCenter) <
                 (CollisionRadius / 2))
             {
                 ret = 2;

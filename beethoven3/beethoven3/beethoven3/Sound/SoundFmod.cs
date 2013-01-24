@@ -134,7 +134,7 @@ namespace beethoven3
             //노래찾아서 재생하기    
             //*** 재생시간동안 로딩
 
-            sndSystem.createSound(name, FMOD.MODE.HARDWARE, ref SoundFmod.sndSound);
+            sndSystem.createStream(name, FMOD.MODE.HARDWARE, ref SoundFmod.sndSound);
             sndSystem.playSound(CHANNELINDEX.FREE, SoundFmod.sndSound, false, ref SoundFmod.sndChannel);
 
            // return 2;

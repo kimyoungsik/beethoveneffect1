@@ -45,6 +45,9 @@ namespace beethoven3
         //Joint leftJoint;
         Texture2D backJesture;
 
+        //노래의 위치를 알기위해서 현재 노래가 틀어지고 있는지 확인
+        private bool isPlayingSong = false;
+        private uint songLength;
         //temp
 
         Texture2D sit1;
@@ -3163,12 +3166,23 @@ namespace beethoven3
                
                    }
 
+                   double playTime = 0;
+
+                   if (isPlayingSong)
+                   {
+
+                       
+                       SoundFmod.sndChannel.getPosition(ref songLength, TIMEUNIT.MS);
+                       Trace.WriteLine("Time" + (songLength / 1000 / 60) + ":" + (songLength / 1000 % 60) + ":" + (songLength / 10 % 100));
+                       playTime = (songLength / 1000 / 60) * 60 + (songLength / 1000 % 60) + ((songLength / 10 % 100) * 0.01 );
+
+                   }
                    //마크 업데이트
                     MarkManager.Update(gameTime);
                     startNoteManager.Update(gameTime);
                     HandleKeyboardInput(Keyboard.GetState());
                     HandleMouseInput(Mouse.GetState());
-                    file.Update(spriteBatch, gameTime, SoundFmod.changedTempo, SoundFmod.optionalTime);
+                    file.Update(spriteBatch, playTime, SoundFmod.changedTempo, SoundFmod.optionalTime);
                     //*** 어떻게 돼는건지 모르겠음 
                     dragNoteManager.Update(gameTime);
                    ////
@@ -3721,9 +3735,15 @@ namespace beethoven3
 
                         uiEndTime = file.EndTime;
 
-                        SoundFmod.StopSound();
+                        bool isPlay = false;
+                        SoundFmod.sndChannel.isPlaying(ref isPlay);
+                        if (isPlay)
+                        {
+                            SoundFmod.StopSound();
+                        }
+                        //SoundFmod.StopSound();
                         SoundFmod.PlaySound(songsDir + noteFileManager.noteFiles[resultSongMenu].Mp3);
-                      
+                        isPlayingSong = true;
                     }
 
                     break;

@@ -36,15 +36,8 @@ myPicture.jpg$260
 myPicture.jpg$225
 %%
 Beethoven Virus
-gesture_23_18_18_51.jpg$1099
-gesture_23_18_14_2.jpg$982
-gesture_23_10_5_19.jpg$399
-gesture_23_18_45_35.jpg$313
-gesture_23_18_22_40.jpg$278
 %%
 Untitled
-gesture_24_1_50_27.jpg$330
-gesture_24_1_47_34.jpg$174
 myPicture.jpg$27
 myPicture.jpg$13
 myPicture.jpg$0

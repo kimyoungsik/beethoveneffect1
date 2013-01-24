@@ -1144,13 +1144,11 @@ namespace beethoven3
 
             //기준 120
 
-
-
             double velocity = GetVelocity(StartNoteManager.noteSpeed);
 
             //거리/속력 
 
-            double time = (MarkManager.distance) / velocity;
+            double time = (MarkManager.distance) / 160.0f;
 
          
             startTime = noteTime - time;
@@ -1221,7 +1219,7 @@ namespace beethoven3
        
 
 
-        public void Update(SpriteBatch spriteBatch, GameTime gameTime, double changedTempo, double optionalTime)
+        public void Update(SpriteBatch spriteBatch, double playTime, double changedTempo, double optionalTime)
         {
             //오른노트가 사각형 범위로 가면 지워지도록
          //   CheckRightNoteInCenterArea();
@@ -1229,10 +1227,10 @@ namespace beethoven3
         
 
 
-                this.time += gameTime.ElapsedGameTime.TotalSeconds;
+                //this.time += gameTime.ElapsedGameTime.TotalSeconds;
 
 
-                FindNote(this.time, changedTempo, optionalTime);
+            FindNote(playTime, changedTempo, optionalTime);
          
         }
 
