@@ -91,7 +91,7 @@ namespace beethoven3
 
             hoverStarttext = content.Load<Texture2D>("SongMenu/hoverStartButton");
 
-            basicSongPicture = content.Load<Texture2D>("SongMenu/beethoven");
+            basicSongPicture = content.Load<Texture2D>("SongMenu/No_Image");
             
            
 
@@ -337,7 +337,8 @@ namespace beethoven3
                 {
                     clickPreviousButton = false;
                     Game1.nearButton = false;
-                    SoundFmod.StopSound();
+                 
+                  //  SoundFmod.StopSound();
                     return -1;
                 }
             }
@@ -465,7 +466,12 @@ namespace beethoven3
             }
             if (opening)
             {
-               
+                bool isPlay = false;
+                SoundFmod.sndChannel.isPlaying(ref isPlay);
+                if (isPlay)
+                {
+                    SoundFmod.StopSound();
+                }
                 SoundFmod.PlaySound(Game1.songsDir + noteFileManager.noteFiles[scene_number].Mp3);
                 // songChanged = false;
                 opening = false;
@@ -540,7 +546,12 @@ namespace beethoven3
                 //곡 바꿀시 노래재생
                 if (frame == 90 && songChanged)
                 {
-                    SoundFmod.StopSound();
+                    bool isPlay = false;
+                    SoundFmod.sndChannel.isPlaying(ref isPlay);
+                    if (isPlay)
+                    {
+                        SoundFmod.StopSound();
+                    }
                     SoundFmod.PlaySound(Game1.songsDir + noteFileManager.noteFiles[scene_number].Mp3);
                     songChanged = false;
                 }
@@ -556,7 +567,12 @@ namespace beethoven3
                 //곡 바꿀시 노래재생
                 if (frame == 90 && songChanged)
                 {
-                    SoundFmod.StopSound();
+                    bool isPlay = false;
+                    SoundFmod.sndChannel.isPlaying(ref isPlay);
+                    if (isPlay)
+                    {
+                        SoundFmod.StopSound();
+                    }
                     SoundFmod.PlaySound(Game1.songsDir + noteFileManager.noteFiles[scene_number].Mp3);
                     songChanged = false;
 

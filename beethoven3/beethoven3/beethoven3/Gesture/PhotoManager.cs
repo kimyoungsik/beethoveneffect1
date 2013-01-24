@@ -71,7 +71,7 @@ namespace beethoven3
         private Queue photoFrames = new Queue();
 
         //file에서 가져오는 현재 게임의 흐름
-        private double currentTime;
+        private TimeSpan currentTime;
 
     //    private Texture2D cameraTexture;
        
@@ -125,7 +125,7 @@ namespace beethoven3
 
 
 
-        public void AddPhotoFrame(double startTime, double currentTime)
+        public void AddPhotoFrame(double startTime, TimeSpan currentTime)
         {
 
             PhotoFrame photoFrame = new PhotoFrame( startTime, startTime + 1);
@@ -149,10 +149,10 @@ namespace beethoven3
             if (photoFrames.Count > 0)
             {
 
-                currentTime += gameTime.ElapsedGameTime.TotalSeconds;
+              //  currentTime += gameTime.ElapsedGameTime.TotalSeconds;
                 PhotoFrame photoFrame = (PhotoFrame)photoFrames.Peek();
 
-                if (currentTime > photoFrame.StartTime)
+                if (currentTime > TimeSpan.FromSeconds(photoFrame.StartTime))
                 {
 
                     Game1.PicFlag = true;

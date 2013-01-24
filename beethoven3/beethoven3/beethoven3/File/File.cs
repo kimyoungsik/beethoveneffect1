@@ -36,8 +36,8 @@ namespace beethoven3
      //   private String[] noteLine;
     //    private NoteInfo[] rightNoteMarks;
         private int currentRightNoteIndex;
-        private double time;
-
+       // private double time;
+        private TimeSpan playTimeSpan;
      //   private BadExplosionManager badManager;
 
         private CollisionManager collisionManager;
@@ -106,8 +106,8 @@ namespace beethoven3
              this.noteFileManager = noteFileManager;
              //rightNoteMarks = new NoteInfo[500];
              currentRightNoteIndex = 0;
-             time = 0;
-            
+           //  time = 0;
+             playTimeSpan = TimeSpan.Zero;
           //   this.badManager = badManager;
              this.collisionManager = collisionManager;
              this.scoreManager = scoreManager;
@@ -150,9 +150,9 @@ namespace beethoven3
         {
             this.endFile = value;
         }
-        public void SetTime(double value)
+        public void SetTime(TimeSpan value)
         {
-            this.time = value;
+            this.playTimeSpan = value;
         }
 
 
@@ -163,10 +163,10 @@ namespace beethoven3
 
 
         //현재 진행 시간
-        public double ProcessTime
+        public TimeSpan ProcessTime
         {
-            get { return time; }
-            set { time = value; }
+            get { return playTimeSpan; }
+            set { playTimeSpan = value; }
 
         }
 
@@ -177,12 +177,12 @@ namespace beethoven3
 
         }
 
-        public int ProcRate()
-        {
+        //public int ProcRate()
+        //{
 
-            return (int) (time/endTime*100.0);
+        //    return (int) (time/endTime*100.0);
 
-        }
+        //}
 
 
         public void FileLoading(String dir, String file)
@@ -593,41 +593,41 @@ namespace beethoven3
         {
             int i;
 
-            //if (patternChanging)
-            //{
-            //    //진행시간이 끝나는 시간보다 적을 때
-            //    if (processTime < endPatternChangeTime && processTime > startPatternChangeTime)
-            //    {
-            //        patternChanging = true;
-                    
+            if (patternChanging)
+            {
+                //진행시간이 끝나는 시간보다 적을 때
+                if (processTime <  TimeSpan.FromSeconds(endPatternChangeTime) && processTime >  TimeSpan.FromSeconds(startPatternChangeTime))
+                {
+                    patternChanging = true;
 
-            //        //현재 진행 상황, 진행이 많이 될수록 값이 적게 나온다.
-            //        double diffrence = endPatternChangeTime - processTime;
 
-            //        for (i = 0; i < 6; i++)
-            //        {
-            //            changedMarks[i].X = GetLocation(initMarkersLocation[i].X, Endlocations[i].X, lastingTime - diffrence, lastingTime);
-            //            changedMarks[i].Y = GetLocation(initMarkersLocation[i].Y, Endlocations[i].Y,  lastingTime - diffrence, lastingTime);
-            //        }
-            //        MarkManager.changeMarkPattern(changedMarks[0], changedMarks[1], changedMarks[2], changedMarks[3], changedMarks[4], changedMarks[5]);
+                    //현재 진행 상황, 진행이 많이 될수록 값이 적게 나온다.
+                    double diffrence =  endPatternChangeTime - processTime.Seconds;
 
-            //        Vector2 markerSize = MarkManager.GetMarkerSize();
-            //        MarkManager.SetRemoveArea(changedMarks[0], changedMarks[5], (int)markerSize.X, (int)markerSize.Y);
-            
-                           
-            //    }
-            //    else if (processTime <= startPatternChangeTime)
-            //    {
-            //        patternChanging = true;
-                    
-                   
-            //    }
-            //    else
-            //    {
-            //        patternChanging = false;
-            //        //isFirstGettingMarker = false;
-            //    }
-            //}
+                    for (i = 0; i < 6; i++)
+                    {
+                        changedMarks[i].X = GetLocation(initMarkersLocation[i].X, Endlocations[i].X, lastingTime - diffrence, lastingTime);
+                        changedMarks[i].Y = GetLocation(initMarkersLocation[i].Y, Endlocations[i].Y, lastingTime - diffrence, lastingTime);
+                    }
+                    MarkManager.changeMarkPattern(changedMarks[0], changedMarks[1], changedMarks[2], changedMarks[3], changedMarks[4], changedMarks[5]);
+
+                    Vector2 markerSize = MarkManager.GetMarkerSize();
+                    MarkManager.SetRemoveArea(changedMarks[0], changedMarks[5], (int)markerSize.X, (int)markerSize.Y);
+
+
+                }
+                else if (processTime <=  TimeSpan.FromSeconds(startPatternChangeTime))
+                {
+                    patternChanging = true;
+
+
+                }
+                else
+                {
+                    patternChanging = false;
+                    //isFirstGettingMarker = false;
+                }
+            }
             //////////////////////////////////////////////////////////////////
             if (processTime < TimeSpan.FromSeconds(endTime))
             {
@@ -837,7 +837,7 @@ namespace beethoven3
                         {
                             //종류. 시작시간, 끝나는시간
 
-                            charismaManager.AddCharismaFrame(arrayNotes[0].StartTime, arrayNotes[0].LastTime, arrayNotes[0].MarkLocation, this.time);
+                            charismaManager.AddCharismaFrame(arrayNotes[0].StartTime, arrayNotes[0].LastTime, arrayNotes[0].MarkLocation, playTimeSpan);
 
                         }
 
@@ -846,7 +846,7 @@ namespace beethoven3
                         {
                             //종류. 시작시간, 끝나는시간
 
-                            charismaManager.AddCharismaFrame(arrayNotes[0].StartTime, arrayNotes[0].LastTime, arrayNotes[0].MarkLocation, this.time);
+                            charismaManager.AddCharismaFrame(arrayNotes[0].StartTime, arrayNotes[0].LastTime, arrayNotes[0].MarkLocation, playTimeSpan);
 
                         }
 
@@ -854,7 +854,7 @@ namespace beethoven3
                         else if (arrayNotes[0].Type == "H")
                         {
                             //종류. 시작시간, 끝나는시간
-                            photoManager.AddPhotoFrame(arrayNotes[0].StartTime, this.time);
+                            photoManager.AddPhotoFrame(arrayNotes[0].StartTime, playTimeSpan);
                            // charismaManager.AddChasmaFrame(arrayNotes[0].StartTime, arrayNotes[0].LastTime, arrayNotes[0].MarkLocation, this.time);
 
                         }
@@ -952,7 +952,7 @@ namespace beethoven3
         }
 
 
-        public void DrawLineInLongNote(SpriteBatch spriteBatch, double processTime)
+        public void DrawLineInLongNote(SpriteBatch spriteBatch, TimeSpan processTime)
         {
            //drawLine필요성 여부 검토
             //필요하긴 하다. startNoteNumber이 null이 안되도록 한다.
@@ -960,7 +960,8 @@ namespace beethoven3
             {
                 //drawLineTime => 그려지는 총 시간
                 //
-                if (drawLineTime >= processTime)
+
+                if (TimeSpan.FromSeconds(drawLineTime) >= processTime)
                 {
                     startNoteManager.MakeLongNote(startNoteNumber,0.0f,false);
 
@@ -1233,7 +1234,7 @@ namespace beethoven3
 
 
                 //this.time += gameTime.ElapsedGameTime.TotalSeconds;
-            TimeSpan playTimeSpan = TimeSpan.FromSeconds(playTime);
+             playTimeSpan = TimeSpan.FromSeconds(playTime);
 
             FindNote(playTimeSpan, changedTempo, optionalTime);
          
@@ -1243,7 +1244,7 @@ namespace beethoven3
         {
 
             //double time = gameTime.TotalGameTime.TotalSeconds;
-            DrawLineInLongNote(spriteBatch, this.time);
+            DrawLineInLongNote(spriteBatch, playTimeSpan);
 
         }
      

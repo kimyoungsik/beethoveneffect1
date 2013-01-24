@@ -1958,13 +1958,13 @@
       <Time>2013-01-20T15:59:44+09:00</Time>
     </Item>
     <Item>
-      <Source>SongMenu\beethoven.jpg</Source>
-      <Name>SongMenu\beethoven</Name>
+      <Source>SongMenu\No_Image.png</Source>
+      <Name>SongMenu\No_Image</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\SongMenu\beethoven.xnb</Output>
-      <Time>2013-01-25T00:05:57.8715096+09:00</Time>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\SongMenu\No_Image.xnb</Output>
+      <Time>2013-01-25T00:58:41.4534562+09:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

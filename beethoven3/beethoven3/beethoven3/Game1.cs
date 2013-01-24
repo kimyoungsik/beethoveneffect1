@@ -1468,6 +1468,12 @@ namespace beethoven3
                                     if (gameState == GameStates.SongMenu || gameState == GameStates.ShopDoor || gameState == GameStates.SettingBoard /***도움말*/)
                                     {
                                         gameState = GameStates.Menu;
+                                        bool isPlay = false;
+                                        SoundFmod.sndChannel.isPlaying(ref isPlay);
+                                        if (isPlay)
+                                        {
+                                            SoundFmod.StopSound();
+                                        }
                                     }
 
                                     if (gameState == GameStates.BackgroundItemShop || gameState == GameStates.EffectItemShop || gameState == GameStates.LeftItemShop || gameState == GameStates.RightItemShop || gameState == GameStates.NoteItemShop)
@@ -3493,7 +3499,7 @@ namespace beethoven3
                             //file = new File(startNoteManager, noteFileManager, collisionManager, scoreManager, itemManager, curveManager, guideLineManager);
 
                             file.SetEndFile(false);
-                            file.SetTime(0);
+                            file.SetTime(TimeSpan.Zero);
 
                             //if (!System.IO.File.Exists(songsDir))
                             //{
@@ -3554,6 +3560,12 @@ namespace beethoven3
                 if (resultSongMenu == -1)
                     {
                         gameState = GameStates.Menu;
+                        bool isPlay = false;
+                        SoundFmod.sndChannel.isPlaying(ref isPlay);
+                        if (isPlay)
+                        {
+                            SoundFmod.StopSound();
+                        }
 
                     }
                 // 선택 되었음
@@ -3746,7 +3758,7 @@ namespace beethoven3
                         {
                             SoundFmod.StopSound();
                         }
-                        //SoundFmod.StopSound();
+                      
                         SoundFmod.PlaySound(songsDir + noteFileManager.noteFiles[resultSongMenu].Mp3);
                         isPlayingSong = true;
                     }
@@ -4185,7 +4197,7 @@ namespace beethoven3
                 double tempo =SoundFmod.changedTempo;
              
 
-                uiProcessTime = file.ProcessTime;
+                uiProcessTime = (file.ProcessTime).TotalSeconds;
     
                 uiProcessTime = (uiProcessTime / uiEndTime * 800);
 
@@ -4269,11 +4281,11 @@ namespace beethoven3
                 if (charismaManager.charismaFrames.Count > 0)
                 {
                     string fileName;
-                    charismaManager.currentTime += gameTime.ElapsedGameTime.TotalSeconds;
+                  //  charismaManager.currentTime += gameTime.ElapsedGameTime.TotalSeconds;
                     CharisimaFrame charismaFrame = (CharisimaFrame)charismaManager.charismaFrames.Peek();
 
 
-                    if (charismaManager.currentTime > charismaFrame.StartTime)
+                    if (charismaManager.currentTime > TimeSpan.FromSeconds(charismaFrame.StartTime))
                     {
 
                         spriteBatch.Draw(charismaFrame.Texture, charismaManager.picLocation, Color.White);
@@ -4346,7 +4358,7 @@ namespace beethoven3
                     }
                     Trace.WriteLine(isGesture);
 
-                    if (charismaManager.currentTime >= charismaFrame.EndTime)
+                    if (charismaManager.currentTime >= TimeSpan.FromSeconds(charismaFrame.EndTime))
                     {
 
                         isGesture = false;

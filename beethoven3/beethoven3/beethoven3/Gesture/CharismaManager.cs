@@ -72,7 +72,7 @@ namespace beethoven3
         public Queue charismaFrames;
        
         //file에서 가져오는 현재 게임의 흐름
-        public double currentTime;
+        public TimeSpan currentTime;
        
         private Texture2D charisma1;
         private Texture2D charisma2;
@@ -151,7 +151,7 @@ namespace beethoven3
 
 
 
-        public void AddCharismaFrame(double startTime, double endTime, int type, double currentTime)
+        public void AddCharismaFrame(double startTime, double endTime, int type, TimeSpan currentTime)
         {
             Texture2D texture  = GetTexture(type);
 
@@ -216,10 +216,10 @@ namespace beethoven3
           if(charismaFrames.Count > 0)
           {
 
-              currentTime += gameTime.ElapsedGameTime.TotalSeconds;
+              //currentTime += gameTime.ElapsedGameTime.TotalSeconds;
               CharisimaFrame charismaFrame  = (CharisimaFrame)charismaFrames.Peek();
 
-              if (currentTime >= charismaFrame.StartTime )
+              if (currentTime >= TimeSpan.FromSeconds(charismaFrame.StartTime))
               {
                  
 

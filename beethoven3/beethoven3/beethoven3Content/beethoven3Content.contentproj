@@ -1412,8 +1412,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SongMenu\beethoven.jpg">
-      <Name>beethoven</Name>
+    <Compile Include="SongMenu\No_Image.png">
+      <Name>No_Image</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
