@@ -66,8 +66,9 @@ namespace beethoven3
         private int contrabaseMemberState;
         private int celloMemberState;
 
+        private ScoreManager scoreManager;
         #endregion
-        public MemberManager()
+        public MemberManager(ScoreManager scoreManager)
         {
 
             violinMemberState = 0;
@@ -75,7 +76,9 @@ namespace beethoven3
             timpaniMemberState = 0;
             hornMemberState = 0;
             contrabaseMemberState = 0;
-            celloMemberState = 0; 
+            celloMemberState = 0;
+
+            this.scoreManager = scoreManager;
 
         }
         public void LoadContent(ContentManager cm)
@@ -177,7 +180,7 @@ namespace beethoven3
 
             // STROKE3
             //바이올린
-            MakeMember(violinMemberPlay3, new Rectangle(0, 0, 114, 178), new Vector2(170, 55),/*velocity*/ Vector2.Zero,/*speed*/ 0f,/*collisionRadius*/ 15,/*프레임*/ 14,/*memberNumber*/ 0,/*scale*/ 1.2f);
+            MakeMember(violinMemberPlay3, new Rectangle(0, 0, 114, 158), new Vector2(170, 70),/*velocity*/ Vector2.Zero,/*speed*/ 0f,/*collisionRadius*/ 15,/*프레임*/ 14,/*memberNumber*/ 0,/*scale*/ 1.2f);
             //플룻 
             MakeMember(fluteMemberPlay3, new Rectangle(0, 0, 253, 595), new Vector2(270, 20), Vector2.Zero, 0f, 15, 5, 1, 0.4f);
             //팀파니 
@@ -193,17 +196,17 @@ namespace beethoven3
 
             //실수 했을 때
             //바이올린
-            MakeMember(violinMemberMiss, new Rectangle(0, 0, 114, 158), new Vector2(170, 70),/*velocity*/ Vector2.Zero,/*speed*/ 0f,/*collisionRadius*/ 15,/*프레임*/ 14,/*memberNumber*/ 0,/*scale*/ 1.2f);
+            MakeMember(violinMemberMiss, new Rectangle(0, 0, 114, 158), new Vector2(170, 70),/*velocity*/ Vector2.Zero,/*speed*/ 0f,/*collisionRadius*/ 15,/*프레임*/ 1,/*memberNumber*/ 0,/*scale*/ 1.2f);
             //플룻 
-            MakeMember(fluteMemberMiss, new Rectangle(0, 0, 253, 595), new Vector2(270, 20), Vector2.Zero, 0f, 15, 5, 1, 0.4f);
+            MakeMember(fluteMemberMiss, new Rectangle(0, 0, 253, 595), new Vector2(270, 20), Vector2.Zero, 0f, 15, 1, 1, 0.4f);
             //팀파니 
-            MakeMember(timpaniMemberMiss, new Rectangle(0, 0, 196, 238), new Vector2(350, 10), Vector2.Zero, 0f, 15, 5, 2, 1f);
+            MakeMember(timpaniMemberMiss, new Rectangle(0, 0, 196, 238), new Vector2(350, 10), Vector2.Zero, 0f, 15, 1, 2, 1f);
             // 호른
-            MakeMember(hornMemberMiss, new Rectangle(0, 0, 280, 595), new Vector2(540, 30), Vector2.Zero, 0f, 15, 5, 3, 0.32f);
+            MakeMember(hornMemberMiss, new Rectangle(0, 0, 280, 595), new Vector2(540, 30), Vector2.Zero, 0f, 15, 1, 3, 0.32f);
             //콘타라 베이스
-            MakeMember(contrabaseMemberMiss, new Rectangle(0, 0, 172, 254), new Vector2(610, 20), Vector2.Zero, 0f, 15, 8, 4, 0.9f);
+            MakeMember(contrabaseMemberMiss, new Rectangle(0, 0, 172, 254), new Vector2(610, 20), Vector2.Zero, 0f, 1, 8, 4, 0.9f);
             //첼로  
-            MakeMember(celloMemberMiss, new Rectangle(0, 0, 325, 595), new Vector2(730, 55), Vector2.Zero, 0f, 15, 5, 5, 0.40f);
+            MakeMember(celloMemberMiss, new Rectangle(0, 0, 325, 595), new Vector2(730, 55), Vector2.Zero, 0f, 15, 1, 5, 0.40f);
 
          
             foreach (Sprite flute in fluteMembers)
@@ -336,6 +339,48 @@ namespace beethoven3
             hornMembers[hornMemberState].Update(gameTime);
             contrabaseMembers[contrabaseMemberState].Update(gameTime);
             celloMembers[celloMemberState].Update(gameTime);
+
+            
+            if (scoreManager.Combo == 0 && scoreManager.ComboChanged)
+            {
+                for (int q = 0; q < 6; q++)
+                {
+                    SetMemberState(q, 0);
+                }
+                scoreManager.ComboChanged = false;
+            }
+            else if(((int)scoreManager.Combo == 10  || (int)scoreManager.Combo == 11 )&& scoreManager.ComboChanged)
+            {
+                for (int q = 0; q < 6; q++)
+                {
+                    SetMemberState(q, 1);
+                }
+                SetMembersFrameTime(0.07f);
+                scoreManager.ComboChanged = false;
+            }
+            else if (((int)scoreManager.Combo == 30 || (int)scoreManager.Combo == 30)  && scoreManager.ComboChanged)
+            {
+                for (int q = 0; q < 6; q++)
+                {
+                    SetMemberState(q, 2);
+                }
+                //속도 빨라짐
+                SetMembersFrameTime(0.04f);
+                scoreManager.ComboChanged = false;
+
+
+            }
+            else if (((int)scoreManager.Combo == 50 || (int)scoreManager.Combo == 50 )&& scoreManager.ComboChanged)
+            {
+                for (int q = 0; q < 6; q++)
+                {
+                    SetMemberState(q, 3);
+                }
+                //속도 빨라짐
+                SetMembersFrameTime(0.01f);
+                scoreManager.ComboChanged = false;
+            }
+
         }
         
         public void Draw(SpriteBatch spriteBatch)

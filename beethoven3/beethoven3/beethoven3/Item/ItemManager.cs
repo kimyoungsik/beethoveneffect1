@@ -476,7 +476,7 @@ namespace beethoven3
             rightNoteTexture[0] = cm.Load<Texture2D>(@"notes\Note_Basic_1");//기본
             rightNoteTexture[1] = cm.Load<Texture2D>(@"notes\starRightNote_yell");//우주
             rightNoteTexture[2] = cm.Load<Texture2D>(@"notes\leafRightNote");//숲
-            rightNoteTexture[3] = cm.Load<Texture2D>(@"notes\Note_Gostop_1_100");//고스톱
+            rightNoteTexture[3] = cm.Load<Texture2D>(@"notes\Note_Gostop_1");//고스톱
 
 
             leftNoteTexture[0] = cm.Load<Texture2D>(@"notes\Note_Basic_2");//기본

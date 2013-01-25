@@ -36,11 +36,9 @@ myPicture.jpg$260
 myPicture.jpg$225
 %%
 Untitled
-myPicture.jpg$153
-myPicture.jpg$27
-myPicture.jpg$20
-myPicture.jpg$20
-myPicture.jpg$13
+myPicture.jpg$301
+myPicture.jpg$278
+myPicture.jpg$266
 %%
 Beethoven Virus
 myPicture.jpg$0

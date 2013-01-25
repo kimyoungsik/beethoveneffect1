@@ -49,6 +49,10 @@ namespace beethoven3
 
         private double combo;
 
+
+        //콤보 변해나
+        private bool comboChanged;
+
         private double max;
 
 
@@ -89,6 +93,9 @@ namespace beethoven3
 
         private float standardGage = 100.0f;
 
+
+
+        
         #endregion
 
         #region constructor
@@ -129,8 +136,8 @@ namespace beethoven3
             gold = 0;
            
             gage = 0;
-          
 
+            comboChanged = false;
             rank = "";
         }
         #endregion
@@ -176,10 +183,17 @@ namespace beethoven3
 
             gage = 0;
 
-
+            comboChanged = false;
             rank = "";
 
         }
+
+        public bool ComboChanged
+        {
+            get { return comboChanged; }
+            set { comboChanged = value; }
+        }
+
 
 
         public int OneHandPerfect

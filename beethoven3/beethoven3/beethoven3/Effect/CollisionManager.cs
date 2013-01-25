@@ -154,7 +154,7 @@ namespace beethoven3
                     scoreManager.DragPerfect ++;
 
                     scoreManager.Combo += 2;
-
+                    scoreManager.ComboChanged = true;
 
                     scoreManager.Gage += 0.5f;
 
@@ -176,7 +176,7 @@ namespace beethoven3
                     scoreManager.DragGood++;
 
                     scoreManager.Combo+=2;
-
+                    scoreManager.ComboChanged = true;
                     scoreManager.Gage += 0.2f;
 
                     AddComboNumber((int)scoreManager.Combo, 1);
@@ -190,68 +190,72 @@ namespace beethoven3
         //타입 perfect = 0 , good = 1
         public void AddComboNumber(int number, int type , int duration = 30)
         {
-            int num = number;
-            int j;
-            if (num > 10)
+
+            if (number != 0)
             {
-                j = 2;
-                j++;
-
-
-            }
-            int[] eachNumbers = new int[6];
-            Vector2[] eachNumberLocations = new Vector2[6];
-
-            //자릿수
-            int length = 1;
-
-            //몇 자리 인지 센다.
-            //몫
-            int share;
-            share = num / 10;
-            eachNumbers[length - 1] = num % 10;
-
-
-            while (share > 0)
-            {
-                length++;
-                eachNumbers[length - 1] = share % 10;
-                share = share / 10;
-                
-                
-            }
-
-
-            int i;
-
-            for (i = 0; i < length; i++)
-            {
-                if (length == 1)
+                int num = number;
+                int j;
+                if (num > 10)
                 {
-                    //끝자리 부터
-                    comboNumberManager.AddComboNumbers(new Vector2(comboLocation.X - 55, comboLocation.Y), eachNumbers[i], type, duration);
-                }
-           
-                if (length == 2)
-                {
+                    j = 2;
+                    j++;
 
-                     comboNumberManager.AddComboNumbers(new Vector2(comboLocation.X - 10 -(i * 80) , comboLocation.Y), eachNumbers[i], type, duration);
-              
 
                 }
+                int[] eachNumbers = new int[6];
+                Vector2[] eachNumberLocations = new Vector2[6];
 
-                if (length == 3)
+                //자릿수
+                int length = 1;
+
+                //몇 자리 인지 센다.
+                //몫
+                int share;
+                share = num / 10;
+                eachNumbers[length - 1] = num % 10;
+
+
+                while (share > 0)
                 {
-                    comboNumberManager.AddComboNumbers(new Vector2(comboLocation.X - (i * 73) +20, comboLocation.Y), eachNumbers[i], type, duration);
+                    length++;
+                    eachNumbers[length - 1] = share % 10;
+                    share = share / 10;
 
 
                 }
 
-                if (length == 4)
+
+                int i;
+
+                for (i = 0; i < length; i++)
                 {
-                    comboNumberManager.AddComboNumbers(new Vector2(comboLocation.X - (i * 73) +30, comboLocation.Y), eachNumbers[i], type, duration);
+                    if (length == 1)
+                    {
+                        //끝자리 부터
+                        comboNumberManager.AddComboNumbers(new Vector2(comboLocation.X - 55, comboLocation.Y), eachNumbers[i], type, duration);
+                    }
+
+                    if (length == 2)
+                    {
+
+                        comboNumberManager.AddComboNumbers(new Vector2(comboLocation.X - 10 - (i * 80), comboLocation.Y), eachNumbers[i], type, duration);
 
 
+                    }
+
+                    if (length == 3)
+                    {
+                        comboNumberManager.AddComboNumbers(new Vector2(comboLocation.X - (i * 73) + 20, comboLocation.Y), eachNumbers[i], type, duration);
+
+
+                    }
+
+                    if (length == 4)
+                    {
+                        comboNumberManager.AddComboNumbers(new Vector2(comboLocation.X - (i * 73) + 30, comboLocation.Y), eachNumbers[i], type, duration);
+
+
+                    }
                 }
             }
 
@@ -344,6 +348,7 @@ namespace beethoven3
                             scoreManager.OneHandPerfect++;
 
                             scoreManager.Combo ++;
+                            scoreManager.ComboChanged = true;
                             scoreManager.Gage += 2;
                        
                             //콤보 글자 띄우기
@@ -362,11 +367,7 @@ namespace beethoven3
                                     //움직이는 속도 정상
                                     memberManager.SetMembersFrameTime(0.1f);
                                     //멤버 스크로크 효과 없어지게함
-                                    int i;
-                                    for (i = 0; i < 6; i++)
-                                    {
-                                        memberManager.SetMemberState(i, 0);
-                                    }
+                               
                                     SoundFmod.isChangedTempo = 0;
                               
 
@@ -396,9 +397,10 @@ namespace beethoven3
                             scoreManager.OneHandGood++;
 
                             scoreManager.Combo++;
+                            scoreManager.ComboChanged = true;
                             scoreManager.Gage += 1;
 
-                            memberManager.SetMemberState(1, 1);
+                            //memberManager.SetMemberState(1, 1);
 
 
 
@@ -424,10 +426,10 @@ namespace beethoven3
                                     memberManager.SetMembersFrameTime(0.1f);
                                     //멤버 스크로크 효과 없어지게함
                                     int i;
-                                    for (i = 0; i < 6; i++)
-                                    {
-                                        memberManager.SetMemberState(i, 0);
-                                    }
+                                    //for (i = 0; i < 6; i++)
+                                    //{
+                                    //    memberManager.SetMemberState(i, 0);
+                                    //}
                                     SoundFmod.isChangedTempo = 0;
                                 }
 
@@ -435,19 +437,19 @@ namespace beethoven3
                                 else if (SoundFmod.isChangedTempo == 2)
                                 {
 
-                                    int i;
+                                    //int i;
                                     SoundFmod.SetOptionalTime();
 
                                     SoundFmod.tempoChange(1.1f);
 
                                     //스트로크
 
-                                    for (i = 0; i < 6; i++)
-                                    {
+                                    //for (i = 0; i < 6; i++)
+                                    //{
 
-                                        memberManager.SetMemberState(i, 1);
+                                    //    memberManager.SetMemberState(i, 1);
 
-                                    }
+                                    //}
                                     //움직이는 속도 빨라짐
                                     memberManager.SetMembersFrameTime(0.07f);
 
@@ -459,19 +461,19 @@ namespace beethoven3
                                 else if (SoundFmod.isChangedTempo == 3)
                                 {
 
-                                    int i;
+                                    //int i;
                                     SoundFmod.SetOptionalTime();
 
                                     SoundFmod.tempoChange(1.2f);
 
                                     //스트로크
 
-                                    for (i = 0; i < 6; i++)
-                                    {
+                                    //for (i = 0; i < 6; i++)
+                                    //{
 
-                                        memberManager.SetMemberState(i, 2);
+                                    //    memberManager.SetMemberState(i, 2);
 
-                                    }
+                                    //}
                                     //움직이는 속도 빨라짐
                                     memberManager.SetMembersFrameTime(0.04f);
 
@@ -507,19 +509,19 @@ namespace beethoven3
                                 else if (SoundFmod.isChangedTempo == -3)
                                 {
 
-                                    int i;
+                                    //int i;
                                     SoundFmod.SetOptionalTime();
 
                                     SoundFmod.tempoChange(0.8f);
 
                                     //스트로크
 
-                                    for (i = 0; i < 6; i++)
-                                    {
+                                    //for (i = 0; i < 6; i++)
+                                    //{
 
-                                        memberManager.SetMemberState(i, 2);
+                                    //    memberManager.SetMemberState(i, 2);
 
-                                    }
+                                    //}
                                     //움직이는 속도 빨라짐
                                     memberManager.SetMembersFrameTime(0.16f);
 
@@ -549,6 +551,7 @@ namespace beethoven3
                                     scoreManager.Max = scoreManager.Combo;
                                 }
                                 scoreManager.Combo = 0;
+                                scoreManager.ComboChanged = true;
 
 
 
@@ -586,12 +589,12 @@ namespace beethoven3
 
                                         //스트로크
 
-                                        for (i = 0; i < 6; i++)
-                                        {
+                                        //for (i = 0; i < 6; i++)
+                                        //{
 
-                                            memberManager.SetMemberState(i, 1);
+                                        //    memberManager.SetMemberState(i, 1);
 
-                                        }
+                                        //}
                                         //움직이는 속도 빨라짐
                                         memberManager.SetMembersFrameTime(0.07f);
                                         SoundFmod.fastBadCount = 0;
@@ -614,12 +617,12 @@ namespace beethoven3
                                         //스트로크
                                         //memberManager.SetMemberState(4, 2);
 
-                                        for (i = 0; i < 6; i++)
-                                        {
+                                        //for (i = 0; i < 6; i++)
+                                        //{
 
-                                            memberManager.SetMemberState(i, 2);
+                                        //    memberManager.SetMemberState(i, 2);
 
-                                        }
+                                        //}
                                         //움직이는 속도 빨라짐
                                         memberManager.SetMembersFrameTime(0.04f);
                                         SoundFmod.fastBadCount = 0;
@@ -641,12 +644,12 @@ namespace beethoven3
                                         //스트로크
                                         //  memberManager.SetMemberState(4, 3);
 
-                                        for (i = 0; i < 6; i++)
-                                        {
+                                        //for (i = 0; i < 6; i++)
+                                        //{
 
-                                            memberManager.SetMemberState(i, 3);
+                                        //    memberManager.SetMemberState(i, 3);
 
-                                        }
+                                        //}
 
                                         //움직이는 속도 빨라짐
                                         memberManager.SetMembersFrameTime(0.01f);
@@ -667,6 +670,7 @@ namespace beethoven3
                                     scoreManager.Max = scoreManager.Combo;
                                 }
                                 scoreManager.Combo = 0;
+                                scoreManager.ComboChanged = true;
 
                                 //badManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
 
@@ -698,11 +702,11 @@ namespace beethoven3
                                         //멤버들 느려짐
                                         memberManager.SetMembersFrameTime(0.13f);
 
-                                        //스트로크
-                                        for (i = 0; i < 6; i++)
-                                        {
-                                            memberManager.SetMemberState(i, 1);
-                                        }
+                                        ////스트로크
+                                        //for (i = 0; i < 6; i++)
+                                        //{
+                                        //    memberManager.SetMemberState(i, 1);
+                                        //}
                                         SoundFmod.slowBadCount = 0;
                                     }
                                 }
@@ -725,12 +729,12 @@ namespace beethoven3
 
                                         //스트로크
                                         //memberManager.SetMemberState(4, 2);
-                                        for (i = 0; i < 6; i++)
-                                        {
+                                        //for (i = 0; i < 6; i++)
+                                        //{
 
-                                            memberManager.SetMemberState(i, 2);
+                                        //    memberManager.SetMemberState(i, 2);
 
-                                        }
+                                        //}
                                         SoundFmod.slowBadCount = 0;
                                     }
 
@@ -754,12 +758,12 @@ namespace beethoven3
 
                                         //스트로크
                                         //memberManager.SetMemberState(4, 3);
-                                        for (i = 0; i < 6; i++)
-                                        {
+                                        //for (i = 0; i < 6; i++)
+                                        //{
 
-                                            memberManager.SetMemberState(i, 3);
+                                        //    memberManager.SetMemberState(i, 3);
 
-                                        }
+                                        //}
                                         SoundFmod.slowBadCount = 0;
                                     }
 
@@ -823,6 +827,7 @@ namespace beethoven3
 
                             scoreManager.OneHandPerfect++;
                             scoreManager.Combo++;
+                            scoreManager.ComboChanged = true;
                             scoreManager.Gage += 2;
 
                             AddComboNumber((int)scoreManager.Combo, 0);
@@ -840,11 +845,7 @@ namespace beethoven3
                                 //움직이는 속도 정상
                                 memberManager.SetMembersFrameTime(0.1f);
                                 //멤버 스크로크 효과 없어지게함
-                                int i;
-                                for (i = 0; i < 6; i++)
-                                {
-                                    memberManager.SetMemberState(i, 0);
-                                }
+                            
                                 SoundFmod.isChangedTempo = 0;
 
 
@@ -872,6 +873,7 @@ namespace beethoven3
 
                             scoreManager.OneHandGood++;
                             scoreManager.Combo++;
+                            scoreManager.ComboChanged = true;
                             scoreManager.Gage += 1;
                             SoundFmod.slowBadCount = 0;
                             SoundFmod.fastBadCount = 0;
@@ -891,11 +893,7 @@ namespace beethoven3
                                     //움직이는 속도 정상
                                     memberManager.SetMembersFrameTime(0.1f);
                                     //멤버 스크로크 효과 없어지게함
-                                    int i;
-                                    for (i = 0; i < 6; i++)
-                                    {
-                                        memberManager.SetMemberState(i, 0);
-                                    }
+                               
                                     SoundFmod.isChangedTempo = 0;
                                 }
 
@@ -910,12 +908,7 @@ namespace beethoven3
 
                                     //스트로크
 
-                                    for (i = 0; i < 6; i++)
-                                    {
-
-                                        memberManager.SetMemberState(i, 1);
-
-                                    }
+                                  
                                     //움직이는 속도 빨라짐
                                     memberManager.SetMembersFrameTime(0.07f);
 
@@ -934,12 +927,7 @@ namespace beethoven3
 
                                     //스트로크
 
-                                    for (i = 0; i < 6; i++)
-                                    {
-
-                                        memberManager.SetMemberState(i, 2);
-
-                                    }
+                                   
                                     //움직이는 속도 빨라짐
                                     memberManager.SetMembersFrameTime(0.04f);
 
@@ -952,19 +940,12 @@ namespace beethoven3
                                 else if (SoundFmod.isChangedTempo == -2)
                                 {
 
-                                    int i;
                                     SoundFmod.SetOptionalTime();
 
                                     SoundFmod.tempoChange(0.9f);
 
                                     //스트로크
 
-                                    for (i = 0; i < 6; i++)
-                                    {
-
-                                        memberManager.SetMemberState(i, 1);
-
-                                    }
                                     //움직이는 속도 빨라짐
                                     memberManager.SetMembersFrameTime(0.13f);
 
@@ -975,19 +956,14 @@ namespace beethoven3
                                 else if (SoundFmod.isChangedTempo == -3)
                                 {
 
-                                    int i;
+                                  
                                     SoundFmod.SetOptionalTime();
 
                                     SoundFmod.tempoChange(0.8f);
 
                                     //스트로크
 
-                                    for (i = 0; i < 6; i++)
-                                    {
-
-                                        memberManager.SetMemberState(i, 2);
-
-                                    }
+                                  
                                     //움직이는 속도 빨라짐
                                     memberManager.SetMembersFrameTime(0.16f);
 
@@ -1017,7 +993,7 @@ namespace beethoven3
                                     scoreManager.Max = scoreManager.Combo;
                                 }
                                 scoreManager.Combo = 0;
-
+                                scoreManager.ComboChanged = true;
 
                                 
                                 //효과와 내용
@@ -1052,12 +1028,12 @@ namespace beethoven3
 
                                         //스트로크
 
-                                        for (i = 0; i < 6; i++)
-                                        {
+                                        //for (i = 0; i < 6; i++)
+                                        //{
 
-                                            memberManager.SetMemberState(i, 1);
+                                        //    memberManager.SetMemberState(i, 1);
 
-                                        }
+                                        //}
                                         //움직이는 속도 빨라짐
                                         memberManager.SetMembersFrameTime(0.07f);
                                         SoundFmod.fastBadCount = 0;
@@ -1081,12 +1057,12 @@ namespace beethoven3
                                         //스트로크
                                         //memberManager.SetMemberState(4, 2);
 
-                                        for (i = 0; i < 6; i++)
-                                        {
+                                        //for (i = 0; i < 6; i++)
+                                        //{
 
-                                            memberManager.SetMemberState(i, 2);
+                                        //    memberManager.SetMemberState(i, 2);
 
-                                        }
+                                        //}
                                         //움직이는 속도 빨라짐
                                         memberManager.SetMembersFrameTime(0.04f);
                                         SoundFmod.fastBadCount = 0;
@@ -1109,12 +1085,12 @@ namespace beethoven3
                                         //스트로크
                                         //  memberManager.SetMemberState(4, 3);
 
-                                        for (i = 0; i < 6; i++)
-                                        {
+                                        //for (i = 0; i < 6; i++)
+                                        //{
 
-                                            memberManager.SetMemberState(i, 3);
+                                        //    memberManager.SetMemberState(i, 3);
 
-                                        }
+                                        //}
 
                                         //움직이는 속도 빨라짐
                                         memberManager.SetMembersFrameTime(0.01f);
@@ -1135,7 +1111,7 @@ namespace beethoven3
                                     scoreManager.Max = scoreManager.Combo;
                                 }
                                 scoreManager.Combo = 0;
-
+                                scoreManager.ComboChanged = true;
 
                                 //badManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
 
@@ -1170,11 +1146,11 @@ namespace beethoven3
                                         //멤버들 느려짐
                                         memberManager.SetMembersFrameTime(0.13f);
 
-                                        //스트로크
-                                        for (i = 0; i < 6; i++)
-                                        {
-                                            memberManager.SetMemberState(i, 1);
-                                        }
+                                        ////스트로크
+                                        //for (i = 0; i < 6; i++)
+                                        //{
+                                        //    memberManager.SetMemberState(i, 1);
+                                        //}
                                         SoundFmod.slowBadCount = 0;
                                     }
                                 }
@@ -1201,12 +1177,12 @@ namespace beethoven3
 
                                         //스트로크
                                         //memberManager.SetMemberState(4, 2);
-                                        for (i = 0; i < 6; i++)
-                                        {
+                                        //for (i = 0; i < 6; i++)
+                                        //{
 
-                                            memberManager.SetMemberState(i, 2);
+                                        //    memberManager.SetMemberState(i, 2);
 
-                                        }
+                                        //}
                                         SoundFmod.slowBadCount = 0;
                                     }
 
@@ -1231,12 +1207,12 @@ namespace beethoven3
 
                                         //스트로크
                                         //memberManager.SetMemberState(4, 3);
-                                        for (i = 0; i < 6; i++)
-                                        {
+                                        //for (i = 0; i < 6; i++)
+                                        //{
 
-                                            memberManager.SetMemberState(i, 3);
+                                        //    memberManager.SetMemberState(i, 3);
 
-                                        }
+                                        //}
                                         SoundFmod.slowBadCount = 0;
                                     }
 
@@ -1326,7 +1302,7 @@ namespace beethoven3
 
                             scoreManager.LongPerfect++;
                             scoreManager.Combo+=0.1f;
-
+                            scoreManager.ComboChanged = true;
                             AddComboNumber((int)scoreManager.Combo, 0, 5);
 
                             scoreManager.Gage += 0.1f;
@@ -1342,11 +1318,11 @@ namespace beethoven3
                                 //움직이는 속도 정상
                                 memberManager.SetMembersFrameTime(0.1f);
                                 //멤버 스크로크 효과 없어지게함
-                                int i;
-                                for (i = 0; i < 6; i++)
-                                {
-                                    memberManager.SetMemberState(i, 0);
-                                }
+                                //int i;
+                                //for (i = 0; i < 6; i++)
+                                //{
+                                //    memberManager.SetMemberState(i, 0);
+                                //}
                                 SoundFmod.isChangedTempo = 0;
 
 
@@ -1475,9 +1451,19 @@ namespace beethoven3
                     {
                         scoreManager.Max = scoreManager.Combo;
                     }
-
+                    //미스테스트
                         
                     scoreManager.Combo = 0;
+                    
+                    //이때는 실수 해서 combo가 0이 되었기 때문에
+                    //scoreManager.ComboChanged = true;
+                    
+                    //실수 했을 때 
+                    for (int q = 0; q < 6; q++)
+                    {
+                        memberManager.SetMemberState(q, 4);
+                    }
+
 
                     if (!charismaManager.PlayCharisma)
                     {
@@ -1528,6 +1514,7 @@ namespace beethoven3
                         scoreManager.Max = scoreManager.Combo;
                     }
                     scoreManager.Combo = 0;
+                    scoreManager.ComboChanged = true;
                     if (!charismaManager.PlayCharisma)
                     {
                         scoreManager.Gage -= 10;
@@ -1583,6 +1570,7 @@ namespace beethoven3
                       }
 
                       scoreManager.Combo = 0;
+                      scoreManager.ComboChanged = true;
 
                       //에러
                       if (!charismaManager.PlayCharisma)

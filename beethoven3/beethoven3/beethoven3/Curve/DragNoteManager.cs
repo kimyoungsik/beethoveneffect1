@@ -124,7 +124,7 @@ namespace beethoven3
                     scoreManager.Max = scoreManager.Combo;
                 }
                 scoreManager.Combo = 0;
-
+                scoreManager.ComboChanged = true;
 
                 scoreManager.Gage -= 0.5f;
    

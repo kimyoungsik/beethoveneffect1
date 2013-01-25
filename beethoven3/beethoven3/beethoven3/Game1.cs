@@ -516,7 +516,7 @@ namespace beethoven3
             //게임중 점수관리
             scoreManager = new ScoreManager();
 
-            //상점 대문
+            //상점 대문2
             shopDoor = new ShopDoor(scoreManager);
             shopDoor.LoadContent(Content);
             
@@ -542,7 +542,7 @@ namespace beethoven3
             /////아이템 상점 -START
 
             //연주자
-            memberManager = new MemberManager();
+            memberManager = new MemberManager(scoreManager);
             memberManager.LoadContent(Content);
             memberManager.init();
 
@@ -2409,6 +2409,7 @@ namespace beethoven3
                        // scoreManager.Perfomance = scoreManager.Perfomance + 1;
                         scoreManager.PosturePerfect+=10;
                         scoreManager.Combo++;
+                        scoreManager.ComboChanged = true;
 
                         collisionManager.AddComboNumber((int)scoreManager.Combo, 0);
 
@@ -2475,6 +2476,7 @@ namespace beethoven3
                             goodBannerManager.AddBanners(collisionManager.goodLocation, collisionManager.goodBannerScale);
                             scoreManager.JestureGood ++ ;
                             scoreManager.Combo++;
+                            scoreManager.ComboChanged = true;
                             collisionManager.AddComboNumber((int)scoreManager.Combo, 1);
 
 
@@ -2484,6 +2486,7 @@ namespace beethoven3
                             perfectBannerManager.AddBanners(collisionManager.perfectLocation, collisionManager.perfectBannerScale);
                             scoreManager.JesturePerfect ++;
                             scoreManager.Combo++;
+                            scoreManager.ComboChanged = true;
                             collisionManager.AddComboNumber((int)scoreManager.Combo, 0);
 
 
@@ -3262,7 +3265,10 @@ namespace beethoven3
                     badManager.Update(gameTime);
                     goldGetManager.Update(gameTime);
                     scoreManager.Update(gameTime);
-                    memberManager.Update(gameTime);            
+                    memberManager.Update(gameTime);
+                    
+                    
+
                     SoundFmod.StartChangedTime(gameTime);
                     //photoManager.Update(gameTime);
 
@@ -3680,7 +3686,7 @@ namespace beethoven3
                     // 고스톱이면 스프라이트 적용
                         else if (itemManager.getNoteIndex() == 3)
                         {
-                            startNoteManager.changeLeftNoteImage(leftNoteTextures[itemManager.getNoteIndex()], new Rectangle(0, 0, 120, leftNoteTextures[itemManager.getNoteIndex()].Height), leftNoteScale[0],15, 10);
+                            startNoteManager.changeLeftNoteImage(leftNoteTextures[itemManager.getNoteIndex()], new Rectangle(0, 0, 100, leftNoteTextures[itemManager.getNoteIndex()].Height), leftNoteScale[0],15, 10);
 
                         }
 
@@ -3733,7 +3739,8 @@ namespace beethoven3
                         {
                             memberManager.SetMemberState(q, 0);
                         }
-                        
+                    //속도초기화 
+                        memberManager.SetMembersFrameTime(0.1f);
                         //현재 장착한 마커로 설정//(마커,마커의 rect크기. scale)
                         //개별 마커및 전체 마커에도 설정함
                         MarkManager.chageMarksImages(markersTextures[itemManager.getNoteIndex()], new Rectangle(0,0,markersTextures[itemManager.getNoteIndex()].Width,markersTextures[itemManager.getNoteIndex()].Height), markersScale[0]);
@@ -4477,7 +4484,7 @@ namespace beethoven3
                                     scoreManager.Max = scoreManager.Combo;
                                 }
                                 scoreManager.Combo = 0;
-                            
+                                scoreManager.ComboChanged = true;
                             }
 
 
@@ -4499,6 +4506,7 @@ namespace beethoven3
                                     scoreManager.Max = scoreManager.Combo;
                                 }
                                 scoreManager.Combo = 0;
+                                scoreManager.ComboChanged = true;
                             }
 
 

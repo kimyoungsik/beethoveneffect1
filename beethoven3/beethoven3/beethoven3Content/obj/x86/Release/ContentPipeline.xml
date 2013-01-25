@@ -1466,7 +1466,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\Note_Gostop_1.xnb</Output>
-      <Time>2013-01-21T20:17:28+09:00</Time>
+      <Time>2013-01-25T13:30:52+09:00</Time>
     </Item>
     <Item>
       <Source>notes\Note_Gostop_2.png</Source>
@@ -1475,7 +1475,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\Note_Gostop_2.xnb</Output>
-      <Time>2013-01-21T20:17:32+09:00</Time>
+      <Time>2013-01-25T22:26:35.7759976+09:00</Time>
     </Item>
     <Item>
       <Source>notes\Note_Gostop_3.png</Source>
@@ -1484,7 +1484,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\Note_Gostop_3.xnb</Output>
-      <Time>2013-01-25T13:05:18+09:00</Time>
+      <Time>2013-01-25T22:26:49.8198008+09:00</Time>
     </Item>
     <Item>
       <Source>Explosion\Effect_Sakura_2.png</Source>
@@ -1881,15 +1881,6 @@
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\leafDragNote100.xnb</Output>
       <Time>2013-01-25T12:53:48+09:00</Time>
-    </Item>
-    <Item>
-      <Source>notes\Note_Gostop_1_100.png</Source>
-      <Name>notes\Note_Gostop_1_100</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\Note_Gostop_1_100.xnb</Output>
-      <Time>2013-01-25T13:30:52+09:00</Time>
     </Item>
     <Item>
       <Source>notes\starLongNote.png</Source>
