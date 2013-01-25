@@ -660,13 +660,13 @@ namespace beethoven3
                       //  noteTime = arrayNotes[0].StartTime;
 
                     }
-                    //else if (arrayNotes[0].Type != "D")
-                    //{
-                    //    //드래그노트 미리 3초전
-                    //    //드래그노트일 때는 이걸 할 필요가 없다.
-                    //    noteTime = arrayNotes[0].StartTime - 3;
-                    //    // noteTime = arrayNotes[0].StartTime;
-                    //}
+                    else if (arrayNotes[0].Type == "D")
+                    {
+                        //드래그노트 미리 3초전
+                        //드래그노트일 때는 이걸 할 필요가 없다.
+                        noteTime = arrayNotes[0].StartTime - 3;
+                        // noteTime = arrayNotes[0].StartTime;
+                    }
                     else
                     {
                         noteTime = arrayNotes[0].StartTime;
@@ -705,7 +705,7 @@ namespace beethoven3
                                     //현재 노트로 오른손노트이고 다음 노트도 오른손 노트일때
                                     if (arrayNotes[0].IsRight && arrayNotes[1].IsRight)
                                     {
-                                        DrawGuideLineInfo drawGuideLineInfo = new DrawGuideLineInfo(arrayNotes[0].MarkLocation - 1, arrayNotes[1].MarkLocation - 1, true, arrayNotes[0].StartTime+1.5/* 조금느리게 지워지게 하기 위해서  */, arrayNotes[1].StartTime);
+                                        DrawGuideLineInfo drawGuideLineInfo = new DrawGuideLineInfo(arrayNotes[0].MarkLocation - 1, arrayNotes[1].MarkLocation - 1, true, arrayNotes[0].StartTime+1/* 조금느리게 지워지게 하기 위해서  */, arrayNotes[1].StartTime);
                                     
                                         drawGuideLineQueue.Enqueue(drawGuideLineInfo);
                                       
@@ -784,7 +784,7 @@ namespace beethoven3
                             //case 4:
                             //시작점,제어점1,제어점2,끝점,지속시간
                             //커브매니저에 커브를 만든다.
-                            curveManager.addCurve(arrayNotes[0].StartPoint, arrayNotes[0].FirstOperatorPoint, arrayNotes[0].SecondOperatorPoint, arrayNotes[0].EndPoint, (arrayNotes[0].LastTime - arrayNotes[0].StartTime) * 1000);
+                            curveManager.addCurve(arrayNotes[0].StartPoint, arrayNotes[0].FirstOperatorPoint, arrayNotes[0].SecondOperatorPoint, arrayNotes[0].EndPoint,arrayNotes[0].StartTime,arrayNotes[0].LastTime);
                         }
                         //패턴 변환
                         //pattern change

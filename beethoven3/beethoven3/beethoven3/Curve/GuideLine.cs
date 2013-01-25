@@ -159,7 +159,7 @@ namespace beethoven3
         #region update and draw
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            int i, j;
+            //int i, j;
 
             if (Points.Count > 0 && !end)
             {
@@ -168,17 +168,17 @@ namespace beethoven3
                 
 
                 //동전라인 아닌 가이드라인 
-                if (!showGold)
-                {
-                    for (i = 0; i < Points.Count - 1; i++)
-                    {
-                        j = i + 1;
-                        Color color = Color.White;
-                        //color.A = 50;
-                        //라인 그리기
-                        lineRenderer.DrawLine(Game1.spriteSheet, new Rectangle(0, 0, 20, 20), spriteBatch.GraphicsDevice, spriteBatch, (Vector2)Points[i], (Vector2)Points[j], color);
-                    }
-                }
+                //if (!showGold)
+                //{
+                //    for (i = 0; i < Points.Count - 1; i++)
+                //    {
+                //        j = i + 1;
+                //        Color color = Color.White;
+                //        //color.A = 50;
+                //        //라인 그리기
+                //        lineRenderer.DrawLine(Game1.spriteSheet, new Rectangle(0, 0, 20, 20), spriteBatch.GraphicsDevice, spriteBatch, (Vector2)Points[i], (Vector2)Points[j], color);
+                //    }
+                //}
               
               
                 if (changedTime > time)

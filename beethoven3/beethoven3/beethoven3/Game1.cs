@@ -4329,8 +4329,7 @@ namespace beethoven3
                 //startnoteclass에 가야 보이고 안보이게 할 수 있음
                 startNoteManager.Draw(spriteBatch);
 
-                curveManager.Draw(gameTime, spriteBatch);
-                guideLineManager.Draw(gameTime, spriteBatch);
+                
                 
                 //이걸 주석하면 드래그노트 체크하는거 안보임 하지만 체크는 됨
                 //DragNoteManager.Draw(spriteBatch);
@@ -4339,7 +4338,8 @@ namespace beethoven3
 
                 TimeSpan processTime = file.Draw(spriteBatch, gameTime);
 
-
+                curveManager.Draw(gameTime, spriteBatch, processTime);
+                guideLineManager.Draw(gameTime, spriteBatch);
 
                 //기본 템포 설정( 템포가 바뀐상태이면 안변함)
                 SoundFmod.SetBasicTempo();

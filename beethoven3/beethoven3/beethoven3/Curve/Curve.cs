@@ -23,7 +23,7 @@ namespace beethoven3
         private Queue PointsQueue = new Queue();
         private List<Vector2> Points = new List<Vector2>();
         //곡선의 기준시간
-        private double time = 0.0f;
+       // private double time = 0.0f;
         //경과 시간
         private double changedTime = 0.0f;
 
@@ -32,6 +32,9 @@ namespace beethoven3
 
 
         private double startTime = 0.0f;
+        private double endTime = 0.0f;
+
+
         private Vector2 currentPosition;
         private int count = 0;
 
@@ -43,6 +46,8 @@ namespace beethoven3
         private Vector2 endVector = Vector2.Zero;
         private DragNoteManager dragNoteManager;
        
+
+
 
         public static int dragNoteSpeed= 120;
 
@@ -57,12 +62,14 @@ namespace beethoven3
         /// <param name="p2">제어점1</param>
         /// <param name="p3">끝나는점</param>
         /// <param name="time">지속시간</param>
-        public Curve(Vector2 p0, Vector2 p1, Vector2 p2, Vector2 p3, double time, LineRenderer lineRenderer, LineRenderer dragLineMarkerRenderer, DragNoteManager dragNoteManager)
+        public Curve(Vector2 p0, Vector2 p1, Vector2 p2, Vector2 p3, double startTime, double endTime, LineRenderer lineRenderer, LineRenderer dragLineMarkerRenderer, DragNoteManager dragNoteManager)
         {
-            SetLine(p0, p1, p2, p3, time);
+            SetLine(p0, p1, p2, p3, startTime, endTime);
             this.lineRenderer = lineRenderer;
             this.dragLineMarkerRenderer = dragLineMarkerRenderer;
             this.dragNoteManager = dragNoteManager;
+            this.startTime = startTime;
+            this.endTime = endTime;
         }
         #endregion
 
@@ -96,69 +103,69 @@ namespace beethoven3
             return new Vector2(resX, resY);
         }
 
-        private double GetNormalTime()
-        {
+        //private double GetNormalTime()
+        //{
 
-            double nomalTime = 0.0f;
-            if (time <= 1000)
-            {
-                nomalTime = 60.0f;
+        //    double nomalTime = 0.0f;
+        //    if (time <= 1000)
+        //    {
+        //        nomalTime = 60.0f;
 
-            }
-            else if (time <= 2000)
-            {
-                nomalTime = 120.0f;
+        //    }
+        //    else if (time <= 2000)
+        //    {
+        //        nomalTime = 120.0f;
 
-            }
-            else if (time <= 3000)
-            {
-                nomalTime = 150.0f;
+        //    }
+        //    else if (time <= 3000)
+        //    {
+        //        nomalTime = 150.0f;
 
-            }
-            else if (time <= 4000)
-            {
-                nomalTime = 210.0f;
+        //    }
+        //    else if (time <= 4000)
+        //    {
+        //        nomalTime = 210.0f;
 
-            }
-            else if (time <= 5000)
-            {
+        //    }
+        //    else if (time <= 5000)
+        //    {
 
-                nomalTime = 270.0f;
-            }
-            else if (time <= 6000)
-            {
-                nomalTime = 300.0f;
+        //        nomalTime = 270.0f;
+        //    }
+        //    else if (time <= 6000)
+        //    {
+        //        nomalTime = 300.0f;
 
-            }
-            else if (time <= 7000)
-            {
-                nomalTime = 330.0f;
+        //    }
+        //    else if (time <= 7000)
+        //    {
+        //        nomalTime = 330.0f;
 
-            }
-            else if (time <= 8000)
-            {
-                nomalTime = 400.0f;
+        //    }
+        //    else if (time <= 8000)
+        //    {
+        //        nomalTime = 400.0f;
 
-            }
-            else if (time <= 9000)
-            {
-                nomalTime = 400.0f;
+        //    }
+        //    else if (time <= 9000)
+        //    {
+        //        nomalTime = 400.0f;
 
-            }
-            else if (time <= 10000)
-            {
-                nomalTime = 400.0f;
+        //    }
+        //    else if (time <= 10000)
+        //    {
+        //        nomalTime = 400.0f;
 
-            }
-            else
-            {
-                nomalTime = 450.0f;
+        //    }
+        //    else
+        //    {
+        //        nomalTime = 450.0f;
 
-            }
-            return nomalTime;
+        //    }
+        //    return nomalTime;
 
 
-        }
+        //}
 
 
         public double ChangeSpeed()
@@ -229,7 +236,7 @@ namespace beethoven3
         /// <param name="p2">제어점1</param>
         /// <param name="p3">끝나는점</param>
         /// <param name="time">지속시간</param>
-        public void SetLine(Vector2 p0, Vector2 p1, Vector2 p2, Vector2 p3, double time)
+        public void SetLine(Vector2 p0, Vector2 p1, Vector2 p2, Vector2 p3, double startTime, double endTime)
         {
             Vector2 PlotPoint;
             
@@ -237,7 +244,7 @@ namespace beethoven3
             this.dotChangedTime = 0.0;
 
             //총시간
-            this.time = time;
+            double time = endTime - startTime;
 
             float t;
 
@@ -268,7 +275,7 @@ namespace beethoven3
             //적당한 포인트 수를 가져온다. 
 
 
-            double nomalTime = GetNormalTime();
+         //   double nomalTime = GetNormalTime();
             //Trace.WriteLine(nomalTime);
 
 
@@ -279,12 +286,15 @@ namespace beethoven3
 
             //bpm에 따라서 달라지는 속도, 이것은 2초 이상일때만
 
-            if (time > 2000)
-            {
-                          nomalTime += speedChagneTime;
-            }
+            //if (time > 2000)
+            //{
+            //              nomalTime += speedChagneTime;
+            //}
 
             int i;
+
+            //TEMP
+            double nomalTime = 270.0f;
 
             //큐와 배열에 
             for (i = 0; i <= nomalTime; i++)
@@ -332,64 +342,41 @@ namespace beethoven3
         #endregion
 
         #region update and draw
-        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public void Draw(GameTime gameTime, SpriteBatch spriteBatch, TimeSpan processTime)
         {
             int i, j;
              
 
-
-            if (Points.Count > 0 && !end)
+              // 4        15
+            if (Points.Count > 0 && processTime <= TimeSpan.FromSeconds(endTime))
             {
-                startTime += gameTime.ElapsedGameTime.TotalMilliseconds;
+              //  startTime += gameTime.ElapsedGameTime.TotalMilliseconds;
 
 
-
-                ////전체 라인을 그리는 것
-                ////시간을 앞당겨서 미리 보여주는것도 이것
-                for (i = 0; i < Points.Count - 1; i++)
+                //3초전이면 나타나기            7 -3 = 4                            
+                if (processTime >= TimeSpan.FromSeconds(startTime - 3))
                 {
-                    j = i + 1;
-                    Color color = Color.White;
-                    // color.A = 1;
+                    ////전체 라인을 그리는 것
+                    ////시간을 앞당겨서 미리 보여주는것도 이것
+                    for (i = 0; i < Points.Count - 1; i++)
+                    {
+                        j = i + 1;
+
+                        //라인 그리기
+                        lineRenderer.DrawLine(Game1.drawLineNote1, new Rectangle(0, 0, 100, 100), spriteBatch.GraphicsDevice, spriteBatch, (Vector2)Points[i], (Vector2)Points[j], Color.White);
 
 
-                    //라인 그리기
-                    lineRenderer.DrawLine(Game1.drawLineNote1, new Rectangle(0, 0, 100, 100), spriteBatch.GraphicsDevice, spriteBatch, (Vector2)Points[i], (Vector2)Points[j], color);
-
-
+                    }
+                   
                 }
-                if (startTime > 20 && startTime < 1000)
+
+
+              
+
+                //10초
+                if (processTime >= TimeSpan.FromSeconds(startTime))
                 {
-                    spriteBatch.Draw(Game1.three, new Rectangle(0, 0, 275, 376), Color.White);
-
-
-                }
-                else if (startTime > 1000 && startTime < 2000)
-                {
-                    spriteBatch.Draw(Game1.two, new Rectangle(0, 0, 275, 376), Color.White);
-
-
-                }
-                else if (startTime > 2000 && startTime < 3000)
-                {
-
-                    spriteBatch.Draw(Game1.one, new Rectangle(0, 0, 275, 376), Color.White);
-
-                }
                
-
-                if (startTime >= 3000)
-                {
-                    //게임이 진행하는 전체 시간
-
-                    changedTime += gameTime.ElapsedGameTime.TotalMilliseconds;
-
-                    dotChangedTime += gameTime.ElapsedGameTime.TotalMilliseconds;
-
-
-                    double ti1 = time; 
-                    //하나의 점이 /
-                    //     if (dotChangedTime >= dotTime && PointsQueue.Count > 1)
                     if (PointsQueue.Count > 1)
                     {
 
@@ -433,25 +420,47 @@ namespace beethoven3
 
 
 
-                    if (changedTime > time)
-                    {
+                  
 
-                        if (Points.Count > 0)
-                        {
-                            //지워지기 시작 
-                            DeleteAllPoints();
+                }
+                else if (processTime >= TimeSpan.FromSeconds(startTime - 1))//9초
+                {
 
-                            //지워지기 시작하면 true -> 화면에서 안보이게 함
-                            end = true;
+                    spriteBatch.Draw(Game1.one, new Rectangle(0, 0, 275, 376), Color.White);
 
-                            //마지막남은 것 지우기
+                }
+                else if (processTime >= TimeSpan.FromSeconds(startTime - 2))//8초
+                {
+                    spriteBatch.Draw(Game1.two, new Rectangle(0, 0, 275, 376), Color.White);
 
-                            //드래그 노트 실패 띄우기 2
-                            dragNoteManager.DeleteDragNotes();
-                        }
-                    }
 
-                }//
+                }
+                //start 10초가 가정
+                else if (processTime >= TimeSpan.FromSeconds(startTime - 3))//7초        
+                {
+
+                    spriteBatch.Draw(Game1.three, new Rectangle(0, 0, 275, 376), Color.White);
+
+                }
+               
+                //
+            }
+            else
+            {
+
+                if (Points.Count > 0)
+                {
+                    //지워지기 시작 
+                    DeleteAllPoints();
+
+                    //지워지기 시작하면 true -> 화면에서 안보이게 함
+                    end = true;
+
+                    //마지막남은 것 지우기
+
+                    //드래그 노트 실패 띄우기 2
+                    dragNoteManager.DeleteDragNotes();
+                }
             }
         }
         #endregion

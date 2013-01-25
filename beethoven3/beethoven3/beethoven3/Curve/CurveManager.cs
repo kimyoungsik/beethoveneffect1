@@ -33,10 +33,10 @@ namespace beethoven3
         /// <param name="p2">제어점1</param>
         /// <param name="p3">끝나는점</param>
         /// <param name="time">지속시간</param>
-        public void addCurve(Vector2 p0, Vector2 p1, Vector2 p2, Vector2 p3, double time)
+        public void addCurve(Vector2 p0, Vector2 p1, Vector2 p2, Vector2 p3, double startTime, double endTime)
         {
 
-            Curve curve = new Curve(p0, p1, p2, p3, time, lineRenderer, dragLineMarkerRenderer, dragNoteManager);
+            Curve curve = new Curve(p0, p1, p2, p3, startTime,endTime, lineRenderer, dragLineMarkerRenderer, dragNoteManager);
             Curves.Add(curve);    
         }
 
@@ -62,11 +62,11 @@ namespace beethoven3
         #region update and draw
 
 
-        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public void Draw(GameTime gameTime, SpriteBatch spriteBatch, TimeSpan processTime)
         {
             foreach (Curve curve in Curves)
             {
-                curve.Draw(gameTime,  spriteBatch);
+                curve.Draw(gameTime, spriteBatch, processTime);
             }
             //foreach (Curve guideLine in GuideLines)
             //{
