@@ -227,3 +227,6 @@ Content\snd\maid.xnb
 Content\snd\maid.wma
 Content\MessageFont.xnb
 Content\Fonts\Georgia.xnb
+Content\character\violin1.xnb
+Content\character\violin2.xnb
+Content\character\violin3.xnb

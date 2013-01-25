@@ -48,8 +48,6 @@ myPicture.jpg$0
 %%
 attractive
 myPicture.jpg$178
-gesture_25_19_29_2.jpg$148
 myPicture.jpg$109
 myPicture.jpg$91
-gesture_25_18_3_35.jpg$81
 **

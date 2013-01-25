@@ -2706,7 +2706,7 @@ namespace beethoven3
 
 
             //왼손
-            collisionManager.checkDragNote(new Vector2(drawrec2.X, drawrec2.Y));
+          //  collisionManager.checkDragNote(new Vector2(drawrec2.X, drawrec2.Y));
 
             collisionManager.CheckLeftHandCollisions(0, new Vector2(drawrec2.X, drawrec2.Y));
 
@@ -3726,7 +3726,9 @@ namespace beethoven3
                         float[] markersScale = itemManager.GetMarkersScale();
 
 
-                        
+                    //템포 초기화 
+                        SoundFmod.isChangedTempo = 0;
+                        SoundFmod.changedTempo = 0;
                         for (int q = 0; q < 6; q++)
                         {
                             memberManager.SetMemberState(q, 0);
@@ -4925,13 +4927,13 @@ namespace beethoven3
             
             //스케이 ㄹ없을 때는
              //spriteBatch.Draw(leftHandTexture, new Vector2((float)drawrec2.X - (float)(leftHandTexture.Width * 0.5), (float)drawrec2.Y - (float)(leftHandTexture.Height * 0.5)), Color.White);
-
+            Trace.WriteLine(drawrec2);
 
             spriteBatch.Draw(
              leftHandTexture,
                 //위치: Center-> location 으로 바꿈 (마커와 노트 매칭 떄문에 )
-             new Vector2((float)drawrec2.X - (float)(leftHandTexture.Width * 0.5), (float)drawrec2.Y - (float)(leftHandTexture.Height * 0.5)),
-
+             new Vector2((float)drawrec2.X - (float)(leftHandTexture.Width * 0.25f), (float)drawrec2.Y - (float)(leftHandTexture.Height * 0.25f)),
+                    //  new Vector2((float)drawrec2.X , (float)drawrec2.Y ),
              null,
              Color.White,
              0f,

@@ -2038,6 +2038,33 @@
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Fonts\Georgia.xnb</Output>
       <Time>2013-01-20T15:59:44+09:00</Time>
     </Item>
+    <Item>
+      <Source>character\violin1.png</Source>
+      <Name>character\violin1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\character\violin1.xnb</Output>
+      <Time>2013-01-25T20:12:17.822109+09:00</Time>
+    </Item>
+    <Item>
+      <Source>character\violin2.png</Source>
+      <Name>character\violin2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\character\violin2.xnb</Output>
+      <Time>2013-01-25T20:12:17.8081082+09:00</Time>
+    </Item>
+    <Item>
+      <Source>character\violin3.png</Source>
+      <Name>character\violin3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\character\violin3.xnb</Output>
+      <Time>2013-01-25T20:12:17.8211089+09:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

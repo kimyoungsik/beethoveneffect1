@@ -269,7 +269,7 @@ namespace beethoven3
 
 
             double nomalTime = GetNormalTime();
-            Trace.WriteLine(nomalTime);
+            //Trace.WriteLine(nomalTime);
 
 
             //dragNoteSpeed 가 120보다 얼마나 더 크냐에 따라서 normalTime을 더 낮춘다. 낮출수록 빨라지고 높일수록 느려진다. 

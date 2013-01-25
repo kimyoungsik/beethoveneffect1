@@ -704,3 +704,6 @@ D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\ui\goldPlu
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\ui\lifePlus10.xnb
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\ui\lifePlus15.xnb
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Coding4Fun.Kinect.Wpf.pdb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\character\violin1.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\character\violin2.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\character\violin3.xnb
