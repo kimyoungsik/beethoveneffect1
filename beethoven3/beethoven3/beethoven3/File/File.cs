@@ -51,7 +51,7 @@ namespace beethoven3
 
         private CharismaManager charismaManager;
 
-        private PhotoManager photoManager;
+      //  private PhotoManager photoManager;
 
         private bool endFile;
 
@@ -100,7 +100,7 @@ namespace beethoven3
         
         #region constructor
 
-        public File(StartNoteManager startNoteManager, NoteFileManager noteFileManager, CollisionManager collisionManager, ScoreManager scoreManager, ItemManager itemManager, CurveManager curveManager, GuideLineManager guideLineManager, CharismaManager charismaManager, PhotoManager photoManager)       
+        public File(StartNoteManager startNoteManager, NoteFileManager noteFileManager, CollisionManager collisionManager, ScoreManager scoreManager, ItemManager itemManager, CurveManager curveManager, GuideLineManager guideLineManager, CharismaManager charismaManager)       
         {
 
              this.startNoteManager = startNoteManager;
@@ -120,7 +120,7 @@ namespace beethoven3
 
              this.charismaManager = charismaManager;
 
-             this.photoManager = photoManager;
+        //     this.photoManager = photoManager;
              newNote = true;
         }
         
@@ -651,17 +651,23 @@ namespace beethoven3
 
                     //시간에 맞추어서 노트가 날아갈 수 있게 생성 시간을 정한다. 
 
-                    if (arrayNotes[0].Type != "D")
+                    if (arrayNotes[0].Type != "D" && arrayNotes[0].Type != "H")
                     {
                         noteTime = GetNoteStartTime(arrayNotes[0].StartTime);
                       //  noteTime = arrayNotes[0].StartTime;
 
                     }
-                    else
+                    else if (arrayNotes[0].Type != "D")
                     {
+                        //드래그노트 미리 3초전
                         //드래그노트일 때는 이걸 할 필요가 없다.
                         noteTime = arrayNotes[0].StartTime - 3;
-                       // noteTime = arrayNotes[0].StartTime;
+                        // noteTime = arrayNotes[0].StartTime;
+                    }
+                    else
+                    {
+                        noteTime = arrayNotes[0].StartTime;
+
                     }
                    // Trace.WriteLine("note : " +noteTime + " pro :" + processTime);
 
@@ -859,9 +865,9 @@ namespace beethoven3
                         else if (arrayNotes[0].Type == "H")
                         {
                             //종류. 시작시간, 끝나는시간
-                            photoManager.AddPhotoFrame(arrayNotes[0].StartTime, playTimeSpan);
+                           // photoManager.AddPhotoFrame(arrayNotes[0].StartTime, playTimeSpan);
                            // charismaManager.AddChasmaFrame(arrayNotes[0].StartTime, arrayNotes[0].LastTime, arrayNotes[0].MarkLocation, this.time);
-
+                            Game1.PicFlag = true;
                         }
 
 

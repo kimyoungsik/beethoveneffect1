@@ -374,7 +374,7 @@ namespace beethoven3
         private CharismaManager charismaManager;
 
 
-        private PhotoManager photoManager;
+     //   private PhotoManager photoManager;
         //드래그 라인 안의 마커점
 
         public static Texture2D drawLineMarker;
@@ -773,12 +773,12 @@ namespace beethoven3
 
           
 
-            photoManager = new PhotoManager();
-            photoManager.LoadContent(Content);
+        //    photoManager = new PhotoManager();
+        //    photoManager.LoadContent(Content);
 
 
             //노트파일 읽기 관리 생성
-            file = new File(startNoteManager, noteFileManager, collisionManager, scoreManager, itemManager, curveManager, guideLineManager, charismaManager, photoManager);
+            file = new File(startNoteManager, noteFileManager, collisionManager, scoreManager, itemManager, curveManager, guideLineManager, charismaManager);
 
             SoundFmod.initialize(file);
             //곡선택화면 곡 불러오는 폴더 
@@ -1587,7 +1587,7 @@ namespace beethoven3
             if (PicFlag)
             {
                 byte[] ColorData = null;
-
+                PicFlag = false;
                 using (ColorImageFrame ImageParam = e.OpenColorImageFrame())
                 {
                     if (ImageParam == null) return;
@@ -1613,7 +1613,7 @@ namespace beethoven3
 
 
                 }
-                PicFlag = false;
+                
             }
 #if Kinect
             getDepthFrame();
@@ -3152,7 +3152,7 @@ namespace beethoven3
                        //save recored scores in the file
                        reportManager.SaveReport();
 
-                       photoManager.PhotoFrams.Clear();
+                       //photoManager.PhotoFrams.Clear();
                        //gold 파일에  저장
                        int indexGoldPlusItem = 3;
 
@@ -3234,6 +3234,8 @@ namespace beethoven3
                
                    }
 
+
+
                    double playTime = 0;
 
                    if (isPlayingSong)
@@ -3262,7 +3264,7 @@ namespace beethoven3
                     scoreManager.Update(gameTime);
                     memberManager.Update(gameTime);            
                     SoundFmod.StartChangedTime(gameTime);
-                    photoManager.Update(gameTime);
+                    //photoManager.Update(gameTime);
 
 
                     perfectBannerManager.Update(gameTime);
