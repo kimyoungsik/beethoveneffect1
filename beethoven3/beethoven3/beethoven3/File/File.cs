@@ -651,19 +651,22 @@ namespace beethoven3
 
                     //시간에 맞추어서 노트가 날아갈 수 있게 생성 시간을 정한다. 
 
-                    if (arrayNotes[0].Type != "D" && arrayNotes[0].Type != "H")
+                //    if (arrayNotes[0].Type != "D" && arrayNotes[0].Type != "H" && arrayNotes[0].Type != "C" &&  arrayNotes[0].Type != "N")
+
+                    if (arrayNotes[0].Type == "1" || arrayNotes[0].Type == "2" || arrayNotes[0].Type == "4")
+                    
                     {
                         noteTime = GetNoteStartTime(arrayNotes[0].StartTime);
                       //  noteTime = arrayNotes[0].StartTime;
 
                     }
-                    else if (arrayNotes[0].Type != "D")
-                    {
-                        //드래그노트 미리 3초전
-                        //드래그노트일 때는 이걸 할 필요가 없다.
-                        noteTime = arrayNotes[0].StartTime - 3;
-                        // noteTime = arrayNotes[0].StartTime;
-                    }
+                    //else if (arrayNotes[0].Type != "D")
+                    //{
+                    //    //드래그노트 미리 3초전
+                    //    //드래그노트일 때는 이걸 할 필요가 없다.
+                    //    noteTime = arrayNotes[0].StartTime - 3;
+                    //    // noteTime = arrayNotes[0].StartTime;
+                    //}
                     else
                     {
                         noteTime = arrayNotes[0].StartTime;
@@ -848,7 +851,7 @@ namespace beethoven3
                         {
                             //종류. 시작시간, 끝나는시간
 
-                            charismaManager.AddCharismaFrame(arrayNotes[0].StartTime, arrayNotes[0].LastTime, arrayNotes[0].MarkLocation, playTimeSpan);
+                            charismaManager.AddCharismaFrame(arrayNotes[0].StartTime, arrayNotes[0].LastTime, arrayNotes[0].MarkLocation);
 
                         }
 
@@ -857,7 +860,7 @@ namespace beethoven3
                         {
                             //종류. 시작시간, 끝나는시간
 
-                            charismaManager.AddCharismaFrame(arrayNotes[0].StartTime, arrayNotes[0].LastTime, arrayNotes[0].MarkLocation, playTimeSpan);
+                            charismaManager.AddCharismaFrame(arrayNotes[0].StartTime, arrayNotes[0].LastTime, arrayNotes[0].MarkLocation);
 
                         }
 
@@ -1200,11 +1203,16 @@ namespace beethoven3
          
         }
 
-        public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
+        public TimeSpan Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
 
             //double time = gameTime.TotalGameTime.TotalSeconds;
             DrawLineInLongNote(spriteBatch, playTimeSpan);
+
+
+            return this.ProcessTime;
+
+
 
         }
      

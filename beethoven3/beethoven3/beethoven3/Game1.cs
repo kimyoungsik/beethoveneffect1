@@ -4337,7 +4337,7 @@ namespace beethoven3
                 
                 GoldManager.Draw(spriteBatch);
 
-                file.Draw(spriteBatch, gameTime);
+                TimeSpan processTime = file.Draw(spriteBatch, gameTime);
 
 
 
@@ -4376,7 +4376,38 @@ namespace beethoven3
 
 
 #if Kinect
-                charismaManager.Draw(gameTime, spriteBatch);
+               // charismaManager.Draw(gameTime, spriteBatch);
+
+
+                //if (charismaFrames.Count > 0)
+                //{
+
+                //  //  currentTime += gameTime.ElapsedGameTime.TotalSeconds;
+                //    CharisimaFrame charismaFrame = (CharisimaFrame)charismaFrames.Peek();
+
+                //    if (currentTime >= charismaFrame.StartTime)
+                //    {
+
+
+                //        if (type != 6)
+                //        {
+                //            spriteBatch.Draw(charismaMessage, new Rectangle(0, 0, 1024, 769), Color.White);
+                //        }
+                //        else
+                //        {
+                //            spriteBatch.Draw(neutralMessage, new Rectangle(0, 0, 1024, 769), Color.White);
+                //        }
+
+                //        spriteBatch.Draw(charismaFrame.Texture, picLocation, Color.White);
+                //    }
+                //    //if (currentTime >= charismaFrame.EndTime)
+                //    //{
+                //    //    charismaFrames.Dequeue();
+                //    //    Game1.isGesture = false;
+                //    //    PlayCharisma = false;
+                //    //}
+                //}
+
 
                 if (charismaManager.charismaFrames.Count > 0)
                 {
@@ -4385,10 +4416,12 @@ namespace beethoven3
                     CharisimaFrame charismaFrame = (CharisimaFrame)charismaManager.charismaFrames.Peek();
 
 
-                    if (charismaManager.currentTime > TimeSpan.FromSeconds(charismaFrame.StartTime))
+                    if (processTime >= TimeSpan.FromSeconds(charismaFrame.StartTime))
                     {
 
                         spriteBatch.Draw(charismaFrame.Texture, charismaManager.picLocation, Color.White);
+                        spriteBatch.Draw(charismaFrame.Message, charismaManager.picLocation, Color.White);
+                        
                         if (charismaManager.IsCharismaTime)
                         {
                             charismaManager.PlayCharisma = true;
@@ -4458,7 +4491,7 @@ namespace beethoven3
                     }
                     Trace.WriteLine(isGesture);
 
-                    if (charismaManager.currentTime >= TimeSpan.FromSeconds(charismaFrame.EndTime))
+                    if (processTime >= TimeSpan.FromSeconds(charismaFrame.EndTime))
                     {
 
                         isGesture = false;

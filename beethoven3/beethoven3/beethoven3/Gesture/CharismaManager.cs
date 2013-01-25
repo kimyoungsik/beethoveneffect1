@@ -18,15 +18,17 @@ namespace beethoven3
     {  
         #region declarations
         private Texture2D texture;
+        private Texture2D message;
         private double startTime;
         private double endTime;
 
         #endregion
 
         #region constructor
-        public CharisimaFrame(Texture2D texture, double startTime,double endTime )
+        public CharisimaFrame(Texture2D texture, Texture2D message,double startTime,double endTime )
         {
             this.texture = texture;
+            this.message = message;
             this.startTime = startTime;
             this.endTime = endTime;
         }
@@ -44,7 +46,12 @@ namespace beethoven3
             set { texture = value; }
 
         }
+        public Texture2D Message
+        {
+            get { return message; }
+            set { message = value; }
 
+        }
         public double StartTime
         {
             get { return startTime; }
@@ -72,7 +79,7 @@ namespace beethoven3
         public Queue charismaFrames;
        
         //file에서 가져오는 현재 게임의 흐름
-        public TimeSpan currentTime;
+       // public double currentTime;
        
         private Texture2D charisma1;
         private Texture2D charisma2;
@@ -151,19 +158,27 @@ namespace beethoven3
 
 
 
-        public void AddCharismaFrame(double startTime, double endTime, int type, TimeSpan currentTime)
+        public void AddCharismaFrame(double startTime, double endTime, int type)
         {
             Texture2D texture  = GetTexture(type);
+            Texture2D message = null;
+            if (type == 6)
+            {
+                message = neutralMessage;
+            }
+            else
+            {
+               message = charismaMessage;
+            }
 
-            CharisimaFrame charismaFrame = new CharisimaFrame(texture,startTime,endTime);
+            CharisimaFrame charismaFrame = new CharisimaFrame(texture,message,startTime,endTime);
 
             isCharismaTime = true;
             //isJudgeCheck = false;
 
-
             charismaFrames.Enqueue(charismaFrame);
-            this.currentTime = currentTime;
-            this.type = type;
+         //   this.currentTime = currentTime.Seconds;
+           
 
         }
 
@@ -213,34 +228,34 @@ namespace beethoven3
 
 
 #if Kinect
-          if(charismaFrames.Count > 0)
-          {
+          //if(charismaFrames.Count > 0)
+          //{
 
-              //currentTime += gameTime.ElapsedGameTime.TotalSeconds;
-              CharisimaFrame charismaFrame  = (CharisimaFrame)charismaFrames.Peek();
+          //    currentTime += gameTime.ElapsedGameTime.TotalSeconds;
+          //    CharisimaFrame charismaFrame  = (CharisimaFrame)charismaFrames.Peek();
 
-              if (currentTime >= TimeSpan.FromSeconds(charismaFrame.StartTime))
-              {
+          //    if (currentTime >= charismaFrame.StartTime)
+          //    {
                  
 
-                  if (type != 6)
-                  {
-                      spriteBatch.Draw(charismaMessage, new Rectangle(0, 0, 1024, 769), Color.White);
-                  }
-                  else
-                  {
-                      spriteBatch.Draw(neutralMessage, new Rectangle(0, 0, 1024, 769), Color.White);
-                  }
+          //        if (type != 6)
+          //        {
+          //            spriteBatch.Draw(charismaMessage, new Rectangle(0, 0, 1024, 769), Color.White);
+          //        }
+          //        else
+          //        {
+          //            spriteBatch.Draw(neutralMessage, new Rectangle(0, 0, 1024, 769), Color.White);
+          //        }
 
-                  spriteBatch.Draw(charismaFrame.Texture, picLocation, Color.White);
-              }
-              //if (currentTime >= charismaFrame.EndTime)
-              //{
-              //    charismaFrames.Dequeue();
-              //    Game1.isGesture = false;
-              //    PlayCharisma = false;
-              //}
-          }
+          //        spriteBatch.Draw(charismaFrame.Texture, picLocation, Color.White);
+          //    }
+          //    //if (currentTime >= charismaFrame.EndTime)
+          //    //{
+          //    //    charismaFrames.Dequeue();
+          //    //    Game1.isGesture = false;
+          //    //    PlayCharisma = false;
+          //    //}
+          //}
 #endif
         }
   
