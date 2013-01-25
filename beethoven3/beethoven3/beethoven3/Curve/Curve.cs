@@ -45,9 +45,9 @@ namespace beethoven3
         private Vector2 startVector = Vector2.Zero;
         private Vector2 endVector = Vector2.Zero;
         private DragNoteManager dragNoteManager;
-       
 
 
+        private double distance; 
 
         public static int dragNoteSpeed= 120;
 
@@ -64,12 +64,15 @@ namespace beethoven3
         /// <param name="time">지속시간</param>
         public Curve(Vector2 p0, Vector2 p1, Vector2 p2, Vector2 p3, double startTime, double endTime, LineRenderer lineRenderer, LineRenderer dragLineMarkerRenderer, DragNoteManager dragNoteManager)
         {
+
+            this.distance = Vector2.Distance(p0, p1) + Vector2.Distance(p1, p2) + Vector2.Distance(p2, p3);
             SetLine(p0, p1, p2, p3, startTime, endTime);
             this.lineRenderer = lineRenderer;
             this.dragLineMarkerRenderer = dragLineMarkerRenderer;
             this.dragNoteManager = dragNoteManager;
             this.startTime = startTime;
             this.endTime = endTime;
+
         }
         #endregion
 
@@ -240,66 +243,24 @@ namespace beethoven3
         {
             Vector2 PlotPoint;
             
-            this.changedTime = 0.0;
-            this.dotChangedTime = 0.0;
+        //    this.changedTime = 0.0;
+         //   this.dotChangedTime = 0.0;
 
             //총시간
             double time = endTime - startTime;
 
             float t;
 
-            //각 포인트를 넣어둔다. 
+           
+            int count = (int)(time * 60);
 
-            ////큐와 배열에 
-            //for (t = 0;  t <= 1.0f; t += 0.01f)
-            //{
-            //    PlotPoint = GetPoint(t, p0, p1, p2, p3);
-            //    Points.Add(PlotPoint);
-
-            //    //전부다 넣을 필요가 없고
-            //    if (t % 0.1 == 0)
-            //    {
-
-            //        PointsQueue.Enqueue(PlotPoint);
-            //    }
-            //}
-            //이것을 초과하면 안됨
-            //1초 60
-            //2초 120
-            //3초 150적당
-            //4초 210
-            //5초 270
-            //6초 330
-
-
-            //적당한 포인트 수를 가져온다. 
-
-
-         //   double nomalTime = GetNormalTime();
-            //Trace.WriteLine(nomalTime);
-
-
-            //dragNoteSpeed 가 120보다 얼마나 더 크냐에 따라서 normalTime을 더 낮춘다. 낮출수록 빨라지고 높일수록 느려진다. 
-
-            double speedChagneTime = ChangeSpeed();
-
-
-            //bpm에 따라서 달라지는 속도, 이것은 2초 이상일때만
-
-            //if (time > 2000)
-            //{
-            //              nomalTime += speedChagneTime;
-            //}
-
-            int i;
-
-            //TEMP
-            double nomalTime = 270.0f;
 
             //큐와 배열에 
-            for (i = 0; i <= nomalTime; i++)
+            for (int j = 0; j <= count; j++)
             {
-                t = i / (float)nomalTime;
+                t = j / (float)count;
+                
+                
                 PlotPoint = GetPoint(t, p0, p1, p2, p3);
                 Points.Add(PlotPoint);
                  
@@ -310,16 +271,15 @@ namespace beethoven3
               //  }
             }
 
-
-
-
+            //200개의 포인트를 저장해 둔다.
+            //100개의 포인트를 찍을 곳은 중간위치 정가운데 시간이다.
+                        
             //나누어주는 count에 더하는 수를 크게하면 드래그노트 안을 지나가는 공이 빨라진다. 
             //이것이 드래그 노트 속도에 영향을 줌
             //dotTime = time / (PointsQueue.Count + dragNoteSpeed);
             //총시간을 포인트의 카운트 수만큼 나눈수 즉 하의 큐를 표현하는데 필요한 시간 
-                 
             
-            dotTime = time / (PointsQueue.Count );
+          //  dotTime = time / (PointsQueue.Count );
             end = false;
         }
 
@@ -423,6 +383,8 @@ namespace beethoven3
                   
 
                 }
+
+                    ///@@@카운트 
                 else if (processTime >= TimeSpan.FromSeconds(startTime - 1))//9초
                 {
 

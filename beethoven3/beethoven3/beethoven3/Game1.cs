@@ -1519,7 +1519,7 @@ namespace beethoven3
 
 
                                 case "상점":
-
+                                    message = "shop";
                                     if (gameState == GameStates.Menu)
                                     {
                                         gameState = GameStates.ShopDoor;
@@ -1527,7 +1527,7 @@ namespace beethoven3
                                     break;
 
                                 case "설정":
-
+                                    message = "setting";
                                     if (gameState == GameStates.Menu)
                                     {
                                         gameState = GameStates.SettingBoard;
