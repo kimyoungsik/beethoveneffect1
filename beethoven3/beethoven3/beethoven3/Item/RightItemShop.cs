@@ -847,6 +847,10 @@ namespace beethoven3
 
                 //}
             }
+
+
+            spriteBatch.Draw(Game1.goldPlusEffect10, forthItemLocation, Color.White);
+            spriteBatch.Draw(Game1.lifePlusEffect10, thirdItemLocation, Color.White);
         }
     }
 }

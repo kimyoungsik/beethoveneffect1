@@ -1430,7 +1430,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\leafLeftNote.xnb</Output>
-      <Time>2013-01-25T12:47:48.4080028+09:00</Time>
+      <Time>2013-01-25T12:47:50+09:00</Time>
     </Item>
     <Item>
       <Source>notes\leafRightNote.png</Source>
@@ -1440,15 +1440,6 @@
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\leafRightNote.xnb</Output>
       <Time>2013-01-21T12:55:34+09:00</Time>
-    </Item>
-    <Item>
-      <Source>notes\leafDragNote.png</Source>
-      <Name>notes\leafDragNote</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\leafDragNote.xnb</Output>
-      <Time>2013-01-25T12:49:18.22514+09:00</Time>
     </Item>
     <Item>
       <Source>notes\starDragNote.png</Source>
@@ -1493,7 +1484,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\Note_Gostop_3.xnb</Output>
-      <Time>2013-01-25T13:05:16.5149511+09:00</Time>
+      <Time>2013-01-25T13:05:18+09:00</Time>
     </Item>
     <Item>
       <Source>Explosion\Effect_Sakura_2.png</Source>
@@ -1658,30 +1649,30 @@
       <Time>2013-01-22T00:23:20+09:00</Time>
     </Item>
     <Item>
-      <Source>Explosion\Effect_MusicNote_1.png</Source>
-      <Name>Explosion\Effect_MusicNote_1</Name>
+      <Source>Explosion\Effect_MusicNote_11.png</Source>
+      <Name>Explosion\Effect_MusicNote_11</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Explosion\Effect_MusicNote_1.xnb</Output>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Explosion\Effect_MusicNote_11.xnb</Output>
       <Time>2013-01-22T01:19:50+09:00</Time>
     </Item>
     <Item>
-      <Source>Explosion\Effect_MusicNote_2.png</Source>
-      <Name>Explosion\Effect_MusicNote_2</Name>
+      <Source>Explosion\Effect_MusicNote_21.png</Source>
+      <Name>Explosion\Effect_MusicNote_21</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Explosion\Effect_MusicNote_2.xnb</Output>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Explosion\Effect_MusicNote_21.xnb</Output>
       <Time>2013-01-22T01:19:50+09:00</Time>
     </Item>
     <Item>
-      <Source>Explosion\Effect_MusicNote_3.png</Source>
-      <Name>Explosion\Effect_MusicNote_3</Name>
+      <Source>Explosion\Effect_MusicNote_31.png</Source>
+      <Name>Explosion\Effect_MusicNote_31</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Explosion\Effect_MusicNote_3.xnb</Output>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Explosion\Effect_MusicNote_31.xnb</Output>
       <Time>2013-01-22T01:19:50+09:00</Time>
     </Item>
     <Item>
@@ -1745,7 +1736,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Explosion\MusicNote_Thumnail.xnb</Output>
-      <Time>2013-01-22T23:08:02+09:00</Time>
+      <Time>2013-01-25T16:02:48+09:00</Time>
     </Item>
     <Item>
       <Source>Explosion\leafExplosion1.png</Source>
@@ -1862,7 +1853,142 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\SongMenu\No_Image.xnb</Output>
-      <Time>2013-01-25T00:58:41.4534562+09:00</Time>
+      <Time>2013-01-25T00:58:42+09:00</Time>
+    </Item>
+    <Item>
+      <Source>notes\leafLongNote.png</Source>
+      <Name>notes\leafLongNote</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\leafLongNote.xnb</Output>
+      <Time>2013-01-25T12:52:34+09:00</Time>
+    </Item>
+    <Item>
+      <Source>notes\leafDragNote.png</Source>
+      <Name>notes\leafDragNote</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\leafDragNote.xnb</Output>
+      <Time>2013-01-25T12:49:20+09:00</Time>
+    </Item>
+    <Item>
+      <Source>notes\leafDragNote100.png</Source>
+      <Name>notes\leafDragNote100</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\leafDragNote100.xnb</Output>
+      <Time>2013-01-25T12:53:48+09:00</Time>
+    </Item>
+    <Item>
+      <Source>notes\Note_Gostop_1_100.png</Source>
+      <Name>notes\Note_Gostop_1_100</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\Note_Gostop_1_100.xnb</Output>
+      <Time>2013-01-25T13:30:52+09:00</Time>
+    </Item>
+    <Item>
+      <Source>notes\starLongNote.png</Source>
+      <Name>notes\starLongNote</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\starLongNote.xnb</Output>
+      <Time>2013-01-25T13:39:02+09:00</Time>
+    </Item>
+    <Item>
+      <Source>notes\Note_Basic_1.png</Source>
+      <Name>notes\Note_Basic_1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\Note_Basic_1.xnb</Output>
+      <Time>2013-01-25T14:46:32+09:00</Time>
+    </Item>
+    <Item>
+      <Source>notes\Note_Basic_2.png</Source>
+      <Name>notes\Note_Basic_2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\Note_Basic_2.xnb</Output>
+      <Time>2013-01-25T14:46:32+09:00</Time>
+    </Item>
+    <Item>
+      <Source>notes\Note_Basic_3.png</Source>
+      <Name>notes\Note_Basic_3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\Note_Basic_3.xnb</Output>
+      <Time>2013-01-25T14:46:32+09:00</Time>
+    </Item>
+    <Item>
+      <Source>Explosion\Effect_MusicNote_1.png</Source>
+      <Name>Explosion\Effect_MusicNote_1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Explosion\Effect_MusicNote_1.xnb</Output>
+      <Time>2013-01-25T14:55:46+09:00</Time>
+    </Item>
+    <Item>
+      <Source>Explosion\Effect_MusicNote_2.png</Source>
+      <Name>Explosion\Effect_MusicNote_2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Explosion\Effect_MusicNote_2.xnb</Output>
+      <Time>2013-01-25T14:55:46+09:00</Time>
+    </Item>
+    <Item>
+      <Source>Explosion\Effect_MusicNote_3.png</Source>
+      <Name>Explosion\Effect_MusicNote_3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Explosion\Effect_MusicNote_3.xnb</Output>
+      <Time>2013-01-25T14:55:46+09:00</Time>
+    </Item>
+    <Item>
+      <Source>ui\goldPlus10.png</Source>
+      <Name>ui\goldPlus10</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\ui\goldPlus10.xnb</Output>
+      <Time>2013-01-25T15:44:18+09:00</Time>
+    </Item>
+    <Item>
+      <Source>ui\goldPlus15.png</Source>
+      <Name>ui\goldPlus15</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\ui\goldPlus15.xnb</Output>
+      <Time>2013-01-25T15:44:18+09:00</Time>
+    </Item>
+    <Item>
+      <Source>ui\lifePlus10.png</Source>
+      <Name>ui\lifePlus10</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\ui\lifePlus10.xnb</Output>
+      <Time>2013-01-25T15:44:18+09:00</Time>
+    </Item>
+    <Item>
+      <Source>ui\lifePlus15.png</Source>
+      <Name>ui\lifePlus15</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\ui\lifePlus15.xnb</Output>
+      <Time>2013-01-25T15:44:18+09:00</Time>
     </Item>
     <Item>
       <Source>snd\ka.mp3</Source>
@@ -1911,33 +2037,6 @@
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Fonts\Georgia.xnb</Output>
       <Time>2013-01-20T15:59:44+09:00</Time>
-    </Item>
-    <Item>
-      <Source>notes\starLongNote.png</Source>
-      <Name>notes\starLongNote</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\starLongNote.xnb</Output>
-      <Time>2013-01-14T14:02:40+09:00</Time>
-    </Item>
-    <Item>
-      <Source>notes\leafLongNote.png</Source>
-      <Name>notes\leafLongNote</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\leafLongNote.xnb</Output>
-      <Time>2013-01-25T12:52:33.3142985+09:00</Time>
-    </Item>
-    <Item>
-      <Source>notes\leafDragNote100.png</Source>
-      <Name>notes\leafDragNote100</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\leafDragNote100.xnb</Output>
-      <Time>2013-01-25T12:53:46.9305091+09:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

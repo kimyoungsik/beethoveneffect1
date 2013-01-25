@@ -663,7 +663,7 @@ namespace beethoven3
                         noteTime = arrayNotes[0].StartTime - 3;
                        // noteTime = arrayNotes[0].StartTime;
                     }
-                    Trace.WriteLine("note : " +noteTime + " pro :" + processTime);
+                   // Trace.WriteLine("note : " +noteTime + " pro :" + processTime);
 
                     if (TimeSpan.FromSeconds(noteTime) <= processTime )
                     {

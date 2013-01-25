@@ -518,11 +518,6 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="notes\starLongNote.png">
-      <Name>starLongNote</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="settingBoard\down.png">
@@ -1228,18 +1223,18 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Explosion\Effect_MusicNote_1.png">
-      <Name>Effect_MusicNote_1</Name>
+    <Compile Include="Explosion\Effect_MusicNote_11.png">
+      <Name>Effect_MusicNote_11</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Explosion\Effect_MusicNote_2.png">
-      <Name>Effect_MusicNote_2</Name>
+    <Compile Include="Explosion\Effect_MusicNote_21.png">
+      <Name>Effect_MusicNote_21</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Explosion\Effect_MusicNote_3.png">
-      <Name>Effect_MusicNote_3</Name>
+    <Compile Include="Explosion\Effect_MusicNote_31.png">
+      <Name>Effect_MusicNote_31</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -1399,6 +1394,76 @@
   <ItemGroup>
     <Compile Include="notes\leafDragNote100.png">
       <Name>leafDragNote100</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="notes\Note_Gostop_1_100.png">
+      <Name>Note_Gostop_1_100</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="notes\starLongNote.png">
+      <Name>starLongNote</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="notes\Note_Basic_1.png">
+      <Name>Note_Basic_1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="notes\Note_Basic_2.png">
+      <Name>Note_Basic_2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="notes\Note_Basic_3.png">
+      <Name>Note_Basic_3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Explosion\Effect_MusicNote_1.png">
+      <Name>Effect_MusicNote_1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Explosion\Effect_MusicNote_2.png">
+      <Name>Effect_MusicNote_2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Explosion\Effect_MusicNote_3.png">
+      <Name>Effect_MusicNote_3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ui\goldPlus10.png">
+      <Name>goldPlus10</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="ui\goldPlus15.png">
+      <Name>goldPlus15</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="ui\lifePlus10.png">
+      <Name>lifePlus10</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="ui\lifePlus15.png">
+      <Name>lifePlus15</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

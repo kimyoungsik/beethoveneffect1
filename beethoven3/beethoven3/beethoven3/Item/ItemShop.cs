@@ -102,7 +102,17 @@ namespace beethoven3
 
         private Vector2 locMoney = new Vector2(870, 55);
 
+
+
         
+
+
+        //3life위치 
+        protected Rectangle thirdItemLocation = new Rectangle(2 * 255 + 160, 200, 240, 240);
+
+        //4gold위치 
+        protected Rectangle forthItemLocation = new Rectangle(160, 450, 240, 240);
+
         public ItemShop(ItemManager itemManager, ScoreManager scoreManager, ReportManager reportManager)
         {
             this.itemManager = itemManager;
@@ -156,6 +166,10 @@ namespace beethoven3
             handInItemButton = cm.Load<Texture2D>(@"shopButton\noGoldButton");
 
             wearItemMark = cm.Load<Texture2D>(@"rightItem\wearItem");
+
+
+           
+
 
         }
 

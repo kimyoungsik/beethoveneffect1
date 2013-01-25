@@ -68,7 +68,7 @@ namespace beethoven3
         #region declarations
 
         //카리스마 프레임을 가지고 있는 큐
-        private Queue photoFrames = new Queue();
+        private Queue photoFrames;
 
         //file에서 가져오는 현재 게임의 흐름
         private TimeSpan currentTime;
@@ -90,7 +90,7 @@ namespace beethoven3
         #region constructor
         public PhotoManager()
         {
-
+            photoFrames = new Queue();
 
         }
 
@@ -110,11 +110,11 @@ namespace beethoven3
 
 
 
-        //public int IsPhotoTime
-        //{
-        //    get { return isPhotoTime; }
-        //    set { isPhotoTime = value; }
-        //}
+        public Queue PhotoFrams
+        {
+            get { return photoFrames; }
+            set { photoFrames = value; }
+        }
 
         //public bool IsJudgeCheck
         //{

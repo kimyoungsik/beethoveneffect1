@@ -129,7 +129,11 @@ namespace beethoven3
             spriteBatch.DrawString(Game1.georgia, scoreManager.Perfomance.ToString(), new Vector2(800, 370), Color.Gray);
             spriteBatch.DrawString(Game1.georgia, scoreManager.Max.ToString(), new Vector2(800, 430), Color.Gray);
 
+
+
             spriteBatch.DrawString(Game1.georgia, scoreManager.Gold.ToString(), new Vector2(800, 570), Color.Gray);
+            
+            
             spriteBatch.DrawString(Game1.georgia, scoreManager.TotalScore.ToString(), new Vector2(800, 640), Color.Gray);
 
 

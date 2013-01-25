@@ -473,27 +473,27 @@ namespace beethoven3
             //missEffectTexture[2] = cm.Load<Texture2D>(@"Explosion\windExplosion2");
 
 
-            rightNoteTexture[0] = cm.Load<Texture2D>(@"notes\starRightNote_yell");//기본
+            rightNoteTexture[0] = cm.Load<Texture2D>(@"notes\Note_Basic_1");//기본
             rightNoteTexture[1] = cm.Load<Texture2D>(@"notes\starRightNote_yell");//우주
             rightNoteTexture[2] = cm.Load<Texture2D>(@"notes\leafRightNote");//숲
-            rightNoteTexture[3] = cm.Load<Texture2D>(@"notes\Note_Gostop_1");//고스톱
+            rightNoteTexture[3] = cm.Load<Texture2D>(@"notes\Note_Gostop_1_100");//고스톱
 
 
-            leftNoteTexture[0] = cm.Load<Texture2D>(@"notes\starLeftNote_moon");//기본
+            leftNoteTexture[0] = cm.Load<Texture2D>(@"notes\Note_Basic_2");//기본
             leftNoteTexture[1] = cm.Load<Texture2D>(@"notes\starLeftNote_moon");//우주
             leftNoteTexture[2] = cm.Load<Texture2D>(@"notes\leafLeftNote");//숲
             leftNoteTexture[3] = cm.Load<Texture2D>(@"notes\Note_Gostop_2");//고스톱
 
 
-            dragNoteTexture[0] = cm.Load<Texture2D>(@"notes\starDragNote");//기본
+            dragNoteTexture[0] = cm.Load<Texture2D>(@"notes\Note_Basic_3");//기본
             dragNoteTexture[1] = cm.Load<Texture2D>(@"notes\starDragNote");//우주
             dragNoteTexture[2] = cm.Load<Texture2D>(@"notes\leafDragNote");//숲
             dragNoteTexture[3] = cm.Load<Texture2D>(@"notes\Note_Gostop_3");//고스톱
 
-            
 
 
-            longNoteTexture[0] = cm.Load<Texture2D>(@"notes\starLongNote");//기본
+
+            longNoteTexture[0] = cm.Load<Texture2D>(@"notes\Note_Basic_3");//기본
             longNoteTexture[1] = cm.Load<Texture2D>(@"notes\starLongNote");//우주
             longNoteTexture[2] = cm.Load<Texture2D>(@"notes\leafLongNote");//숲
             longNoteTexture[3] = cm.Load<Texture2D>(@"notes\Note_Gostop_3");//고스톱
