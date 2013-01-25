@@ -155,15 +155,6 @@
       <Time>2013-01-08T22:57:40+09:00</Time>
     </Item>
     <Item>
-      <Source>notes\starNote.png</Source>
-      <Name>notes\starNote</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\starNote.xnb</Output>
-      <Time>2013-01-08T22:57:40+09:00</Time>
-    </Item>
-    <Item>
       <Source>markers\starMarker.png</Source>
       <Name>markers\starMarker</Name>
       <Importer>TextureImporter</Importer>
@@ -179,15 +170,6 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\markers\turnMarker.xnb</Output>
-      <Time>2013-01-08T22:57:40+09:00</Time>
-    </Item>
-    <Item>
-      <Source>notes\turnNote2.png</Source>
-      <Name>notes\turnNote2</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\turnNote2.xnb</Output>
       <Time>2013-01-08T22:57:40+09:00</Time>
     </Item>
     <Item>
@@ -632,39 +614,12 @@
       <Time>2013-01-14T13:52:34+09:00</Time>
     </Item>
     <Item>
-      <Source>notes\planetNote1.png</Source>
-      <Name>notes\planetNote1</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\planetNote1.xnb</Output>
-      <Time>2013-01-14T14:02:40+09:00</Time>
-    </Item>
-    <Item>
       <Source>notes\starRightNote_yell.png</Source>
       <Name>notes\starRightNote_yell</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\starRightNote_yell.xnb</Output>
-      <Time>2013-01-14T14:02:40+09:00</Time>
-    </Item>
-    <Item>
-      <Source>notes\planetNote3.png</Source>
-      <Name>notes\planetNote3</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\planetNote3.xnb</Output>
-      <Time>2013-01-14T14:02:40+09:00</Time>
-    </Item>
-    <Item>
-      <Source>notes\planetNote4.png</Source>
-      <Name>notes\planetNote4</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\planetNote4.xnb</Output>
       <Time>2013-01-14T14:02:40+09:00</Time>
     </Item>
     <Item>
@@ -774,15 +729,6 @@
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\gold\getGold.xnb</Output>
       <Time>2013-01-18T21:25:54+09:00</Time>
-    </Item>
-    <Item>
-      <Source>notes\moonNote1.png</Source>
-      <Name>notes\moonNote1</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\moonNote1.xnb</Output>
-      <Time>2013-01-18T21:30:22+09:00</Time>
     </Item>
     <Item>
       <Source>shopButton\buyPanel.png</Source>
@@ -1484,7 +1430,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\leafLeftNote.xnb</Output>
-      <Time>2013-01-21T12:46:30+09:00</Time>
+      <Time>2013-01-25T12:47:48.4080028+09:00</Time>
     </Item>
     <Item>
       <Source>notes\leafRightNote.png</Source>
@@ -1502,7 +1448,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\leafDragNote.xnb</Output>
-      <Time>2013-01-21T13:03:58+09:00</Time>
+      <Time>2013-01-25T12:49:18.22514+09:00</Time>
     </Item>
     <Item>
       <Source>notes\starDragNote.png</Source>
@@ -1547,7 +1493,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\Note_Gostop_3.xnb</Output>
-      <Time>2013-01-21T20:17:32+09:00</Time>
+      <Time>2013-01-25T13:05:16.5149511+09:00</Time>
     </Item>
     <Item>
       <Source>Explosion\Effect_Sakura_2.png</Source>
@@ -1965,6 +1911,33 @@
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Fonts\Georgia.xnb</Output>
       <Time>2013-01-20T15:59:44+09:00</Time>
+    </Item>
+    <Item>
+      <Source>notes\starLongNote.png</Source>
+      <Name>notes\starLongNote</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\starLongNote.xnb</Output>
+      <Time>2013-01-14T14:02:40+09:00</Time>
+    </Item>
+    <Item>
+      <Source>notes\leafLongNote.png</Source>
+      <Name>notes\leafLongNote</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\leafLongNote.xnb</Output>
+      <Time>2013-01-25T12:52:33.3142985+09:00</Time>
+    </Item>
+    <Item>
+      <Source>notes\leafDragNote100.png</Source>
+      <Name>notes\leafDragNote100</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\leafDragNote100.xnb</Output>
+      <Time>2013-01-25T12:53:46.9305091+09:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

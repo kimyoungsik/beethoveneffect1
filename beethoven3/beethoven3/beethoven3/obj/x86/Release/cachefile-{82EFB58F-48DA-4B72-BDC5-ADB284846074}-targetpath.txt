@@ -15,10 +15,8 @@ Content\character\timpani.xnb
 Content\character\horn.xnb
 Content\character\contrabase.xnb
 Content\character\violin.xnb
-Content\notes\starNote.xnb
 Content\markers\starMarker.xnb
 Content\markers\turnMarker.xnb
-Content\notes\turnNote2.xnb
 Content\Explosion\heartExplosion2.xnb
 Content\character\contrabase1.xnb
 Content\character\contrabase3.xnb
@@ -68,10 +66,7 @@ Content\comboNumbers\good7.xnb
 Content\comboNumbers\good8.xnb
 Content\comboNumbers\good9.xnb
 Content\markers\whiteMarker.xnb
-Content\notes\planetNote1.xnb
 Content\notes\starRightNote_yell.xnb
-Content\notes\planetNote3.xnb
-Content\notes\planetNote4.xnb
 Content\settingBoard\down.xnb
 Content\settingBoard\downHover.xnb
 Content\settingBoard\up.xnb
@@ -84,7 +79,6 @@ Content\shopButton\hoverSCancelButton.xnb
 Content\shopButton\sSellButton.xnb
 Content\shopButton\hoverSSellButton.xnb
 Content\gold\getGold.xnb
-Content\notes\moonNote1.xnb
 Content\shopButton\buyPanel.xnb
 Content\shopButton\noButton.xnb
 Content\shopButton\hoverNoButton.xnb
@@ -219,3 +213,6 @@ Content\snd\maid.xnb
 Content\snd\maid.wma
 Content\MessageFont.xnb
 Content\Fonts\Georgia.xnb
+Content\notes\starLongNote.xnb
+Content\notes\leafLongNote.xnb
+Content\notes\leafDragNote100.xnb

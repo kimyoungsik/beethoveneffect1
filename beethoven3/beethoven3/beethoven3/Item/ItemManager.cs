@@ -493,9 +493,9 @@ namespace beethoven3
             
 
 
-            longNoteTexture[0] = cm.Load<Texture2D>(@"notes\planetNote4");//기본
-            longNoteTexture[1] = cm.Load<Texture2D>(@"notes\planetNote4");//우주
-            longNoteTexture[2] = cm.Load<Texture2D>(@"notes\leafLeftNote");//숲
+            longNoteTexture[0] = cm.Load<Texture2D>(@"notes\starLongNote");//기본
+            longNoteTexture[1] = cm.Load<Texture2D>(@"notes\starLongNote");//우주
+            longNoteTexture[2] = cm.Load<Texture2D>(@"notes\leafLongNote");//숲
             longNoteTexture[3] = cm.Load<Texture2D>(@"notes\Note_Gostop_3");//고스톱
 
 

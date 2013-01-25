@@ -222,13 +222,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="notes\starNote.png">
-      <Name>starNote</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="markers\starMarker.png">
       <Name>starMarker</Name>
       <Importer>TextureImporter</Importer>
@@ -238,13 +231,6 @@
   <ItemGroup>
     <Compile Include="markers\turnMarker.png">
       <Name>turnMarker</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="notes\turnNote2.png">
-      <Name>turnNote2</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -527,23 +513,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="notes\planetNote1.png">
-      <Name>planetNote1</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
     <Compile Include="notes\starRightNote_yell.png">
       <Name>starRightNote_yell</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="notes\planetNote3.png">
-      <Name>planetNote3</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="notes\planetNote4.png">
-      <Name>planetNote4</Name>
+    <Compile Include="notes\starLongNote.png">
+      <Name>starLongNote</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -612,13 +588,6 @@
   <ItemGroup>
     <Compile Include="gold\getGold.png">
       <Name>getGold</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="notes\moonNote1.png">
-      <Name>moonNote1</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -1106,11 +1075,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="notes\leafDragNote.png">
-      <Name>leafDragNote</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
     <Compile Include="notes\starDragNote.png">
       <Name>starDragNote</Name>
       <Importer>TextureImporter</Importer>
@@ -1414,6 +1378,27 @@
   <ItemGroup>
     <Compile Include="SongMenu\No_Image.png">
       <Name>No_Image</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="notes\leafLongNote.png">
+      <Name>leafLongNote</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="notes\leafDragNote.png">
+      <Name>leafDragNote</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="notes\leafDragNote100.png">
+      <Name>leafDragNote100</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

@@ -31,6 +31,7 @@ namespace beethoven3
         private bool newNote = true;
         private bool drawLine = false;
         private double drawLineTime;
+        private double timeToRemoveDrawLine;
         private int startNoteNumber;
 
      //   private String[] noteLine;
@@ -507,7 +508,7 @@ namespace beethoven3
         //        if (!(arrayNotes[i].Type == "1") && !(arrayNotes[i].Type == "B") && !(arrayNotes[i].Type == "2"))
         //        {
         //            arrayNotes[i].LastTime = arrayNotes[i].LastTime / changedTempo;
-
+        
         //        }
         //        //끝나는시간
         //    }
@@ -749,18 +750,22 @@ namespace beethoven3
                              하지만 이곳은 그냥 만들어진 객체에 add 하는것일 뿐이다. 
                              물론 객체를 계속 만들고 지우는것도 가능하다.
                              필요하다면 만들 수 도 있다.
-                             */
+                             */ 
 
                             collisionManager.TimerForLongNote = 0;
                             //첫롱노트 
-                            startNoteManager.MakeLongNote(arrayNotes[0].MarkLocation,1.0f,false);
+                         //   startNoteManager.MakeLongNote(arrayNotes[0].MarkLocation,1.0f,false);
                             
                             startNoteNumber = arrayNotes[0].MarkLocation;
 
-                            //롱노트 //드래그노트는 끝나는 시간 까지, 포함 이건 noteInfo에포함해야 됨 
-                            //끝나는시간
-                            //  drawLineTime = arrayNotes[0].LastTime + arrayNotes[0].StartTime;
-                            drawLineTime = arrayNotes[0].LastTime;
+                            //지우기 시작하는시간.
+                            timeToRemoveDrawLine = (arrayNotes[0].LastTime);
+                            //마지막까지 라인을 그리는 시간
+
+                            //롱노트를 위해 조금만 앞당김
+                            drawLineTime = GetNoteStartTimeForLongNote(arrayNotes[0].LastTime);
+                           
+
                             drawLine = true;
                             //   break;
                         }
@@ -960,38 +965,24 @@ namespace beethoven3
             {
                 //drawLineTime => 그려지는 총 시간
                 //
+               
+                collisionManager.CheckLongNoteInCenterArea();
 
-                if (TimeSpan.FromSeconds(drawLineTime) >= processTime)
+                // 지우기 시작하는시간 + 감을 주기위해 좀더 늘여준값
+                if (TimeSpan.FromSeconds(timeToRemoveDrawLine) >= processTime)
                 {
-                    startNoteManager.MakeLongNote(startNoteNumber,0.0f,false);
+                    //마지막것을 그리는 시간
+                    if (TimeSpan.FromSeconds(drawLineTime) >= processTime)
+                    {
+                        startNoteManager.MakeLongNote(startNoteNumber,0.0f,false);
 
-                    ////여기에서 손이 이곳에  있으면 되는것으로 
-                    //int i;
-                    //for (i = 0; i < StartNoteManager.longNoteManager.LittleNotes.Count; i++)
-                    //{
-                    //    Sprite littleNote = StartNoteManager.longNoteManager.LittleNotes[i];
-
-
-                    //}
-                    ////롱노트 사각형을 만나면 사라지게끔
-                    //if (checkLongNoteInCenterArea(startNoteNumber))
-                    //{
-                        collisionManager.CheckLongNoteInCenterArea();
+                    
+                            //collisionManager.CheckLongNoteInCenterArea();
 
                         
-                        //Vector2 center = StartNoteManager.longNoteManager.LittleNotes[0].Center;
-                        //badManager.AddExplosions(new Vector2(center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
-                   
-                        //StartNoteManager.longNoteManager.LittleNotes.RemoveAt(0);
-                        //scoreManager.Bad = scoreManager.Bad + 1;
-                        //if (scoreManager.Combo > scoreManager.Max)
-                        //{
-                        //    scoreManager.Max = scoreManager.Combo;
-                        //}
-    
-                        //scoreManager.Combo = 0;
-                   // }
+                    }
                 }
+
                 else//시간 지난후에 다시 들어오지 않게 
                 {
                     //노트가 없어질떄 까지
@@ -1058,65 +1049,7 @@ namespace beethoven3
 
         }
 
-        //이거는 collinsion으로 옮겨감
-
-        ///// <summary>
-        ///// 오른 손 노트 사각형 범위 들어가면 삭제 , 반복문 돌 필요가 없는지 다시 검토
-        ///// </summary>
-        //public void CheckRightNoteInCenterArea()
-        //{
-        //    int i;
-        //    for (i=0; i<StartNoteManager.rightNoteManager.LittleNotes.Count; i++ )
-        //    {
-        //         Sprite littleNote = StartNoteManager.rightNoteManager.LittleNotes[i];
-
-                
-        //        if (littleNote.IsBoxColliding(MarkManager.centerArea))
-        //        {
-
-
-        //            badManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
-
-        //            StartNoteManager.rightNoteManager.LittleNotes.RemoveAt(i);
-        //            scoreManager.Bad = scoreManager.Bad + 1;
-        //            if (scoreManager.Combo > scoreManager.Max)
-        //            {
-        //                scoreManager.Max = scoreManager.Combo;
-        //            }
-
-
-        //            scoreManager.Combo = 0;
-        //            scoreManager.Gage = scoreManager.Gage - 1;
-        //        }
-            
-        //    }
-            
-
-        //}
-
-        //public void CheckLeftNoteInCenterArea()
-        //{
-        //    int i;
-        //    for (i = 0; i < StartNoteManager.leftNoteManager.LittleNotes.Count; i++)
-        //    {
-        //        Sprite littleNote = StartNoteManager.leftNoteManager.LittleNotes[i];
-
-
-        //        if (littleNote.IsBoxColliding(MarkManager.centerArea))
-        //        {
-        //            badManager.AddExplosions(littleNote.Center);
-        //            StartNoteManager.leftNoteManager.LittleNotes.RemoveAt(i);
-        //            scoreManager.Bad = scoreManager.Bad + 1;
-        //            if (scoreManager.Combo > scoreManager.Max)
-        //            {
-        //                scoreManager.Max = scoreManager.Combo;
-        //            }
-        //            scoreManager.Combo = 0;
-
-        //        }
-        //    }
-        //}
-
+      
 
         public int checkLongNoteToMarker(int number)
         {
@@ -1150,7 +1083,7 @@ namespace beethoven3
 
             //기준 120
 
-            double velocity = GetVelocity(StartNoteManager.noteSpeed);
+          //  double velocity = GetVelocity(StartNoteManager.noteSpeed);
 
             //거리/속력 
 
@@ -1163,65 +1096,86 @@ namespace beethoven3
             
         }
 
-
-        public double GetVelocity(double bpm)
+        public double GetNoteStartTimeForLongNote(double noteTime)
         {
+            double startTime = 0.0f;
 
-            double minB = 60.0f;
-            //double minV = 85.0f;
-            double minV = 60.0f;
+            //입력 : bpm
+            //출력 속력2
 
+            //기준 120
 
-            double midB = 120.0f;
-            double midV = 120.0f;
+            //  double velocity = GetVelocity(StartNoteManager.noteSpeed);
 
-            double maxB = 240.0f;
-            double maxV = 240.0f;
+            //거리/속력 
 
+            //     velocity;
+            double time = (MarkManager.distance) / StartNoteManager.noteSpeed;
 
-            double velocity = 0.0f;
+            //롱노트를 위해 조금 느리게 하기 위해 1을 더해줌
+            startTime = noteTime - time + 0.5;
 
-
-
-            //위 보간
-            if (bpm > midB && bpm < maxB)
-            {
-
-
-               velocity = ((((bpm - midB) / (maxB - midB)) * (maxV - midV)) + midV);
-
-
-
-            }
-
-                //아래 보간
-            else if (bpm < midB && bpm >= minB)
-            {
-
-                velocity = ((((bpm - minB) / (midB - minB)) * (midV - minV)) + minV);
-
-
-            }
-            else if (bpm == midB)
-            {
-                velocity = midV;
-            }
-            else if (bpm == maxB)
-            {
-                velocity = maxV;
-            }  
-
-            else
-            {
-                velocity = midV;
-                //bpm 오류
-            }
-
-            return velocity;
-
-
+            return startTime;
 
         }
+        //public double GetVelocity(double bpm)
+        //{
+
+        //    double minB = 60.0f;
+        //    //double minV = 85.0f;
+        //    double minV = 60.0f;
+
+
+        //    double midB = 120.0f;
+        //    double midV = 120.0f;
+
+        //    double maxB = 240.0f;
+        //    double maxV = 240.0f;
+
+
+        //    double velocity = 0.0f;
+
+
+
+        //    //위 보간
+        //    if (bpm > midB && bpm < maxB)
+        //    {
+
+
+        //       velocity = ((((bpm - midB) / (maxB - midB)) * (maxV - midV)) + midV);
+
+
+
+        //    }
+
+        //        //아래 보간
+        //    else if (bpm < midB && bpm >= minB)
+        //    {
+
+        //        velocity = ((((bpm - minB) / (midB - minB)) * (midV - minV)) + minV);
+
+
+        //    }
+        //    else if (bpm == midB)
+        //    {
+        //        velocity = midV;
+        //    }
+        //    else if (bpm == maxB)
+        //    {
+        //        velocity = maxV;
+        //    }  
+
+        //    else
+        //    {
+        //        velocity = midV;
+        //        //bpm 오류
+        //    }
+
+        //    return velocity;
+
+
+
+        //}
        
 
 
