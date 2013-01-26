@@ -53,8 +53,12 @@ namespace beethoven3
         //*** test
         bool isonetime = true;
         //istwoTime
-             bool istwoTime = true;
-        Texture2D sit1;
+        bool istwoTime = true;
+       // Texture2D sit1;
+
+        
+        
+
 #if Kinect
         //화면에 띄우기
         Texture2D KinectVideoTexture;
@@ -180,7 +184,7 @@ namespace beethoven3
 
         public enum GameStates { Menu, Playing, SongMenu, ShopDoor,
                           RightItemShop, LeftItemShop, EffectItemShop, NoteItemShop, BackgroundItemShop,
-                          ResultManager, RecordBoard, ShowPictures, SettingBoard };
+                          ResultManager, RecordBoard, ShowPictures, SettingBoard, TutorialScene };
 
 
         //게임 씬, 처음시작은 메뉴
@@ -198,6 +202,7 @@ namespace beethoven3
         //선택된 곡
         private int resultSongMenu;
 
+        private TutorialScene tutorialScene;
 
         //곡을 음성인식으로 선택했을때 리턴받는 값을 저장하는 변수
         public static int soundRecogStartIndex = -1;
@@ -496,7 +501,7 @@ namespace beethoven3
             backJesture = Content.Load<Texture2D>(@"game1\backJesture");
             backJestureManager = new BackJestureManager(backJesture, new Rectangle(0, 0, 204, 204), 10, new Vector2(800, 500));
 
-           sit1 = Content.Load<Texture2D>(@"sit\Sitt_1");
+         //  sit1 = Content.Load<Texture2D>(@"sit\Sitt_1");
            //타이틀화면
             menuScene = new MenuScene();
             menuScene.LoadContent(Content);
@@ -646,8 +651,9 @@ namespace beethoven3
             resultNumberManager = new ResultNumberManager();
             resultNumberManager.LoadContent(Content);
 
-
-
+            tutorialScene = new TutorialScene();
+            tutorialScene.Load(Content);
+              
 
           //  comboNumber = new StaticSprite(new Vector2(0, 0), comboNumberTexture, new Rectangle(0, 0, 154, 200), Vector2.Zero, 1f);
 
@@ -880,6 +886,9 @@ namespace beethoven3
 
             songMenu = new SongMenu(noteFileManager, reportManager);
             songMenu.Load(Content, graphics.GraphicsDevice);
+
+
+
 
             //LOAD REPORT SCORE FILE
             //점수기록판을 로드해서 게임에 올린다. 
@@ -3860,6 +3869,30 @@ namespace beethoven3
 
                     break;
                #endregion
+
+               #region 튜토리얼씬
+
+                case GameStates.TutorialScene:
+
+                    int resultTutorialScene = tutorialScene.Update();
+
+
+                    
+                    if (resultTutorialScene == -1)
+                    {
+                        gameState = GameStates.Menu;
+                       
+
+                    }
+
+
+
+
+                    break;
+
+               #endregion
+
+
            }
            mouseStatePrevious = mouseStateCurrent;
            pastClick = finalClick;
@@ -4261,6 +4294,8 @@ namespace beethoven3
                 {
                     spriteBatch.DrawString(messageFont, message, Vector2.Zero, Color.Red);
                 }
+
+                //
 
                 if (KinectVideoTexture != null)
                 {
@@ -4871,6 +4906,25 @@ namespace beethoven3
 #endif
             }
 
+
+            #endregion
+
+            #region 튜토리얼씬
+
+            if (gameState == GameStates.TutorialScene)
+            {
+                tutorialScene.Draw(spriteBatch);
+             
+                #if Kinect
+                if (KinectVideoTexture != null)
+                {
+                    spriteBatch.Draw(KinectVideoTexture, VideoDisplayRectangle, Color.White);
+                    //setupKinect.draw();
+
+                }
+
+                #endif
+            }
 
             #endregion
 

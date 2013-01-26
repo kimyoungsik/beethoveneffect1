@@ -189,7 +189,7 @@ namespace beethoven3
                 if ((mouse.LeftButton == ButtonState.Pressed && pastmouse.LeftButton == ButtonState.Released) || (Game1.finalClick && !Game1.pastClick))
                 {
                     Game1.nearButton = false;
-
+                    Game1.gameState = Game1.GameStates.TutorialScene;
                 }
             }
             else

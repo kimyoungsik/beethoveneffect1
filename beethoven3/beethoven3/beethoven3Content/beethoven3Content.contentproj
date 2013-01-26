@@ -880,7 +880,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="recordBoard\songBackground.png">
+    <Compile Include="SongMenu\songBackground.png">
       <Name>songBackground</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -1476,6 +1476,95 @@
   <ItemGroup>
     <Compile Include="notes\Note_Gostop_2.png">
       <Name>Note_Gostop_2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="tutorial\tutorial10.PNG">
+      <Name>tutorial10</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="tutorial\tutorial11.PNG">
+      <Name>tutorial11</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="tutorial\tutorial12.PNG">
+      <Name>tutorial12</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="tutorial\tutorial13.PNG">
+      <Name>tutorial13</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="tutorial\tutorial14.PNG">
+      <Name>tutorial14</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="tutorial\tutorial15.PNG">
+      <Name>tutorial15</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="tutorial\tutorial16.PNG">
+      <Name>tutorial16</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="tutorial\tutorial17.PNG">
+      <Name>tutorial17</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="tutorial\tutorial2.PNG">
+      <Name>tutorial2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="tutorial\tutorial3.PNG">
+      <Name>tutorial3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="tutorial\tutorial4.PNG">
+      <Name>tutorial4</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="tutorial\tutorial5.PNG">
+      <Name>tutorial5</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="tutorial\tutorial6.PNG">
+      <Name>tutorial6</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="tutorial\tutorial7.PNG">
+      <Name>tutorial7</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="tutorial\tutorial8.PNG">
+      <Name>tutorial8</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="tutorial\tutorial9.PNG">
+      <Name>tutorial9</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="tutorial\tutorialBackground.png">
+      <Name>tutorialBackground</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

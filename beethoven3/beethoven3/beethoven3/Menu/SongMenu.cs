@@ -64,7 +64,7 @@ namespace beethoven3
             this.noteFileManager = noteFileManager;
             this.reportManager = reportManager;
 
-            pictures = new Texture2D[30];
+            pictures = new Texture2D[50];
             leftright = new Texture2D[2];
             arrawframe = new int[2];
             arrawframebutton = new bool[2];
@@ -78,7 +78,7 @@ namespace beethoven3
         //컨텐츠 로드
         public void Load(ContentManager content,GraphicsDevice graphicsdevice)
         {
-            songBackground = content.Load<Texture2D>(@"recordBoard\songBackground");
+            songBackground = content.Load<Texture2D>(@"SongMenu\songBackground");
         //    levelTexture = content.Load<Texture2D>(@"ui\heart");
 
 
