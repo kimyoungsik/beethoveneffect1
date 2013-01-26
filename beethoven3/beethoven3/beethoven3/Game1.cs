@@ -1,4 +1,8 @@
-﻿#define Kinect
+﻿
+#define Kinect
+
+//시작시 검사 
+//#define StartDetact
 
 using System;
 using System.Collections;
@@ -162,7 +166,7 @@ namespace beethoven3
         ColorImagePoint[] depthLocation;
 
         //사람 키에 따른 미세조정 파라미터
-        public float userParam = .3f;
+        public float userParam = .25f;
 
         //손가락 클릭
         private void skip() { }
@@ -320,7 +324,7 @@ namespace beethoven3
         private Texture2D playBackgroud1;
         private Texture2D playBackgroud2;
 
-       //드래그 라인 모양
+       //드래그 라인 모양//&&&
         public static Texture2D drawLineNote1;
 
      
@@ -422,10 +426,15 @@ namespace beethoven3
 
         private double uiProcessTime;
 
+
         private double uiEndTime;
       //  private bool isCharisma1;
 
         private Texture2D[] metronomes;
+
+        
+
+
 #if Kinect
        
 
@@ -538,7 +547,7 @@ namespace beethoven3
 
             effectItemShop = new EffectItemShop(itemManager, scoreManager, reportManager);
             effectItemShop.LoadContent(Content);
-
+            
             noteItemShop = new NoteItemShop(itemManager, scoreManager, reportManager);
             noteItemShop.LoadContent(Content);
 
@@ -592,9 +601,9 @@ namespace beethoven3
             
             //드래그 노트 셀떄
 
-            one = Content.Load<Texture2D>(@"comboNumbers\good1");
-            two = Content.Load<Texture2D>(@"comboNumbers\good2");
-            three = Content.Load<Texture2D>(@"comboNumbers\good3");
+            one = Content.Load<Texture2D>(@"ui\one");
+            two = Content.Load<Texture2D>(@"ui\two");
+            three = Content.Load<Texture2D>(@"ui\three");
 
 
             previousButton = Content.Load<Texture2D>(@"game1\previousButton");
@@ -753,11 +762,12 @@ namespace beethoven3
             charismaManager = new CharismaManager();
             charismaManager.LoadContent(Content);
 
-
+          
             //드래그노트 초기화
             //이것은 노트 안에서 움직이는 마커점
             dragNoteManager = new DragNoteManager(
                  drawLineMarker,
+                 itemManager.GetDragNoteBackground()[itemManager.getNoteIndex()],
                  new Rectangle(0, 0, 100, 100),
                  1,
                  15,
@@ -913,10 +923,12 @@ namespace beethoven3
             activeRecognizer = CreateRecognizer();
 
             //!!! 페이스 인식, 디버깅 시에 잠시 
-            //ts4 = new ThreadStart(FaceDetect);
-            //th4 = new Thread(ts4);
-            //th4.Start();
-           
+
+#if StartDetact
+            ts4 = new ThreadStart(FaceDetect);
+            th4 = new Thread(ts4);
+            th4.Start();
+#endif        
 
          
 #endif
@@ -1227,19 +1239,19 @@ namespace beethoven3
             }
 
 
-            if (fy >= 180)
+            if (factheight >= 180)
             {
                 userParam = 0.4f;
             }
-            else if (fy < 180 && fy >= 170)
+            else if (factheight < 180 && factheight >= 170)
             {
                 userParam = 0.35f;
             }
-            else if (fy < 170 && fy >= 160)
+            else if (factheight < 170 && factheight >= 160)
             {
                 userParam = 0.30f;
             }
-            else if (fy < 160 && fy >= 150)
+            else if (factheight < 160 && factheight >= 150)
             {
                 userParam = 0.25f;
             }
@@ -1359,7 +1371,7 @@ namespace beethoven3
                 gestureType = 1;
                 postureCount = 0;
                 gestureFlag = true;
-                string fileName = "111.txt";
+                string fileName = "0.txt";
                 LoadGesturesFromFile(fileName);
                 Skeleton2DDataExtract.Skeleton2DdataCoordReady += NuiSkeleton2DdataCoordReadyStop;
                 setupAudio();
@@ -1376,7 +1388,7 @@ namespace beethoven3
                 //if (reinfo.Id == "SR_MS_en-US_Kinect_11.0")
                 if (reinfo.Id.Contains("KR"))
                 {
-                    message = reinfo.Id;
+                    //message = reinfo.Id;
                     ri = reinfo;
                     break;
                 }
@@ -1412,7 +1424,9 @@ namespace beethoven3
             choices.Add("중지");
             
             choices.Add("다음");
-          
+            choices.Add("설정");
+            choices.Add("상점");
+            choices.Add("도움말");
           
           
 
@@ -1458,7 +1472,7 @@ namespace beethoven3
 
         void sre_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
         {
-            if (e.Result.Confidence < 0.5) return;//신뢰도 0.5미만일땐 리턴
+            if (e.Result.Confidence < 0.3) return;//신뢰도 0.5미만일땐 리턴
             if (skeleton != null)
             {
 
@@ -1528,7 +1542,7 @@ namespace beethoven3
 
 
                                 case "상점":
-                                    message = "shop";
+                                    
                                     if (gameState == GameStates.Menu)
                                     {
                                         gameState = GameStates.ShopDoor;
@@ -1536,7 +1550,7 @@ namespace beethoven3
                                     break;
 
                                 case "설정":
-                                    message = "setting";
+                                    
                                     if (gameState == GameStates.Menu)
                                     {
                                         gameState = GameStates.SettingBoard;
@@ -1547,7 +1561,7 @@ namespace beethoven3
 
                                     if (gameState == GameStates.Menu)
                                     {
-                                        //    gameState = GameStates;
+                                            gameState = GameStates.TutorialScene;
                                     }
                                     break;
                                 
@@ -1885,9 +1899,9 @@ namespace beethoven3
                     double dbVal = (fhipY - fheadY) * 2;
                     dbVal = dbVal * 1.25;
                     factheight = (dbVal * (fcenterZ * 100) - fcenterZ * 2);
-                    //message = factheight.ToString();
+                    message = factheight.ToString();
                 }
-
+                
 
                     
                 
@@ -2330,6 +2344,7 @@ namespace beethoven3
                 {
                     _video = new ArrayList();
                 }
+                //message = s.ToString();
 
                 //////////////////////////////////////////
                 if (!s.Contains("__UNKNOWN"))
@@ -2407,7 +2422,7 @@ namespace beethoven3
                 {
                     _video = new ArrayList();
                 }
-
+                message = s.ToString();
                 if (gestureFlag)
                 {
                     if (!s.Contains("__UNKNOWN"))
@@ -2501,7 +2516,7 @@ namespace beethoven3
 
                         }
 
-                        message = "yes" + score.ToString();
+                        //message = "yes" + score.ToString();
                         gestureFlag = false;
                         postureCount++;
                     }
@@ -3723,12 +3738,13 @@ namespace beethoven3
 
 
                         Texture2D[] dragTextures = itemManager.GetDragNoteTexture();
-                        
+                        Texture2D[] dragTextureBackgrounds = itemManager.GetDragNoteBackground();
+                            
 
                         //드래그노트 이미지 바꾸기
                         dragNoteManager.Texture = dragTextures[itemManager.getNoteIndex()];
 
-
+                        dragNoteManager.Background = dragTextureBackgrounds[itemManager.getNoteIndex()];
 
                         //마커리스트 텍스쳐 가져오기
                         Texture2D[] markersTextures = itemManager.GetMarkerTexture();
@@ -4131,7 +4147,7 @@ namespace beethoven3
                         }
                     }
                     double dbVal = (fhipY - fheadY) * 2;
-                    dbVal = dbVal * 1.25;
+                    dbVal = dbVal * 1.3;
                     factheight = (dbVal * (fcenterZ * 100) - fcenterZ * 2);
                     //message = factheight.ToString();
 
@@ -4456,7 +4472,7 @@ namespace beethoven3
 
                         spriteBatch.Draw(charismaFrame.Texture, charismaManager.picLocation, Color.White);
                         spriteBatch.Draw(charismaFrame.Message, charismaManager.picLocation, Color.White);
-                        
+                        Trace.WriteLine(charismaManager.IsCharismaTime);
                         if (charismaManager.IsCharismaTime)
                         {
                             charismaManager.PlayCharisma = true;
@@ -4468,7 +4484,7 @@ namespace beethoven3
                                 gestureType = 2;
                                 postureCount = 0;
                                 gestureFlag = true;
-                                fileName = "22.txt";
+                                fileName = "1.txt";
                                 LoadGesturesFromFile(fileName);
                                 Skeleton2DDataExtract.Skeleton2DdataCoordReady += NuiSkeleton2DdataCoordReadyPosture;
                             }
@@ -4479,7 +4495,7 @@ namespace beethoven3
                                 gestureType = 2;
                                 postureCount = 0;
                                 gestureFlag = true;
-                                fileName = "22.txt";
+                                fileName = "2.txt";
                                 LoadGesturesFromFile(fileName);
                                 Skeleton2DDataExtract.Skeleton2DdataCoordReady += NuiSkeleton2DdataCoordReadyPosture;
                             }
@@ -4490,7 +4506,7 @@ namespace beethoven3
                                 gestureType = 2;
                                 postureCount = 0;
                                 gestureFlag = true;
-                                fileName = "22.txt";
+                                fileName = "3.txt";
                                 LoadGesturesFromFile(fileName);
                                 Skeleton2DDataExtract.Skeleton2DdataCoordReady += NuiSkeleton2DdataCoordReadyPosture;
 
@@ -4502,7 +4518,7 @@ namespace beethoven3
                                 gestureType = 3;
                                 postureCount = 0;
                                 gestureFlag = true;
-                                fileName = "66.txt";
+                                fileName = "4.txt";
                                 LoadGesturesFromFile(fileName);
                                 Skeleton2DDataExtract.Skeleton2DdataCoordReady += NuiSkeleton2DdataCoordReadyGesture;
 
@@ -4516,7 +4532,7 @@ namespace beethoven3
                                 gestureType = 2;
                                 postureCount = 0;
                                 gestureFlag = true;
-                                fileName = "33.txt";
+                                fileName = "6.txt";
                                 LoadGesturesFromFile(fileName);
                                 Skeleton2DDataExtract.Skeleton2DdataCoordReady += NuiSkeleton2DdataCoordReadyPosture;
 
@@ -4582,7 +4598,7 @@ namespace beethoven3
                         gestureType = 1;
                         postureCount = 0;
                         gestureFlag = true;
-                        fileName = "111.txt";
+                        fileName = "0.txt";
                         LoadGesturesFromFile(fileName);
                         Skeleton2DDataExtract.Skeleton2DdataCoordReady += NuiSkeleton2DdataCoordReadyStop;
                         isGesture = true;
@@ -4979,6 +4995,7 @@ namespace beethoven3
 
             ////실질적인 스케일 변환
             j1r = j1.ScaleTo(SCR_W, SCR_H, userParam, userParam);
+            
      
             if (!nearButton)
             {

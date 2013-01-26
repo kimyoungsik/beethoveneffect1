@@ -45,7 +45,14 @@ myPicture.jpg$0
 myPicture.jpg$0
 %%
 attractive
-myPicture.jpg$178
-myPicture.jpg$109
-myPicture.jpg$91
+myPicture.jpg$435
+myPicture.jpg$418
+myPicture.jpg$407
+myPicture.jpg$332
+%%
+Symphony No. 9 "From the New World"
+myPicture.jpg$29
+myPicture.jpg$0
+%%
+KangBuk Sharp Dresser
 **

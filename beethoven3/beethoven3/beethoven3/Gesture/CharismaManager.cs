@@ -162,6 +162,7 @@ namespace beethoven3
         {
             Texture2D texture  = GetTexture(type);
             Texture2D message = null;
+            this.type = type;
             if (type == 6)
             {
                 message = neutralMessage;

@@ -17,7 +17,7 @@ namespace beethoven3
         private Texture2D texture;
         private Rectangle initialFrame;
         private int frameCount;
-
+        private Texture2D background;
         //노트 스피드로서 역할을 제대로 하지 않는다.
         private float noteSpeed;
         private int collisionRadius;
@@ -33,6 +33,7 @@ namespace beethoven3
         public DragNoteManager(
         
             Texture2D texture,
+            Texture2D background,
             Rectangle initialFrame,
             int frameCount,
             int collisionRadius,
@@ -42,6 +43,7 @@ namespace beethoven3
             )
         {
             this.texture = texture;
+            this.background = background;
             this.initialFrame = initialFrame;
             this.frameCount = frameCount;
             this.collisionRadius = collisionRadius;
@@ -81,6 +83,12 @@ namespace beethoven3
         {
             get { return texture; }
             set { texture = value; }
+        }
+
+        public Texture2D Background
+        {
+            get { return background; }
+            set { background = value; }
         }
 
         public Rectangle InitialFrame

@@ -328,6 +328,8 @@ namespace beethoven3
                         );
                     //perfect
                  
+
+                    //오른손 퍼펙
                     if (judgment == 2)
                     {
 
@@ -380,6 +382,8 @@ namespace beethoven3
                     }
 
                     //good
+
+                        //오른손 굿
                     else if (judgment == 1)
                     {
                         int mouseJudgment = MarkManager.Marks[number].MarkSprite.JudgedNote(mousePoint);
@@ -532,6 +536,9 @@ namespace beethoven3
                         }
                     }
                         //bad 
+
+
+                        //오른손 배드 
                     else if (judgment == -1)
                     {
 
@@ -551,9 +558,9 @@ namespace beethoven3
                                     scoreManager.Max = scoreManager.Combo;
                                 }
                                 scoreManager.Combo = 0;
+
                                 scoreManager.ComboChanged = true;
-
-
+                               
 
                                 //효과와 내용
                                 //이펙트 및 템포 빨라지기
@@ -1456,13 +1463,13 @@ namespace beethoven3
                     scoreManager.Combo = 0;
                     
                     //이때는 실수 해서 combo가 0이 되었기 때문에
-                    //scoreManager.ComboChanged = true;
+                    scoreManager.ComboChanged = true;
                     
-                    //실수 했을 때 
-                    for (int q = 0; q < 6; q++)
-                    {
-                        memberManager.SetMemberState(q, 4);
-                    }
+                    ////실수 했을 때 
+                    //for (int q = 0; q < 6; q++)
+                    //{
+                    //    memberManager.SetMemberState(q, 4);
+                    //}
 
 
                     if (!charismaManager.PlayCharisma)

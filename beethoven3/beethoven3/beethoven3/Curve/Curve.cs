@@ -106,69 +106,7 @@ namespace beethoven3
             return new Vector2(resX, resY);
         }
 
-        //private double GetNormalTime()
-        //{
-
-        //    double nomalTime = 0.0f;
-        //    if (time <= 1000)
-        //    {
-        //        nomalTime = 60.0f;
-
-        //    }
-        //    else if (time <= 2000)
-        //    {
-        //        nomalTime = 120.0f;
-
-        //    }
-        //    else if (time <= 3000)
-        //    {
-        //        nomalTime = 150.0f;
-
-        //    }
-        //    else if (time <= 4000)
-        //    {
-        //        nomalTime = 210.0f;
-
-        //    }
-        //    else if (time <= 5000)
-        //    {
-
-        //        nomalTime = 270.0f;
-        //    }
-        //    else if (time <= 6000)
-        //    {
-        //        nomalTime = 300.0f;
-
-        //    }
-        //    else if (time <= 7000)
-        //    {
-        //        nomalTime = 330.0f;
-
-        //    }
-        //    else if (time <= 8000)
-        //    {
-        //        nomalTime = 400.0f;
-
-        //    }
-        //    else if (time <= 9000)
-        //    {
-        //        nomalTime = 400.0f;
-
-        //    }
-        //    else if (time <= 10000)
-        //    {
-        //        nomalTime = 400.0f;
-
-        //    }
-        //    else
-        //    {
-        //        nomalTime = 450.0f;
-
-        //    }
-        //    return nomalTime;
-
-
-        //}
+       
 
 
         public double ChangeSpeed()
@@ -322,8 +260,9 @@ namespace beethoven3
                     {
                         j = i + 1;
 
-                        //라인 그리기
-                        lineRenderer.DrawLine(Game1.drawLineNote1, new Rectangle(0, 0, 100, 100), spriteBatch.GraphicsDevice, spriteBatch, (Vector2)Points[i], (Vector2)Points[j], Color.White);
+                        //라인 그리기//&&&
+                        
+                        lineRenderer.DrawLine(dragNoteManager.Background, new Rectangle(0, 0, 100, 100), spriteBatch.GraphicsDevice, spriteBatch, (Vector2)Points[i], (Vector2)Points[j], Color.White);
 
 
                     }
@@ -388,12 +327,12 @@ namespace beethoven3
                 else if (processTime >= TimeSpan.FromSeconds(startTime - 1))//9초
                 {
 
-                    spriteBatch.Draw(Game1.one, new Rectangle(0, 0, 275, 376), Color.White);
+                    spriteBatch.Draw(Game1.one, new Rectangle(10, 50, 150, 150), Color.White);
 
                 }
                 else if (processTime >= TimeSpan.FromSeconds(startTime - 2))//8초
                 {
-                    spriteBatch.Draw(Game1.two, new Rectangle(0, 0, 275, 376), Color.White);
+                    spriteBatch.Draw(Game1.two, new Rectangle(10, 50, 150, 150), Color.White);
 
 
                 }
@@ -401,7 +340,7 @@ namespace beethoven3
                 else if (processTime >= TimeSpan.FromSeconds(startTime - 3))//7초        
                 {
 
-                    spriteBatch.Draw(Game1.three, new Rectangle(0, 0, 275, 376), Color.White);
+                    spriteBatch.Draw(Game1.three, new Rectangle(10, 50, 150, 150), Color.White);
 
                 }
                

@@ -784,7 +784,9 @@ namespace beethoven3
                             //case 4:
                             //시작점,제어점1,제어점2,끝점,지속시간
                             //커브매니저에 커브를 만든다.
+                            
                             curveManager.addCurve(arrayNotes[0].StartPoint, arrayNotes[0].FirstOperatorPoint, arrayNotes[0].SecondOperatorPoint, arrayNotes[0].EndPoint,arrayNotes[0].StartTime,arrayNotes[0].LastTime);
+                        
                         }
                         //패턴 변환
                         //pattern change

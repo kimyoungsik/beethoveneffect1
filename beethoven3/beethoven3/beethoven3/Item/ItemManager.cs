@@ -49,7 +49,11 @@ namespace beethoven3
 
         //팔지는 않지만 텍스쳐만 가지고 있음
         private Texture2D[] markTexture = new Texture2D[6];
+
+        //curve클래스에서 사용
+        private Texture2D[] dragNoteBackground = new Texture2D[6];
         
+
         //Great의 이펙트 말고 다른 이펙트는 숨겨서 표현
         private Texture2D[] goodEffectTexture = new Texture2D[6];
         private Texture2D[] badEffectTexture = new Texture2D[6];
@@ -70,6 +74,7 @@ namespace beethoven3
         private int rightHandIndex = -1;
         private int leftHandIndex = -1;
         private int effectIndex = -1;
+        //curve에서 드래그노트 이미지 변경에 사용
         private int noteIndex =-1;
         private int backgroundIndex = -1;
 
@@ -529,7 +534,16 @@ namespace beethoven3
 
             //기본 다른모양
             backgroundThumnail[4] = cm.Load<Texture2D>(@"background\Back_ssum_3");
-           
+
+
+
+            dragNoteBackground[0] = cm.Load<Texture2D>(@"notes\dragNoteBack_Default");//기본
+            dragNoteBackground[1] = cm.Load<Texture2D>(@"notes\dragNoteBack_Space");//우주
+
+            dragNoteBackground[2] = cm.Load<Texture2D>(@"notes\dragNoteBack_Flower");//숲
+
+            dragNoteBackground[3] = cm.Load<Texture2D>(@"notes\dragNoteBack_GoStop");//고스톱
+
         }
 
         private void addItem(
@@ -665,6 +679,10 @@ namespace beethoven3
         public Texture2D[] GetMissEffectTexture()
         {
             return this.missEffectTexture;
+        }
+        public Texture2D[] GetDragNoteBackground()
+        {
+            return this.dragNoteBackground;
         }
 
 
