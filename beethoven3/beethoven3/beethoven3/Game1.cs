@@ -65,9 +65,16 @@ namespace beethoven3
        // Texture2D sit1;
 
         private Texture2D loadingForAngle;
+        //0 각도 재야함 // 1 각도 잴필요없음 //2 끝남 
+        private int loadingTime = 1;
 
-        private bool loadingTime = false;
+        private String resultMusic = System.Environment.CurrentDirectory + "\\result.mp3";
+        private String title_Music = System.Environment.CurrentDirectory + "\\Title_Music.mp3";
 
+        //public static String mouseHoverSound = System.Environment.CurrentDirectory + "\\mouseHover.mp3";
+        //public static String mouseClickSound = System.Environment.CurrentDirectory + "\\mouseOk.wav";
+        //public static String wearSound = System.Environment.CurrentDirectory + "\\wear.mp3";
+        //public static String sellSound = System.Environment.CurrentDirectory + "\\sell.mp3";
 #if Debug
         public static Texture2D blackRect;
 #endif
@@ -941,7 +948,8 @@ namespace beethoven3
             settingBoard.LoadCheckFile();
             if(settingBoard.CheckFaceDetact)
             {
-                loadingTime = true;
+                //0 각도 재야함 // 1 각도 잴필요없음 //2 끝남 
+                loadingTime = 0;
 
                 ts4 = new ThreadStart(FaceDetect);
                 th4 = new Thread(ts4);
@@ -1279,8 +1287,8 @@ namespace beethoven3
             {
                 userParam = 0.3f;
             }
-
-            loadingTime = false;
+            //0 각도 재야함 // 1 각도 잴필요없음 //2 끝남 
+            loadingTime = 1;
 
 
 
@@ -1524,6 +1532,13 @@ namespace beethoven3
                                     }else if (gameState == GameStates.RecordBoard)
                                     {
                                         gameState = GameStates.SongMenu;
+                                        bool isPlay = false;
+                                        if (isPlay)
+                                        {
+                                            SoundFmod.StopSound();
+                                        }
+
+                                        SoundFmod.PlaySound(title_Music);
                                     }
 
 
@@ -1563,6 +1578,8 @@ namespace beethoven3
                                         {
                                             SoundFmod.StopSound();
                                         }
+                                        
+                                        SoundFmod.PlaySound(title_Music);
                                     }
                                     break;
 
@@ -3348,8 +3365,14 @@ namespace beethoven3
                        //texture.SaveAsJpeg(str, 1200, 900);
 
 
-                       SoundFmod.StopSound();
-
+                       bool isPlay = false;
+                       SoundFmod.sndChannel.isPlaying(ref isPlay);
+                       if (isPlay)
+                       {
+                           SoundFmod.StopSound();
+                       }
+                      
+                       SoundFmod.PlaySound(resultMusic);
                       // resultNumberManager.AddResultNumbers(new Vector2(200, 300), scoreManager.Perfect);
                
                    }
@@ -3748,6 +3771,8 @@ namespace beethoven3
                         {
                             SoundFmod.StopSound();
                         }
+                       
+                        SoundFmod.PlaySound(title_Music);
 
                     }
                 // 선택 되었음
@@ -4276,13 +4301,25 @@ namespace beethoven3
             if (gameState == GameStates.Menu)
             {      
                 menuScene.Draw(spriteBatch);
-                if (loadingTime)
+                if (loadingTime == 0) //로딩해야한다.
                 {
 
                     spriteBatch.Draw(loadingForAngle, new Rectangle(0, 0, 1024, 769), Color.White);
 
                 }
-                
+                else if (loadingTime == 1) //각도 이미 설정
+                {
+
+                    bool isPlay = false;
+                    SoundFmod.sndChannel.isPlaying(ref isPlay);
+                    if (isPlay)
+                    {
+                        SoundFmod.StopSound();
+                    }
+
+                    SoundFmod.PlaySound(title_Music);
+                    loadingTime = 2;//게임시작
+                }
                 if (isNoPerson)
                 {
                     spriteBatch.Draw(noPerson, new Rectangle(0, 0, 1024 , 769), Color.White);

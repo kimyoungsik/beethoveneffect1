@@ -138,12 +138,12 @@ namespace beethoven3
             {
                 Game1.nearButton = true;
                 Game1.GetCenterOfButton(recStartButton);
-
+               
                 clickStartButton = true;
                 //click the right hand item section
                 if ((mouse.LeftButton == ButtonState.Pressed && pastmouse.LeftButton == ButtonState.Released) || (Game1.finalClick && !Game1.pastClick))
                 {
-
+                  //  SoundFmod.PlaySound(Game1.mouseClickSound);
                     Game1.nearButton = false;
                     
                     Game1.gameState = Game1.GameStates.SongMenu;
@@ -153,6 +153,7 @@ namespace beethoven3
             }
             else
             {
+              //  SoundFmod.PlaySound2(Game1.mouseHoverSound);
                 clickStartButton = false;
             }
 

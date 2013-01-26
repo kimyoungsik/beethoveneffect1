@@ -65,7 +65,7 @@ namespace beethoven3
             //FMOD 세팅 -START
             
             resultFmod = FMOD.Factory.System_Create(ref sndSystem);
-            sndSystem.init(1, FMOD.INITFLAGS.NORMAL, (IntPtr)null);
+            sndSystem.init(2, FMOD.INITFLAGS.NORMAL, (IntPtr)null);
             //FMOD 세팅 -END
         }
 
@@ -139,6 +139,17 @@ namespace beethoven3
             sndSystem.playSound(CHANNELINDEX.FREE, SoundFmod.sndSound, false, ref SoundFmod.sndChannel);
 
            // return 2;
+        }
+
+        public static void PlaySound2(String name)
+        {
+            //노래찾아서 재생하기    
+            //*** 재생시간동안 로딩
+
+            sndSystem.createSound(name, FMOD.MODE.HARDWARE, ref SoundFmod.sndSound);
+            sndSystem.playSound(CHANNELINDEX.FREE, SoundFmod.sndSound, false, ref SoundFmod.sndChannel);
+
+            // return 2;
         }
         public static void StopSound()
         {
