@@ -1532,10 +1532,16 @@ namespace beethoven3
                                 //case "previous":
                                 case "이전":
 
-                                    if ( gameState == GameStates.TutorialScene|| gameState == GameStates.ShopDoor || gameState == GameStates.SettingBoard /***도움말*/)
+                                    if ( gameState == GameStates.TutorialScene|| gameState == GameStates.ShopDoor)
                                     {
                                         gameState = GameStates.Menu;
                                         
+                                    }
+
+                                    if (gameState == GameStates.SettingBoard)
+                                    {
+                                        gameState = GameStates.Menu;
+                                        settingBoard.SaveCheckFile();
                                     }
 
                                     if (gameState == GameStates.BackgroundItemShop || gameState == GameStates.EffectItemShop || gameState == GameStates.LeftItemShop || gameState == GameStates.RightItemShop || gameState == GameStates.NoteItemShop)
@@ -2386,7 +2392,7 @@ namespace beethoven3
 
 
                 //제스쳐
-                if (gameState == GameStates.SongMenu)
+                if (gameState == GameStates.SongMenu || gameState == GameStates.TutorialScene)
                 {
                     //activeRecognizer = CreateRecognizer();
                     this.activeRecognizer.Recognize(sender, frame, Skeletons);
@@ -2435,10 +2441,39 @@ namespace beethoven3
 
                             file.SetEndFile(true);
                         }
+                        if (gameState == GameStates.TutorialScene || gameState == GameStates.ShopDoor )
+                        {
+                            gameState = GameStates.Menu;
 
+                        }
 
-                        
-                        
+                        if(gameState == GameStates.SettingBoard)
+                        {
+                            gameState = GameStates.Menu;
+                            settingBoard.SaveCheckFile();
+                        }
+
+                        if (gameState == GameStates.BackgroundItemShop || gameState == GameStates.EffectItemShop || gameState == GameStates.LeftItemShop || gameState == GameStates.RightItemShop || gameState == GameStates.NoteItemShop)
+                        {
+                            gameState = GameStates.ShopDoor;
+                        }
+
+                        if (gameState == GameStates.RecordBoard)
+                        {
+                            gameState = GameStates.ShowPictures;
+                        }
+
+                        if (gameState == GameStates.SongMenu)
+                        {
+                            gameState = GameStates.Menu;
+                            bool isPlay = false;
+                            SoundFmod.sndChannel.isPlaying(ref isPlay);
+                            if (isPlay)
+                            {
+                                SoundFmod.StopSound();
+                            }
+                        }
+
                         postureCount = 0;
                   
 
@@ -2704,18 +2739,8 @@ namespace beethoven3
             recognizer.SwipeRightDetected += (s, e) =>
             {//오른손이 왼쪽으로 동작할때
                 songMenu.isKinectRight = true;
-                //사진
-                //foreach (Skeleton sd in Skeletons)
-                //{
-
-                //    if (sd.TrackingState == SkeletonTrackingState.Tracked)
-                //    {
-                //        PicFlag = true;
-
-
-                //    }
-                //}
-                //message = "right";
+                tutorialScene.isKinectRight = true;
+               
             };
 
 
@@ -2723,10 +2748,8 @@ namespace beethoven3
             {//왼손이 오른쪽으로 동작할때
 
                 songMenu.isKinectLeft = true;
-                //ts4 = new ThreadStart(FaceDetect);
-                //th4 = new Thread(ts4);
-                //th4.Start();
-                //message = "left";
+                tutorialScene.isKinectLeft = true;
+              
             };
 
             return recognizer;

@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 //using Microsoft.Xna.Framework.Media;
-
+using System.Diagnostics;
 namespace beethoven3
 {
     class TutorialScene
@@ -20,7 +20,8 @@ namespace beethoven3
         Texture2D background;
         Texture2D[] pictures;
         Texture2D[] leftright;
-
+        public bool isKinectLeft = false;
+        public bool isKinectRight = false;
      
         private Rectangle backrect = new Rectangle(36, 35, 110, 85);
         private bool clickPreviousButton;
@@ -218,7 +219,39 @@ namespace beethoven3
                 clickPreviousButton = false;
             }
 
+            Trace.WriteLine(isKinectRight);
+            //키넥트로 왼=> 오 왼쪽 이동
+            if (isKinectLeft)
+            {
+                if (scene_number > 0)
+                {
+                    scene_number--;
+                    leftrightmove = -1;
+                    frame = 0;
+                   
+                }
+                isKinectLeft = false;
 
+
+            }
+
+
+            //키넥트로 오->왼 => 오른쪽 이동 
+            if (isKinectRight)
+            {
+                if (scene_number < count - 1)
+                {
+                    leftrightmove = 1;
+                    scene_number++;
+                    frame = 0;
+                  
+                }
+
+                isKinectRight = false;
+
+
+            }
+            
 
             fadeinout += 5;
             fadeinout = Math.Min(fadeinout, 255);
@@ -404,14 +437,14 @@ namespace beethoven3
                 {
                  //   spriteBatch.Draw(songBackground, new Rectangle(margin + 1024 + backgroundWidth, 0, backgroundSizeWidth, backgroundSizeHeight), new Color(fadeinout, fadeinout, fadeinout));
 
-                    spriteBatch.Draw(pictures[scene_number + 1], new Rectangle(margin + 1024 + width, 0, sizew, size), new Color(fadeinout, fadeinout, fadeinout));
+                    spriteBatch.Draw(pictures[scene_number + 1], new Rectangle(margin + 1024 , 0, sizew, size), new Color(fadeinout, fadeinout, fadeinout));
 
                 }
                 else if (scene_number + 1 == 8)
                 {
                  //   spriteBatch.Draw(songBackground, new Rectangle(margin + 1024 + backgroundWidth, backgroundHeight, backgroundSizeWidth, backgroundSizeHeight), new Color(fadeinout, fadeinout, fadeinout));
 
-                    spriteBatch.Draw(pictures[scene_number + 1], new Rectangle(margin + 1024 + width , height, sizew, size), new Color(fadeinout, fadeinout, fadeinout));
+                    spriteBatch.Draw(pictures[scene_number + 1], new Rectangle(margin + 1024  , height, sizew, size), new Color(fadeinout, fadeinout, fadeinout));
 
                 }
                 else
