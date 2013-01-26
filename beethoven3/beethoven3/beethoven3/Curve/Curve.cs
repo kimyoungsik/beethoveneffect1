@@ -109,64 +109,64 @@ namespace beethoven3
        
 
 
-        public double ChangeSpeed()
-        {
+        //public double ChangeSpeed()
+        //{
 
-            double minB = 60.0f;
-            //double minV = 85.0f;
-            double minV = 60;
-
-
-            double midB = 120.0f;
-            double midV = 0;
-
-            double maxB = 240.0f;
-            double maxV = -60f;
+        //    double minB = 60.0f;
+        //    //double minV = 85.0f;
+        //    double minV = 60;
 
 
-            double speed = 0.0f;
+        //    double midB = 120.0f;
+        //    double midV = 0;
+
+        //    double maxB = 240.0f;
+        //    double maxV = -60f;
+
+
+        //    double speed = 0.0f;
 
             
 
-            //위 보간
-            if (dragNoteSpeed > midB && dragNoteSpeed < maxB)
-            {
+        //    //위 보간
+        //    if (dragNoteSpeed > midB && dragNoteSpeed < maxB)
+        //    {
 
 
-                speed = ((((dragNoteSpeed - midB) / (maxB - midB)) * (maxV - midV)) + midV);
-
-
-
-            }
-
-                //아래 보간
-            else if (dragNoteSpeed < midB && dragNoteSpeed >= minB)
-            {
-
-                speed = ((((dragNoteSpeed - minB) / (midB - minB)) * (midV - minV)) + minV);
-
-
-            }
-            else if (dragNoteSpeed == midB)
-            {
-                speed = midV;
-            }
-            else if (dragNoteSpeed == maxB)
-            {
-                speed = maxV;
-            }
-
-            else
-            {
-                speed = midV;
-                //bpm 오류
-            }
-
-            return speed;
+        //        speed = ((((dragNoteSpeed - midB) / (maxB - midB)) * (maxV - midV)) + midV);
 
 
 
-        }
+        //    }
+
+        //        //아래 보간
+        //    else if (dragNoteSpeed < midB && dragNoteSpeed >= minB)
+        //    {
+
+        //        speed = ((((dragNoteSpeed - minB) / (midB - minB)) * (midV - minV)) + minV);
+
+
+        //    }
+        //    else if (dragNoteSpeed == midB)
+        //    {
+        //        speed = midV;
+        //    }
+        //    else if (dragNoteSpeed == maxB)
+        //    {
+        //        speed = maxV;
+        //    }
+
+        //    else
+        //    {
+        //        speed = midV;
+        //        //bpm 오류
+        //    }
+
+        //    return speed;
+
+
+
+        //}
        
 
         /// <summary>

@@ -50,9 +50,11 @@ namespace beethoven3
         //팔지는 않지만 텍스쳐만 가지고 있음
         private Texture2D[] markTexture = new Texture2D[6];
 
-        //curve클래스에서 사용
         private Texture2D[] dragNoteBackground = new Texture2D[6];
-        
+
+        private Rectangle[] dragNoteInitframe = new Rectangle[6];
+
+
 
         //Great의 이펙트 말고 다른 이펙트는 숨겨서 표현
         private Texture2D[] goodEffectTexture = new Texture2D[6];
@@ -198,6 +200,14 @@ namespace beethoven3
             //노트 특성
             
             rightNoteScale[0] = 1f;
+
+
+
+            dragNoteInitframe[0] = new Rectangle(0, 0, 100, 100);
+            dragNoteInitframe[1] = new Rectangle(0, 0, 176, 100);
+            dragNoteInitframe[2] = new Rectangle(0, 0, 100, 100);
+            dragNoteInitframe[3] = new Rectangle(0, 0, 100, 100);
+
 
             //test
 
@@ -683,6 +693,11 @@ namespace beethoven3
         public Texture2D[] GetDragNoteBackground()
         {
             return this.dragNoteBackground;
+        }
+
+        public Rectangle[] GetDragNoteInitFrame()
+        {
+            return this.dragNoteInitframe;
         }
 
 

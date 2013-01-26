@@ -1038,3 +1038,5 @@ C:\Users\pmk\Desktop\beethoven\beethoven3\beethoven3\beethoven3\obj\x86\Release\
 C:\Users\pmk\Desktop\beethoven\beethoven3\beethoven3\beethoven3\obj\x86\Release\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\Users\pmk\Desktop\beethoven\beethoven3\beethoven3\beethoven3\obj\x86\Release\beethoven3.exe
 C:\Users\pmk\Desktop\beethoven\beethoven3\beethoven3\beethoven3\obj\x86\Release\beethoven3.pdb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\ui\LoadingKinect.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\settingBoard\check.xnb

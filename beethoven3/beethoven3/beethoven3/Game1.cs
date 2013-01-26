@@ -2,7 +2,11 @@
 #define Kinect
 
 //시작시 검사 
-//#define StartDetact
+#define StartDetact
+
+//삭제상자 보이기 
+//#define Debug
+
 
 using System;
 using System.Collections;
@@ -60,8 +64,13 @@ namespace beethoven3
         bool istwoTime = true;
        // Texture2D sit1;
 
-        
-        
+        private Texture2D loadingForAngle;
+
+        private bool loadingTime = false;
+
+#if Debug
+        public static Texture2D blackRect;
+#endif
 
 #if Kinect
         //화면에 띄우기
@@ -415,7 +424,7 @@ namespace beethoven3
 
         /////키넥트 관련 선언 - START
         //for kinect
-        public static Texture2D idot;
+   //     public static Texture2D idot;
 
         private Item selectedItem;
 
@@ -493,13 +502,17 @@ namespace beethoven3
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
 
+#if Debug
+        blackRect= Content.Load<Texture2D>(@"Textures\darkBackground");
+#endif
             goldPlusEffect10 = Content.Load<Texture2D>(@"ui\goldPlus10");
             goldPlusEffect15 = Content.Load<Texture2D>(@"ui\goldPlus15");
 
             lifePlusEffect10 = Content.Load<Texture2D>(@"ui\lifePlus10");
             lifePlusEffect15 = Content.Load<Texture2D>(@"ui\lifePlus15");
 
-
+            //페이셜디텍트 체크 
+            
             /* 음원을 로드시킬 때 createStream 과 createSound 두가지가 있는 것을 확인할 수 있는데
  createStream은 배경음악을, createSound는 효과음을 넣는것이 좋습니다.*/
             ///***
@@ -612,8 +625,8 @@ namespace beethoven3
 
             nextButton = Content.Load<Texture2D>(@"game1\nextButton");
             hoverNextButton = Content.Load<Texture2D>(@"game1\hoverNextButton");
-            
 
+            loadingForAngle = Content.Load<Texture2D>(@"ui\LoadingKinect");
             //   charisma1 = Content.Load<Texture2D>(@"shopdoor\nogold");
             /////텍스쳐 로드 -END
 
@@ -925,12 +938,19 @@ namespace beethoven3
             //!!! 페이스 인식, 디버깅 시에 잠시 
 
 #if StartDetact
-            ts4 = new ThreadStart(FaceDetect);
-            th4 = new Thread(ts4);
-            th4.Start();
-#endif        
+            settingBoard.LoadCheckFile();
+            if(settingBoard.CheckFaceDetact)
+            {
+                loadingTime = true;
 
-         
+                ts4 = new ThreadStart(FaceDetect);
+                th4 = new Thread(ts4);
+                th4.Start();
+            }
+
+#endif
+
+
 #endif
             playingPictures = new Queue();
             showPictureTextures = new Texture2D[5];
@@ -1260,6 +1280,9 @@ namespace beethoven3
                 userParam = 0.3f;
             }
 
+            loadingTime = false;
+
+
 
         }
 #endif
@@ -1422,11 +1445,15 @@ namespace beethoven3
             choices.Add("이전");
             choices.Add("시작");
             choices.Add("중지");
-            
             choices.Add("다음");
             choices.Add("설정");
             choices.Add("상점");
             choices.Add("도움말");
+            choices.Add("노트");
+            choices.Add("효과");
+            choices.Add("지휘봉");
+            choices.Add("왼손");
+            choices.Add("배경");
           
           
 
@@ -1499,20 +1526,16 @@ namespace beethoven3
                                         gameState = GameStates.SongMenu;
                                     }
 
+
                                     break;
 
                                 //case "previous":
                                 case "이전":
 
-                                    if (gameState == GameStates.SongMenu || gameState == GameStates.ShopDoor || gameState == GameStates.SettingBoard /***도움말*/)
+                                    if ( gameState == GameStates.TutorialScene|| gameState == GameStates.ShopDoor || gameState == GameStates.SettingBoard /***도움말*/)
                                     {
                                         gameState = GameStates.Menu;
-                                        bool isPlay = false;
-                                        SoundFmod.sndChannel.isPlaying(ref isPlay);
-                                        if (isPlay)
-                                        {
-                                            SoundFmod.StopSound();
-                                        }
+                                        
                                     }
 
                                     if (gameState == GameStates.BackgroundItemShop || gameState == GameStates.EffectItemShop || gameState == GameStates.LeftItemShop || gameState == GameStates.RightItemShop || gameState == GameStates.NoteItemShop)
@@ -1523,6 +1546,17 @@ namespace beethoven3
                                     if (gameState == GameStates.RecordBoard)
                                     {
                                         gameState = GameStates.ShowPictures;
+                                    }
+
+                                    if (gameState == GameStates.SongMenu)
+                                    {
+                                        gameState = GameStates.Menu;
+                                        bool isPlay = false;
+                                        SoundFmod.sndChannel.isPlaying(ref isPlay);
+                                        if (isPlay)
+                                        {
+                                            SoundFmod.StopSound();
+                                        }
                                     }
                                     break;
 
@@ -1564,7 +1598,42 @@ namespace beethoven3
                                             gameState = GameStates.TutorialScene;
                                     }
                                     break;
-                                
+                                case "노트":
+
+                                    if (gameState == GameStates.ShopDoor)
+                                    {
+                                        gameState = GameStates.NoteItemShop;
+                                    }
+                                    break;
+                                case "효과":
+
+                                    if (gameState == GameStates.ShopDoor)
+                                    {
+                                        gameState = GameStates.EffectItemShop;
+                                    }
+                                    break;
+                                case "지휘봉":
+
+                                    if (gameState == GameStates.ShopDoor)
+                                    {
+                                        gameState = GameStates.RightItemShop;
+                                    }
+                                    break;
+                                case "배경":
+
+                                    if (gameState == GameStates.ShopDoor)
+                                    {
+                                        gameState = GameStates.BackgroundItemShop;
+                                    }
+                                    break;
+                                case "왼손":
+
+                                    if (gameState == GameStates.ShopDoor)
+                                    {
+                                        gameState = GameStates.LeftItemShop;
+                                    }
+                                    break;
+
 
                             }
                         }
@@ -3064,6 +3133,7 @@ namespace beethoven3
                //타이틀 화면
                 case GameStates.Menu:
 
+
                     menuScene.Update(gameTime, rightHandPosition);
 
                 break;
@@ -3739,12 +3809,19 @@ namespace beethoven3
 
                         Texture2D[] dragTextures = itemManager.GetDragNoteTexture();
                         Texture2D[] dragTextureBackgrounds = itemManager.GetDragNoteBackground();
-                            
+                        
+                        int noteIndex = itemManager.getNoteIndex();
 
                         //드래그노트 이미지 바꾸기
-                        dragNoteManager.Texture = dragTextures[itemManager.getNoteIndex()];
+                        dragNoteManager.Texture = dragTextures[noteIndex];
 
-                        dragNoteManager.Background = dragTextureBackgrounds[itemManager.getNoteIndex()];
+                        //드래그노트 크기 설정
+                     //   dragNoteManager.InitialFrame = itemManager.GetDragNoteInitFrame()[noteIndex];
+
+                        //드래그노트 백그라운드 이마지 바꾸기
+                        dragNoteManager.Background = dragTextureBackgrounds[noteIndex];
+
+                        
 
                         //마커리스트 텍스쳐 가져오기
                         Texture2D[] markersTextures = itemManager.GetMarkerTexture();
@@ -4176,10 +4253,16 @@ namespace beethoven3
             if (gameState == GameStates.Menu)
             {      
                 menuScene.Draw(spriteBatch);
+                if (loadingTime)
+                {
+
+                    spriteBatch.Draw(loadingForAngle, new Rectangle(0, 0, 1024, 769), Color.White);
+
+                }
+                
                 if (isNoPerson)
                 {
                     spriteBatch.Draw(noPerson, new Rectangle(0, 0, 1024 , 769), Color.White);
-
 
                 }
              

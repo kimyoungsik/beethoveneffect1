@@ -1,4 +1,6 @@
-﻿using System;
+﻿//#define Debug
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +15,8 @@ namespace beethoven3
         private static Texture2D markTexture;
         private static Rectangle markInitialFrame;
         private static int markFrameCount;
+
+        
 
         //마크 리스트
         public static List<Mark> Marks = new List<Mark>();
@@ -203,7 +207,7 @@ namespace beethoven3
         {
             Vector2[] markLoc = GetPattern(patternIndex);
          //   centerArea = new Rectangle((int)markLoc[0].X + (MarkWidth *2 ), (int)markLoc[0].Y + MarkHeight / 2, (int)markLoc[5].X - ((int)markLoc[0].X + (MarkWidth *3)), (int)markLoc[5].Y - ((int)markLoc[0].Y));
-            centerArea = new Rectangle(((int)markLoc[5].X - ((int)markLoc[0].X + MarkWidth)) / 2 + (int)markLoc[0].X + MarkWidth - 2, (int)markLoc[0].Y, 4, ((int)markLoc[5].Y + MarkHeight) - (int)markLoc[0].Y);
+            centerArea = new Rectangle(((int)markLoc[5].X - ((int)markLoc[0].X + MarkWidth)) / 2 + (int)markLoc[0].X + MarkWidth - 25, (int)markLoc[0].Y, 50, ((int)markLoc[5].Y + MarkHeight) - (int)markLoc[0].Y);
 
         
         }
@@ -416,100 +420,7 @@ namespace beethoven3
             }
             return otherCenter;
         }
-        //public static Vector2 GetStartNoteLocation(Vector2 center, float distance, int type)
-        //{
-        //    Vector2 otherCenter = center;
-        //    int x = 1;
-        //    switch (type)
-        //    {
-        //        case 0:
-
-
-        //            bool find0 = false;
-        //            while (!find0)
-        //            {
-        //                otherCenter.Y -= x;
-        //                if (Vector2.Distance(center, otherCenter) == distance || otherCenter.Y < 0)
-        //                {
-        //                    find0 = true;
-        //                }
-
-        //            }
-        //            break;
-
-        //        case 1:
-
-        //            bool find1 = false;
-        //            while (!find1)
-        //            {
-        //                otherCenter.X += x;
-        //                otherCenter.Y -= x;
-        //                if (Vector2.Distance(center, otherCenter) == distance || otherCenter.X > 2000)
-        //                {
-        //                    find1 = true;
-        //                }
-
-        //            }
-        //            break;
-        //        case 2:
-
-        //            bool find2 = false;
-        //            while (!find2)
-        //            {
-        //                otherCenter.X += x;
-        //                otherCenter.Y += x;
-        //                if (Vector2.Distance(center, otherCenter) == distance || otherCenter.X > 2000)
-        //                {
-        //                    find2 = true;
-        //                }
-
-        //            }
-        //            break;
-        //        case 3:
-
-        //            bool find3 = false;
-        //            while (!find3)
-        //            {
-        //                otherCenter.Y += x;
-        //                if (Vector2.Distance(center, otherCenter) == distance || otherCenter.Y > 1500)
-        //                {
-        //                    find3 = true;
-        //                }
-
-        //            }
-        //            break;
-        //        case 4:
-
-        //            bool find4 = false;
-        //            while (!find4)
-        //            {
-        //                otherCenter.X -= x;
-        //                otherCenter.Y += x;
-        //                if (Vector2.Distance(center, otherCenter) == distance || otherCenter.X < 0)
-        //                {
-        //                    find4 = true;
-        //                }
-
-        //            }
-        //            break;
-        //        case 5:
-
-        //            bool find5 = false;
-        //            while (!find5)
-        //            {
-        //                otherCenter.X -= x;
-        //                otherCenter.Y -= x;
-        //                if (Vector2.Distance(center, otherCenter) == distance || otherCenter.X < 0)
-        //                {
-        //                    find5 = true;
-        //                }
-
-        //            }
-        //            break;
-        //    }
-        //    return otherCenter;
-
-        //}
+      
         #endregion
        
         #region update and draw
@@ -532,10 +443,11 @@ namespace beethoven3
                 mark.Draw(spriteBatch);
             }
 
+#if Debug
             //노트 없어지는 영역 표시
-           // spriteBatch.Draw(Game1.idot, centerArea, Color.Red);
+            spriteBatch.Draw(Game1.blackRect, centerArea, Color.Red);
+#endif
 
-         //   Trace.WriteLine(centerArea);
         }
         #endregion
     }

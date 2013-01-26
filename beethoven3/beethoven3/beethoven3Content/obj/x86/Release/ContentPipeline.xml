@@ -1538,7 +1538,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\settingBoard\setBackground.xnb</Output>
-      <Time>2013-01-21T22:57:44+09:00</Time>
+      <Time>2013-01-26T20:08:34.0394802+09:00</Time>
     </Item>
     <Item>
       <Source>settingBoard\ok.png</Source>
@@ -1655,7 +1655,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\game1\noperson.xnb</Output>
-      <Time>2013-01-22T20:19:28+09:00</Time>
+      <Time>2013-01-26T20:35:05.9058699+09:00</Time>
     </Item>
     <Item>
       <Source>shopButton\noGoldBackground.png</Source>
@@ -2478,6 +2478,24 @@
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Fonts\Georgia.xnb</Output>
       <Time>2013-01-20T15:59:44+09:00</Time>
+    </Item>
+    <Item>
+      <Source>ui\LoadingKinect.png</Source>
+      <Name>ui\LoadingKinect</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\ui\LoadingKinect.xnb</Output>
+      <Time>2013-01-26T19:07:28.8676577+09:00</Time>
+    </Item>
+    <Item>
+      <Source>settingBoard\check.png</Source>
+      <Name>settingBoard\check</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\settingBoard\check.xnb</Output>
+      <Time>2013-01-26T20:15:02.1881336+09:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
