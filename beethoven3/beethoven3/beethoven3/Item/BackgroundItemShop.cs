@@ -610,6 +610,8 @@ namespace beethoven3
 
 
 
+            spriteBatch.Draw(Game1.goldPlusEffect15, forthItemLocation, Color.White);
+            spriteBatch.Draw(Game1.lifePlusEffect15, thirdItemLocation, Color.White);
             if (darkBackground)
             {
                 Color color = Color.White;
@@ -842,8 +844,6 @@ namespace beethoven3
                 //}
 
             }
-            spriteBatch.Draw(Game1.goldPlusEffect15, forthItemLocation, Color.White);
-            spriteBatch.Draw(Game1.lifePlusEffect15, thirdItemLocation, Color.White);
         }
 
 

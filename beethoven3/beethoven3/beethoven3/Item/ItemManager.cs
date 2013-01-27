@@ -238,14 +238,17 @@ namespace beethoven3
             int i;
             int index;
            
-            String dir = System.Environment.CurrentDirectory + "\\beethovenRecord\\itemManager.txt";
-            if (!System.IO.File.Exists(dir))
+            String dir = System.Environment.CurrentDirectory + "\\beethovenRecord";
+            String file = System.Environment.CurrentDirectory + "\\beethovenRecord\\itemManager.txt";
+
+
+            DirectoryInfo di = new DirectoryInfo(dir);
+            if (di.Exists == false)
             {
-                var myFile = System.IO.File.Create(dir);
-                myFile.Close();
+                di.Create();
             }
 
-            TextWriter tw = new StreamWriter(dir);
+            TextWriter tw = new StreamWriter(file);
             tw.WriteLine("**");
             tw.WriteLine("rightHand");
             
@@ -310,8 +313,8 @@ namespace beethoven3
             String dir = System.Environment.CurrentDirectory + "\\beethovenRecord\\itemManager.txt";
             if (!System.IO.File.Exists(dir))
             {
-                var myFile = System.IO.File.Create(dir);
-                myFile.Close();
+                //var myFile = System.IO.File.Create(dir);
+                //myFile.Close();
                 buyItem(myRightHandItem, rightHandItem[0]);
                 buyItem(myLeftHandItem, leftHandItem[0]);
                 buyItem(myEffectItem, effectItem[0]);

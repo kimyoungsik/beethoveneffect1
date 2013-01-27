@@ -843,52 +843,46 @@ namespace beethoven3
             //곡선택화면 곡 불러오는 폴더 
           
             //노래폴더 만들기 위해서 테스트
-            String songFile = System.Environment.CurrentDirectory+"\\beethovenSong\\song.txt";
+           // String songFile = System.Environment.CurrentDirectory+"\\beethovenSong\\song.txt";
             String dir = System.Environment.CurrentDirectory + "\\beethovenSong";
-            
-            //노래폴더가 있느냐?
-            if (!System.IO.File.Exists(songFile))
-            {
-                //노래 폴더 만들기
-                System.IO.Directory.CreateDirectory(dir);
-                var myFile = System.IO.File.Create(songFile);
-                myFile.Close();
-                
-            }
 
+            DirectoryInfo di = new DirectoryInfo(dir);
+            if (di.Exists == false)
+            {
+                di.Create();
+            }
+            
+           
             //기록 만들기 위해서 테스트
-            String songRecordFile = System.Environment.CurrentDirectory + "\\beethovenRecord\\song.txt";
+          //  String songRecordFile = System.Environment.CurrentDirectory + "\\beethovenRecord\\song.txt";
             String songRecorddir = System.Environment.CurrentDirectory + "\\beethovenRecord";
 
-            //기록폴더가 있느냐?
-            if (!System.IO.File.Exists(songRecordFile))
+            DirectoryInfo diRecord = new DirectoryInfo(songRecorddir);
+            if (diRecord.Exists == false)
             {
-                //기록 폴더 만들기
-                System.IO.Directory.CreateDirectory(songRecorddir);
-                var myFile = System.IO.File.Create(songRecordFile);
-                myFile.Close();
+                diRecord.Create();
             }
+            
 
 
             
             //사진 폴더  위해서 테스트
-            String picFile = System.Environment.CurrentDirectory + "\\beethovenRecord\\userPicture\\song.txt";
+            //String picFile = System.Environment.CurrentDirectory + "\\beethovenRecord\\userPicture\\song.txt";
             String picddir = System.Environment.CurrentDirectory + "\\beethovenRecord\\userPicture";
-            String defaultPicture = System.Environment.CurrentDirectory + "\\myPicture.jpg";
-            //기록폴더가 있느냐?
-            if (!System.IO.File.Exists(picFile))
+            String defaultPicture = System.Environment.CurrentDirectory + "\\No_Image.png";
+
+
+            DirectoryInfo diPic = new DirectoryInfo(picddir);
+            if (diPic.Exists == false)
             {
-                //기록 폴더 만들기
-                System.IO.Directory.CreateDirectory(picddir);
-                var myFile = System.IO.File.Create(picFile);
-                myFile.Close();
-
+                diPic.Create();
                 FileInfo fileInfo = new FileInfo(defaultPicture);
-                fileInfo.MoveTo(System.Environment.CurrentDirectory + "\\beethovenRecord\\UserPicture\\myPicture.jpg");
-              
-
+                fileInfo.CopyTo(System.Environment.CurrentDirectory + "\\beethovenRecord\\UserPicture\\No_Image.png");
+            
             }
             
+            
+                      
 
             //곡을 불러오기
             file.FileLoading(dir, "*.mnf");
@@ -3401,7 +3395,7 @@ namespace beethoven3
                        //여기에 현재 자신의 사진 이름이 들어가야 함.(날짜시간 포함해서 독립적으로)
                        if(ScorePic == null)
                        {
-                           ScorePic = "myPicture.jpg";
+                           ScorePic = "No_Image.png";
                        }
 
 

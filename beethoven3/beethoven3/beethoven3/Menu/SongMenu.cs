@@ -31,7 +31,9 @@ namespace beethoven3
        //시작
         Texture2D starttext;//back
         Texture2D hoverStarttext;
-   
+
+
+        private Texture2D noSongBackground;
         private Rectangle backrect = new Rectangle(36, 35, 110, 85);
         private bool clickPreviousButton;
 
@@ -94,8 +96,8 @@ namespace beethoven3
             hoverStarttext = content.Load<Texture2D>("SongMenu/hoverStartButton");
 
             basicSongPicture = content.Load<Texture2D>("SongMenu/No_Image");
-            
-           
+
+            noSongBackground = content.Load<Texture2D>("SongMenu/noSongBackground");
 
 
             for (int i = 0; i < noteFileManager.noteFiles.Count; i++)
@@ -406,8 +408,12 @@ namespace beethoven3
                 {
                     SoundFmod.StopSound();
                 }
-                SoundFmod.PlaySound(Game1.songsDir + noteFileManager.noteFiles[scene_number].Mp3);
-                // songChanged = false;
+
+                if (noteFileManager.noteFiles.Count > 0)
+                {
+                    SoundFmod.PlaySound(Game1.songsDir + noteFileManager.noteFiles[scene_number].Mp3);
+                    // songChanged = false;
+                }
                 opening = false;
             }
 
@@ -432,10 +438,20 @@ namespace beethoven3
         /// <param name="fireing"></param>
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(background, Vector2.Zero, new Color(fadeinout, fadeinout, fadeinout));
-          //  spriteBatch.Draw(songBackground, new Vector2(270,100), new Color(fadeinout, fadeinout, fadeinout));
 
-            //사진
+            if (noteFileManager.noteFiles.Count > 0)
+            {
+
+                spriteBatch.Draw(background, Vector2.Zero, new Color(fadeinout, fadeinout, fadeinout));
+                //  spriteBatch.Draw(songBackground, new Vector2(270,100), new Color(fadeinout, fadeinout, fadeinout));
+
+            }
+            else
+            {
+
+                spriteBatch.Draw(noSongBackground, Vector2.Zero, new Color(fadeinout, fadeinout, fadeinout));
+
+            }//사진
 
             drawText(spriteBatch);
             
@@ -452,15 +468,17 @@ namespace beethoven3
                 spriteBatch.Draw(Game1.hoverPreviousButton, new Vector2(backrect.X, backrect.Y), null, Color.White, 0f, new Vector2(0, 0), 1f, SpriteEffects.None, 1f);
             }
 
-
-            spriteBatch.Draw(starttext, new Vector2(startrect.X, startrect.Y), null, Color.White, 0f, new Vector2(0, 0), 1f, SpriteEffects.None, 1f);
-
-            if (clickStartButton)
+            if (noteFileManager.noteFiles.Count > 0)
             {
 
-                spriteBatch.Draw(hoverStarttext, new Vector2(startrect.X, startrect.Y), null, Color.White, 0f, new Vector2(0, 0), 1f, SpriteEffects.None, 1f);
-            }
+                spriteBatch.Draw(starttext, new Vector2(startrect.X, startrect.Y), null, Color.White, 0f, new Vector2(0, 0), 1f, SpriteEffects.None, 1f);
 
+                if (clickStartButton)
+                {
+
+                    spriteBatch.Draw(hoverStarttext, new Vector2(startrect.X, startrect.Y), null, Color.White, 0f, new Vector2(0, 0), 1f, SpriteEffects.None, 1f);
+                }
+            }
             if (noteFileManager.noteFiles.Count > 0)
             {
                 String name = noteFileManager.noteFiles[scene_number].Name;
@@ -498,17 +516,28 @@ namespace beethoven3
                 //하트. gage양 만큼 하트가 나타남.
                 spriteBatch.Draw(Game1.levelTexture, new Vector2(380, 630), rec, Color.White);
             }
-          
+
+            if (noteFileManager.noteFiles.Count > 0)
+            {
+
+                spriteBatch.DrawString(Game1.georgia, (scene_number + 1).ToString(), currentSongLocation, Color.White);
 
 
-            spriteBatch.DrawString(Game1.georgia, (scene_number + 1).ToString(), currentSongLocation, Color.White);
-
-
-            spriteBatch.DrawString(Game1.georgia, " / ", new Vector2(currentSongLocation.X + 45, currentSongLocation.Y), Color.White);
+                spriteBatch.DrawString(Game1.georgia, " / ", new Vector2(currentSongLocation.X + 45, currentSongLocation.Y), Color.White);
 
 
 
-            spriteBatch.DrawString(Game1.georgia, noteFileManager.noteFiles.Count.ToString(), new Vector2(currentSongLocation.X + 100, currentSongLocation.Y), Color.White);
+                spriteBatch.DrawString(Game1.georgia, noteFileManager.noteFiles.Count.ToString(), new Vector2(currentSongLocation.X + 100, currentSongLocation.Y), Color.White);
+            }
+
+            else
+            {
+
+                spriteBatch.DrawString(Game1.georgia, "Please Add New Song", new Vector2(280,384), Color.White);
+
+
+
+            }
 
           //  drawTop(spriteBatch);
         }

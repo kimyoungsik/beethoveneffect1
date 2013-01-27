@@ -592,7 +592,8 @@ namespace beethoven3
                 wearItemLocation = new Vector2(rectNoteItems[itemManager.getNoteIndex()].X, rectNoteItems[itemManager.getNoteIndex()].Y);
                 spriteBatch.Draw(wearItemMark, new Rectangle((int)wearItemLocation.X, (int)wearItemLocation.Y, wearItemMark.Width, wearItemMark.Height), Color.White);
             }
-
+            spriteBatch.Draw(Game1.goldPlusEffect10, forthItemLocation, Color.White);
+            spriteBatch.Draw(Game1.lifePlusEffect10, thirdItemLocation, Color.White);
             if (darkBackground)
             {
                 Color color = Color.White;
@@ -757,8 +758,7 @@ namespace beethoven3
 
               
             }
-            spriteBatch.Draw(Game1.goldPlusEffect10, forthItemLocation, Color.White);
-            spriteBatch.Draw(Game1.lifePlusEffect10, thirdItemLocation, Color.White);
+
         }
 
 
