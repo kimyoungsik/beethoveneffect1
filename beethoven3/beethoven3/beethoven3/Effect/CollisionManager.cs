@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
-
+using Microsoft.Xna.Framework.Graphics;
 using System.Diagnostics;
 namespace beethoven3
 {
@@ -121,10 +121,84 @@ namespace beethoven3
 
         #region method
 
-       /// <summary>
-       /// 드래그노트 와 마우스 만. (이건 마크가 없다)
-       /// </summary>
-       /// <param name="mousePoint"></param>
+
+        public void checkMarkers(int index, Vector2 mousePoint, Vector2 rightHandPoint, Vector2 leftHandPoint)
+        {
+        
+           Texture2D markTexture = itemManager.GetCurrentHoverMarkerTexture();
+           Texture2D basicTextre = itemManager.GetCurrentMarkerTexture();
+           int mouseJudgment = MarkManager.Marks[index].MarkSprite.JudgedNote(mousePoint);
+           int rightJudgment = MarkManager.Marks[index].MarkSprite.JudgedNote(rightHandPoint);
+           int leftJudgment = MarkManager.Marks[index].MarkSprite.JudgedNote(leftHandPoint);
+          
+           //    mouseJudgment = MarkManager.Marks[index].MarkSprite.JudgedNote(mousePoint);
+
+               if (mouseJudgment != 0 || rightJudgment != 0 || leftJudgment != 0)
+            {
+                MarkManager.Marks[index].MarkSprite.Texture = markTexture;
+            }
+            else
+            {
+                MarkManager.Marks[index].MarkSprite.Texture = basicTextre;
+            }
+
+        }
+
+        public void checkMarkers2(int index, Vector2 mousePoint)
+        {
+
+            Texture2D markTexture = itemManager.GetCurrentHoverMarkerTexture();
+            Texture2D basicTextre = itemManager.GetCurrentMarkerTexture();
+            int mouseJudgment = 0;
+            if (index == 0)
+            {
+                mouseJudgment = MarkManager.Marks[index].MarkSprite.JudgedNote2(mousePoint);
+            }
+            else
+            {
+                mouseJudgment = MarkManager.Marks[index].MarkSprite.JudgedNote(mousePoint);
+            }
+            if (mouseJudgment != 0)
+            {
+                MarkManager.Marks[index].MarkSprite.Texture = markTexture;
+            }
+            else
+            {
+                MarkManager.Marks[index].MarkSprite.Texture = basicTextre;
+            }
+
+        }
+
+        public void checkMarkers3(int index, Vector2 mousePoint)
+        {
+
+            Texture2D markTexture = itemManager.GetCurrentHoverMarkerTexture();
+            Texture2D basicTextre = itemManager.GetCurrentMarkerTexture();
+            int mouseJudgment = 0;
+            if (index == 0)
+            {
+                mouseJudgment = MarkManager.Marks[index].MarkSprite.JudgedNote2(mousePoint);
+            }
+            else
+            {
+                mouseJudgment = MarkManager.Marks[index].MarkSprite.JudgedNote(mousePoint);
+            }
+            if (mouseJudgment != 0)
+            {
+                MarkManager.Marks[index].MarkSprite.Texture = markTexture;
+            }
+            else
+            {
+                MarkManager.Marks[index].MarkSprite.Texture = basicTextre;
+            }
+
+        }
+        /// <summary>
+        /// 드래그노트 와 마우스 만. (이건 마크가 없다)
+        /// </summary>
+        /// <param name="mousePoint"></param>
+        /// 
+
         public void checkDragNote(Vector2 mousePoint)
         {
             //드래그 노트
@@ -303,6 +377,8 @@ namespace beethoven3
 
                 if (littleNote.StartNoteLoation == number)
                 {
+
+
                     //0:bad 1:good 2:perfect
 
                     ///노트의 반지름으로 
@@ -321,22 +397,29 @@ namespace beethoven3
                  
                  //   Vector2 notecenter = littleNote.Center;
                  //   Vector2 markcenter = MarkManager.Marks[number].MarkSprite.Center;
-
-                 
+                   
+                    //마커 효과
+                  //  Texture2D markTexture = itemManager.GetCurrentHoverMarkerTexture();
+                  //  Texture2D basicTextre = itemManager.GetCurrentMarkerTexture();
                     int judgment = MarkManager.Marks[number].MarkSprite.JudgedNote(
                         littleNote.Center,littleNote.CollisionRadius
                         );
                     //perfect
-                 
+                   
 
                     //오른손 퍼펙
                     if (judgment == 2)
                     {
 
+                      //  MarkManager.Marks[number].MarkSprite.Texture = markTexture;
+                       // Vector2 markLocation = MarkManager.GetLocationMarker(number);
+                      
+                        //텍스쳐 모양이 바뀐다. 
+                        
                         int mouseJudgment = MarkManager.Marks[number].MarkSprite.JudgedNote(mousePoint);
                         if (mouseJudgment != 0)
                         {
-
+                           // MarkManager.Marks[number].MarkSprite.Texture = markTexture;
                             perfectManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
                             StartNoteManager.rightNoteManager.LittleNotes.RemoveAt(x);
 
@@ -379,6 +462,7 @@ namespace beethoven3
                         //가운데를 이미 지났으므로 느리게 맞은 노트가 될 수 있다.
                         littleNote.IsEarlyOne = false;
                       
+                            
                     }
 
                     //good
@@ -386,10 +470,11 @@ namespace beethoven3
                         //오른손 굿
                     else if (judgment == 1)
                     {
+                     //   MarkManager.Marks[number].MarkSprite.Texture = markTexture;
                         int mouseJudgment = MarkManager.Marks[number].MarkSprite.JudgedNote(mousePoint);
                         if (mouseJudgment != 0)
                         {
-
+                          //  MarkManager.Marks[number].MarkSprite.Texture = markTexture;
                             goodManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
                             //굿 글자 띄우기
 
@@ -429,7 +514,7 @@ namespace beethoven3
                                     //움직이는 속도 정상
                                     memberManager.SetMembersFrameTime(0.1f);
                                     //멤버 스크로크 효과 없어지게함
-                                    int i;
+                                    //int i;
                                     //for (i = 0; i < 6; i++)
                                     //{
                                     //    memberManager.SetMemberState(i, 0);
@@ -542,8 +627,8 @@ namespace beethoven3
                     else if (judgment == -1)
                     {
 
-                   
 
+                       // MarkManager.Marks[number].MarkSprite.Texture = markTexture;
                        //빨리 맞은거 
                         if (littleNote.IsEarlyOne)
                         {
@@ -551,8 +636,9 @@ namespace beethoven3
                             if (mouseJudgment != 0)
                             {
 
-                                
 
+                               //
+                            //    MarkManager.Marks[number].MarkSprite.Texture = basicTextre;
                                 if (scoreManager.Combo > scoreManager.Max)
                                 {
                                     scoreManager.Max = scoreManager.Combo;
@@ -671,7 +757,7 @@ namespace beethoven3
                             int mouseJudgment = MarkManager.Marks[number].MarkSprite.JudgedNote(mousePoint);
                             if (mouseJudgment != 0)
                             {
-
+                              //  MarkManager.Marks[number].MarkSprite.Texture = basicTextre;
                                 if (scoreManager.Combo > scoreManager.Max)
                                 {
                                     scoreManager.Max = scoreManager.Combo;
@@ -781,10 +867,12 @@ namespace beethoven3
 
                         }
                     }
+
                     else
                     {
-
+                      //  MarkManager.Marks[number].MarkSprite.Texture = basicTextre;
                     }
+                 //   MarkManager.Marks[number].MarkSprite.Texture = basicTextre;
                 }
             }
         }
@@ -815,16 +903,21 @@ namespace beethoven3
                     //int judgment = MarkManager.Marks[number].MarkSprite.JudgedNote(
                     //   littleNote.Center, (littleNote.Texture.Width * littleNote.Scale) / 4
                     //   );
+                   // Texture2D markTexture = itemManager.GetCurrentHoverMarkerTexture();
+                   // Texture2D basicTextre = itemManager.GetCurrentMarkerTexture();
+                 
                     int judgment = MarkManager.Marks[number].MarkSprite.JudgedNote(
                        littleNote.Center, littleNote.CollisionRadius
                        );
                     //perfect
+                   
                     if (judgment == 2)
                     {
+                      //  MarkManager.Marks[number].MarkSprite.Texture = markTexture;
                         int mouseJudgment = MarkManager.Marks[number].MarkSprite.JudgedNote(mousePoint);
                         if (mouseJudgment != 0)
                         {
-
+                          //  MarkManager.Marks[number].MarkSprite.Texture = basicTextre;
                             perfectManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
 
                             // 글자 띄우기
@@ -868,9 +961,12 @@ namespace beethoven3
                     //good
                     else if (judgment == 1)
                     {
+                     
+                        //MarkManager.Marks[number].MarkSprite.Texture = markTexture;
                         int mouseJudgment = MarkManager.Marks[number].MarkSprite.JudgedNote(mousePoint);
                         if (mouseJudgment != 0)
                         {
+                          //  MarkManager.Marks[number].MarkSprite.Texture = basicTextre;
                             goodManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
 
                             // 글자 띄우기
@@ -985,7 +1081,7 @@ namespace beethoven3
                                                 //bad 
                     else if (judgment == -1)
                     {
-
+                      //  MarkManager.Marks[number].MarkSprite.Texture = markTexture;
                   
                        //빨리 맞은거 
                         if (littleNote.IsEarlyOne)
@@ -994,11 +1090,12 @@ namespace beethoven3
                             int mouseJudgment = MarkManager.Marks[number].MarkSprite.JudgedNote(mousePoint);
                             if (mouseJudgment != 0)
                             {
-
+                              //  MarkManager.Marks[number].MarkSprite.Texture = basicTextre;
                                 if (scoreManager.Combo > scoreManager.Max)
                                 {
                                     scoreManager.Max = scoreManager.Combo;
                                 }
+
                                 scoreManager.Combo = 0;
                                 scoreManager.ComboChanged = true;
 
@@ -1010,9 +1107,8 @@ namespace beethoven3
                                 badBannerManager.AddBanners(badLocation, badBannerScale);
 
 
-
                                 StartNoteManager.leftNoteManager.LittleNotes.RemoveAt(x);
-                                int i;
+                             //   int i;
                                 //false
                                 //느린 상태 일 때나 0일때 
                                 if (SoundFmod.isChangedTempo <= 0)
@@ -1112,7 +1208,7 @@ namespace beethoven3
                             int mouseJudgment = MarkManager.Marks[number].MarkSprite.JudgedNote(mousePoint);
                             if (mouseJudgment != 0)
                             {
-
+                              //  MarkManager.Marks[number].MarkSprite.Texture = basicTextre;
                                 if (scoreManager.Combo > scoreManager.Max)
                                 {
                                     scoreManager.Max = scoreManager.Combo;
@@ -1256,6 +1352,7 @@ namespace beethoven3
                     }
                     else
                     {
+                 //       MarkManager.Marks[number].MarkSprite.Texture = basicTextre;
                     }
                 }
             
@@ -1265,7 +1362,9 @@ namespace beethoven3
         public void checkLongNoteToMarker(int number, Vector2 mousePoint)
         {
 
-            for (int x = 0; x < StartNoteManager.longNoteManager.LittleNotes.Count; x++)
+           // for (int x = 0; x < StartNoteManager.longNoteManager.LittleNotes.Count; x++)
+            //{
+            for (int x =  StartNoteManager.longNoteManager.LittleNotes.Count -1; x  >0; x--)
             {
                 Sprite littleNote = StartNoteManager.longNoteManager.LittleNotes[x];
                 if (littleNote.StartNoteLoation == number)
@@ -1276,15 +1375,21 @@ namespace beethoven3
                     //    mark.MarkSprite.Center,
                     //    mark.MarkSprite.CollisionRadius);
                     //마커의 반지름으로
+                 //   Texture2D markTexture = itemManager.GetCurrentHoverMarkerTexture();
+                  //  Texture2D basicTextre = itemManager.GetCurrentMarkerTexture();
                     int judgment = MarkManager.Marks[number].MarkSprite.JudgedNote(
                         littleNote.Center
                         );
                     //perfect
+                    
                     if (judgment == 2 || judgment == 1)
                     {
+                      //  MarkManager.Marks[number].MarkSprite.Texture = markTexture;
                         int mouseJudgment = MarkManager.Marks[number].MarkSprite.JudgedNote(mousePoint);
                         if (mouseJudgment != 0)
                         {
+
+                          //  MarkManager.Marks[number].MarkSprite.Texture = basicTextre;
                      //       perfectManager.AddExplosions(new Vector2(littleNote.Center.X - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Width / 2, littleNote.Center.Y - itemManager.GetEffectInitFrame()[itemManager.getEffectIndex()].Height / 2));
                             // 글자 띄우기
                             //DisappearAllMarks();
@@ -1387,7 +1492,10 @@ namespace beethoven3
                     //}
                     else
                     {
-
+                        if (x == StartNoteManager.longNoteManager.LittleNotes.Count - 1)
+                        {
+                           // MarkManager.Marks[number].MarkSprite.Texture = basicTextre;
+                        }
                     }
                 }
             }

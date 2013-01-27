@@ -494,7 +494,7 @@ namespace beethoven3
 
             //drawrec1 = new Rectangle(0, 0, GraphicsDevice.Viewport.Width / 20, GraphicsDevice.Viewport.Height / 20);
             //drawrec2 = new Rectangle(0, 0, GraphicsDevice.Viewport.Width / 20, GraphicsDevice.Viewport.Height / 20);
-            drawrec1 = new Rectangle(0, 0, 100, 100);
+            drawrec1 = new Rectangle(0, 0, 5, 5);
             drawrec2 = new Rectangle(0, 0, 5, 5);
 
 
@@ -2823,7 +2823,7 @@ namespace beethoven3
         //마우스 충돌 처리
         private void HandleMouseInput(MouseState mouseState)
         {
-
+            Vector2 mouseCurrent = new Vector2(mouseStateCurrent.X, mouseStateCurrent.Y);
             collisionManager.checkDragNote(new Vector2(mouseStateCurrent.X, mouseStateCurrent.Y));
 
             collisionManager.CheckMouseCollisions(0, new Vector2(mouseStateCurrent.X, mouseStateCurrent.Y));
@@ -2837,15 +2837,25 @@ namespace beethoven3
             collisionManager.CheckMouseCollisions(4, new Vector2(mouseStateCurrent.X, mouseStateCurrent.Y));
 
             collisionManager.CheckMouseCollisions(5, new Vector2(mouseStateCurrent.X, mouseStateCurrent.Y));
-
+          //  Trace.WriteLine(mouseCurrent);
+            //collisionManager.checkMarkers3(0, new Vector2(mouseStateCurrent.X, mouseStateCurrent.Y));
+            //collisionManager.checkMarkers3(1, new Vector2(mouseStateCurrent.X, mouseStateCurrent.Y));
+            //collisionManager.checkMarkers3(2, new Vector2(mouseStateCurrent.X, mouseStateCurrent.Y));
+            //collisionManager.checkMarkers3(3, new Vector2(mouseStateCurrent.X, mouseStateCurrent.Y));
+            //collisionManager.checkMarkers3(4, new Vector2(mouseStateCurrent.X, mouseStateCurrent.Y));
+            //collisionManager.checkMarkers3(5, new Vector2(mouseStateCurrent.X, mouseStateCurrent.Y));
         }
 
 #if Kinect
         //키넥트 충돌 처리
         private void HandleInput()
+        
+            
         {
             //오른손 /
-           collisionManager.checkDragNote(new Vector2(drawrec1.X, drawrec1.Y));
+            Vector2 drawrecR = new Vector2(drawrec1.X, drawrec1.Y);
+            Vector2 drawrecL = new Vector2(drawrec2.X, drawrec2.Y);
+            collisionManager.checkDragNote(drawrecR);
 
             collisionManager.CheckRightHandCollisions(0, new Vector2(drawrec1.X, drawrec1.Y));
 
@@ -2858,10 +2868,15 @@ namespace beethoven3
             collisionManager.CheckRightHandCollisions(4, new Vector2(drawrec1.X, drawrec1.Y));
 
             collisionManager.CheckRightHandCollisions(5, new Vector2(drawrec1.X, drawrec1.Y));
-
+            collisionManager.checkMarkers(0, new Vector2(mouseStateCurrent.X, mouseStateCurrent.Y), new Vector2(drawrec1.X, drawrec1.Y), new Vector2(drawrec2.X, drawrec2.Y));
+            collisionManager.checkMarkers(1, new Vector2(mouseStateCurrent.X, mouseStateCurrent.Y), new Vector2(drawrec1.X, drawrec1.Y), new Vector2(drawrec2.X, drawrec2.Y));
+            collisionManager.checkMarkers(2, new Vector2(mouseStateCurrent.X, mouseStateCurrent.Y), new Vector2(drawrec1.X, drawrec1.Y), new Vector2(drawrec2.X, drawrec2.Y));
+            collisionManager.checkMarkers(3, new Vector2(mouseStateCurrent.X, mouseStateCurrent.Y), new Vector2(drawrec1.X, drawrec1.Y), new Vector2(drawrec2.X, drawrec2.Y));
+            collisionManager.checkMarkers(4, new Vector2(mouseStateCurrent.X, mouseStateCurrent.Y), new Vector2(drawrec1.X, drawrec1.Y), new Vector2(drawrec2.X, drawrec2.Y));
+            collisionManager.checkMarkers(5, new Vector2(mouseStateCurrent.X, mouseStateCurrent.Y), new Vector2(drawrec1.X, drawrec1.Y), new Vector2(drawrec2.X, drawrec2.Y));
 
             //왼손
-          //  collisionManager.checkDragNote(new Vector2(drawrec2.X, drawrec2.Y));
+            //  collisionManager.checkDragNote(new Vector2(drawrec2.X, drawrec2.Y));
 
             collisionManager.CheckLeftHandCollisions(0, new Vector2(drawrec2.X, drawrec2.Y));
 
@@ -2874,7 +2889,7 @@ namespace beethoven3
             collisionManager.CheckLeftHandCollisions(4, new Vector2(drawrec2.X, drawrec2.Y));
 
             collisionManager.CheckLeftHandCollisions(5, new Vector2(drawrec2.X, drawrec2.Y));
-
+       
         }
 #endif
 
@@ -4639,7 +4654,7 @@ namespace beethoven3
 
                         spriteBatch.Draw(charismaFrame.Texture, charismaManager.picLocation, Color.White);
                         spriteBatch.Draw(charismaFrame.Message, charismaManager.picLocation, Color.White);
-                        Trace.WriteLine(charismaManager.IsCharismaTime);
+                        //Trace.WriteLine(charismaManager.IsCharismaTime);
                         if (charismaManager.IsCharismaTime)
                         {
                             charismaManager.PlayCharisma = true;
@@ -4707,7 +4722,7 @@ namespace beethoven3
                             charismaManager.IsCharismaTime = false;
                         }
                     }
-                    Trace.WriteLine(isGesture);
+                 //   Trace.WriteLine(isGesture);
 
                     if (processTime >= TimeSpan.FromSeconds(charismaFrame.EndTime))
                     {
@@ -5206,7 +5221,7 @@ namespace beethoven3
             
             //스케이 ㄹ없을 때는
              //spriteBatch.Draw(leftHandTexture, new Vector2((float)drawrec2.X - (float)(leftHandTexture.Width * 0.5), (float)drawrec2.Y - (float)(leftHandTexture.Height * 0.5)), Color.White);
-            Trace.WriteLine(drawrec2);
+            //Trace.WriteLine(drawrec2);
 
             spriteBatch.Draw(
              leftHandTexture,

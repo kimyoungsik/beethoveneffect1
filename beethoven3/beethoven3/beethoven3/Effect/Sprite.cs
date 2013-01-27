@@ -250,15 +250,10 @@ namespace beethoven3
                 int j = 0;
                 j = 3;
                 j++;
-
-
             }
 
-
-
             //마커 센터에서 노트의 센터 사이의 거리가  마커의 radius/2 보다 작을 떄  
-            else if (Vector2.Distance(Center, noteCenter) <
-                (CollisionRadius/2))
+            else if (Vector2.Distance(Center, noteCenter) < (CollisionRadius / 2))
             {
                 ret = 2;
 
@@ -306,7 +301,8 @@ namespace beethoven3
 
 
             //}
-            
+           
+       //     Trace.WriteLine(Vector2.Distance(Center, noteCenter));
             
             
             if (Vector2.Distance(Center, noteCenter) <
@@ -324,6 +320,53 @@ namespace beethoven3
        
             return ret;
         }
+
+        public int JudgedNote2(Vector2 noteCenter)
+        {
+            //bad
+            int ret = 0;
+
+            //반/2 보다 가까울때  , perfect
+
+
+            //마커 센터에서 노트의 센터 사이의 거리가  마커의 radius/2 보다 작을 떄  
+            //if (Vector2.Distance(new Vector2(Center.X,1), new Vector2(noteCenter.X,1)) ==0
+            //    )
+            //{
+            //    ret = 2;
+            //    uint time = 0;
+            //    string coltime = "";
+            //    SoundFmod.sndChannel.getPosition(ref time, FMOD.TIMEUNIT.MS);
+            //  //  Trace.WriteLine("COLTIME" + (time / 1000 / 60) + ":" + (time / 1000 % 60) + ":" + (time / 10 % 100));
+            //    coltime = "COLTIME" + (time / 1000 / 60) + ":" + (time / 1000 % 60) + ":" + (time / 10 % 100);
+
+            //    int j = 0;
+            //    j = 3;
+            //    j++;
+
+
+            //}
+
+            Trace.WriteLine("C:" + Center);
+            //Trace.WriteLine("n:"+noteCenter);
+
+            if (Vector2.Distance(Center, noteCenter) <
+                (CollisionRadius / 2))
+            {
+                ret = 2;
+            }
+            //마커 센터에서 노트의 센터 사이의 거리가  마커의 radius 보다 작을 떄  
+            //반들어왔을때 . good
+            else if (Vector2.Distance(Center, noteCenter) <
+                (CollisionRadius))
+            {
+                ret = 1;
+            }
+
+            return ret;
+        }
+
+
         public int JudgedNoteForDragNote(Vector2 noteCenter)
         {
             //bad

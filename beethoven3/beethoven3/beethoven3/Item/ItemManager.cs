@@ -41,6 +41,8 @@ namespace beethoven3
         private Texture2D[] longNoteTexture = new Texture2D[6];
         private Texture2D[] backgroundTexture = new Texture2D[6];
         
+
+
         //섬네일
 
         private Texture2D[] effectThumnail = new Texture2D[6];
@@ -49,6 +51,8 @@ namespace beethoven3
 
         //팔지는 않지만 텍스쳐만 가지고 있음
         private Texture2D[] markTexture = new Texture2D[6];
+        private Texture2D[] hoverMarkTexture = new Texture2D[6];
+
 
         private Texture2D[] dragNoteBackground = new Texture2D[6];
 
@@ -516,11 +520,16 @@ namespace beethoven3
 
 
             //노트랑 한쌍이다.//기본
-            markTexture[0] = cm.Load<Texture2D>(@"markers\whiteMarker");//기본
-            markTexture[1] = cm.Load<Texture2D>(@"markers\whiteMarker");//우주
-            markTexture[2] = cm.Load<Texture2D>(@"markers\whiteMarker");//숲
-            markTexture[3] = cm.Load<Texture2D>(@"markers\whiteMarker");//고스톱
+            markTexture[0] = cm.Load<Texture2D>(@"markers\Marker_Default_1");//기본
+            markTexture[1] = cm.Load<Texture2D>(@"markers\Marker_Space_1");//우주
+            markTexture[2] = cm.Load<Texture2D>(@"markers\Marker_Flower_1");//숲
+            markTexture[3] = cm.Load<Texture2D>(@"markers\Marker_GoStop_1");//고스톱
 
+            
+            hoverMarkTexture[0] = cm.Load<Texture2D>(@"markers\Marker_Default_2");//기본
+            hoverMarkTexture[1] = cm.Load<Texture2D>(@"markers\Marker_Space_2");//우주
+            hoverMarkTexture[2] = cm.Load<Texture2D>(@"markers\Marker_Flower_2");//숲
+            hoverMarkTexture[3] = cm.Load<Texture2D>(@"markers\Marker_GoStop_2");//고스톱
 
             backgroundTexture[0] = cm.Load<Texture2D>(@"background\ConcertHall_2");//기본
             backgroundTexture[1] = cm.Load<Texture2D>(@"background\uniBackground");//우주
@@ -673,6 +682,31 @@ namespace beethoven3
         public Texture2D[] GetMarkerTexture()
         {
             return this.markTexture;
+        }
+
+        public Texture2D[] GetHoverMarkerTextures()
+        {
+            return this.hoverMarkTexture;
+        }
+
+
+        //현재 설정된 마우스오버 마커만
+        public Texture2D GetCurrentHoverMarkerTexture()
+        {
+            return this.hoverMarkTexture[this.noteIndex];
+        }
+
+        public Texture2D GetCurrentMarkerTexture()
+        {
+            return this.markTexture[this.noteIndex];
+        }
+
+
+
+        public Texture2D GetHoverMarkerTexture(int index)
+        {
+
+            return this.hoverMarkTexture[index];
         }
 
         public Texture2D[] GetGoodEffectTexture()

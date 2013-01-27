@@ -136,7 +136,7 @@ namespace beethoven3
                 Marks.RemoveAt(i);
             }
         }
-
+        //*****
         public static void chageMarksImages(Texture2D Texture, Rectangle Rect, float Scale)
         {
 
@@ -157,6 +157,14 @@ namespace beethoven3
                 int radius = (int)((Rect.Width * Scale) / 2);
                 Marks[i].MarkSprite.CollisionRadius = radius;
             }
+
+        }
+
+
+        public static Vector2 GetLocationMarker(int index)
+        {
+
+            return Marks[index].MarkSprite.Location;
 
         }
 

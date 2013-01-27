@@ -222,20 +222,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="markers\starMarker.png">
-      <Name>starMarker</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="markers\turnMarker.png">
-      <Name>turnMarker</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Explosion\heartExplosion2.png">
       <Name>heartExplosion2</Name>
       <Importer>TextureImporter</Importer>
@@ -1775,6 +1761,48 @@
   <ItemGroup>
     <Compile Include="settingBoard\setBackground.png">
       <Name>setBackground</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="markers\Marker_Default_2.png">
+      <Name>Marker_Default_2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="markers\Marker_Default_1.png">
+      <Name>Marker_Default_1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="markers\Marker_Flower_2.png">
+      <Name>Marker_Flower_2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="markers\Marker_Flower_1.png">
+      <Name>Marker_Flower_1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="markers\Marker_GoStop_2.png">
+      <Name>Marker_GoStop_2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="markers\Marker_GoStop_1.png">
+      <Name>Marker_GoStop_1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="markers\Marker_Space_2.png">
+      <Name>Marker_Space_2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="markers\Marker_Space_1.png">
+      <Name>Marker_Space_1</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

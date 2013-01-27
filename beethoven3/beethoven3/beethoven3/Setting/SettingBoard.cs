@@ -164,8 +164,18 @@ namespace beethoven3
                         line = sr.ReadLine();
                         if (!checkFaceDetact)
                         {
-                            game1.nui.ElevationAngle = Convert.ToInt32(line);
+                            while(true)
+                            {
+                                try
+                                {
+                                    game1.nui.ElevationAngle = Convert.ToInt32(line);
+                                    break;
+                                }
+                                catch
+                                {
 
+                                }
+                            }
                         }
 
 

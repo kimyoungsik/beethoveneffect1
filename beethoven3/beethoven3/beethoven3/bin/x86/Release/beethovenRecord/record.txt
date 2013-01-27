@@ -49,10 +49,11 @@ myPicture.jpg$435
 myPicture.jpg$418
 myPicture.jpg$407
 myPicture.jpg$332
-myPicture.jpg$137
+myPicture.jpg$138
 %%
 Symphony No. 9 "From the New World"
 gesture_26_21_22_57.jpg$782
+gesture_27_18_33_46.jpg$222
 myPicture.jpg$29
 gesture_26_21_19_11.jpg$13
 myPicture.jpg$0
