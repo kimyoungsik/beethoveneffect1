@@ -223,7 +223,7 @@ namespace beethoven3
                 clickPreviousButton = false;
             }
 
-            Trace.WriteLine(isKinectRight);
+           
             //키넥트로 왼=> 오 왼쪽 이동
             if (isKinectLeft)
             {

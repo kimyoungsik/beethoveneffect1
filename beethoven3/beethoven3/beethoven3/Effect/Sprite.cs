@@ -347,8 +347,7 @@ namespace beethoven3
 
             //}
 
-            Trace.WriteLine("C:" + Center);
-            //Trace.WriteLine("n:"+noteCenter);
+           
 
             if (Vector2.Distance(Center, noteCenter) <
                 (CollisionRadius / 2))

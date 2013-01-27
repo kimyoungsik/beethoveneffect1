@@ -208,16 +208,22 @@ namespace beethoven3
        // public static SpriteFont pericles36Font;
         public static SpriteFont georgia;
 
-        public enum GameStates { Menu, Playing, SongMenu, ShopDoor,
+        public enum GameStates { Loading, Menu, Playing, SongMenu, ShopDoor,
                           RightItemShop, LeftItemShop, EffectItemShop, NoteItemShop, BackgroundItemShop,
                           ResultManager, RecordBoard, ShowPictures, SettingBoard, TutorialScene };
 
 
         //게임 씬, 처음시작은 메뉴
-        public static GameStates gameState = GameStates.Menu;
+        public static GameStates gameState = GameStates.Loading;
+
+
+        private LoadingScene loadingScene;
+ 
 
         //타이틀 화면 
         private MenuScene menuScene;
+
+
 
         //상점 화면
         private ShopDoor shopDoor;
@@ -558,6 +564,10 @@ namespace beethoven3
             itemManager = new ItemManager();
             itemManager.LoadContent(Content);
             itemManager.Init();
+
+            loadingScene = new LoadingScene();
+            //loadingScene.LoadContent(Content);
+
 
             //게임중 점수관리
             scoreManager = new ScoreManager();
@@ -2047,15 +2057,15 @@ namespace beethoven3
 
             }
 
-            //클릭여부
-            if (finalClick == true)
-            {
-                //message = "click";
-            }
-            else
-            {
-                //message = "No click";
-            }
+            ////클릭여부
+            //if (finalClick == true)
+            //{
+            //    //message = "click";
+            //}
+            //else
+            //{
+            //    //message = "No click";
+            //}
 
             /////////////////////////////////
 
@@ -3922,8 +3932,8 @@ namespace beethoven3
 
                     //프로세스 타임 초기화
                         uiProcessTime = 0;
-                        
 
+                        lifePlusEffect = 1;
 
                         //노트 맞는 scale 
                         float[] rightNoteScale = itemManager.GetRightNoteScale();
@@ -4424,7 +4434,46 @@ namespace beethoven3
 //#endif
 
             //타이틀화면
+            #region 로딩 화면
+            if (gameState == GameStates.Loading)
+            {
+
+              //  loadingScene.Draw(spriteBatch);
+                if (loadingTime == 0) //로딩해야한다.
+                {
+
+                    spriteBatch.Draw(loadingForAngle, new Rectangle(0, 0, 1024, 769), Color.White);
+
+                }
+                else if (loadingTime == 1) //각도 이미 설정
+                {
+
+                    bool isPlay = false;
+                    SoundFmod.sndChannel.isPlaying(ref isPlay);
+                    if (isPlay)
+                    {
+                        SoundFmod.StopSound();
+                    }
+
+                    SoundFmod.PlaySound(title_Music);
+                    loadingTime = 2;//게임시작
+                    gameState = GameStates.Menu;
+                }
+
+
+            }
+
+
+
+            #endregion
+
+
+
             #region 타이틀화면
+
+
+
+
             if (gameState == GameStates.Menu)
             {      
                 menuScene.Draw(spriteBatch);
@@ -4454,16 +4503,7 @@ namespace beethoven3
                 }
 
 
-                //시작전에는 클릭안되게 
-                if (loadingTime != 2)
-                {
-
-                    finalClick = false;
-                }
-                
              
-
-
 #if Kinect
                 if (KinectVideoTexture != null)
                 {
@@ -4707,25 +4747,7 @@ namespace beethoven3
 
 #if Kinect
               
-                if (fcenterZ < 1.8)
-                {
-
-                    //앞뒤로 가시오
-                    spriteBatch.Draw(go_back, new Rectangle(0, 0, 1024, 768), Color.White);
-
-                     
-
-                }
-
-                if (fcenterZ > 2.8)
-                {
-
-                    //앞뒤로 가시오
-                    spriteBatch.Draw(go_front, new Rectangle(0, 0, 1024, 768), Color.White);
-
-
-
-                }
+              
 
 
                 if (charismaManager.charismaFrames.Count > 0)
@@ -4910,8 +4932,9 @@ namespace beethoven3
 
                     if (skeleton.TrackingState == SkeletonTrackingState.Tracked)
                     {
-                        drawpoint(skeleton.Joints[JointType.HandRight], skeleton.Joints[JointType.HandLeft]);
-
+                       
+                            drawpoint(skeleton.Joints[JointType.HandRight], skeleton.Joints[JointType.HandLeft]);
+                       
                     }
 
                 }
@@ -4962,11 +4985,31 @@ namespace beethoven3
                 
                 //노트파일로 사진 가져오기
                 spriteBatch.Draw(songMenu.FindPicture(noteFile), new Rectangle(120, 200, 160, 160), Color.White);
-                
+
+                String name = noteFile.Name;
+                if (name.Length > 15)
+                {
+
+                    name = name.Remove(15);
+                    name = name + "...";
+                }
+
+
                 //노트파일로 노래 제목가져오기
-                spriteBatch.DrawString(georgia, noteFile.Name, new Vector2(320, 200), Color.Gray);
+                spriteBatch.DrawString(georgia, name, new Vector2(320, 200), Color.Gray);
+
+                String artist = noteFile.Artist;
+                if (artist.Length > 15)
+                {
+
+                    artist = artist.Remove(15);
+                    artist = artist + "...";
+                }
+                
+                
                 //노트파일로 가수 가져오기
-                spriteBatch.DrawString(georgia, noteFile.Artist, new Vector2(320, 260), Color.Gray);
+
+                spriteBatch.DrawString(georgia, artist, new Vector2(320, 260), Color.Gray);
                 //***//난이도//spriteBatch.DrawString(pericles36Font, , new Vector2(200,80), Color.White);
 
 
@@ -5121,10 +5164,31 @@ namespace beethoven3
                 //노트파일로 사진 가져오기
                 spriteBatch.Draw(songMenu.FindPicture(noteFile), new Rectangle(98, 182, 121, 123), Color.White);
 
+
+
+                String name = noteFile.Name;
+                if (name.Length > 15)
+                {
+
+                    name = name.Remove(15);
+                    name = name + "...";
+                }
+
+
+                String artist = noteFile.Artist;
+                if (artist.Length > 15)
+                {
+
+                    artist = artist.Remove(15);
+                    artist = artist + "...";
+                }
+
+
+
                 //노트파일로 노래 제목가져오기
-                spriteBatch.DrawString(georgia, noteFile.Name, new Vector2(270, 162), Color.Gray);
+                spriteBatch.DrawString(georgia, name, new Vector2(270, 162), Color.Gray);
                 //노트파일로 가수 가져오기
-                spriteBatch.DrawString(georgia, noteFile.Artist, new Vector2(270, 222), Color.Gray);
+                spriteBatch.DrawString(georgia, artist, new Vector2(270, 222), Color.Gray);
                 //***//난이도//spriteBatch.DrawString(pericles36Font, , new Vector2(200,80), Color.White);
 
 
@@ -5247,7 +5311,25 @@ namespace beethoven3
 //            }
 //#endif
 
+            if (fcenterZ < 1.8)
+            {
 
+                //앞뒤로 가시오
+                spriteBatch.Draw(go_back, new Rectangle(0, 0, 1024, 768), Color.White);
+
+
+
+            }
+
+            if (fcenterZ > 2.8)
+            {
+
+                //앞뒤로 가시오
+                spriteBatch.Draw(go_front, new Rectangle(0, 0, 1024, 768), Color.White);
+
+
+
+            }
             backJestureManager.Draw(spriteBatch);
             spriteBatch.End();
             
@@ -5281,10 +5363,18 @@ namespace beethoven3
             //스케일 없을떄는.,
             //spriteBatch.Draw(rightHandTextures[itemManager.getRightHandIndex()],new Vector2(drawrec1.X, drawrec1.Y),Color.White);
 
+            Vector2 pointLocation = new Vector2(drawrec1.X, drawrec1.Y);
+            if (itemManager.getRightHandIndex() == 5 || itemManager.getRightHandIndex() == 3)
+            {
+                pointLocation = new Vector2(drawrec1.X-40,drawrec1.Y-40);
+            }
+
+
+
             spriteBatch.Draw(
              rightHandTextures[itemManager.getRightHandIndex()],
                     //위치: Center-> location 으로 바꿈 (마커와 노트 매칭 떄문에 )
-             new Vector2(drawrec1.X, drawrec1.Y),
+            pointLocation,
 
              null,
              Color.White,

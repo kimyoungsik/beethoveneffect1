@@ -464,10 +464,24 @@ namespace beethoven3
             if (noteFileManager.noteFiles.Count > 0)
             {
                 String name = noteFileManager.noteFiles[scene_number].Name;
+
+                if (name.Length > 15)
+                {
+
+                    name = name.Remove(15);
+                    name = name + "...";
+                }
             //    spriteBatch.DrawString(Game1.georgia, name, new Vector2(512, 420), Color.White);
                 spriteBatch.DrawString(Game1.georgia, name, new Vector2(422, 590), Color.DimGray, 0f, Vector2.Zero, 0.5f, SpriteEffects.None, 0f);
 
                 String artist = noteFileManager.noteFiles[scene_number].Artist;
+
+                if (artist.Length > 15)
+                {
+
+                    artist = name.Remove(15);
+                    artist = name + "...";
+                }
                 spriteBatch.DrawString(Game1.georgia, artist, new Vector2(422, 560), Color.DimGray, 0f, Vector2.Zero, 0.5f, SpriteEffects.None, 0f);
 
 
