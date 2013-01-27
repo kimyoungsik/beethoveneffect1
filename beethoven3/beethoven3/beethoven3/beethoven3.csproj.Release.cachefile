@@ -275,6 +275,12 @@ Content\MessageFont.xnb
 Content\Fonts\Georgia.xnb
 Content\ui\LoadingKinect.xnb
 Content\settingBoard\check.xnb
+Content\ui\go_front.xnb
+Content\ui\go_back.xnb
+Content\tutorial\tutorial18.xnb
+Content\tutorial\tutorial19.xnb
+Content\tutorial\tutorial20.xnb
+Content\tutorial\tutorial21.xnb
 Content\snd\ka.wma
 Content\snd\jo.wma
 Content\snd\maid.wma

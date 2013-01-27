@@ -32,7 +32,7 @@ namespace beethoven3
       //  Texture2D songBackground;
 
         //  private Texture2D levelTexture;
-        private int count = 16;
+        private int count = 20;
 
        
         int scene_number;

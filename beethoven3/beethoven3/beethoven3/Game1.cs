@@ -71,6 +71,10 @@ namespace beethoven3
         private String resultMusic = System.Environment.CurrentDirectory + "\\result.mp3";
         private String title_Music = System.Environment.CurrentDirectory + "\\Title_Music.mp3";
 
+
+        private Texture2D go_back;
+        private Texture2D go_front;
+
         //public static String mouseHoverSound = System.Environment.CurrentDirectory + "\\mouseHover.mp3";
         //public static String mouseClickSound = System.Environment.CurrentDirectory + "\\mouseOk.wav";
         //public static String wearSound = System.Environment.CurrentDirectory + "\\wear.mp3";
@@ -518,6 +522,9 @@ namespace beethoven3
             lifePlusEffect10 = Content.Load<Texture2D>(@"ui\lifePlus10");
             lifePlusEffect15 = Content.Load<Texture2D>(@"ui\lifePlus15");
 
+
+            go_back = Content.Load<Texture2D>(@"ui\go_back");
+            go_front = Content.Load<Texture2D>(@"ui\go_front");
             //페이셜디텍트 체크 
             
             /* 음원을 로드시킬 때 createStream 과 createSound 두가지가 있는 것을 확인할 수 있는데
@@ -584,6 +591,7 @@ namespace beethoven3
             //배경
             playBackgroud1 = Content.Load<Texture2D>(@"background\ConcertHall_3");
             playBackgroud2 = Content.Load<Texture2D>(@"background\crosswalk3");
+            
             
             //노트,마커
             spriteSheet = Content.Load<Texture2D>(@"Textures\SpriteSheet8");
@@ -1545,7 +1553,7 @@ namespace beethoven3
                                     if (gameState == GameStates.SettingBoard)
                                     {
                                         gameState = GameStates.Menu;
-                                        settingBoard.SaveCheckFile();
+                                      //  settingBoard.SaveCheckFile();
                                     }
 
 
@@ -1559,7 +1567,10 @@ namespace beethoven3
                                         gameState = GameStates.Menu;
                                         
                                     }
-
+                                    if (gameState == GameStates.Playing)
+                                    {
+                                        file.SetEndFile(true);
+                                    }
                                     if (gameState == GameStates.SettingBoard)
                                     {
                                         gameState = GameStates.Menu;
@@ -2475,7 +2486,7 @@ namespace beethoven3
                         if(gameState == GameStates.SettingBoard)
                         {
                             gameState = GameStates.Menu;
-                            settingBoard.SaveCheckFile();
+                          //  settingBoard.SaveCheckFile();
                         }
 
                         if (gameState == GameStates.BackgroundItemShop || gameState == GameStates.EffectItemShop || gameState == GameStates.LeftItemShop || gameState == GameStates.RightItemShop || gameState == GameStates.NoteItemShop)
@@ -2572,11 +2583,11 @@ namespace beethoven3
                         scoreManager.Gage++;
 
 
-                        if (postureCount > 5)
-                        {
+                        //if (postureCount > 5)
+                        //{
                             
-                            gestureFlag = false;
-                        }
+                        //    gestureFlag = false;
+                        //}
                     }
 
                     if (s.Contains("__UNKNOWN"))
@@ -3273,7 +3284,7 @@ namespace beethoven3
                    if (file.GetEndFile())
                    {
                       
-
+                       
                        //노래 총 시간으로 끝을 바꾸자
                        gameState = GameStates.ResultManager;
                        //점수기록판에 기재
@@ -3292,7 +3303,14 @@ namespace beethoven3
                        isScorePic = false;
                        //현재 노래 제목
                        currentSongName = scoreManager.SongName;
-                       
+
+                       if (scoreManager.Combo > scoreManager.Max)
+                       {
+                           scoreManager.Max = scoreManager.Combo;
+                       }
+                       //scoreManager.Combo = 0;
+
+
                        //점수 기록 파일로 저장
                        //save recored scores in the file
                        reportManager.SaveReport();
@@ -4592,7 +4610,7 @@ namespace beethoven3
                 {
 
                     //앞뒤로 가시오
-                  //  spriteBatch.Draw(one, new Rectangle(0, 0, 150, 150), Color.White);
+                    spriteBatch.Draw(go_back, new Rectangle(0, 0, 1024, 768), Color.White);
 
                      
 
@@ -4601,6 +4619,8 @@ namespace beethoven3
                 if (fcenterZ > 2.8)
                 {
 
+                    //앞뒤로 가시오
+                    spriteBatch.Draw(go_front, new Rectangle(0, 0, 1024, 768), Color.White);
 
 
 
@@ -4855,45 +4875,45 @@ namespace beethoven3
                 spriteBatch.Draw(Game1.levelTexture, new Vector2(320, 320), rec, Color.White);
 
 
-                int indexGoldPlusItem = 3;
-                int indexLifePlusItem = 2;
+               // int indexGoldPlusItem = 3;
+               // int indexLifePlusItem = 2;
 
-               // int goldPlus = 0;
-                if (itemManager.getRightHandIndex() == indexGoldPlusItem ||
-                   itemManager.getLeftHandIndex() == indexGoldPlusItem ||
-                   itemManager.getNoteIndex() == indexGoldPlusItem)
-                {
+               //// int goldPlus = 0;
+               // if (itemManager.getRightHandIndex() == indexGoldPlusItem ||
+               //    itemManager.getLeftHandIndex() == indexGoldPlusItem ||
+               //    itemManager.getNoteIndex() == indexGoldPlusItem)
+               // {
 
-                 //   goldPlus = 1;
-                    spriteBatch.Draw(goldPlusEffect10, new Vector2(750, 400), Color.White);
-                   // spriteBatch.Draw(lifePlusEffect15, thirdItemLocation, Color.White);
-                }
+               //  //   goldPlus = 1;
+               //     spriteBatch.Draw(goldPlusEffect10, new Vector2(750, 400), Color.White);
+               //    // spriteBatch.Draw(lifePlusEffect15, thirdItemLocation, Color.White);
+               // }
 
-                if (itemManager.getBackgroundIndex() == indexGoldPlusItem ||
-                   itemManager.getEffectIndex() == indexGoldPlusItem)
-                {
-                    spriteBatch.Draw(goldPlusEffect15, new Vector2(750, 400), Color.White);
-                   // goldPlus = 2;
-                }
+               // if (itemManager.getBackgroundIndex() == indexGoldPlusItem ||
+               //    itemManager.getEffectIndex() == indexGoldPlusItem)
+               // {
+               //     spriteBatch.Draw(goldPlusEffect15, new Vector2(750, 400), Color.White);
+               //    // goldPlus = 2;
+               // }
 
 
 
-                if (itemManager.getRightHandIndex() == indexLifePlusItem ||
-                itemManager.getLeftHandIndex() == indexLifePlusItem ||
-                itemManager.getNoteIndex() == indexLifePlusItem)
-                {
+               // if (itemManager.getRightHandIndex() == indexLifePlusItem ||
+               // itemManager.getLeftHandIndex() == indexLifePlusItem ||
+               // itemManager.getNoteIndex() == indexLifePlusItem)
+               // {
 
-                    //   goldPlus = 1;
-                    spriteBatch.Draw(lifePlusEffect10, new Vector2(830, 600), Color.White);
-                    // spriteBatch.Draw(lifePlusEffect15, thirdItemLocation, Color.White);
-                }
+               //     //   goldPlus = 1;
+               //     spriteBatch.Draw(lifePlusEffect10, new Vector2(750, 300), Color.White);
+               //     // spriteBatch.Draw(lifePlusEffect15, thirdItemLocation, Color.White);
+               // }
 
-                if (itemManager.getBackgroundIndex() == indexLifePlusItem ||
-                   itemManager.getEffectIndex() == indexLifePlusItem)
-                {
-                    spriteBatch.Draw(lifePlusEffect15, new Vector2(830, 600), Color.White);
-                    // goldPlus = 2;
-                }
+               // if (itemManager.getBackgroundIndex() == indexLifePlusItem ||
+               //    itemManager.getEffectIndex() == indexLifePlusItem)
+               // {
+               //     spriteBatch.Draw(lifePlusEffect15, new Vector2(750, 300), Color.White);
+               //     // goldPlus = 2;
+               // }
                 
 
 

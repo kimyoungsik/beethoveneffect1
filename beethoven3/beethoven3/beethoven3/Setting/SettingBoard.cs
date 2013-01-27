@@ -19,8 +19,8 @@ namespace beethoven3
         private Texture2D background;
 
         //ok 버튼
-        private Texture2D nextButton;
-        private Texture2D hoverNextButton;
+        //private Texture2D nextButton;
+        //private Texture2D hoverNextButton;
         
         private Texture2D UpButton;
         private Texture2D hoverUpButton;
@@ -36,7 +36,7 @@ namespace beethoven3
         private Rectangle recAngleUpButton;
         private Rectangle recAngleDownButton;
 
-        private bool clickNextButton;
+        //private bool clickNextButton;
         private bool clickScaleUpButton;
         private bool clickScaleDownButton;
         private bool clickAngleUpButton;
@@ -52,13 +52,13 @@ namespace beethoven3
         private bool checkFaceDetact= true;
 
 
-        private Rectangle recNextButton;
+        //private Rectangle recNextButton;
 
 
         private Game1 game1;
         public SettingBoard(Game1 game1)
         {
-            clickNextButton = false;
+            //clickNextButton = false;
             clickScaleUpButton = false;
             clickScaleDownButton = false;
             clickAngleUpButton = false;
@@ -73,8 +73,8 @@ namespace beethoven3
         public void LoadContent(ContentManager cm)
         {
             background = cm.Load<Texture2D>(@"settingBoard\setBackground");
-            nextButton = cm.Load<Texture2D>(@"settingBoard\ok");
-            hoverNextButton = cm.Load<Texture2D>(@"settingBoard\okHover");
+            //nextButton = cm.Load<Texture2D>(@"settingBoard\ok");
+            //hoverNextButton = cm.Load<Texture2D>(@"settingBoard\okHover");
             
             UpButton = cm.Load<Texture2D>(@"settingBoard\up");
             hoverUpButton = cm.Load<Texture2D>(@"settingBoard\upHover");
@@ -197,7 +197,7 @@ namespace beethoven3
 
 
 
-             //스케일 증가 
+             //체크
             if (rectMouseSettingBoard.Intersects(recCheck) || rightHandPosition.Intersects(recCheck))
             {
                 Game1.nearButton = true;
@@ -218,7 +218,7 @@ namespace beethoven3
                     {
                         checkFaceDetact = true;
                     }
-
+                    SaveCheckFile();
                 }
             }
             else
@@ -248,7 +248,7 @@ namespace beethoven3
                         game1.userParam = 1;
                     }
 
-
+                    SaveCheckFile();
                 }
             }
             else
@@ -277,7 +277,7 @@ namespace beethoven3
                     {
                         game1.userParam = 0.05f;
                     }
-
+                    SaveCheckFile();
                 }
             }
             else
@@ -313,6 +313,7 @@ namespace beethoven3
                             {
                             }
                         }
+                        SaveCheckFile();
                     }
 
                 }
@@ -349,6 +350,7 @@ namespace beethoven3
                             {
                             }
                         }
+                        SaveCheckFile();
                     }
                 }
             }
@@ -359,25 +361,25 @@ namespace beethoven3
 
 
 
-            if (rectMouseSettingBoard.Intersects(RectNextButton) || rightHandPosition.Intersects(RectNextButton))
-            {
+            //if (rectMouseSettingBoard.Intersects(RectNextButton) || rightHandPosition.Intersects(RectNextButton))
+            //{
 
-                Game1.nearButton = true;
-                Game1.GetCenterOfButton(RectNextButton);
+            //    Game1.nearButton = true;
+            //    Game1.GetCenterOfButton(RectNextButton);
 
-                ClickNextButton = true;
-                //click the right hand item section
-                if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (Game1.finalClick && !Game1.pastClick))
-                {
-                    Game1.nearButton = false;
-                    Game1.gameState = Game1.GameStates.Menu;
-                    SaveCheckFile();
-                }
-            }
-            else
-            {
-                ClickNextButton = false;
-            }
+            //    ClickNextButton = true;
+            //    //click the right hand item section
+            //    if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (Game1.finalClick && !Game1.pastClick))
+            //    {
+            //        Game1.nearButton = false;
+            //        Game1.gameState = Game1.GameStates.Menu;
+            //        SaveCheckFile();
+            //    }
+            //}
+            //else
+            //{
+            //    ClickNextButton = false;
+            //}
 
 
             if (rectMouseSettingBoard.Intersects(recPreviousButton) || rightHandPosition.Intersects(recPreviousButton))
@@ -403,8 +405,8 @@ namespace beethoven3
 
 
             if (
-            !(rectMouseSettingBoard.Intersects(recNextButton) || rightHandPosition.Intersects(recNextButton))
-            &&!(rectMouseSettingBoard.Intersects(recCheck) || rightHandPosition.Intersects(recCheck))
+            
+            !(rectMouseSettingBoard.Intersects(recCheck) || rightHandPosition.Intersects(recCheck))
             && !(rectMouseSettingBoard.Intersects(RecScaleUpButton) || rightHandPosition.Intersects(RecScaleUpButton))
             && !(rectMouseSettingBoard.Intersects(RecScaleDownButton) || rightHandPosition.Intersects(RecScaleDownButton))
             && !(rectMouseSettingBoard.Intersects(RecAngleUpButton) || rightHandPosition.Intersects(RecAngleUpButton))
@@ -430,15 +432,15 @@ namespace beethoven3
            
             spriteBatch.Draw(background, recBackground, Color.White);
 
-            recNextButton = new Rectangle(800, 67, 123, 81);
-            spriteBatch.Draw(nextButton, recNextButton, Color.White);
+            //recNextButton = new Rectangle(800, 67, 123, 81);
+            //spriteBatch.Draw(nextButton, recNextButton, Color.White);
 
             recScaleUpButton = new Rectangle(768, 172, 102, 70);
             spriteBatch.Draw(UpButton, recScaleUpButton, Color.White);
 
             recScaleDownButton = new Rectangle(768, 249, 102, 70);
             spriteBatch.Draw(DownButton, recScaleDownButton, Color.White);
-
+             
             recAngleUpButton = new Rectangle(768, 331, 102, 70);
             spriteBatch.Draw(UpButton, recAngleUpButton, Color.White);
 
@@ -451,10 +453,10 @@ namespace beethoven3
 
             KinectSensor nui = game1.Nui;
             int elevationAngle  = nui.ElevationAngle;
-
+            
           //  spriteBatch.DrawString(Game1.georgia, "scaling", new Vector2(100, 100), Color.Black);
 
-            spriteBatch.DrawString(Game1.georgia, userParam.ToString(), new Vector2(570, 220), Color.Yellow);
+            spriteBatch.DrawString(Game1.georgia, (userParam).ToString("###.##"), new Vector2(570, 220), Color.Yellow);
 
           //  spriteBatch.DrawString(Game1.georgia, "angle", new Vector2(100, 300), Color.Black);
 
@@ -465,10 +467,10 @@ namespace beethoven3
 
 
 
-            if (clickNextButton)
-            {
-                spriteBatch.Draw(hoverNextButton, recNextButton, Color.White);
-            }
+            //if (clickNextButton)
+            //{
+            //    spriteBatch.Draw(hoverNextButton, recNextButton, Color.White);
+            //}
 
             if (checkFaceDetact)
             {
@@ -507,17 +509,17 @@ namespace beethoven3
 
         }
 
-        public void setClickNextButton(bool value)
-        {
-            this.clickNextButton = value;
-        }
+        //public void setClickNextButton(bool value)
+        //{
+        //    this.clickNextButton = value;
+        //}
 
 
 
-        public Rectangle RectNextButton
-        {
-            get { return recNextButton; }
-        }
+        //public Rectangle RectNextButton
+        //{
+        //    get { return recNextButton; }
+        //}
 
 
         public bool CheckFaceDetact
@@ -546,10 +548,10 @@ namespace beethoven3
             get { return recAngleDownButton; }
         }
 
-        public bool ClickNextButton
-        {
-            set { clickNextButton = value; }
-        }
+        //public bool ClickNextButton
+        //{
+        //    set { clickNextButton = value; }
+        //}
 
 
         public bool ClickScaleUpButton

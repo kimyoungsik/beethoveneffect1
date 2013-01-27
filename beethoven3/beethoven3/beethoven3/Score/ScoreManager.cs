@@ -47,7 +47,7 @@ namespace beethoven3
 
         private int gold;
 
-        private double combo;
+        private double combo ;
 
 
         //콤보 변해나

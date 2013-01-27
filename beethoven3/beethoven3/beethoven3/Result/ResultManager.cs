@@ -119,7 +119,7 @@ namespace beethoven3
              //
 
            
-
+            //int intMax = (int)scoreManager.Max;
 
             spriteBatch.DrawString(Game1.georgia, totalPerfect.ToString(), new Vector2(330, 370), Color.Gray);
             spriteBatch.DrawString(Game1.georgia, totalGood.ToString(), new Vector2(330, 430), Color.Gray);
@@ -127,7 +127,7 @@ namespace beethoven3
             spriteBatch.DrawString(Game1.georgia, totalMiss.ToString(), new Vector2(330, 550), Color.Gray);
 
             spriteBatch.DrawString(Game1.georgia, scoreManager.Perfomance.ToString(), new Vector2(800, 370), Color.Gray);
-            spriteBatch.DrawString(Game1.georgia, scoreManager.Max.ToString(), new Vector2(800, 430), Color.Gray);
+            spriteBatch.DrawString(Game1.georgia, scoreManager.Max.ToString("#####"), new Vector2(800, 430), Color.Gray);
 
 
 
