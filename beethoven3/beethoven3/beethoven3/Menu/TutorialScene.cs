@@ -26,7 +26,9 @@ namespace beethoven3
         private Rectangle backrect = new Rectangle(36, 35, 110, 85);
         private bool clickPreviousButton;
 
-    
+        private Vector2 currentPageLocation = new Vector2(850, 700);
+    //    private Vector2 wholePageLocation = new Vector2(800, 600);
+
       //  Texture2D songBackground;
 
         //  private Texture2D levelTexture;
@@ -110,77 +112,79 @@ namespace beethoven3
             Rectangle recLeftArrow = new Rectangle(10, 310, 120, 120);
 
 
-
-            //left
-            if (mouseRectangle.Intersects(recLeftArrow) || rightHandPosition.Intersects(recLeftArrow))
+            if (scene_number > 0)
             {
-                Game1.nearButton = true;
-                Game1.GetCenterOfButton(recLeftArrow);
-
-
-                arrawframebutton[0] = true;
-
-
-                if ((mouse.LeftButton == ButtonState.Pressed && pastmouse.LeftButton == ButtonState.Released) || (Game1.finalClick && !Game1.pastClick) || ((key.IsKeyDown(Keys.Left) )))
+                //left
+                if (mouseRectangle.Intersects(recLeftArrow) || rightHandPosition.Intersects(recLeftArrow))
                 {
-
-                    if (scene_number > 0)
-                    {
-                        Game1.nearButton = false;
-                        scene_number--;
-                        leftrightmove = -1;
-                        frame = 0;
-                        
-                    }
-                }
-            }
-            else
-            {
-
-                arrawframebutton[0] = false;
-                arrawframe[0] = 0;
-            }
+                    Game1.nearButton = true;
+                    Game1.GetCenterOfButton(recLeftArrow);
 
 
-
-            if (mouseRectangle.Intersects(recRightArrow) || rightHandPosition.Intersects(recRightArrow))
-            {
+                    arrawframebutton[0] = true;
 
 
-
-                Game1.nearButton = true;
-                Game1.GetCenterOfButton(recRightArrow);
-
-                arrawframebutton[1] = true;
-
-                if ((mouse.LeftButton == ButtonState.Pressed && pastmouse.LeftButton == ButtonState.Released)  || (Game1.finalClick && !Game1.pastClick))
-                {
-
-                    if (scene_number < count-1)
+                    if ((mouse.LeftButton == ButtonState.Pressed && pastmouse.LeftButton == ButtonState.Released) || (Game1.finalClick && !Game1.pastClick) || ((key.IsKeyDown(Keys.Left))))
                     {
 
-                        Game1.nearButton = false;
-                        leftrightmove = 1;
-                        scene_number++;
-                        frame = 0;
-                        
+                        if (scene_number > 0)
+                        {
+                            Game1.nearButton = false;
+                            scene_number--;
+                            leftrightmove = -1;
+                            frame = 0;
 
-
+                        }
                     }
                 }
+                else
+                {
 
-
+                    arrawframebutton[0] = false;
+                    arrawframe[0] = 0;
+                }
 
             }
-            else
+            if (scene_number < count - 1)
             {
+                if (mouseRectangle.Intersects(recRightArrow) || rightHandPosition.Intersects(recRightArrow))
+                {
 
 
 
-                arrawframebutton[1] = false;
-                arrawframe[1] = 0;
+                    Game1.nearButton = true;
+                    Game1.GetCenterOfButton(recRightArrow);
+
+                    arrawframebutton[1] = true;
+
+                    if ((mouse.LeftButton == ButtonState.Pressed && pastmouse.LeftButton == ButtonState.Released) || (Game1.finalClick && !Game1.pastClick))
+                    {
+
+                        if (scene_number < count - 1)
+                        {
+
+                            Game1.nearButton = false;
+                            leftrightmove = 1;
+                            scene_number++;
+                            frame = 0;
+
+
+
+                        }
+                    }
+
+
+
+                }
+                else
+                {
+
+
+
+                    arrawframebutton[1] = false;
+                    arrawframe[1] = 0;
+                }
             }
-
 
 
             if (!(mouseRectangle.Intersects(recRightArrow) || rightHandPosition.Intersects(recRightArrow))
@@ -295,7 +299,17 @@ namespace beethoven3
             }
 
 
-          
+
+
+
+            spriteBatch.DrawString(Game1.georgia, (scene_number+1).ToString(), currentPageLocation, Color.White);
+
+
+            spriteBatch.DrawString(Game1.georgia, " / ", new Vector2(currentPageLocation.X + 45, currentPageLocation.Y), Color.White);
+
+
+
+            spriteBatch.DrawString(Game1.georgia, count.ToString(), new Vector2(currentPageLocation.X + 100, currentPageLocation.Y), Color.White);
            
             //  drawTop(spriteBatch);
         }

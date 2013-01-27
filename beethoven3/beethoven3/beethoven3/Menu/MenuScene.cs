@@ -141,6 +141,8 @@ namespace beethoven3
                
                 clickStartButton = true;
                 //click the right hand item section
+
+               
                 if ((mouse.LeftButton == ButtonState.Pressed && pastmouse.LeftButton == ButtonState.Released) || (Game1.finalClick && !Game1.pastClick))
                 {
                   //  SoundFmod.PlaySound(Game1.mouseClickSound);
@@ -263,7 +265,7 @@ namespace beethoven3
             if(clickStartButton)
             {
                 spriteBatch.Draw(hoverStartButton, recStartButton, Color.White);
-
+             //   spriteBatch.DrawString(Game1.georgia, "START",new Vector2(recStartButton.X,recStartButton.Y-30), Color.Yellow);
             }
 
             if(clickShopButton)

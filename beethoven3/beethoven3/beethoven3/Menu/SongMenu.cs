@@ -41,8 +41,10 @@ namespace beethoven3
 
         private Rectangle startrect = new Rectangle(812, 34, 193, 79);
 
-        Texture2D songBackground;
+        private Texture2D songBackground;
 
+        
+        private Vector2 currentSongLocation = new Vector2(850, 700);
       //  private Texture2D levelTexture;
 
 
@@ -205,61 +207,66 @@ namespace beethoven3
             
 
             //left
-            if (mouseRectangle.Intersects(recLeftArrow) || rightHandPosition.Intersects(recLeftArrow))
+
+            if (scene_number > 0)
             {
-                Game1.nearButton = true;
-                Game1.GetCenterOfButton(recLeftArrow);
-                 
-
-                arrawframebutton[0] = true;
-
-
-                if ((mouse.LeftButton == ButtonState.Pressed && pastmouse.LeftButton == ButtonState.Released) || (Game1.finalClick && !Game1.pastClick) || ((key.IsKeyDown(Keys.Left) && !pastkey.IsKeyDown(Keys.Left))))
+                if (mouseRectangle.Intersects(recLeftArrow) || rightHandPosition.Intersects(recLeftArrow))
                 {
+                    Game1.nearButton = true;
+                    Game1.GetCenterOfButton(recLeftArrow);
 
-                    if (scene_number > 0)
+
+                    arrawframebutton[0] = true;
+
+
+                    if ((mouse.LeftButton == ButtonState.Pressed && pastmouse.LeftButton == ButtonState.Released) || (Game1.finalClick && !Game1.pastClick) || ((key.IsKeyDown(Keys.Left) && !pastkey.IsKeyDown(Keys.Left))))
                     {
-                        Game1.nearButton = false;
-                        scene_number--;
-                        leftrightmove = -1;
-                        frame = 0;
-                        songChanged = true;
+
+                        if (scene_number > 0)
+                        {
+                            Game1.nearButton = false;
+                            scene_number--;
+                            leftrightmove = -1;
+                            frame = 0;
+                            songChanged = true;
+                        }
                     }
                 }
-            }
-            else
-            {
-               
-                arrawframebutton[0] = false;
-                arrawframe[0] = 0;
-            }
-
-
-
-            if (mouseRectangle.Intersects(recRightArrow) || rightHandPosition.Intersects(recRightArrow))
-            {
-
-
-
-                Game1.nearButton = true;
-                Game1.GetCenterOfButton(recRightArrow);
-                           
-                arrawframebutton[1] = true;
-
-                if ( (mouse.LeftButton == ButtonState.Pressed && pastmouse.LeftButton == ButtonState.Released)|| ( key.IsKeyDown(Keys.Right) && !pastkey.IsKeyDown(Keys.Right) ) || ( Game1.finalClick && !Game1.pastClick) )
-                
+                else
                 {
 
-                    if (scene_number < noteFileManager.noteFiles.Count - 1)
+                    arrawframebutton[0] = false;
+                    arrawframe[0] = 0;
+                }
+
+            }
+
+            if (scene_number < noteFileManager.noteFiles.Count - 1)
+            {
+                if (mouseRectangle.Intersects(recRightArrow) || rightHandPosition.Intersects(recRightArrow))
+                {
+
+
+
+                    Game1.nearButton = true;
+                    Game1.GetCenterOfButton(recRightArrow);
+
+                    arrawframebutton[1] = true;
+
+                    if ((mouse.LeftButton == ButtonState.Pressed && pastmouse.LeftButton == ButtonState.Released) || (key.IsKeyDown(Keys.Right) && !pastkey.IsKeyDown(Keys.Right)) || (Game1.finalClick && !Game1.pastClick))
                     {
 
-                        Game1.nearButton = false;
-                        leftrightmove = 1;
-                        scene_number++;
-                        frame = 0;
-                        songChanged = true;
+                        if (scene_number < noteFileManager.noteFiles.Count - 1)
+                        {
+
+                            Game1.nearButton = false;
+                            leftrightmove = 1;
+                            scene_number++;
+                            frame = 0;
+                            songChanged = true;
 
 
+                        }
                     }
                 }
 
@@ -389,7 +396,18 @@ namespace beethoven3
             }
 
 
-
+            if (opening)
+            {
+                bool isPlay = false;
+                SoundFmod.sndChannel.isPlaying(ref isPlay);
+                if (isPlay)
+                {
+                    SoundFmod.StopSound();
+                }
+                SoundFmod.PlaySound(Game1.songsDir + noteFileManager.noteFiles[scene_number].Mp3);
+                // songChanged = false;
+                opening = false;
+            }
 
             fadeinout += 5;
             fadeinout = Math.Min(fadeinout, 255);
@@ -464,18 +482,17 @@ namespace beethoven3
                 //하트. gage양 만큼 하트가 나타남.
                 spriteBatch.Draw(Game1.levelTexture, new Vector2(380, 630), rec, Color.White);
             }
-            if (opening)
-            {
-                bool isPlay = false;
-                SoundFmod.sndChannel.isPlaying(ref isPlay);
-                if (isPlay)
-                {
-                    SoundFmod.StopSound();
-                }
-                SoundFmod.PlaySound(Game1.songsDir + noteFileManager.noteFiles[scene_number].Mp3);
-                // songChanged = false;
-                opening = false;
-            }
+          
+
+
+            spriteBatch.DrawString(Game1.georgia, (scene_number + 1).ToString(), currentSongLocation, Color.White);
+
+
+            spriteBatch.DrawString(Game1.georgia, " / ", new Vector2(currentSongLocation.X + 45, currentSongLocation.Y), Color.White);
+
+
+
+            spriteBatch.DrawString(Game1.georgia, noteFileManager.noteFiles.Count.ToString(), new Vector2(currentSongLocation.X + 100, currentSongLocation.Y), Color.White);
 
           //  drawTop(spriteBatch);
         }

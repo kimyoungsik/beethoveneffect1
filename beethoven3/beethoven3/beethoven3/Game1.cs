@@ -169,7 +169,7 @@ namespace beethoven3
         //키재기
         float fheadY;
         float fhipY;
-        float fcenterZ;
+        float fcenterZ;//사람의 거리
         double factheight;
 
         //폰트
@@ -1137,7 +1137,7 @@ namespace beethoven3
                         break;
                     }
 
-                    if (fy > 0.3f && fy < 0.4f)
+                    if (fy > 0.2f && fy < 0.3f)
                     {
                         break;
                     }
@@ -1191,7 +1191,7 @@ namespace beethoven3
                             break;
                         }
 
-                        if (fy > 0.3f && fy < 0.4f)
+                        if (fy > 0.2f && fy < 0.3f)
                         {
                             break;
                         }
@@ -1249,7 +1249,7 @@ namespace beethoven3
                             break;
                         }
 
-                        if (fy > 0.3f && fy < 0.4f)
+                        if (fy > 0.2f && fy < 0.3f)
                         {
                             break;
                         }
@@ -1336,17 +1336,17 @@ namespace beethoven3
                 //JitterRadius = 0.1f,
                 //MaxDeviationRadius = 0.1f
 
-                Smoothing = 0.7f,
-                Correction = 0.3f,
-                Prediction = 1.0f,
-                JitterRadius = 1.0f,
-                MaxDeviationRadius = 1.0f
+                //Smoothing = 0.7f,
+                //Correction = 0.3f,
+                //Prediction = 1.0f,
+                //JitterRadius = 1.0f,
+                //MaxDeviationRadius = 1.0f
 
-                //Smoothing = 0.05f,
-                //Correction = 0.5f,
-                //Prediction = 0.5f,
-                //JitterRadius = 0.8f,
-                //MaxDeviationRadius = 0.2f
+                Smoothing = 0.05f,
+                Correction = 0.5f,
+                Prediction = 0.5f,
+                JitterRadius = 0.8f,
+                MaxDeviationRadius = 0.2f
             };
 
             //키넥트 센서
@@ -1523,6 +1523,7 @@ namespace beethoven3
 
                                 //case "next":
                                 case "다음":
+                                case "담":
                                     if (gameState == GameStates.ResultManager)
                                     {
                                         gameState = GameStates.ShowPictures;
@@ -1541,6 +1542,12 @@ namespace beethoven3
                                         SoundFmod.PlaySound(title_Music);
                                     }
 
+                                    if (gameState == GameStates.SettingBoard)
+                                    {
+                                        gameState = GameStates.Menu;
+                                        settingBoard.SaveCheckFile();
+                                    }
+
 
                                     break;
 
@@ -1556,7 +1563,7 @@ namespace beethoven3
                                     if (gameState == GameStates.SettingBoard)
                                     {
                                         gameState = GameStates.Menu;
-                                        settingBoard.SaveCheckFile();
+                                        
                                     }
 
                                     if (gameState == GameStates.BackgroundItemShop || gameState == GameStates.EffectItemShop || gameState == GameStates.LeftItemShop || gameState == GameStates.RightItemShop || gameState == GameStates.NoteItemShop)
@@ -1607,7 +1614,8 @@ namespace beethoven3
                                     break;
 
                                 case "설정":
-                                    
+                                case "설쩡":
+
                                     if (gameState == GameStates.Menu)
                                     {
                                         gameState = GameStates.SettingBoard;
@@ -1615,7 +1623,7 @@ namespace beethoven3
                                     break;
 
                                 case "도움말":
-
+                                case "돔말":
                                     if (gameState == GameStates.Menu)
                                     {
                                             gameState = GameStates.TutorialScene;
@@ -1629,7 +1637,7 @@ namespace beethoven3
                                     }
                                     break;
                                 case "효과":
-
+                                case "효꽈":
                                     if (gameState == GameStates.ShopDoor)
                                     {
                                         gameState = GameStates.EffectItemShop;
@@ -2730,8 +2738,8 @@ namespace beethoven3
             String gesture = "gesture_" + dateTime.Day.ToString() + "_" + dateTime.Hour.ToString() + "_" + dateTime.Minute.ToString() + "_" + dateTime.Second.ToString()+".jpg";
             String dir = System.Environment.CurrentDirectory +  "\\beethovenRecord\\userPicture\\" + gesture;
 
-            if (!isScorePic)
-            {
+           // if (!isScorePic)
+           // {
                 //마지막 스코어 보드에 쓰이는 사진
                 ScorePic = gesture;
 
@@ -2739,7 +2747,7 @@ namespace beethoven3
                 Stream str = System.IO.File.OpenWrite(dir);
                 CapturePic.SaveAsJpeg(str, SCR_W, SCR_H);
                 str.Dispose();
-            }
+            //}
 
             playingPictures.Enqueue(CapturePic);
 
@@ -3256,8 +3264,8 @@ namespace beethoven3
                #region 플레이화면
                case GameStates.Playing:
                    if (scoreManager.Gage < 1)
-                   {//$$$
-                    //   file.SetEndFile(true);
+                   {//$$$게이지
+                       file.SetEndFile(true);
                    }
 
                    //곡이 끝내게 되면 결과 화면으로
@@ -4325,6 +4333,15 @@ namespace beethoven3
                     spriteBatch.Draw(noPerson, new Rectangle(0, 0, 1024 , 769), Color.White);
 
                 }
+
+
+                //시작전에는 클릭안되게 
+                if (loadingTime != 2)
+                {
+
+                    finalClick = false;
+                }
+                
              
 
 
@@ -4570,37 +4587,24 @@ namespace beethoven3
 
 
 #if Kinect
-               // charismaManager.Draw(gameTime, spriteBatch);
+              
+                if (fcenterZ < 1.8)
+                {
+
+                    //앞뒤로 가시오
+                  //  spriteBatch.Draw(one, new Rectangle(0, 0, 150, 150), Color.White);
+
+                     
+
+                }
+
+                if (fcenterZ > 2.8)
+                {
 
 
-                //if (charismaFrames.Count > 0)
-                //{
-
-                //  //  currentTime += gameTime.ElapsedGameTime.TotalSeconds;
-                //    CharisimaFrame charismaFrame = (CharisimaFrame)charismaFrames.Peek();
-
-                //    if (currentTime >= charismaFrame.StartTime)
-                //    {
 
 
-                //        if (type != 6)
-                //        {
-                //            spriteBatch.Draw(charismaMessage, new Rectangle(0, 0, 1024, 769), Color.White);
-                //        }
-                //        else
-                //        {
-                //            spriteBatch.Draw(neutralMessage, new Rectangle(0, 0, 1024, 769), Color.White);
-                //        }
-
-                //        spriteBatch.Draw(charismaFrame.Texture, picLocation, Color.White);
-                //    }
-                //    //if (currentTime >= charismaFrame.EndTime)
-                //    //{
-                //    //    charismaFrames.Dequeue();
-                //    //    Game1.isGesture = false;
-                //    //    PlayCharisma = false;
-                //    //}
-                //}
+                }
 
 
                 if (charismaManager.charismaFrames.Count > 0)

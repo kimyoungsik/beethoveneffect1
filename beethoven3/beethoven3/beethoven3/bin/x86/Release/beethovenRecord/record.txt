@@ -58,8 +58,9 @@ gesture_26_21_19_11.jpg$13
 myPicture.jpg$0
 %%
 KangBuk Sharp Dresser
+gesture_27_9_57_45.jpg$2005
 gesture_26_21_26_3.jpg$1912
 gesture_26_21_13_41.jpg$1844
+gesture_27_11_32_16.jpg$1764
 gesture_26_21_9_53.jpg$1751
-gesture_26_21_19_11.jpg$1641
 **

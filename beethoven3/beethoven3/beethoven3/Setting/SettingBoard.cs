@@ -19,8 +19,8 @@ namespace beethoven3
         private Texture2D background;
 
         //ok 버튼
-        //private Texture2D nextButton;
-        //private Texture2D hoverNextButton;
+        private Texture2D nextButton;
+        private Texture2D hoverNextButton;
         
         private Texture2D UpButton;
         private Texture2D hoverUpButton;
@@ -52,7 +52,7 @@ namespace beethoven3
         private bool checkFaceDetact= true;
 
 
-       // private Rectangle recNextButton;
+        private Rectangle recNextButton;
 
 
         private Game1 game1;
@@ -73,8 +73,8 @@ namespace beethoven3
         public void LoadContent(ContentManager cm)
         {
             background = cm.Load<Texture2D>(@"settingBoard\setBackground");
-            //nextButton = cm.Load<Texture2D>(@"settingBoard\ok");
-            //hoverNextButton = cm.Load<Texture2D>(@"settingBoard\okHover");
+            nextButton = cm.Load<Texture2D>(@"settingBoard\ok");
+            hoverNextButton = cm.Load<Texture2D>(@"settingBoard\okHover");
             
             UpButton = cm.Load<Texture2D>(@"settingBoard\up");
             hoverUpButton = cm.Load<Texture2D>(@"settingBoard\upHover");
@@ -99,7 +99,7 @@ namespace beethoven3
 
 
             TextWriter tw = new StreamWriter(dir);
-            
+            tw.WriteLine("auto");
             if (checkFaceDetact)
             {
                 tw.WriteLine("1");
@@ -108,6 +108,19 @@ namespace beethoven3
             {
                 tw.WriteLine("0");
             }
+            //각도
+            tw.WriteLine("angle");
+            tw.WriteLine(game1.nui.ElevationAngle);
+
+            //스켈링
+            tw.WriteLine("scale");
+            tw.WriteLine(game1.userParam);
+
+
+           
+
+
+
             tw.WriteLine("!!");
                 tw.Close();
         }
@@ -132,13 +145,39 @@ namespace beethoven3
             {
                 while (line != "!!")//처음
                 {
-                    if (line == "1")
+                    if (line == "auto")
                     {
-                        checkFaceDetact = true;
+                        line = sr.ReadLine();
+                        if (line == "1")
+                        {
+                            checkFaceDetact = true;
+                        }
+                        else if (line == "0")
+                        {
+                            checkFaceDetact = false;
+                        }
                     }
-                    else if(line == "0")
+
+                    else if (line == "angle")
                     {
-                        checkFaceDetact = false;
+
+                        line = sr.ReadLine();
+                        if (!checkFaceDetact)
+                        {
+                            game1.nui.ElevationAngle = Convert.ToInt32(line);
+
+                        }
+
+
+                    }
+
+
+                    else if( line == "scale")
+                    {
+                        line = sr.ReadLine();
+                        game1.userParam = (float)Convert.ToDouble(line);
+
+
                     }
                     line = sr.ReadLine();
                 }
@@ -156,25 +195,7 @@ namespace beethoven3
             //nextButton 위에 마우스를 올려놨을 때
             //mousecursor on nextButton item section
 
-          
-            //if (rectMouseSettingBoard.Intersects(RectNextButton) || rightHandPosition.Intersects(RectNextButton))
-            //{
 
-            //    Game1.nearButton = true;
-            //    Game1.GetCenterOfButton(RectNextButton);
-
-            //    ClickNextButton = true;
-            //    //click the right hand item section
-            //    if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (Game1.finalClick && !Game1.pastClick))
-            //    {
-            //        Game1.nearButton = false;
-            //        Game1.gameState = Game1.GameStates.Menu;
-            //    }
-            //}
-            //else
-            //{
-            //    ClickNextButton = false;
-            //}
 
              //스케일 증가 
             if (rectMouseSettingBoard.Intersects(recCheck) || rightHandPosition.Intersects(recCheck))
@@ -336,6 +357,29 @@ namespace beethoven3
                 ClickAngleDownButton = false;
             }
 
+
+
+            if (rectMouseSettingBoard.Intersects(RectNextButton) || rightHandPosition.Intersects(RectNextButton))
+            {
+
+                Game1.nearButton = true;
+                Game1.GetCenterOfButton(RectNextButton);
+
+                ClickNextButton = true;
+                //click the right hand item section
+                if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (Game1.finalClick && !Game1.pastClick))
+                {
+                    Game1.nearButton = false;
+                    Game1.gameState = Game1.GameStates.Menu;
+                    SaveCheckFile();
+                }
+            }
+            else
+            {
+                ClickNextButton = false;
+            }
+
+
             if (rectMouseSettingBoard.Intersects(recPreviousButton) || rightHandPosition.Intersects(recPreviousButton))
             {
 
@@ -347,7 +391,7 @@ namespace beethoven3
                 if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (Game1.finalClick && !Game1.pastClick))
                 {
                     Game1.gameState = Game1.GameStates.Menu;
-                    SaveCheckFile();
+                   
                     //가운데로 고정된거 풀기 
                     Game1.nearButton = false;
                 }
@@ -359,7 +403,8 @@ namespace beethoven3
 
 
             if (
-            !(rectMouseSettingBoard.Intersects(recCheck) || rightHandPosition.Intersects(recCheck))
+            !(rectMouseSettingBoard.Intersects(recNextButton) || rightHandPosition.Intersects(recNextButton))
+            &&!(rectMouseSettingBoard.Intersects(recCheck) || rightHandPosition.Intersects(recCheck))
             && !(rectMouseSettingBoard.Intersects(RecScaleUpButton) || rightHandPosition.Intersects(RecScaleUpButton))
             && !(rectMouseSettingBoard.Intersects(RecScaleDownButton) || rightHandPosition.Intersects(RecScaleDownButton))
             && !(rectMouseSettingBoard.Intersects(RecAngleUpButton) || rightHandPosition.Intersects(RecAngleUpButton))
@@ -385,8 +430,8 @@ namespace beethoven3
            
             spriteBatch.Draw(background, recBackground, Color.White);
 
-            //recNextButton = new Rectangle(800, 67, 123, 81);
-            //spriteBatch.Draw(nextButton, recNextButton, Color.White);
+            recNextButton = new Rectangle(800, 67, 123, 81);
+            spriteBatch.Draw(nextButton, recNextButton, Color.White);
 
             recScaleUpButton = new Rectangle(768, 172, 102, 70);
             spriteBatch.Draw(UpButton, recScaleUpButton, Color.White);
@@ -420,10 +465,10 @@ namespace beethoven3
 
 
 
-            //if (clickNextButton)
-            //{
-            //    spriteBatch.Draw(hoverNextButton, recNextButton, Color.White);
-            //}
+            if (clickNextButton)
+            {
+                spriteBatch.Draw(hoverNextButton, recNextButton, Color.White);
+            }
 
             if (checkFaceDetact)
             {
@@ -458,19 +503,21 @@ namespace beethoven3
                 spriteBatch.Draw(Game1.hoverPreviousButton, new Vector2(recPreviousButton.X, recPreviousButton.Y), null, Color.White, 0f, new Vector2(0, 0), 2f, SpriteEffects.None, 1f);
             }
 
+
+
         }
 
-        //public void setClickNextButton(bool value)
-        //{
-        //    this.clickNextButton = value;
-        //}
+        public void setClickNextButton(bool value)
+        {
+            this.clickNextButton = value;
+        }
 
 
 
-        //public Rectangle RectNextButton
-        //{
-        //    get { return recNextButton; }
-        //}
+        public Rectangle RectNextButton
+        {
+            get { return recNextButton; }
+        }
 
 
         public bool CheckFaceDetact
