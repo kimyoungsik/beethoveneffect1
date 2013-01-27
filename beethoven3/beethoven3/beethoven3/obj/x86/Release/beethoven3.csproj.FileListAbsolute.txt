@@ -1352,3 +1352,8 @@ D:\베토벤이펙트관련자료\백업\beethoven00127오후9시17분MARKMANAGE
 D:\베토벤이펙트관련자료\백업\beethoven00127오후9시17분MARKMANAGER스태틱변경전\beethoven3\beethoven3\beethoven3\obj\x86\Release\Microsoft.Xna.Framework.RuntimeProfile.txt
 D:\베토벤이펙트관련자료\백업\beethoven00127오후9시17분MARKMANAGER스태틱변경전\beethoven3\beethoven3\beethoven3\obj\x86\Release\beethoven3.exe
 D:\베토벤이펙트관련자료\백업\beethoven00127오후9시17분MARKMANAGER스태틱변경전\beethoven3\beethoven3\beethoven3\obj\x86\Release\beethoven3.pdb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\game1\dragNoteStartMark.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\starDragNote_DragStart.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\leafDragNote_DragStart.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\Note_Basic_3_DragStart.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\Note_Gostop_3_DragStart.xnb

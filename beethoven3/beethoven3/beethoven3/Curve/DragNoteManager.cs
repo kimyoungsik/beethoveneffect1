@@ -25,6 +25,8 @@ namespace beethoven3
         private ScoreManager scoreManager;
         private MissBannerManager missBanner;
         private Vector2 missSize = new Vector2(975.0f, 412.0f);
+       // public ItemManager itemManager;
+        private int index;
         #endregion
 
 
@@ -40,6 +42,7 @@ namespace beethoven3
             float noteSpeed,
             MissBannerManager missBanner,
             ScoreManager scoreManager
+         //   ItemManager ItemManager
             )
         {
             this.texture = texture;
@@ -50,6 +53,7 @@ namespace beethoven3
             this.noteSpeed = noteSpeed;
             this.missBanner = missBanner;
             this.scoreManager = scoreManager;
+         //   this.itemManager = itemManager;
         }
         #endregion
 
@@ -78,6 +82,16 @@ namespace beethoven3
             thisNote.CollisionRadius = collisionRadius;
             dragNotes.Add(thisNote);
         }
+
+
+        
+
+         public int Index
+        {
+            get { return index; }
+            set { index = value; }
+        }
+
 
         public Texture2D Texture
         {

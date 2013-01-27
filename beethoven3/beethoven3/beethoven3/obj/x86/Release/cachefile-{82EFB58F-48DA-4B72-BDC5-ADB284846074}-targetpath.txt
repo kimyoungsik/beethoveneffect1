@@ -282,6 +282,7 @@ Content\markers\Marker_GoStop_2.xnb
 Content\markers\Marker_GoStop_1.xnb
 Content\markers\Marker_Space_2.xnb
 Content\markers\Marker_Space_1.xnb
+Content\game1\dragNoteStartMark.xnb
 Content\snd\ka.xnb
 Content\snd\ka.wma
 Content\snd\jo.xnb
@@ -290,3 +291,7 @@ Content\snd\maid.xnb
 Content\snd\maid.wma
 Content\MessageFont.xnb
 Content\Fonts\Georgia.xnb
+Content\notes\starDragNote_DragStart.xnb
+Content\notes\leafDragNote_DragStart.xnb
+Content\notes\Note_Basic_3_DragStart.xnb
+Content\notes\Note_Gostop_3_DragStart.xnb

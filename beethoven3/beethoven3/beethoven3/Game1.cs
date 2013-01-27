@@ -75,6 +75,8 @@ namespace beethoven3
         private Texture2D go_back;
         private Texture2D go_front;
 
+        public static Texture2D dragNoteStartMark;
+
         //public static String mouseHoverSound = System.Environment.CurrentDirectory + "\\mouseHover.mp3";
         //public static String mouseClickSound = System.Environment.CurrentDirectory + "\\mouseOk.wav";
         //public static String wearSound = System.Environment.CurrentDirectory + "\\wear.mp3";
@@ -525,6 +527,9 @@ namespace beethoven3
 
             go_back = Content.Load<Texture2D>(@"ui\go_back");
             go_front = Content.Load<Texture2D>(@"ui\go_front");
+
+
+            dragNoteStartMark = Content.Load<Texture2D>(@"game1\dragNoteStartMark");
             //페이셜디텍트 체크 
             
             /* 음원을 로드시킬 때 createStream 과 createSound 두가지가 있는 것을 확인할 수 있는데
@@ -702,7 +707,7 @@ namespace beethoven3
             dragLineMarkerRenderer = new LineRenderer();
 
             //드래그라인 
-            curveManager = new CurveManager(dragLineRenderer, dragLineMarkerRenderer,dragNoteManager);
+            curveManager = new CurveManager(dragLineRenderer, dragLineMarkerRenderer,dragNoteManager,itemManager);
 
             //가이드 라인 렌더링
 
@@ -813,7 +818,7 @@ namespace beethoven3
 
             dragLineMarkerRenderer = new LineRenderer();
             //드래그라인 
-            curveManager = new CurveManager(dragLineRenderer, dragLineMarkerRenderer, dragNoteManager);
+            curveManager = new CurveManager(dragLineRenderer, dragLineMarkerRenderer, dragNoteManager,itemManager);
 
           
 
@@ -3903,6 +3908,9 @@ namespace beethoven3
 
                         //드래그노트 이미지 바꾸기
                         dragNoteManager.Texture = dragTextures[noteIndex];
+
+                        //드래그노트 가 무엇인지 인덱스
+                        dragNoteManager.Index = noteIndex;
 
                         //드래그노트 크기 설정
                      //   dragNoteManager.InitialFrame = itemManager.GetDragNoteInitFrame()[noteIndex];

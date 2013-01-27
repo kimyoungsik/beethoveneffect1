@@ -14,12 +14,13 @@ namespace beethoven3
         private LineRenderer lineRenderer;
         private LineRenderer dragLineMarkerRenderer;
         private DragNoteManager dragNoteManager;
-
-        public CurveManager(LineRenderer lineRenderer, LineRenderer dragLineMarkerRenderer, DragNoteManager dragNoteManager )
+        private ItemManager itemManager;
+        public CurveManager(LineRenderer lineRenderer, LineRenderer dragLineMarkerRenderer, DragNoteManager dragNoteManager,ItemManager itemManager )
         {
             this.lineRenderer = lineRenderer;
             this.dragLineMarkerRenderer = dragLineMarkerRenderer;
             this.dragNoteManager = dragNoteManager;
+            this.itemManager = itemManager;
         }
       //  public static List<Curve> GuideLines = new List<Curve>();
         #endregion
@@ -36,7 +37,7 @@ namespace beethoven3
         public void addCurve(Vector2 p0, Vector2 p1, Vector2 p2, Vector2 p3, double startTime, double endTime)
         {
 
-            Curve curve = new Curve(p0, p1, p2, p3, startTime,endTime, lineRenderer, dragLineMarkerRenderer, dragNoteManager);
+            Curve curve = new Curve(p0, p1, p2, p3, startTime,endTime, lineRenderer, dragLineMarkerRenderer, dragNoteManager,itemManager);
             Curves.Add(curve);    
         }
 
