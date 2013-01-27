@@ -359,6 +359,8 @@ namespace beethoven3
             {
                 int ret  = Game1.soundRecogStartIndex;
                 Game1.soundRecogStartIndex = -1;
+                Game1.nearButton = false;
+
 
                 return ret;
 

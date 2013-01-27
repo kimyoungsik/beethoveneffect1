@@ -1539,6 +1539,83 @@ namespace beethoven3
                                 case "담":
                                     if (gameState == GameStates.ResultManager)
                                     {
+
+                                        gameState = GameStates.ShowPictures;
+                                        nearButton = false;
+
+                                        //현재 마커 위치 저장
+                                        //Vector2 mark1Location = MarkManager.Marks[0].MarkSprite.Location;
+                                        //Vector2 mark2Location = MarkManager.Marks[1].MarkSprite.Location;
+                                        //Vector2 mark3Location = MarkManager.Marks[2].MarkSprite.Location;
+                                        //Vector2 mark4Location = MarkManager.Marks[3].MarkSprite.Location;
+                                        //Vector2 mark5Location = MarkManager.Marks[4].MarkSprite.Location;
+                                        //Vector2 mark6Location = MarkManager.Marks[5].MarkSprite.Location;
+
+                                        //현재 위치 말고, 기본은 0으로 해놓고
+
+
+                                        Vector2 markerSize = MarkManager.GetMarkerSize();
+
+
+                                        Vector2[] zeroIndexMarkers = MarkManager.GetPattern(0);
+                                        //   removeAreaRec = MarkManager.GetRemoveArea(0);
+                                        //두번째꺼 재실행시 이상한거 생기는것 방지
+                                        startNoteManager.DeleateAllNote();
+                                        //StartNoteManager.rightNoteManager.DeleteAllNote();
+                                        //StartNoteManager.leftNoteManager.DeleteAllNote();
+                                        //StartNoteManager.longNoteManager.DeleteAllNote();
+
+                                        //@@@이걸 지워서 무제가 될수도 있다. 패턴이 바뀌었는데도 다음번에 안바뀌어서 이걸 넣음
+                                        //startNoteManager = new StartNoteManager(
+                                        //    spriteSheet,
+                                        //    new Rectangle(0, 200, 52, 55),
+                                        //    1);
+
+                                        //드로우 라인
+                                        file.SetDrawLine(false);
+
+                                        //골드 초기화 
+                                        GoldManager.DeleteAll();
+                                        //카리스마
+                                        //  charismaManager.IsCharismaTime = 0;
+
+                                        //froze 방지
+                                        MarkManager.initialize(
+                                            // markManager = new MarkManager(
+                                            spriteSheet,
+                                            new Rectangle(0, 200, 50, 55),
+                                            1,
+                                            zeroIndexMarkers[0],
+                                            zeroIndexMarkers[1],
+                                            zeroIndexMarkers[2],
+                                            zeroIndexMarkers[3],
+                                            zeroIndexMarkers[4],
+                                            zeroIndexMarkers[5],
+                                            startNoteManager
+
+
+                                            );
+
+
+                                        //파일을 다시 만들 필요는 없고 초기화만 시켜주면 된다.
+                                        //여러개 파일 다시 생성되서
+
+                                        //파일 저장
+                                        //file = new File(startNoteManager, noteFileManager, collisionManager, scoreManager, itemManager, curveManager, guideLineManager);
+
+                                        file.SetEndFile(false);
+                                        file.SetTime(TimeSpan.Zero);
+
+                                        //if (!System.IO.File.Exists(songsDir))
+                                        //{
+                                        //    System.IO.Directory.CreateDirectory(songsDir);
+                                        //}
+
+                                        //file.FileLoading(songsDir, "*.mnf");
+
+                                        scoreManager.init();
+
+
                                         gameState = GameStates.ShowPictures;
                                     }else if (gameState == GameStates.ShowPictures)
                                     {
@@ -1546,13 +1623,14 @@ namespace beethoven3
                                     }else if (gameState == GameStates.RecordBoard)
                                     {
                                         gameState = GameStates.SongMenu;
-                                        bool isPlay = false;
-                                        if (isPlay)
-                                        {
-                                            SoundFmod.StopSound();
-                                        }
+                                        //bool isPlay = false;
+                                        //if (isPlay)
+                                        //{
+                                        //    SoundFmod.StopSound();
+                                        //}
 
-                                        SoundFmod.PlaySound(title_Music);
+                                        //SoundFmod.PlaySound(title_Music);
+                                        SongMenu.opening = true;
                                     }
 
                                     if (gameState == GameStates.SettingBoard)

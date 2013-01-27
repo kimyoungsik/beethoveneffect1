@@ -1,7 +1,7 @@
 auto
 1
 angle
-9
+-2
 scale
-0.45
+0.3
 !!
