@@ -1,0 +1,7 @@
+auto
+0
+angle
+-2
+scale
+0.3
+!!

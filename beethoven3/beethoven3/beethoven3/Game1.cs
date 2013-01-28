@@ -2,7 +2,7 @@
 //#define Kinect
 
 //시작시 검사 
-#define StartDetact
+//#define StartDetact
 
 //삭제상자 보이기 
 //#define Debug

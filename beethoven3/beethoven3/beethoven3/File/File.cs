@@ -1230,8 +1230,6 @@ namespace beethoven3
          //   CheckRightNoteInCenterArea();
          //   CheckLeftNoteInCenterArea();
         
-
-
                 //this.time += gameTime.ElapsedGameTime.TotalSeconds;
              playTimeSpan = TimeSpan.FromSeconds(playTime);
 

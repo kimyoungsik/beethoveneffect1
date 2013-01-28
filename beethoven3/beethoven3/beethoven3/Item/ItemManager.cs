@@ -311,6 +311,7 @@ namespace beethoven3
             
 
             String dir = System.Environment.CurrentDirectory + "\\beethovenRecord\\itemManager.txt";
+
             if (!System.IO.File.Exists(dir))
             {
                 //var myFile = System.IO.File.Create(dir);

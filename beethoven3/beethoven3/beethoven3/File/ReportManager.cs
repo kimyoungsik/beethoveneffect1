@@ -40,36 +40,47 @@ namespace beethoven3
 
         private ScoreManager scoreManager;
 
-        private String recordDir = System.Environment.CurrentDirectory + "\\beethovenRecord\\record.txt";
+        private String recordDir = System.Environment.CurrentDirectory + "\\beethovenRecord";
+        private String recordFile = System.Environment.CurrentDirectory + "\\beethovenRecord\\record.txt";
 
 
-        private String goldDir = System.Environment.CurrentDirectory + "\\beethovenRecord\\gold.txt";
-            
+        private String goldDir = System.Environment.CurrentDirectory + "\\beethovenRecord";
+        private String goldFile = System.Environment.CurrentDirectory + "\\beethovenRecord\\gold.txt";
+           
         public ReportManager(ScoreManager scoreManager )
         {
             this.scoreManager = scoreManager;
         }
 
-        public String MakeNewDir(String dir)
+        public String MakeNewDir(String dir, String file)
         {
-            if (!System.IO.File.Exists(dir))
+
+            //return dir;
+
+            DirectoryInfo diRecord = new DirectoryInfo(dir);
+            if (diRecord.Exists == false)
             {
-                var myFile = System.IO.File.Create(dir);
+                diRecord.Create();
+               
+
+            }
+            if (!System.IO.File.Exists(file))
+            {
+                var myFile = System.IO.File.Create(file);
                 myFile.Close();
             }
             return dir;
-            
         }
 
 
         public void SaveReport()
         {
             //저장되는 파일
-             MakeNewDir(recordDir);
+             MakeNewDir(recordDir, recordFile);
 
 
             //record txt 에 저장
-            TextWriter tw = new StreamWriter(recordDir);
+            TextWriter tw = new StreamWriter(recordFile);
             int i, j;
             for (i = 0; i < scoreInfoManagers.Count; i++)
             {
@@ -91,9 +102,9 @@ namespace beethoven3
 
         public void SaveGoldToFile()
         {
-            MakeNewDir(goldDir);
+            MakeNewDir(goldDir,goldFile);
 
-            TextWriter tw = new StreamWriter(goldDir);
+            TextWriter tw = new StreamWriter(goldFile);
             tw.WriteLine("**");
             tw.WriteLine(scoreManager.TotalGold);
             tw.Close();
@@ -102,9 +113,9 @@ namespace beethoven3
 
         public void LoadReport()
         {
-            MakeNewDir(recordDir);
+            MakeNewDir(recordDir,recordFile);
 
-            StreamReader sr = new StreamReader(recordDir);
+            StreamReader sr = new StreamReader(recordFile);
             String line;
             String songTitle=null;
             String[] contents;
@@ -133,8 +144,8 @@ namespace beethoven3
 
         public void LoadGoldFromFile()
         {
-            MakeNewDir(goldDir);
-            StreamReader sr = new StreamReader(goldDir);
+            MakeNewDir(goldDir,goldFile);
+            StreamReader sr = new StreamReader(goldFile);
             String line;
             line = sr.ReadLine();
             if (line == "**")//처음

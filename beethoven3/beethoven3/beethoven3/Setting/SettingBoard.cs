@@ -89,16 +89,20 @@ namespace beethoven3
 
         public void SaveCheckFile()
         {
-            String dir = System.Environment.CurrentDirectory + "\\beethovenRecord\\checkKinect.txt";
+            String dir = System.Environment.CurrentDirectory + "\\beethovenRecord";
 
-            if (!System.IO.File.Exists(dir))
+            String file = System.Environment.CurrentDirectory + "\\beethovenRecord\\checkKinect.txt";
+
+            DirectoryInfo diRecord = new DirectoryInfo(dir);
+            if (diRecord.Exists == false)
             {
-                var myFile = System.IO.File.Create(dir);
-                myFile.Close();
+                diRecord.Create();
+           
+
             }
 
 
-            TextWriter tw = new StreamWriter(dir);
+            TextWriter tw = new StreamWriter(file);
             tw.WriteLine("auto");
             if (checkFaceDetact)
             {
@@ -128,15 +132,25 @@ namespace beethoven3
 
         public void LoadCheckFile()
         {
-            String dir = System.Environment.CurrentDirectory + "\\beethovenRecord\\checkKinect.txt";
+            String dir = System.Environment.CurrentDirectory + "\\beethovenRecord";
+            String file = System.Environment.CurrentDirectory + "\\beethovenRecord\\checkKinect.txt";
 
-            if (!System.IO.File.Exists(dir))
+            
+            DirectoryInfo diRecord = new DirectoryInfo(dir);
+            if (diRecord.Exists == false)
             {
-                var myFile = System.IO.File.Create(dir);
-                myFile.Close();
+                diRecord.Create();
+
             }
 
-            StreamReader sr = new StreamReader(dir);
+            if (!System.IO.File.Exists(file))
+            {
+                var myFile = System.IO.File.Create(file);
+                myFile.Close();
+            }
+           
+
+            StreamReader sr = new StreamReader(file);
             String line;
             line = sr.ReadLine();
 
