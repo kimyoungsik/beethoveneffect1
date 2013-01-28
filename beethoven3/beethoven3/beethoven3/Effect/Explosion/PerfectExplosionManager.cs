@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System.Diagnostics;
 namespace beethoven3
 {
-    class GoodExplosionManager
+    class PerfectExplosionManager
     {
 
         #region declarations

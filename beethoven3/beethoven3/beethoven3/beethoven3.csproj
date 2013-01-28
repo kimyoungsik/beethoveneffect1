@@ -122,19 +122,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Effect\Banner\BadBannerManager.cs" />
-    <Compile Include="Effect\BadExplosionManager.cs" />
+    <Compile Include="Effect\Explosion\BadExplosionManager.cs" />
     <Compile Include="Effect\Banner\Banner.cs" />
     <Compile Include="Effect\ComboNumberManager.cs" />
-    <Compile Include="Effect\Explosion.cs" />
-    <Compile Include="Effect\ExplosionSprite.cs" />
+    <Compile Include="Effect\Explosion\Explosion.cs" />
+    <Compile Include="Effect\Explosion\ExplosionSprite.cs" />
     <Compile Include="Effect\Banner\GoodBannerManager.cs" />
-    <Compile Include="Effect\GoodExplosionManager.cs" />
+    <Compile Include="Effect\Explosion\GoodExplosionManager.cs" />
     <Compile Include="Effect\Banner\MissBannerManager.cs" />
     <Compile Include="Effect\Number.cs" />
     <Compile Include="Effect\Banner\PerfectBannerManager.cs" />
-    <Compile Include="Effect\PerfectExplosionManager.cs" />
-    <Compile Include="Effect\StaticSprite.cs" />
-    <Compile Include="File\DrawGuideLineInfo.cs" />
+    <Compile Include="Effect\Explosion\PerfectExplosionManager.cs" />
     <Compile Include="FingerTracking\Hand.cs" />
     <Compile Include="FingerTracking\KinectSettings.cs" />
     <Compile Include="FingerTracking\MyQueue.cs" />
@@ -151,7 +149,7 @@
     <Compile Include="Curve\CurveManager.cs" />
     <Compile Include="Curve\DragNoteManager.cs" />
     <Compile Include="Item\EffectItemShop.cs" />
-    <Compile Include="Effect\ExplosionManager.cs" />
+    <Compile Include="Effect\Explosion\ExplosionManager.cs" />
     <Compile Include="File\File.cs" />
     <Compile Include="Menu\BackJestureManager.cs" />
     <Compile Include="Menu\LoadingScene.cs" />
@@ -174,7 +172,6 @@
     <Compile Include="Curve\NoteInfo.cs" />
     <Compile Include="Item\NoteItemShop.cs" />
     <Compile Include="Note\NoteManager.cs" />
-    <Compile Include="Effect\Particle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />

@@ -11,7 +11,6 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
-using System.Diagnostics;
 namespace beethoven3
 {
     static class SoundFmod

@@ -5,7 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-using System.Diagnostics;
+
 namespace beethoven3
 {
     //충돌로 판별하는 마크르 만드는 것

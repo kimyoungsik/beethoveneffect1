@@ -23,7 +23,6 @@ using Microsoft.Xna.Framework.Media;
 using FMOD;
 using Microsoft.Kinect;
 using System.Runtime.InteropServices;
-using System.Diagnostics;
 
 using System.IO;
 using System.Threading;
@@ -4583,7 +4582,7 @@ namespace beethoven3
                 }
               
 
-                spriteBatch.Draw(energyDarkBack, new Vector2(0, 6), new Rectangle(0, 0, 330, 35), Color.White);
+                spriteBatch.Draw(energyDarkBack, new Vector2(0, 6), new Rectangle(0, 0, 335, 35), Color.White);
 
 
                 spriteBatch.Draw(energy, new Vector2(0, 6), new Rectangle(0, 0, gageWidth, 35), Color.White);
