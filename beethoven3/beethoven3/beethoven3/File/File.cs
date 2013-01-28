@@ -766,7 +766,7 @@ namespace beethoven3
                                     //현재 노트로 오른손노트이고 다음 노트도 오른손 노트일때
                                     if (arrayNotes[0].IsRight && arrayNotes[1].IsRight)
                                     {
-                                        DrawGuideLineInfo drawGuideLineInfo = new DrawGuideLineInfo(arrayNotes[0].MarkLocation - 1, arrayNotes[1].MarkLocation - 1, true, arrayNotes[0].StartTime+1 /* 조금느리게 지워지게 하기 위해서  */, arrayNotes[1].StartTime);
+                                        DrawGuideLineInfo drawGuideLineInfo = new DrawGuideLineInfo(arrayNotes[0].MarkLocation - 1, arrayNotes[1].MarkLocation - 1, true, arrayNotes[0].StartTime+0.5 /* 조금느리게 지워지게 하기 위해서  */, arrayNotes[1].StartTime);
 
                                         drawGuideLineQueue.Enqueue(drawGuideLineInfo);
 

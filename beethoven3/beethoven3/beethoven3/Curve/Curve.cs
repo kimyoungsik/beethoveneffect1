@@ -138,11 +138,14 @@ namespace beethoven3
 
         public void DeleteAllPoints()
         {
-            int i;
-            for(i=0; i<Points.Count(); i++)
-            {
-                Points.RemoveAt(i);
-            }
+            //int i;
+            //int count = Points.Count();
+            //for(i=0; i<count; i++)
+            //{
+                Points.Clear();
+            //    Points.RemoveAt(i);
+            //}
+            dragNoteManager.Delete();
         }
 
 

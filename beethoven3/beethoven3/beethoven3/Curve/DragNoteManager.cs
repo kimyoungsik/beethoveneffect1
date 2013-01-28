@@ -126,6 +126,12 @@ namespace beethoven3
                 }
             }
         }
+
+        public void Delete()
+        {
+            dragNotes.Clear();
+
+        }
         public void DeleteDragNotes()
         {
             int i;

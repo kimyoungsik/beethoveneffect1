@@ -1,5 +1,5 @@
 ﻿
-//#define Kinect
+#define Kinect
 
 //시작시 검사 
 #define StartDetact
@@ -3600,7 +3600,7 @@ namespace beethoven3
                  
                         }
 
-
+                        //curveManager.DeleteAllCurve();
 
                         Texture2D[] dragTextures = itemManager.GetDragNoteTexture();
                         Texture2D[] dragTextureBackgrounds = itemManager.GetDragNoteBackground();

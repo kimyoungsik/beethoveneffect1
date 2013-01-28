@@ -482,25 +482,25 @@ namespace beethoven3
             if (noteFileManager.noteFiles.Count > 0)
             {
                 String name = noteFileManager.noteFiles[scene_number].Name;
-
+                String shortName = "";
                 if (name.Length > 15)
                 {
 
-                    name = name.Remove(15);
-                    name = name + "...";
+                    shortName = name.Remove(15);
+                    shortName = shortName + "...";
                 }
             //    spriteBatch.DrawString(Game1.georgia, name, new Vector2(512, 420), Color.White);
-                spriteBatch.DrawString(Game1.georgia, name, new Vector2(422, 590), Color.DimGray, 0f, Vector2.Zero, 0.5f, SpriteEffects.None, 0f);
+                spriteBatch.DrawString(Game1.georgia, shortName, new Vector2(422, 590), Color.DimGray, 0f, Vector2.Zero, 0.5f, SpriteEffects.None, 0f);
 
                 String artist = noteFileManager.noteFiles[scene_number].Artist;
-
+                String shortArtist = "";
                 if (artist.Length > 15)
                 {
 
-                    artist = name.Remove(15);
-                    artist = name + "...";
+                    shortArtist = artist.Remove(15);
+                    shortArtist = shortArtist + "...";
                 }
-                spriteBatch.DrawString(Game1.georgia, artist, new Vector2(422, 560), Color.DimGray, 0f, Vector2.Zero, 0.5f, SpriteEffects.None, 0f);
+                spriteBatch.DrawString(Game1.georgia, shortArtist, new Vector2(422, 560), Color.DimGray, 0f, Vector2.Zero, 0.5f, SpriteEffects.None, 0f);
 
 
                 int bestScore = reportManager.GetHighestScore(name);
