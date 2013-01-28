@@ -1,4 +1,4 @@
-﻿#define Kinect
+﻿//#define Kinect
 
 using System;
 using System.Collections;
@@ -16,6 +16,100 @@ using Microsoft.Xna.Framework.Graphics;
 using System.Diagnostics;
 namespace beethoven3
 {
+    class NoteInfo
+    {
+
+        #region declarations
+        private bool isRight;
+        private double startTime;
+        private int markLocation;
+        private String type;
+        private double lastTime;
+        private Vector2 startPoint;
+        private Vector2 firstOperatorPoint;
+        private Vector2 secondOperatorPoint;
+        private Vector2 endPoint;
+
+
+        #endregion
+
+        #region constructor
+        public NoteInfo(bool isRight, double startTime, int markLocation, String type, double lastTime, Vector2 startPoint, Vector2 firstOperatorPoint, Vector2 secondOperatorPoint, Vector2 endPoint)
+        {
+            this.isRight = isRight;
+            this.startTime = startTime;
+            this.markLocation = markLocation;
+            this.type = type;
+            this.lastTime = lastTime;
+            this.startPoint = startPoint;
+            this.firstOperatorPoint = firstOperatorPoint;
+            this.secondOperatorPoint = secondOperatorPoint;
+            this.endPoint = endPoint;
+        }
+        #endregion
+
+        #region method
+
+        public Vector2 StartPoint
+        {
+            get { return startPoint; }
+            set { startPoint = value; }
+
+        }
+
+        public Vector2 FirstOperatorPoint
+        {
+            get { return firstOperatorPoint; }
+            set { firstOperatorPoint = value; }
+
+        }
+
+        public Vector2 SecondOperatorPoint
+        {
+            get { return secondOperatorPoint; }
+            set { secondOperatorPoint = value; }
+
+        }
+
+        public Vector2 EndPoint
+        {
+            get { return endPoint; }
+            set { endPoint = value; }
+
+        }
+        public double LastTime
+        {
+            get { return lastTime; }
+            set { lastTime = value; }
+
+        }
+        public String Type
+        {
+            get { return type; }
+            set { type = value; }
+
+        }
+        public bool IsRight
+        {
+            get { return isRight; }
+            set { isRight = value; }
+        }
+
+        public double StartTime
+        {
+            get { return startTime; }
+            set { startTime = value; }
+        }
+
+        public int MarkLocation
+        {
+            get { return markLocation; }
+            set { markLocation = value; }
+        }
+        #endregion
+
+    }
+
     class File
     {
         #region declarations
@@ -463,7 +557,7 @@ namespace beethoven3
 
 
 
-            guideLineManager.AddGuideLine(start, firstMid, secondMid, end, (secondStartTime - firstStartTime) * 1000, gold);
+            guideLineManager.AddGuideLine(start, firstMid, secondMid, end, firstStartTime,secondStartTime , gold);
 
         }
 
@@ -515,47 +609,47 @@ namespace beethoven3
         //        //끝나는시간
         //    }
 
+        ////}
+        ////템포 다시 원상복귀
+        //public void ChangeArrayNoteTempoBack(double changedTempo)
+        //{
+        //    int i;
+        //    for (i = 0; i < this.arrayNotes.Count; i++)
+        //    {
+
+        //        arrayNotes[i].StartTime = arrayNotes[i].StartTime * changedTempo;
+
+
+        //        //끝나는 시간도
+        //        if (!(arrayNotes[i].Type == "1") && !(arrayNotes[i].Type == "B") && !(arrayNotes[i].Type == "2"))
+        //        {
+        //            arrayNotes[i].LastTime = arrayNotes[i].LastTime * changedTempo;
+
+        //        }
+        //    }
+
         //}
-        //템포 다시 원상복귀
-        public void ChangeArrayNoteTempoBack(double changedTempo)
-        {
-            int i;
-            for (i = 0; i < this.arrayNotes.Count; i++)
-            {
-
-                arrayNotes[i].StartTime = arrayNotes[i].StartTime * changedTempo;
 
 
-                //끝나는 시간도
-                if (!(arrayNotes[i].Type == "1") && !(arrayNotes[i].Type == "B") && !(arrayNotes[i].Type == "2"))
-                {
-                    arrayNotes[i].LastTime = arrayNotes[i].LastTime * changedTempo;
+        //public void OptionalArrayNote(double optionalTime)
+        //{
+        //    int i;
+        //    for (i = 0; i < this.arrayNotes.Count; i++)
+        //    {
 
-                }
-            }
+        //        arrayNotes[i].StartTime +=  optionalTime;
 
-        }
+        //        //끝나는시간.
 
+        //        //끝나는 시간도
+        //        if (!(arrayNotes[i].Type == "1") && !(arrayNotes[i].Type == "B") && !(arrayNotes[i].Type == "2"))
+        //        {
+        //            arrayNotes[i].LastTime += optionalTime;
 
-        public void OptionalArrayNote(double optionalTime)
-        {
-            int i;
-            for (i = 0; i < this.arrayNotes.Count; i++)
-            {
+        //        }
+        ////    }
 
-                arrayNotes[i].StartTime +=  optionalTime;
-
-                //끝나는시간.
-
-                //끝나는 시간도
-                if (!(arrayNotes[i].Type == "1") && !(arrayNotes[i].Type == "B") && !(arrayNotes[i].Type == "2"))
-                {
-                    arrayNotes[i].LastTime += optionalTime;
-
-                }
-            }
-
-        }
+        //}
 
         //public void deleteAllSecondGuideLine()
         //{
@@ -573,25 +667,25 @@ namespace beethoven3
 
         //}
 
-        //안쓰임
-        public double ChangeTimeOfNote(double inputTime, double changedTempo)
-        {
-            double outputTime = 0.0f;
+        ////안쓰임
+        //public double ChangeTimeOfNote(double inputTime, double changedTempo)
+        //{
+        //    double outputTime = 0.0f;
 
-            outputTime = inputTime / changedTempo;
+        //    outputTime = inputTime / changedTempo;
             
-            return outputTime;
+        //    return outputTime;
             
-            //템포가 2배가 된상태에서 4초동안 지속이 된다면 모두 4-4/2 2초씩 줄여야 한다ㅣ
-            //템포가 2배가 된상태에서 y초동안 지속이 된다면 모두 y-y/2초씩 줄여야 한다.
-            //템포가 2배가 된상태에서 1초동안 지속이 된다면 모두 1-1/2  0.5초씩 줄여야 한다ㅣ
-            //템포가 4배가 된상태에서 1초동안 지속이 된다면 모두 1-  1/4   0.75초씩 줄여야 한다ㅣ
+        //    //템포가 2배가 된상태에서 4초동안 지속이 된다면 모두 4-4/2 2초씩 줄여야 한다ㅣ
+        //    //템포가 2배가 된상태에서 y초동안 지속이 된다면 모두 y-y/2초씩 줄여야 한다.
+        //    //템포가 2배가 된상태에서 1초동안 지속이 된다면 모두 1-1/2  0.5초씩 줄여야 한다ㅣ
+        //    //템포가 4배가 된상태에서 1초동안 지속이 된다면 모두 1-  1/4   0.75초씩 줄여야 한다ㅣ
             
-            //템파고 x배가 된상태에서 y초 동안 지속이 된다면 모두 y-y/x초씩 줄여야 한다.
-            //템포가 1.2배가 된상태에서 2초동안 지속이 된다면 모두 2-2/1.2 0.3333초
-            //템포가 1.5배가 된상태에서 2초동안 지속이 된다면 모두 2-2/1.5 0.6666초
+        //    //템파고 x배가 된상태에서 y초 동안 지속이 된다면 모두 y-y/x초씩 줄여야 한다.
+        //    //템포가 1.2배가 된상태에서 2초동안 지속이 된다면 모두 2-2/1.2 0.3333초
+        //    //템포가 1.5배가 된상태에서 2초동안 지속이 된다면 모두 2-2/1.5 0.6666초
             
-        }
+        //}
         public void FindNote(TimeSpan processTime, double changedTempo, double optionalTime)
         {
             int i;
@@ -697,9 +791,6 @@ namespace beethoven3
                                 //시작점,제어점1,제어점2,끝점,지속시간
 
                                 //outof range로 문제 될 수 있음
-
-                                //현재노트가  오른손 노트이고, 그 다음 노트가 오른손노트일 때
-                                
                                 
                                 //적어도 1개 이상의 오른손 노트가 있을 때
                                 if (arrayNotes.Count > 1)
@@ -707,21 +798,22 @@ namespace beethoven3
                                     //현재 노트로 오른손노트이고 다음 노트도 오른손 노트일때
                                     if (arrayNotes[0].IsRight && arrayNotes[1].IsRight)
                                     {
-                                        DrawGuideLineInfo drawGuideLineInfo = new DrawGuideLineInfo(arrayNotes[0].MarkLocation - 1, arrayNotes[1].MarkLocation - 1, true, arrayNotes[0].StartTime+1/* 조금느리게 지워지게 하기 위해서  */, arrayNotes[1].StartTime);
-                                    
+                                        DrawGuideLineInfo drawGuideLineInfo = new DrawGuideLineInfo(arrayNotes[0].MarkLocation - 1, arrayNotes[1].MarkLocation - 1, true, arrayNotes[0].StartTime+1 /* 조금느리게 지워지게 하기 위해서  */, arrayNotes[1].StartTime);
+
                                         drawGuideLineQueue.Enqueue(drawGuideLineInfo);
-                                      
-                                        //골드라인/
+
+                                        //  골드라인/
                                         //  DrawGuidLine(rightNoteMarks[currentRightNoteIndex].MarkLocation, rightNoteMarks[currentRightNoteIndex + 1].MarkLocation, true);
-                                        // if 마커에 맞추었을 때 
-                                        // 스타트로 날아간 후에 어느정도 시간이 지났을 때
-                                      //  DrawGuidLine(arrayNotes[0].MarkLocation - 1, arrayNotes[1].MarkLocation - 1, true, arrayNotes[0].StartTime, arrayNotes[1].StartTime);
+                                        //  if 마커에 맞추었을 때 
+                                        //  스타트로 날아간 후에 어느정도 시간이 지났을 때
+                                        //  DrawGuidLine(arrayNotes[0].MarkLocation - 1, arrayNotes[1].MarkLocation - 1, true, arrayNotes[0].StartTime, arrayNotes[1].StartTime);
                                     }
+                                    
                                 }
 
                                 //적어도 노트가 2개 이상
-                                if (arrayNotes.Count > 2)
-                                {
+                                //if (arrayNotes.Count > 2)
+                                //{
                                     //if (arrayNotes[1].IsRight && arrayNotes[2].IsRight)
                                     //// if (rightNoteMarks[currentRightNoteIndex + 1].IsRight && rightNoteMarks[currentRightNoteIndex + 2].IsRight)
                                     //{
@@ -732,7 +824,7 @@ namespace beethoven3
                                     //    // DrawGuidLine(rightNoteMarks[currentRightNoteIndex + 1].MarkLocation, rightNoteMarks[currentRightNoteIndex + 2].MarkLocation, false);               
                                     // //   DrawGuidLine(arrayNotes[1].MarkLocation - 1, arrayNotes[2].MarkLocation - 1, false, arrayNotes[0].StartTime, arrayNotes[1].StartTime);
                                     //}
-                                }
+                                //}
                             }
                             catch (IndexOutOfRangeException)
                             {
@@ -748,9 +840,8 @@ namespace beethoven3
                         else if (arrayNotes[0].Type == "2")
                         {
                             startNoteManager.MakeLeftNote(arrayNotes[0].MarkLocation);
+                          
                         }
-
-                        //양손노트
 
                         //롱노트
                         else if (arrayNotes[0].Type == "4")

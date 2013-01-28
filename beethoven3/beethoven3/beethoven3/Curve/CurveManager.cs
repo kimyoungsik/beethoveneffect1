@@ -22,7 +22,6 @@ namespace beethoven3
             this.dragNoteManager = dragNoteManager;
             this.itemManager = itemManager;
         }
-      //  public static List<Curve> GuideLines = new List<Curve>();
         #endregion
           
         #region method
@@ -51,12 +50,6 @@ namespace beethoven3
 
         }
 
-
-    //public static void addGuideLine(Vector2 p0, Vector2 p1, Vector2 p2, Vector2 p3, double time)
-    //{
-    //    Curve curve = new Curve(p0, p1, p2, p3, time);
-    //    GuideLines.Add(curve);
-    //}
         #endregion
 
 
@@ -69,10 +62,7 @@ namespace beethoven3
             {
                 curve.Draw(gameTime, spriteBatch, processTime);
             }
-            //foreach (Curve guideLine in GuideLines)
-            //{
-            //    guideLine.Draw(gameTime, spriteBatch);
-            //}
+        
         }
 
         #endregion

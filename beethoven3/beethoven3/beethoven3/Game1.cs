@@ -1,5 +1,5 @@
 ﻿
-#define Kinect
+//#define Kinect
 
 //시작시 검사 
 #define StartDetact
@@ -7,7 +7,7 @@
 //삭제상자 보이기 
 //#define Debug
 //키보드모드일떄
-//#define Keyboard
+#define Keyboard
 
 using System;
 using System.Collections;
@@ -3561,13 +3561,13 @@ namespace beethoven3
                  //   collisionManager.DeleteMarks();
 #if Kinect
                     HandleInput();
-
+#endif
                     collisionManager.CheckRightNoteInCenterArea();
                     collisionManager.CheckLeftNoteInCenterArea();
 
                   //JudgeCharisma();
 
-#endif
+
                     //3초만에 원상복귀
                     //       AutoRetrunChangeTempo(gameTime);
 
@@ -3856,6 +3856,14 @@ namespace beethoven3
 
                         //***마커리스트에 맞는 =>>itemManager로 옮김
                         float[] markersScale = itemManager.GetMarkersScale();
+
+                    //배너문구 초기화
+                        perfectBannerManager.Clear();
+                        goodBannerManager.Clear();
+                        badBannerManager.Clear();
+                        missBannerManager.Clear();
+                    //콤보숫자 초기화
+                        comboNumberManager.Clear();
 
 
                     //템포 초기화 
@@ -4548,7 +4556,7 @@ namespace beethoven3
                 TimeSpan processTime = file.Draw(spriteBatch, gameTime);
 
                 curveManager.Draw(gameTime, spriteBatch, processTime);
-                guideLineManager.Draw(gameTime, spriteBatch);
+                guideLineManager.Draw(processTime, spriteBatch);
 
                 //기본 템포 설정( 템포가 바뀐상태이면 안변함)
                 SoundFmod.SetBasicTempo();

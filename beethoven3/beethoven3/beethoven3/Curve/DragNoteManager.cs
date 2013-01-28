@@ -136,11 +136,7 @@ namespace beethoven3
                 missBanner.AddBanners(new Vector2(1024 / 2 - (missSize.X * 0.2f) / 2, 769 / 2 - (missSize.Y * 0.2f) / 2), 0.2f);
                
                 dragNotes.RemoveAt(i);
-                //***이거 잘못된듯 
-                //드래그 노트실패하면 깍아야 할듯  
-               // ScoreManager.DragNoteScore = ScoreManager.DragNoteScore + 1;
-
-
+                
                 if (scoreManager.Combo > scoreManager.Max)
                 {
                     scoreManager.Max = scoreManager.Combo;
@@ -169,13 +165,13 @@ namespace beethoven3
 
 
         //도중 마커점이니깐 안보여도 된다. 안쓰임
-        public void Draw(SpriteBatch spriteBatch)
-        {
-            foreach (Sprite dragNote in dragNotes)
-            {
-                dragNote.Draw(spriteBatch);
-            }
-        }
+        //public void Draw(SpriteBatch spriteBatch)
+        //{
+        //    //foreach (Sprite dragNote in dragNotes)
+        //    //{
+        //    //    dragNote.Draw(spriteBatch);
+        //    //}
+        //}
 
         #endregion
       

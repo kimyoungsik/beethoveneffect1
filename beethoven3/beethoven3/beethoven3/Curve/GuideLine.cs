@@ -15,22 +15,20 @@ namespace beethoven3
     {
 
         #region declarations
-        // public static List<Vector2> points = new List<Vector2>();
-     //   public Queue PointsQueue = new Queue();
+     
         private List<Vector2> Points = new List<Vector2>();
         //곡선의 기준시간
-        private double time = 0.0f;
+       // private double time = 0.0f;
+        
+        private double startTime;
+        private double endTime;
+        
         //경과 시간
-        private double changedTime = 0.0f;
-
-    //    private double dotTime = 0.0f;
-        private double dotChangedTime = 0.0f;
-
-     //   private Vector2 currentPosition;
-     //   private int count = 0;
+      //  private double changedTime = 0.0f;
+       // private double dotChangedTime = 0.0f;
 
         private bool end;
-        private bool goldEnd = false;
+    //    private bool goldEnd = false;
         private bool showGold;
 
         private LineRenderer lineRenderer;
@@ -46,7 +44,7 @@ namespace beethoven3
         /// <param name="p2">제어점1</param>
         /// <param name="p3">끝나는점</param>
         /// <param name="time">지속시간</param>
-        public GuideLine(Vector2 p0, Vector2 p1, Vector2 p2, Vector2 p3, double time, bool showGold, LineRenderer lineRenderer)
+        public GuideLine(Vector2 p0, Vector2 p1, Vector2 p2, Vector2 p3, double startTime, double endTime, bool showGold, LineRenderer lineRenderer)
         {
             this.lineRenderer = lineRenderer;
             //다른 골드라인을 만들기 전에 , 지워주기
@@ -55,7 +53,9 @@ namespace beethoven3
                 GoldManager.DeleteAll();
             } 
             this.showGold = showGold;
-            SetLine(p0, p1, p2, p3, time);
+            this.startTime = startTime;
+            this.endTime = endTime;
+            SetLine(p0, p1, p2, p3);
             
         }
         #endregion
@@ -105,22 +105,20 @@ namespace beethoven3
         /// <param name="time">지속시간</param>
         /// 
 
-        public void SetLine(Vector2 p0, Vector2 p1, Vector2 p2, Vector2 p3, double time)
+        public void SetLine(Vector2 p0, Vector2 p1, Vector2 p2, Vector2 p3)
         {
             Vector2 PlotPoint;
 
-            this.changedTime = 0.0;
-            this.dotChangedTime = 0.0;
-            this.time = time;
+        
 
             float t;
             for (t = 0; t <= 1.0f; t += 0.01f)
             {
                 PlotPoint = GetPoint(t, p0, p1, p2, p3);
                 Points.Add(PlotPoint);
-               // PointsQueue.Enqueue(PlotPoint);
+               
             }
-         //   dotTime = time / PointsQueue.Count;
+         
             if (this.showGold)
             {
                 int i = 0;
@@ -140,7 +138,6 @@ namespace beethoven3
                 }
 
                
-                goldEnd = false;
             }
             end = false;
         }
@@ -157,13 +154,13 @@ namespace beethoven3
         #endregion
 
         #region update and draw
-        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public void Draw(TimeSpan processTime, SpriteBatch spriteBatch)
         {
             //int i, j;
 
             if (Points.Count > 0 && !end)
             {
-                changedTime += gameTime.ElapsedGameTime.TotalMilliseconds;
+               // changedTime += gameTime.ElapsedGameTime.TotalMilliseconds;
                // dotChangedTime += gameTime.ElapsedGameTime.TotalMilliseconds;
                 
 
@@ -179,9 +176,9 @@ namespace beethoven3
                 //        lineRenderer.DrawLine(Game1.spriteSheet, new Rectangle(0, 0, 20, 20), spriteBatch.GraphicsDevice, spriteBatch, (Vector2)Points[i], (Vector2)Points[j], color);
                 //    }
                 //}
-              
-              
-                if (changedTime > time)
+
+
+                if (TimeSpan.FromSeconds(endTime) < processTime)
                 {
                    
                     if (Points.Count > 0)
@@ -191,9 +188,10 @@ namespace beethoven3
 
                         //이걸 하면
                         //두번째 동전만 안나오기 시작함..
+
                         //if (this.showGold)
                         //{
-                        //    //동전삭제
+                        //    // 동전삭제
                         //    GoldManager.DeleteAll();
                         //}
                             //지워지기 시작하면 true -> 화면에서 안보이게 함

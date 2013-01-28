@@ -5,9 +5,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-
-
-using System.Diagnostics;
+//using System.Diagnostics;
 
 
 namespace beethoven3
@@ -19,16 +17,13 @@ namespace beethoven3
     {
 
         #region declarations
-        // public static List<Vector2> points = new List<Vector2>();
-        private Queue PointsQueue = new Queue();
+         private Queue PointsQueue = new Queue();
         private List<Vector2> Points = new List<Vector2>();
-        //곡선의 기준시간
-       // private double time = 0.0f;
-        //경과 시간
-        private double changedTime = 0.0f;
+           //경과 시간
+      //  private double changedTime = 0.0f;
 
-        private double dotTime = 0.0f;
-        private double dotChangedTime = 0.0f;
+//        private double dotTime = 0.0f;
+      //  private double dotChangedTime = 0.0f;
 
 
         private double startTime = 0.0f;
@@ -108,9 +103,7 @@ namespace beethoven3
             return new Vector2(resX, resY);
         }
 
-       
-
-       
+      
 
         /// <summary>
         /// 
@@ -123,21 +116,13 @@ namespace beethoven3
         public void SetLine(Vector2 p0, Vector2 p1, Vector2 p2, Vector2 p3, double startTime, double endTime)
         {
             Vector2 PlotPoint;
-            
-        //    this.changedTime = 0.0;
-         //   this.dotChangedTime = 0.0;
-
-            //총시간
-            double time = endTime - startTime;
-
             float t;
-
-           
-            int count = (int)(time * 60);
+            int j;
+            int count = (int)((endTime - startTime) * 60);
 
 
             //큐와 배열에 
-            for (int j = 0; j <= count; j++)
+            for (j = 0; j <= count; j++)
             {
                 t = j / (float)count;
                 
@@ -145,23 +130,10 @@ namespace beethoven3
                 PlotPoint = GetPoint(t, p0, p1, p2, p3);
                 Points.Add(PlotPoint);
                  
-               // 전부다 넣을 필요가 없고
-             //   if (i % 2 == 0)
-             //   {
                     PointsQueue.Enqueue(PlotPoint);
-              //  }
             }
 
-            //200개의 포인트를 저장해 둔다.
-            //100개의 포인트를 찍을 곳은 중간위치 정가운데 시간이다.
-                        
-            //나누어주는 count에 더하는 수를 크게하면 드래그노트 안을 지나가는 공이 빨라진다. 
-            //이것이 드래그 노트 속도에 영향을 줌
-            //dotTime = time / (PointsQueue.Count + dragNoteSpeed);
-            //총시간을 포인트의 카운트 수만큼 나눈수 즉 하의 큐를 표현하는데 필요한 시간 
-            
-          //  dotTime = time / (PointsQueue.Count );
-            end = false;
+             end = false;
         }
 
         public void DeleteAllPoints()
@@ -212,9 +184,6 @@ namespace beethoven3
                    
                 }
 
-
-              
-
                 //10초
                 if (processTime >= TimeSpan.FromSeconds(startTime))
                 {
@@ -248,7 +217,7 @@ namespace beethoven3
                         endVector = (Vector2)PointsQueue.Peek();
 
 
-                        dotChangedTime = 0.0f;
+                        //dotChangedTime = 0.0f;
 
                     }
 
@@ -260,9 +229,7 @@ namespace beethoven3
 
                     }
 
-
-
-                  
+            
 
                 }
 
@@ -271,9 +238,7 @@ namespace beethoven3
                 {
                     Texture2D[] dragNoteTexture = itemManager.GetDragNoteStartTexters();
                     Rectangle[] initFrame = itemManager.GetDragNoteStartInitFrame();
-                    //color.A = 50;
-
-
+        
 
                     spriteBatch.Draw(dragNoteTexture[itemManager.getNoteIndex()], new Rectangle((int)Points[0].X, (int)Points[0].Y, initFrame[itemManager.getNoteIndex()].Width, initFrame[itemManager.getNoteIndex()].Height), color);
                     spriteBatch.Draw(Game1.one, new Rectangle(10, 50, 150, 150), Color.White);
@@ -283,9 +248,7 @@ namespace beethoven3
                 {
                     Texture2D[] dragNoteTexture = itemManager.GetDragNoteStartTexters();
                     Rectangle[] initFrame = itemManager.GetDragNoteStartInitFrame();
-                    //Rectangle initFrame = dragNoteManager.InitialFrame;
-                    //color.A = 50;
-                    spriteBatch.Draw(dragNoteTexture[itemManager.getNoteIndex()], new Rectangle((int)Points[0].X, (int)Points[0].Y, initFrame[itemManager.getNoteIndex()].Width, initFrame[itemManager.getNoteIndex()].Height), color);
+                          spriteBatch.Draw(dragNoteTexture[itemManager.getNoteIndex()], new Rectangle((int)Points[0].X, (int)Points[0].Y, initFrame[itemManager.getNoteIndex()].Width, initFrame[itemManager.getNoteIndex()].Height), color);
                     spriteBatch.Draw(Game1.two, new Rectangle(10, 50, 150, 150), Color.White);
 
 

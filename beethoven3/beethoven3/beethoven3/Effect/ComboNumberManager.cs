@@ -218,6 +218,11 @@ namespace beethoven3
             }
         }
 
+        public void Clear()
+        {
+            ComboNumbers.Clear();
+            
+        }
 
 
         #endregion
