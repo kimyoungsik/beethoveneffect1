@@ -155,7 +155,6 @@
     <Compile Include="Menu\LoadingScene.cs" />
     <Compile Include="Menu\ShowPictureScene.cs" />
     <Compile Include="Menu\TutorialScene.cs" />
-    <Compile Include="Note\RightNoteInfo.cs" />
     <Compile Include="Curve\GoldManager.cs" />
     <Compile Include="Curve\GuideLine.cs" />
     <Compile Include="Curve\GuideLineManager.cs" />

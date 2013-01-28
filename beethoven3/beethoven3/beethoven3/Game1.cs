@@ -1,5 +1,5 @@
 ﻿
-#define Kinect
+//#define Kinect
 
 //시작시 검사 
 #define StartDetact
@@ -45,12 +45,17 @@ namespace beethoven3
 
         //스코어 보드에 쓰이는 사진
         private String ScorePic;
+
+        //여러장 저장안되고 한장만 저장되게 하는것. 현재는 여러장 저장
         private bool isScorePic = false;
 
-
+        //사진 저장하는 큐
         private Queue playingPictures;
+
         private int playPicturesCount = 0;
+        
         Texture2D[] showPictureTextures = new Texture2D[5];
+        
         //Joint rightJoint;
         //Joint leftJoint;
         Texture2D backJesture;
@@ -60,12 +65,7 @@ namespace beethoven3
         private uint songLength;
         //temp
 
-        //*** test
-        bool isonetime = true;
-        //istwoTime
-        bool istwoTime = true;
-       // Texture2D sit1;
-
+       
         private Texture2D loadingForAngle;
         //0 각도 재야함 // 1 각도 잴필요없음 //2 끝남 
         private int loadingTime = 1;
@@ -109,6 +109,7 @@ namespace beethoven3
 
         //라이프이펙트 적용여부 
         double lifePlusEffect = 1;
+        public static bool PicFlag = false;
 #if Kinect
         //화면에 띄우기
         Texture2D KinectVideoTexture;
@@ -120,8 +121,6 @@ namespace beethoven3
         public static Rectangle drawrec2;
        
 
-
-         
         
         Skeleton[] Skeletons = null;
         
@@ -136,7 +135,7 @@ namespace beethoven3
         Stream audioStream;
         double skeletonAngle;
 
-        private String kinectMessage = "__UNKNOWN";
+     // private String kinectMessage = "__UNKNOWN";
         //쓰레드
         ThreadStart ts;
         Thread th;
@@ -158,7 +157,7 @@ namespace beethoven3
 
         //사진찍기
         Texture2D CapturePic;
-        public static bool PicFlag = false;
+       
 
         //일반 제스쳐
         private const int MinimumFrames = 6;
@@ -178,9 +177,7 @@ namespace beethoven3
         public static bool isGesture = true;
         //머리찾기
         float fy;
-        double bestFy = 1000;
-        int bestAngle = 0;
-   
+      
         //키재기
         float fheadY;
         float fhipY;
@@ -211,8 +208,7 @@ namespace beethoven3
         
 #endif
         //기본 글꼴
-        //basic font
-       // public static SpriteFont pericles36Font;
+       
         public static SpriteFont georgia;
 
         public enum GameStates { Loading, Menu, Playing, SongMenu, ShopDoor,
@@ -410,7 +406,7 @@ namespace beethoven3
         public static Texture2D hoverNextButton;
 
         
-        //float volume = 0;
+        
 
         /////Texture end 
 
@@ -451,12 +447,9 @@ namespace beethoven3
         //for kinect
    //     public static Texture2D idot;
 
-        private Item selectedItem;
-
-
+       
         private bool isNoPerson;
 
-        private int uiProcessRate;
 
         private double uiProcessTime;
 
@@ -542,19 +535,11 @@ namespace beethoven3
 
 
             
-            //페이셜디텍트 체크 
-            
-            /* 음원을 로드시킬 때 createStream 과 createSound 두가지가 있는 것을 확인할 수 있는데
- createStream은 배경음악을, createSound는 효과음을 넣는것이 좋습니다.*/
-            ///***
-            ////FMOD 세팅 -START
-            //resultFmod = FMOD.Factory.System_Create(ref sndSystem);
-            //sndSystem.init(1, FMOD.INITFLAG.NORMAL, (IntPtr)null);
-            ////FMOD 세팅 -END
+     
             backJesture = Content.Load<Texture2D>(@"game1\backJesture");
             backJestureManager = new BackJestureManager(backJesture, new Rectangle(0, 0, 204, 204), 10, new Vector2(800, 500));
 
-         //  sit1 = Content.Load<Texture2D>(@"sit\Sitt_1");
+       
            //타이틀화면
             menuScene = new MenuScene();
             menuScene.LoadContent(Content);
@@ -693,13 +678,7 @@ namespace beethoven3
             //현재 장착한 이펙트의 인덱스를 전체 베이스에 찾음
             int effectIndex = itemManager.getEffectIndex();
 
-            //***임시로 - 아래에 바로 넣었음
-            //텍스쳐 가져오기
-            //Texture2D[] effectTextures = itemManager.GetEffectTexture();
-            //Texture2D[] goodEffectTextures = itemManager.GetGoodEffectTexture();
-            //Texture2D[] badEffectTextures = itemManager.GetBadEffectTexture();
-            //Texture2D[] missEffectTextures = itemManager.GetMissEffectTexture();
-
+     
             //콤보 숫자
             comboNumberManager = new ComboNumberManager();
             comboNumberManager.LoadContent(Content);
@@ -711,8 +690,6 @@ namespace beethoven3
             tutorialScene = new TutorialScene();
             tutorialScene.Load(Content);
               
-
-          //  comboNumber = new StaticSprite(new Vector2(0, 0), comboNumberTexture, new Rectangle(0, 0, 154, 200), Vector2.Zero, 1f);
 
             //드래그 라인 렌더링
             dragLineRenderer = new LineRenderer();
@@ -762,10 +739,7 @@ namespace beethoven3
             missBannerManager.BannerInit(missBanner, new Rectangle(0, 0, 975, 412),/*sprite로 바꾸면 frameCount바꾸기*/1, 0.5f,30);
 
 
-            //미스도 투입되면
-            //missManager = new ExplosionManager();
-            //missManager.ExplosionInit(missEffectTextures[effectIndex], new Rectangle(0, 0, 166, 162), 9, 1f, 45);
-
+      
 
             //일단은 miss effect로
             goldGetManager = new ExplosionManager();
@@ -996,7 +970,7 @@ namespace beethoven3
             metronomes[7] = Content.Load<Texture2D>(@"metronome\metronome7");
         }
 
-
+        #region 각도 재기 
 #if Kinect
         void FaceDetect()
         {
@@ -1316,7 +1290,7 @@ namespace beethoven3
 
         }
 #endif
-
+        #endregion
         /// <summary>
         /// UnloadContent will be called once per game and is the place to unload
         /// all content.
@@ -1552,14 +1526,6 @@ namespace beethoven3
                                         gameState = GameStates.ShowPictures;
                                         nearButton = false;
 
-                                        //현재 마커 위치 저장
-                                        //Vector2 mark1Location = MarkManager.Marks[0].MarkSprite.Location;
-                                        //Vector2 mark2Location = MarkManager.Marks[1].MarkSprite.Location;
-                                        //Vector2 mark3Location = MarkManager.Marks[2].MarkSprite.Location;
-                                        //Vector2 mark4Location = MarkManager.Marks[3].MarkSprite.Location;
-                                        //Vector2 mark5Location = MarkManager.Marks[4].MarkSprite.Location;
-                                        //Vector2 mark6Location = MarkManager.Marks[5].MarkSprite.Location;
-
                                         //현재 위치 말고, 기본은 0으로 해놓고
 
 
@@ -1614,13 +1580,6 @@ namespace beethoven3
 
                                         file.SetEndFile(false);
                                         file.SetTime(TimeSpan.Zero);
-
-                                        //if (!System.IO.File.Exists(songsDir))
-                                        //{
-                                        //    System.IO.Directory.CreateDirectory(songsDir);
-                                        //}
-
-                                        //file.FileLoading(songsDir, "*.mnf");
 
                                         scoreManager.init();
 
@@ -2989,121 +2948,7 @@ namespace beethoven3
 
 
    
-        ///***
-        ////템포변경
-        //private void tempoChange(double changedT)
-        //{
-        //    isChangedTempo = true;
-
-            
-        //    this.changedTempo = changedT;
-
-        //    float frequency = 0;
-            
-        //    //현재 템포 가져와소 float frequency에 넣기//resultFmod 는 성공여부만 나타남
-        //    resultFmod = sndChannel.getFrequency(ref frequency);
-         
-        //    //템포설정
-        //    sndChannel.setFrequency(frequency * (float)changedT);
-            
-        //    //템포를 다른 노트 모두에 적용
-        //    file.ChangeArrayNoteTempo(changedT);
-
-        //    //현재 설정된 두번째 가이드라인이 있으면 지움
-        //    GuideLineManager.DeleteAllSecondGuideLine();
-        
-
-        //}
-
-        /////***
-        ////템포 변경 전에 기본 템포를 저장해둠. 다시 롤백할 때 필요
-        //public void SetBasicTempo()
-        //{
-        //    if (!isChangedTempo)
-        //    {
-        //       sndChannel.getFrequency(ref basicFrequency);
-        //    }
-        //}
-
-        ////이전에 설정한 기본 템포로 돌아감 
-        //public void ReturnBasicTempo()
-        //{
-        //    if (basicFrequency != 0)
-        //    {
-        //        sndChannel.setFrequency(basicFrequency);
-        //        isChangedTempo = false;
-        //        changedTempo = 0;
-        //    }
-        //}
-
-        ////일단 안쓰임
-        ////일정 시간이 지나면 다시 원래 템포로 돌아옴
-        ////private void AutoRetrunChangeTempo(GameTime gameTime)
-        ////{
-        ////    if (isChangedTempo)
-        ////    {              
-        ////        //처음시작 
-        ////        chagneLimitedTime += gameTime.ElapsedGameTime.TotalMilliseconds;
-    
-                
-        ////        if (chagneLimitedTime >= 3000 && oneTime)
-        ////        {
-        ////            optionalTime =( 3 - (3 / this.changedTempo) ) *-1;
-        ////                //템포가 4배가 된상태에서 1초동안 지속이 된다면 모두 1-  1/4   0.75초씩 줄여야 한다ㅣ
-        ////            oneTime = false;
-        ////            ReturnBasicTempo();
-        ////        }   
-        ////    }
-        ////}
-
-        /////***
-        //////템포가 변하고나서 얼마나 변했는지 시간을 재는데 사용
-        //private void StartChangedTime(GameTime gameTime)
-        //{
-            
-        //    if (isChangedTempo)
-        //    {
-        //        //처음시작 
-        //        chagneLimitedTime += gameTime.ElapsedGameTime.TotalMilliseconds;  
-        //    }
-        //}
-
-
-        ////다시 원점으로 돌아갈 때 쓰임 
-        
-        ////늘어나거나 줄어드는 양을 계산해주고 
-        ///// <summary>
-        ///// ***
-        ///// </summary>
-        //private void SetOptionalTime()
-        //{
-        //    //임시로 넣은 것일 뿐
-        //    if (oneTime)
-        //    {
-        //        //템포 다시 원상복귀
-        //        file.ChangeArrayNoteTempoBack(this.changedTempo);
-           
-        //        double time = 0;
-
-        //        //옵션 계산
-        //        time = ((this.chagneLimitedTime / 1000) - ((this.chagneLimitedTime / 1000) / this.changedTempo)) * -1;
-                                
-        //        optionalTime += time;
-
-        //        //각 노트 시작에 옵션을 더함
-        //        file.OptionalArrayNote(optionalTime);
-                
-        //        //템포가 0.9배가 된상태에서 1초동안 지속이 된다면 모두 4-  4/4   3초씩 줄여야 한다ㅣ
-                
-        //        oneTime = false;
-        //        chagneLimitedTime = 0;
-                
-
-        //        //원래 템포로 돌아감
-        //        ReturnBasicTempo();
-        //    }   
-        //}
-
+      
 
         //메트로놈
         private Texture2D GetMetroTexture(double tempo)
@@ -3148,60 +2993,31 @@ namespace beethoven3
         //상점안에서 상점 대문으로 가는 키보드 처리
         private void HandleKeyboardInputGoToMenu(KeyboardState keyState)
         {
-            if (keyState.IsKeyDown(Keys.B))
-            {
+            //if (keyState.IsKeyDown(Keys.B))
+            //{
 
-                gameState = GameStates.Menu;
+            //    gameState = GameStates.Menu;
 
-            }
+            //}
 
         }
 
         //상점 대문에서 타이틀 화면으로 가는 키보드 처리
         private void HandleKeyboardInputinItemShop(KeyboardState keyState)
         {
-            if (keyState.IsKeyDown(Keys.B))
-            {
-                itemManager.SaveFileItem();
-                gameState = GameStates.ShopDoor;
+            //if (keyState.IsKeyDown(Keys.B))
+            //{
+            //    itemManager.SaveFileItem();
+            //    gameState = GameStates.ShopDoor;
 
-            }
+            //}
 
         }
 
 
         private void HandleKeyboardInput(KeyboardState keyState)
         {
-            //if (keyState.IsKeyDown(Keys.B))
-            //{
-            //    //SoundFmod.sndSystem.createSound("C:\\beethoven\\" + noteFileManager, FMOD.MODE.HARDWARE, ref SoundFmod.sndSound);
-            //    //SoundFmod.sndSystem.playSound(CHANNELINDEX.FREE, SoundFmod.sndSound, false, ref SoundFmod.sndChannel);
-
-              
-            //}
-            //if (keyState.IsKeyDown(Keys.P))
-            //{
-            // //   file.IsStop = true;
-            //    //%%%%
-            //    if (isonetime)
-            //    {
-            //        SoundFmod.tempoChange(0.9f);
-            //        isonetime = false;
-            //    }
-            //}
-
-            //if (keyState.IsKeyDown(Keys.O))
-            //{
-            //   // file.IsStop = false;
-            //    if (istwoTime)
-            //    {
-            //        SoundFmod.SetOptionalTime();
-
-            //        SoundFmod.tempoChange(0.8f);
-            //        istwoTime = false;
-            //    }
-
-            //}
+          
 
 
             if (keyState.IsKeyDown(Keys.Escape))
@@ -3210,45 +3026,7 @@ namespace beethoven3
                 file.SetEndFile(true);
             }
 
-            //if (keyState.IsKeyDown(Keys.L))
-            //{
-            //   // sndChannel.setFrequency(44100.0f);
-            //   // ReturnBasicTempo();
-
-            //    SoundFmod.SetOptionalTime();
-            //}
-
-            // if (keyState.IsKeyDown(Keys.F))
-            //{
-            //   // sndChannel.setFrequency(44100.0f);
-            //   // ReturnBasicTempo();
-            //     memberManager.SetMembersFrameTime(0.02f);
-            //    //memberSetMembersFrameTime
-            //}
-
-            ////스트로크 1
-            //if (keyState.IsKeyDown(Keys.T))
-            //{
-            //    memberManager.SetMemberState(4, 1);
-            //}
-
-            ////스트로크 2
-            //if (keyState.IsKeyDown(Keys.Y))
-            //{
-
-            //    float fCurrentVolume = SoundFmod.GetVolume();
-              
-            //}
-
-            ////스트로크 3
-            //if (keyState.IsKeyDown(Keys.U))
-            //{
-            // //   //0부터 1까지
-
-            // //   RESULT a = SoundFmod.sndChannel.setVolume(0.5f);
-            // ////   SoundFmod.sndChannel.setPaused(true);
-            
-            //}
+         
            
         }
         /// <summary>
@@ -3312,7 +3090,7 @@ namespace beethoven3
                case GameStates.ShopDoor:
 
                     //타이틀화면으로 돌아가는 키보드처리
-                    HandleKeyboardInputGoToMenu(Keyboard.GetState());
+                    //HandleKeyboardInputGoToMenu(Keyboard.GetState());
                     shopDoor.Update(gameTime, rightHandPosition);
                    // pastClick = finalClick;
 
@@ -3328,7 +3106,7 @@ namespace beethoven3
                    //상점대문으로 돌아가는 키보드처리
 
                  
-                   HandleKeyboardInputinItemShop(Keyboard.GetState());
+                   //HandleKeyboardInputinItemShop(Keyboard.GetState());
                    rightItemShop.Update(gameTime, rightHandPosition);
                    
              
@@ -3340,7 +3118,7 @@ namespace beethoven3
 
                case GameStates.LeftItemShop:
                    //상점대문으로 돌아가는 키보드처리
-                    HandleKeyboardInputinItemShop(Keyboard.GetState());
+                    //HandleKeyboardInputinItemShop(Keyboard.GetState());
                     leftItemShop.Update(gameTime, rightHandPosition);
 
 
@@ -3350,7 +3128,7 @@ namespace beethoven3
 
                #region 노트상점
                case GameStates.NoteItemShop:
-                    HandleKeyboardInputinItemShop(Keyboard.GetState());
+                    //HandleKeyboardInputinItemShop(Keyboard.GetState());
                     noteItemShop.Update(gameTime, rightHandPosition);
              
                    break;
@@ -3361,7 +3139,7 @@ namespace beethoven3
                case GameStates.EffectItemShop:
 
 
-                   HandleKeyboardInputinItemShop(Keyboard.GetState());
+                   //HandleKeyboardInputinItemShop(Keyboard.GetState());
                    effectItemShop.Update(gameTime, rightHandPosition);
                   
                 
@@ -3373,7 +3151,7 @@ namespace beethoven3
                #region 배경상점
                case GameStates.BackgroundItemShop:
                    //상점대문으로 돌아가는 키보드처리
-                   HandleKeyboardInputinItemShop(Keyboard.GetState());
+                   //HandleKeyboardInputinItemShop(Keyboard.GetState());
                    backgroundItemShop.Update(gameTime, rightHandPosition);
 
                 break;
@@ -3574,7 +3352,7 @@ namespace beethoven3
                #region Setting
                case GameStates.SettingBoard:
 
-                HandleKeyboardInputGoToMenu(Keyboard.GetState());
+                //HandleKeyboardInputGoToMenu(Keyboard.GetState());
                 settingBoard.Update(gameTime, rightHandPosition);
          
 
