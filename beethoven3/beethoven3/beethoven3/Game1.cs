@@ -6,7 +6,8 @@
 
 //삭제상자 보이기 
 //#define Debug
-
+//키보드모드일떄
+//#define Keyboard
 
 using System;
 using System.Collections;
@@ -23,13 +24,15 @@ using FMOD;
 using Microsoft.Kinect;
 using System.Runtime.InteropServices;
 using System.Diagnostics;
-using Coding4Fun.Kinect.Wpf;
+
 using System.IO;
 using System.Threading;
+#if Kinect
+using Coding4Fun.Kinect.Wpf;
 using Microsoft.Samples.Kinect.SwipeGestureRecognizer;
 using Microsoft.Speech.Recognition;
 using Microsoft.Speech.AudioFormat;
-
+#endif
 namespace beethoven3
 {
     /// <summary>
@@ -84,34 +87,43 @@ namespace beethoven3
 #if Debug
         public static Texture2D blackRect;
 #endif
+        public static bool finalClick;
+        public static bool pastClick = false;
+        //버튼 센터 
 
+        public static Vector2 center = new Vector2(0, 0);
+
+      
+        //주변 버튼 여부
+        public static bool nearButton = false;
+        //오른손 좌표
+
+        public static Joint j1r;
+        public static Joint j2r;
+
+
+        //키넥트
+        public KinectSensor nui = null;
+
+
+        //사람 키에 따른 미세조정 파라미터
+        public float userParam = .25f;
+
+        //라이프이펙트 적용여부 
+        double lifePlusEffect = 1;
 #if Kinect
         //화면에 띄우기
         Texture2D KinectVideoTexture;
         Rectangle VideoDisplayRectangle;
 
 
-        //오른손 좌표
-        
-        public static Joint j1r;
-        public static Joint j2r;
-
 
         public static Rectangle drawrec1;
         public static Rectangle drawrec2;
-        public static bool finalClick;
-        public static bool pastClick = false;
+       
 
 
-        //주변 버튼 여부
-        public static bool nearButton = false;
-        
-        //버튼 센터 
-
-        public static Vector2 center = new Vector2(0, 0);
-        
-        //키넥트
-        public KinectSensor nui = null;
+         
         
         Skeleton[] Skeletons = null;
         
@@ -170,8 +182,7 @@ namespace beethoven3
         float fy;
         double bestFy = 1000;
         int bestAngle = 0;
-        //라이프이펙트 적용여부 
-        double lifePlusEffect = 1;
+   
         //키재기
         float fheadY;
         float fhipY;
@@ -187,8 +198,6 @@ namespace beethoven3
         short[] ImageBits;
         ColorImagePoint[] depthLocation;
 
-        //사람 키에 따른 미세조정 파라미터
-        public float userParam = .25f;
 
         //손가락 클릭
         private void skip() { }
@@ -495,7 +504,7 @@ namespace beethoven3
             //마우스 보이기
             this.IsMouseVisible = true;
 
-//#if Kinect
+#if Kinect
             
             //KINECT
             VideoDisplayRectangle = new Rectangle(0, 0, SCR_W, SCR_H);
@@ -506,7 +515,7 @@ namespace beethoven3
             drawrec2 = new Rectangle(0, 0, 5, 5);
 
 
-//#endif
+#endif
             base.Initialize();
 
         }
@@ -2878,18 +2887,15 @@ namespace beethoven3
             return recognizer;
         }
 
-#endif
+
         //입력 타입
         //출력 센터
 
 
-        public static void GetCenterOfButton(Rectangle rec)
-        {
-            
-            center = new Vector2(rec.X + rec.Width / 2, rec.Y + rec.Height / 2);
-            
-        }
+    
 
+
+#endif
         public float UserParam
         {
             get { return userParam; }
@@ -2897,15 +2903,18 @@ namespace beethoven3
 
         }
 
-
-
         public KinectSensor Nui
         {
             get { return nui; }
             set { nui = value; }
 
         }
+        public static void GetCenterOfButton(Rectangle rec)
+        {
 
+            center = new Vector2(rec.X + rec.Width / 2, rec.Y + rec.Height / 2);
+
+        }
 
         //마우스 충돌 처리
         private void HandleMouseInput(MouseState mouseState)
@@ -2924,13 +2933,15 @@ namespace beethoven3
             collisionManager.CheckMouseCollisions(4, new Vector2(mouseStateCurrent.X, mouseStateCurrent.Y));
 
             collisionManager.CheckMouseCollisions(5, new Vector2(mouseStateCurrent.X, mouseStateCurrent.Y));
-          //  Trace.WriteLine(mouseCurrent);
-            //collisionManager.checkMarkers3(0, new Vector2(mouseStateCurrent.X, mouseStateCurrent.Y));
-            //collisionManager.checkMarkers3(1, new Vector2(mouseStateCurrent.X, mouseStateCurrent.Y));
-            //collisionManager.checkMarkers3(2, new Vector2(mouseStateCurrent.X, mouseStateCurrent.Y));
-            //collisionManager.checkMarkers3(3, new Vector2(mouseStateCurrent.X, mouseStateCurrent.Y));
-            //collisionManager.checkMarkers3(4, new Vector2(mouseStateCurrent.X, mouseStateCurrent.Y));
-            //collisionManager.checkMarkers3(5, new Vector2(mouseStateCurrent.X, mouseStateCurrent.Y));
+#if Keyboard
+            collisionManager.checkMarkers2(0, new Vector2(mouseStateCurrent.X, mouseStateCurrent.Y));
+            collisionManager.checkMarkers2(1, new Vector2(mouseStateCurrent.X, mouseStateCurrent.Y));
+            collisionManager.checkMarkers2(2, new Vector2(mouseStateCurrent.X, mouseStateCurrent.Y));
+            collisionManager.checkMarkers2(3, new Vector2(mouseStateCurrent.X, mouseStateCurrent.Y));
+            collisionManager.checkMarkers2(4, new Vector2(mouseStateCurrent.X, mouseStateCurrent.Y));
+            collisionManager.checkMarkers2(5, new Vector2(mouseStateCurrent.X, mouseStateCurrent.Y));
+#endif
+
         }
 
 #if Kinect
@@ -3165,36 +3176,36 @@ namespace beethoven3
 
         private void HandleKeyboardInput(KeyboardState keyState)
         {
-            if (keyState.IsKeyDown(Keys.B))
-            {
-                //SoundFmod.sndSystem.createSound("C:\\beethoven\\" + noteFileManager, FMOD.MODE.HARDWARE, ref SoundFmod.sndSound);
-                //SoundFmod.sndSystem.playSound(CHANNELINDEX.FREE, SoundFmod.sndSound, false, ref SoundFmod.sndChannel);
+            //if (keyState.IsKeyDown(Keys.B))
+            //{
+            //    //SoundFmod.sndSystem.createSound("C:\\beethoven\\" + noteFileManager, FMOD.MODE.HARDWARE, ref SoundFmod.sndSound);
+            //    //SoundFmod.sndSystem.playSound(CHANNELINDEX.FREE, SoundFmod.sndSound, false, ref SoundFmod.sndChannel);
 
               
-            }
-            if (keyState.IsKeyDown(Keys.P))
-            {
-             //   file.IsStop = true;
-                //%%%%
-                if (isonetime)
-                {
-                    SoundFmod.tempoChange(0.9f);
-                    isonetime = false;
-                }
-            }
+            //}
+            //if (keyState.IsKeyDown(Keys.P))
+            //{
+            // //   file.IsStop = true;
+            //    //%%%%
+            //    if (isonetime)
+            //    {
+            //        SoundFmod.tempoChange(0.9f);
+            //        isonetime = false;
+            //    }
+            //}
 
-            if (keyState.IsKeyDown(Keys.O))
-            {
-               // file.IsStop = false;
-                if (istwoTime)
-                {
-                    SoundFmod.SetOptionalTime();
+            //if (keyState.IsKeyDown(Keys.O))
+            //{
+            //   // file.IsStop = false;
+            //    if (istwoTime)
+            //    {
+            //        SoundFmod.SetOptionalTime();
 
-                    SoundFmod.tempoChange(0.8f);
-                    istwoTime = false;
-                }
+            //        SoundFmod.tempoChange(0.8f);
+            //        istwoTime = false;
+            //    }
 
-            }
+            //}
 
 
             if (keyState.IsKeyDown(Keys.Escape))
@@ -3203,45 +3214,45 @@ namespace beethoven3
                 file.SetEndFile(true);
             }
 
-            if (keyState.IsKeyDown(Keys.L))
-            {
-               // sndChannel.setFrequency(44100.0f);
-               // ReturnBasicTempo();
+            //if (keyState.IsKeyDown(Keys.L))
+            //{
+            //   // sndChannel.setFrequency(44100.0f);
+            //   // ReturnBasicTempo();
 
-                SoundFmod.SetOptionalTime();
-            }
+            //    SoundFmod.SetOptionalTime();
+            //}
 
-             if (keyState.IsKeyDown(Keys.F))
-            {
-               // sndChannel.setFrequency(44100.0f);
-               // ReturnBasicTempo();
-                 memberManager.SetMembersFrameTime(0.02f);
-                //memberSetMembersFrameTime
-            }
+            // if (keyState.IsKeyDown(Keys.F))
+            //{
+            //   // sndChannel.setFrequency(44100.0f);
+            //   // ReturnBasicTempo();
+            //     memberManager.SetMembersFrameTime(0.02f);
+            //    //memberSetMembersFrameTime
+            //}
 
-            //스트로크 1
-            if (keyState.IsKeyDown(Keys.T))
-            {
-                memberManager.SetMemberState(4, 1);
-            }
+            ////스트로크 1
+            //if (keyState.IsKeyDown(Keys.T))
+            //{
+            //    memberManager.SetMemberState(4, 1);
+            //}
 
-            //스트로크 2
-            if (keyState.IsKeyDown(Keys.Y))
-            {
+            ////스트로크 2
+            //if (keyState.IsKeyDown(Keys.Y))
+            //{
 
-                float fCurrentVolume = SoundFmod.GetVolume();
+            //    float fCurrentVolume = SoundFmod.GetVolume();
               
-            }
+            //}
 
-            //스트로크 3
-            if (keyState.IsKeyDown(Keys.U))
-            {
-             //   //0부터 1까지
+            ////스트로크 3
+            //if (keyState.IsKeyDown(Keys.U))
+            //{
+            // //   //0부터 1까지
 
-             //   RESULT a = SoundFmod.sndChannel.setVolume(0.5f);
-             ////   SoundFmod.sndChannel.setPaused(true);
+            // //   RESULT a = SoundFmod.sndChannel.setVolume(0.5f);
+            // ////   SoundFmod.sndChannel.setPaused(true);
             
-            }
+            //}
            
         }
         /// <summary>
@@ -3569,173 +3580,7 @@ namespace beethoven3
 
                 HandleKeyboardInputGoToMenu(Keyboard.GetState());
                 settingBoard.Update(gameTime, rightHandPosition);
-            //    Rectangle rectMouseSettingBoard = new Rectangle(mouseStateCurrent.X, mouseStateCurrent.Y, 5, 5);
-            //       //nextButton 위에 마우스를 올려놨을 때
-            //        //mousecursor on nextButton item section
-                   
-            //       //뒤로 버튼
-            //    if (rectMouseSettingBoard.Intersects(settingBoard.RectNextButton) || rightHandPosition.Intersects(settingBoard.RectNextButton))
-            //    {
-
-            //        nearButton = true;
-            //        GetCenterOfButton(settingBoard.RectNextButton);
-
-            //        settingBoard.ClickNextButton = true;
-            //        //click the right hand item section
-            //        if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (finalClick && !pastClick))
-            //        {
-            //            nearButton = false;
-            //            gameState = GameStates.Menu;
-            //        }
-            //    }
-            //    else
-            //    {
-            //        settingBoard.ClickNextButton = false;
-            //    }
-
-
-            //    //스케일 증가 
-            //    if (rectMouseSettingBoard.Intersects(settingBoard.RecScaleUpButton) || rightHandPosition.Intersects(settingBoard.RecScaleUpButton))
-            //    {
-            //        nearButton = true;
-            //        GetCenterOfButton(settingBoard.RecScaleUpButton);
-
-            //        settingBoard.ClickScaleUpButton = true;
-            //        //click the right hand item section
-            //        if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (finalClick && !pastClick))
-            //        {
-
-            //            nearButton = false;
-            //            if (this.userParam < 1)
-            //            {
-            //                this.userParam += 0.05f;
-            //            }
-            //            else
-            //            {
-            //                this.userParam = 1;
-            //            }
-
-
-            //        }
-            //    }
-            //    else
-            //    {
-            //        settingBoard.ClickScaleUpButton = false;
-            //    }
-
-
-
-            //    //스케일 감소
-            //    if (rectMouseSettingBoard.Intersects(settingBoard.RecScaleDownButton) || rightHandPosition.Intersects(settingBoard.RecScaleDownButton))
-            //    {
-            //        nearButton = true;
-            //        GetCenterOfButton(settingBoard.RecScaleDownButton);
-
-            //        settingBoard.ClickScaleDownButton = true;
-            //        //click the right hand item section
-            //        if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (finalClick && !pastClick))
-            //        {
-            //            nearButton = false;
-            //            if (this.userParam > 0.05)
-            //            {
-            //                this.userParam -= 0.05f;
-            //            }
-            //            else
-            //            {
-            //                this.userParam = 0.05f;
-            //            }
-
-            //        }
-            //    }
-            //    else
-            //    {
-            //        settingBoard.ClickScaleDownButton = false;
-            //    }
-
-
-
-
-            ////각도 증가 
-            //    if (rectMouseSettingBoard.Intersects(settingBoard.RecAngleUpButton) || rightHandPosition.Intersects(settingBoard.RecAngleUpButton))
-            //    {
-            //        nearButton = true;
-            //        GetCenterOfButton(settingBoard.RecAngleUpButton);
-
-            //        settingBoard.ClickAngleUpButton = true;
-            //        //click the right hand item section
-            //        if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (finalClick && !pastClick))
-            //        {
-
-            //            nearButton = false;
-            //            if (nui.ElevationAngle < nui.MaxElevationAngle - 3)
-            //            {
-            //                while (true)
-            //                {
-            //                    try
-            //                    {
-            //                        nui.ElevationAngle += 3;
-            //                        break;
-            //                    }
-            //                    catch (Exception ex)
-            //                    {
-            //                    }
-            //                }
-            //            }
-                       
-            //        }
-            //    }
-            //    else
-            //    {
-            //        settingBoard.ClickAngleUpButton = false;
-            //    }
-
-
-
-            //    //각도 감소
-            //    if (rectMouseSettingBoard.Intersects(settingBoard.RecAngleDownButton) || rightHandPosition.Intersects(settingBoard.RecAngleDownButton))
-            //    {
-            //        nearButton = true;
-            //        GetCenterOfButton(settingBoard.RecAngleDownButton);
-
-            //        settingBoard.ClickAngleDownButton = true;
-            //        //click the right hand item section
-            //        if ((mouseStateCurrent.LeftButton == ButtonState.Pressed && mouseStatePrevious.LeftButton == ButtonState.Released) || (finalClick && !pastClick))
-            //        {
-
-            //            nearButton = false;
-            //            if (nui.ElevationAngle > nui.MinElevationAngle + 3)
-            //            {
-            //                while (true)
-            //                {
-            //                    try
-            //                    {
-            //                        nui.ElevationAngle -= 3;
-            //                        break;
-            //                    }
-            //                    catch (Exception ex)
-            //                    {
-            //                    }
-            //                }
-            //            }
-            //        }
-            //    }
-            //    else
-            //    {
-            //        settingBoard.ClickAngleDownButton = false;
-            //    }
-
-
-            //    if(
-            //    !(rectMouseSettingBoard.Intersects(settingBoard.RectNextButton) || rightHandPosition.Intersects(settingBoard.RectNextButton))
-            //    &&!(rectMouseSettingBoard.Intersects(settingBoard.RecScaleUpButton) || rightHandPosition.Intersects(settingBoard.RecScaleUpButton))
-            //    &&!(rectMouseSettingBoard.Intersects(settingBoard.RecScaleDownButton) || rightHandPosition.Intersects(settingBoard.RecScaleDownButton))
-            //    &&!(rectMouseSettingBoard.Intersects(settingBoard.RecAngleUpButton) || rightHandPosition.Intersects(settingBoard.RecAngleUpButton))
-            //    &&!(rectMouseSettingBoard.Intersects(settingBoard.RecAngleDownButton) || rightHandPosition.Intersects(settingBoard.RecAngleDownButton))
-            //    )
-            //       {
-
-            //           nearButton = false;
-            //       }
+         
 
 
                 pastClick = finalClick;
@@ -4953,10 +4798,10 @@ namespace beethoven3
                 badManager.Draw(spriteBatch);
                 goldGetManager.Draw(spriteBatch);
        
-                if (message.Length > 0)
-                {
-                    spriteBatch.DrawString(messageFont, message, Vector2.Zero, Color.Red);
-                }
+                //if (message.Length > 0)
+                //{
+                //    spriteBatch.DrawString(messageFont, message, Vector2.Zero, Color.Red);
+                //}
 
       //          spriteBatch.Draw(sit1,
       //new Rectangle(0, 0, this.Window.ClientBounds.Width,
@@ -5272,6 +5117,7 @@ namespace beethoven3
 
             if (gameState != GameStates.Playing)
             {
+                #if Kinect
                 if (skeleton != null)
                 {
 
@@ -5282,12 +5128,12 @@ namespace beethoven3
                     }
 
                 }
-
+                    #endif
             }
+#if Kinect
 
 
-
-//#if Kinect
+//
 //            if (KinectVideoTexture != null)
 //            {
 //                spriteBatch.Draw(KinectVideoTexture, VideoDisplayRectangle, Color.White);
@@ -5303,7 +5149,6 @@ namespace beethoven3
 
 //                    }
 //            }
-//#endif
 
             if (fcenterZ < 1.8)
             {
@@ -5325,6 +5170,8 @@ namespace beethoven3
 
             }
             backJestureManager.Draw(spriteBatch);
+            
+#endif
             spriteBatch.End();
             
             base.Draw(gameTime);

@@ -1,4 +1,6 @@
-﻿using System;
+﻿#define Kinect
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -212,9 +214,10 @@ namespace beethoven3
                 if ((mouse.LeftButton == ButtonState.Pressed && pastmouse.LeftButton == ButtonState.Released) || (Game1.finalClick && !Game1.pastClick))
                 {
 
+#if Kinect
                     Game1.nearButton = false;
                     Game1.gameState = Game1.GameStates.SettingBoard;
-
+#endif
 
                 }
             }

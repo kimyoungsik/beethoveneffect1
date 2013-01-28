@@ -287,6 +287,7 @@ Content\notes\starDragNote_DragStart.xnb
 Content\notes\leafDragNote_DragStart.xnb
 Content\notes\Note_Basic_3_DragStart.xnb
 Content\notes\Note_Gostop_3_DragStart.xnb
+Content\SongMenu\noSongBackground.xnb
 Content\snd\ka.xnb
 Content\snd\ka.wma
 Content\snd\jo.xnb
@@ -295,4 +296,3 @@ Content\snd\maid.xnb
 Content\snd\maid.wma
 Content\MessageFont.xnb
 Content\Fonts\Georgia.xnb
-Content\SongMenu\noSongBackground.xnb

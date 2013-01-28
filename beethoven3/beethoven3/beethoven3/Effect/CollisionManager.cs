@@ -149,15 +149,8 @@ namespace beethoven3
 
             Texture2D markTexture = itemManager.GetCurrentHoverMarkerTexture();
             Texture2D basicTextre = itemManager.GetCurrentMarkerTexture();
-            int mouseJudgment = 0;
-            if (index == 0)
-            {
-                mouseJudgment = MarkManager.Marks[index].MarkSprite.JudgedNote2(mousePoint);
-            }
-            else
-            {
-                mouseJudgment = MarkManager.Marks[index].MarkSprite.JudgedNote(mousePoint);
-            }
+            int mouseJudgment = MarkManager.Marks[index].MarkSprite.JudgedNote2(mousePoint);
+            
             if (mouseJudgment != 0)
             {
                 MarkManager.Marks[index].MarkSprite.Texture = markTexture;
@@ -169,30 +162,7 @@ namespace beethoven3
 
         }
 
-        public void checkMarkers3(int index, Vector2 mousePoint)
-        {
-
-            Texture2D markTexture = itemManager.GetCurrentHoverMarkerTexture();
-            Texture2D basicTextre = itemManager.GetCurrentMarkerTexture();
-            int mouseJudgment = 0;
-            if (index == 0)
-            {
-                mouseJudgment = MarkManager.Marks[index].MarkSprite.JudgedNote2(mousePoint);
-            }
-            else
-            {
-                mouseJudgment = MarkManager.Marks[index].MarkSprite.JudgedNote(mousePoint);
-            }
-            if (mouseJudgment != 0)
-            {
-                MarkManager.Marks[index].MarkSprite.Texture = markTexture;
-            }
-            else
-            {
-                MarkManager.Marks[index].MarkSprite.Texture = basicTextre;
-            }
-
-        }
+      
         /// <summary>
         /// 드래그노트 와 마우스 만. (이건 마크가 없다)
         /// </summary>
@@ -1362,10 +1332,10 @@ namespace beethoven3
         public void checkLongNoteToMarker(int number, Vector2 mousePoint)
         {
 
-           // for (int x = 0; x < StartNoteManager.longNoteManager.LittleNotes.Count; x++)
-            //{
-            for (int x =  StartNoteManager.longNoteManager.LittleNotes.Count -1; x  >0; x--)
+            for (int x = 0; x < StartNoteManager.longNoteManager.LittleNotes.Count; x++)
             {
+        //    for (int x =  StartNoteManager.longNoteManager.LittleNotes.Count -1; x  >0; x--)
+        //    {
                 Sprite littleNote = StartNoteManager.longNoteManager.LittleNotes[x];
                 if (littleNote.StartNoteLoation == number)
                 {

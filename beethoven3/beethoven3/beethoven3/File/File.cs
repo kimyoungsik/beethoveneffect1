@@ -1,4 +1,6 @@
-﻿using System;
+﻿#define Kinect
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -872,7 +874,9 @@ namespace beethoven3
                             //종류. 시작시간, 끝나는시간
                            // photoManager.AddPhotoFrame(arrayNotes[0].StartTime, playTimeSpan);
                            // charismaManager.AddChasmaFrame(arrayNotes[0].StartTime, arrayNotes[0].LastTime, arrayNotes[0].MarkLocation, this.time);
+#if Kinect
                             Game1.PicFlag = true;
+#endif
                         }
 
 

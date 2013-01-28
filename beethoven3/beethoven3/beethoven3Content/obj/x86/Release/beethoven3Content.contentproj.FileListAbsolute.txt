@@ -4,3 +4,4 @@ C:\Users\pmk\Desktop\beethoven\beethoven3\beethoven3\beethoven3Content\obj\x86\R
 D:\beethoven\beethoven3\beethoven3\beethoven3Content\obj\x86\Release\ResolveAssemblyReference.cache
 D:\베토벤이펙트관련자료\백업\beethoven00127오후9시17분MARKMANAGER스태틱변경전\beethoven3\beethoven3\beethoven3Content\obj\x86\Release\ResolveAssemblyReference.cache
 C:\Users\ssm\Desktop\test\beethoven3\beethoven3\beethoven3Content\obj\x86\Release\ResolveAssemblyReference.cache
+C:\Users\ssm\Desktop\noKinetVer\beethoven3\beethoven3\beethoven3Content\obj\x86\Release\ResolveAssemblyReference.cache
