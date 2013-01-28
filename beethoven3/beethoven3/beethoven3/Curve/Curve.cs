@@ -118,9 +118,8 @@ namespace beethoven3
             Vector2 PlotPoint;
             float t;
             int j;
-            int count = (int)((endTime - startTime) * 60);
-
-
+            int count = (int)((endTime - startTime) * Game1._fps);
+           
             //큐와 배열에 
             for (j = 0; j <= count; j++)
             {

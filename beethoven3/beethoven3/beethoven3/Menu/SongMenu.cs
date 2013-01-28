@@ -482,7 +482,7 @@ namespace beethoven3
             if (noteFileManager.noteFiles.Count > 0)
             {
                 String name = noteFileManager.noteFiles[scene_number].Name;
-                String shortName = "";
+                String shortName = name;
                 if (name.Length > 15)
                 {
 
@@ -493,7 +493,7 @@ namespace beethoven3
                 spriteBatch.DrawString(Game1.georgia, shortName, new Vector2(422, 590), Color.DimGray, 0f, Vector2.Zero, 0.5f, SpriteEffects.None, 0f);
 
                 String artist = noteFileManager.noteFiles[scene_number].Artist;
-                String shortArtist = "";
+                String shortArtist = artist;
                 if (artist.Length > 15)
                 {
 

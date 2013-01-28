@@ -1022,7 +1022,7 @@ namespace beethoven3
                 //
                
                 collisionManager.CheckLongNoteInCenterArea();
-
+                Trace.WriteLine("drawLinetime : " + TimeSpan.FromSeconds(timeToRemoveDrawLine));
                 // 지우기 시작하는시간 + 감을 주기위해 좀더 늘여준값
                 if (TimeSpan.FromSeconds(timeToRemoveDrawLine) >= processTime)
                 {
@@ -1221,10 +1221,10 @@ namespace beethoven3
 
 
         //}
-       
 
 
-        public void Update(SpriteBatch spriteBatch, double playTime, double changedTempo, double optionalTime)
+
+        public TimeSpan Update(SpriteBatch spriteBatch, double playTime, double changedTempo, double optionalTime)
         {
             //오른노트가 사각형 범위로 가면 지워지도록
          //   CheckRightNoteInCenterArea();
@@ -1232,8 +1232,10 @@ namespace beethoven3
         
                 //this.time += gameTime.ElapsedGameTime.TotalSeconds;
              playTimeSpan = TimeSpan.FromSeconds(playTime);
-
+             Trace.WriteLine("pro : "+playTimeSpan);
             FindNote(playTimeSpan, changedTempo, optionalTime);
+
+            return this.ProcessTime;
          
         }
 

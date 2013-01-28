@@ -122,7 +122,6 @@ namespace beethoven3
                 }
                 catch (ArgumentOutOfRangeException)
                 {
-                   
                 }
             }
         }

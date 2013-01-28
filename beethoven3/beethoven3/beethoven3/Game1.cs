@@ -26,11 +26,14 @@ using System.Runtime.InteropServices;
 
 using System.IO;
 using System.Threading;
+using System.Diagnostics;
+
 #if Kinect
 using Coding4Fun.Kinect.Wpf;
 using Microsoft.Samples.Kinect.SwipeGestureRecognizer;
 using Microsoft.Speech.Recognition;
 using Microsoft.Speech.AudioFormat;
+
 #endif
 namespace beethoven3
 {
@@ -77,6 +80,11 @@ namespace beethoven3
         private Texture2D go_back;
         private Texture2D go_front;
 
+
+
+        int _total_frames = 0;
+        float _elapsed_time = 0.0f;
+        public static int _fps = 0;
 
         //public static String mouseHoverSound = System.Environment.CurrentDirectory + "\\mouseHover.mp3";
         //public static String mouseClickSound = System.Environment.CurrentDirectory + "\\mouseOk.wav";
@@ -991,7 +999,7 @@ namespace beethoven3
                         break;
                     }
 
-                    if (fy > 0.2f && fy < 0.3f)
+                    if (fy > 0.3f && fy < 0.4f)
                     {
                         break;
                     }
@@ -1047,7 +1055,7 @@ namespace beethoven3
                             break;
                         }
 
-                        if (fy > 0.2f && fy < 0.3f)
+                        if (fy > 0.3f && fy < 0.4f)
                         {
                             break;
                         }
@@ -1104,7 +1112,7 @@ namespace beethoven3
                             break;
                         }
 
-                        if (fy > 0.2f && fy < 0.3f)
+                        if (fy > 0.3f && fy < 0.4f)
                         {
                             break;
                         }
@@ -1133,7 +1141,7 @@ namespace beethoven3
                         break;
                     }
 
-                    if (fy > 0.2f && fy < 0.3f)
+                    if (fy > 0.3f && fy < 0.4f)
                     {
                         break;
                     }
@@ -1187,7 +1195,7 @@ namespace beethoven3
                             break;
                         }
 
-                        if (fy > 0.2f && fy < 0.3f)
+                        if (fy > 0.3f && fy < 0.4f)
                         {
                             break;
                         }
@@ -1245,7 +1253,7 @@ namespace beethoven3
                             break;
                         }
 
-                        if (fy > 0.2f && fy < 0.3f)
+                        if (fy > 0.3f && fy < 0.4f)
                         {
                             break;
                         }
@@ -2685,7 +2693,7 @@ namespace beethoven3
                     if (!s.Contains("__UNKNOWN"))
                     {
                        scoreManager.Perfomance = scoreManager.Perfomance + 1;
-                        if (score < 1.2 && score>=0.8)//굳
+                        if (score < 1.2 && score>=0.9)//굳
                         {
                            
                             goodBannerManager.AddBanners(collisionManager.goodLocation, collisionManager.goodBannerScale);
@@ -2696,7 +2704,7 @@ namespace beethoven3
 
 
                         }
-                        else if (score < 0.8)//퍼펙트
+                        else if (score < 0.9)//퍼펙트
                         {
                             perfectBannerManager.AddBanners(collisionManager.perfectLocation, collisionManager.perfectBannerScale);
                             scoreManager.JesturePerfect ++;
@@ -3064,6 +3072,18 @@ namespace beethoven3
         protected override void Update(GameTime gameTime)
         {
             // Allows the game to exit
+             // Update
+            _elapsed_time += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+ 
+            // 1 Second has passed
+            if (_elapsed_time >= 1000.0f)
+            {
+                _fps = _total_frames;
+                _total_frames = 0;
+                _elapsed_time = 0;
+            }
+            Trace.WriteLine(_fps);
+
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
       
@@ -3163,7 +3183,7 @@ namespace beethoven3
                case GameStates.Playing:
                    if (scoreManager.Gage < 1)
                    {//$$$게이지
-                       file.SetEndFile(true);
+                    //   file.SetEndFile(true);
                    }
 
                    //곡이 끝내게 되면 결과 화면으로
@@ -4049,7 +4069,7 @@ namespace beethoven3
            // spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.NonPremultiplied);
             spriteBatch.Begin();
 
-
+            _total_frames++;
 //#if Kinect
 //            getDepthFrame();
 //#endif

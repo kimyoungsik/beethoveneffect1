@@ -77,7 +77,7 @@ namespace beethoven3
             this.goodBannerManager = goodBannerManager;
             this.badBannerManager = badBannerManager;
             this.missBannerManager = missBannerManager;
-
+            
             this.comboNumberManager = comboNumberManager;
 
             this.scoreManager = scoreManager;
