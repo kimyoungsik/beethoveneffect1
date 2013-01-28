@@ -305,28 +305,7 @@ namespace beethoven3
 
         }
 
-        //private void DisappearAllMarks()
-        //{
-
-
-        //        perfectBannerManager.DisappearAllMarks();
-        //        goodBannerManager.DisappearAllMarks();
-        //        badBannerManager.DisappearAllMarks();
-        //        missBannerManager.DisappearAllMarks();
-
-        //}
-
-        ////시간이지난 배너는 삭제
-        //public void DeleteMarks()
-        //{
-
-
-        //    perfectBannerManager.deleteAllMarks();
-        //    goodBannerManager.deleteAllMarks();
-        //    badBannerManager.deleteAllMarks();
-        //    missBannerManager.deleteAllMarks();
-
-        //}
+      
 
         public int TimerForLongNote
         {

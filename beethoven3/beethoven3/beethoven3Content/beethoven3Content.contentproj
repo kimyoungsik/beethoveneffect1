@@ -57,67 +57,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Textures\red.png">
-      <Name>red</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Textures\SpriteSheet8.png">
-      <Name>SpriteSheet8</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="snd\ka.mp3">
-      <Name>ka</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="snd\jo.MP3">
-      <Name>jo</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-    </Compile>
-    <Compile Include="snd\maid.mp3">
-      <Name>maid</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Textures\menu.jpg">
-      <Name>menu</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Title\box.png">
-      <Name>box</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Status\backtext.png">
-      <Name>backtext</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="MessageFont.spritefont">
-      <Name>MessageFont</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Textures\darkBackground.png">
       <Name>darkBackground</Name>
       <Importer>TextureImporter</Importer>
@@ -139,20 +78,6 @@
   <ItemGroup>
     <Compile Include="result\nextButton.png">
       <Name>nextButton</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="background\tutorialbear.png">
-      <Name>tutorialbear</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="background\crosswalk3.png">
-      <Name>crosswalk3</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -222,13 +147,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Explosion\heartExplosion2.png">
-      <Name>heartExplosion2</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="character\contrabase1.png">
       <Name>contrabase1</Name>
       <Importer>TextureImporter</Importer>
@@ -265,20 +183,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DrawLine\drawLineNote1.png">
-      <Name>drawLineNote1</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="DrawLine\drawLineMark.png">
-      <Name>drawLineMark</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="character\horn1.png">
       <Name>horn1</Name>
       <Importer>TextureImporter</Importer>
@@ -291,13 +195,6 @@
     </Compile>
     <Compile Include="character\horn3.png">
       <Name>horn3</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Textures\heart.png">
-      <Name>heart</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -320,13 +217,6 @@
     </Compile>
     <Compile Include="judgement\perfect.png">
       <Name>perfect</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="resultNumbers\one.png">
-      <Name>one</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -610,11 +500,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Explosion\colorPencil1.png">
-      <Name>colorPencil1</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
     <Compile Include="Explosion\colorPencil2.png">
       <Name>colorPencil2</Name>
       <Importer>TextureImporter</Importer>
@@ -658,13 +543,6 @@
   <ItemGroup>
     <Compile Include="game1\menuGold.png">
       <Name>menuGold</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="game1\menuGoldCha.png">
-      <Name>menuGoldCha</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -943,11 +821,6 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="rightItem\Baton_5.png">
-      <Name>Baton_5</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
     <Compile Include="rightItem\Baton_6.png">
       <Name>Baton_6</Name>
       <Importer>TextureImporter</Importer>
@@ -1126,37 +999,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="settingBoard\ok.png">
-      <Name>ok</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="settingBoard\okHover.png">
-      <Name>okHover</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="background\BackG_1.png">
-      <Name>BackG_1</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
     <Compile Include="background\BackG_2.png">
       <Name>BackG_2</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="background\BackG_3.png">
-      <Name>BackG_3</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="background\BackG_4.png">
-      <Name>BackG_4</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -1178,23 +1022,6 @@
   <ItemGroup>
     <Compile Include="LeftHand\Left_4.png">
       <Name>Left_4</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Explosion\Effect_MusicNote_11.png">
-      <Name>Effect_MusicNote_11</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Explosion\Effect_MusicNote_21.png">
-      <Name>Effect_MusicNote_21</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Explosion\Effect_MusicNote_31.png">
-      <Name>Effect_MusicNote_31</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -1228,13 +1055,6 @@
   <ItemGroup>
     <Compile Include="shopButton\handInItemBackground.png">
       <Name>handInItemBackground</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="sit\Sitt_1.png">
-      <Name>Sitt_1</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -1808,13 +1628,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="game1\dragNoteStartMark.png">
-      <Name>dragNoteStartMark</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="notes\starDragNote_DragStart.png">
       <Name>starDragNote_DragStart</Name>
       <Importer>TextureImporter</Importer>
@@ -1849,6 +1662,7 @@
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--  To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

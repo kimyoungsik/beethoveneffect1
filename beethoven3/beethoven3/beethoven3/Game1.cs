@@ -1,13 +1,13 @@
 ﻿
-//#define Kinect
+#define Kinect
 
 //시작시 검사 
-//#define StartDetact
+#define StartDetact
 
 //삭제상자 보이기 
 //#define Debug
 //키보드모드일떄
-#define Keyboard
+//#define Keyboard
 
 using System;
 using System.Collections;
@@ -77,7 +77,6 @@ namespace beethoven3
         private Texture2D go_back;
         private Texture2D go_front;
 
-        public static Texture2D dragNoteStartMark;
 
         //public static String mouseHoverSound = System.Environment.CurrentDirectory + "\\mouseHover.mp3";
         //public static String mouseClickSound = System.Environment.CurrentDirectory + "\\mouseOk.wav";
@@ -189,7 +188,7 @@ namespace beethoven3
         double factheight;
 
         //폰트
-        SpriteFont messageFont;
+        //SpriteFont messageFont;
         string message = "start";
 
         //손
@@ -357,9 +356,8 @@ namespace beethoven3
 
         //배경
         //whole background
-        private Texture2D playBackgroud1;
-        private Texture2D playBackgroud2;
-
+        private Texture2D playBackgroud;
+       
        //드래그 라인 모양//&&&
         public static Texture2D drawLineNote1;
 
@@ -381,7 +379,7 @@ namespace beethoven3
 
 
         public static Texture2D menuGold;
-        public static Texture2D menuGoldCha;
+       
 
         public static Texture2D goldPlusEffect10;
         public static Texture2D goldPlusEffect15;
@@ -543,7 +541,7 @@ namespace beethoven3
             go_front = Content.Load<Texture2D>(@"ui\go_front");
 
 
-            dragNoteStartMark = Content.Load<Texture2D>(@"game1\dragNoteStartMark");
+            
             //페이셜디텍트 체크 
             
             /* 음원을 로드시킬 때 createStream 과 createSound 두가지가 있는 것을 확인할 수 있는데
@@ -612,12 +610,12 @@ namespace beethoven3
 
             /////텍스쳐 로드 -START
             //배경
-            playBackgroud1 = Content.Load<Texture2D>(@"background\ConcertHall_3");
-            playBackgroud2 = Content.Load<Texture2D>(@"background\crosswalk3");
+            //playBackgroud1 = Content.Load<Texture2D>(@"background\ConcertHall_3");
+            //playBackgroud2 = Content.Load<Texture2D>(@"background\crosswalk3");
             
             
             //노트,마커
-            spriteSheet = Content.Load<Texture2D>(@"Textures\SpriteSheet8");
+           // spriteSheet = Content.Load<Texture2D>(@"Textures\SpriteSheet8");
             
             //드래그 노트
            // heart = Content.Load<Texture2D>(@"Textures\heart");
@@ -674,16 +672,15 @@ namespace beethoven3
             
 
             //드래그 라인
-            drawLineNote1 = Content.Load<Texture2D>(@"DrawLine\drawLineNote1");
+         //   drawLineNote1 = Content.Load<Texture2D>(@"DrawLine\drawLineNote1");
 
             //드래그 라인 마커점
-            drawLineMarker = Content.Load<Texture2D>(@"DrawLine\drawLineMark");
+         //   drawLineMarker = Content.Load<Texture2D>(@"DrawLine\drawLineMark");
             
 
             gold = Content.Load<Texture2D>(@"gold\gold");
             menuGold = Content.Load<Texture2D>(@"game1\menuGold");
-            menuGoldCha = Content.Load<Texture2D>(@"game1\menuGoldCha");
-
+           
             levelTexture = Content.Load<Texture2D>(@"game1\level");
 
 
@@ -958,7 +955,7 @@ namespace beethoven3
            // itemManager.LoadFileItem();
 #if Kinect
           
-            messageFont = Content.Load<SpriteFont>("MessageFont");
+        //    messageFont = Content.Load<SpriteFont>("MessageFont");
             setupKinect();
 
             /*제스쳐 인식인데 
@@ -3785,7 +3782,7 @@ namespace beethoven3
 
                        
                          //배경 바꾸기
-                        playBackgroud1 = backgroudTextures[itemManager.getBackgroundIndex()];
+                        playBackgroud = backgroudTextures[itemManager.getBackgroundIndex()];
                         
                         ////롱노트 //*** 임시로 오른손노트랑 똑같은걸로 해놓음
                         startNoteManager.changeLongNoteImage(longNoteTextures[itemManager.getNoteIndex()], new Rectangle(0, 0, longNoteTextures[itemManager.getNoteIndex()].Width, longNoteTextures[itemManager.getNoteIndex()].Height), longNoteScale[0]);
@@ -4306,7 +4303,11 @@ namespace beethoven3
                     gameState = GameStates.Menu;
                 }
 
+                if (isNoPerson)
+                {
+                    spriteBatch.Draw(noPerson, new Rectangle(0, 0, 1024, 769), Color.White);
 
+                }
             }
 
 
@@ -4342,11 +4343,7 @@ namespace beethoven3
                     SoundFmod.PlaySound(title_Music);
                     loadingTime = 2;//게임시작
                 }
-                if (isNoPerson)
-                {
-                    spriteBatch.Draw(noPerson, new Rectangle(0, 0, 1024 , 769), Color.White);
-
-                }
+             
 
 
              
@@ -4471,10 +4468,10 @@ namespace beethoven3
                
 
 #if Kinect
-                if (message.Length > 0)
-                {
-                    spriteBatch.DrawString(messageFont, message, Vector2.Zero, Color.Red);
-                }
+                //if (message.Length > 0)
+                //{
+                //    spriteBatch.DrawString(messageFont, message, Vector2.Zero, Color.Red);
+                //}
 
                 //
 
@@ -4498,7 +4495,7 @@ namespace beethoven3
        
 
                 //배경
-                spriteBatch.Draw(playBackgroud1,
+                spriteBatch.Draw(playBackgroud,
                 new Rectangle(0, 0, this.Window.ClientBounds.Width,
                     this.Window.ClientBounds.Height),
                     Color.White);
