@@ -242,7 +242,7 @@ namespace beethoven3
                 uint time = 0;
                 string coltime = "";
                 SoundFmod.sndChannel.getPosition(ref time, FMOD.TIMEUNIT.MS);
-                  //Trace.WriteLine("COLTIME" + (time / 1000 / 60) + ":" + (time / 1000 % 60) + ":" + (time / 10 % 100));
+               
               //  coltime = "COLTIME" + (time / 1000 / 60) + ":" + (time / 1000 % 60) + ":" + (time / 10 % 100);
 
                 coltime = coltime + 100;

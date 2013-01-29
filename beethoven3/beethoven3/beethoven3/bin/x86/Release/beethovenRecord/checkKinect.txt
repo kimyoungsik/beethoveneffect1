@@ -1,5 +1,5 @@
 auto
-1
+0
 angle
 5
 scale

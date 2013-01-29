@@ -1,13 +1,13 @@
 ﻿
-//#define Kinect
+#define Kinect
 
 //시작시 검사 
-//#define StartDetact
+#define StartDetact
 
 //삭제상자 보이기 
 //#define Debug
 //키보드모드일떄
-#define Keyboard
+//#define Keyboard
 
 using System;
 using System.Collections;
@@ -683,9 +683,7 @@ namespace beethoven3
             //로드하고, 기본적으로 넣어줌
             itemManager.LoadFileItem();
 
-            
-        
-
+                   
             //현재 장착한 이펙트의 인덱스를 전체 베이스에 찾음
             int effectIndex = itemManager.getEffectIndex();
 
@@ -796,6 +794,7 @@ namespace beethoven3
             charismaManager.LoadContent(Content);
 
           
+
             //드래그노트 초기화
             //이것은 노트 안에서 움직이는 마커점
             dragNoteManager = new DragNoteManager(
@@ -807,6 +806,8 @@ namespace beethoven3
                  0,
                  missBannerManager,
                  scoreManager);
+
+
 
             //충돌관리 생성
             collisionManager = new CollisionManager(perfectManager, goodManager, badManager, goldGetManager, scoreManager, memberManager,/*effect크기*/itemManager,perfectBannerManager,goodBannerManager,badBannerManager,missBannerManager,new Vector2(this.Window.ClientBounds.Width,this.Window.ClientBounds.Height),comboNumberManager,charismaManager,dragNoteManager);

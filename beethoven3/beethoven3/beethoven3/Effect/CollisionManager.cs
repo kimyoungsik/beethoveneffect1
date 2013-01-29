@@ -1347,7 +1347,7 @@ namespace beethoven3
                             
                             StartNoteManager.longNoteManager.LittleNotes.RemoveAt(x);
                             timerForLongNote++;
-                            //Trace.WriteLine(timerForLongNote);
+                         
                             //effect -> bad가 long노트의 이펙트.
                             if (timerForLongNote == 1)
                             {
