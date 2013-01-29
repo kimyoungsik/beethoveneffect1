@@ -1,4 +1,4 @@
-﻿#define Kinect
+﻿//#define Kinect
 
 using System;
 using System.Collections;
@@ -1232,7 +1232,7 @@ namespace beethoven3
         
                 //this.time += gameTime.ElapsedGameTime.TotalSeconds;
              playTimeSpan = TimeSpan.FromSeconds(playTime);
-             Trace.WriteLine("pro : "+playTimeSpan);
+             //Trace.WriteLine("pro : "+playTimeSpan);
             FindNote(playTimeSpan, changedTempo, optionalTime);
 
             return this.ProcessTime;

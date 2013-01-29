@@ -1,13 +1,13 @@
 ﻿
-#define Kinect
+//#define Kinect
 
 //시작시 검사 
-#define StartDetact
+//#define StartDetact
 
 //삭제상자 보이기 
 //#define Debug
 //키보드모드일떄
-//#define Keyboard
+#define Keyboard
 
 using System;
 using System.Collections;
@@ -26,7 +26,7 @@ using System.Runtime.InteropServices;
 
 using System.IO;
 using System.Threading;
-using System.Diagnostics;
+//using System.Diagnostics;
 
 #if Kinect
 using Coding4Fun.Kinect.Wpf;
@@ -3082,7 +3082,7 @@ namespace beethoven3
                 _total_frames = 0;
                 _elapsed_time = 0;
             }
-            Trace.WriteLine(_fps);
+            //Trace.WriteLine(_fps);
 
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();

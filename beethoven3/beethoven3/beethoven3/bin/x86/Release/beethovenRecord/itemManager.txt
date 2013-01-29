@@ -2,13 +2,14 @@
 rightHand
 0
 1
+4
+5
 $$
-1
+5
 leftHand
 0
-3
 $$
-3
+0
 effect
 0
 3
@@ -24,6 +25,7 @@ $$
 background
 0
 1
+4
 $$
-1
+4
 !!
