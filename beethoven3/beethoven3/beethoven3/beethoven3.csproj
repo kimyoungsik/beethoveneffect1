@@ -181,8 +181,6 @@
     <Compile Include="File\ReportManager.cs" />
     <Compile Include="Result\ResultManager.cs" />
     <Compile Include="Item\RightItemShop.cs" />
-    <Compile Include="Result\ResultNumber.cs" />
-    <Compile Include="Result\ResultNumberManager.cs" />
     <Compile Include="Score\ScoreManager.cs" />
     <Compile Include="Item\ShopDoor.cs" />
     <Compile Include="Score\ScoreInfoManager.cs" />

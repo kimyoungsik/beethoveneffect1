@@ -5,3 +5,4 @@ D:\베토벤이펙트관련자료\백업\beethoven00127오후9시17분MARKMANAGE
 C:\Users\ssm\Desktop\noKinetVer\beethoven3\beethoven3\beethoven3Content\obj\x86\Release\ResolveAssemblyReference.cache
 D:\beethoven\beethoven3\beethoven3\beethoven3Content\obj\x86\Release\ResolveAssemblyReference.cache
 C:\Users\ssm\Desktop\TEST\beethoven3\beethoven3\beethoven3Content\obj\x86\Release\ResolveAssemblyReference.cache
+C:\Users\김영식\Desktop\beethoven0129오후12시34분신입발표전\beethoven3\beethoven3\beethoven3Content\obj\x86\Release\beethoven3Content.contentprojResolveAssemblyReference.cache

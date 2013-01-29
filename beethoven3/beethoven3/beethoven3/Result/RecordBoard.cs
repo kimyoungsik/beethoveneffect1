@@ -99,8 +99,6 @@ namespace beethoven3
             {
                 Game1.nearButton = false;
             }
-
-
         }
 
         public void Draw(SpriteBatch spriteBatch)

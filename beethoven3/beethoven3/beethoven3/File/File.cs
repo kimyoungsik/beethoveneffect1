@@ -1,4 +1,4 @@
-﻿#define Kinect
+﻿//#define Kinect
 
 using System;
 using System.Collections;

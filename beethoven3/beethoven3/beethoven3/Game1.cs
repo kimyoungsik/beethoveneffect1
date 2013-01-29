@@ -1,13 +1,13 @@
 ﻿
-#define Kinect
+//#define Kinect
 
 //시작시 검사 
-#define StartDetact
+//#define StartDetact
 
 //삭제상자 보이기 
 //#define Debug
 //키보드모드일떄
-//#define Keyboard
+#define Keyboard
 
 using System;
 using System.Collections;
@@ -21,9 +21,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using FMOD;
-#if Kinect
-using Microsoft.Kinect;
-#endif
+
 using System.Runtime.InteropServices;
 
 using System.IO;
@@ -31,6 +29,7 @@ using System.Threading;
 //using System.Diagnostics;
 
 #if Kinect
+using Microsoft.Kinect;
 using Coding4Fun.Kinect.Wpf;
 using Microsoft.Samples.Kinect.SwipeGestureRecognizer;
 using Microsoft.Speech.Recognition;
@@ -53,7 +52,7 @@ namespace beethoven3
 
         //여러장 저장안되고 한장만 저장되게 하는것. 현재는 여러장 저장
         private bool isScorePic = false;
-
+        
         //사진 저장하는 큐
         private Queue playingPictures;
 
@@ -293,7 +292,7 @@ namespace beethoven3
         ComboNumberManager comboNumberManager;
 
         //결과화면 숫자
-        ResultNumberManager resultNumberManager;
+        //ResultNumberManager resultNumberManager;
         
         //아이템 관리
         private ItemManager itemManager;
@@ -504,6 +503,7 @@ namespace beethoven3
             // TODO: Add your initialization logic here
             //마우스 보이기
             this.IsMouseVisible = true;
+            this.IsFixedTimeStep = true;
 
 #if Kinect
             
@@ -695,8 +695,8 @@ namespace beethoven3
             comboNumberManager.LoadContent(Content);
 
             //***결과화면 숫자
-            resultNumberManager = new ResultNumberManager();
-            resultNumberManager.LoadContent(Content);
+            //resultNumberManager = new ResultNumberManager();
+           // resultNumberManager.LoadContent(Content);
 
             tutorialScene = new TutorialScene();
             tutorialScene.Load(Content);
@@ -3400,7 +3400,7 @@ namespace beethoven3
                //결과 창
                 case GameStates.ResultManager:
 
-                   resultNumberManager.Update(gameTime);
+                   //resultNumberManager.Update(gameTime);
 
                     Rectangle rectMouse = new Rectangle(mouseStateCurrent.X, mouseStateCurrent.Y, 5, 5);
                  

@@ -124,12 +124,11 @@ namespace beethoven3
             for (j = 0; j <= count; j++)
             {
                 t = j / (float)count;
-                
-                
+                                
                 PlotPoint = GetPoint(t, p0, p1, p2, p3);
                 Points.Add(PlotPoint);
                  
-                    PointsQueue.Enqueue(PlotPoint);
+                PointsQueue.Enqueue(PlotPoint);
             }
 
              end = false;
