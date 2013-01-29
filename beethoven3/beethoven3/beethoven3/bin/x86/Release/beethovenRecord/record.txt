@@ -6,8 +6,6 @@ No_Image.png$10
 KangBuk Sharp Dresser
 No_Image.png$25
 %%
-Canon
-%%
 Untitled
 No_Image.png$0
 No_Image.png$0
@@ -19,6 +17,8 @@ Beethoven 7
 No_Image.png$266
 %%
 Heaven and Hell
+No_Image.png$221
 %%
 From The New World
+No_Image.png$30
 **

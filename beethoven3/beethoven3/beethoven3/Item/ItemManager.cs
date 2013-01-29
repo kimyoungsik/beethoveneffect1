@@ -53,7 +53,7 @@ namespace beethoven3
         private Texture2D[] markTexture = new Texture2D[6];
         private Texture2D[] hoverMarkTexture = new Texture2D[6];
 
-        private Texture2D[] dragNoteStartTexters = new Texture2D[6];
+      //  private Texture2D[] dragNoteStartTexters = new Texture2D[6];
         private Texture2D[] dragNoteBackground = new Texture2D[6];
 
         private Rectangle[] dragNoteInitframe = new Rectangle[6];
@@ -574,12 +574,12 @@ namespace beethoven3
             dragNoteBackground[3] = cm.Load<Texture2D>(@"notes\dragNoteBack_GoStop");//고스톱
 
 
-            dragNoteStartTexters[0] = cm.Load<Texture2D>(@"notes\Note_Basic_3_DragStart");//기본
-            dragNoteStartTexters[1] = cm.Load<Texture2D>(@"notes\starDragNote_DragStart");//우주
+         //   dragNoteStartTexters[0] = cm.Load<Texture2D>(@"notes\Note_Basic_3_DragStart");//기본
+          //  dragNoteStartTexters[1] = cm.Load<Texture2D>(@"notes\starDragNote_DragStart");//우주
 
-            dragNoteStartTexters[2] = cm.Load<Texture2D>(@"notes\leafDragNote_DragStart");//숲
+         //   dragNoteStartTexters[2] = cm.Load<Texture2D>(@"notes\leafDragNote_DragStart");//숲
 
-            dragNoteStartTexters[3] = cm.Load<Texture2D>(@"notes\Note_Gostop_3_DragStart");//고스톱
+          //  dragNoteStartTexters[3] = cm.Load<Texture2D>(@"notes\Note_Gostop_3_DragStart");//고스톱
             
         }
 
@@ -747,10 +747,10 @@ namespace beethoven3
             return this.dragNoteBackground;
         }
 
-        public Texture2D[] GetDragNoteStartTexters()
-        {
-            return this.dragNoteStartTexters;
-        }
+      //  public Texture2D[] GetDragNoteStartTexters()
+      //  {
+       //     return this.dragNoteStartTexters;
+      //  }
 
         public Rectangle[] GetDragNoteInitFrame()
         {

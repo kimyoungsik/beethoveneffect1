@@ -362,7 +362,57 @@ namespace beethoven3
             set { gold = value; }
         }
 
-       
+
+
+        public double OneHandPerfectPoint
+        {
+            get { return oneHandPerfectPoint; }
+        }
+
+        public double OneHandGoodPoint
+        {
+            get { return oneHandGoodPoint; }
+        }
+
+        public double LongPerfectPoint
+        {
+            get { return longPerfectPoint; }
+        }
+
+        public double DragPerfectPoint
+        {
+            get { return dragPerfectPoint; }
+        }
+        public double DragGoodPoint
+        {
+            get { return dragGoodPoint; }
+        }
+      
+
+           public double PostureMissPoint
+        {
+            get { return postureMissPoint; }
+        }
+
+
+           public double PosturePerfectPoint
+        {
+            get { return posturePerfectPoint; }
+        }
+
+             public double JesturePerfectPoint
+        {
+            get { return jesturePerfectPoint; }
+        }
+
+
+             public double JestureGoodPoint
+        {
+            get { return jestureGoodPoint; }
+        }
+
+
+
         #endregion
 
 

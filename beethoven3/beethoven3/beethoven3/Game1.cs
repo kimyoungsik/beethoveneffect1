@@ -1634,6 +1634,7 @@ namespace beethoven3
                                     if (gameState == GameStates.Playing)
                                     {
                                         file.SetEndFile(true);
+                                        resultManager.FailGame = true;
                                     }
                                     if (gameState == GameStates.SettingBoard)
                                     {
@@ -2540,6 +2541,7 @@ namespace beethoven3
                         {
 
                             file.SetEndFile(true);
+                            resultManager.FailGame = true;
                         }
                         if (gameState == GameStates.TutorialScene || gameState == GameStates.ShopDoor )
                         {
@@ -3037,6 +3039,7 @@ namespace beethoven3
             {
 
                 file.SetEndFile(true);
+                resultManager.FailGame = true;
             }
 
          
@@ -3194,7 +3197,8 @@ namespace beethoven3
                case GameStates.Playing:
                    if (scoreManager.Gage < 1)
                    {//$$$게이지
-                    //   file.SetEndFile(true);
+                       file.SetEndFile(true);
+                       resultManager.FailGame = true;
                    }
 
                    //곡이 끝내게 되면 결과 화면으로
@@ -3308,6 +3312,8 @@ namespace beethoven3
                        //Stream str = System.IO.File.OpenWrite("gesture.jpg");
                        //texture.SaveAsJpeg(str, 1200, 900);
 
+                       //
+                       resultManager.FailGame = false;
 
                        bool isPlay = false;
                        SoundFmod.sndChannel.isPlaying(ref isPlay);
@@ -4855,7 +4861,7 @@ namespace beethoven3
                 int i;
                 for (i = 0; i < highScores.Count; i++)
                 {
-                    Texture2D picture = reportManager.FindPicture(highScores[i].UserPicture);
+                  //  Texture2D picture = reportManager.FindPicture(highScores[i].UserPicture);
                     
                     //노래 사진
                     if (i == 0)

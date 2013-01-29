@@ -237,7 +237,7 @@ namespace beethoven3
                     ///@@@카운트 
                 else if (processTime >= TimeSpan.FromSeconds(startTime - 1))//9초
                 {
-                    Texture2D[] dragNoteTexture = itemManager.GetDragNoteStartTexters();
+                    Texture2D[] dragNoteTexture = itemManager.GetDragNoteTexture();
                     Rectangle[] initFrame = itemManager.GetDragNoteStartInitFrame();
         
 
@@ -247,7 +247,7 @@ namespace beethoven3
                 }
                 else if (processTime >= TimeSpan.FromSeconds(startTime - 2))//8초
                 {
-                    Texture2D[] dragNoteTexture = itemManager.GetDragNoteStartTexters();
+                    Texture2D[] dragNoteTexture = itemManager.GetDragNoteTexture();
                     Rectangle[] initFrame = itemManager.GetDragNoteStartInitFrame();
                           spriteBatch.Draw(dragNoteTexture[itemManager.getNoteIndex()], new Rectangle((int)Points[0].X, (int)Points[0].Y, initFrame[itemManager.getNoteIndex()].Width, initFrame[itemManager.getNoteIndex()].Height), color);
                     spriteBatch.Draw(Game1.two, new Rectangle(10, 50, 150, 150), Color.White);
@@ -257,7 +257,7 @@ namespace beethoven3
                 //start 10초가 가정
                 else if (processTime >= TimeSpan.FromSeconds(startTime - 3))//7초        
                 {
-                    Texture2D[] dragNoteTexture = itemManager.GetDragNoteStartTexters();
+                    Texture2D[] dragNoteTexture = itemManager.GetDragNoteTexture();
                     Rectangle[] initFrame = itemManager.GetDragNoteStartInitFrame();
                     
 
