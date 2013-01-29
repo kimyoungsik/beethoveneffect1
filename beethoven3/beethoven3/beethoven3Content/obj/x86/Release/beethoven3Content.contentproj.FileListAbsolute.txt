@@ -2,6 +2,6 @@ D:\베토벤이펙트관련자료\백업\beethoven0124오전2시30분절대시�
 C:\Users\김영식\Desktop\beethoven0125오후1시52분드래그노트중\beethoven3\beethoven3\beethoven3Content\obj\x86\Release\beethoven3Content.contentprojResolveAssemblyReference.cache
 C:\Users\pmk\Desktop\beethoven\beethoven3\beethoven3\beethoven3Content\obj\x86\Release\ResolveAssemblyReference.cache
 D:\베토벤이펙트관련자료\백업\beethoven00127오후9시17분MARKMANAGER스태틱변경전\beethoven3\beethoven3\beethoven3Content\obj\x86\Release\ResolveAssemblyReference.cache
-C:\Users\ssm\Desktop\test\beethoven3\beethoven3\beethoven3Content\obj\x86\Release\ResolveAssemblyReference.cache
 C:\Users\ssm\Desktop\noKinetVer\beethoven3\beethoven3\beethoven3Content\obj\x86\Release\ResolveAssemblyReference.cache
 D:\beethoven\beethoven3\beethoven3\beethoven3Content\obj\x86\Release\ResolveAssemblyReference.cache
+C:\Users\ssm\Desktop\TEST\beethoven3\beethoven3\beethoven3Content\obj\x86\Release\ResolveAssemblyReference.cache

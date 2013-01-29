@@ -1,4 +1,6 @@
-﻿using System;
+﻿#define Kinect
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,7 +16,7 @@ namespace beethoven3
 {
     class SettingBoard
     {
-
+#if Kinect 
         MouseState mouseStatePrevious;
         private Texture2D background;
 
@@ -114,6 +116,7 @@ namespace beethoven3
             }
             //각도
             tw.WriteLine("angle");
+
             tw.WriteLine(game1.nui.ElevationAngle);
 
             //스켈링
@@ -476,15 +479,18 @@ namespace beethoven3
             float userParam = game1.UserParam;
 
             KinectSensor nui = game1.Nui;
+
             int elevationAngle  = nui.ElevationAngle;
-            
-          //  spriteBatch.DrawString(Game1.georgia, "scaling", new Vector2(100, 100), Color.Black);
+
+              spriteBatch.DrawString(Game1.georgia, elevationAngle.ToString(), new Vector2(600, 370), Color.Yellow);
+
+            //  spriteBatch.DrawString(Game1.georgia, "scaling", new Vector2(100, 100), Color.Black);
 
             spriteBatch.DrawString(Game1.georgia, (userParam).ToString("###.##"), new Vector2(570, 220), Color.Yellow);
 
           //  spriteBatch.DrawString(Game1.georgia, "angle", new Vector2(100, 300), Color.Black);
 
-            spriteBatch.DrawString(Game1.georgia, elevationAngle.ToString(), new Vector2(600, 370), Color.Yellow);
+          
 
 
             spriteBatch.Draw(Game1.previousButton, new Vector2(recPreviousButton.X, recPreviousButton.Y), null, Color.White, 0f, new Vector2(0, 0), 2f, SpriteEffects.None, 1f);
@@ -600,7 +606,7 @@ namespace beethoven3
         {
             set { clickAngleDownButton = value; }
         }
+#endif
 
-     
     }
 }

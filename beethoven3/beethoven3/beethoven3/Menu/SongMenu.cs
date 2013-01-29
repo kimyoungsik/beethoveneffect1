@@ -188,14 +188,12 @@ namespace beethoven3
 
 
 
-        public int Update()
+        public int Update(Rectangle rightHandPosition)
         {
 
 
 
-            Rectangle rightHandPosition = new Rectangle((int)Game1.j1r.Position.X, (int)Game1.j1r.Position.Y, 5, 5);
-
-
+        
             MouseState mouse = Mouse.GetState();
             KeyboardState key = Keyboard.GetState();
             pastmouse = Game1.mouseStatePrevious;

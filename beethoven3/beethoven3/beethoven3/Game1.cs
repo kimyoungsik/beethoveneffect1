@@ -1,13 +1,13 @@
 ﻿
-//#define Kinect
+#define Kinect
 
 //시작시 검사 
-//#define StartDetact
+#define StartDetact
 
 //삭제상자 보이기 
 //#define Debug
 //키보드모드일떄
-#define Keyboard
+//#define Keyboard
 
 using System;
 using System.Collections;
@@ -21,7 +21,9 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using FMOD;
+#if Kinect
 using Microsoft.Kinect;
+#endif
 using System.Runtime.InteropServices;
 
 using System.IO;
@@ -102,15 +104,7 @@ namespace beethoven3
       
         //주변 버튼 여부
         public static bool nearButton = false;
-        //오른손 좌표
-
-        public static Joint j1r;
-        public static Joint j2r;
-
-
-        //키넥트
-        public KinectSensor nui = null;
-
+ 
 
         //사람 키에 따른 미세조정 파라미터
         public float userParam = .25f;
@@ -119,6 +113,15 @@ namespace beethoven3
         double lifePlusEffect = 1;
         public static bool PicFlag = false;
 #if Kinect
+               //오른손 좌표
+
+        public static Joint j1r;
+        public static Joint j2r;
+
+
+        //키넥트
+        public KinectSensor nui = null;
+
         //화면에 띄우기
         Texture2D KinectVideoTexture;
         Rectangle VideoDisplayRectangle;
@@ -909,9 +912,10 @@ namespace beethoven3
             recordBoard = new RecordBoard();
             recordBoard.LoadContent(Content);
 
+#if Kinect
             settingBoard = new SettingBoard(this);
             settingBoard.LoadContent(Content);
-
+#endif
 
             showPictureScene = new ShowPictureScene();
             showPictureScene.LoadContent(Content);
@@ -2854,7 +2858,12 @@ namespace beethoven3
         //입력 타입
         //출력 센터
 
+         public KinectSensor Nui
+        {
+            get { return nui; }
+            set { nui = value; }
 
+        }
     
 
 
@@ -2866,12 +2875,7 @@ namespace beethoven3
 
         }
 
-        public KinectSensor Nui
-        {
-            get { return nui; }
-            set { nui = value; }
-
-        }
+       
         public static void GetCenterOfButton(Rectangle rec)
         {
 
@@ -3088,8 +3092,14 @@ namespace beethoven3
                 this.Exit();
       
             mouseStateCurrent = Mouse.GetState();
+
+#if Kinect
             Rectangle rightHandPosition = new Rectangle((int)j1r.Position.X, (int)j1r.Position.Y, 5, 5);
 
+#else
+            Rectangle rightHandPosition = new Rectangle(0, 0, 1, 1);
+
+#endif
 
 
             
@@ -3373,8 +3383,9 @@ namespace beethoven3
                case GameStates.SettingBoard:
 
                 //HandleKeyboardInputGoToMenu(Keyboard.GetState());
+#if Kinect
                 settingBoard.Update(gameTime, rightHandPosition);
-         
+#endif
 
 
                 pastClick = finalClick;
@@ -3516,7 +3527,7 @@ namespace beethoven3
                 case GameStates.SongMenu:
 
 
-                resultSongMenu = songMenu.Update();
+                resultSongMenu = songMenu.Update(rightHandPosition);
 
 
                 
@@ -4772,8 +4783,10 @@ namespace beethoven3
             #region Setting
             if (gameState == GameStates.SettingBoard)
             {
-                settingBoard.Draw(spriteBatch);
 
+#if Kinect
+                settingBoard.Draw(spriteBatch);
+#endif
 #if Kinect
                 if (KinectVideoTexture != null)
                 {
