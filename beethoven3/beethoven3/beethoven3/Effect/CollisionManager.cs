@@ -289,7 +289,7 @@ namespace beethoven3
 
                     if (length == 3)
                     {
-                        comboNumberManager.AddComboNumbers(new Vector2(comboLocation.X - (i * 73) + 20, comboLocation.Y), eachNumbers[i], type, duration);
+                        comboNumberManager.AddComboNumbers(new Vector2(comboLocation.X - (i * 76) + 20, comboLocation.Y), eachNumbers[i], type, duration);
 
 
                     }
