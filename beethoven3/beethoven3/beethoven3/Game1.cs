@@ -3232,7 +3232,7 @@ namespace beethoven3
                        }
                        //scoreManager.Combo = 0;
 
-
+                       
                        //점수 기록 파일로 저장
                        //save recored scores in the file
                        reportManager.SaveReport();
@@ -3595,7 +3595,7 @@ namespace beethoven3
 
                       Texture2D[] backgroudTextures  =itemManager.GetBackgroundTexture();
 
-
+                      ScorePic = null;
                        
                          //배경 바꾸기
                         playBackgroud = backgroudTextures[itemManager.getBackgroundIndex()];
