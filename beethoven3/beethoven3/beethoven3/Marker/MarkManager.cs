@@ -295,7 +295,16 @@ namespace beethoven3
                     mark5Loc = new Vector2(740, 620);
               //      centerArea = new Rectangle(250, 260, 220, 320);
                     break;
+                case 4:
 
+                    mark0Loc = new Vector2(140, 220);
+                    mark1Loc = new Vector2(100, 400);
+                    mark2Loc = new Vector2(140, 620);
+                    mark3Loc = new Vector2(740, 220);
+                    mark4Loc = new Vector2(780, 400);
+                    mark5Loc = new Vector2(740, 620);
+                    //      centerArea = new Rectangle(250, 260, 220, 320);
+                    break;
                     
 
             }

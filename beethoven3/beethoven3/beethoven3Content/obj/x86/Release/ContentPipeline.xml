@@ -2440,6 +2440,15 @@
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\Note_Gostop_2_one.xnb</Output>
       <Time>2013-01-30T09:35:56.0431058+09:00</Time>
     </Item>
+    <Item>
+      <Source>ui\SpriteSheet8.png</Source>
+      <Name>ui\SpriteSheet8</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\ui\SpriteSheet8.xnb</Output>
+      <Time>2013-01-30T12:32:00.5073586+09:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

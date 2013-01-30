@@ -26,7 +26,7 @@ using System.Runtime.InteropServices;
 
 using System.IO;
 using System.Threading;
-//using System.Diagnostics;
+using System.Diagnostics;
 
 #if Kinect
 using Microsoft.Kinect;
@@ -544,8 +544,8 @@ namespace beethoven3
             go_back = Content.Load<Texture2D>(@"ui\go_back");
             go_front = Content.Load<Texture2D>(@"ui\go_front");
 
-
-            
+            //이거 없으면 STARTNOTE TEXTURE가 NULL이라 위치값을 잘못 줄때가 있다.
+            spriteSheet = Content.Load<Texture2D>(@"ui\SpriteSheet8");
      
             backJesture = Content.Load<Texture2D>(@"game1\backJesture");
             backJestureManager = new BackJestureManager(backJesture, new Rectangle(0, 0, 204, 204), 10, new Vector2(800, 500));
@@ -1987,19 +1987,21 @@ namespace beethoven3
             int maxCount = 10;
             if (listCount < maxCount)
             {
+                finalClick = false;
                 handList.Add(handPoint);
                 clickList.Add(clickJudge);
                 listCount++;
             }
             else
             {
+                finalClick = true;
                 handList.RemoveAt(0);
                 clickList.RemoveAt(0);
                 handList.Add(handPoint);
                 clickList.Add(clickJudge);
             }
 
-            finalClick = true;
+            //finalClick = true;
             if (listCount >= maxCount)
             {
 
@@ -3193,11 +3195,11 @@ namespace beethoven3
 
                #region 플레이화면
                case GameStates.Playing:
-                   if (scoreManager.Gage < 1)
-                   {//$$$게이지
-                       file.SetEndFile(true);
-                       resultManager.FailGame = true;
-                   }
+                   //if (scoreManager.Gage < 1)
+                   //{//$$$게이지
+                   //    file.SetEndFile(true);
+                   //    resultManager.FailGame = true;
+                   //}
 
                    //곡이 끝내게 되면 결과 화면으로
                    //go to result scene right after finishing a piece
@@ -4386,7 +4388,7 @@ namespace beethoven3
 
                     int index = itemManager.getNoteIndex();
 
-                    int x = 200;
+                    int x = 210;
                     int y = 350;
 
                     spriteBatch.Draw(darkBackgroundImage, new Rectangle(0, 0, 1024, 769), color);
@@ -5023,6 +5025,7 @@ namespace beethoven3
                 }
                     #endif
             }
+            //Trace.WriteLine(finalClick);
 #if Kinect
 
 

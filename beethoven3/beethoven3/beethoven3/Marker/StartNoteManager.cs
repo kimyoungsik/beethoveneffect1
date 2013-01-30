@@ -178,8 +178,8 @@ namespace beethoven3
         //반환 : 노트의 객체
         public void MakeRightNote(int markNumber)
         {
-            
-            Vector2 location = StartNotes[markNumber-1].StartNoteSprite.Location;
+
+            Vector2 location = StartNotes[markNumber - 1].StartNoteSprite.Location;
 
             Vector2 direction =
                             MarkManager.Marks[markNumber-1].MarkSprite.Location -
@@ -248,10 +248,10 @@ namespace beethoven3
          //   doubleNoteManager.Draw(spriteBatch);
             longNoteManager.Draw(spriteBatch);
             //스타트 표시점 보이지 않게 하려면 주석을 달아야 한다.
-            //foreach (StartNote startNote in StartNotes)
-            //{
-            //    startNote.Draw(spriteBatch);
-            //}
+            foreach (StartNote startNote in StartNotes)
+            {
+                startNote.Draw(spriteBatch);
+            }
         }
         #endregion
 
