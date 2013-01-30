@@ -809,27 +809,46 @@ namespace beethoven3
                                 //적어도 1개 이상의 오른손 노트가 있을 때
                                 if (noteQueue.Count > 1)
                                 {
+
+
                                     //현재 노트로 오른손노트이고 다음 노트도 오른손 노트일때
-                                    if (noteQueue[0].IsRight && (noteQueue[1].Type == "B" || noteQueue[1].Type == "H"))
+                                    if (noteQueue[0].IsRight )
                                     {
 
-                                        if (noteQueue[0].IsRight && noteQueue[2].IsRight)
-                                        {
+                                        int index = GetNextGoldIndex();
 
-                                            DrawGuideLineInfo drawGuideLineInfo = new DrawGuideLineInfo(noteQueue[0].MarkLocation - 1, noteQueue[2].MarkLocation - 1, true, noteQueue[0].StartTime + 0.5 /* 조금느리게 지워지게 하기 위해서  */, noteQueue[2].StartTime);
+                                            if( index != -1)
+                                            {
+                                                  DrawGuideLineInfo drawGuideLineInfo = new DrawGuideLineInfo(noteQueue[0].MarkLocation - 1, noteQueue[index].MarkLocation - 1, true, noteQueue[0].StartTime + 0.5 /* 조금느리게 지워지게 하기 위해서  */, noteQueue[index].StartTime);
 
-                                            drawGuideLineQueue.Enqueue(drawGuideLineInfo);
-                                        }
+                                                    drawGuideLineQueue.Enqueue(drawGuideLineInfo);
+
+
+                                            }
 
                                     }
+
+                                    ////현재 노트로 오른손노트이고 다음 노트도 오른손 노트일때
+                                    //if (noteQueue[0].IsRight && (noteQueue[1].Type == "B" || noteQueue[1].Type == "H") )
+                                    //{
+
+                                    //    if (noteQueue[0].IsRight && noteQueue[2].IsRight)
+                                    //    {
+
+                                    //        DrawGuideLineInfo drawGuideLineInfo = new DrawGuideLineInfo(noteQueue[0].MarkLocation - 1, noteQueue[2].MarkLocation - 1, true, noteQueue[0].StartTime + 0.5 /* 조금느리게 지워지게 하기 위해서  */, noteQueue[2].StartTime);
+
+                                    //        drawGuideLineQueue.Enqueue(drawGuideLineInfo);
+                                    //    }
+
+                                    //}
                                     
-                                    else if (noteQueue[0].IsRight && noteQueue[1].IsRight)
-                                    {
-                                        DrawGuideLineInfo drawGuideLineInfo = new DrawGuideLineInfo(noteQueue[0].MarkLocation - 1, noteQueue[1].MarkLocation - 1, true, noteQueue[0].StartTime + 0.5 /* 조금느리게 지워지게 하기 위해서  */, noteQueue[1].StartTime);
+                                    //else if (noteQueue[0].IsRight && noteQueue[1].IsRight)
+                                    //{
+                                    //    DrawGuideLineInfo drawGuideLineInfo = new DrawGuideLineInfo(noteQueue[0].MarkLocation - 1, noteQueue[1].MarkLocation - 1, true, noteQueue[0].StartTime + 0.5 /* 조금느리게 지워지게 하기 위해서  */, noteQueue[1].StartTime);
 
-                                        drawGuideLineQueue.Enqueue(drawGuideLineInfo);
+                                    //    drawGuideLineQueue.Enqueue(drawGuideLineInfo);
                                                                           
-                                    }
+                                    //}
 
 
 
@@ -1018,6 +1037,59 @@ namespace beethoven3
                 
 
         }
+
+
+
+        public int GetNextGoldIndex()
+        {
+            int i;
+            int index = -1;
+            for (i = 1; i < noteQueue.Count - 1; i++)
+            {
+                if (noteQueue[i].IsRight)
+                {
+                    index = i;
+                    i = noteQueue.Count - 1;
+                }
+                else
+                {
+                    if (noteQueue[i].Type != "B" && noteQueue[i].Type != "H")
+                    {
+                        index = -1;
+                        i = noteQueue.Count - 1;
+                    }
+
+
+                }
+               
+
+            }
+
+            return index;
+            ////현재 노트로 오른손노트이고 다음 노트도 오른손 노트일때
+            //if (noteQueue[0].IsRight && (noteQueue[1].Type == "B" || noteQueue[1].Type == "H") )
+            //{
+
+            //    if (noteQueue[0].IsRight && noteQueue[2].IsRight)
+            //    {
+
+            //        DrawGuideLineInfo drawGuideLineInfo = new DrawGuideLineInfo(noteQueue[0].MarkLocation - 1, noteQueue[2].MarkLocation - 1, true, noteQueue[0].StartTime + 0.5 /* 조금느리게 지워지게 하기 위해서  */, noteQueue[2].StartTime);
+
+            //        drawGuideLineQueue.Enqueue(drawGuideLineInfo);
+            //    }
+
+            //}
+
+            //else if (noteQueue[0].IsRight && noteQueue[1].IsRight)
+            //{
+            //    DrawGuideLineInfo drawGuideLineInfo = new DrawGuideLineInfo(noteQueue[0].MarkLocation - 1, noteQueue[1].MarkLocation - 1, true, noteQueue[0].StartTime + 0.5 /* 조금느리게 지워지게 하기 위해서  */, noteQueue[1].StartTime);
+
+            //    drawGuideLineQueue.Enqueue(drawGuideLineInfo);
+
+            //}
+
+        }
+
 
         //전체 진행에 따른 현재 마커 위치
         //Get current marker locaiton in accordance to the process
