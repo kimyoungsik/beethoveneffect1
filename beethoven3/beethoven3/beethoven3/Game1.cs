@@ -671,7 +671,7 @@ namespace beethoven3
          //   drawLineNote1 = Content.Load<Texture2D>(@"DrawLine\drawLineNote1");
 
             //드래그 라인 마커점
-         //   drawLineMarker = Content.Load<Texture2D>(@"DrawLine\drawLineMark");
+            drawLineMarker = Content.Load<Texture2D>(@"DrawLine\drawLineMark");
             
 
             gold = Content.Load<Texture2D>(@"gold\gold");
@@ -1554,10 +1554,10 @@ namespace beethoven3
                                         //StartNoteManager.longNoteManager.DeleteAllNote();
 
                                         //@@@이걸 지워서 무제가 될수도 있다. 패턴이 바뀌었는데도 다음번에 안바뀌어서 이걸 넣음
-                                        //startNoteManager = new StartNoteManager(
-                                        //    spriteSheet,
-                                        //    new Rectangle(0, 200, 52, 55),
-                                        //    1);
+                                        startNoteManager = new StartNoteManager(
+                                            spriteSheet,
+                                            new Rectangle(0, 200, 52, 55),
+                                            1);
 
                                         //드로우 라인
                                         file.SetDrawLine(false);

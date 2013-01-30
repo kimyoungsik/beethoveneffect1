@@ -761,7 +761,7 @@ namespace beethoven3
 
 
                      noteTime = noteQueue[0].NoteTime;
-                    Trace.WriteLine("note : " +noteTime + " pro :" + processTime);
+                  //  Trace.WriteLine("note : " +noteTime + " pro :" + processTime);
 
                     if (TimeSpan.FromSeconds(noteTime) <= processTime )
                     {
@@ -787,6 +787,7 @@ namespace beethoven3
 
                         else if (noteQueue[0].Type == "1")
                         {
+
                             //시간에 맞춰서 뿌려줘야 함. 
                             //notecontent[2] => 마커위치
 
@@ -809,18 +810,29 @@ namespace beethoven3
                                 if (noteQueue.Count > 1)
                                 {
                                     //현재 노트로 오른손노트이고 다음 노트도 오른손 노트일때
-                                    if (noteQueue[0].IsRight && noteQueue[1].IsRight)
+                                    if (noteQueue[0].IsRight && (noteQueue[1].Type == "B" || noteQueue[1].Type == "H"))
+                                    {
+
+                                        if (noteQueue[0].IsRight && noteQueue[2].IsRight)
+                                        {
+
+                                            DrawGuideLineInfo drawGuideLineInfo = new DrawGuideLineInfo(noteQueue[0].MarkLocation - 1, noteQueue[2].MarkLocation - 1, true, noteQueue[0].StartTime + 0.5 /* 조금느리게 지워지게 하기 위해서  */, noteQueue[2].StartTime);
+
+                                            drawGuideLineQueue.Enqueue(drawGuideLineInfo);
+                                        }
+
+                                    }
+                                    
+                                    else if (noteQueue[0].IsRight && noteQueue[1].IsRight)
                                     {
                                         DrawGuideLineInfo drawGuideLineInfo = new DrawGuideLineInfo(noteQueue[0].MarkLocation - 1, noteQueue[1].MarkLocation - 1, true, noteQueue[0].StartTime + 0.5 /* 조금느리게 지워지게 하기 위해서  */, noteQueue[1].StartTime);
 
                                         drawGuideLineQueue.Enqueue(drawGuideLineInfo);
-
-                                        //  골드라인/
-                                        //  DrawGuidLine(rightNoteMarks[currentRightNoteIndex].MarkLocation, rightNoteMarks[currentRightNoteIndex + 1].MarkLocation, true);
-                                        //  if 마커에 맞추었을 때 
-                                        //  스타트로 날아간 후에 어느정도 시간이 지났을 때
-                                        //  DrawGuidLine(arrayNotes[0].MarkLocation - 1, arrayNotes[1].MarkLocation - 1, true, arrayNotes[0].StartTime, arrayNotes[1].StartTime);
+                                                                          
                                     }
+
+
+
                                     
                                 }
 
