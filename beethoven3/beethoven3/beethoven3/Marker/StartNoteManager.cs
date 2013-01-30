@@ -180,7 +180,7 @@ namespace beethoven3
         {
 
             Vector2 location = StartNotes[markNumber - 1].StartNoteSprite.Location;
-            Trace.WriteLine(location);
+            //Trace.WriteLine(location);
             Vector2 direction =
                             MarkManager.Marks[markNumber-1].MarkSprite.Location -
                             location;

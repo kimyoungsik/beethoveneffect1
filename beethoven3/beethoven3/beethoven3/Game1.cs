@@ -4315,8 +4315,8 @@ namespace beethoven3
             #region 플레이화면
             if ((gameState == GameStates.Playing))
             {
-       
 
+                Trace.WriteLine(startNoteManager.StartNotes[5].StartNoteSprite.Location);
                 //배경
                 spriteBatch.Draw(playBackgroud,
                 new Rectangle(0, 0, this.Window.ClientBounds.Width,

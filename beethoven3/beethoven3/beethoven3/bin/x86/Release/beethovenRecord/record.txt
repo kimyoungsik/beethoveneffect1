@@ -43,4 +43,14 @@ gesture_30_13_41_29.jpg$615
 gesture_30_10_12_11.jpg$590
 gesture_30_14_3_7.jpg$494
 gesture_30_13_44_20.jpg$305
+%%
+Under The Double Eagle
+gesture_30_14_20_28.jpg$2843
+%%
+Boom Boom Pow
+gesture_30_14_25_0.jpg$4253
+gesture_30_14_36_12.jpg$798
+%%
+Waltz Kairak
+gesture_30_14_27_39.jpg$1939
 **

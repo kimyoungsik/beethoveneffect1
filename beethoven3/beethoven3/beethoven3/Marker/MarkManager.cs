@@ -35,7 +35,7 @@ namespace beethoven3
         private static StartNoteManager startNoteManager;
 
         //마커와 노트시작 사이의 거리
-        public static float distance = 300.0f;
+        public static float distance = 250.0f;
 
 
        
