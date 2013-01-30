@@ -248,10 +248,10 @@ namespace beethoven3
          //   doubleNoteManager.Draw(spriteBatch);
             longNoteManager.Draw(spriteBatch);
             //스타트 표시점 보이지 않게 하려면 주석을 달아야 한다.
-            foreach (StartNote startNote in StartNotes)
-            {
-                startNote.Draw(spriteBatch);
-            }
+            //foreach (StartNote startNote in StartNotes)
+            //{
+            //    startNote.Draw(spriteBatch);
+            //}
         }
         #endregion
 
