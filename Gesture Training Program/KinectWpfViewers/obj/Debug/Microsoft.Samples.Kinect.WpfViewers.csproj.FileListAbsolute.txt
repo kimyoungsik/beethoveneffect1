@@ -1,0 +1,182 @@
+C:\Users\danielfe\Desktop\Kinect\Quickstarts\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\bin\Debug\Microsoft.Samples.Kinect.WpfViewers.dll
+C:\Users\danielfe\Desktop\Kinect\Quickstarts\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\bin\Debug\Microsoft.Samples.Kinect.WpfViewers.pdb
+C:\Users\danielfe\Desktop\Kinect\Quickstarts\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\danielfe\Desktop\Kinect\Quickstarts\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\KinectSettings.baml
+C:\Users\danielfe\Desktop\Kinect\Quickstarts\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\KinectSensorChooser.g.cs
+C:\Users\danielfe\Desktop\Kinect\Quickstarts\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\KinectAudioViewer.g.cs
+C:\Users\danielfe\Desktop\Kinect\Quickstarts\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\KinectDepthViewer.g.cs
+C:\Users\danielfe\Desktop\Kinect\Quickstarts\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\KinectColorViewer.g.cs
+C:\Users\danielfe\Desktop\Kinect\Quickstarts\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\KinectDiagnosticViewer.g.cs
+C:\Users\danielfe\Desktop\Kinect\Quickstarts\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\KinectSettings.g.cs
+C:\Users\danielfe\Desktop\Kinect\Quickstarts\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\KinectSkeletonViewer.g.cs
+C:\Users\danielfe\Desktop\Kinect\Quickstarts\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\danielfe\Desktop\Kinect\Quickstarts\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\Microsoft.Samples.Kinect.WpfViewers_MarkupCompile.cache
+C:\Users\danielfe\Desktop\Kinect\Quickstarts\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\Microsoft.Samples.Kinect.WpfViewers_MarkupCompile.lref
+C:\Users\danielfe\Desktop\Kinect\Quickstarts\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\KinectSensorChooser.baml
+C:\Users\danielfe\Desktop\Kinect\Quickstarts\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\KinectAudioViewer.baml
+C:\Users\danielfe\Desktop\Kinect\Quickstarts\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\KinectDepthViewer.baml
+C:\Users\danielfe\Desktop\Kinect\Quickstarts\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\KinectColorViewer.baml
+C:\Users\danielfe\Desktop\Kinect\Quickstarts\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\KinectDiagnosticViewer.baml
+C:\Users\danielfe\Desktop\Kinect\Quickstarts\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\KinectSkeletonViewer.baml
+C:\Users\danielfe\Desktop\Kinect\Quickstarts\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\Microsoft.Samples.Kinect.WpfViewers.g.resources
+C:\Users\danielfe\Desktop\Kinect\Quickstarts\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\Microsoft.Samples.Kinect.WpfViewers.Properties.Resources.resources
+C:\Users\danielfe\Desktop\Kinect\Quickstarts\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\GenerateResource.read.1.tlog
+C:\Users\danielfe\Desktop\Kinect\Quickstarts\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\GenerateResource.write.1.tlog
+C:\Users\danielfe\Desktop\Kinect\Quickstarts\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\Microsoft.Samples.Kinect.WpfViewers.dll
+C:\Users\danielfe\Desktop\Kinect\Quickstarts\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\Microsoft.Samples.Kinect.WpfViewers.pdb
+C:\Users\danielfe\Desktop\Work Files\Projects\KinectSDK\v1Quickstarts\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\bin\Debug\Microsoft.Samples.Kinect.WpfViewers.dll
+C:\Users\danielfe\Desktop\Work Files\Projects\KinectSDK\v1Quickstarts\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\bin\Debug\Microsoft.Samples.Kinect.WpfViewers.pdb
+C:\Users\danielfe\Desktop\Work Files\Projects\KinectSDK\v1Quickstarts\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\danielfe\Desktop\Work Files\Projects\KinectSDK\v1Quickstarts\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\KinectSettings.baml
+C:\Users\danielfe\Desktop\Work Files\Projects\KinectSDK\v1Quickstarts\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\KinectSensorChooser.g.cs
+C:\Users\danielfe\Desktop\Work Files\Projects\KinectSDK\v1Quickstarts\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\KinectAudioViewer.g.cs
+C:\Users\danielfe\Desktop\Work Files\Projects\KinectSDK\v1Quickstarts\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\KinectDepthViewer.g.cs
+C:\Users\danielfe\Desktop\Work Files\Projects\KinectSDK\v1Quickstarts\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\KinectColorViewer.g.cs
+C:\Users\danielfe\Desktop\Work Files\Projects\KinectSDK\v1Quickstarts\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\KinectDiagnosticViewer.g.cs
+C:\Users\danielfe\Desktop\Work Files\Projects\KinectSDK\v1Quickstarts\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\KinectSettings.g.cs
+C:\Users\danielfe\Desktop\Work Files\Projects\KinectSDK\v1Quickstarts\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\KinectSkeletonViewer.g.cs
+C:\Users\danielfe\Desktop\Work Files\Projects\KinectSDK\v1Quickstarts\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\danielfe\Desktop\Work Files\Projects\KinectSDK\v1Quickstarts\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\Microsoft.Samples.Kinect.WpfViewers_MarkupCompile.cache
+C:\Users\danielfe\Desktop\Work Files\Projects\KinectSDK\v1Quickstarts\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\Microsoft.Samples.Kinect.WpfViewers_MarkupCompile.lref
+C:\Users\danielfe\Desktop\Work Files\Projects\KinectSDK\v1Quickstarts\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\KinectSensorChooser.baml
+C:\Users\danielfe\Desktop\Work Files\Projects\KinectSDK\v1Quickstarts\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\KinectAudioViewer.baml
+C:\Users\danielfe\Desktop\Work Files\Projects\KinectSDK\v1Quickstarts\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\KinectDepthViewer.baml
+C:\Users\danielfe\Desktop\Work Files\Projects\KinectSDK\v1Quickstarts\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\KinectColorViewer.baml
+C:\Users\danielfe\Desktop\Work Files\Projects\KinectSDK\v1Quickstarts\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\KinectDiagnosticViewer.baml
+C:\Users\danielfe\Desktop\Work Files\Projects\KinectSDK\v1Quickstarts\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\KinectSkeletonViewer.baml
+C:\Users\danielfe\Desktop\Work Files\Projects\KinectSDK\v1Quickstarts\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\Microsoft.Samples.Kinect.WpfViewers.g.resources
+C:\Users\danielfe\Desktop\Work Files\Projects\KinectSDK\v1Quickstarts\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\Microsoft.Samples.Kinect.WpfViewers.Properties.Resources.resources
+C:\Users\danielfe\Desktop\Work Files\Projects\KinectSDK\v1Quickstarts\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\GenerateResource.read.1.tlog
+C:\Users\danielfe\Desktop\Work Files\Projects\KinectSDK\v1Quickstarts\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\GenerateResource.write.1.tlog
+C:\Users\danielfe\Desktop\Work Files\Projects\KinectSDK\v1Quickstarts\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\Microsoft.Samples.Kinect.WpfViewers.dll
+C:\Users\danielfe\Desktop\Work Files\Projects\KinectSDK\v1Quickstarts\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\Microsoft.Samples.Kinect.WpfViewers.pdb
+C:\Users\Dan\Desktop\live download\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\bin\Debug\Microsoft.Samples.Kinect.WpfViewers.dll
+C:\Users\Dan\Desktop\live download\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\bin\Debug\Microsoft.Samples.Kinect.WpfViewers.pdb
+C:\Users\Dan\Desktop\live download\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Dan\Desktop\live download\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\KinectSettings.baml
+C:\Users\Dan\Desktop\live download\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\KinectSensorChooser.g.cs
+C:\Users\Dan\Desktop\live download\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\KinectAudioViewer.g.cs
+C:\Users\Dan\Desktop\live download\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\KinectDepthViewer.g.cs
+C:\Users\Dan\Desktop\live download\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\KinectColorViewer.g.cs
+C:\Users\Dan\Desktop\live download\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\KinectDiagnosticViewer.g.cs
+C:\Users\Dan\Desktop\live download\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\KinectSettings.g.cs
+C:\Users\Dan\Desktop\live download\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\KinectSkeletonViewer.g.cs
+C:\Users\Dan\Desktop\live download\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Dan\Desktop\live download\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\Microsoft.Samples.Kinect.WpfViewers_MarkupCompile.cache
+C:\Users\Dan\Desktop\live download\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\Microsoft.Samples.Kinect.WpfViewers_MarkupCompile.lref
+C:\Users\Dan\Desktop\live download\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\KinectSensorChooser.baml
+C:\Users\Dan\Desktop\live download\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\KinectAudioViewer.baml
+C:\Users\Dan\Desktop\live download\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\KinectDepthViewer.baml
+C:\Users\Dan\Desktop\live download\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\KinectColorViewer.baml
+C:\Users\Dan\Desktop\live download\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\KinectDiagnosticViewer.baml
+C:\Users\Dan\Desktop\live download\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\KinectSkeletonViewer.baml
+C:\Users\Dan\Desktop\live download\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\Microsoft.Samples.Kinect.WpfViewers.g.resources
+C:\Users\Dan\Desktop\live download\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\Microsoft.Samples.Kinect.WpfViewers.Properties.Resources.resources
+C:\Users\Dan\Desktop\live download\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\GenerateResource.read.1.tlog
+C:\Users\Dan\Desktop\live download\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\GenerateResource.write.1.tlog
+C:\Users\Dan\Desktop\live download\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\Microsoft.Samples.Kinect.WpfViewers.dll
+C:\Users\Dan\Desktop\live download\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\Microsoft.Samples.Kinect.WpfViewers.pdb
+C:\Users\danielfe\Desktop\v1\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\bin\Debug\Microsoft.Samples.Kinect.WpfViewers.dll
+C:\Users\danielfe\Desktop\v1\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\bin\Debug\Microsoft.Samples.Kinect.WpfViewers.pdb
+C:\Users\danielfe\Desktop\v1\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\danielfe\Desktop\v1\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\KinectSettings.baml
+C:\Users\danielfe\Desktop\v1\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\KinectSensorChooser.g.cs
+C:\Users\danielfe\Desktop\v1\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\KinectAudioViewer.g.cs
+C:\Users\danielfe\Desktop\v1\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\KinectDepthViewer.g.cs
+C:\Users\danielfe\Desktop\v1\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\KinectColorViewer.g.cs
+C:\Users\danielfe\Desktop\v1\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\KinectDiagnosticViewer.g.cs
+C:\Users\danielfe\Desktop\v1\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\KinectSettings.g.cs
+C:\Users\danielfe\Desktop\v1\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\KinectSkeletonViewer.g.cs
+C:\Users\danielfe\Desktop\v1\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\danielfe\Desktop\v1\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\Microsoft.Samples.Kinect.WpfViewers_MarkupCompile.cache
+C:\Users\danielfe\Desktop\v1\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\Microsoft.Samples.Kinect.WpfViewers_MarkupCompile.lref
+C:\Users\danielfe\Desktop\v1\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\KinectSensorChooser.baml
+C:\Users\danielfe\Desktop\v1\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\KinectAudioViewer.baml
+C:\Users\danielfe\Desktop\v1\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\KinectDepthViewer.baml
+C:\Users\danielfe\Desktop\v1\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\KinectColorViewer.baml
+C:\Users\danielfe\Desktop\v1\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\KinectDiagnosticViewer.baml
+C:\Users\danielfe\Desktop\v1\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\KinectSkeletonViewer.baml
+C:\Users\danielfe\Desktop\v1\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\Microsoft.Samples.Kinect.WpfViewers.g.resources
+C:\Users\danielfe\Desktop\v1\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\Microsoft.Samples.Kinect.WpfViewers.Properties.Resources.resources
+C:\Users\danielfe\Desktop\v1\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\GenerateResource.read.1.tlog
+C:\Users\danielfe\Desktop\v1\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\GenerateResource.write.1.tlog
+C:\Users\danielfe\Desktop\v1\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\Microsoft.Samples.Kinect.WpfViewers.dll
+C:\Users\danielfe\Desktop\v1\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\Microsoft.Samples.Kinect.WpfViewers.pdb
+D:\다운로드\KinectforWindowsSDKV1\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\bin\Debug\Microsoft.Samples.Kinect.WpfViewers.dll
+D:\다운로드\KinectforWindowsSDKV1\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\bin\Debug\Microsoft.Samples.Kinect.WpfViewers.pdb
+D:\다운로드\KinectforWindowsSDKV1\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\ResolveAssemblyReference.cache
+D:\다운로드\KinectforWindowsSDKV1\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\KinectSettings.baml
+D:\다운로드\KinectforWindowsSDKV1\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\KinectSensorChooser.g.cs
+D:\다운로드\KinectforWindowsSDKV1\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\KinectAudioViewer.g.cs
+D:\다운로드\KinectforWindowsSDKV1\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\KinectDepthViewer.g.cs
+D:\다운로드\KinectforWindowsSDKV1\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\KinectColorViewer.g.cs
+D:\다운로드\KinectforWindowsSDKV1\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\KinectDiagnosticViewer.g.cs
+D:\다운로드\KinectforWindowsSDKV1\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\KinectSettings.g.cs
+D:\다운로드\KinectforWindowsSDKV1\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\KinectSkeletonViewer.g.cs
+D:\다운로드\KinectforWindowsSDKV1\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\다운로드\KinectforWindowsSDKV1\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\Microsoft.Samples.Kinect.WpfViewers_MarkupCompile.cache
+D:\다운로드\KinectforWindowsSDKV1\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\Microsoft.Samples.Kinect.WpfViewers_MarkupCompile.lref
+D:\다운로드\KinectforWindowsSDKV1\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\KinectSensorChooser.baml
+D:\다운로드\KinectforWindowsSDKV1\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\KinectAudioViewer.baml
+D:\다운로드\KinectforWindowsSDKV1\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\KinectDepthViewer.baml
+D:\다운로드\KinectforWindowsSDKV1\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\KinectColorViewer.baml
+D:\다운로드\KinectforWindowsSDKV1\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\KinectDiagnosticViewer.baml
+D:\다운로드\KinectforWindowsSDKV1\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\KinectSkeletonViewer.baml
+D:\다운로드\KinectforWindowsSDKV1\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\Microsoft.Samples.Kinect.WpfViewers.g.resources
+D:\다운로드\KinectforWindowsSDKV1\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\Microsoft.Samples.Kinect.WpfViewers.Properties.Resources.resources
+D:\다운로드\KinectforWindowsSDKV1\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\GenerateResource.read.1.tlog
+D:\다운로드\KinectforWindowsSDKV1\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\GenerateResource.write.1.tlog
+D:\다운로드\KinectforWindowsSDKV1\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\Microsoft.Samples.Kinect.WpfViewers.dll
+D:\다운로드\KinectforWindowsSDKV1\KinectforWindowsSDKV1\Dependencies\KinectWpfViewers\obj\Debug\Microsoft.Samples.Kinect.WpfViewers.pdb
+C:\Users\pmk\Desktop\키넥트\DTWUpdated1.5 - 복사본 - 복사본 - 복사본\KinectWpfViewers\bin\Debug\Microsoft.Samples.Kinect.WpfViewers.dll
+C:\Users\pmk\Desktop\키넥트\DTWUpdated1.5 - 복사본 - 복사본 - 복사본\KinectWpfViewers\bin\Debug\Microsoft.Samples.Kinect.WpfViewers.pdb
+C:\Users\pmk\Desktop\키넥트\DTWUpdated1.5 - 복사본 - 복사본 - 복사본\KinectWpfViewers\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\pmk\Desktop\키넥트\DTWUpdated1.5 - 복사본 - 복사본 - 복사본\KinectWpfViewers\obj\Debug\KinectSettings.baml
+C:\Users\pmk\Desktop\키넥트\DTWUpdated1.5 - 복사본 - 복사본 - 복사본\KinectWpfViewers\obj\Debug\KinectSensorChooser.g.cs
+C:\Users\pmk\Desktop\키넥트\DTWUpdated1.5 - 복사본 - 복사본 - 복사본\KinectWpfViewers\obj\Debug\KinectAudioViewer.g.cs
+C:\Users\pmk\Desktop\키넥트\DTWUpdated1.5 - 복사본 - 복사본 - 복사본\KinectWpfViewers\obj\Debug\KinectDepthViewer.g.cs
+C:\Users\pmk\Desktop\키넥트\DTWUpdated1.5 - 복사본 - 복사본 - 복사본\KinectWpfViewers\obj\Debug\KinectColorViewer.g.cs
+C:\Users\pmk\Desktop\키넥트\DTWUpdated1.5 - 복사본 - 복사본 - 복사본\KinectWpfViewers\obj\Debug\KinectDiagnosticViewer.g.cs
+C:\Users\pmk\Desktop\키넥트\DTWUpdated1.5 - 복사본 - 복사본 - 복사본\KinectWpfViewers\obj\Debug\KinectSettings.g.cs
+C:\Users\pmk\Desktop\키넥트\DTWUpdated1.5 - 복사본 - 복사본 - 복사본\KinectWpfViewers\obj\Debug\KinectSkeletonViewer.g.cs
+C:\Users\pmk\Desktop\키넥트\DTWUpdated1.5 - 복사본 - 복사본 - 복사본\KinectWpfViewers\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\pmk\Desktop\키넥트\DTWUpdated1.5 - 복사본 - 복사본 - 복사본\KinectWpfViewers\obj\Debug\Microsoft.Samples.Kinect.WpfViewers_MarkupCompile.cache
+C:\Users\pmk\Desktop\키넥트\DTWUpdated1.5 - 복사본 - 복사본 - 복사본\KinectWpfViewers\obj\Debug\Microsoft.Samples.Kinect.WpfViewers_MarkupCompile.lref
+C:\Users\pmk\Desktop\키넥트\DTWUpdated1.5 - 복사본 - 복사본 - 복사본\KinectWpfViewers\obj\Debug\KinectSensorChooser.baml
+C:\Users\pmk\Desktop\키넥트\DTWUpdated1.5 - 복사본 - 복사본 - 복사본\KinectWpfViewers\obj\Debug\KinectAudioViewer.baml
+C:\Users\pmk\Desktop\키넥트\DTWUpdated1.5 - 복사본 - 복사본 - 복사본\KinectWpfViewers\obj\Debug\KinectDepthViewer.baml
+C:\Users\pmk\Desktop\키넥트\DTWUpdated1.5 - 복사본 - 복사본 - 복사본\KinectWpfViewers\obj\Debug\KinectColorViewer.baml
+C:\Users\pmk\Desktop\키넥트\DTWUpdated1.5 - 복사본 - 복사본 - 복사본\KinectWpfViewers\obj\Debug\KinectDiagnosticViewer.baml
+C:\Users\pmk\Desktop\키넥트\DTWUpdated1.5 - 복사본 - 복사본 - 복사본\KinectWpfViewers\obj\Debug\KinectSkeletonViewer.baml
+C:\Users\pmk\Desktop\키넥트\DTWUpdated1.5 - 복사본 - 복사본 - 복사본\KinectWpfViewers\obj\Debug\Microsoft.Samples.Kinect.WpfViewers.g.resources
+C:\Users\pmk\Desktop\키넥트\DTWUpdated1.5 - 복사본 - 복사본 - 복사본\KinectWpfViewers\obj\Debug\Microsoft.Samples.Kinect.WpfViewers.Properties.Resources.resources
+C:\Users\pmk\Desktop\키넥트\DTWUpdated1.5 - 복사본 - 복사본 - 복사본\KinectWpfViewers\obj\Debug\GenerateResource.read.1.tlog
+C:\Users\pmk\Desktop\키넥트\DTWUpdated1.5 - 복사본 - 복사본 - 복사본\KinectWpfViewers\obj\Debug\GenerateResource.write.1.tlog
+C:\Users\pmk\Desktop\키넥트\DTWUpdated1.5 - 복사본 - 복사본 - 복사본\KinectWpfViewers\obj\Debug\Microsoft.Samples.Kinect.WpfViewers.dll
+C:\Users\pmk\Desktop\키넥트\DTWUpdated1.5 - 복사본 - 복사본 - 복사본\KinectWpfViewers\obj\Debug\Microsoft.Samples.Kinect.WpfViewers.pdb
+C:\Users\pmk\Desktop\키넥트\Gesture Training\KinectWpfViewers\bin\Debug\Microsoft.Samples.Kinect.WpfViewers.dll
+C:\Users\pmk\Desktop\키넥트\Gesture Training\KinectWpfViewers\bin\Debug\Microsoft.Samples.Kinect.WpfViewers.pdb
+C:\Users\pmk\Desktop\키넥트\Gesture Training\KinectWpfViewers\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\pmk\Desktop\키넥트\Gesture Training\KinectWpfViewers\obj\Debug\KinectSettings.baml
+C:\Users\pmk\Desktop\키넥트\Gesture Training\KinectWpfViewers\obj\Debug\KinectSensorChooser.g.cs
+C:\Users\pmk\Desktop\키넥트\Gesture Training\KinectWpfViewers\obj\Debug\KinectAudioViewer.g.cs
+C:\Users\pmk\Desktop\키넥트\Gesture Training\KinectWpfViewers\obj\Debug\KinectDepthViewer.g.cs
+C:\Users\pmk\Desktop\키넥트\Gesture Training\KinectWpfViewers\obj\Debug\KinectColorViewer.g.cs
+C:\Users\pmk\Desktop\키넥트\Gesture Training\KinectWpfViewers\obj\Debug\KinectDiagnosticViewer.g.cs
+C:\Users\pmk\Desktop\키넥트\Gesture Training\KinectWpfViewers\obj\Debug\KinectSettings.g.cs
+C:\Users\pmk\Desktop\키넥트\Gesture Training\KinectWpfViewers\obj\Debug\KinectSkeletonViewer.g.cs
+C:\Users\pmk\Desktop\키넥트\Gesture Training\KinectWpfViewers\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\pmk\Desktop\키넥트\Gesture Training\KinectWpfViewers\obj\Debug\Microsoft.Samples.Kinect.WpfViewers_MarkupCompile.cache
+C:\Users\pmk\Desktop\키넥트\Gesture Training\KinectWpfViewers\obj\Debug\Microsoft.Samples.Kinect.WpfViewers_MarkupCompile.lref
+C:\Users\pmk\Desktop\키넥트\Gesture Training\KinectWpfViewers\obj\Debug\KinectSensorChooser.baml
+C:\Users\pmk\Desktop\키넥트\Gesture Training\KinectWpfViewers\obj\Debug\KinectAudioViewer.baml
+C:\Users\pmk\Desktop\키넥트\Gesture Training\KinectWpfViewers\obj\Debug\KinectDepthViewer.baml
+C:\Users\pmk\Desktop\키넥트\Gesture Training\KinectWpfViewers\obj\Debug\KinectColorViewer.baml
+C:\Users\pmk\Desktop\키넥트\Gesture Training\KinectWpfViewers\obj\Debug\KinectDiagnosticViewer.baml
+C:\Users\pmk\Desktop\키넥트\Gesture Training\KinectWpfViewers\obj\Debug\KinectSkeletonViewer.baml
+C:\Users\pmk\Desktop\키넥트\Gesture Training\KinectWpfViewers\obj\Debug\Microsoft.Samples.Kinect.WpfViewers.g.resources
+C:\Users\pmk\Desktop\키넥트\Gesture Training\KinectWpfViewers\obj\Debug\Microsoft.Samples.Kinect.WpfViewers.Properties.Resources.resources
+C:\Users\pmk\Desktop\키넥트\Gesture Training\KinectWpfViewers\obj\Debug\GenerateResource.read.1.tlog
+C:\Users\pmk\Desktop\키넥트\Gesture Training\KinectWpfViewers\obj\Debug\GenerateResource.write.1.tlog
+C:\Users\pmk\Desktop\키넥트\Gesture Training\KinectWpfViewers\obj\Debug\Microsoft.Samples.Kinect.WpfViewers.dll
+C:\Users\pmk\Desktop\키넥트\Gesture Training\KinectWpfViewers\obj\Debug\Microsoft.Samples.Kinect.WpfViewers.pdb

@@ -1,0 +1,17 @@
+C:\Users\ssm\Desktop\Gesture Training (2)\DTWGestureRecognition\bin\Release\DTWGestureRecognition.exe
+C:\Users\ssm\Desktop\Gesture Training (2)\DTWGestureRecognition\bin\Release\DTWGestureRecognition.pdb
+C:\Users\ssm\Desktop\Gesture Training (2)\DTWGestureRecognition\bin\Release\Coding4Fun.Kinect.Wpf.dll
+C:\Users\ssm\Desktop\Gesture Training (2)\DTWGestureRecognition\bin\Release\Microsoft.Samples.Kinect.WpfViewers.dll
+C:\Users\ssm\Desktop\Gesture Training (2)\DTWGestureRecognition\bin\Release\Microsoft.Samples.Kinect.WpfViewers.pdb
+C:\Users\ssm\Desktop\Gesture Training (2)\DTWGestureRecognition\bin\Release\Coding4Fun.Kinect.Wpf.pdb
+C:\Users\ssm\Desktop\Gesture Training (2)\DTWGestureRecognition\obj\x86\Release\ResolveAssemblyReference.cache
+C:\Users\ssm\Desktop\Gesture Training (2)\DTWGestureRecognition\obj\x86\Release\MainWindow.baml
+C:\Users\ssm\Desktop\Gesture Training (2)\DTWGestureRecognition\obj\x86\Release\MainWindow.g.cs
+C:\Users\ssm\Desktop\Gesture Training (2)\DTWGestureRecognition\obj\x86\Release\App.g.cs
+C:\Users\ssm\Desktop\Gesture Training (2)\DTWGestureRecognition\obj\x86\Release\DTWGestureRecognition_MarkupCompile.cache
+C:\Users\ssm\Desktop\Gesture Training (2)\DTWGestureRecognition\obj\x86\Release\DTWGestureRecognition.g.resources
+C:\Users\ssm\Desktop\Gesture Training (2)\DTWGestureRecognition\obj\x86\Release\DTWGestureRecognition.Properties.Resources.resources
+C:\Users\ssm\Desktop\Gesture Training (2)\DTWGestureRecognition\obj\x86\Release\GenerateResource.read.1.tlog
+C:\Users\ssm\Desktop\Gesture Training (2)\DTWGestureRecognition\obj\x86\Release\GenerateResource.write.1.tlog
+C:\Users\ssm\Desktop\Gesture Training (2)\DTWGestureRecognition\obj\x86\Release\DTWGestureRecognition.exe
+C:\Users\ssm\Desktop\Gesture Training (2)\DTWGestureRecognition\obj\x86\Release\DTWGestureRecognition.pdb

@@ -1,0 +1,20 @@
+﻿Microsoft.Samples.Kinect.WpfViewers
+
+
+library
+C#
+.cs
+C:\Users\pmk\Desktop\키넥트\Gesture Training\KinectWpfViewers\obj\Debug\
+Microsoft.Samples.Kinect.WpfViewers
+none
+false
+DEBUG;TRACE
+
+7-1694449150
+
+141858276639
+13923090751
+KinectSensorChooser.xaml;KinectAudioViewer.xaml;KinectDepthViewer.xaml;KinectColorViewer.xaml;KinectDiagnosticViewer.xaml;KinectSettings.xaml;KinectSkeletonViewer.xaml;
+
+True
+
