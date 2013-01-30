@@ -66,9 +66,10 @@ namespace beethoven3
         private Texture2D[] goodEffectTexture = new Texture2D[6];
         private Texture2D[] badEffectTexture = new Texture2D[6];
         private Texture2D[] missEffectTexture = new Texture2D[6];
-        
-        
 
+
+
+        private Texture2D[] go_stop_One = new Texture2D[2];
 
         
         //롱노트라 왼손노트를 따로 만들 때 쓰임
@@ -574,6 +575,9 @@ namespace beethoven3
             dragNoteBackground[3] = cm.Load<Texture2D>(@"notes\dragNoteBack_GoStop");//고스톱
 
 
+            go_stop_One[0] = cm.Load<Texture2D>(@"notes\Note_Gostop_1_one");//기본
+            go_stop_One[1] = cm.Load<Texture2D>(@"notes\Note_Gostop_2_one");//기본
+
          //   dragNoteStartTexters[0] = cm.Load<Texture2D>(@"notes\Note_Basic_3_DragStart");//기본
           //  dragNoteStartTexters[1] = cm.Load<Texture2D>(@"notes\starDragNote_DragStart");//우주
 
@@ -706,6 +710,12 @@ namespace beethoven3
         {
             return this.hoverMarkTexture;
         }
+        public Texture2D[] GetGo_stop_One()
+        {
+            return this.go_stop_One;
+        }
+
+        
 
 
         //현재 설정된 마우스오버 마커만

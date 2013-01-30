@@ -2184,3 +2184,8 @@ C:\Users\김영식\Desktop\beethoven0129오후12시34분신입발표전\beethove
 C:\Users\김영식\Desktop\beethoven0129오후12시34분신입발표전\beethoven3\beethoven3\beethoven3\obj\x86\Release\beethoven3.exe
 C:\Users\김영식\Desktop\beethoven0129오후12시34분신입발표전\beethoven3\beethoven3\beethoven3\obj\x86\Release\beethoven3.pdb
 D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Coding4Fun.Kinect.Wpf.pdb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\ui\one2.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\ui\three2.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\ui\two2.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\Note_Gostop_1_one.xnb
+D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\Note_Gostop_2_one.xnb

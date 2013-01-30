@@ -1506,18 +1506,18 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ui\one.png">
-      <Name>one</Name>
+    <Compile Include="ui\one2.png">
+      <Name>one2</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="ui\three.png">
-      <Name>three</Name>
+    <Compile Include="ui\three2.png">
+      <Name>three2</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="ui\two.png">
-      <Name>two</Name>
+    <Compile Include="ui\two2.png">
+      <Name>two2</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -1658,6 +1658,35 @@
   <ItemGroup>
     <Compile Include="SongMenu\noSongBackground.png">
       <Name>noSongBackground</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ui\one.png">
+      <Name>one</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="ui\three.png">
+      <Name>three</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="ui\two.png">
+      <Name>two</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="notes\Note_Gostop_1_one.png">
+      <Name>Note_Gostop_1_one</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="notes\Note_Gostop_2_one.png">
+      <Name>Note_Gostop_2_one</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

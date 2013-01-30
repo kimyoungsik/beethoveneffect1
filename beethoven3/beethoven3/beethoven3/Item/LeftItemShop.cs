@@ -609,7 +609,7 @@ namespace beethoven3
             {
                 Color color = Color.White;
                 color.A = 50;
-                spriteBatch.Draw(darkBackgroundImage, new Rectangle(0, 0, width, height), color);
+                spriteBatch.Draw(Game1.darkBackgroundImage, new Rectangle(0, 0, width, height), color);
                 Vector2 middle = new Vector2(width / 2, height / 2);
                    
                 

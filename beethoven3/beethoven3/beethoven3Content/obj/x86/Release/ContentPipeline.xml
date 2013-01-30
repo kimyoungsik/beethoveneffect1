@@ -2168,7 +2168,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\ui\one.xnb</Output>
-      <Time>2013-01-26T14:00:12+09:00</Time>
+      <Time>2013-01-30T09:03:49.8199321+09:00</Time>
     </Item>
     <Item>
       <Source>ui\three.png</Source>
@@ -2177,7 +2177,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\ui\three.xnb</Output>
-      <Time>2013-01-26T14:00:12+09:00</Time>
+      <Time>2013-01-30T09:03:50.3639632+09:00</Time>
     </Item>
     <Item>
       <Source>ui\two.png</Source>
@@ -2186,7 +2186,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\ui\two.xnb</Output>
-      <Time>2013-01-26T14:00:12+09:00</Time>
+      <Time>2013-01-30T09:03:50.8999939+09:00</Time>
     </Item>
     <Item>
       <Source>ui\LoadingKinect.png</Source>
@@ -2394,6 +2394,51 @@
       <Options>None</Options>
       <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\Fonts\Georgia.xnb</Output>
       <Time>2013-01-20T15:59:44+09:00</Time>
+    </Item>
+    <Item>
+      <Source>ui\one2.png</Source>
+      <Name>ui\one2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\ui\one2.xnb</Output>
+      <Time>2013-01-26T14:00:12+09:00</Time>
+    </Item>
+    <Item>
+      <Source>ui\three2.png</Source>
+      <Name>ui\three2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\ui\three2.xnb</Output>
+      <Time>2013-01-26T14:00:12+09:00</Time>
+    </Item>
+    <Item>
+      <Source>ui\two2.png</Source>
+      <Name>ui\two2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\ui\two2.xnb</Output>
+      <Time>2013-01-26T14:00:12+09:00</Time>
+    </Item>
+    <Item>
+      <Source>notes\Note_Gostop_1_one.png</Source>
+      <Name>notes\Note_Gostop_1_one</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\Note_Gostop_1_one.xnb</Output>
+      <Time>2013-01-30T09:35:56.0411057+09:00</Time>
+    </Item>
+    <Item>
+      <Source>notes\Note_Gostop_2_one.png</Source>
+      <Name>notes\Note_Gostop_2_one</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\beethoven\beethoven3\beethoven3\beethoven3\bin\x86\Release\Content\notes\Note_Gostop_2_one.xnb</Output>
+      <Time>2013-01-30T09:35:56.0431058+09:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

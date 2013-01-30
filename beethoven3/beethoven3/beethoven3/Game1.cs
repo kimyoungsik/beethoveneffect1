@@ -434,7 +434,7 @@ namespace beethoven3
         public static Texture2D two;
         public static Texture2D three;
 
-
+        public static Texture2D darkBackgroundImage;
         //드래그 라인의 렌더링
         LineRenderer dragLineRenderer;
  
@@ -540,7 +540,7 @@ namespace beethoven3
             lifePlusEffect10 = Content.Load<Texture2D>(@"ui\lifePlus10");
             lifePlusEffect15 = Content.Load<Texture2D>(@"ui\lifePlus15");
 
-
+            darkBackgroundImage = Content.Load<Texture2D>(@"Textures\darkBackground");
             go_back = Content.Load<Texture2D>(@"ui\go_back");
             go_front = Content.Load<Texture2D>(@"ui\go_front");
 
@@ -3033,8 +3033,6 @@ namespace beethoven3
         private void HandleKeyboardInput(KeyboardState keyState)
         {
           
-
-
             if (keyState.IsKeyDown(Keys.Escape))
             {
 
@@ -3340,6 +3338,13 @@ namespace beethoven3
                        playTime = (songLength / 1000 / 60) * 60 + (songLength / 1000 % 60) + ((songLength / 10 % 100) * 0.01 );
                        //Trace.WriteLine(playTime);
                    }
+
+                   
+
+
+
+
+
                    //마크 업데이트
                     MarkManager.Update(gameTime);
                     startNoteManager.Update(gameTime);
@@ -4359,13 +4364,79 @@ namespace beethoven3
                 startNoteManager.Draw(spriteBatch);
 
                 
+
+                
+
                 
                 //이걸 주석하면 드래그노트 체크하는거 안보임 하지만 체크는 됨
                 //DragNoteManager.Draw(spriteBatch);
                 
-                GoldManager.Draw(spriteBatch);
+                
 
                 TimeSpan processTime = file.Draw(spriteBatch, gameTime);
+
+
+                //처음에 아이템 설명
+
+                if (processTime < TimeSpan.FromSeconds(5))
+                {
+                    //오른손
+                    Color color = Color.White;
+                    color.A = 80;
+
+                    int index = itemManager.getNoteIndex();
+
+                    int x = 200;
+                    int y = 350;
+
+                    spriteBatch.Draw(darkBackgroundImage, new Rectangle(0, 0, 1024, 769), color);
+                    Texture2D rightNote;
+                    if (index != 3)
+                    {
+                        rightNote = itemManager.GetRightNoteTexture()[index];
+                    }
+                    else
+                    {
+                        rightNote = itemManager.GetGo_stop_One()[0];
+                    }
+
+                    spriteBatch.Draw(rightNote, new Rectangle(x, y, 100, 100), Color.White);
+                    spriteBatch.DrawString(georgia, "Right", new Vector2(x-30, y + 100), Color.White);
+
+
+                    //왼손
+                    Texture2D leftNote;
+                    if (index != 3)
+                    {
+                        leftNote = itemManager.GetLeftNoteTexture()[index];
+                    }
+                    else
+                    {
+                        leftNote = itemManager.GetGo_stop_One()[1];
+                    }
+
+                    spriteBatch.Draw(leftNote, new Rectangle(x+150, y, 100, 100), Color.White);
+                    spriteBatch.DrawString(georgia, "Left", new Vector2(x + 150, y + 100), Color.White);
+
+
+                    //롱노트
+                    
+                    Texture2D longNote = itemManager.GetLongNoteTexture()[index];
+                    
+                    spriteBatch.Draw(longNote, new Rectangle(x + 300, y, 100, 100), Color.White);
+                    spriteBatch.DrawString(georgia, "Long", new Vector2(x + 290, y + 100), Color.White);
+
+
+
+                    //드래그노트 
+                    Texture2D dragNote = itemManager.GetDragNoteTexture()[index];
+                    spriteBatch.Draw(dragNote, new Rectangle(x + 450, y, 100, 100), Color.White);
+
+                    spriteBatch.DrawString(georgia, "Drag", new Vector2(x + 440, y + 100), Color.White);
+
+
+                }
+
 
                 curveManager.Draw(gameTime, spriteBatch, processTime);
                 guideLineManager.Draw(processTime, spriteBatch);
@@ -4378,7 +4449,7 @@ namespace beethoven3
                 //330은 현재 최대 width, 이건 그림이 바뀌면 바뀜
                 //100은 gage의 최대값. 
 
-
+                GoldManager.Draw(spriteBatch);
 
 
                // int gageMax = 330;

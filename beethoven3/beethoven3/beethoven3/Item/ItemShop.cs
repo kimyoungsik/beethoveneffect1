@@ -24,7 +24,7 @@ namespace beethoven3
 
         //protected SpriteFont pericles36Font;
 
-        protected Texture2D darkBackgroundImage;
+        //protected Texture2D darkBackgroundImage;
         protected Texture2D yesButton;
         protected Texture2D noButton;
       
@@ -128,7 +128,7 @@ namespace beethoven3
 
            // ItemShopBackground = cm.Load<Texture2D>(@"shopButton\itemShopBackground");
 
-            darkBackgroundImage = cm.Load<Texture2D>(@"Textures\darkBackground");
+            //darkBackgroundImage = cm.Load<Texture2D>(@"Textures\darkBackground");
 
             yesButton = cm.Load<Texture2D>(@"shopButton\yesButton");
             noButton = cm.Load<Texture2D>(@"shopButton\noButton");

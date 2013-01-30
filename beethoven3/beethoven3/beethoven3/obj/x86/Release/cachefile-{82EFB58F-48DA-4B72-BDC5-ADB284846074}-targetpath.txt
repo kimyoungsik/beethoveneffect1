@@ -264,3 +264,8 @@ Content\notes\Note_Basic_3_DragStart.xnb
 Content\notes\Note_Gostop_3_DragStart.xnb
 Content\SongMenu\noSongBackground.xnb
 Content\Fonts\Georgia.xnb
+Content\ui\one2.xnb
+Content\ui\three2.xnb
+Content\ui\two2.xnb
+Content\notes\Note_Gostop_1_one.xnb
+Content\notes\Note_Gostop_2_one.xnb

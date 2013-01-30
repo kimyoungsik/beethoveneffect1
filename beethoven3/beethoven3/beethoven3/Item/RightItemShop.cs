@@ -623,7 +623,7 @@ namespace beethoven3
             {
                 Color color = Color.White;
                 color.A = 50;
-                spriteBatch.Draw(darkBackgroundImage, new Rectangle(0, 0, width, height), color);
+                spriteBatch.Draw(Game1.darkBackgroundImage, new Rectangle(0, 0, width, height), color);
                 Vector2 middle = new Vector2(width / 2, height / 2);
                 //Rectangle rectBuyPanel = new Rectangle(width / 2 - (buyPanel.Width / 2) - 100, height / 2 - (buyPanel.Height / 2) - 100, 200, 101);
                 //spriteBatch.Draw(buyPanel,new Vector2(100,100), rectBuyPanel, Color.White,0f,new Vector2(0,0),1f,SpriteEffects.None,1f);
