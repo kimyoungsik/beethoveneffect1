@@ -791,12 +791,12 @@ namespace beethoven3
                             //시간에 맞춰서 뿌려줘야 함. 
                             //notecontent[2] => 마커위치
 
-                            if (noteTime > 60)
-                            {
+                            //if (noteTime > 60)
+                            //{
 
-                                int o = 12;
-                                o++;
-                            }
+                            //    int o = 12;
+                            //    o++;
+                            //}
                             startNoteManager.MakeRightNote(noteQueue[0].MarkLocation);
 
                             try
